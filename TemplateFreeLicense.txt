@@ -1,0 +1,21 @@
+MediaLoot License Agreement
+By subscribing to MediaLoot, purchasing an individual resource ("item" or "file"), or
+downloading a free resource you are being granted a license to use these files for specific
+uses under certain conditions. Ownership remains with MediaLoot and the respective
+copyright holders, and you are required to abide by the following licensing terms.
+-----FREE LICENSE----
+If you have downloaded this file without paying for an individual use license or a MediaLoot
+subscription, you are goverened by the free license. The free license grants you the
+exclusive right to use and incorporate these files in your personal or commercial projects
+under the following conditions:
+1. All uses of these free items must contain an attribution link back to MediaLoot.com
+or the specific download page of this resource.
+2. You may use this resource or adaptations of this resource in commercial or other
+projects for single-application purposes. For example, using this work inside of a
+client project is acceptable, but using it on a tee-shirt design that will be distributed
+to multiple people is not.
+3. You MAY NOT distribute or resell this resource, or its derivatives, and you may not
+upload this resource to other websites. All sharing of this resource must be done
+using a link to the MediaLoot download page.
+
+https://medialoot.com/item/lumino-admin-bootstrap-template
