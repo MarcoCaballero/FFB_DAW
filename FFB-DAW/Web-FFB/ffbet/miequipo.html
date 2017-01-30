@@ -4,33 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lumino - Dashboard</title>
-
+    <title>FFBet - Entra y apuesta</title>
+    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
-
     <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-
 </head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="#"> </a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -38,19 +30,25 @@
                                 <use xlink:href="#stroked-male-user"></use>
                             </svg> User <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#">
+                            <li style="visibility:visible;">
+                                <a href="login.html">
                                     <svg class="glyph stroked male-user">
                                         <use xlink:href="#stroked-male-user"></use>
-                                    </svg> Profile</a>
+                                    </svg> Entrar</a>
                             </li>
-                            <li>
+                            <li style="visibility:visible;">
                                 <a href="#">
                                     <svg class="glyph stroked gear">
                                         <use xlink:href="#stroked-gear"></use>
                                     </svg> Settings</a>
                             </li>
-                            <li>
+                            <li style="visibility:hidden;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear hidden">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Mi perfil</a>
+                            </li>
+                            <li style="visibility:hidden;">
                                 <a href="#">
                                     <svg class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
@@ -60,23 +58,21 @@
                     </li>
                 </ul>
             </div>
-
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+   <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <!--<form role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>-->
-        <section class="active"> <img src="img/LogoFFBalpha.png" width="100%" style="background: rgba(255, 181, 62, 0.58);"> </section>
+        <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
             <li>
                 <a href="index.html"> <img class="glyph stroked home" src="img/home.svg" /> Home</a>
             </li>
-            <li >
+            <li>
                 <a href="apuestasdeportivas.html"> <img class="glyph stroked home" src="img/ball.svg" />Apuestas Deportivas</a>
             </li>
             <li>
@@ -88,166 +84,203 @@
             <li>
                 <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/top.svg" />Top Apuestas</a>
             </li>
+            
+            
             <li role="presentation" class="divider"></li>
             <li>
-                <a href="login.html">
+                <a href="reg.html">
                     <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate</a>
             </li>
-              <li class="parent ">
-                <a href="#">
-                    <span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Mi Cuenta
-                </a>
-                <ul class="children collapse" id="sub-item-1">
-                    <li class="active">
-                        <a class="" href="miequipo.html">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use>
-                            </svg> Mi Equipo
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="saldo.html">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use>
-                            </svg> Saldo
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="historial.html">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use>
-                            </svg> Historial
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="misdatos.html">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use>
-                            </svg> Mis Datos
-                        </a>
-                    </li>
-                </ul>
+            
+            <li  class="active">
+                <a href="miequipo.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
             </li>
+            
+           
         </ul>
     </div>
     <!--/.sidebar-->
-
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Mi Equipo</h1>
+    
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Mi Equipo</h1> </div>
+            </div>
+            <!--/.row-->
+            <div class="row">
+                <div class="col-md-4" style="padding-left:50px; padding-top:30px;">
+                    <div class="row"> <img src="img/PSG.png" width="200px" height="200px"></div>
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Clasificación</div>
+                            <div class="panel-body"> <b>1º</b></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Clasificación</div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre completo</th>
+                                        <th>Paris Saint-Germain Football Club</th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Apodo(s) </th>
+                                        <th>PSG</th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Fundación</th>
+                                        <th>12 de agosto de 1970 (46 años)</th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Propietario(s)</th>
+                                        <th>Qatar Investment Authority</th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Presidente</th>
+                                        <th>Nasser Al-Khelaifi</th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Entrenador</th>
+                                        <th>Unai Emery</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.row-->
+             <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">TABLAS</h1> </div>
+            </div>
+            <!--/.row-->
+              <!-- zona tete-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Ultimos partidos</div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Partido</th>
+                                        <th>Resultado</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Proximos partidos</div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Partido</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                                <tr>
+                                    <td>Partido</td>
+                                    <td>Resultado</td>
+                                    <td>Fecha</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Clasificación</div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Equipo</th>
+                                        <th>Pjs</th>
+                                        <th>Gf</th>
+                                        <th>Gc</th>
+                                        <th>Pts</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Equipo</td>
+                                    <td>55</td>
+                                    <td>54</td>
+                                    <td>30</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Equipo</td>
+                                    <td>55</td>
+                                    <td>54</td>
+                                    <td>30</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Equipo</td>
+                                    <td>55</td>
+                                    <td>54</td>
+                                    <td>30</td>
+                                    <td>20</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!--/.row-->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Ultimos partidos</div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Partido</th>
-                                    <th>Resultado</th>
-                                    <th>Fecha</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Proximos partidos</div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Partido</th>
-                                    <th>Fecha</th>
-                                    <th>Hora</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                            <tr>
-                                <td>Partido</td>
-                                <td>Resultado</td>
-                                <td>Fecha</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Clasificación</div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Equipo</th>
-                                    <th>Pjs</th>
-                                    <th>Gf</th>
-                                    <th>Gc</th>
-                                    <th>Pts</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <td>Equipo</td>
-                                <td>55</td>
-                                <td>54</td>
-                                <td>30</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>Equipo</td>
-                                <td>55</td>
-                                <td>54</td>
-                                <td>30</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>Equipo</td>
-                                <td>55</td>
-                                <td>54</td>
-                                <td>30</td>
-                                <td>20</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/.row-->
-    </div>
+ 
+  
+    
     <!--/.main-->
-
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -257,14 +290,12 @@
     <script src="js/bootstrap-datepicker.js"></script>
     <script>
         $('#calendar').datepicker({});
-
         ! function ($) {
             $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
         }(window.jQuery);
-
         $(window).on('resize', function () {
             if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
         })

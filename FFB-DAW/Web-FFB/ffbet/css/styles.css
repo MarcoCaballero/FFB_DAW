@@ -1053,6 +1053,7 @@ a.todo-list-item:focus {
     -moz-box-shadow:  0 2px 5px 0 #333;
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
+    width:70%;
 }
 
 #sidebar-collapse {
@@ -1151,4 +1152,32 @@ a.todo-list-item:focus {
 
 #aux {
     margin-bottom: 40px;
+}
+
+.logoBack {
+    background: rgba(255, 181, 62, 0.58);
+}
+
+.publicidadCarousel {
+    color: white;
+}
+
+.first-slide {
+height: 100%; width: 100%; object-fit: contain
+}
+
+.slide {
+    height: 100%; width: 100%; object-fit: contain
+}
+
+.bg-warning {
+    width:80%;
+    text-align: center;
+    -moz-box-shadow:  0 2px 5px 0 #333;
+    -webkit-box-shadow: 0 2px 5px 0 #333;
+    box-shadow: 0 2px 5px 0 #333;
+}
+
+.alert {
+   
 }
