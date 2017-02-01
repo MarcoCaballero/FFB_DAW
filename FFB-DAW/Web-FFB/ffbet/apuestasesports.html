@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FFBet - Entra y apuesta</title>
+    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="#"> </a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <svg class="glyph stroked male-user">
+                                <use xlink:href="#stroked-male-user"></use>
+                            </svg> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li style="visibility:visible;">
+                                <a href="login.html">
+                                    <svg class="glyph stroked male-user">
+                                        <use xlink:href="#stroked-male-user"></use>
+                                    </svg> Entrar</a>
+                            </li>
+                            <li style="visibility:visible;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Settings</a>
+                            </li>
+                            <li style="visibility:hidden;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear hidden">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Mi perfil</a>
+                            </li>
+                            <li style="visibility:hidden;">
+                                <a href="#">
+                                    <svg class="glyph stroked cancel">
+                                        <use xlink:href="#stroked-cancel"></use>
+                                    </svg> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <!--<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>-->
+        <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
+        <ul class="nav menu">
+            <li>
+                <a href="index.html"> <img class="glyph stroked home" src="img/home.svg" /> Home</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked home" src="img/ball.svg" />Apuestas Deportivas</a>
+            </li>
+            <li class="active">
+                <a href="apuestasesports.html"> <img class="glyph stroked pencil" src="img/games_b.svg" /> Apuestas E-games</a>
+            </li>
+            <li>
+                <a href="promos.html"> <img class="glyph stroked pencil" src="img/star.svg" /> Ofertas y Promociones</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/top.svg" />Top Apuestas</a>
+            </li>
+            
+            
+            <li role="presentation" class="divider"></li>
+            <li>
+                <a href="reg.html">
+                    <svg class="glyph stroked male-user">
+                        <use xlink:href="#stroked-male-user"></use>
+                    </svg>Registrate</a>
+            </li>
+            
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
+            </li>
+            
+           
+        </ul>
+    </div>
+    <!--/.sidebar-->
+    <div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <ol class="breadcrumb">
+               <li><a href="index.html"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Apuestas E-Sports</li>
+            </ol>
+        </div>
+        <!--/.row-->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="page-header"></h1>
+                <div id="myVideoBG">
+                    <section id="banner">
+                        <iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/tEnsqpThaFg?autoplay=1&controls=1&showinfo=0&autohide=1"> </iframe>
+                    </section>
+                </div>
+                <div class="container">
+                    <div class="videobg-caption">
+                        <h1></h1>
+                        <p style="color: white;"><img src="img/faviconFFBpngGold.png" style="height: 80px;" /></p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Apuesta YA!</a></p>
+                    </div>
+                </div>
+                <!-- /.carousel VIDEO-->
+            </div>
+            <!--/.row-->
+            <!--/.row-->
+            <div class="row">
+                <div class="col-md-8" style="padding-left: 30px">
+                    <div class="panel panel-default">
+                        <div class="panel-body tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab1" data-toggle="tab"><img class="glyph stroked home" src="img/football.svg" style="width:16px; height:16px;"> FUTBOL</a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab"><img class="glyph stroked home" src="img/tennis.svg" style="width:16px; height:16px; "> TENIS</a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab"><img class="glyph stroked home" src="img/basket.svg" style="width:16px; height:16px;"> BASKET</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <!-- Contenido Futbol-->
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="tab-logo-liga">
+                                                <th colspan="3"><img class="glyph stroked home" src="img/ligasantander.png" style="width:200px; height:40px;"></th>
+                                                <th>
+                                                    <div class="col-xs-6 col-md-4 text-center"> 1</div>
+                                                    <div class="col-xs-6 col-md-4 text-center"> x</div>
+                                                    <div class="col-xs-6 col-md-4 text-center"> 2</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr class="tab-logo-liga">
+                                                <th colspan="5"><img class="glyph stroked home" src="img/ligabarclays.png" style="width:200px; height:80px;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tab-horario-partido">
+                                                <th scope="row">1</th>
+                                                <td class="tab-horario-partido">24/11 17:00</td>
+                                                <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                                <td class="tab-buttons-apuesta-simple">
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-4 center-block">
+                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Contenido Futbol-->
+                                </div>
+                                <div class="tab-pane fade" id="tab2">
+                                    <!-- Contenido TENIS-->
+                                </div>
+                                <div class="tab-pane fade" id="tab3">
+                                    <!-- Contenido BASKET-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.col-->
+                <div class="col-md-4">
+                    <div class="panel panel-blue">
+                        <div class="panel-heading dark-overlay">
+                            <svg class="glyph stroked clipboard-with-paper">
+                                <use xlink:href="#stroked-clipboard-with-paper"></use>
+                            </svg>APUESTA</div>
+                        <div class="panel-body">
+                            <ul class="todo-list">
+                                <li class="todo-list-item">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox" />
+                                        <label for="checkbox">
+                                            <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
+                                            <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
+                                        </label>
+                                    </div>
+                                    <div class="pull-right action-buttons">
+                                        <a href="#" class="trash">
+                                            <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
+                                                <use xlink:href="#stroked-trash"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="todo-list-item">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox" />
+                                        <label for="checkbox">
+                                            <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
+                                            <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
+                                        </label>
+                                    </div>
+                                    <div class="pull-right action-buttons">
+                                        <a href="#" class="trash">
+                                            <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
+                                                <use xlink:href="#stroked-trash"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="todo-list-item">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox" />
+                                        <label for="checkbox">
+                                            <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
+                                            <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
+                                        </label>
+                                    </div>
+                                    <div class="pull-right action-buttons">
+                                        <a href="#" class="trash">
+                                            <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
+                                                <use xlink:href="#stroked-trash"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="todo-list-item">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox" />
+                                        <label for="checkbox">
+                                            <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
+                                            <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
+                                        </label>
+                                    </div>
+                                    <div class="pull-right action-buttons">
+                                        <a href="#" class="trash">
+                                            <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
+                                                <use xlink:href="#stroked-trash"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer" style="background:rgba(255, 255, 255, 0.71)">
+                            <div class="row">
+                                <div class="col-md-4" style="color:black; padding-top:5px;"><b>Importe</b></div>
+                                <div class="col-md-4" style="color:white;"></div>
+                                <div class="col-md-4" style="color:black;">
+                                    <select class="form-control" style="border: 1px solid #2d9df3; width=80%;">
+                                        <option><b>1€</b></option>
+                                        <option><b>5€</b></option>
+                                        <option><b>10€</b></option>
+                                        <option><b>25€</b></option>
+                                        <option><b>50€</b></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:20px;">
+                                <div class="col-md-8" style="color:black; padding-top:5px;"><b>Ganancias posibles:</b></div>
+                                <div class="col-md-4" style="color:black;"><b>187.76€</b></div>
+                            </div>
+                            <div class="row" style="padding-top:50px;">
+                                <div class="col-md-7" style="color:black; padding-top:10px;"></div>
+                                <div class="col-md-5" style="color:black;">
+                                    <button type="submit" class="btn btn-primary" style="width=80%; padding-left:10px; padding-top:10px;">Cerrar Apuesta</button>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:50px;">
+                                <div class="col-md-12" style="color:black; padding-top:10px; font-size:10px;">Al realizar una apuesta, usted está aceptando la versión mas reciente de nuestra <a href="#">política de apuestas.</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.col-->
+            </div>
+            <!--/.row-->
+            <div class="row">
+                <div class="col-xs-10 col-md-10 col-lg-10" style="margin-left:20%;">
+                    <div class="alert bg-warning" style="width:50%;" role="alert">
+                        <svg class="glyph stroked flag">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-flag"></use>
+                        </svg> Porcentajes de apuestas por mercado EN DIRECTO
+                        <svg class="glyph stroked flag">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-flag"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="row" style="margin-left:10%;">
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="panel panel-blue panel-widget ">
+                            <div class="row no-padding">
+                                <div class="col-sm-3 col-lg-5 widget-left"> <img class="glyph stroked home" src="img/ball.svg" height="45px" width="45px" /> </div>
+                                <div class="col-sm-9 col-lg-7 widget-right">
+                                    <div class="large">17k</div>
+                                    <div class="text-muted">Fútbol</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="panel panel-orange panel-widget">
+                            <div class="row no-padding">
+                                <div class="col-sm-3 col-lg-5 widget-left"> <img class="glyph stroked home" src="img/basket.svg" height="45px" width="45px" /> </div>
+                                <div class="col-sm-9 col-lg-7 widget-right">
+                                    <div class="large">5K</div>
+                                    <div class="text-muted">Basket.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="panel panel-teal panel-widget">
+                            <div class="row no-padding">
+                                <div class="col-sm-3 col-lg-5 widget-left"> <img class="glyph stroked home" src="img/games_b.svg" height="45px" width="45px" /> </div>
+                                <div class="col-sm-9 col-lg-7 widget-right">
+                                    <div class="large">1,2k</div>
+                                    <div class="text-muted">E-games</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row" style="margin-left:10%;">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Apuestas</h4>
+                                <div class="easypiechart" id="easypiechart-blue" data-percent="92"><span class="percent">92%</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Apuestas</h4>
+                                <div class="easypiechart" id="easypiechart-orange" data-percent="65"><span class="percent">65%</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Apuestas</h4>
+                                <div class="easypiechart" id="easypiechart-teal" data-percent="56"><span class="percent">56%</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="background:#30a5ff;">
+                    <div class="col-lg-12"> HOLA PUTILLAS </div>
+                </div>
+            </div>
+            <!--/.main-->
+            <script src="js/jquery-1.11.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/chart.min.js"></script>
+            <script src="js/chart-data.js"></script>
+            <script src="js/easypiechart.js"></script>
+            <script src="js/easypiechart-data.js"></script>
+            <script src="js/bootstrap-datepicker.js"></script>
+            <script>
+                $('#calendar').datepicker({});
+                ! function ($) {
+                    $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                        $(this).find('em:first').toggleClass("glyphicon-minus");
+                    });
+                    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+                }(window.jQuery);
+                $(window).on('resize', function () {
+                    if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+                })
+                $(window).on('resize', function () {
+                    if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+                })
+            </script>
+</body>
+
+</html>
