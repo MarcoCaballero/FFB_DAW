@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FFBet - Entra y apuesta</title>
-    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
+       <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -13,6 +13,11 @@
     <link href="carousel.css" rel="stylesheet">
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
+    <script>
+        $("#myCarousel").carousel()({
+            interval: 100
+        });
+    </script>
     <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
@@ -605,10 +610,20 @@
                                 </select>
                             </div>
                         </div>
+                         <div class="row" style="padding-top:20px;">
+                            <div class="col-md-8" style="color:black; padding-top:5px;"><i>Tiene un código promocional?</i></div>
+                            <div class="col-md-4" style="color:black;">
+                                <form role="contentinfo">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="XXXXXX"> </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="row" style="padding-top:20px;">
                             <div class="col-md-8" style="color:black; padding-top:5px;"><b>Ganancias posibles:</b></div>
                             <div class="col-md-4" style="color:black;"><b>187.76€</b></div>
                         </div>
+                       
                         <div class="row" style="padding-top:50px;">
                             <div class="col-md-7" style="color:black; padding-top:10px;"></div>
                             <div class="col-md-5" style="color:black;">
@@ -704,7 +719,7 @@
                 <div class="row">
                     <div class="col-lg-1"> </div>
                     <div class="col-lg-10">
-                        <div class="col-md-2" > <img src="img/juegoseguro.jpg" width="200px" height="34px"> </div>
+                        <div class="col-md-2"> <img src="img/juegoseguro.jpg" width="200px" height="34px"> </div>
                         <div class="col-md-2"> <img src="img/juegoseguro.jpg" width="200px" height="34px"> </div>
                         <div class="col-md-2"> <img src="img/juegoseguro.jpg" width="200px" height="34px"> </div>
                         <div class="col-md-2"> <img src="img/juegoseguro.jpg" width="200px" height="34px"> </div>
