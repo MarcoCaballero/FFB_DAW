@@ -187,8 +187,10 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
+
     background-color: #3A8A3F;
     border-color: #3A8A3F;
+
 }
 
 .btn-success,
@@ -1050,10 +1052,10 @@ a.todo-list-item:focus {
     margin-bottom: 2%;
     margin-left: 13%;
     margin-right: 13%;
-    -moz-box-shadow: 0 2px 5px 0 #333;
+    -moz-box-shadow:  0 2px 5px 0 #333;
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
-    width: 70%;
+    width:70%;
 }
 
 #sidebar-collapse {
@@ -1063,9 +1065,9 @@ a.todo-list-item:focus {
 }
 
 #banner {
-    position: relative;
-    height: 400px;
-    width: 100%;
+     position: relative;
+    height:400px;
+    width:100%;
     overflow: hidden;
 }
 
@@ -1075,17 +1077,17 @@ a.todo-list-item:focus {
     left: 0;
     min-width: 100%;
     min-height: 100%;
-    height: auto;
-    width: auto;
+    height:auto;
+    width:auto;
     z-index: -100;
 }
 
 #myVideoBG {
-    margin-top: 0%;
-    margin-bottom: 3%;
+    margin-top:0%;
+    margin-bottom:3%;
     margin-left: 1%;
     margin-right: 1%;
-    -moz-box-shadow: 0 2px 5px 0 #333;
+    -moz-box-shadow:  0 2px 5px 0 #333;
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
 }
@@ -1141,8 +1143,8 @@ a.todo-list-item:focus {
 
 .imglogo {
     height: 100px;
-    width: 200px;
-    margin-top: -15px;
+    width:200px;
+    margin-top:-15px;
     margin-left: -10px;
 }
 
@@ -1159,23 +1161,24 @@ a.todo-list-item:focus {
 }
 
 .first-slide {
-    height: 100%;
-    width: 100%;
-    object-fit: contain
+
+height: 100%; width: 100%; object-fit: contain
 }
 
 .slide {
-    height: 100%;
-    width: 100%;
-    object-fit: contain
+    height: 100%; width: 100%; object-fit: contain
 }
 
 .bg-warning {
-    width: 80%;
+    width:80%;
     text-align: center;
-    -moz-box-shadow: 0 2px 5px 0 #333;
+    -moz-box-shadow:  0 2px 5px 0 #333;
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
 }
 
-.alert {}
+
+.alert {
+   
+}
+

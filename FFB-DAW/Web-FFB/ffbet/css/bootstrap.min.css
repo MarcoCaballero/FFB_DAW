@@ -171,6 +171,7 @@ input::-moz-focus-inner {
     border: 0
 }
 
+
 .btn-outline-primary {
     color: #0275d8;
     background-image: none;
@@ -4853,11 +4854,13 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-brand {
-    float: inherit;
-    height: 50px;
-    padding: 15px 30%;
-    font-size: 15px;
-    line-height: 15px;
+
+  float: inherit;
+  height: 50px;
+  padding: 15px 30%;
+  font-size: 15px;
+  line-height: 15px;
+
 }
 
 .navbar-brand:hover,
@@ -7577,8 +7580,5 @@ button.close {
     .hidden-print {
         display: none!important
     }
-}
 
-.col-lg-offset-2 {
-    margin-top: 10px;
 }
