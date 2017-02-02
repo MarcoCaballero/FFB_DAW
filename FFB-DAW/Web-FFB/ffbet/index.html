@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lumino - Dashboard</title>
+    <title>FFBet - Entra y apuesta</title>
+    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -12,14 +13,7 @@
     <script src="js/lumino.glyphs.js"></script>
     <script>
         $("#myCarousel").carousel()({
-            interval: 500
-        });
-        $("#myCarousel").carousel('cycle');
-        $(".item").click(function () {
-            $("#myCarousel").carousel(1);
-        });
-        $(".left").click(function () {
-            $("#myCarousel").carousel("prev");
+            interval: 100
         });
     </script>
     <!--[if lt IE 9]>
@@ -80,9 +74,7 @@
 		</form>-->
         <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
-
-            <li  class="active">
-
+            <li class="active">
                 <a href="index.html"> <img class="glyph stroked home" src="img/home.svg" /> Home</a>
             </li>
             <li>
@@ -97,7 +89,6 @@
             <li>
                 <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/top.svg" />Top Apuestas</a>
             </li>
-
             <li role="presentation" class="divider"></li>
             <li>
                 <a href="reg.html">
@@ -105,14 +96,9 @@
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate</a>
             </li>
-
-
             <li>
-                <a href="micuenta.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
             </li>
-
-
-
         </ul>
     </div>
     <!--/.sidebar-->
@@ -126,9 +112,7 @@
         </div>
         <!--/.row-->
         <!--Título-->
-        <div class="row">
-
-        </div>
+        <div class="row"> </div>
         <!--/.row-->
         <!--Esto ya no es común a todas las páginas-->
         <!--Publicidad y etcs-->
@@ -156,9 +140,7 @@
                             <div class="container">
                                 <div class="carousel-caption">
                                     <h1>
-                                    </h1>
-
-                                </div>
+                                    </h1> </div>
                             </div>
                         </div>
                         <div class="item"> <img class="slide" src="img/slideRegistrate.png" alt="Third slide">
@@ -177,101 +159,47 @@
             </div>
         </div>
         <!--/.row-->
-        <!--Podría ir aquí una lista u otras cosas-->
-        <!--Estadísticas-->
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <div class="panel panel-blue panel-widget ">
-                    <div class="row no-padding">
-                        <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked bag">
-                                <use xlink:href="#stroked-bag"></use>
-                            </svg>
-                        </div>
-                        <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">120</div>
-                            <div class="text-muted">Nuevas apuestas</div>
-                        </div>
+        <!--Noticias-->
+        <div class="noticias">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel panel-tittle">
+                            <h3 class="textNoticias">19 partidos sin ganar en el Camp Nou</h3> <span class="subtitulo"><em>Los rojiblancos acumulan 15 derrotas y 4 empates entre Liga, Copa y Supercopa en el coliseo culé</em></span></div>
+                        <div class="panel panel-body"> <img src="img/noticia_futbol.jpg" class="img-responsive"> <span class="cuerpo">
+                        <p class="primero">El Athletic visitará el próximo sábado el Camp Nou (16.15 horas) con la intención de acabar con una racha de 19 partidos sin ganar en el estadio azulgrana -14 en Liga, 4 en Copa y 1 en Supercopa- en los que ha encajado 15 derrotas y ha logrado 4 empates.</p>
+                        <p>El último triunfo rojiblanco en el coliseo barcelonista fue el 1-2 registrado hace más de quince años, el 24 de noviembre de 2001, en un partido que Santi Ezquerro desniveló a diez minutos del final a favor del equipo dirigido entonces por Jupp Heynckes después de los tantos de Urzaiz y Rivaldo.</p>
+                        
+                        <p><strong>Doce victorias seguidas en Liga</strong></p>
+                            
+                        <p>Los 15 partidos restantes se saldaron con victoria local, los últimos 12 consecutivos en el Campeonato de Liga. El más abultado de todos fue el 6-0 del último curso en un partido marcado por la expulsión de Gorka Iraizoz a los cuatro minutos de partido.</p>
+                        <p>Los restantes fueron por cuatro marcadores de 2-0 (2004-2005, 2008-2009, 2011-2012 y 2014-2015), tres de 2-1 (2005-2006, 2010-2011 y 2013-2014); y uno de 3-0 (2006-2007), 3-1 (2007-2008), 4-1 (2009-2010) y 5-1 (2012-2013).</p>
+                        <p>Las otras tres victorias locales fueron en Copa, y todas ellas por un marcador idéntico de 3-1. La primera se dio en la final de 2015, disputada en el Camp Nou, y las dos restantes en eliminatorias de cuartos y octavos, respectivamente, de las dos últimas ediciones.</p>
+                        <p>La más reciente fue el pasado 11 de enero cuando el equipo de Luis Enrique le dio la vuelta al 2-1 encajado la semana anterior en San Mamés con los tantos de Luis Suárez, Neymar, de penalti, y Leo Messi, que neutralizaron el gol de Saborit para el Athletic.</p>
+                        </span> </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <div class="panel panel-orange panel-widget">
-                    <div class="row no-padding">
-                        <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked empty-message">
-                                <use xlink:href="#stroked-empty-message"></use>
-                            </svg>
-                        </div>
-                        <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">52</div>
-                            <div class="text-muted">Apuestas en E-Games</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <div class="panel panel-teal panel-widget">
-                    <div class="row no-padding">
-                        <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked male-user">
-                                <use xlink:href="#stroked-male-user"></use>
-                            </svg>
-                        </div>
-                        <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">24</div>
-                            <div class="text-muted">Nuevos usuarios</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <div class="panel panel-red panel-widget">
-                    <div class="row no-padding">
-                        <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked app-window-with-content">
-                                <use xlink:href="#stroked-app-window-with-content"></use>
-                            </svg>
-                        </div>
-                        <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">25.2k</div>
-                            <div class="text-muted">Visitantes</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/.row-->
-        <div class="row">
-            <div class="col-xs-6 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body easypiechart-panel">
-                        <h4>Nuevas Apuestas</h4>
-                        <div class="easypiechart" id="easypiechart-blue" data-percent="92"><span class="percent">92%</span> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body easypiechart-panel">
-                        <h4>Apuestas en E-Games</h4>
-                        <div class="easypiechart" id="easypiechart-orange" data-percent="65"><span class="percent">65%</span> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body easypiechart-panel">
-                        <h4>Nuevos Usuarios</h4>
-                        <div class="easypiechart" id="easypiechart-teal" data-percent="56"><span class="percent">56%</span> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body easypiechart-panel">
-                        <h4>Visitantes</h4>
-                        <div class="easypiechart" id="easypiechart-red" data-percent="27"><span class="percent">27%</span> </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel panel-tittle">
+                            <h3 class="textNoticias">Resumen partido OG-UOL Segunda semana EU LCS</h3> <span class="subtitulo"><em>A priori dos equipos con objetivos distintos, OG mantenerse en la LCS y UOL luchar por las primeras plazas</em></span></div>
+                        <div class="panel panel-body"> <img src="img/noticia_esports.jpg" class="img-responsive"> <span class="cuerpo">
+                        
+                        <p class="primero"><strong>Primera partida</strong></p>
+                            
+                        <p>Origen comenzaba con un buen early game consiguiendo la primera sangre sobre Ryze en el carril central. Poco a poco Origen iba poniéndose por encima jugando de forma muy seria. El Jayce del alemán Max “Satorius” Günther fue un auténtico quebradero de cabeza para UOL.
+                        Pero la partida daría un rotundo vuelco a favor de UOL. Y es que Aleksi “Hiiva” Kaikkonen con Zyra era totalmente anulada en cada pelea de equipo ante la sincronizada composición de equipo de UOL.
+                        Pero la partida daría un rotundo vuelco a favor de UOL. Y es que Aleksi “Hiiva” Kaikkonen con Zyra era totalmente anulada en cada pelea de equipo ante la sincronizada composición de equipo de UOL.</p>
+                        <p>Dos team fights a su favor le sirvieron para romper la partida y poner el 1-0 para los unicornios.</p>
+                            
+                        <p><strong>Segunda partida</strong></p>
+                            
+                        <p>De nuevo acción en los compases iniciales, ahora a nivel 1 en el que Hecarim conseguía la primera sangre. El jungla coreano hizo buena gestión de esta primera kill y Fabian “Exileh” Schubert con Ryze pagaría las consecuencias.
+                        Hecarim con gran presencia en la linea central ponía a OG 4-0 en el marcador de kills. De nuevo gran early game del equipo de origen español.</p>
+                        <p>Aunque de nuevo la descoordinación de OG en las peleas de equipo metió a UOL en la partida. Gran gestión de UOL en las peleas de equipo con una gran sincroonización de sus jugadores.
+                        Al igual que pasaba en la primera partida, UOL volvía a pasar por encima de OG aun empezando con desventaja al ceder kills en early game.
+                        Mucho tiene Origen que mejorar el juego en equipo y en concreto las team fights si de verdad pretenden permanecer en la alta competición europea.</p>
+                        </span> </div>
                     </div>
                 </div>
             </div>

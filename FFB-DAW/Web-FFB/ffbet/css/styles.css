@@ -1177,8 +1177,44 @@ height: 100%; width: 100%; object-fit: contain
     box-shadow: 0 2px 5px 0 #333;
 }
 
+.noticias {
+    background: #343c43;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
 
-.alert {
-   
+.subtitulo {
+    float:left;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: antiquewhite;
+}
+
+.panel-default {
+    background: #333;
+}
+
+.panel-tittle {
+    background: #333;
+}
+.panel-body{
+    background: #333;
+}
+
+.textNoticias {
+    color: #30a5ff;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.cuerpo > p{
+    color: #ffffff;
+}
+
+.primero {
+    padding-top: 10px;
 }
 
