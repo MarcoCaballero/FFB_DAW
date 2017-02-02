@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FFBet - Mi cuenta </title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+    <script>
+        $("#myCarousel").carousel()({
+            interval: 500
+        });
+        $("#myCarousel").carousel('cycle');
+        $(".item").click(function () {
+            $("#myCarousel").carousel(1);
+        });
+        $(".left").click(function () {
+            $("#myCarousel").carousel("prev");
+        });
+    </script>
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="#"> </a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <svg class="glyph stroked male-user">
+                                <use xlink:href="#stroked-male-user"></use>
+                            </svg> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li style="visibility:visible;">
+                                <a href="login.html">
+                                    <svg class="glyph stroked male-user">
+                                        <use xlink:href="#stroked-male-user"></use>
+                                    </svg> Entrar</a>
+                            </li>
+                            <li style="visibility:visible;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Settings</a>
+                            </li>
+                            <li style="visibility:hidden;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear hidden">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Mi perfil</a>
+                            </li>
+                            <li style="visibility:hidden;">
+                                <a href="#">
+                                    <svg class="glyph stroked cancel">
+                                        <use xlink:href="#stroked-cancel"></use>
+                                    </svg> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <!--<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>-->
+        <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
+        <ul class="nav menu">
+            <li>
+                <a href="index.html"> <img class="glyph stroked home" src="img/home.svg" /> Home</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked home" src="img/ball.svg" />Apuestas Deportivas</a>
+            </li>
+            <li>
+                <a href="apuestasesports.html"> <img class="glyph stroked pencil" src="img/games_b.svg" /> Apuestas E-games</a>
+            </li>
+            <li>
+                <a href="promos.html"> <img class="glyph stroked pencil" src="img/star.svg" /> Ofertas y Promociones</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/top.svg" />Top Apuestas</a>
+            </li>
+
+
+            <li role="presentation" class="divider"></li>
+            <li>
+                <a href="reg.html">
+                    <svg class="glyph stroked male-user">
+                        <use xlink:href="#stroked-male-user"></use>
+                    </svg>Registrate</a>
+            </li>
+
+            <li class="active">
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
+            </li>
+
+
+        </ul>
+    </div>
+    <!--/.sidebar-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1"><strong>Mis Datos</strong></a>
+      </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel panel-primary" style="background-color: #FFD288">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div style="margin-bottom: 10px;" class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            FICHA DE USUARIO
+                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconedit.png" />
+                                                <button type="submit" class="btn btn-primary">Editar</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" action="" method="post">
+                                                <fieldset>
+                                                    <!-- Nombre input-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="name">Nombre</label>
+                                                        <div class="col-md-9">
+                                                            <input id="name" name="name" type="text" placeholder="Nombre usuario" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- 1Apellido input-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Primer Apellido</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Primer Apellido" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- 2Apellido input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Segundo Apellido</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Segundo Apellido" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Ciudad input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Ciudad</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Ciudad" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Pais input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Pais</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Pais" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" action="" method="post">
+                                                <fieldset>
+                                                    <!-- Nombre input-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="name">Correo electronico</label>
+                                                        <div class="col-md-9">
+                                                            <input id="name" name="name" type="text" placeholder="Correo electronico" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- 1Apellido input-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Domicilio</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Domicilio" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- 2Apellido input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Telefono</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="telefono" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Ciudad input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">Fax</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="Fax" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Pais input -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="email">DNI/NIF</label>
+                                                        <div class="col-md-9">
+                                                            <input id="email" name="email" type="text" placeholder="DNI/NIF" class="form-control" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse2"><strong>Saldo</strong></a>
+      </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel panel-primary" style="background-color: #FFD288">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div style="margin-bottom: 10px;" class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">TU SALDO
+                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/moneydep.png" />€ 0.00
+                                                <button type="submit" class="btn btn-primary">Depositar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 10%">
+
+                                <div class="col-xs-12 col-md-6 col-lg-3">
+                                    <div class="panel panel-blue panel-widget ">
+                                        <div class="row no-padding">
+                                            <div class="col-sm-3 col-lg-5 widget-left">
+                                                Saldo retirable
+                                            </div>
+                                            <div class="col-sm-9 col-lg-7 widget-right">
+                                                <div class="large" style="margin-left: 30px;">0.0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-3">
+                                    <div class="panel panel-blue panel-widget ">
+                                        <div class="row no-padding">
+                                            <div class="col-sm-3 col-lg-5 widget-left">
+                                                Posibles Ganancia
+                                            </div>
+                                            <div class="col-sm-9 col-lg-7 widget-right">
+                                                <div class="large" style="margin-left: 30px;">0.0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-3">
+                                    <div class="panel panel-blue panel-widget ">
+                                        <div class="row no-padding">
+                                            <div class="col-sm-3 col-lg-5 widget-left">
+                                                Total acumulable
+                                            </div>
+                                            <div class="col-sm-9 col-lg-7 widget-right">
+                                                <div class="large" style="margin-left: 30px;">0.0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse3"><strong>Historial</strong></a>
+      </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel panel-primary" style="background-color: #FFD288">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div style="margin-bottom: 10px;" class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            CONSULTA TODAS TUS APUESTAS
+                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconhistory.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body tabs">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab1" data-toggle="tab">Apuestas pendientes</a></li>
+                                                <li><a href="#tab2" data-toggle="tab">Apuestas Ganadas</a></li>
+                                                <li><a href="#tab3" data-toggle="tab">Apuestas Perdidas</a></li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="tab1">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Partido</th>
+                                                                        <th>Fecha</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>Partido</td>
+
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab2">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Partido</th>
+                                                                        <th>Resultado</th>
+                                                                        <th>Fecha</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab3">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Partido</th>
+                                                                        <th>Resultado</th>
+                                                                        <th>Fecha</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="padding-top: 260px; padding-left: 40px;">
+                                    <div>
+                                        <a href="apuestasdeportivas.html">Ir a Apuestas deportivas</a>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse4"><strong>Mi Equipo</strong></a>
+      </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel panel-primary" style="background-color: #FFD288">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div style="margin-bottom: 10px;" class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            LO ÚLTIMO DE TU EQUIPO
+                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/team.png" />
+                                                <button type="submit" class="btn btn-primary">Elegir equipo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body tabs">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab4" data-toggle="tab">Próximos partidos</a></li>
+                                                <li><a href="#tab5" data-toggle="tab">Últimos partidos</a></li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="tab4">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Partido</th>
+                                                                        <th>Fecha</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab5">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Partido</th>
+                                                                        <th>Resultado</th>
+                                                                        <th>Fecha</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partido</td>
+                                                                    <td>Resultado</td>
+                                                                    <td>Fecha</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Clasificación
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Equipo</th>
+                                                        <th>PJS</th>
+                                                        <th>PTS</th>
+                                                        <th>GF</th>
+                                                        <th>GC</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td>Equipo</td>
+                                                    <td>PJS</td>
+                                                    <td>PTS</td>
+                                                    <td>GF</td>
+                                                    <td>GC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Equipo</td>
+                                                    <td>PJS</td>
+                                                    <td>PTS</td>
+                                                    <td>GF</td>
+                                                    <td>GC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Equipo</td>
+                                                    <td>PJS</td>
+                                                    <td>PTS</td>
+                                                    <td>GF</td>
+                                                    <td>GC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Equipo</td>
+                                                    <td>PJS</td>
+                                                    <td>PTS</td>
+                                                    <td>GF</td>
+                                                    <td>GC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Equipo</td>
+                                                    <td>PJS</td>
+                                                    <td>PTS</td>
+                                                    <td>GF</td>
+                                                    <td>GC</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.main-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+</body>
+
+</html>
