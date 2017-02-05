@@ -202,8 +202,10 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    background-color: #30a5ff;
-    border-color: #30a5ff;
+
+    background-color: #3A8A3F;
+    border-color: #3A8A3F;
+
 }
 
 .btn-success,
@@ -1076,6 +1078,7 @@ a.todo-list-item:focus {
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
 }
+
 #banner {
      position: relative;
     height:400px;
@@ -1149,7 +1152,6 @@ a.todo-list-item:focus {
     }
 }
 
-
 .page-header {
     text-align: center;
 }
@@ -1160,10 +1162,6 @@ a.todo-list-item:focus {
     margin-top:-15px;
     margin-left: -10px;
 }
-
-
-
-
 
 #aux {
     margin-bottom: 40px;
@@ -1178,6 +1176,7 @@ a.todo-list-item:focus {
 }
 
 .first-slide {
+
 height: 100%; width: 100%; object-fit: contain
 }
 
@@ -1193,9 +1192,39 @@ height: 100%; width: 100%; object-fit: contain
     box-shadow: 0 2px 5px 0 #333;
 }
 
-.alert {
-   
+.noticias {
+    background: #343c43;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
+
+.subtitulo {
+    float:left;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: antiquewhite;
+}
+
+.panel-default {
+    background: #333;
+}
+
+.panel-tittle {
+    background: #333;
+}
+.panel-body{
+    background: #333;
+}
+
+.textNoticias {
+    color: #30a5ff;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
 
 .card .card-image img{
     -webkit-transition: all 0.4s ease;
@@ -1277,5 +1306,14 @@ height: 100%; width: 100%; object-fit: contain
 .btn-custom{
     background-color: transparent;
     font-size:18px;
+}
+
+.cuerpo > p{
+    color: #ffffff;
+}
+
+.primero {
+    padding-top: 10px;
+
 }
 
