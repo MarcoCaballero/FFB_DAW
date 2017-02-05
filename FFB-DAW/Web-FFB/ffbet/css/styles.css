@@ -20,7 +20,7 @@ p {
     background-color: #2a2a2a;
     color: #ffffff;
     display: block;
-    font-family: "DIN Condensed",arial,sans-serif;
+    font-family: "DIN Condensed", arial, sans-serif;
     font-size: 17px;
     font-weight: normal;
     margin: 20px 0 10px;
@@ -176,9 +176,9 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-    background-color: #e9ecf2;
+    background-color: #3d78ec;
     border-color: #e9ecf2;
-    color: #1b3548;
+    color: #f1f4f7;
 }
 
 .btn-primary,
@@ -202,10 +202,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-
     background-color: #3A8A3F;
     border-color: #3A8A3F;
-
 }
 
 .btn-success,
@@ -712,6 +710,9 @@ a.bg-danger:hover {
 .sidebar ul.nav li.divider {
     border-bottom: 1px solid #eee;
     margin: 20px 0;
+    -webkit-animation-name: colorsChanging;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
 }
 
 .sidebar .attribution {
@@ -1176,11 +1177,9 @@ a.todo-list-item:focus {
 }
 
 .first-slide {
-
     height: 100%;
     width: 100%;
     object-fit: contain
-
 }
 
 .slide {
@@ -1219,7 +1218,6 @@ a.todo-list-item:focus {
     box-shadow: 0 2px 5px 0 #333;
 }
 
-
 .jssor_banner2 {
     filter: alpha(opacity=70);
     opacity: 0.7;
@@ -1250,9 +1248,10 @@ a.todo-list-item:focus {
     height: 50px;
     overflow: hidden;
 }
+
 .jsorpadding {
-    margin-left:30px; 
-    margin-right:30px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 #footer {
@@ -1261,8 +1260,8 @@ a.todo-list-item:focus {
     -webkit-box-shadow: 0 2px 5px 0 #333;
     box-shadow: 0 2px 5px 0 #333;
 }
-#footer .copyright{
-    
+
+#footer .copyright {
     color: #7a7a7a;
     float: right;
     font-size: 100%;
@@ -1271,7 +1270,6 @@ a.todo-list-item:focus {
     overflow: hidden;
     width: 30%;
 }
-   
 
 .noticias {
     background: #343c43;
@@ -1282,22 +1280,23 @@ a.todo-list-item:focus {
 }
 
 .subtitulo {
-    float:left;
+    float: left;
     padding-right: 5px;
     padding-bottom: 10px;
     padding-left: 10px;
-    color: antiquewhite;
+    color: #ff9d00;
 }
 
 .panel-default {
-    background: #333;
+    background: #fff;
 }
 
 .panel-tittle {
-    background: #333;
+    background: #fff;
 }
-.panel-body{
-    background: #333;
+
+.panel-body {
+    background: #fff;
 }
 
 .textNoticias {
@@ -1306,8 +1305,7 @@ a.todo-list-item:focus {
     padding-left: 10px;
 }
 
-
-.card .card-image img{
+.card .card-image img {
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
@@ -1315,7 +1313,7 @@ a.todo-list-item:focus {
     transition: all 0.4s ease;
 }
 
-.card .card-image:hover img{
+.card .card-image:hover img {
     -webkit-transform: scale(1.2) rotate(-7deg);
     -moz-transform: scale(1.2) rotate(-7deg);
     -ms-transform: scale(1.2) rotate(-7deg);
@@ -1323,79 +1321,114 @@ a.todo-list-item:focus {
     transform: scale(1.2) rotate(-7deg);
 }
 
-.card{
-    font-family: 'Roboto', sans-serif; 
+.card {
+    font-family: 'Roboto', sans-serif;
     margin-top: 10px;
     margin-bottom: 30px;
     position: relative;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 4 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 4 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .card .card-content {
     padding: 10px;
-    background:rgba(255, 181, 62, 0.58);
+    background: rgba(255, 181, 62, 0.58);
 }
 
-.card .card-content .card-title, .card-reveal .card-title{
+.card .card-content .card-title,
+.card-reveal .card-title {
     font-size: 24px;
-    font-weight: 200; 
-    text-align:center;
-    color:#2a2a2a;
+    font-weight: 200;
+    text-align: center;
+    color: #2a2a2a;
 }
 
-.card .card-action{
+.card .card-action {
     padding: 10px;
 }
-.card .card-action a{
+
+.card .card-action a {
     font-size: 15px;
     color: #2a2a2a;
     font-weight: bold;
-    text-transform:uppercase;
-    margin-right: 20px;    
+    text-transform: uppercase;
+    margin-right: 20px;
     -webkit-transition: color 0.3s ease;
     -moz-transition: color 0.3s ease;
     -o-transition: color 0.3s ease;
     -ms-transition: color 0.3s ease;
     transition: color 0.3s ease;
 }
-.card .card-action a:hover{    
-    color:rgba(255, 181, 62, 0.58);
-    text-decoration:underline;
+
+.card .card-action a:hover {
+    color: rgba(255, 181, 62, 0.58);
+    text-decoration: underline;
 }
 
-.card .card-reveal{    
+.card .card-reveal {
     padding: 20px;
     position: absolute;
     background-color: #FFF;
     width: 100%;
     overflow-y: auto;
     /*top: 0;*/
-    left:0;
-    bottom:0;
+    left: 0;
+    bottom: 0;
     height: 100%;
     z-index: 1;
-    display: none;    
+    display: none;
 }
 
-.card .card-reveal p{
+.card .card-reveal p {
     color: rgba(0, 0, 0, 0.71);
-    margin:20px ;
+    margin: 20px;
 }
 
-.btn-custom{
+.btn-custom {
     background-color: transparent;
-    font-size:18px;
-
+    font-size: 18px;
 }
 
-.cuerpo > p{
+.cuerpo > p {
     color: #ffffff;
 }
 
 .primero {
     padding-top: 10px;
-
 }
 
+@-webkit-keyframes colorsChanging {
+    0% {
+        border-bottom: 1px solid #F3843D;
+    }
+    15% {
+        border-bottom: 1px solid #F54A4A;
+    }
+    25% {
+        border-bottom: 1px solid #F3E23D;
+    }
+    40% {
+        border-bottom: 1px solid #77F33D;
+    }
+    65% {
+        border-bottom: 1px solid #3DF39E;
+    }
+    80% {
+        border-bottom: 1px solid #3D95F3;
+    }
+    90% {
+        border-bottom: 1px solid #8D4AF5;
+    }
+    100% {
+        border-bottom: 1px solid #F54A5A;
+    }
+}
+#iconoBasura {
+    margin-top: -50px; color:#d9534f
+}
+@media (max-width: 768px) {
+    #iconoBasura {
+    margin-top: -15px; color:#d9534f
+}
+}
