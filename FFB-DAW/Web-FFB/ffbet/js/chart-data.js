@@ -1,4 +1,4 @@
-var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+var randomScalingFactor = function () {return Math.round(Math.random()*1000)};
 	
 	var lineChartData = {
 			labels : ["January","February","March","April","May","June","July"],
@@ -11,7 +11,7 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					data : [100,200,300,500,100,500,10,500]
 				},
 				{
 					label: "My Second dataset",
@@ -21,7 +21,17 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(48, 164, 255, 1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					data  : [10,10,10,10,10,10,100]
+				},
+                {
+					label: "My third dataset",
+					fillColor : "rgba(48, 164, 255, 0.2)",
+					strokeColor : "rgba(48, 164, 255, 1)",
+					pointColor : "rgba(48, 164, 255, 1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(48, 164, 255, 1)",
+					data  : [450,500,1000,500,1000,500,1000,500]
 				}
 			]
 
