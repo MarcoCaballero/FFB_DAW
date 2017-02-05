@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FFBet - Entra y apuesta</title>
-       <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
+    <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -17,6 +17,11 @@
         $("#myCarousel").carousel()({
             interval: 100
         });
+    </script>
+    <script>
+        function quitarapuesta(para1) {
+            document.getElementById(para1).style.display = "none";
+        }
     </script>
     <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -49,13 +54,13 @@
                                         <use xlink:href="#stroked-gear"></use>
                                     </svg> Settings</a>
                             </li>
-                            <li style="visibility:hidden;">
+                            <li style="display:none;">
                                 <a href="#">
                                     <svg class="glyph stroked gear hidden">
                                         <use xlink:href="#stroked-gear"></use>
                                     </svg> Mi perfil</a>
                             </li>
-                            <li style="visibility:hidden;">
+                            <li style="display:none;">
                                 <a href="#">
                                     <svg class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
@@ -99,7 +104,7 @@
                     </svg>Registrate</a>
             </li>
             <li>
-                <a href="apuestasdeportivas.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
+                <a href="micuenta.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
             </li>
         </ul>
     </div>
@@ -530,7 +535,7 @@
                         </svg>APUESTA</div>
                     <div class="panel-body">
                         <ul class="todo-list">
-                            <li class="todo-list-item">
+                            <li id="apuesta1" class="todo-list-item">
                                 <div class="checkbox">
                                     <input type="checkbox" id="checkbox" />
                                     <label for="checkbox">
@@ -539,14 +544,14 @@
                                     </label>
                                 </div>
                                 <div class="pull-right action-buttons">
-                                    <a href="#" class="trash">
+                                     <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta1')">
                                         <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
                                             <use xlink:href="#stroked-trash"></use>
                                         </svg>
                                     </a>
                                 </div>
                             </li>
-                            <li class="todo-list-item">
+                            <li id="apuesta2" class="todo-list-item">
                                 <div class="checkbox">
                                     <input type="checkbox" id="checkbox" />
                                     <label for="checkbox">
@@ -555,14 +560,14 @@
                                     </label>
                                 </div>
                                 <div class="pull-right action-buttons">
-                                    <a href="#" class="trash">
+                                      <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta2')">
                                         <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
                                             <use xlink:href="#stroked-trash"></use>
                                         </svg>
                                     </a>
                                 </div>
                             </li>
-                            <li class="todo-list-item">
+                            <li id="apuesta3" class="todo-list-item">
                                 <div class="checkbox">
                                     <input type="checkbox" id="checkbox" />
                                     <label for="checkbox">
@@ -571,14 +576,14 @@
                                     </label>
                                 </div>
                                 <div class="pull-right action-buttons">
-                                    <a href="#" class="trash">
+                                     <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta3')">
                                         <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
                                             <use xlink:href="#stroked-trash"></use>
                                         </svg>
                                     </a>
                                 </div>
                             </li>
-                            <li class="todo-list-item">
+                            <li id="apuesta4" class="todo-list-item">
                                 <div class="checkbox">
                                     <input type="checkbox" id="checkbox" />
                                     <label for="checkbox">
@@ -587,7 +592,7 @@
                                     </label>
                                 </div>
                                 <div class="pull-right action-buttons">
-                                    <a href="#" class="trash">
+                                      <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta4')">
                                         <svg class="glyph stroked trash" style="margin-top: -50px; color:#d9534f">
                                             <use xlink:href="#stroked-trash"></use>
                                         </svg>
@@ -610,7 +615,7 @@
                                 </select>
                             </div>
                         </div>
-                         <div class="row" style="padding-top:20px;">
+                        <div class="row" style="padding-top:20px;">
                             <div class="col-md-8" style="color:black; padding-top:5px;"><i>Tiene un código promocional?</i></div>
                             <div class="col-md-4" style="color:black;">
                                 <form role="contentinfo">
@@ -623,7 +628,6 @@
                             <div class="col-md-8" style="color:black; padding-top:5px;"><b>Ganancias posibles:</b></div>
                             <div class="col-md-4" style="color:black;"><b>187.76€</b></div>
                         </div>
-                       
                         <div class="row" style="padding-top:50px;">
                             <div class="col-md-7" style="color:black; padding-top:10px;"></div>
                             <div class="col-md-5" style="color:black;">
