@@ -29,6 +29,7 @@ p {
     margin: 0 auto;
     width: 100%;
     margin-bottom: 15px;
+    margin-top: 5%;
 }
 
 a,
@@ -1200,7 +1201,7 @@ a.todo-list-item:focus {
 
 #jssor_1 {
     position: relative;
-    margin: 0 auto;
+    margin-top: 1%;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -1266,7 +1267,7 @@ a.todo-list-item:focus {
     float: right;
     font-size: 100%;
     line-height: 26px;
-    margin-top: 5%;
+    margin-bottom: 1%;
     overflow: hidden;
     width: 30%;
 }
@@ -1277,6 +1278,7 @@ a.todo-list-item:focus {
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
+    margin-bottom: 20px;
 }
 
 .subtitulo {
@@ -1424,13 +1426,46 @@ a.todo-list-item:focus {
         border-bottom: 1px solid #F54A5A;
     }
 }
+
 #iconoBasura {
-    margin-top: -50px; color:#d9534f
+    margin-top: -50px;
+    color: #d9534f
 }
+
 @media (max-width: 768px) {
     #iconoBasura {
-    margin-top: -15px; color:#d9534f
+        margin-top: -15px;
+        color: #d9534f
+    }
 }
+
+.pp {
+    border-bottom: 5px solid #eee;
+    margin: 20px 0;
+    -webkit-animation-name: colorsChanging;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+.menu_info {
+    text-align: center;
+}
+
+.menu_info li {
+    display: inline;
+}
+
+.menu_info li:not(:first-child):before {
+    content: "|";
+}
+
+
+.imagen_equipos {
+    width: 100%;
+}
+
+.enlaceFooter {
+    color:black;
 }
 
 .logoReg {
