@@ -1432,3 +1432,7 @@ a.todo-list-item:focus {
     margin-top: -15px; color:#d9534f
 }
 }
+
+.logoReg {
+    float: left;
+}
