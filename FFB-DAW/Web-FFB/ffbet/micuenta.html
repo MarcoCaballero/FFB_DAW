@@ -23,6 +23,20 @@
             $("#myCarousel").carousel("prev");
         });
     </script>
+    <script>
+        function functionPermiso() {
+            $("#name").prop('readonly', false);
+            $("#ap1").prop('readonly', false);
+            $("#ap2").prop('readonly', false);
+            $("#email").prop('readonly', false);
+            $("#city").prop('readonly', false);
+            $("#country").prop('readonly', false);
+            $("#telephone").prop('readonly', false);
+            $("#location").prop('readonly', false);
+            $("#dni").prop('readonly', false);
+            $("#passwd").prop('readonly', false);
+        }
+    </script>
     <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
@@ -123,10 +137,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1">
-            <strong>Mis Datos</strong>
+                        <a data-toggle="collapse" href="#collapse1"><strong>Mis Datos</strong> 
+                            
+                            <svg class="glyph stroked home"> <img src="img/downarrow2.svg" class="logoRigth" width="25px"> </svg>
                         </a>
-      </h4> </div>
+                    </h4> </div>
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel panel-primary" style="background-color: #FFD288">
                         <div class="panel-body">
@@ -135,7 +150,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading"> FICHA DE USUARIO
                                             <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconedit.png" />
-                                                <button type="submit" class="btn btn-primary">Editar</button>
+                                                <button onclick="functionPermiso()" type="submit" class="btn btn-primary">Editar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -151,31 +166,31 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="name">Nombre</label>
                                                         <div class="col-md-9">
-                                                            <input id="name" name="name" type="text" placeholder="Nombre usuario" class="form-control" readonly="readonly"> </div>
+                                                            <input id="name" name="name" type="text" placeholder="Nombre usuario" class="form-control" readonly> </div>
                                                     </div>
                                                     <!-- 1Apellido input-->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Primer Apellido</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Primer Apellido" class="form-control" readonly="readonly"> </div>
+                                                            <input id="ap1" name="email" type="text" placeholder="Primer Apellido" class="form-control" readonly> </div>
                                                     </div>
                                                     <!-- 2Apellido input -->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Segundo Apellido</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Segundo Apellido" class="form-control" readonly="readonly"> </div>
+                                                            <input id="ap2" name="email" type="text" placeholder="Segundo Apellido" class="form-control" readonly> </div>
                                                     </div>
                                                     <!-- Ciudad input -->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Ciudad</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Ciudad" class="form-control" readonly="readonly"> </div>
+                                                            <input id="city" name="email" type="text" placeholder="Ciudad" class="form-control" readonly> </div>
                                                     </div>
                                                     <!-- Pais input -->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Pais</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Pais" class="form-control" readonly="readonly"> </div>
+                                                            <input id="country" name="email" type="text" placeholder="Pais" class="form-control" readonly> </div>
                                                     </div>
                                                 </fieldset>
                                             </form>
@@ -191,31 +206,31 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="name">Correo electronico</label>
                                                         <div class="col-md-9">
-                                                            <input id="name" name="name" type="text" placeholder="Correo electronico" class="form-control" readonly="readonly"> </div>
+                                                            <input id="email" name="name" type="text" placeholder="Correo electronico" class="form-control" readonly="readonly"> </div>
                                                     </div>
                                                     <!-- 1Apellido input-->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Domicilio</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Domicilio" class="form-control" readonly="readonly"> </div>
+                                                            <input id="location" name="email" type="text" placeholder="Domicilio" class="form-control" readonly="readonly"> </div>
                                                     </div>
                                                     <!-- 2Apellido input -->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">Telefono</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Telefono" class="form-control" readonly="readonly"> </div>
+                                                            <input id="telephone" name="email" type="text" placeholder="Telefono" class="form-control" readonly="readonly"> </div>
                                                     </div>
                                                     <!-- Ciudad input -->
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label" for="email">Fax</label>
+                                                        <label class="col-md-3 control-label" for="email">Nueva Contraseña</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="Fax" class="form-control" readonly="readonly"> </div>
+                                                            <input id="passwd" name="email" type="password" placeholder="Fax" class="form-control" readonly="readonly"> </div>
                                                     </div>
                                                     <!-- Pais input -->
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label" for="email">DNI/NIF</label>
                                                         <div class="col-md-9">
-                                                            <input id="email" name="email" type="text" placeholder="DNI/NIF" class="form-control" readonly="readonly"> </div>
+                                                            <input id="dni" name="email" type="text" placeholder="DNI/NIF" class="form-control" readonly="readonly"> </div>
                                                     </div>
                                                 </fieldset>
                                             </form>
@@ -232,7 +247,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse2"><strong>Saldo</strong></a>
+        <a data-toggle="collapse" href="#collapse2"><strong>Saldo</strong> </a>
       </h4> </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel panel-primary" style="background-color: #FFD288">
@@ -241,9 +256,7 @@
                                 <div style="margin-bottom: 10px;" class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">TU SALDO
-                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/moneydep.png" />€ 0.00
-                                                <a class="btn btn-lg btn-primary" href="depositar.html" role="button">Depositar</a>
-                                            </div>
+                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/moneydep.png" />€ 0.00 <a class="btn btn-lg btn-primary" href="depositar.html" role="button">Depositar</a> </div>
                                         </div>
                                     </div>
                                 </div>
