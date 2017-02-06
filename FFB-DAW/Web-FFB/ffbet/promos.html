@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FFBet - Entra y apuesta</title>
     <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
-
-<!--Icons-->
-<script src="js/lumino.glyphs.js"></script>
-
-<!--[if lt IE 9]>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+    <script src="js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init = function () {
+            var jssor_1_options = {
+                $AutoPlay: true
+                , $Idle: 0
+                , $AutoPlaySteps: 4
+                , $SlideDuration: 2500
+                , $SlideEasing: $Jease$.$Linear
+                , $PauseOnHover: 4
+                , $SlideWidth: 140
+                , $Cols: 7
+            };
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            /*responsive code begin*/
+            /*you can remove responsive code if you don't want the slider scales while window resizing*/
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1200);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*responsive code end*/
+        };
+    </script>
+    <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-
 </head>
 
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 <a class="navbar-brand" href="#"> </a>
-                  <ul class="user-menu">
+                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
                             </svg> User <span class="caret"></span></a>
-                       <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu" role="menu">
                             <li style="display:block;">
                                 <a href="login.html">
                                     <svg class="glyph stroked male-user">
@@ -63,7 +93,6 @@
         <!-- /.container-fluid -->
     </nav>
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-       
         <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
             <li>
@@ -75,14 +104,12 @@
             <li>
                 <a href="apuestasesports.html"> <img class="glyph stroked pencil" src="img/games_b.svg" /> Apuestas E-games</a>
             </li>
-            <li   class="active">
+            <li class="active">
                 <a href="promos.html"> <img class="glyph stroked pencil" src="img/star.svg" /> Ofertas y Promociones</a>
             </li>
-                
             <li>
                 <a href="micuenta.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
             </li>
-                    
             <li role="presentation" class="divider"></li>
             <li>
                 <a href="reg.html">
@@ -90,14 +117,10 @@
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate</a>
             </li>
-           
-           
         </ul>
     </div>
-<!--/.sidebar-->
-		
-
-        <div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <!--/.sidebar-->
+    <div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <ol class="breadcrumb">
                 <li>
@@ -111,210 +134,183 @@
             </ol>
         </div>
         <!--/.row-->
-        
-        <div class="tt1">
-            Bonos gratuitos
-        </div>
-        
+        <div class="tt1"> Bonos gratuitos </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/jug.jpg">
+                        <div class="card-image"> <img class="img-responsive" src="img/jug.jpg"> </div>
+                        <div class="card-content"> <span class="card-title">Bono de bienvenida (10€ por registro)</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">Bono de bienvenida (10€ por registro)</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>Regalo de bienvenida para todos los nuevos clientes de FFBet. Tan solo registrate y recibirás este cupón gratuito instantáneamente. ¡DISFRUTA!</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>Regalo de bienvenida para todos los nuevos clientes de FFBet. Tan solo registrate y recibirás este cupón gratuito instantáneamente. ¡DISFRUTA!</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
-                
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/lol.png">
+                        <div class="card-image"> <img class="img-responsive" src="img/lol.png"> </div>
+                        <div class="card-content"> <span class="card-title">Bono gratis en eGames (5€ por usuario)</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">Bono gratis en eGames (5€ por usuario)</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>¡ORGULLO FRIKI! League of Legends, Overwatch, Counter Strike... Prueba nuestra sección de eGames gratis con este cupón y demuestra tu lado más friki.</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>¡ORGULLO FRIKI! League of Legends, Overwatch, Counter Strike... Prueba nuestra sección de eGames gratis con este cupón y demuestra tu lado más friki.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        <div class="tt1">
-            Promociones de fútbol
-        </div>
-        
+        <div class="tt1"> Promociones de fútbol </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/clasico.jpg">
+                        <div class="card-image"> <img class="img-responsive" src="img/clasico.jpg"> </div>
+                        <div class="card-content"> <span class="card-title">Supercuota Real Madrid - FC Barcelona</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">Supercuota Real Madrid - FC Barcelona</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>Se acerca el esperado clásico de la LFP, ¿tienes ya tu equipo favorito? Para aumentar la emoción del encuentro hemos incrementado las cuotas [RM:3.75  X:5.0  FCB:3.75]. El partido del año, ¿de qué lado se decantará el partido? Sé el primero en adivinar el ganador. ¡FALTA POCO!</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>Se acerca el esperado clásico de la LFP, ¿tienes ya tu equipo favorito? Para aumentar la emoción del encuentro hemos incrementado las cuotas [RM:3.75 X:5.0 FCB:3.75]. El partido del año, ¿de qué lado se decantará el partido? Sé el primero en adivinar el ganador. ¡FALTA POCO!</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
-                
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/equipos.jpg">
+                        <div class="card-image"> <img class="img-responsive" src="img/equipos.jpg"> </div>
+                        <div class="card-content"> <span class="card-title">Bonficación en combis de fútbol (10%)</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">Bonficación en combis de fútbol (10%)</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>¿Te consideras futbolero? ¡Demuestranoslo! Añadimos una cuota extra (1.10) a tu combinada de fútbol, no importa la liga: Premier League, La Liga, Ligue 1... ¡Aquí tienes tu oportunidad para aumentar tus ganancias! <br>
-                        Buena suerte.</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>¿Te consideras futbolero? ¡Demuestranoslo! Añadimos una cuota extra (1.10) a tu combinada de fútbol, no importa la liga: Premier League, La Liga, Ligue 1... ¡Aquí tienes tu oportunidad para aumentar tus ganancias!
+                                <br> Buena suerte.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
-        
-        <div class="tt1">
-            Otros deportes
-        </div>
-        
+        <div class="tt1"> Otros deportes </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/rafa.jpg">
+                        <div class="card-image"> <img class="img-responsive" src="img/rafa.jpg"> </div>
+                        <div class="card-content"> <span class="card-title">30% reintegro si Rafael Nadal pierde</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">30% reintegro si Rafael Nadal pierde</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>¡TODOS SOMOS RAFA! Nadal necesita nuestro apoyo más que nunca, por eso si no consigue la victoria devolvemos el 30% de la cantidad apostada.</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>¡TODOS SOMOS RAFA! Nadal necesita nuestro apoyo más que nunca, por eso si no consigue la victoria devolvemos el 30% de la cantidad apostada.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
-                
                 <div class="col-sm-5">
                     <div class="card">
-                        <div class="card-image">
-                            <img class="img-responsive" src="img/nba.jpg">
+                        <div class="card-image"> <img class="img-responsive" src="img/nba.jpg"> </div>
+                        <div class="card-content"> <span class="card-title">Bonificación en combinadas NBA (5%)</span>
+                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
                         </div>
-                    <div class="card-content">
-                        <span class="card-title">Bonificación en combinadas NBA (5%)</span>                    
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
-                    </div>
-                    <div class="card-action">
-                        <p>Playoffs 2017, ALL STAR 2017... La mejor liga de baloncesto del mundo quiere brindarnos un gran espectáculo, aportamos una cuota extra (1.05) para vivir toda la emoción que se merece.</p>
-                        <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a>
-                    </div>
+                        <div class="card-action">
+                            <p>Playoffs 2017, ALL STAR 2017... La mejor liga de baloncesto del mundo quiere brindarnos un gran espectáculo, aportamos una cuota extra (1.05) para vivir toda la emoción que se merece.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
                     </div>
                 </div>
             </div>
         </div>
-                    
-        
-        
-        
-        
-        
-        
-        
-    </div>    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function () {
-		  if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
+    </div>
+    <!--./main-->
+    <div id="footer" class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
+        <div class="container-fluid">
+            <!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+                        
+                            <!-- CAROUSEL PARTNERS ROW-->
+            <div class="row">
+                <div id="jssor_1">
+                    <!-- Loading Screen -->
+                    <div class="jssor_banner" data-u="loading">
+                        <div class="jssor_banner2"></div>
+                        <div class="jssor_banner3"></div>
+                    </div>
+                    <div class="jssor_slides" data-u="slides">
+                        <div> <img data-u="image" src="img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    jssor_1_slider_init();
+                </script>
+            </div>
+            <!-- #endregion Jssor Slider End -->
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row"> <img src="img/barra_liga_santander.png" class="imagen_equipos"> </div>
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row">
+                <ul class="menu_info">
+                    <li> <strong>TOP LINKS</strong> </li>
+                    <li> <a href="index.html" class="enlaceFooter"> Home </a> </li>
+                    <li> <a href="apuestasdeportivas.html" class="enlaceFooter"> Apuestas Deportivas </a> </li>
+                    <li> <a href="apuestasesports.html" class="enlaceFooter"> Apuestas E-games </a> </li>
+                    <li> <a href="promos.html" class="enlaceFooter"> Ofertas y Promociones </a> </li>
+                    <li> <a href="reg.html" class="enlaceFooter"> Registro </a> </li>
+                </ul>
+                <ul class="menu_info">
+                    <li> <strong>INFO</strong> </li>
+                    <li> <a href="politica.html" class="enlaceFooter"> Privacy policy </a> </li>
+                    <li> <a href="http://politicadecookies.com/" class="enlaceFooter"> Cookie policy </a> </li>
+                    <li> <a href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#" class="enlaceFooter">  User policy </a> </li>
+                    <li> <a href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo" class="enlaceFooter">  Responsible Gaming </a> </li>
+                </ul>
+            </div>
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row">
+                <div class="copyright">
+                    <a href="@" target="_self"></a><img src="img/+18.png" height="25px"> <span>Copyright © 2017 FFbet.com (España)</span> </div>
+            </div>
+        </div>
+    </div>
+    <!--/.footer-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        ! function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+        $(window).on('resize', function () {
+            if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
 </body>
 
 </html>
