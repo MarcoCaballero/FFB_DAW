@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FFBet - Mi cuenta </title>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900" rel="stylesheet">
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/cardstyle.css" rel="stylesheet">
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
     <script>
@@ -35,6 +39,40 @@
             $("#location").prop('readonly', false);
             $("#dni").prop('readonly', false);
             $("#passwd").prop('readonly', false);
+        }
+    </script>
+    <script>
+        var anyBoxesChecked = [];
+        var numeroBoxes = 4;
+        for (var i = 0; i < numeroBoxes; i++) {
+            anyBoxesChecked.push(false);
+        }
+
+        function turnImage(img, num) {
+            var numero = parseInt(num);
+            if (anyBoxesChecked[numero]) {
+                document.getElementById(img).style.cssText = ' float: right; margin-top: 1%;';
+            }
+            else {
+                document.getElementById(img).style.cssText = ' float: right; margin-top: 1%; -ms-transform: rotate(90deg); -webkit-transform: rotate(90deg); transform: rotate(90deg);';
+            }
+            anyBoxesChecked[num] = !anyBoxesChecked[num];
+        }
+    </script>
+    <script>
+        $().ready(function () {
+            $('[rel="tooltip"]').tooltip();
+        });
+
+        function rotateCard(btn) {
+            var $card = $(btn).closest('.card-container');
+            console.log($card);
+            if ($card.hasClass('hover')) {
+                $card.removeClass('hover');
+            }
+            else {
+                $card.addClass('hover');
+            }
         }
     </script>
     <!--[if lt IE 9]>
@@ -137,9 +175,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse1"><strong>Mis Datos</strong> 
+                        <a data-toggle="collapse" onclick="turnImage('turnableImage1',0)" href="#collapse1"><strong>Mis Datos</strong> 
                             
-                            <svg class="glyph stroked home"> <img src="img/downarrow2.svg" class="logoRigth" width="25px"> </svg>
+                            <svg class="glyph stroked home"> <img id="turnableImage1" src="img/downarrow2.svg" class="logoRigth" width="25px"> </svg>
                         </a>
                     </h4> </div>
                 <div id="collapse1" class="panel-collapse collapse">
@@ -247,8 +285,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse2"><strong>Saldo</strong> </a>
-      </h4> </div>
+                        <a data-toggle="collapse" onclick="turnImage('turnableImage2',1)" href="#collapse2"><strong>Saldo</strong> 
+                             <svg class="glyph stroked home"> 
+                                 <img id="turnableImage2" src="img/downarrow2.svg" class="logoRigth" width="25px">
+                            </svg>
+                        </a>
+                    </h4> </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel panel-primary" style="background-color: #FFD288">
                         <div class="panel-body">
@@ -302,8 +344,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse3"><strong>Historial</strong></a>
-      </h4> </div>
+                        <a data-toggle="collapse" onclick="turnImage('turnableImage3',2)" href="#collapse3"><strong>Historial</strong>
+                            <svg class="glyph stroked home"> 
+                                 <img id="turnableImage3" src="img/downarrow2.svg" class="logoRigth" width="25px">
+                            </svg>
+                        </a>
+                    </h4> </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel panel-primary" style="background-color: #FFD288">
                         <div class="panel-body">
@@ -430,8 +476,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse4"><strong>Mi Equipo</strong></a>
-      </h4> </div>
+                        <a data-toggle="collapse" onclick="turnImage('turnableImage4',3)" href="#collapse4"><strong>Mi Equipo</strong>
+                            <svg class="glyph stroked home"> 
+                                 <img id="turnableImage4" src="img/downarrow2.svg" class="logoRigth" width="25px">
+                            </svg>
+                        </a>
+                    </h4> </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel panel-primary" style="background-color: #FFD288">
                         <div class="panel-body">
@@ -439,12 +489,240 @@
                                 <div style="margin-bottom: 10px;" class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading"> LO ÚLTIMO DE TU EQUIPO
-                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/team.png" />
-                                                <button type="submit" class="btn btn-primary">Elegir equipo</button>
-                                            </div>
+                                            <div style="float:right;"> <img style="opacity: 0.2;" class="glyph stroked pencil" src="img/team.png" /> <a data-toggle="collapse" href="#collapseEquipos" class="btn btn-primary">
+                                                    Elegir equipo
+                                                </a> </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="collapseEquipos" class="row collapse">
+                                <!-- PRUEBAS CARD TEAM-->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="card-container manual-flip">
+                                                    <div class="card">
+                                                        <div class="front">
+                                                            <div class="cover"> <img src="img/atm_cover_card.png" /> </div>
+                                                            <div class="user"> <img class="img-circle" src="img/atm_escudo_card.png" /> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h3 class="name">Club Atlético de Madrid</h3>
+                                                                    <p class="profession">26/4/1903 (MADRID)</p>
+                                                                    <p class="text-center">
+                                                                        <form class="form-horizontal" action="" method="post">
+                                                                            <fieldset>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12 widget-right">
+                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </form>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="footer">
+                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> Manual Rotation </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end front panel -->
+                                                        <div class="back">
+                                                            <div class="header">
+                                                                <h5 class="motto">"Ganar, Ganar y Ganar!"</h5> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h4 class="text-center">Club Atlético de Madrid</h4>
+                                                                    <p class="text-center">
+                                                                        <ul>
+                                                                            <li><strong>Estadio:</strong> Vicente Calderón</li>
+                                                                            <li><strong>Presidente:</strong> Enrique cerezo</li>
+                                                                            <li><strong>Entrenador:</strong> Diego Simeone</li>
+                                                                        </ul>
+                                                                    </p>
+                                                                    <div class="stats-container">
+                                                                        <div class="stats">
+                                                                            <h4>235</h4>
+                                                                            <p> Ligas </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>114</h4>
+                                                                            <p> Copa S.M Rey </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>35</h4>
+                                                                            <p> Champions </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="footer">
+                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                <div class="social-links text-center">
+                                                                    <a href="https://www.facebook.com/AtleticodeMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                                    <a href="https://plus.google.com/+atleticodemadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                                    <a href="https://twitter.com/atleti?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end back panel -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!-- end card-container -->
+                                            </div>
+                                            <!-- end col sm 3 -->
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="card-container manual-flip">
+                                                    <div class="card">
+                                                        <div class="front">
+                                                            <div class="cover"> <img src="img/rmcf_cover_card.png" /> </div>
+                                                            <div class="user"> <img class="img-circle" src="img/rmcf_escudo_card.png" /> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h3 class="name">Real Madrid C.F:</h3>
+                                                                    <p class="profession">6/3/1902 (MADRID)</p>
+                                                                    <p class="text-center">
+                                                                        <form class="form-horizontal" action="" method="post">
+                                                                            <fieldset>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12 widget-right">
+                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </form>
+                                                                        </ul>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="footer">
+                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> Manual Rotation </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end front panel -->
+                                                        <div class="back">
+                                                            <div class="header">
+                                                                <h5 class="motto">"Así, Así, Así gana el Madrid"</h5> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h4 class="text-center">Club Atlético de Madrid</h4>
+                                                                    <p class="text-center">
+                                                                        <ul>
+                                                                            <li><strong>Estadio:</strong> Santiago Cuernabeu</li>
+                                                                            <li><strong>Presidente:</strong> Florentino Pérez</li>
+                                                                            <li><strong>Entrenador:</strong> Zinedine Zidane</li>
+                                                                        </ul>
+                                                                    </p>
+                                                                    <div class="stats-container">
+                                                                        <div class="stats">
+                                                                            <h4>235</h4>
+                                                                            <p> Ligas </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>114</h4>
+                                                                            <p> Copa S.M Rey </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>35</h4>
+                                                                            <p> Champions </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="footer">
+                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                <div class="social-links text-center">
+                                                                    <a href="https://www.facebook.com/RealMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                                    <a href="https://plus.google.com/+realmadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                                    <a href="https://twitter.com/realmadrid?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end back panel -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!-- end card-container -->
+                                            </div>
+                                            <!-- end col sm 3 -->
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="card-container manual-flip">
+                                                    <div class="card">
+                                                        <div class="front">
+                                                            <div class="cover"> <img src="img/fcbf_cover_card.jpg" /> </div>
+                                                            <div class="user"> <img class="img-circle" src="img/fcb_escudo_card.png" /> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h3 class="name">F.C. Barcelona</h3>
+                                                                    <p class="profession">29/11/1899 (BARCELONA)</p>
+                                                                    <p class="text-center">
+                                                                        <form class="form-horizontal" action="" method="post">
+                                                                            <fieldset>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12 widget-right">
+                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </form>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="footer">
+                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> Manual Rotation </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end front panel -->
+                                                        <div class="back">
+                                                            <div class="header">
+                                                                <h5 class="motto">"Mès que un club, un ...."</h5> </div>
+                                                            <div class="content">
+                                                                <div class="main">
+                                                                    <h4 class="text-center">F.C. Barcelona</h4>
+                                                                    <p class="text-center">
+                                                                        <ul>
+                                                                            <li><strong>Estadio:</strong> Camp Nou</li>
+                                                                            <li><strong>Presidente:</strong> J.Maria Bartomeu</li>
+                                                                            <li><strong>Entrenador:</strong> Luis Enrique</li>
+                                                                        </ul>
+                                                                    </p>
+                                                                    <div class="stats-container">
+                                                                        <div class="stats">
+                                                                            <h4>235</h4>
+                                                                            <p> Ligas </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>114</h4>
+                                                                            <p> Copa S.M Rey </p>
+                                                                        </div>
+                                                                        <div class="stats">
+                                                                            <h4>35</h4>
+                                                                            <p> Champions </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="footer">
+                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                <div class="social-links text-center"> <a href="https://www.facebook.com/fcbarcelona/" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> <a href="https://plus.google.com/+FCBarcelona" class="google"><i class="fa fa-google-plus fa-fw"></i></a> <a href="https://twitter.com/fcbarcelona_es?lang=es" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end back panel -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!-- end card-container -->
+                                            </div>
+                                        </div>
+                                        <!-- end col-sm-10 -->
+                                    </div>
+                                    <!-- end row -->
+                                    <div class="space-200"></div>
+                                </div>
+                                <!--FIN PRUEBAS -->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -601,6 +879,21 @@
     <script src="js/easypiechart.js"></script>
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        $('#calendar').datepicker({});
+        ! function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+        $(window).on('resize', function () {
+            if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
 </body>
 
 </html>

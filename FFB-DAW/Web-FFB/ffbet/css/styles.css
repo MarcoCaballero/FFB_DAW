@@ -1436,13 +1436,7 @@ a.todo-list-item:focus {
 .logoReg {
     float: left;
 }
-.logoRigth:active{
-    float: right;
-    margin-top: 1%;
-     -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-    transform: rotate(90deg);
-}
+
 .logoRigth{
     float: right;
     margin-top: 1%;
