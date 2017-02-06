@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FFBet - Entra y apuesta</title>
+    <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="#"></a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <svg class="glyph stroked male-user">
+                                <use xlink:href="#stroked-male-user"></use>
+                            </svg> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li style="display:block;">
+                                <a href="login.html">
+                                    <svg class="glyph stroked male-user">
+                                        <use xlink:href="#stroked-male-user"></use>
+                                    </svg> Entrar</a>
+                            </li>
+                            <li style="display:block;">
+                                <a href="#">
+                                    <svg class="glyph stroked gear">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg>Política de privacidad</a>
+                            </li>
+                            <li style="display:none;">
+                                <a href="micuenta.html">
+                                    <svg class="glyph stroked gear hidden">
+                                        <use xlink:href="#stroked-gear"></use>
+                                    </svg> Mi perfil</a>
+                            </li>
+                            <li style="display:none;">
+                                <a href="#">
+                                    <svg class="glyph stroked cancel">
+                                        <use xlink:href="#stroked-cancel"></use>
+                                    </svg> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <!--<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>-->
+        <section class="active"> <img class="logoBack" src="img/LogoFFBalpha.png" width="100%"> </section>
+        <ul class="nav menu">
+            <li>
+                <a href="index.html"> <img class="glyph stroked home" src="img/home.svg" /> Home</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas.html"> <img class="glyph stroked home" src="img/ball.svg" />Apuestas Deportivas</a>
+            </li>
+            <li>
+                <a href="apuestasesports.html"> <img class="glyph stroked pencil" src="img/games_b.svg" /> Apuestas E-games</a>
+            </li>
+            <li>
+                <a href="promos.html"> <img class="glyph stroked pencil" src="img/star.svg" /> Ofertas y Promociones</a>
+            </li>
+            <li>
+                <a href="micuenta.html"> <img class="glyph stroked pencil" src="img/userlogo.svg" />Mi Cuenta</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li>
+                <li>
+                    <a href="reg.html">
+                        <svg class="glyph stroked male-user">
+                            <use xlink:href="#stroked-male-user"></use>
+                        </svg>Registrate</a>
+                </li>
+        </ul>
+    </div>
+    <!--/.sidebar-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">
+                        <svg class="glyph stroked home">
+                            <use xlink:href="#stroked-home"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li class="active">Mi cuenta / Depositar</li>
+            </ol>
+        </div>
+        <!--/.row-->
+        <!--/.row-->
+        <div class="row">
+            <div class=" col-sm-10 col-md-8 col-sm-offset-2 col-lg-8 col-lg-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>Deposita saldo en tu cuenta</div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="" method="post">
+                            <fieldset>
+                                <!-- Name input-->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Elija forma de pago</label>
+                                    <div class="col-md-2">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="img/visa.png" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="img/mastercard.png" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="img/visaelectron.png" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Nombre*</label>
+                                    <div class="col-md-9">
+                                        <input id="name" name="name" type="text" placeholder="Nombre" class="form-control" required> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Primer apellido*</label>
+                                    <div class="col-md-9">
+                                        <input id="name" name="name" type="text" placeholder="Primer apellido" class="form-control" required> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Segundo apellido*</label>
+                                    <div class="col-md-9">
+                                        <input id="name" name="name" type="text" placeholder="Segundo apellido" class="form-control" required> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Nº Tarjeta*</label>
+                                    <div class="col-md-3">
+                                        <input id="dni" name="dni" type="number" placeholder="Nº de Tarjeta" class="form-control" required> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Validez*</label>
+                                    <div class="col-md-3">
+                                        <input id="dni" name="dni" type="number" max="2999" min="2017" placeholder="Año de caducidad" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input id="dni" name="dni" type="number" max="12" min="1" placeholder="Mes de caducidad" class="form-control" required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Codigo de seguridad/CVV2*</label>
+                                    <div class="col-md-2">
+                                        <input id="dni" name="dni" type="number" placeholder="Código" class="form-control" required> </div>
+                                </div>
+                                <!-- Email input-->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="email">Titular tarjeta*</label>
+                                    <div class="col-md-9">
+                                        <input id="email" name="email" type="text" placeholder="Nombre del titular" class="form-control" required> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="country">Importe (€) *</label>
+                                    <div class="col-md-2">
+                                        <select class="form-control">
+                                            <option>1.00</option>
+                                            <option>2.00</option>
+                                            <option>5.00</option>
+                                            <option>10.00</option>
+                                            <option>20.00</option>
+                                            <option>50.00</option>
+                                            <option>100.00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">Teléfono</label>
+                                    <div class="col-md-9">
+                                        <input id="telf" name="telf" type="number" placeholder="Teléfono de contacto" class="form-control"> </div>
+                                </div>
+                                <!-- Form actions -->
+                                <div class="form-group">
+                                    <div class="col-md-12 widget-right">
+                                        <label class="col-md-3 control-label" for="name">* Campo obligatorio</label>
+                                        <button type="submit" class="btn btn-default btn-md pull-right">Depositar</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+        </div>
+        <!--/.row-->
+    </div>
+    <!--/.main-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        $('#calendar').datepicker({});
+        ! function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+</body>
+
+</html>
