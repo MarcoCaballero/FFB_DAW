@@ -1467,3 +1467,14 @@ a.todo-list-item:focus {
 .enlaceFooter {
     color:black;
 }
+
+.logoReg {
+    float: left;
+}
+
+.logoRigth{
+    float: right;
+    margin-top: 1%;
+  
+}
+
