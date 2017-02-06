@@ -1478,3 +1478,7 @@ a.todo-list-item:focus {
   
 }
 
+
+#menuArriba {
+    border-radius: 5px;
+}
