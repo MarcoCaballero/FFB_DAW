@@ -1530,7 +1530,7 @@ a.todo-list-item:focus {
     .user-menu {
         display: inline-block;
         margin-top: -7px;
-        margin-right: 10px;
+        margin-left: 15px;
         float: left;
         list-style: none;
         padding: 0;
