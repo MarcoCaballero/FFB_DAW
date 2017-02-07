@@ -1075,6 +1075,18 @@ a.todo-list-item:focus {
     width: 70%;
 }
 
+@media (max-width: 768px) {
+    #myCarousel {
+        margin-bottom: 2%;
+        margin-left: 0%;
+        margin-right: 0%;
+        -moz-box-shadow: 0 2px 5px 0 #333;
+        -webkit-box-shadow: 0 2px 5px 0 #333;
+        box-shadow: 0 2px 5px 0 #333;
+        width: 80%;
+    }
+}
+
 #sidebar-collapse {
     -moz-box-shadow: 0 2px 5px 0 #333;
     -webkit-box-shadow: 0 2px 5px 0 #333;
@@ -1459,26 +1471,68 @@ a.todo-list-item:focus {
     content: "|";
 }
 
-
 .imagen_equipos {
     width: 100%;
 }
 
 .enlaceFooter {
-    color:black;
+    color: black;
 }
 
 .logoReg {
     float: right;
 }
 
-.logoRigth{
+.logoRigth {
     float: right;
     margin-top: 1%;
-  
 }
 
+.carousel-caption {
+    display: block;
+}
 
-#menuArriba {
-    border-radius: 5px;
+@media (max-width: 768px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-inner {
+        width: 125%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-control.right {
+        right: -25%;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-xs-6 {
+        width: 89%;
+    }
+}
+
+.col-md-8 {
+    margin-top: 5%;
+}
+
+@media (max-width: 768px) {
+    .col-md-8 {
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 767px) {
+    .user-menu {
+        display: inline-block;
+        margin-top: -7px;
+        margin-right: 10px;
+        float: left;
+        list-style: none;
+        padding: 0;
+    }
 }
