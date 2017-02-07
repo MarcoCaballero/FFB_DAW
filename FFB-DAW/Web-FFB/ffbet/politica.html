@@ -60,13 +60,10 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="#"> </a>
                 <ul class="user-menu">
-                    <li class="dropdown pull-right">
+                    <li class="dropdown pull-right" style="margin-top:-3%;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user">
-                                <use xlink:href="#stroked-male-user"></use>
-                            </svg> User <span class="caret"></span></a>
+                            <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li style="display:none;">
                                 <a href="login.html">
@@ -75,24 +72,28 @@
                                     </svg> Entrar</a>
                             </li>
                             <li style="display:block;">
-                                <a href="#">
+                                <a href="politica.html">
                                     <svg class="glyph stroked gear">
                                         <use xlink:href="#stroked-gear"></use>
                                     </svg>Política de privacidad</a>
                             </li>
                             <li style="display:block;">
                                 <a href="micuenta.html">
-                                    <svg class="glyph stroked gear hidden">
-                                        <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px" >
-                                    </svg> Mi cuenta</a>
+                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
                             </li>
-                            <li style="display:none;">
+                            <li style="display:block;">
                                 <a href="#">
                                     <svg class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
                                     </svg> Logout</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="dropdown pull-right fixing">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </li>
+                </ul>
+                <a href="depositar.html"><img class="imgfixedmenu" src="img/walletmdesign.png" style="float:left;" width="35px"></a>
             </div>
         </div>
         <!-- /.container-fluid -->
