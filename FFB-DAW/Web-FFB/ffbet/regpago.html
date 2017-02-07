@@ -30,7 +30,7 @@
                                 <use xlink:href="#stroked-male-user"></use>
                             </svg> User <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li style="display:block;">
+                            <li style="display:none;">
                                 <a href="login.html">
                                     <svg class="glyph stroked male-user">
                                         <use xlink:href="#stroked-male-user"></use>
@@ -42,11 +42,9 @@
                                         <use xlink:href="#stroked-gear"></use>
                                     </svg>Política de privacidad</a>
                             </li>
-                            <li style="display:none;">
+                            <li style="display:block;">
                                 <a href="micuenta.html">
-                                    <svg class="glyph stroked gear hidden">
-                                        <use xlink:href="#stroked-gear"></use>
-                                    </svg> Mi perfil</a>
+                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
                             </li>
                             <li style="display:none;">
                                 <a href="#">
@@ -245,7 +243,7 @@
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
         }(window.jQuery);
         $(window).on('resize', function () {
-            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+            if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
         })
         $(window).on('resize', function () {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
