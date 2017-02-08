@@ -13,6 +13,7 @@
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/cardstyle.css" rel="stylesheet">
+    <link href="css/cardstyletop.css" rel="stylesheet">
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
     <script>
@@ -145,36 +146,52 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 <ul class="user-menu">
                     <li class="dropdown pull-right" style="margin-top:-3%;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="micuenta.html" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li style="display:none;">
-                                <a href="login.html">
-                                    <svg class="glyph stroked male-user">
-                                        <use xlink:href="#stroked-male-user"></use>
-                                    </svg> Entrar</a>
+                        <ul class="dropdown-menu" style="border-radius: 10%;">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="100px" /> </svg>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
+                                            <p class="text-left small">correoElectronico@email.com
+                                                <a style="color:black;" href="micuenta.html">
+                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                                            </p>
+                                            <p class="text-left"> <a href="depositar.html" class="btn btn-primary btn-block btn-sm">Depositar</a>
+                                                <a href="micuenta.html" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
+                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li style="display:block;">
-                                <a href="politica.html">
-                                    <svg class="glyph stroked gear">
-                                        <use xlink:href="#stroked-gear"></use>
-                                    </svg>Política de privacidad</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="micuenta.html">
-                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="#">
-                                    <svg class="glyph stroked cancel">
-                                        <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">
+                                                    <svg class="glyph stroked cancel">
+                                                        <use xlink:href="#stroked-cancel"></use>
+                                                    </svg>Cerrar Sesion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </li>
                     <li class="dropdown pull-right fixing">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </li>
+                        <a href="micuenta.html#collapse2" class="dropdown-toggle">
+                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                    </li>
                 </ul>
                 <a href="depositar.html"><img class="imgfixedmenu" src="img/walletmdesign.png" style="float:left;" width="35px"></a>
             </div>
@@ -227,33 +244,54 @@
                 <li class="active">Mi cuenta</li>
             </ol>
         </div>
-        <div class="panel-group" style="margin-top:5%;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" onclick="turnImage('turnableImage1',0)" href="#collapse1"><strong>Mis Datos</strong> 
-                            
-                            <svg class="glyph stroked home"> <img id="turnableImage1" src="img/downarrow2.svg" class="logoRigth" width="25px"> </svg>
-                        </a>
-                    </h4> </div>
-                <div id="collapse1" class="panel-collapse collapse">
-                    <div class="panel panel-primary" style="background-color: #FFD288">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div style="margin-bottom: 10px;" class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> FICHA DE USUARIO
-                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconedit.png" />
-                                                <button id="editarDatos" onclick="functionPermiso()" type="submit" class="btn btn-primary">Editar</button>
+        <div class="row">
+            <!-- new user -->
+            <div class="col-lg-10 col-sm-10 col-lg-offset-1">
+                <div class="tarjeta hovercard">
+                    <div class="tarjeta-background"> <img class="tarjeta-bkimg" alt="" src="img/pedroaccount.jpg">
+                        <!-- http://lorempixel.com/850/280/people/9/ -->
+                    </div>
+                    <div class="useravatar"> <img alt="" src="img/pedroaccount.jpg"> </div>
+                    <div class="tarjeta-info"> <span class="tarjeta-title">Pedro Espinoza</span> </div>
+                </div>
+                <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <div class="hidden-xs">Mis Datos</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+                            <div class="hidden-xs">Mi Monedero</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <div class="hidden-xs">Mis apuestas</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                            <div class="hidden-xs">Mi Equipo</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="well">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active collapse" id="tab1">
+                            <div class="panel panel-primary" style="background-color: #FFD288">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div style="margin-bottom: 10px;" class="col-md-12">
+                                            <div class="panel-heading"> FICHA DE USUARIO
+                                                <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconedit.png" />
+                                                    <button id="editarDatos" onclick="functionPermiso()" type="submit" class="btn btn-primary">Editar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <form class="form-horizontal" action="" method="post">
                                                 <fieldset>
                                                     <!-- Nombre input-->
@@ -289,11 +327,7 @@
                                                 </fieldset>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
+                                        <div class="col-md-6">
                                             <form class="form-horizontal" action="" method="post">
                                                 <fieldset>
                                                     <!-- Nombre input-->
@@ -333,465 +367,393 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" onclick="turnImage('turnableImage2',1)" href="#collapse2"><strong>Saldo</strong> 
-                             <svg class="glyph stroked home"> 
-                                 <img id="turnableImage2" src="img/downarrow2.svg" class="logoRigth" width="25px">
-                            </svg>
-                        </a>
-                    </h4> </div>
-                <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel panel-primary" style="background-color: #FFD288">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div style="margin-bottom: 10px;" class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">TU SALDO
-                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/moneydep.png" />€ 0.00 <a class="btn btn-lg btn-primary" href="depositar.html" role="button">Depositar</a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-left: 10%">
-                                <div class="col-xs-12 col-md-6 col-lg-3">
-                                    <div class="panel panel-blue panel-widget ">
-                                        <div class="row no-padding">
-                                            <div class="col-sm-3 col-lg-5 widget-left"> Saldo retirable </div>
-                                            <div class="col-sm-9 col-lg-7 widget-right">
-                                                <div class="large" style="margin-left: 30px;">0.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-6 col-lg-3">
-                                    <div class="panel panel-blue panel-widget ">
-                                        <div class="row no-padding">
-                                            <div class="col-sm-3 col-lg-5 widget-left"> Posibles Ganancia </div>
-                                            <div class="col-sm-9 col-lg-7 widget-right">
-                                                <div class="large" style="margin-left: 30px;">0.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-6 col-lg-3">
-                                    <div class="panel panel-blue panel-widget ">
-                                        <div class="row no-padding">
-                                            <div class="col-sm-3 col-lg-5 widget-left"> Total acumulable </div>
-                                            <div class="col-sm-9 col-lg-7 widget-right">
-                                                <div class="large" style="margin-left: 30px;">0.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" onclick="turnImage('turnableImage3',2)" href="#collapse3"><strong>Historial</strong>
-                            <svg class="glyph stroked home"> 
-                                 <img id="turnableImage3" src="img/downarrow2.svg" class="logoRigth" width="25px">
-                            </svg>
-                        </a>
-                    </h4> </div>
-                <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel panel-primary" style="background-color: #FFD288">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div style="margin-bottom: 10px;" class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> CONSULTA TODAS TUS APUESTAS
-                                            <div style="float:right;"><img style="opacity: 0.2;" class="glyph stroked pencil" src="img/iconhistory.png" /> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body tabs">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab1" data-toggle="tab">Apuestas pendientes</a></li>
-                                                <li><a href="#tab2" data-toggle="tab">Apuestas Ganadas</a></li>
-                                                <li><a href="#tab3" data-toggle="tab">Apuestas Perdidas</a></li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade in active" id="tab1">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Partido</th>
-                                                                        <th>Fecha</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="tab2">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Partido</th>
-                                                                        <th>Resultado</th>
-                                                                        <th>Fecha</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="tab3">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Partido</th>
-                                                                        <th>Resultado</th>
-                                                                        <th>Fecha</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Partido</td>
-                                                                    <td>Resultado</td>
-                                                                    <td>Fecha</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" style="padding-top: 260px; padding-left: 40px;">
-                                    <div> <a href="apuestasdeportivas.html">Ir a Apuestas deportivas</a> </div>
-                                </div>
-                                <!--/.row-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" style="margin-bottom:15%;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" onclick="turnImage('turnableImage4',3)" href="#collapse4"><strong>Mi Equipo</strong>
-                            <svg class="glyph stroked home"> 
-                                 <img id="turnableImage4" src="img/downarrow2.svg" class="logoRigth" width="25px">
-                            </svg>
-                        </a>
-                    </h4> </div>
-                <div id="collapse4" class="panel-collapse collapse">
-                    <div class="panel panel-primary" style="background-color: #FFD288">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div style="margin-bottom: 10px;" class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> LO ÚLTIMO DE TU EQUIPO
-                                            <div style="float:right;"> <img style="opacity: 0.2;" class="glyph stroked pencil" src="img/team.png" /> <a data-toggle="collapse" href="#collapseEquipos" class="btn btn-primary">
-                                                    Elegir equipo
-                                                </a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="collapseEquipos" class="row collapse">
-                                <!-- PRUEBAS CARD TEAM-->
-                                <div class="container">
+                        <div class="tab-pane fade in" id="tab2">
+                            <div class="panel panel-primary" style="background-color: #FFD288">
+                                <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-sm-10 col-sm-offset-1">
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="card-container manual-flip">
-                                                    <div class="card">
-                                                        <div class="front">
-                                                            <div class="cover"> <img src="img/atm_cover_card.png" /> </div>
-                                                            <div class="user"> <img class="img-circle" src="img/atm_escudo_card.png" /> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h3 class="name">Club Atlético de Madrid</h3>
-                                                                    <p class="profession">26/4/1903 (MADRID)</p>
-                                                                    <p class="text-center">
-                                                                        <form class="form-horizontal" action="" method="post">
-                                                                            <fieldset>
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 widget-right">
-                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </fieldset>
-                                                                        </form>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="footer">
-                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end front panel -->
-                                                        <div class="back">
-                                                            <div class="header">
-                                                                <h5 class="motto">"Ganar, Ganar y Ganar!"</h5> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h4 class="text-center">Club Atlético de Madrid</h4>
-                                                                    <p class="text-center">
-                                                                        <ul>
-                                                                            <li><strong>Estadio:</strong> Vicente Calderón</li>
-                                                                            <li><strong>Presidente:</strong> Enrique cerezo</li>
-                                                                            <li><strong>Entrenador:</strong> Diego Simeone</li>
-                                                                        </ul>
-                                                                    </p>
-                                                                    <div class="stats-container">
-                                                                        <div class="stats">
-                                                                            <h4>235</h4>
-                                                                            <p> Ligas </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>114</h4>
-                                                                            <p> Copa S.M Rey </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>35</h4>
-                                                                            <p> Champions </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="footer">
-                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
-                                                                <div class="social-links text-center">
-                                                                    <a href="https://www.facebook.com/AtleticodeMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
-                                                                    <a href="https://plus.google.com/+atleticodemadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
-                                                                    <a href="https://twitter.com/atleti?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end back panel -->
-                                                    </div>
-                                                    <!-- end card -->
-                                                </div>
-                                                <!-- end card-container -->
-                                            </div>
-                                            <!-- end col sm 3 -->
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="card-container manual-flip">
-                                                    <div class="card">
-                                                        <div class="front">
-                                                            <div class="cover"> <img src="img/rmcf_cover_card.png" /> </div>
-                                                            <div class="user"> <img class="img-circle" src="img/rmcf_escudo_card.png" /> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h3 class="name">Real Madrid C.F:</h3>
-                                                                    <p class="profession">6/3/1902 (MADRID)</p>
-                                                                    <p class="text-center">
-                                                                        <form class="form-horizontal" action="" method="post">
-                                                                            <fieldset>
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 widget-right">
-                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </fieldset>
-                                                                        </form>
-                                                                        </ul>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="footer">
-                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end front panel -->
-                                                        <div class="back">
-                                                            <div class="header">
-                                                                <h5 class="motto">"Así, Así, Así gana el Madrid"</h5> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h4 class="text-center">Real Madrid C.F.</h4>
-                                                                    <p class="text-center">
-                                                                        <ul>
-                                                                            <li><strong>Estadio:</strong> Santiago Cuernabeu</li>
-                                                                            <li><strong>Presidente:</strong> Florentino Pérez</li>
-                                                                            <li><strong>Entrenador:</strong> Zinedine Zidane</li>
-                                                                        </ul>
-                                                                    </p>
-                                                                    <div class="stats-container">
-                                                                        <div class="stats">
-                                                                            <h4>235</h4>
-                                                                            <p> Ligas </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>114</h4>
-                                                                            <p> Copa S.M Rey </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>35</h4>
-                                                                            <p> Champions </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="footer">
-                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
-                                                                <div class="social-links text-center">
-                                                                    <a href="https://www.facebook.com/RealMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
-                                                                    <a href="https://plus.google.com/+realmadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
-                                                                    <a href="https://twitter.com/realmadrid?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end back panel -->
-                                                    </div>
-                                                    <!-- end card -->
-                                                </div>
-                                                <!-- end card-container -->
-                                            </div>
-                                            <!-- end col sm 3 -->
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="card-container manual-flip">
-                                                    <div class="card">
-                                                        <div class="front">
-                                                            <div class="cover"> <img src="img/fcbf_cover_card.jpg" /> </div>
-                                                            <div class="user"> <img class="img-circle" src="img/fcb_escudo_card.png" /> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h3 class="name">F.C. Barcelona</h3>
-                                                                    <p class="profession">29/11/1899 (BARCELONA)</p>
-                                                                    <p class="text-center">
-                                                                        <form class="form-horizontal" action="" method="post">
-                                                                            <fieldset>
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 widget-right">
-                                                                                        <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </fieldset>
-                                                                        </form>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="footer">
-                                                                    <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end front panel -->
-                                                        <div class="back">
-                                                            <div class="header">
-                                                                <h5 class="motto">"Mès que un club, un ...."</h5> </div>
-                                                            <div class="content">
-                                                                <div class="main">
-                                                                    <h4 class="text-center">F.C. Barcelona</h4>
-                                                                    <p class="text-center">
-                                                                        <ul>
-                                                                            <li><strong>Estadio:</strong> Camp Nou</li>
-                                                                            <li><strong>Presidente:</strong> J.Maria Bartomeu</li>
-                                                                            <li><strong>Entrenador:</strong> Luis Enrique</li>
-                                                                        </ul>
-                                                                    </p>
-                                                                    <div class="stats-container">
-                                                                        <div class="stats">
-                                                                            <h4>235</h4>
-                                                                            <p> Ligas </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>114</h4>
-                                                                            <p> Copa S.M Rey </p>
-                                                                        </div>
-                                                                        <div class="stats">
-                                                                            <h4>35</h4>
-                                                                            <p> Champions </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="footer">
-                                                                <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
-                                                                <div class="social-links text-center"> <a href="https://www.facebook.com/fcbarcelona/" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> <a href="https://plus.google.com/+FCBarcelona" class="google"><i class="fa fa-google-plus fa-fw"></i></a> <a href="https://twitter.com/fcbarcelona_es?lang=es" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end back panel -->
-                                                    </div>
-                                                    <!-- end card -->
-                                                </div>
-                                                <!-- end card-container -->
+                                        <div style="margin-bottom: 10px;" class="col-md-12">
+                                            <div class="panel-heading">TU SALDO
+                                                <div style="float:right;"> <img style="opacity: 0.2;" class="glyph stroked pencil" src="img/moneydep.png" />€ 19.99 </div>
                                             </div>
                                         </div>
-                                        <!-- end col-sm-10 -->
                                     </div>
-                                    <!-- end row -->
-                                    <div class="space-200"></div>
+                                    <div class="row" style="margin-left: 10%">
+                                        <div class="col-xs-12 col-md-9 col-lg-5">
+                                            <div class="panel panel-blue panel-widget ">
+                                                <div class="row no-padding">
+                                                    <div class="col-sm-3 col-lg-5 widget-left" style="background: #b84f4f;">Saldo apostado</div>
+                                                    <div class="col-sm-9 col-lg-7 widget-right">
+                                                        <div class="large" style="margin-left: 30px;">0.0</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-9 col-lg-5">
+                                            <div class="panel panel-blue panel-widget ">
+                                                <div class="row no-padding">
+                                                    <div class="col-sm-3 col-lg-5 widget-left" style="background: #6470aa;">Posibles Ganancia</div>
+                                                    <div class="col-sm-9 col-lg-7 widget-right">
+                                                        <div class="large" style="margin-left: 30px;">0.0</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-8 col-lg-5  col-lg-offset-3 col-md-offset-1">
+                                            <div class="panel panel-blue panel-widget ">
+                                                <div class="row no-padding">
+                                                    <div class="col-sm-3 col-lg-5 widget-left" style="background: #478949;">Total retirable</div>
+                                                    <div class="col-sm-9 col-lg-7 widget-right">
+                                                        <div class="large" style="margin-left: 30px;">0.0</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row"> <a class="btn btn-lg btn-primary" href="#" style="float:right; margin-right:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Retirar €</a> <a class="btn btn-lg btn-primary" href="depositar.html" style="float:left; margin-left:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Introducir €</a> </div>
                                 </div>
-                                <!--FIN PRUEBAS -->
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body tabs">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab4" data-toggle="tab">Próximos partidos</a></li>
-                                                <li><a href="#tab5" data-toggle="tab">Últimos partidos</a></li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade in active" id="tab4">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
+                        </div>
+                        <div class="tab-pane fade in" id="tab3">
+                            <div class="panel panel-primary" style="background-color: #FFD288">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div style="margin-bottom: 10px;" class="col-md-12">
+                                            <div class="panel-heading"> CONSULTA TODAS TUS APUESTAS
+                                                <div style="float:right;"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body tabs">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tab1sub" data-toggle="tab">Apuestas en curso</a></li>
+                                                        <li><a href="#tab2sub" data-toggle="tab">Historial</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade in active" id="tab1sub">
+                                                            <table id="apuestasEnCurso" class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Apuesta</th>
+                                                                        <th>Fecha</th>
+                                                                        <th>Importe Apostado</th>
+                                                                        <th>Posibles ganancias</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>#1002</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>22.00€</td>
+                                                                    <td>400.00€</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>#1043</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>2.00€</td>
+                                                                    <td>100.00€</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>#1247</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>12.00€</td>
+                                                                    <td>2100.00€</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="tab2sub">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Apuesta</th>
+                                                                        <th>Fecha</th>
+                                                                        <th>Importe Apostado</th>
+                                                                        <th>Ganancia obtenida</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr>
+                                                                    <td>#1002</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>22.00€</td>
+                                                                    <td>400.00€</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>#1043</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>2.00€</td>
+                                                                    <td>PIERDE</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>#1247</td>
+                                                                    <td>19/11 20:48</td>
+                                                                    <td>12.00€</td>
+                                                                    <td>2100.00€</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/.row-->
+                                    </div>
+                                    <div class="row"> <a class="btn btn-lg btn-primary" href="apuestasdeportivas.html" style="float:right; margin-right:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Apuestas deportivas</a> <a class="btn btn-lg btn-primary" href="apuestasesports.html" style="float:left; margin-left:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Apuestas e-games</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade in" id="tab4">
+                            <div class="panel panel-primary" style="background-color: #FFD288">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div style="margin-bottom: 10px;" class="col-md-12">
+                                            <div class="panel-heading"> LO ÚLTIMO DE TU EQUIPO </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 5%;">
+                                        <div class="col-sm-6">
+                                            <h3 class="card-title"><img src="img/atm_escudo_card.png" height="150px" style="margin-left:10%; float:left"></h3> <a data-toggle="collapse" href="#collapseEquipos" class="btn btn-primary">Cambiar equipo</a> </div>
+                                        <div class="col-sm-6">
+                                            <h3 class="card-title">Club Atlético de Madrid</h3>
+                                            <p class="card-text">Clasificación <strong><em>1º</em></strong></p>
+                                        </div>
+                                    </div>
+                                    <div id="collapseEquipos" class="row collapse">
+                                        <!-- PRUEBAS CARD TEAM-->
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-10">
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="card-container manual-flip">
+                                                            <div class="card">
+                                                                <div class="front">
+                                                                    <div class="cover"> <img src="img/atm_cover_card.png" /> </div>
+                                                                    <div class="user"> <img class="img-circle" src="img/atm_escudo_card.png" /> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h3 class="name">Atlético de Madrid</h3>
+                                                                            <p class="text-center">
+                                                                                <form class="form-horizontal" action="" method="post">
+                                                                                    <fieldset>
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-12 widget-right">
+                                                                                                <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </form>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="footer">
+                                                                            <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end front panel -->
+                                                                <div class="back">
+                                                                    <div class="header">
+                                                                        <h5 class="motto">"Ganar, Ganar y Ganar!"</h5> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h4 class="text-center">Club Atlético de Madrid</h4>
+                                                                            <p class="text-center">
+                                                                                <ul>
+                                                                                    <li><strong>Estadio:</strong> Vicente Calderón</li>
+                                                                                    <li><strong>Presidente:</strong> Enrique cerezo</li>
+                                                                                    <li><strong>Entrenador:</strong> Diego Simeone</li>
+                                                                                </ul>
+                                                                            </p>
+                                                                            <div class="stats-container">
+                                                                                <div class="stats">
+                                                                                    <h4>235</h4>
+                                                                                    <p> Ligas </p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>114</h4>
+                                                                                    <p> Copas</p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>35</h4>
+                                                                                    <p> Champions </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="footer">
+                                                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                        <div class="social-links text-center">
+                                                                            <a href="https://www.facebook.com/AtleticodeMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                                            <a href="https://plus.google.com/+atleticodemadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                                            <a href="https://twitter.com/atleti?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end back panel -->
+                                                            </div>
+                                                            <!-- end card -->
+                                                        </div>
+                                                        <!-- end card-container -->
+                                                    </div>
+                                                    <!-- end col sm 3 -->
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="card-container manual-flip">
+                                                            <div class="card">
+                                                                <div class="front">
+                                                                    <div class="cover"> <img src="img/rmcf_cover_card.png" /> </div>
+                                                                    <div class="user"> <img class="img-circle" src="img/rmcf_escudo_card.png" /> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h3 class="name">Real Madrid C.F:</h3>
+                                                                            <p class="text-center">
+                                                                                <form class="form-horizontal" action="" method="post">
+                                                                                    <fieldset>
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-12 widget-right">
+                                                                                                <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </form>
+                                                                                </ul>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="footer">
+                                                                            <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end front panel -->
+                                                                <div class="back">
+                                                                    <div class="header">
+                                                                        <h5 class="motto">"Así, Así, Así gana el Madrid"</h5> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h4 class="text-center">Real Madrid C.F.</h4>
+                                                                            <p class="text-center">
+                                                                                <ul>
+                                                                                    <li><strong>Estadio:</strong> Santiago Cuernabeu</li>
+                                                                                    <li><strong>Presidente:</strong> Florentino Pérez</li>
+                                                                                    <li><strong>Entrenador:</strong> Zinedine Zidane</li>
+                                                                                </ul>
+                                                                            </p>
+                                                                            <div class="stats-container">
+                                                                                <div class="stats">
+                                                                                    <h4>235</h4>
+                                                                                    <p> Ligas </p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>114</h4>
+                                                                                    <p> Copas </p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>35</h4>
+                                                                                    <p> Champions </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="footer">
+                                                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                        <div class="social-links text-center">
+                                                                            <a href="https://www.facebook.com/RealMadrid/" class="facebook"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                                            <a href="https://plus.google.com/+realmadrid" class="google"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                                            <a href="https://twitter.com/realmadrid?lang=es" class="twitter"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end back panel -->
+                                                            </div>
+                                                            <!-- end card -->
+                                                        </div>
+                                                        <!-- end card-container -->
+                                                    </div>
+                                                    <!-- end col sm 3 -->
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="card-container manual-flip">
+                                                            <div class="card">
+                                                                <div class="front">
+                                                                    <div class="cover"> <img src="img/fcbf_cover_card.jpg" /> </div>
+                                                                    <div class="user"> <img class="img-circle" src="img/fcb_escudo_card.png" /> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h3 class="name">F.C. Barcelona</h3>
+                                                                            <p class="text-center">
+                                                                                <form class="form-horizontal" action="" method="post">
+                                                                                    <fieldset>
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-12 widget-right">
+                                                                                                <button type="" class="btn btn-default btn-md pull-right"><img src="img/checked.svg" width="25px"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </form>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="footer">
+                                                                            <button class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end front panel -->
+                                                                <div class="back">
+                                                                    <div class="header">
+                                                                        <h5 class="motto">"Mès que un club, un ...."</h5> </div>
+                                                                    <div class="content">
+                                                                        <div class="main">
+                                                                            <h4 class="text-center">F.C. Barcelona</h4>
+                                                                            <p class="text-center">
+                                                                                <ul>
+                                                                                    <li><strong>Estadio:</strong> Camp Nou</li>
+                                                                                    <li><strong>Presidente:</strong> J.Maria Bartomeu</li>
+                                                                                    <li><strong>Entrenador:</strong> Luis Enrique</li>
+                                                                                </ul>
+                                                                            </p>
+                                                                            <div class="stats-container">
+                                                                                <div class="stats">
+                                                                                    <h4>235</h4>
+                                                                                    <p> Ligas </p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>114</h4>
+                                                                                    <p> Copas </p>
+                                                                                </div>
+                                                                                <div class="stats">
+                                                                                    <h4>35</h4>
+                                                                                    <p> Champions </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="footer">
+                                                                        <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> <i class="fa fa-reply"></i> Back </button>
+                                                                        <div class="social-links text-center"> <a href="https://www.facebook.com/fcbarcelona/" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> <a href="https://plus.google.com/+FCBarcelona" class="google"><i class="fa fa-google-plus fa-fw"></i></a> <a href="https://twitter.com/fcbarcelona_es?lang=es" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end back panel -->
+                                                            </div>
+                                                            <!-- end card -->
+                                                        </div>
+                                                        <!-- end card-container -->
+                                                    </div>
+                                                </div>
+                                                <!-- end col-sm-10 -->
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+                                        <!--FIN PRUEBAS -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body tabs">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tab4sub" data-toggle="tab">Próximos partidos</a></li>
+                                                        <li><a href="#tab5sub" data-toggle="tab">Últimos partidos</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade in active" id="tab4sub">
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -821,11 +783,7 @@
                                                                 </tr>
                                                             </table>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="tab5">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
+                                                        <div class="tab-pane fade" id="tab5sub">
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -865,58 +823,58 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> Clasificación </div>
-                                        <div class="panel-body">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Equipo</th>
-                                                        <th>PJS</th>
-                                                        <th>PTS</th>
-                                                        <th>GF</th>
-                                                        <th>GC</th>
-                                                    </tr>
-                                                </thead>
-                                                <tr>
-                                                    <td>Equipo</td>
-                                                    <td>PJS</td>
-                                                    <td>PTS</td>
-                                                    <td>GF</td>
-                                                    <td>GC</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Equipo</td>
-                                                    <td>PJS</td>
-                                                    <td>PTS</td>
-                                                    <td>GF</td>
-                                                    <td>GC</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Equipo</td>
-                                                    <td>PJS</td>
-                                                    <td>PTS</td>
-                                                    <td>GF</td>
-                                                    <td>GC</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Equipo</td>
-                                                    <td>PJS</td>
-                                                    <td>PTS</td>
-                                                    <td>GF</td>
-                                                    <td>GC</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Equipo</td>
-                                                    <td>PJS</td>
-                                                    <td>PTS</td>
-                                                    <td>GF</td>
-                                                    <td>GC</td>
-                                                </tr>
-                                            </table>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading"> Clasificación </div>
+                                                <div class="panel-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Equipo</th>
+                                                                <th>PJS</th>
+                                                                <th>PTS</th>
+                                                                <th>GF</th>
+                                                                <th>GC</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr>
+                                                            <td>Equipo</td>
+                                                            <td>PJS</td>
+                                                            <td>PTS</td>
+                                                            <td>GF</td>
+                                                            <td>GC</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Equipo</td>
+                                                            <td>PJS</td>
+                                                            <td>PTS</td>
+                                                            <td>GF</td>
+                                                            <td>GC</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Equipo</td>
+                                                            <td>PJS</td>
+                                                            <td>PTS</td>
+                                                            <td>GF</td>
+                                                            <td>GC</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Equipo</td>
+                                                            <td>PJS</td>
+                                                            <td>PTS</td>
+                                                            <td>GF</td>
+                                                            <td>GC</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Equipo</td>
+                                                            <td>PJS</td>
+                                                            <td>PTS</td>
+                                                            <td>GF</td>
+                                                            <td>GC</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1027,6 +985,15 @@
         $(window).on('resize', function () {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".btn-pref .btn").click(function () {
+                $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+                // $(".tab").addClass("active"); // instead of this do the below 
+                $(this).removeClass("btn-default").addClass("btn-primary");
+            });
+        });
     </script>
 </body>
 
