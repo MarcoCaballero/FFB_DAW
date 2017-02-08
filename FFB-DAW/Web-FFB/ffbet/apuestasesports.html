@@ -59,7 +59,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
@@ -67,34 +67,50 @@
                     <li class="dropdown pull-right" style="margin-top:-3%;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li style="display:none;">
-                                <a href="login.html">
-                                    <svg class="glyph stroked male-user">
-                                        <use xlink:href="#stroked-male-user"></use>
-                                    </svg> Entrar</a>
+                        <ul class="dropdown-menu" style="border-radius: 10%;">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="100px" /> </svg>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
+                                            <p class="text-left small">correoElectronico@email.com
+                                                <a style="color:black;" href="micuenta.html">
+                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                                            </p>
+                                            <p class="text-left"> <a href="depositar.html" class="btn btn-primary btn-block btn-sm">Depositar</a>
+                                                <a href="micuenta.html" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
+                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li style="display:block;">
-                                <a href="politica.html">
-                                    <svg class="glyph stroked gear">
-                                        <use xlink:href="#stroked-gear"></use>
-                                    </svg>Política de privacidad</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="micuenta.html">
-                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="#">
-                                    <svg class="glyph stroked cancel">
-                                        <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">
+                                                    <svg class="glyph stroked cancel">
+                                                        <use xlink:href="#stroked-cancel"></use>
+                                                    </svg>Cerrar Sesion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </li>
                     <li class="dropdown pull-right fixing">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </li>
+                        <a href="micuenta.html#collapse2" class="dropdown-toggle">
+                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                    </li>
                 </ul>
                 <a href="depositar.html"><img class="imgfixedmenu" src="img/walletmdesign.png" style="float:left;" width="35px"></a>
             </div>

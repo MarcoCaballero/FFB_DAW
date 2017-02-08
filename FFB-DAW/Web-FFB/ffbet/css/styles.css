@@ -177,7 +177,7 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-    background-color: #3d78ec;
+    background-color: #1f4921;
     border-color: #e9ecf2;
     color: #f1f4f7;
 }
@@ -1638,5 +1638,25 @@ a.todo-list-item:focus {
     .imgfixedmenu {
         margin-left: 82.5%;
         margin-top: 0.5%;
+    }
+}
+.navbar-login {
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+.navbar-login-session {
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.icon-size {
+    font-size: 87px;
+}
+@media (max-width: 768px) {
+    .dropdown-menu {
+        border-radius: 10%;
+        left: 10%!important;
+        right: inherit!important;
     }
 }
