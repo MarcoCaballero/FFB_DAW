@@ -3,6 +3,49 @@
     -moz-outline: none !important;
 }
 
+.tt1 {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    display: block;
+    font-family: "DIN Condensed", arial, sans-serif;
+    font-size: 17px;
+    font-weight: normal;
+    margin: 20px 0 10px;
+    padding: 4px 10px 3px;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 5%;
+}
+
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-bottom: 5px;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+    margin-bottom: 5px;
+}
+
 html,
 body {
     height: 100%
