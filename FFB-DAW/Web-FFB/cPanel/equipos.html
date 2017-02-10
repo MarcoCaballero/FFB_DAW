@@ -50,7 +50,7 @@
     <!--close-left-menu-stats-sidebar-->
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Gestión de equipos</a></div>
+            <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Gestión de equipos</a></div>
             <h1>Gestión de Equipos</h1> </div>
         <div class="container-fluid">
             <hr>
@@ -64,6 +64,15 @@
                         <div class="collapse in" id="collapseOneDep">
                             <form action="#" method="get" class="form-horizontal">
                                 <div class="control-group">
+                                    <label class="control-label">Tipo de deporte :</label>
+                                    <div class="controls">
+                                        <label>
+                                            <input type="radio" name="radios" checked="checked" /> Fútbol </label>
+                                        <label>
+                                            <input type="radio" name="radios" /> Basket </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls">
                                         <input type="text" class="span11" placeholder="Nombre del equipo" /> </div>
@@ -76,7 +85,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Fundación :</label>
                                     <div class="controls">
-                                        <input type="text" id="mask-date" class="span8 mask text" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
+                                        <input type="text" id="fechaNewDep" class="mask-date" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Estadio :</label>
@@ -101,59 +110,12 @@
                                 <div class="control-group">
                                     <label class="control-label">Ligas :</label>
                                     <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
+                                        <input type="text" class="span11" placeholder="Número de ligas ganadas" /> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Copas :</label>
                                     <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Champions :</label>
-                                    <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
+                                        <input type="text" class="span11" placeholder="Número de copas ganadas" /> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Champions :</label>
@@ -192,7 +154,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Añadir</button>
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                                    <button type="submit" class="btn btn-warning">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -204,6 +166,25 @@
                         </div>
                         <div class="collapse in" id="collapseTwoDep">
                             <form action="#" method="get" class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Tipo de deporte :</label>
+                                    <div class="controls">
+                                        <label>
+                                            <input type="radio" name="radios" checked="checked" /> Fútbol </label>
+                                        <label>
+                                            <input type="radio" name="radios" /> Basket </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Equipo a editar</label>
+                                    <div class="controls">
+                                        <select>
+                                            <option>Equipo 1</option>
+                                            <option>Equipo 2</option>
+                                            <option>Equipo 3</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls">
@@ -217,7 +198,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Fundación :</label>
                                     <div class="controls">
-                                        <input type="text" id="mask-date" class="span8 mask text" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
+                                        <input type="text" id="fechaModDep" class="mask-date" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Estadio :</label>
@@ -242,59 +223,12 @@
                                 <div class="control-group">
                                     <label class="control-label">Ligas :</label>
                                     <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
+                                        <input type="text" class="span11" placeholder="Número de ligas ganadas" /> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Copas :</label>
                                     <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Champions :</label>
-                                    <div class="controls">
-                                        <select>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>10+</option>
-                                        </select>
-                                    </div>
+                                        <input type="text" class="span11" placeholder="Número de copas ganadas" /> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Champions :</label>
@@ -333,25 +267,8 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-info">Editar</button>
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="widget-box">
-                        <div class="widget-title">
-                            <a href="#collapseThreeDep" data-toggle="collapse"> <span class="icon"><i class="icon-plus"></i></span>
-                                <h5>Borrar Equipo Deportivo</h5> </a>
-                        </div>
-                        <div class="collapse in" id="collapseThreeDep">
-                            <form action="#" method="get" class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Nombre :</label>
-                                    <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del equipo" /> </div>
-                                </div>
-                                <div class="form-actions">
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-warning">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -369,7 +286,7 @@
                                     <label class="control-label">Tipo de juego :</label>
                                     <div class="controls">
                                         <label>
-                                            <input type="radio" name="radios" /> League of Legends </label>
+                                            <input type="radio" name="radios" checked="checked" /> League of Legends </label>
                                         <label>
                                             <input type="radio" name="radios" /> Counter Strike </label>
                                     </div>
@@ -387,7 +304,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Fundación :</label>
                                     <div class="controls">
-                                        <input type="text" id="mask-date" class="span8 mask text" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
+                                        <input type="text" id="fechaNewGame" class="mask-date" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Sponsor :</label>
@@ -432,7 +349,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Añadir</button>
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                                    <button type="submit" class="btn btn-warning">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -448,9 +365,19 @@
                                     <label class="control-label">Tipo de juego :</label>
                                     <div class="controls">
                                         <label>
-                                            <input type="radio" name="radios" /> League of Legends </label>
+                                            <input type="radio" name="radios" checked="checked" /> League of Legends </label>
                                         <label>
                                             <input type="radio" name="radios" /> Counter Strike </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Equipo a editar</label>
+                                    <div class="controls">
+                                        <select>
+                                            <option>Equipo 1</option>
+                                            <option>Equipo 2</option>
+                                            <option>Equipo 3</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -466,7 +393,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Fundación :</label>
                                     <div class="controls">
-                                        <input type="text" id="mask-date" class="span8 mask text" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
+                                        <input type="text" id="fechaModGame" class="mask-date" placeholder="Fecha de fundación"> <span class="help-block blue span8">99/99/9999</span> </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Sponsor :</label>
@@ -511,34 +438,8 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-info">Editar</button>
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="widget-box">
-                        <div class="widget-title">
-                            <a href="#collapseThreeEG" data-toggle="collapse"> <span class="icon"><i class="icon-plus"></i></span>
-                                <h5>Borrar Equipo E-Games</h5> </a>
-                        </div>
-                        <div class="collapse in" id="collapseThreeEG">
-                            <form action="#" method="get" class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Tipo de juego :</label>
-                                    <div class="controls">
-                                        <label>
-                                            <input type="radio" name="radios" /> League of Legends </label>
-                                        <label>
-                                            <input type="radio" name="radios" /> Counter Strike </label>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Nombre :</label>
-                                    <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del equipo" /> </div>
-                                </div>
-                                <div class="form-actions">
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-warning">Cancelar</button>
                                 </div>
                             </form>
                         </div>
