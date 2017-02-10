@@ -28,8 +28,7 @@ $(document).ready(function () {
     $("#mask-phoneExt").mask("(999) 999-9999? x99999");
     $("#mask-phoneInt").mask("+40 999 999 999");
     $("#mask-date").mask("99/99/9999");
-    $("#mask-date-2").mask("99/99/9999");
-    $("#mask-date-3").mask("99/99/9999");
+    $(".mask-date").mask("99/99/9999");
     $("#mask-ssn").mask("999-99-9999");
     $("#mask-productKey").mask("a*-999-a999", {
         placeholder: "*"
