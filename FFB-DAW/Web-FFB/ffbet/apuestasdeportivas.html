@@ -67,39 +67,56 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="#"> </a>
                 <ul class="user-menu">
-                    <li class="dropdown pull-right">
+                    <li class="dropdown pull-right" style="margin-top:-3%;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="25px"> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li style="display:none;">
-                                <a href="login.html">
-                                    <svg class="glyph stroked male-user">
-                                        <use xlink:href="#stroked-male-user"></use>
-                                    </svg> Entrar</a>
+                            <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="border-radius: 10%;">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="100px" /> </svg>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
+                                            <p class="text-left small">correoElectronico@email.com
+                                                <a style="color:black;" href="micuenta.html">
+                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                                            </p>
+                                            <p class="text-left"> <a href="depositar.html" class="btn btn-primary btn-block btn-sm">Depositar</a>
+                                                <a href="micuenta.html" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
+                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li style="display:block;">
-                                <a href="politica.html">
-                                    <svg class="glyph stroked gear">
-                                        <use xlink:href="#stroked-gear"></use>
-                                    </svg>Política de privacidad</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="micuenta.html">
-                                    <svg class="glyph stroked gear hidden">
-                                        <img class="glyph stroked pencil" src="img/userlogo.svg" width="16px" >
-                                    </svg> Mi cuenta</a>
-                            </li>
-                            <li style="display:block;">
-                                <a href="#">
-                                    <svg class="glyph stroked cancel">
-                                        <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">
+                                                    <svg class="glyph stroked cancel">
+                                                        <use xlink:href="#stroked-cancel"></use>
+                                                    </svg>Cerrar Sesion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </li>
+                    <li class="dropdown pull-right fixing">
+                        <a href="micuenta.html#collapse2" class="dropdown-toggle">
+                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                    </li>
                 </ul>
+                <a href="depositar.html"><img class="imgfixedmenu" src="img/walletmdesign.png" style="float:left;" width="35px"></a>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -207,10 +224,7 @@
                                 <a href="#tab1" data-toggle="tab"><img class="glyph stroked home" src="img/football.svg" style="width:16px; height:16px;"> FUTBOL</a>
                             </li>
                             <li>
-                                <a href="#tab2" data-toggle="tab"><img class="glyph stroked home" src="img/tennis.svg" style="width:16px; height:16px; "> TENIS</a>
-                            </li>
-                            <li>
-                                <a href="#tab3" data-toggle="tab"><img class="glyph stroked home" src="img/basket.svg" style="width:16px; height:16px;"> BASKET</a>
+                                <a href="#tab2" data-toggle="tab"><img class="glyph stroked home" src="img/basket.svg" style="width:16px; height:16px;"> BASKET</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -293,157 +307,19 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <thead>
-                                        <tr class="tab-logo-liga">
-                                            <th colspan="5"><img class="glyph stroked home" src="img/ligabarclays.png" style="width:200px; height:80px;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                                 <!-- Contenido Futbol-->
                             </div>
                             <div class="tab-pane fade" id="tab2">
-                                <!-- Contenido TENIS-->
+                                <!-- Contenido Futbol-->
                                 <table class="table table-striped">
                                     <thead>
                                         <tr class="tab-logo-liga">
-                                            <th colspan="2"><img class="glyph stroked home" src="img/australian%20open.png" style="width:100px; height:45px;"></th>
-                                            <th>
-                                                <div class="col-xs-6 col-md-6 text-center"> </div>
-                                                <div class="col-xs-6 col-md-6 text-center"> </div>
-                                            </th>
-                                            <th>
-                                                <div class="col-xs-6 col-md-6 text-center"> 1</div>
-                                                <div class="col-xs-6 col-md-6 text-center"> 2</div>
+                                            <th colspan="3"><img class="glyph stroked home" src="img/nbalogo.png" style="width:100px; height:43px;"></th>
+                                            <th style="text-align: left;">
+                                                <div class="col-xs-6 col-md-4 text-center"> 1</div>
+                                                <div class="col-xs-6 col-md-4 text-center"> x</div>
+                                                <div class="col-xs-6 col-md-4 text-center"> 2</div>
                                             </th>
                                         </tr>
                                     </thead>
@@ -451,104 +327,70 @@
                                         <tr class="tab-horario-partido">
                                             <th scope="row">1</th>
                                             <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Roger Federer (SUI) - Rafael Nadal (ESP)</td>
+                                            <td class="tab-equipos-partido">Detroit - L.A. lakers</td>
                                             <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <thead>
-                                            <tr class="tab-logo-liga">
-                                                <th colspan="2"><img class="glyph stroked home" src="img/wta.png" style="width:100px; height:77px;"></th>
-                                                <th>
-                                                    <div class="col-xs-6 col-md-6 text-center"> </div>
-                                                    <div class="col-xs-6 col-md-6 text-center"> </div>
-                                                </th>
-                                                <th>
-                                                    <div class="col-xs-6 col-md-6 text-center"> 1</div>
-                                                    <div class="col-xs-6 col-md-6 text-center"> 2</div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="tab-horario-partido">
-                                                <th scope="row">1</th>
-                                                <td class="tab-horario-partido">18:30 28/01</td>
-                                                <td class="tab-equipos-partido">Elise Mertens (BEL) - Silvia Soler-Espinosa(ESP)</td>
-                                                <td class="tab-buttons-apuesta-simple">
-                                                    <div class="col-xs-6 col-md-6 center-block">
-                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                    </div>
-                                                    <div class="col-xs-6 col-md-6 center-block">
-                                                        <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="tab3">
-                                <!-- Contenido BASKET-->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="tab-logo-liga">
-                                            <th colspan="2"><img class="glyph stroked home" src="img/nbalogo.png" style="width:100px; height:43px;"></th>
-                                            <th>
-                                                <div class="col-xs-6 col-md-6 text-center"> </div>
-                                                <div class="col-xs-6 col-md-6 text-center"> </div>
-                                            </th>
-                                            <th>
-                                                <div class="col-xs-6 col-md-6 text-center"> 1</div>
-                                                <div class="col-xs-6 col-md-6 text-center"> 2</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">28/01</td>
-                                            <td class="tab-equipos-partido">Sacramento Kings - Charlotte Hornets</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-6 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="tab-horario-partido">
                                             <th scope="row">1</th>
-                                            <td class="tab-horario-partido">28/01</td>
-                                            <td class="tab-equipos-partido">Sacramento Kings - Charlotte Hornets</td>
+                                            <td class="tab-horario-partido">24/11 17:00</td>
+                                            <td class="tab-equipos-partido">Detroit - L.A. lakers</td>
                                             <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
+                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                </div>
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="tab-horario-partido">
                                             <th scope="row">1</th>
-                                            <td class="tab-horario-partido">28/01</td>
-                                            <td class="tab-equipos-partido">Sacramento Kings - Charlotte Hornets</td>
+                                            <td class="tab-horario-partido">24/11 17:00</td>
+                                            <td class="tab-equipos-partido">Detroit - L.A. lakers</td>
                                             <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
-                                                <div class="col-xs-6 col-md-6 center-block">
+                                                <div class="col-xs-6 col-md-4 center-block">
+                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                </div>
+                                                <div class="col-xs-6 col-md-4 center-block">
+                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="tab-horario-partido">
+                                            <th scope="row">1</th>
+                                            <td class="tab-horario-partido">24/11 17:00</td>
+                                            <td class="tab-equipos-partido">Detroit - L.A. lakers</td>
+                                            <td class="tab-buttons-apuesta-simple">
+                                                <div class="col-xs-6 col-md-4 center-block">
+                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                </div>
+                                                <div class="col-xs-6 col-md-4 center-block">
+                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                </div>
+                                                <div class="col-xs-6 col-md-4 center-block">
                                                     <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <!-- Contenido Basket-->
                             </div>
                         </div>
                     </div>
