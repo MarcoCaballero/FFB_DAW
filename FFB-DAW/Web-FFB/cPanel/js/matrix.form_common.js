@@ -36,10 +36,10 @@ $(document).ready(function () {
     });
     $("#mask-eyeScript").mask("~9.99 ~9.99 999");
     $("#mask-percent").mask("99%");
-    $("#mask-percent-bis").mask("99%");
-    $("#mask-percent-bis-bis").mask("99%");
+    $(".mask-percent").mask("99%");
     $("#mask-hour").mask("99:99");
-    $("#mask-hour-2").mask("99:99");
+    $(".mask-hour").mask("99:99");
+    $(".mask-number").mask("99");
     //------------- Toggle button  -------------//
     $('.normal-toggle-button').toggleButtons();
     $('.text-toggle-button').toggleButtons({
