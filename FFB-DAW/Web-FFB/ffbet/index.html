@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
     <title>FFBet - Entra y apuesta</title>
-    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
+    <link rel="icon" type="image/png" href="img/faviconFFBpng.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -20,14 +20,14 @@
     <script type="text/javascript">
         jssor_1_slider_init = function () {
             var jssor_1_options = {
-                $AutoPlay: true,
-                $Idle: 0,
-                $AutoPlaySteps: 4,
-                $SlideDuration: 2500,
-                $SlideEasing: $Jease$.$Linear,
-                $PauseOnHover: 4,
-                $SlideWidth: 140,
-                $Cols: 7
+                $AutoPlay: true
+                , $Idle: 0
+                , $AutoPlaySteps: 4
+                , $SlideDuration: 2500
+                , $SlideEasing: $Jease$.$Linear
+                , $PauseOnHover: 4
+                , $SlideWidth: 140
+                , $Cols: 7
             };
             var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
             /*responsive code begin*/
@@ -37,7 +37,8 @@
                 if (refSize) {
                     refSize = Math.min(refSize, 1200);
                     jssor_1_slider.$ScaleWidth(refSize);
-                } else {
+                }
+                else {
                     window.setTimeout(ScaleSlider, 30);
                 }
             }
@@ -321,14 +322,12 @@
                                             <td class="tab-equipos-partido">Detroit - L.A. lakers</td>
                                             <td class="tab-resultado-partido" style="padding-left:40px;">3.15</td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                                 <!-- Contenido Basket-->
                             </div>
                             <div class="tab-pane fade" id="tab3">
                                 <!-- Contenido Futbol-->
-
                                 <!-- Contenido CS-->
                                 <table class="table table-striped">
                                     <thead>
@@ -376,7 +375,6 @@
                                             <td class="tab-equipos-partido">SKT t1 - Cloud9</td>
                                             <td class="tab-resultado-partido" style="padding-left:90px;">3.15</td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -443,11 +441,8 @@
                     </div>
                     <div class="card-action">
                         <div style="font-family: fantasy;">
-                            <p style="display: inline; margin-left: 20px; margin-right: 10px;">
-                                <a href="apuestasdeportivas.html" style=" font-size: xx-large">DEPORTES</a>
-                            </p>
-                            <p style="display: inline; margin-left: 20px;">
-                                <a href="apuestasesports.html" style=" font-size: xx-large">JUEGOS</a></p>
+                            <p style="display: inline; margin-left: 20px; margin-right: 10px;"> <a href="apuestasdeportivas.html" style=" font-size: xx-large">DEPORTES</a> </p>
+                            <p style="display: inline; margin-left: 20px;"> <a href="apuestasesports.html" style=" font-size: xx-large">JUEGOS</a></p>
                         </div>
                     </div>
                 </div>
@@ -455,7 +450,6 @@
             <!--/.col-->
         </div>
         <!--/.row-->
-
     </div>
     <!--/.main-->
     <div id="footer" class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
