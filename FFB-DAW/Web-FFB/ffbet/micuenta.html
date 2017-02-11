@@ -44,8 +44,7 @@
                 $("#dni").prop('readonly', false);
                 $("#passwd").prop('readonly', false);
                 document.getElementById("editarDatos").innerHTML = "Guardar";
-            }
-            else {
+            } else {
                 $("#name").prop('readonly', true);
                 $("#ap1").prop('readonly', true);
                 $("#ap2").prop('readonly', true);
@@ -72,8 +71,7 @@
             var numero = parseInt(num);
             if (anyBoxesChecked[numero]) {
                 document.getElementById(img).style.cssText = ' float: right; margin-top: 1%;';
-            }
-            else {
+            } else {
                 document.getElementById(img).style.cssText = ' float: right; margin-top: 1%; -ms-transform: rotate(90deg); -webkit-transform: rotate(90deg); transform: rotate(90deg);';
             }
             anyBoxesChecked[num] = !anyBoxesChecked[num];
@@ -89,8 +87,7 @@
             console.log($card);
             if ($card.hasClass('hover')) {
                 $card.removeClass('hover');
-            }
-            else {
+            } else {
                 $card.addClass('hover');
             }
         }
@@ -99,14 +96,14 @@
     <script type="text/javascript">
         jssor_1_slider_init = function () {
             var jssor_1_options = {
-                $AutoPlay: true
-                , $Idle: 0
-                , $AutoPlaySteps: 4
-                , $SlideDuration: 2500
-                , $SlideEasing: $Jease$.$Linear
-                , $PauseOnHover: 4
-                , $SlideWidth: 140
-                , $Cols: 7
+                $AutoPlay: true,
+                $Idle: 0,
+                $AutoPlaySteps: 4,
+                $SlideDuration: 2500,
+                $SlideEasing: $Jease$.$Linear,
+                $PauseOnHover: 4,
+                $SlideWidth: 140,
+                $Cols: 7
             };
             var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
             /*responsive code begin*/
@@ -116,8 +113,7 @@
                 if (refSize) {
                     refSize = Math.min(refSize, 1200);
                     jssor_1_slider.$ScaleWidth(refSize);
-                }
-                else {
+                } else {
                     window.setTimeout(ScaleSlider, 30);
                 }
             }
@@ -143,7 +139,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a href="#" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right" style="margin-top:-3%;">
                         <a href="micuenta.html" class="dropdown-toggle" data-toggle="dropdown">
@@ -411,7 +407,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row"> <a class="btn btn-lg btn-primary" href="#" style="float:right; margin-right:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Retirar €</a> <a class="btn btn-lg btn-primary" href="depositar.html" style="float:left; margin-left:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Introducir €</a> </div>
+                                    <div class="row"> <a class="btn btn-lg btn-primary" href="retirar.html" style="float:right; margin-right:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Retirar €</a> <a class="btn btn-lg btn-primary" href="depositar.html" style="float:left; margin-left:2%; background-color: rgba(235, 199, 44, 0.9);border-color: rgba(235, 199, 44, 0.9);" role="button">Introducir €</a> </div>
                                 </div>
                             </div>
                         </div>

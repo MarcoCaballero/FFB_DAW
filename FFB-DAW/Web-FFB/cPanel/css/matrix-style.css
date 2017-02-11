@@ -255,7 +255,7 @@ hr {
 }
 
 #header h1 {
-    background: url("../img/logo.png") no-repeat scroll 0 0 transparent;
+    background: url("../img/logoFFBadmin.png") no-repeat scroll 0 0 transparent;
     height: 31px;
     left: 20px;
     line-height: 600px;
@@ -309,7 +309,7 @@ hr {
     position: absolute;
     top: 0px;
     z-index: 20;
-    margin-left: 75%;
+    margin-left: 57%;
 }
 
 #user-nav > ul {
@@ -1901,6 +1901,30 @@ form {
 
 /* Responsive design */
 
+@media (min-width: 500px) and (max-width: 715px) {
+    #user-nav {
+        margin-left: 77%;
+    }
+}
+
+@media (min-width: 980px) {
+    #user-nav {
+        margin-left: 67%;
+    }
+}
+
+@media (min-width: 1280px) {
+    #user-nav {
+        margin-left: 74%;
+    }
+}
+
+@media (min-width: 1900px) {
+    #user-nav {
+        margin-left: 82%;
+    }
+}
+
 @media (max-width: 480px) {
     #header h1 {
         top: 10px;
@@ -2245,8 +2269,24 @@ form {
         display: none;
     }
 }
+
 .titulo_central {
     text-align: center;
 }
 
+.autowidth {
+    width: auto;
+}
 
+.btn-local {
+    background-color: #e2bbb2;
+}
+
+.btn-local:hover,
+.btn-local:focus,
+.btn-local:active,
+.btn-local.active,
+.btn-local.disabled,
+.btn-local[disabled] {
+    background-color: #da6b52;
+}

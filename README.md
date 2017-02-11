@@ -1,7 +1,7 @@
 # FFB_DAW
 ### Friends&amp;Fun&amp;Bet ----- DAW WEB PROJECT --- URJC ETSII
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/FFB-DAW/LogoFFB.png)
+![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/FFB-DAW/PSpropios/LogoFFB.png)
 
 #### Descripción: 
 
