@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entra FFB</title>
+    <link rel="icon" type="image/png" href="/img/faviconFFBpng.png" />
+    <link href="css/lanzador.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <div class="services">
+        <figure class="snip1174 navy col-md-4" style="margin-left: 20%;"> <img src="img/clientetrigger.png" height="400px" alt="sq-sample33" />
+            <figcaption>
+                <h2>Clientes</h2>
+                <p> Entra y disfruta apostando en</p> <a href="WEB-ffbet/index.html">FFBet.com</a> </figcaption>
+        </figure>
+        <figure class="snip1174 red col-md-4"> <img src="img/programmertrigger.jpg" height="400px" alt="sq-sample33" />
+            <figcaption>
+                <h2>Empleados</h2>
+                <p> Bienvenido a tu empresa</p> <a href="WEB-cPanelAdmin/home.html">FFBet.com</a> </figcaption>
+        </figure>
+    </div>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        ! function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+        $(window).on('resize', function () {
+            if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+</body>
+
+</html>
