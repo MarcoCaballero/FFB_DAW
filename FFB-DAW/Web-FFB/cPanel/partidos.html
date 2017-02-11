@@ -24,7 +24,7 @@
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav">
             <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Bienvenido Usuario</span><b class="caret"></b></a> </li>
-            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Configuración</span></a></li>
+            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span id="reloj" class="text">Configuración</span></a></li>
             <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
         </ul>
     </div>
@@ -382,6 +382,28 @@
     <script src="js/wysihtml5-0.3.0.js"></script>
     <script src="js/jquery.peity.min.js"></script>
     <script src="js/bootstrap-wysihtml5.js"></script>
+    <script type="text/javascript">
+        function startTime() {
+            today = new Date();
+            h = today.getHours();
+            m = today.getMinutes();
+            s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('reloj').innerHTML = h + ":" + m + ":" + s;
+            t = setTimeout('startTime()', 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        window.onload = function () {
+            startTime();
+        }
+    </script>
 </body>
 
 </html>

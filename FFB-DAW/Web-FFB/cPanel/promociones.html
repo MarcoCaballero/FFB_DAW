@@ -22,7 +22,7 @@
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav">
             <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Bienvenido Usuario</span><b class="caret"></b></a> </li>
-            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Configuración</span></a></li>
+            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span id="reloj" class="text">Configuración</span></a></li>
             <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
         </ul>
     </div>
@@ -42,73 +42,96 @@
         <div id="content-header">
             <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Promociones</a> </div>
             <div class="container-fluid">
-            <hr>
-            <div class="row-fluid">
-                <div class="span6">
-                    <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                            <h5>Editor de promociones</h5> </div>
-                        <div class="widget-content nopadding">
-                            <form action="#" method="get" class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Tipo de promoción:</label>
-                                    <div class="controls">
-                                        <select>
-                                            <option>Bonos gratuitos</option>
-                                            <option>Promociones de fútbol</option>
-                                            <option>Otros deportes</option>
-                                        </select>
+                <hr>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                <h5>Editor de promociones</h5> </div>
+                            <div class="widget-content nopadding">
+                                <form action="#" method="get" class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label">Tipo de promoción:</label>
+                                        <div class="controls">
+                                            <select>
+                                                <option>Bonos gratuitos</option>
+                                                <option>Promociones de fútbol</option>
+                                                <option>Otros deportes</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Selector de promoción:</label>
-                                    <div class="controls">
-                                        <label>
-                                            <input type="radio" name="radios" /> Izquierda</label>
-                                        <label>
-                                            <input type="radio" name="radios" /> Derecha</label>
+                                    <div class="control-group">
+                                        <label class="control-label">Selector de promoción:</label>
+                                        <div class="controls">
+                                            <label>
+                                                <input type="radio" name="radios" /> Izquierda</label>
+                                            <label>
+                                                <input type="radio" name="radios" /> Derecha</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Título de la promoción:</label>
-                                    <div class="controls">
-                                        <input type="text" class="span11" placeholder="Título" /> </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Descripción de la promoción:</label>
-                                    <div class="controls">
-                                        <textarea class="textarea_editor span12" rows="6" placeholder="Descripción"></textarea>
+                                    <div class="control-group">
+                                        <label class="control-label">Título de la promoción:</label>
+                                        <div class="controls">
+                                            <input type="text" class="span11" placeholder="Título" /> </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Código promocional:</label>
-                                    <div class="controls">
-                                        <input type="password" class="span11" placeholder="Introduzca el código de activación" /> </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Imagen promocional :</label>
-                                    <div class="controls">
-                                        <input type="file" /> </div>
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success">Publicar</button>
-                                </div>
-                            </form>
+                                    <div class="control-group">
+                                        <label class="control-label">Descripción de la promoción:</label>
+                                        <div class="controls">
+                                            <textarea class="textarea_editor span12" rows="6" placeholder="Descripción"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Código promocional:</label>
+                                        <div class="controls">
+                                            <input type="password" class="span11" placeholder="Introduzca el código de activación" /> </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Imagen promocional :</label>
+                                        <div class="controls">
+                                            <input type="file" /> </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-success">Publicar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+        </div>
     </div>
     <!--end-main-container-part-->
     <!--End-Footer-part-->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.ui.custom.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.gritter.min.js"></script>
     <script src="js/jquery.peity.min.js"></script>
     <script src="js/matrix.js"></script>
     <script src="js/matrix.interface.js"></script>
     <script src="js/matrix.popover.js"></script>
+    <script type="text/javascript">
+        function startTime() {
+            today = new Date();
+            h = today.getHours();
+            m = today.getMinutes();
+            s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('reloj').innerHTML = h + ":" + m + ":" + s;
+            t = setTimeout('startTime()', 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        window.onload = function () {
+            startTime();
+        }
+    </script>
 </body>
 
 </html>
