@@ -34,17 +34,19 @@
 
 
 +MI CUENTA: esta página ofrece diferentes posibilidades: editar los datos personales del usuario, consultar su monedero virtual, comprobar el estado de sus apuestas y elegir un equipo o informarse acerca de datos sobre el equipo elegido como próximos partidos y la clasificación actualizada.
-    -MIS DATOS
-    -MI CUENTA
-    -MONEDERO
-    -MI EQUIPO 
+    -MIS DATOS: apartado en el que el usuario puede conultar los datos de su cuenta dispuestos en un formulario(nombre, apellidos, telefono...). Tiene la opción de editarlos con el botón "Editar".
+    -MI HISTORIAL: apartado en el que se muetran todas las apuestas realizadas por el usuario, tanto las apuestas realizadas y ya finalizadas como las apuestas realizadas y que no han tenido lugar todavía, así como el tipo de apuesta y el saldo introducido.
+    -MONEDERO: apartado en el que el usuario puede ver su saldo disponible para ser retirado como el saldo en juego actual. En este apartado, el usuario tiene la opción de introducir dinero con el botón "Introducir €" y la opción de retirarlo con "Retirar €"
+    -MI EQUIPO: apartado en el que el usuario puede conultar información actual de su equipo favorito, como últimos partidos o clasificación actual de su liga. Desde aquí, tambien podrá elegir equipo favorito con el botón "Elegir Equipo".
 
 
 +REGISTRATE: apartado de registro de FFBet. Se compone de un formulario de registro en el que el usuario deberá introducir algunos de sus datos personales imprescindibles para completar el registro. Cuando un usuario se registra está aceptando la política interna de FFBet, la cuál puede consultar en un enlace al final del registro.
 
-+LOGIN/RECUPERACIÓN DE CONTRASEÑA
-+DEPÓSITAR SALDO
-+RETIRAR SALDO
++LOGIN/RECUPERACIÓN DE CONTRASEÑA: página para acceder con un usuario a FFBet. Compuesta por un formulario donde el usuario debe introducir correo electrónico y contraseña para acceder a su cuenta. Si el usuario no recuerda su contraseña, posee la opción: Olvidaste contraseña
+
++DEPÓSITAR SALDO: página para depositar saldo en una determinada cuenta. En ella nos encontramos un formulario en el que el usuario introducirá distintos tipos de datos para introducir saldo en su cuenta(nombre, nº tarjeta, forma de pago...).
+
++RETIRAR SALDO: página para retirar saldo de una cuenta. Compuesta por un formulario en el que el usuario introduce su nombre, el importe a retirar y el número de la tarjeta donde quiere retirarse el saldo.
 
 
 
@@ -66,7 +68,7 @@
 
 +PROMOCIONES: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
 
-+LOGIN
++LOGIN: página para acceder con un usuario a FFBetAdmin. Compuesta por un formulario donde el usuario debe introducir correo electrónico y contraseña para acceder a su cuenta. Si el usuario no recuerda su contraseña, posee la opción: Olvidaste contraseña.
 
 
 
