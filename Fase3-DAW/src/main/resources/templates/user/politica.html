@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FFBet - Entra y apuesta</title>
+    <link rel="icon" type="image/png" href="user/img/faviconFFBpng.png" />
+    <link href="user/css/bootstrap.min.css" rel="stylesheet">
+    <link href="user/css/datepicker3.css" rel="stylesheet">
+    <link href="user/css/styles.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="user/js/lumino.glyphs.js"></script>
+    <script src="user/js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init = function () {
+            var jssor_1_options = {
+                $AutoPlay: true
+                , $Idle: 0
+                , $AutoPlaySteps: 4
+                , $SlideDuration: 2500
+                , $SlideEasing: $Jease$.$Linear
+                , $PauseOnHover: 4
+                , $SlideWidth: 140
+                , $Cols: 7
+            };
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            /*responsive code begin*/
+            /*you can remove responsive code if you don't want the slider scales while window resizing*/
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1200);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*responsive code end*/
+        };
+    </script>
+    <script>
+        function quitarapuesta(para1) {
+            document.getElementById(para1).style.display = "none";
+        }
+    </script>
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right" style="margin-top:-3%;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="border-radius: 10%;">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="100px" /> </svg>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
+                                            <p class="text-left small">correoElectronico@email.com
+                                                <a style="color:black;" href="micuenta">
+                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                                            </p>
+                                            <p class="text-left"> <a href="depositar.html" class="btn btn-primary btn-block btn-sm">Depositar</a>
+                                                <a href="micuenta" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
+                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">
+                                                    <svg class="glyph stroked cancel">
+                                                        <use xlink:href="#stroked-cancel"></use>
+                                                    </svg>Cerrar Sesion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown pull-right fixing">
+                        <a href="micuenta" class="dropdown-toggle">
+                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
+                    </li>
+                </ul>
+                <a href="depositar"><img class="imgfixedmenu" src="user/img/walletmdesign.png" style="float:left;" width="35px"></a>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <section class="active"> <img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%"> </section>
+        <ul class="nav menu">
+            <li>
+                <a href="index"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
+            </li>
+            <li>
+                <a href="apuestasdeportivas"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
+            </li>
+            <li>
+                <a href="apuestasesports"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
+            </li>
+            <li>
+                <a href="promociones"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
+            </li>
+            <li>
+                <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li>
+                <a href="registrarse">
+                    <svg class="glyph stroked male-user">
+                        <use xlink:href="#stroked-male-user"></use>
+                    </svg>Registrate</a>
+            </li>
+        </ul>
+    </div>
+    <!--/.sidebar-->
+    <div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index">
+                        <svg class="glyph stroked home">
+                            <use xlink:href="#stroked-home"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li class="active">Ofertas y promociones</li>
+            </ol>
+        </div>
+        <!--/.row-->
+        <div class="tt1"> Política de privacidad </div>
+        <div class="col-md-6 col-lg-6 col-sm-10 col-lg-offset-2 col-sm-offset-1">
+            <!-- BEGIN Portlet PORTLET-->
+            <div class="portlet">
+                <ul class="nav nav-tabs">
+                    <li> <a href="#portlet_tab3" data-toggle="tab">
+								Privacidad </a> </li>
+                    <li> <a href="#portlet_tab2" data-toggle="tab">
+								Uso de la información</a> </li>
+                    <li class="active"> <a href="#portlet_tab1" data-toggle="tab">
+								Seguridad</a> </li>
+                </ul>
+            </div>
+            <div class="portlet-body">
+                <div class="tab-content">
+                    <div class="tab-pane" id="portlet_tab1">
+                        <h4>Seguridad y fiabilidad para nuestros usuarios</h4>
+                        <p>Comprendemos la importancia de la seguridad de la información y las técnicas necesarias para proteger dichos datos. Almacenamos todos los datos personales que recibimos directamente de usted en una base de datos protegida mediante una contraseña y ubicada en nuestra red de seguridad protegida por un sofisticado software de firewall activo. Nuestros Servicios son compatibles con SSL versión 3 con la encriptación de 128-bits. Tomamos asimismo las medidas necesarias para proteger a nuestras filiales, agentes, afiliados y proveedores, y empleamos niveles de seguridad adecuados.</p>
+                    </div>
+                    <div class="tab-pane" id="portlet_tab2">
+                        <h4>Aviso de uso de información personal</h4>
+                        <p>Utilizamos los datos personales que usted nos facilita para ofrecer nuestros Servicios, prestar apoyo a los clientes, realizar las comprobaciones de seguridad e identificación necesarias, procesar las transacciones online, ayudarle a participar en promociones de terceros, cumplir con los requisitos de la empresa y cualquier otro propósito relacionado con la gestión de los Servicios. Asimismo sus datos personales podrán ser utilizados para proporcionarle ofertas promocionales e información sobre nuestros productos y servicios así como para ofrecerle una serie de productos y servicios y mejorar el servicio al cliente. Usted acepta que nosotros notifiquemos a otros usuarios de nuestra página que tengan una cuenta en ella y que tengan almacenada su dirección de e-mail en su libreta de contactos que dicha dirección de e-mail ya ha sido registrada en una cuenta. Ocasionalmente, podríamos solicitarle información por medio de encuestas o concursos. La participación en estas encuestas o concursos es totalmente voluntaria y, por lo tanto, usted dispone de la opción de facilitar o no dicha información. La información solicitada puede referirse a datos de contacto (tales como nombre y apellidos, la dirección de correspondencia y número de teléfono), así como a datos demográficos (código postal o la edad). Al aceptar cualquier ganancia o premio en un concurso, usted acepta que se utilice su nombre y demás datos con fines publicitarios y promocionales sin percibir por ello ninguna otra compensación adicional, salvo que existiera alguna prohibición legal. A menos que usted haya optado por no recibir información promocional, también podremos utilizar sus datos personales (incluidos su dirección de e-mail y teléfono) para ofrecerle información sobre nuestros productos, servicios y promociones, así como otros productos de juego (incluidos los servicios de poker online, casino apuestas, blackjack y bingo) y asimismo productos y servicios de terceros cuidadosamente seleccionados por nosotros.</p>
+                    </div>
+                    <div class="tab-pane active" id="portlet_tab3">
+                        <h4>Privacidad y protección de datos</h4>
+                        <p>Estamos comprometidos con la protección de su datos personales. Hemos creado esta Política de Privacidad para comunicarle qué información almacenamos cuando usted usa nuestros Servicios, por qué almacenamos esta información y cómo la usamos. Recuerde que esta Política de Privacidad se suscribe entre usted y ElectraWorks (España) Plc (en adelante Nosotros', o 'Nuestro/a', según corresponda). Periódicamente podemos introducir modificaciones a esta Política de Privacidad, cambios que le serán notificados mediante la actualización de los términos modificados en nuestras Plataformas. Le recomendamos que visite esta Política de Privacidad regularmente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+    <!--./main-->
+    <div id="footer" class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
+        <div class="container-fluid">
+            <!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+                        
+                            <!-- CAROUSEL PARTNERS ROW-->
+            <div class="row">
+                <div id="jssor_1">
+                    <!-- Loading Screen -->
+                    <div class="jssor_banner" data-u="loading">
+                        <div class="jssor_banner2"></div>
+                        <div class="jssor_banner3"></div>
+                    </div>
+                    <div class="jssor_slides" data-u="slides">
+                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
+                        <div class="jsorpadding"> </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    jssor_1_slider_init();
+                </script>
+            </div>
+            <!-- #endregion Jssor Slider End -->
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row"> <img src="user/img/barra_liga_santander.png" class="imagen_equipos"> </div>
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row">
+                <ul class="menu_info">
+                    <li> <strong>TOP LINKS</strong> </li>
+                    <li> <a href="index" class="enlaceFooter"> Home </a> </li>
+                    <li> <a href="apuestasdeportivas" class="enlaceFooter"> Apuestas Deportivas </a> </li>
+                    <li> <a href="apuestasesports" class="enlaceFooter"> Apuestas E-games </a> </li>
+                    <li> <a href="promociones" class="enlaceFooter"> Ofertas y Promociones </a> </li>
+                    <li> <a href="registrarse" class="enlaceFooter"> Registro </a> </li>
+                </ul>
+                <ul class="menu_info">
+                    <li> <strong>INFO</strong> </li>
+                    <li> <a href="politica" class="enlaceFooter"> Privacy policy </a> </li>
+                    <li> <a href="http://politicadecookies.com/" class="enlaceFooter"> Cookie policy </a> </li>
+                    <li> <a href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#" class="enlaceFooter">  User policy </a> </li>
+                    <li> <a href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo" class="enlaceFooter">  Responsible Gaming </a> </li>
+                </ul>
+            </div>
+            <ul class="nav menu">
+                <li role="presentation" class="pp"></li>
+            </ul>
+            <div class="row">
+                <div class="copyright">
+                    <a href="@" target="_self"></a><img src="user/img/+18.png" height="25px"> <span>Copyright © 2017 FFbet.com (España)</span> </div>
+            </div>
+        </div>
+    </div>
+    <!--/.footer-->
+    <script src="user/js/jquery-1.11.1.min.js"></script>
+    <script src="user/js/bootstrap.min.js"></script>
+    <script src="user/js/chart.min.js"></script>
+    <script src="user/js/chart-data.js"></script>
+    <script src="user/js/easypiechart.js"></script>
+    <script src="user/js/easypiechart-data.js"></script>
+    <script src="user/js/bootstrap-datepicker.js"></script>
+    <script>
+        ! function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+</body>
+
+</html>
