@@ -1,4 +1,4 @@
-package com.ffbet.fase3;
+package com.ffbet.fase3.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
