@@ -1,5 +1,6 @@
 package com.ffbet.fase3.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -61,7 +62,10 @@ public class User {
 	private byte[] profile_image;
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
-	private List<BetTicket> bet_tickets;
+	private List<BetTicket> bet_tickets = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
+	private List<Promotion> promos = new ArrayList<>();
 
 	/* CONSTRUCTORS */
 

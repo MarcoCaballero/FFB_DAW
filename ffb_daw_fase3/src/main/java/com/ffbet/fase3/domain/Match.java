@@ -2,6 +2,8 @@ package com.ffbet.fase3.domain;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 
 /**
  * This is an abstract class that define the general attributes for any child
  * who extends it.
  * 
- * @see {@link Sports_match} {@link Egames_match}
+ * @see {@link SportsMatch} {@link EgamesMatch}
  * @author Pedro
  * @version 1.0
  */
@@ -39,6 +42,9 @@ public abstract class Match {
 	protected int quotaHomeVictory;
 	@Column(nullable = false)
 	protected int quotaVisitingVictory;
+	@ManyToMany(mappedBy="matches")
+	protected List<Team> teams = new ArrayList<>();
+	
 
 	// CONSTRUCTORS
 

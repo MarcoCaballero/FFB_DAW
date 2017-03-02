@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 /**
  * This is a subclass that extends from Match and defines a sports match
  * 
- * @see {@link Match} {@link Egames_match}
+ * @see {@link Match} {@link EgamesMatch}
  * @author Pedro
  * @version 1.0
  *
  */
 @Entity
-public class Sports_match extends Match {
+public class SportsMatch extends Match {
 
 	@Column(nullable = false)
 	private int quotaDraw;
@@ -29,7 +29,7 @@ public class Sports_match extends Match {
 	/**
 	 * Void constructor
 	 */
-	public Sports_match() {
+	public SportsMatch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,7 +42,7 @@ public class Sports_match extends Match {
 	 * @param (required)
 	 *            visitingPoints, the points of the visiting team
 	 */
-	public Sports_match(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	public SportsMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory) {
 		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub

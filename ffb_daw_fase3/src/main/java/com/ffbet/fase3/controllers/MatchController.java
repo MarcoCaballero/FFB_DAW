@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ffbet.fase3.domain.Egames_match;
-import com.ffbet.fase3.domain.Sports_match;
+import com.ffbet.fase3.domain.EgamesMatch;
+import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 
@@ -29,7 +29,7 @@ public class MatchController {
 		Date date = null;
 		Time time = null;
 		
-		Sports_match sports = new Sports_match();
+		SportsMatch sports = new SportsMatch();
 		sports.setDate(date);
 		sports.setTime(time);
 		sports.setHomeTeam("Real Madrid");
@@ -42,7 +42,7 @@ public class MatchController {
 		
 		sportsRepo.save(sports);
 		
-		Egames_match egames = new Egames_match();
+		EgamesMatch egames = new EgamesMatch();
 		egames.setDate(date);
 		egames.setTime(time);
 		egames.setHomeTeam("SKT T1");
@@ -57,12 +57,12 @@ public class MatchController {
 	}
 	
 	@RequestMapping("/sports/")
-	public List<Sports_match> showSports(){
+	public List<SportsMatch> showSports(){
 		return sportsRepo.findAll();
 	}
 	
 	@RequestMapping("/egames/")
-	public List<Egames_match> showEgames(){
+	public List<EgamesMatch> showEgames(){
 		return egamesRepo.findAll();
 	}
 
