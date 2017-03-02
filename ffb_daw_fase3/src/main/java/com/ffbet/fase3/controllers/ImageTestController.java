@@ -4,37 +4,38 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.ffbet.fase3.domain.Egames_team;
-import com.ffbet.fase3.domain.Sport_team;
-import com.ffbet.fase3.domain.Team;
-import com.ffbet.fase3.repositories.Egames_team_repository;
-import com.ffbet.fase3.repositories.Sport_team_repository;
+import com.ffbet.fase3.domain.SportTeam;
+import com.ffbet.fase3.repositories.EgamesTeamRepository;
+import com.ffbet.fase3.repositories.SportTeamRepository;
 
 @RestController
 public class ImageTestController {
 
 	@Autowired
-	private Sport_team_repository sport_team_repo;
+	private SportTeamRepository sport_team_repo;
 	@Autowired
-	private Egames_team_repository egame_team_repo;
+	private EgamesTeamRepository egame_team_repo;
 
+	/**
+	 * Initializer on PostConstruct
+	 * 
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	@PostConstruct
 	public void init() throws IOException, ParseException {
 
-		Sport_team sport_team = new Sport_team();
+		SportTeam sport_team = new SportTeam();
 		sport_team.setName("P_001");
 		sport_team.setCity("Madrid");
+		sport_team.setCoach("marianete");
 		/*
 		 * try { FileInputStream f_in = new
 		 * FileInputStream("C:\\Users\\Marco\\Desktop\\gato.jpg");
@@ -44,21 +45,29 @@ public class ImageTestController {
 		 */
 
 		sport_team_repo.save(sport_team);
-		uploadImageShield("C:\\Users\\Marco\\Desktop\\gato.jpg", "P_001",0);
-		
+		uploadImageShield("C:\\Users\\Marco\\Desktop\\gato.jpg", "P_001", 0);
+
 	}
 
-	@RequestMapping("/{name}")
+	/**
+	 * Testing a way to get and show the 'shield_image' from database to browser.
+	 * 
+	 * @param response
+	 * @param name
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	@RequestMapping("/images/{name}")
 	// Forma eficiente para devolver binario
 	public void getAndshowImage(HttpServletResponse response, @PathVariable String name)
 			throws FileNotFoundException, IOException {
 		response.addHeader("Content/type", "image/jpeg");
 
-		Sport_team sport_team = sport_team_repo.findByName(name).get(0);// -->
+		SportTeam sport_team = sport_team_repo.findByName(name).get(0);// -->
 																		// find
 																		// next
 																		// toSelect
-		byte[] imageByte = sport_team.getShield_image();
+		byte[] imageByte = sport_team.getLogo_image();
 		try {
 			IOUtils.write(imageByte, response.getOutputStream());
 
@@ -69,23 +78,24 @@ public class ImageTestController {
 
 	}
 
-	
 	/**
+	 * Testing a way to upload the 'shield_image' to database.
+	 * 
 	 * @param path,
 	 *            path to the image file (or aany file)
 	 * @param name,
-	 *            the {@link Sport_team} name
+	 *            the {@link SportTeam} name
 	 * @param toSelect,
 	 *            strategy to select: 0 - to select the first occurrence, 1 - to
 	 *            select the last occurrence.
 	 * 
 	 */
 	public void uploadImageShield(String path, String name, int toSelect) {
-		Sport_team s_t = sport_team_repo.findByName(name).get(0);// --> toSelect
+		SportTeam s_t = sport_team_repo.findByName(name).get(0);// --> toSelect
 		try {
 			FileInputStream f_in = new FileInputStream(path);
 
-			s_t.setShield_image(IOUtils.toByteArray(f_in));
+			s_t.setLogo_image(IOUtils.toByteArray(f_in));;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

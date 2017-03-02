@@ -6,22 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FfbetAdminController {
 
-	@RequestMapping("/cpanelhome")
-	public String cpanelhome(){
-		return "admin/home";
-	}
 	
-	@RequestMapping("/cpanelequipo")
-	public String cpanelequipo(){
-		return "admin/equipos";
-	}
-	
-	@RequestMapping("/cpanellogin")
-	public String cpanellogin(){
-		return "admin/login";
-	}
-	
-	@RequestMapping("/cpanelpartido")
+	@RequestMapping("/admin")
 	public String cpanelpartido(){
 		return "admin/partidos";
 	}
