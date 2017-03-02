@@ -3,15 +3,15 @@ package com.ffbet.fase3.domain;
 import javax.persistence.Entity;
 
 /**
- * Entity object subclass {@link Egames_team} Defines an <i>eTeam</i> object by
+ * Entity object subclass {@link EgamesTeam} Defines an <i>eTeam</i> object by
  * extending an abstract {@link team}
  * 
- * @see {@link team}, {@link Sport_team}
+ * @see {@link team}, {@link SportTeam}
  * @author Marco
  * @version 1.0
  */
 @Entity
-public class Egames_team extends Team {
+public class EgamesTeam extends Team {
 
 	/* COLUMNS */
 	private String sede;
@@ -21,7 +21,7 @@ public class Egames_team extends Team {
 	/**
 	 * void constructor
 	 */
-	public Egames_team() {
+	public EgamesTeam() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,7 +36,7 @@ public class Egames_team extends Team {
 	 * @param country
 	 * @param city
 	 */
-	public Egames_team(String sede, String sponsor, long id, String name, String coach, String country, String city) {
+	public EgamesTeam(String sede, String sponsor, long id, String name, String coach, String country, String city) {
 		super(id, name, coach, country, city);
 		this.sede = sede;
 		this.sponsor = sponsor;
@@ -51,7 +51,7 @@ public class Egames_team extends Team {
 	 * @param name
 	 * @param coach
 	 */
-	public Egames_team(String sede, String sponsor, long id, String name, String coach) {
+	public EgamesTeam(String sede, String sponsor, long id, String name, String coach) {
 		super(id, name, coach);
 		this.sede = sede;
 		this.sponsor = sponsor;

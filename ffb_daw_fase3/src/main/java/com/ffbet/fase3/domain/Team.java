@@ -12,7 +12,7 @@ import javax.persistence.InheritanceType;
  * Defines an abstract class that could be used by any child who extends it,
  * and provides variables and methods that could be wholly shared by all subclasses
  * 
- * @see {@link Sport_team}, {@link Egames_team}
+ * @see {@link SportTeam}, {@link EgamesTeam}
  * @author Marco
  * @version 1.0
  * */
@@ -29,10 +29,11 @@ public abstract class Team {
 	@Column(nullable = false)
 	protected String name;
 	
-	
+	@Column(nullable = false)
 	protected String coach;
 	
 	protected String country;
+	
 	protected String city;
 	
 	

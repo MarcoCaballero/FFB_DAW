@@ -5,15 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 /**
- * Entity object subclass {@link Sport_team} Defines an Sport team object by
- * extending an abstract {@link team}
+ * Entity object subclass {@link SportTeam} defines an Sport team object by
+ * extending an abstract {@link team} and provides methods to manage the
+ * {@link SportTeam}.
  * 
- * @see {@link team}, {@link Egames_team}
+ * @see {@link team}, {@link EgamesTeam}
  * @author Marco
  * @version 1.0
  */
 @Entity
-public class Sport_team extends Team {
+public class SportTeam extends Team {
 
 	/* COLUMNS */
 	private String slogan;
@@ -36,30 +37,45 @@ public class Sport_team extends Team {
 
 	@Column(length = 10000000)
 	@Lob
-	private byte[] shield_image;
+	private byte[] logo_image;
+
+	private String twitter_Uri;
+	private String facebook_Uri;
+	private String google_Uri;
 
 	/* CONSTRUCTORS */
-	
 
 	/**
 	 * Void constructor
 	 */
-	public Sport_team() {
+	public SportTeam() {
 		super();
 	}
 
 	/**
 	 * Contains all own parameters and all parameters from superclass
 	 * 
+	 * @param slogan
+	 * @param stadium
+	 * @param president
+	 * @param leagues
+	 * @param cups
+	 * @param champions
+	 * @param league_position
+	 * @param stadium_image
+	 * @param logo_image
+	 * @param twitter_Uri
+	 * @param facebook_Uri
+	 * @param google_Uri
 	 * @param id
 	 * @param name
 	 * @param coach
 	 * @param country
 	 * @param city
 	 */
-	public Sport_team(String slogan, String stadium, String president, int leagues, int cups, int champions,
-			int league_position, byte[] stadium_image, byte[] shield_image, long id, String name, String coach,
-			String country, String city) {
+	public SportTeam(String slogan, String stadium, String president, int leagues, int cups, int champions,
+			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
+			String google_Uri, long id, String name, String coach, String country, String city) {
 		super(id, name, coach, country, city);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -69,10 +85,14 @@ public class Sport_team extends Team {
 		this.champions = champions;
 		this.league_position = league_position;
 		this.stadium_image = stadium_image;
-		this.shield_image = shield_image;
+		this.logo_image = logo_image;
+		this.twitter_Uri = twitter_Uri;
+		this.facebook_Uri = facebook_Uri;
+		this.google_Uri = google_Uri;
 	}
 
 	/**
+	 * 
 	 * Contains all own parameters and the required parameters from superclass
 	 * 
 	 * @param slogan
@@ -83,10 +103,17 @@ public class Sport_team extends Team {
 	 * @param champions
 	 * @param league_position
 	 * @param stadium_image
-	 * @param shield_image
+	 * @param logo_image
+	 * @param twitter_Uri
+	 * @param facebook_Uri
+	 * @param google_Uri
+	 * @param id
+	 * @param name
+	 * @param coach
 	 */
-	public Sport_team(String slogan, String stadium, String president, int leagues, int cups, int champions,
-			int league_position, byte[] stadium_image, byte[] shield_image, long id, String name, String coach) {
+	public SportTeam(String slogan, String stadium, String president, int leagues, int cups, int champions,
+			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
+			String google_Uri, long id, String name, String coach) {
 		super(id, name, coach);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -96,7 +123,10 @@ public class Sport_team extends Team {
 		this.champions = champions;
 		this.league_position = league_position;
 		this.stadium_image = stadium_image;
-		this.shield_image = shield_image;
+		this.logo_image = logo_image;
+		this.twitter_Uri = twitter_Uri;
+		this.facebook_Uri = facebook_Uri;
+		this.google_Uri = google_Uri;
 	}
 
 	/* GETTERS & SETTER */
@@ -221,18 +251,63 @@ public class Sport_team extends Team {
 	}
 
 	/**
-	 * @return the shield_image
+	 * @return the logo_image
 	 */
-	public byte[] getShield_image() {
-		return shield_image;
+	public byte[] getLogo_image() {
+		return logo_image;
 	}
 
 	/**
-	 * @param shield_image
-	 *            the shield_image to set
+	 * @param logo_image
+	 *            the logo_image to set
 	 */
-	public void setShield_image(byte[] shield_image) {
-		this.shield_image = shield_image;
+	public void setLogo_image(byte[] logo_image) {
+		this.logo_image = logo_image;
+	}
+
+	/**
+	 * @return the twitter_Uri
+	 */
+	public String getTwitter_Uri() {
+		return twitter_Uri;
+	}
+
+	/**
+	 * @param twitter_Uri
+	 *            the twitter_Uri to set
+	 */
+	public void setTwitter_Uri(String twitter_Uri) {
+		this.twitter_Uri = twitter_Uri;
+	}
+
+	/**
+	 * @return the facebook_Uri
+	 */
+	public String getFacebook_Uri() {
+		return facebook_Uri;
+	}
+
+	/**
+	 * @param facebook_Uri
+	 *            the facebook_Uri to set
+	 */
+	public void setFacebook_Uri(String facebook_Uri) {
+		this.facebook_Uri = facebook_Uri;
+	}
+
+	/**
+	 * @return the google_Uri
+	 */
+	public String getGoogle_Uri() {
+		return google_Uri;
+	}
+
+	/**
+	 * @param google_Uri
+	 *            the google_Uri to set
+	 */
+	public void setGoogle_Uri(String google_Uri) {
+		this.google_Uri = google_Uri;
 	}
 
 	/* OVERRIDE METHODS */
