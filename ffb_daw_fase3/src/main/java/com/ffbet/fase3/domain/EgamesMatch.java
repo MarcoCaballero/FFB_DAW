@@ -18,7 +18,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-public class Egames_match extends Match {
+public class EgamesMatch extends Match {
 
 	@Column(nullable = false)
 	private int quotaHomeFirstBlood;
@@ -32,7 +32,7 @@ public class Egames_match extends Match {
 	/**
 	 * Void constructor
 	 */
-	public Egames_match() {
+	public EgamesMatch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,7 +46,7 @@ public class Egames_match extends Match {
 	 *            quotaVisitingFirstBlood, the quota of visiting first blood's
 	 *            bet
 	 */
-	public Egames_match(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood) {
 		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
@@ -67,7 +67,7 @@ public class Egames_match extends Match {
 	 * @param firstBloodTeam,
 	 *            the team who makes the first blood
 	 */
-	public Egames_match(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood, String winnerTeam,
 			String firstBloodTeam) {
 		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);

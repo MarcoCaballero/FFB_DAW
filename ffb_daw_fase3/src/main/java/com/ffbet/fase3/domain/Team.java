@@ -1,5 +1,8 @@
 package com.ffbet.fase3.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 /**
  * Abstract parent class {@link Team}
  * Defines an abstract class that could be used by any child who extends it,
  * and provides variables and methods that could be wholly shared by all subclasses
  * 
- * @see {@link Sport_team}, {@link Egames_team}
+ * @see {@link SportTeam}, {@link EgamesTeam}
  * @author Marco
  * @version 1.0
  * */
@@ -29,11 +33,15 @@ public abstract class Team {
 	@Column(nullable = false)
 	protected String name;
 	
-	
+	@Column(nullable = false)
 	protected String coach;
 	
 	protected String country;
+	
 	protected String city;
+	
+	@ManyToMany
+	protected List<Match> matches = new ArrayList<>();
 	
 	
 	//CONSTRUCTORS
