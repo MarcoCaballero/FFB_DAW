@@ -39,12 +39,32 @@ public class BetTicket {
 	private Promotion applied_promo;
 
 	@Column(nullable = false)
-	private Amount amount;
+	private int amount;
 
 	@Column(length = 100000)
 	private int potential_gain;
 
 	@Column
 	private boolean isFinished;
+
+	/**
+	 * @param id
+	 * @param matches_list
+	 * @param applied_promo
+	 * @param amount
+	 * @param potential_gain
+	 * @param isFinished
+	 */
+	public BetTicket(long id, List<Match> matches_list, Promotion applied_promo, int amount, int potential_gain,
+			boolean isFinished) {
+		this.id = id;
+		this.matches_list = matches_list;
+		this.applied_promo = applied_promo;
+		this.amount = amount;
+		this.potential_gain = potential_gain;
+		this.isFinished = isFinished;
+	}
+	
+	
 
 }

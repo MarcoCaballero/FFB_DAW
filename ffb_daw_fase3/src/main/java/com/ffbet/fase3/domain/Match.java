@@ -14,6 +14,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
+
+
+
 /**
  * This is an abstract class that define the general attributes for any child
  * who extends it.
