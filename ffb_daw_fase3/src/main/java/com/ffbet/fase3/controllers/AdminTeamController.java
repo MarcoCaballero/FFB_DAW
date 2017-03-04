@@ -1,11 +1,15 @@
 package com.ffbet.fase3.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.ffbet.fase3.domain.Team;
+import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.Egames_match_repository;
+import com.ffbet.fase3.repositories.Sports_match_repository;
 
 /**
  * Controller class {@link AdminTeamController} provides methods to map the URL's
@@ -21,6 +25,12 @@ import com.ffbet.fase3.domain.Team;
 @Controller
 public class AdminTeamController extends RedirectController {
 
+	String template =  TemplatesPath.ADMIN_TEAM.toString();
+	String redirect = "redirect:/admin-teams/";
+	@Autowired
+	Sports_match_repository sport_match_repo;
+	@Autowired
+	Egames_match_repository egames_match_repo;
 	/* ADMIN */
 
 	/**
@@ -34,11 +44,10 @@ public class AdminTeamController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-teams","/admin-teams/" })
 	public String getTeamTemplate(HttpServletRequest request, Model model) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/equipos");
+		String response = check_url(request, template);
 		return response;
 
 	}
@@ -56,13 +65,14 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@GetMapping(value = { "/admin-teams/{id}", "/admin-teams/{id}/" })
-	public String getTeamByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/equipos");
-		return response;
+	public String getTeamByID(HttpServletRequest request, Model model, @PathVariable("id") String idString) {
+		//something to do......
+		try {
+			long id = Long.parseLong(idString);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return redirect;
 
 	}
 
@@ -77,13 +87,9 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/new", "/admin-teams/new/" })
-	public String addTeam(HttpServletRequest request, Model model) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/equipos");
-		return response;
+	public String addTeam() {
+		
+		return redirect;
 
 	}
 
@@ -97,14 +103,9 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@PutMapping("/admin-teams/update/{id}")
-	public String updateTeamByID(HttpServletRequest request, Model model, @PathVariable("id") long updating_id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/equipos");
-		return response;
-
+	public String updateTeamByID(Model model, @PathVariable("id") long updating_id) {
+	
+		return redirect;
 	}
 
 	/**
@@ -118,12 +119,8 @@ public class AdminTeamController extends RedirectController {
 	 */
 	@DeleteMapping("/admin-teams/delete/{id}")
 	public String deleteTeamByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/equipos");
-		return response;
+	
+		return redirect;
 
 	}
 

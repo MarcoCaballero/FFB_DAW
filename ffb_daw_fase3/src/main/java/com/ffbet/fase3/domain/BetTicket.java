@@ -27,7 +27,7 @@ public class BetTicket {
 
 	/* COLUMNS */
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false)
 	protected long id;
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.ffbet.fase3.domain.TemplatesPath;
+
 /**
  * Controller class {@link AdminMatchesController} provides methods to map the
  * URL's that reference to the MATCHES, and their main controller functions.
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @Controller
 public class AdminMatchesController extends RedirectController {
 
+	String template =  TemplatesPath.ADMIN_MATCH.toString();
 	/* ADMIN */
 
 	/**
@@ -36,11 +39,11 @@ public class AdminMatchesController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-matches", "/admin-matches/" })
 	public String getMatchTemplate(HttpServletRequest request, Model model) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
+		model.addAttribute("title", "Hello from ");
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/partidos");
+		String response = check_url(request, template);
 		return response;
 
 	}
@@ -58,12 +61,11 @@ public class AdminMatchesController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-matches/{id}", "/admin-matches/{id}/" })
 	public String getMatchByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
 		model.addAttribute("title", "Hello from " + String.valueOf(id));
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/partidos");
+		String response = check_url(request, template);
 		return response;
 
 	}
@@ -80,12 +82,11 @@ public class AdminMatchesController extends RedirectController {
 	@GetMapping(value = { "/admin-matches/new", "/admin-matches/new/" })
 	public String addMatch(HttpServletRequest request, Model model) {
 		
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
 		model.addAttribute("title", "Hello from new");
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/partidos");
+		String response = check_url(request, template);
 		return response;
 
 	}
@@ -101,11 +102,10 @@ public class AdminMatchesController extends RedirectController {
 	 */
 	@PutMapping("/admin-matches/update/{id}")
 	public String updateMatchByID(HttpServletRequest request, Model model, @PathVariable("id") long updating_id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/partidos");
+		String response = check_url(request, template);
 		return response;
 
 	}
@@ -121,11 +121,10 @@ public class AdminMatchesController extends RedirectController {
 	 */
 	@DeleteMapping("/admin-matches/delete/{id}")
 	public String deleteMatchByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/partidos");
+		String response = check_url(request, template);
 		return response;
 
 	}

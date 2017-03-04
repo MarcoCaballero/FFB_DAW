@@ -4,9 +4,10 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ffbet.fase3.domain.UserAdminNames;
-import com.ffbet.fase3.domain.UserAdminPasswds;
+import  com.ffbet.fase3.domain.TemplatesPath;
+
 
 /**
  * Controller class {@link AdminHomeController} provides methods to map the
@@ -33,11 +34,11 @@ public class AdminHomeController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-home", "/admin-home/", "/admin", "/admin/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		
+		
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/home");
+		String response = check_url(request, TemplatesPath.ADMIN_HOME.toString());
 		return response;
 
 	}
@@ -53,42 +54,50 @@ public class AdminHomeController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-login", "/admin-login/" })
 	public String getLoginTemplate(HttpServletRequest request, Model model) {
-		// Checks the resources context.
-		model.addAttribute("resources", checkResourcesContext(request));
+		model.addAttribute("isError", false);
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, "admin/login");
-		String name = "HOSE";
-		String passwd = "ADMIN";
-		boolean isOkName = false;
-		boolean isOkPasswd = false;
-		UserAdminNames userName = null;
-		UserAdminPasswds userPass = null;
-		boolean allowLogin = false;
-
-		for (UserAdminNames userN : UserAdminNames.values()) {
-			if (userN.equalsNames(name)) {
-				isOkName = true;
-				userName = userN;
-			}
-
-		}
-		for (UserAdminPasswds userP : UserAdminPasswds.values()) {
-			if (userP.equalsPasswords(passwd)) {
-				isOkPasswd = true;
-				userPass = userP;
-			}
-		}
-
-		if (userName!=null && userPass!=null) {
-			if (userName.name().toString().equals(userPass.name().toString()) && isOkName && isOkPasswd) {
-				allowLogin = true;
-			}
-		}
-
-		System.out.println("HOLA ESTAS DENTRO ??" + allowLogin);
+		String response = check_url(request, TemplatesPath.ADMIN_LOGIN.toString());
+//		String name = "HOSE";
+//		String passwd = "ADMIN";
+//		boolean isOkName = false;
+//		boolean isOkPasswd = false;
+//		UserAdminNames userName = null;
+//		UserAdminPasswds userPass = null;
+//		boolean allowLogin = false;
+//
+//		for (UserAdminNames userN : UserAdminNames.values()) {
+//			if (userN.equalsNames(name)) {
+//				isOkName = true;
+//				userName = userN;
+//			}
+//
+//		}
+//		for (UserAdminPasswds userP : UserAdminPasswds.values()) {
+//			if (userP.equalsPasswords(passwd)) {
+//				isOkPasswd = true;
+//				userPass = userP;
+//			}
+//		}
+//
+//		if (userName!=null && userPass!=null) {
+//			if (userName.name().toString().equals(userPass.name().toString()) && isOkName && isOkPasswd) {
+//				allowLogin = true;
+//			}
+//		}
+//
+//		System.out.println("HOLA ESTAS DENTRO ??" + allowLogin);
 
 		return response;
 
+	}
+	
+	
+	@RequestMapping("/loginerror")
+	public String loginError(HttpServletRequest request, Model model) {
+
+		model.addAttribute("isError", true);
+		String response = check_url(request, TemplatesPath.ADMIN_LOGIN.toString());
+		return response;
 	}
 }
