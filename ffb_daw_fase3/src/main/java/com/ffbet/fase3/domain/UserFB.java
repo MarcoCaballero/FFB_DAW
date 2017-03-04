@@ -24,7 +24,7 @@ public class UserFB {
 
 	/* COLUMNS */
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id_FB;
 	

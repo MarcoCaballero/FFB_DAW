@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Promotion {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column( updatable = false, nullable = false)
 	private long id;
 	@Column(nullable = false)

@@ -2,14 +2,17 @@ package com.ffbet.fase3.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ffbet.fase3.domain.TemplatesPath;
 
 /**
  *
  *
  */
 @Controller
-public class FfbetUserController {
+public class FfbetUserController extends RedirectController{
 
 	/**
 	 * Mapping index.html {@linkplain index}redirects the '/index/' URI to a '/index' URI to control the resources
@@ -17,26 +20,18 @@ public class FfbetUserController {
 	 * 
 	 * @return a redirection
 	 */
-	@RequestMapping(value = { "/index/prueba", "/index/prueba/" })
+	@RequestMapping("/index")
 	public String index(HttpServletRequest request) {
-		
-		switch (request.getRequestURI()) {
-		case "/index/prueba":
-			return "user/index";
-
-		case "/index/prueba/":
-			return "redirect:../index";
-
-		default:
-			return null;
-
-		}
-
+	
+		String response = check_url(request, "user/index");
+		return response;
 	}
 
 	@RequestMapping("/apuestasdeportivas")
-	public String apuestasdeportivas() {
-		return "user/apuestasdeportivas";
+	public String apuestasdeportivas(HttpServletRequest request) {
+	
+		String response = check_url(request, "user/apuestasdeportivas");
+		return response;
 	}
 
 	@RequestMapping("/apuestasesports")
@@ -69,8 +64,28 @@ public class FfbetUserController {
 		return "user/politica";
 	}
 
-	@RequestMapping("retirar")
+	@RequestMapping("/retirar")
 	public String retirar() {
 		return "user/retirar";
 	}
+	
+	
+	@RequestMapping("/login")
+	public String login(Model model) {
+		model.addAttribute("isError", false);
+		return "user/login";
+	}
+	
+	@RequestMapping("/loginisError")
+	public String loginErr(Model model) {
+		model.addAttribute("isError", true);
+		return "user/login";
+	}
+	
+	@RequestMapping("/logoutuser")
+	public String loginOut(Model model) {
+		return "user/index";
+	}
+//	
+
 }
