@@ -18,11 +18,20 @@
 <link rel="stylesheet" href="{{{resources}}}admin/css/select2.css" />
 <link rel="stylesheet"
 	href="{{{resources}}}admin/css/bootstrap-wysihtml5.css" />
-<link href="{{{resources}}}admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="{{{resources}}}admin/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
 	rel='stylesheet' type='text/css' />
 
+
+
+<link href="{{{resources}}}user/css/datepicker3.css" rel="stylesheet">
+<link href="{{{resources}}}user/css/bootstrap-table.css"
+	rel="stylesheet">
+
+<!--Icons-->
+<script src="{{{resources}}}user/js/lumino.glyphs.js"></script>
 
 </head>
 
@@ -45,17 +54,15 @@
 	</div>
 	<!--close-top-Header-menu-->
 	<div id="sidebar">
-		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
-			</a>
+		<a href="#" class="visible-phone"><i class="icon icon-home"></i> </a>
 		<ul>
-			<li><a href="cpanelhome"><i class="icon icon-home"></i> <span>Home</span></a>
+			<li><a href="admin"><i class="icon icon-home"></i> <span>Home</span></a>
 			</li>
-			<li><a href="cpanelequipo"><i class="icon icon-signal"></i>
-					<span>Equipos</span></a></li>
-			<li class="active"><a href="cpanelpartido"><i
+			<li><a href="admin-teams"><i class="icon icon-signal"></i> <span>Equipos</span></a></li>
+			<li class="active"><a href="admin-matches"><i
 					class="icon icon-inbox"></i> <span>Partidos</span></a></li>
-			<li><a href="cpanelresultado"><i class="icon icon-th"></i> <span>Resultados</span></a></li>
-			<li><a href="cpanelpromocion"><i class="icon icon-th-list"></i>
+			<li><a href="admin-results"><i class="icon icon-th"></i> <span>Resultados</span></a></li>
+			<li><a href="admin-promos"><i class="icon icon-th-list"></i>
 					<span>Promociones</span> </a></li>
 		</ul>
 	</div>
@@ -70,6 +77,98 @@
 			<h1>{{title}}</h1>
 		</div>
 		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span8">
+					<div class="panel panel-default">
+						<div class="panel-heading">Tabla de partidos</div>
+						<div class="panel-body">
+							<table data-toggle="table" data-show-refresh="true"
+								data-show-toggle="true" data-show-columns="true"
+								data-search="true" data-select-item-name="toolbar1"
+								data-pagination="true" data-sort-name="name"
+								data-sort-order="desc">
+								<thead>
+									<tr>
+										<th data-field="id" data-sortable="true">ID</th>
+										<th data-field="date" data-sortable="true">Fecha</th>
+										<th data-field="time" data-sortable="true">Hora</th>
+										<th data-field="homeTeam" data-sortable="true">Equipo local</th>
+										<th data-field="visitingTeam" data-sortable="true">Equipo visitante</th>
+										<th data-field="quotaHomeVictory" data-sortable="true">Cuota victoria local</th>
+										<th data-field="quotaVisitingVictory" data-sortable="true">Cuota victoria visitante</th>
+										<th data-field="quotaDrawVictory" data-sortable="true">Cuota empate</th>
+										<th data-field="homePoints" data-sortable="true">Puntos local</th>
+										<th data-field="visitingPoints" data-sortable="true">Puntos visitante</th>
+									</tr>
+								</thead>
+								{{#Matches}}
+								<tr>
+									<td>
+									{{id}}
+									</td>
+									<td>
+									{{#date}}{{.}}{{/date}}
+									</td>
+									<td>
+									{{#time}}{{.}}{{/time}}
+									</td>
+									<td>
+									{{homeTeam}}
+									</td>
+									<td>
+									{{visitingTeam}}
+									</td>
+									<td>
+									{{quotaHomeVictory}}
+									</td>
+									<td>
+									{{quotaVisitingVictory}}
+									</td>
+									<td>
+									{{#quotaDrawVictory}}{{.}}{{/quotaDrawVictory}}
+									</td>
+									<td>
+									{{#homePoints}}{{.}}{{/homePoints}}
+									</td>
+									<td>
+									{{#visitingPoints}}{{.}}{{/visitingPoints}}
+									</td>
+								</tr>
+								{{/Matches}}
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="panel panel-default">
+						<div class="panel-heading">Tabla de equipos</div>
+						<div class="panel-body">
+							<table data-toggle="table" data-show-refresh="true"
+								data-show-toggle="true" data-show-columns="true"
+								data-search="true" data-select-item-name="toolbar1"
+								data-pagination="true" data-sort-name="name"
+								data-sort-order="desc">
+								<thead>
+									<tr>
+										<th data-field="id" data-sortable="true">ID</th>
+										<th data-field="name" data-sortable="true">Name</th>
+									</tr>
+								</thead>
+								{{#Teams}}
+								<tr>
+									<td>
+									{{id}}
+									</td>
+									<td>
+									{{name}}
+									</td>
+								</tr>
+								{{/Teams}}
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 			<hr>
 			<div class="row-fluid">
 				<div class="span6">
@@ -81,16 +180,16 @@
 							</a>
 						</div>
 						<div class="collapse" id="collapseOne">
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
+							<form action="admin-matches/new" method="post">
+								<div class="widget-content">
+									<div class="widget-content nopadding">
 										<div class="control-group">
 											<label class="control-label">Fecha(dd-mm-yy)</label>
 											<div class="controls">
 												<div data-date="12-02-2012"
 													class="input-append date datepicker">
-													<input id="mask-date-2" type="text" value="12-02-2012"
-														data-date-format="dd-mm-yyyy" class="span11"> <span
+													<input id="mask-date-2" type="date" value="12-02-2012"
+														data-date-format="mm-dd-yyyy" class="span11"> <span
 														class="add-on"><i class="icon-th"></i></span>
 												</div>
 											</div>
@@ -99,34 +198,26 @@
 											<label for="normal" class="control-label">Hora
 												(hh-mm)</label>
 											<div class="controls">
-												<input type="text" id="mask-hour" class="span5 mask text">
+												<input type="time" id="mask-hour" class="span5 mask text">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
+												<input type="text" class="span5 text" name="homeTeam">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
+												<input type="text" class="span5 text" name="visitingTeam">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Victoria local</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-local-fut" type="text"
+													<input id="percent-local-fut" type="number"
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title="">
@@ -139,12 +230,13 @@
 											<label class="control-label">Empate</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-empate-fut" type="text"
+													<input id="percent-empate-fut" type="number"
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name='quotaDrawVictory'> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
@@ -152,7 +244,7 @@
 											<label class="control-label">Victoria visitante</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-visitante-fut" type="text"
+													<input id="percent-visitante-fut" type="number"
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title="">
@@ -162,334 +254,333 @@
 											</div>
 										</div>
 										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
+											<input type="hidden" name="_csrf" value="{{token}}" /> <input
+												type="submit" class="btn btn-success" value="Save" />
 										</div>
-									</form>
-								</div>
-							</div>
+							</form>
 						</div>
 					</div>
-					<div class="widget-box collapsible">
-						<div class="widget-title">
-							<a href="#collapseOne2" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir partido Basket</h5>
-							</a>
-						</div>
-						<div class="collapse in" id="collapseOne2">
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Fecha(dd-mm-yy)</label>
-											<div class="controls">
-												<div data-date="12-02-2012"
-													class="input-append date datepicker">
-													<input id="mask-date-2" type="text" value="12-02-2012"
-														data-date-format="dd-mm-yyyy" class="span11"> <span
-														class="add-on"><i class="icon-th"></i></span>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="normal" class="control-label">Hora
-												(hh-mm)</label>
-											<div class="controls">
-												<input type="text" class="span5 mask text mask-hour">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo local</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo visitante</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Victoria local</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-local-bas" type="text"
-														placeholder="0% - 90%"
-														data-title="Han de sumar entre 105% y 110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Empate</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-empate-bas" type="text"
-														placeholder="0% - 90%"
-														data-title="Han de sumar entre 105% y 110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">VIctoria visitante</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-visitante-bas" type="text"
-														placeholder="0% - 90%"
-														data-title="Han de sumar entre 105% y 110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+					</form>
 				</div>
-				<div class="span6">
-					<div class="widget-box collapsible">
-						<div class="widget-title">
-							<a href="#collapseTwo" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir partido LOL</h5>
-							</a>
-						</div>
-						<div class="collapse" id="collapseTwo">
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Fecha(dd-mm-yy)</label>
-											<div class="controls">
-												<div data-date="12-02-2012"
-													class="input-append date datepicker">
-													<input id="mask-date-3" type="text" value="12-02-2012"
-														data-date-format="dd-mm-yyyy" class="span11"> <span
-														class="add-on"><i class="icon-th"></i></span>
-												</div>
-											</div>
+			</div>
+			<div class="widget-box collapsible">
+				<div class="widget-title">
+					<a href="#collapseOne2" data-toggle="collapse"> <span
+						class="icon"><i class="icon-plus"></i></span>
+						<h5>Añadir partido Basket</h5>
+					</a>
+				</div>
+				<div class="collapse in" id="collapseOne2">
+					<div class="widget-content">
+						<div class="widget-content nopadding">
+							<form action="#" method="get" class="form-horizontal">
+								<div class="control-group">
+									<label class="control-label">Fecha(dd-mm-yy)</label>
+									<div class="controls">
+										<div data-date="12-02-2012"
+											class="input-append date datepicker">
+											<input id="mask-date-2" type="text" value="12-02-2012"
+												data-date-format="dd-mm-yyyy" class="span11"> <span
+												class="add-on"><i class="icon-th"></i></span>
 										</div>
-										<div class="control-group">
-											<label for="normal" class="control-label">Hora
-												(hh-mm)</label>
-											<div class="controls">
-												<input type="text" id="hora-partido-LOL"
-													class="span5 mask text mask-hour">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo local</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo visitante</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Victoria local</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-local-lol" type="text"
-														placeholder="0% - 90%"
-														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">VIctoria visitante</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-visitant-lol" type="text"
-														placeholder="0% - 90%"
-														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">First Blood Local</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-fblocal-lol" type="text"
-														placeholder="0% - 90%"
-														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">First Blood Visitante</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-fbvisitante-lol" type="text"
-														placeholder="0% - 90%"
-														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="widget-box collapsible">
-						<div class="widget-title">
-							<a href="#collapseTwo2" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir partido CS:GO</h5>
-							</a>
-						</div>
-						<div class="collapse in" id="collapseTwo2">
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Fecha(dd-mm-yy)</label>
-											<div class="controls">
-												<div data-date="12-02-2012"
-													class="input-append date datepicker">
-													<input id="mask-date-3" type="text" value="12-02-2012"
-														data-date-format="dd-mm-yyyy" class="span11"> <span
-														class="add-on"><i class="icon-th"></i></span>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="normal" class="control-label">Hora
-												(hh-mm)</label>
-											<div class="controls">
-												<input type="text" id="hora-partido-CS"
-													class="span5 mask text mask-hour">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo local</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Equipo visitante</label>
-											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Victoria local</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-local-cs" type="text"
-														placeholder="0% - 90%"
-														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">VIctoria visitante</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-visitante-cs" type="text"
-														placeholder="0% - 90%"
-														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip" data-original-title=""> <span
-														class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">First Blood Local</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-fblocal-cs" type="text"
-														placeholder="0% - 90%"
-														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">First Blood Visitante</label>
-											<div class="controls">
-												<div class="input-append">
-													<input id="percent-fbvisitante-cs" type="text"
-														placeholder="0% - 90%"
-														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+								<div class="control-group">
+									<label for="normal" class="control-label">Hora (hh-mm)</label>
+									<div class="controls">
+										<input type="text" class="span5 mask text mask-hour">
+									</div>
 								</div>
-							</div>
+								<div class="control-group">
+									<label class="control-label">Equipo local</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Equipo visitante</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Victoria local</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-local-bas" type="text"
+												placeholder="0% - 90%"
+												data-title="Han de sumar entre 105% y 110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Empate</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-empate-bas" type="text"
+												placeholder="0% - 90%"
+												data-title="Han de sumar entre 105% y 110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">VIctoria visitante</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-visitante-bas" type="text"
+												placeholder="0% - 90%"
+												data-title="Han de sumar entre 105% y 110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success">Save</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="span6">
+			<div class="widget-box collapsible">
+				<div class="widget-title">
+					<a href="#collapseTwo" data-toggle="collapse"> <span
+						class="icon"><i class="icon-plus"></i></span>
+						<h5>Añadir partido LOL</h5>
+					</a>
+				</div>
+				<div class="collapse" id="collapseTwo">
+					<div class="widget-content">
+						<div class="widget-content nopadding">
+							<form action="#" method="get" class="form-horizontal">
+								<div class="control-group">
+									<label class="control-label">Fecha(dd-mm-yy)</label>
+									<div class="controls">
+										<div data-date="12-02-2012"
+											class="input-append date datepicker">
+											<input id="mask-date-3" type="text" value="12-02-2012"
+												data-date-format="dd-mm-yyyy" class="span11"> <span
+												class="add-on"><i class="icon-th"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="normal" class="control-label">Hora (hh-mm)</label>
+									<div class="controls">
+										<input type="text" id="hora-partido-LOL"
+											class="span5 mask text mask-hour">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Equipo local</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Equipo visitante</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Victoria local</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-local-lol" type="text"
+												placeholder="0% - 90%"
+												data-title="%Local + %Visitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">VIctoria visitante</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-visitant-lol" type="text"
+												placeholder="0% - 90%"
+												data-title="%Local + %Visitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">First Blood Local</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-fblocal-lol" type="text"
+												placeholder="0% - 90%"
+												data-title="%FBLocal + %FBVisitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">First Blood Visitante</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-fbvisitante-lol" type="text"
+												placeholder="0% - 90%"
+												data-title="%FBLocal + %FBVisitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success">Save</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="widget-box collapsible">
+				<div class="widget-title">
+					<a href="#collapseTwo2" data-toggle="collapse"> <span
+						class="icon"><i class="icon-plus"></i></span>
+						<h5>Añadir partido CS:GO</h5>
+					</a>
+				</div>
+				<div class="collapse in" id="collapseTwo2">
+					<div class="widget-content">
+						<div class="widget-content nopadding">
+							<form action="#" method="get" class="form-horizontal">
+								<div class="control-group">
+									<label class="control-label">Fecha(dd-mm-yy)</label>
+									<div class="controls">
+										<div data-date="12-02-2012"
+											class="input-append date datepicker">
+											<input id="mask-date-3" type="text" value="12-02-2012"
+												data-date-format="dd-mm-yyyy" class="span11"> <span
+												class="add-on"><i class="icon-th"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="normal" class="control-label">Hora (hh-mm)</label>
+									<div class="controls">
+										<input type="text" id="hora-partido-CS"
+											class="span5 mask text mask-hour">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Equipo local</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Equipo visitante</label>
+									<div class="controls">
+										<select>
+											<option>Equipo 1</option>
+											<option>Equipo 2</option>
+											<option>Equipo 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Victoria local</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-local-cs" type="text"
+												placeholder="0% - 90%"
+												data-title="%Local + %Visitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">VIctoria visitante</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-visitante-cs" type="text"
+												placeholder="0% - 90%"
+												data-title="%Local + %Visitante = 105%-110%"
+												class="span4 tip" data-original-title=""> <span
+												class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">First Blood Local</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-fblocal-cs" type="text"
+												placeholder="0% - 90%"
+												data-title="%FBLocal + %FBVisitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">First Blood Visitante</label>
+									<div class="controls">
+										<div class="input-append">
+											<input id="percent-fbvisitante-cs" type="text"
+												placeholder="0% - 90%"
+												data-title="%FBLocal + %FBVisitante = 105%-110%"
+												class="span4 tip mask-percent" data-original-title="">
+											<span class="add-on">%</span> <input type="text"
+												placeholder="Cuota: @3.15" class="span6" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success">Save</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 	</div>
 	<!--end-main-container-part-->
 	<!--Footer-part-->
@@ -518,6 +609,15 @@
 	<script src="{{{resources}}}admin/js/wysihtml5-0.3.0.js"></script>
 	<script src="{{{resources}}}admin/js/jquery.peity.min.js"></script>
 	<script src="{{{resources}}}admin/js/bootstrap-wysihtml5.js"></script>
+
+
+	<script src="{{{resources}}}user/js/jquery-1.11.1.min.js"></script>
+	<script src="{{{resources}}}user/js/chart.min.js"></script>
+	<script src="{{{resources}}}user/js/chart-data.js"></script>
+	<script src="{{{resources}}}user/js/easypiechart.js"></script>
+	<script src="{{{resources}}}user/js/easypiechart-data.js"></script>
+	<script src="{{{resources}}}user/js/bootstrap-datepicker.js"></script>
+	<script src="{{{resources}}}user/js/bootstrap-table.js"></script>
 
 
 

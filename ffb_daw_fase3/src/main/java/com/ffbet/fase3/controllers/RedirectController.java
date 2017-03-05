@@ -40,11 +40,6 @@ public abstract class RedirectController {
 		// Occurences "/" in the requested URL
 		int barOccurrences = StringUtils.countOccurrencesOf(requestedUri, "/");
 
-		System.out.println("RequestedUri :" + requestedUri);
-		System.out.println("barOccurrences :" + barOccurrences);
-
-		System.out.println("TemplatePath :" + template_path);
-
 		if (isCorrect) {
 			return template_path;
 		} else {
@@ -53,33 +48,13 @@ public abstract class RedirectController {
 			for (int i = 2; i < barOccurrences; i++) {
 				redirectRoot = redirectRoot.concat("/..");
 			}
-			System.out.println("redirectRoot :" + redirectRoot);
-			System.out.println("RedirectTo :" + redirectRoot.concat(redirectTo));
 
 			return redirectRoot.concat(redirectTo);
 		}
 
 	}
+	
+	
 
-	/**
-	 * 
-	 * Checks the resources context and concatenates as many "../" as necessary to the end of this string.
-	 * 
-	 * @param request
-	 * @return (String) The correct path to resources context, in static folder.
-	 */
-	public String checkResourcesContext(HttpServletRequest request) {
-		// URL request from browser
-		String requestedUri = request.getRequestURI();
-		String[] words = requestedUri.split("/");
-		int directoriesForward = words.length;
-		String resources = "";
-
-		for (int i = 1; i < directoriesForward; i++) {
-			resources = resources.concat("../");
-
-		}
-		return resources;
-
-	}
+	
 }

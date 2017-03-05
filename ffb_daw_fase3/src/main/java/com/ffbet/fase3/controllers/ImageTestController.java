@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ffbet.fase3.domain.EgamesTeam;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
@@ -36,6 +38,19 @@ public class ImageTestController {
 		sport_team.setName("P_001");
 		sport_team.setCity("Madrid");
 		sport_team.setCoach("marianete");
+		
+		SportTeam sp1 = new SportTeam();
+		sp1.setName("Equipo 1");
+		sp1.setCoach("Peperoni");
+		
+		SportTeam sp2 = new SportTeam();
+		sp2.setName("Equipo 2");
+		sp2.setCoach("Queseroni");
+
+		EgamesTeam eg_team = new EgamesTeam();
+		eg_team.setName("P_002");
+		eg_team.setCity("Valencia");
+		eg_team.setCoach("marianeta");
 		/*
 		 * try { FileInputStream f_in = new
 		 * FileInputStream("C:\\Users\\Marco\\Desktop\\gato.jpg");
@@ -43,14 +58,18 @@ public class ImageTestController {
 		 * sport_team.setShield_image(IOUtils.toByteArray(f_in)); } catch
 		 * (Exception e) { // TODO: handle exception e.printStackTrace(); }
 		 */
-
+		egame_team_repo.save(eg_team);
 		sport_team_repo.save(sport_team);
+		sport_team_repo.save(sp1);
+		sport_team_repo.save(sp2);
+		
 		uploadImageShield("C:\\Users\\Marco\\Desktop\\gato.jpg", "P_001", 0);
 
 	}
 
 	/**
-	 * Testing a way to get and show the 'shield_image' from database to browser.
+	 * Testing a way to get and show the 'shield_image' from database to
+	 * browser.
 	 * 
 	 * @param response
 	 * @param name
@@ -95,7 +114,8 @@ public class ImageTestController {
 		try {
 			FileInputStream f_in = new FileInputStream(path);
 
-			s_t.setLogo_image(IOUtils.toByteArray(f_in));;
+			s_t.setLogo_image(IOUtils.toByteArray(f_in));
+			;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

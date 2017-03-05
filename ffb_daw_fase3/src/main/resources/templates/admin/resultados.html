@@ -5,12 +5,12 @@
 <title>Matrix Admin</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="admin/css/bootstrap.min.css" />
-<link rel="stylesheet" href="admin/css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="admin/css/uniform.css" />
-<link rel="stylesheet" href="admin/css/select2.css" />
-<link rel="stylesheet" href="admin/css/matrix-style.css" />
-<link rel="stylesheet" href="admin/css/matrix-media.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/uniform.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/select2.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/matrix-style.css" />
+<link rel="stylesheet" href="{{{resources}}admin/css/matrix-media.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
@@ -39,15 +39,15 @@
 		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
 			Dashboard</a>
 		<ul>
-			<li><a href="cpanelhome"><i class="icon icon-home"></i> <span>Home</span></a>
+			<li><a href="admin"><i class="icon icon-home"></i> <span>Home</span></a>
 			</li>
-			<li><a href="cpanelequipo"><i class="icon icon-signal"></i>
+			<li><a href="admin-teams"><i class="icon icon-signal"></i>
 					<span>Equipos</span></a></li>
-			<li><a href="cpanelpartido"><i class="icon icon-inbox"></i>
+			<li><a href="admin-matches"><i class="icon icon-inbox"></i>
 					<span>Partidos</span></a></li>
-			<li class="active"><a href="cpanelresultado"><i
+			<li class="active"><a href="resultado"><i
 					class="icon icon-th"></i> <span>Resultados</span></a></li>
-			<li><a href="cpanelpromocion"><i class="icon icon-th-list"></i>
+			<li><a href="admin-promos"><i class="icon icon-th-list"></i>
 					<span>Promociones</span> </a></li>
 		</ul>
 	</div>
@@ -92,7 +92,7 @@
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon"><img
-															src="admin/img/ball.svg" height="20em" class="autowidth"></i></span>
+															src="{{{resources}}admin/img/ball.svg" height="20em" class="autowidth"></i></span>
 													<input type="text" placeholder="prepend"
 														class="span11 mask-number">
 												</div>
@@ -103,7 +103,7 @@
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon"><img
-															src="admin/img/ball.svg" height="20em" class="autowidth"></i></span>
+															src="{{{resources}}admin/img/ball.svg" height="20em" class="autowidth"></i></span>
 													<input type="text" placeholder="prepend"
 														class="span11 mask-number">
 												</div>
@@ -144,7 +144,7 @@
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon"><img
-															src="admin/img/basket.svg" height="20em"
+															src="{{{resources}}admin/img/basket.svg" height="20em"
 															class="autowidth"></i></span> <input type="text"
 														placeholder="prepend" class="span11 mask-number">
 												</div>
@@ -155,7 +155,7 @@
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon"><img
-															src="admin/img/basket.svg" height="20em"
+															src="{{{resources}}admin/img/basket.svg" height="20em"
 															class="autowidth"></i></span> <input type="text"
 														placeholder="prepend" class="span11 mask-number">
 												</div>
@@ -280,20 +280,20 @@
 		</div>
 	</div>
 	<!--end-Footer-part-->
-	<script src="admin/js/jquery.min.js"></script>
-	<script src="admin/js/jquery.ui.custom.js"></script>
-	<script src="admin/js/bootstrap.min.js"></script>
-	<script src="admin/js/bootstrap-colorpicker.js"></script>
-	<script src="admin/js/bootstrap-datepicker.js"></script>
-	<script src="admin/js/jquery.toggle.buttons.js"></script>
-	<script src="admin/js/masked.js"></script>
-	<script src="admin/js/jquery.uniform.js"></script>
-	<script src="admin/js/select2.min.js"></script>
-	<script src="admin/js/matrix.js"></script>
-	<script src="admin/js/matrix.form_common.js"></script>
-	<script src="admin/js/wysihtml5-0.3.0.js"></script>
-	<script src="admin/js/jquery.peity.min.js"></script>
-	<script src="admin/js/bootstrap-wysihtml5.js"></script>
+	<script src="{{{resources}}admin/js/jquery.min.js"></script>
+	<script src="{{{resources}}admin/js/jquery.ui.custom.js"></script>
+	<script src="{{{resources}}admin/js/bootstrap.min.js"></script>
+	<script src="{{{resources}}admin/js/bootstrap-colorpicker.js"></script>
+	<script src="{{{resources}}admin/js/bootstrap-datepicker.js"></script>
+	<script src="{{{resources}}admin/js/jquery.toggle.buttons.js"></script>
+	<script src="{{{resources}}admin/js/masked.js"></script>
+	<script src="{{{resources}}admin/js/jquery.uniform.js"></script>
+	<script src="{{{resources}}admin/js/select2.min.js"></script>
+	<script src="{{{resources}}admin/js/matrix.js"></script>
+	<script src="{{{resources}}admin/js/matrix.form_common.js"></script>
+	<script src="{{{resources}}admin/js/wysihtml5-0.3.0.js"></script>
+	<script src="{{{resources}}admin/js/jquery.peity.min.js"></script>
+	<script src="{{{resources}}admin/js/bootstrap-wysihtml5.js"></script>
 	<script type="text/javascript">
 		function startTime() {
 			today = new Date();

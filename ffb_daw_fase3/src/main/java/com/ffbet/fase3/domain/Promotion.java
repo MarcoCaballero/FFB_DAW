@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Promotion {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column( updatable = false, nullable = false)
 	private long id;
 	@Column(nullable = false)
@@ -45,8 +45,7 @@ public class Promotion {
 	 * @param (required) promotionCode, the code of promotion
 	 *
 	 */
-	public Promotion(long id, String type, String title, String promotionCode) {
-		this.id = id;
+	public Promotion(String type, String title, String promotionCode) {
 		this.type = type;
 		this.title = title;
 		this.promotionCode = promotionCode;

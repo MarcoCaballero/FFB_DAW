@@ -24,7 +24,7 @@ public class UserFB {
 
 	/* COLUMNS */
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id_FB;
 	
@@ -50,16 +50,6 @@ public class UserFB {
 	@Column(length = 10000000)
 	@Lob
 	private byte[] cover_image_faceboook;/*CONSTRUCTORS*/
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	
 	
 	/*GETTERS & SETTERS*/

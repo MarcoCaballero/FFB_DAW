@@ -1,17 +1,22 @@
 package com.ffbet.fase3.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Entity object class {@link User} defines a object to manage the web users.
@@ -24,7 +29,7 @@ import javax.persistence.OneToOne;
 public class User {
 	/* COLUMNS */
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id;
 
@@ -66,6 +71,9 @@ public class User {
 	
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 
 	/* CONSTRUCTORS */
 
@@ -73,7 +81,6 @@ public class User {
 	 * 
 	 */
 	public User() {
-		super();
 	}
 
 	/**
@@ -91,13 +98,14 @@ public class User {
 	 * @param profile_image
 	 */
 	public User(String name, String surname, String dni, String e_mail, int telephone, String password, int country,
-			int city, int location, byte[] profile_image) {
+			int city, int location, byte[] profile_image, String... roles) {
 		this.name = name;
 		this.surname = surname;
 		this.dni = dni;
 		this.e_mail = e_mail;
 		this.telephone = telephone;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.country = country;
 		this.city = city;
 		this.location = location;
@@ -113,12 +121,13 @@ public class User {
 	 * @param e_mail
 	 * @param password
 	 */
-	public User(String name, String surname, String dni, String e_mail, String password) {
+	public User(String name, String surname, String dni, String e_mail, String password, String... roles) {
 		this.name = name;
 		this.surname = surname;
 		this.dni = dni;
 		this.e_mail = e_mail;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 	/* GETTERS & SETTER */
@@ -272,6 +281,21 @@ public class User {
 	public void setProfile_image(byte[] profile_image) {
 		this.profile_image = profile_image;
 	}
+	
+	/**
+	 * @return
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
 
 	/* OWN METHODS */
 
