@@ -8,4 +8,6 @@ import java.util.List;
 public interface SportTeamRepository extends JpaRepository<SportTeam, Long> {
 
 	List<SportTeam> findByName(String name);
+	SportTeam findById(Long id);
+	
 }

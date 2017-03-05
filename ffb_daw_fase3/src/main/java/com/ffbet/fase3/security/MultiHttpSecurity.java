@@ -76,6 +76,7 @@ public class MultiHttpSecurity {
 			http.logout().logoutSuccessUrl("/admin-login");
 
 			// http.csrf().disable();
+			http.csrf().ignoringAntMatchers("/h2-console/*");
 		}
 
 		

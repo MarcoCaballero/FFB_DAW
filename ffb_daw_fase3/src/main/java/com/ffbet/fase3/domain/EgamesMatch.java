@@ -48,7 +48,7 @@ public class EgamesMatch extends Match {
 	 */
 	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood) {
-		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+		super(date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;
@@ -70,7 +70,7 @@ public class EgamesMatch extends Match {
 	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood, String winnerTeam,
 			String firstBloodTeam) {
-		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+		super(date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;

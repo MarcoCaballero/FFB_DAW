@@ -40,7 +40,7 @@ public abstract class Team {
 	
 	protected String city;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="teams")
 	protected List<Match> matches = new ArrayList<>();
 	
 	
@@ -59,8 +59,7 @@ public abstract class Team {
 	 * @param country, country of the team.
 	 * @param city,  city of the team.
 	 */
-	public Team(long id, String name, String coach, String country, String city) {
-		this.id = id;
+	public Team(String name, String coach, String country, String city) {
 		this.name = name;
 		this.coach = coach;
 		this.country = country;
@@ -74,8 +73,7 @@ public abstract class Team {
 	 * @param country, country of the team.
 	 * @param city,  city of the team.
 	 */
-	public Team(long id, String name, String coach) {
-		this.id = id;
+	public Team(String name, String coach) {
 		this.name = name;
 		this.coach = coach;
 		this.country = "";

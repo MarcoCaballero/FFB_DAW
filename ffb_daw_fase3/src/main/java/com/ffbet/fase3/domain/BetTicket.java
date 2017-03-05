@@ -55,9 +55,8 @@ public class BetTicket {
 	 * @param potential_gain
 	 * @param isFinished
 	 */
-	public BetTicket(long id, List<Match> matches_list, Promotion applied_promo, int amount, int potential_gain,
+	public BetTicket(List<Match> matches_list, Promotion applied_promo, int amount, int potential_gain,
 			boolean isFinished) {
-		this.id = id;
 		this.matches_list = matches_list;
 		this.applied_promo = applied_promo;
 		this.amount = amount;
