@@ -81,7 +81,6 @@ public class User {
 	 * 
 	 */
 	public User() {
-		super();
 	}
 
 	/**
@@ -111,7 +110,6 @@ public class User {
 		this.city = city;
 		this.location = location;
 		this.profile_image = profile_image;
-		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 	/**
@@ -297,6 +295,7 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
+
 
 	/* OWN METHODS */
 

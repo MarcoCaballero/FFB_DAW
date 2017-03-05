@@ -112,15 +112,13 @@
 								<div class="navbar-login navbar-login-session">
 									<div class="row">
 										<div class="col-lg-12">
-											<form action="/logoutuser" method="POST">
+											<form action="/logOut" method="POST">
 												<p>
-													<a href="/logoutuser" type="submit"
-														class="btn btn-danger btn-block"> <svg
-															class="glyph stroked cancel">
-                                                        <use
-																xlink:href="#stroked-cancel"></use>
-                                                    </svg>Cerrar Sesion
-													</a>
+													<input type="submit" value="Cerrar Sesión" class="btn btn-danger btn-block" /> 
+														<input type="hidden" name="_csrf" value="{{token}}" />
+													<svg class="glyph stroked cancel">
+                                                        <use xlink:href="#stroked-cancel"></use>
+                                                    </svg>
 												</p>
 											</form>
 										</div>
@@ -169,7 +167,7 @@
 					src="user/img/userlogo.svg" />Mi Cuenta
 			</a></li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="registrarse"> <svg
+			<li><a href="signup"> <svg
 						class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate
@@ -234,7 +232,7 @@
 										<code>100€</code>
 									</p>
 									<p>
-										<a class="btn btn-lg btn-primary" href="registrarse"
+										<a class="btn btn-lg btn-primary" href="signup"
 											role="button">REGISTRATE HOY</a>
 									</p>
 								</div>
