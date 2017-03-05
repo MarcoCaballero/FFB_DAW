@@ -38,6 +38,14 @@ public class ImageTestController {
 		sport_team.setName("P_001");
 		sport_team.setCity("Madrid");
 		sport_team.setCoach("marianete");
+		
+		SportTeam sp1 = new SportTeam();
+		sp1.setName("Equipo 1");
+		sp1.setCoach("Peperoni");
+		
+		SportTeam sp2 = new SportTeam();
+		sp2.setName("Equipo 2");
+		sp2.setCoach("Queseroni");
 
 		EgamesTeam eg_team = new EgamesTeam();
 		eg_team.setName("P_002");
@@ -52,6 +60,9 @@ public class ImageTestController {
 		 */
 		egame_team_repo.save(eg_team);
 		sport_team_repo.save(sport_team);
+		sport_team_repo.save(sp1);
+		sport_team_repo.save(sp2);
+		
 		uploadImageShield("C:\\Users\\Marco\\Desktop\\gato.jpg", "P_001", 0);
 
 	}

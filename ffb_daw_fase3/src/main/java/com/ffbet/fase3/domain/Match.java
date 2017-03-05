@@ -14,6 +14,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 
@@ -34,18 +36,19 @@ public abstract class Match {
 	@Column(updatable = false, nullable = false)
 	protected long id;
 	//@Column(nullable = false)
+	@DateTimeFormat(pattern="mm-dd-yyyy")
 	protected Date date;
 	//@Column(nullable = false)
 	protected Time time;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	protected String homeTeam;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	protected String visitingTeam;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	protected int quotaHomeVictory;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	protected int quotaVisitingVictory;
-	@ManyToMany(mappedBy="matches")
+	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	
 
@@ -75,10 +78,9 @@ public abstract class Match {
 	 * @param (required)
 	 *            quotaVisitingVictory, the quota of visiting victory's bet
 	 */
-	public Match(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	public Match(Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory) {
 		super();
-		this.id = id;
 		this.date = date;
 		this.time = time;
 		this.homeTeam = homeTeam;
@@ -143,6 +145,14 @@ public abstract class Match {
 
 	public void setQuotaVisitingVictory(int quotaVisitingVictory) {
 		this.quotaVisitingVictory = quotaVisitingVictory;
+	}
+	
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 }

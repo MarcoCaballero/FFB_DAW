@@ -54,9 +54,8 @@ public class CreditCard {
 	 * @param (required) securityCode, the security code of credit card
 	 *
 	 */
-	public CreditCard(long id, String type, String name, String surName, String secondSurName, int cardNumber,
+	public CreditCard(String type, String name, String surName, String secondSurName, int cardNumber,
 			String expirationDate, int securityCode) {
-		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.surName = surName;

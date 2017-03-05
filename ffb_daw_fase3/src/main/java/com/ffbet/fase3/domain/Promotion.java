@@ -45,8 +45,7 @@ public class Promotion {
 	 * @param (required) promotionCode, the code of promotion
 	 *
 	 */
-	public Promotion(long id, String type, String title, String promotionCode) {
-		this.id = id;
+	public Promotion(String type, String title, String promotionCode) {
 		this.type = type;
 		this.title = title;
 		this.promotionCode = promotionCode;
