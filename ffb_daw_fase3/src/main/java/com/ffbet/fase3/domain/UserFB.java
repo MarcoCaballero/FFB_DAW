@@ -52,16 +52,6 @@ public class UserFB {
 	private byte[] cover_image_faceboook;/*CONSTRUCTORS*/
 	
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
 	/*GETTERS & SETTERS*/
 
 	/**

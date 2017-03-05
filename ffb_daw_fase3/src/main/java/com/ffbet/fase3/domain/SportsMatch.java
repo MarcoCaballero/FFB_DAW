@@ -3,7 +3,6 @@ package com.ffbet.fase3.domain;
 import java.sql.Date;
 import java.sql.Time;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -17,11 +16,9 @@ import javax.persistence.Entity;
 @Entity
 public class SportsMatch extends Match {
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private int quotaDraw;
-	@Column(nullable = false)
 	private int homePoints;
-	@Column(nullable = false)
 	private int visitingPoints;
 
 	// CONSTRUCTORS
@@ -44,7 +41,7 @@ public class SportsMatch extends Match {
 	 */
 	public SportsMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory) {
-		super(id, date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+		super(date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 	}
 
