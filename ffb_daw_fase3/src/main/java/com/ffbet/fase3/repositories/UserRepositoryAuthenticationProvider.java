@@ -1,4 +1,4 @@
-package com.ffbet.fase3.security;
+package com.ffbet.fase3.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.UserRepository;
 
 @Component
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {

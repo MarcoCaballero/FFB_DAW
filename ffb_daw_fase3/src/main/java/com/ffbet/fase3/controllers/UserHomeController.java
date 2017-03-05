@@ -10,7 +10,7 @@ import  com.ffbet.fase3.domain.TemplatesPath;
 
 
 /**
- * Controller class {@link AdminHomeController} provides methods to map the
+ * Controller class {@link UserHomeController} provides methods to map the
  * URL's that reference to the HOME, LOGIN, REGISTER, and other main functions.
  * This controller also extends to an Abstract class {@link RedirectController}
  * that provides methods common to several controllers
@@ -21,7 +21,7 @@ import  com.ffbet.fase3.domain.TemplatesPath;
  * @version 1.0
  */
 @Controller
-public class AdminHomeController extends RedirectController {
+public class UserHomeController extends RedirectController {
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -32,11 +32,11 @@ public class AdminHomeController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping(value = { "/admin-home", "/admin-home/", "/admin", "/admin/" })
+	@GetMapping(value = { "/user", "/user/","/user/*"})
 	public String getTemplate(HttpServletRequest request, Model model) {
 			// Checks the URLs with "/*" pattern
 			// Delete the last bar if the requested URL is like "/*/"
-			String response = check_url(request, TemplatesPath.ADMIN_HOME.toString());
+			String response = check_url(request, TemplatesPath.USER_HOME.toString());
 			return response;
 		
 		
