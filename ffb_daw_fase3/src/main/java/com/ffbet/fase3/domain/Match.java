@@ -36,7 +36,7 @@ public abstract class Match {
 	@Column(updatable = false, nullable = false)
 	protected long id;
 	//@Column(nullable = false)
-	@DateTimeFormat(pattern="mm-dd-yyyy")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	protected Date date;
 	//@Column(nullable = false)
 	protected Time time;
