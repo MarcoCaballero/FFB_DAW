@@ -3,12 +3,13 @@
 
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entra FFB</title>
-<link rel="stylesheet" href="{{{resources}}}{{{resources}}}user/cssExtra/bootstrap.min.css" />
-<link rel="stylesheet" href="{{{resources}}}{{{resources}}}user/cssExtra/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="{{{resources}}}{{{resources}}}user/cssExtra/matrix-login.css" />
-<link href="{{{resources}}}{{{resources}}}user/font-awesomeExtra/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="user/cssExtra/bootstrap.min.css" />
+<link rel="stylesheet" href="user/cssExtra/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="user/cssExtra/matrix-login.css" />
+<link href="user/font-awesomeExtra/css/font-awesome.css" rel="stylesheet" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
 	rel='stylesheet' type='text/css'>
@@ -20,7 +21,7 @@
 			method="POST">
 			<div class="control-group normal_text">
 				<h3>
-					<img src="{{{resources}}}user/img/LogoFFBalpha.png" height="150px" alt="Logo" />
+					<img src="user/img/LogoFFBalpha.png" height="150px" alt="Logo" />
 				</h3>
 			</div>
 			<div class="control-group">
@@ -38,8 +39,8 @@
 							type="password" name="password" placeholder="Contraseña" /> <input
 							type="hidden" name="_csrf" value="{{token}}" />
 					</div>
-					<h3>{{#isError}} La contraseña o usuario son erroneos.
-						{{/isError}}</h3>
+					<h5 style="color: red">{{#isError}} La contraseña o usuario son erroneos.
+						{{/isError}}</h5>
 				</div>
 			</div>
 			<div class="form-actions">
@@ -65,8 +66,8 @@
 			</div>
 		</form>
 	</div>
-	<script src="{{{resources}}}user/jsExtra/jquery.min.js"></script>
-	<script src="{{{resources}}}user/jsExtra/matrix.login.js"></script>
+	<script src="user/jsExtra/jquery.min.js"></script>
+	<script src="user/jsExtra/matrix.login.js"></script>
 </body>
 
 </html>

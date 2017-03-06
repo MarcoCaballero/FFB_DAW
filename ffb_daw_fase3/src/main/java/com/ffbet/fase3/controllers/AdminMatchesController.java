@@ -2,9 +2,6 @@ package com.ffbet.fase3.controllers;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.repositories.SportTeamRepository;
@@ -128,10 +123,7 @@ public class AdminMatchesController extends RedirectController {
         */
 		
 		sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
-		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
-		
-		List<SportTeam> listaEquipos = teamRepo.findAll();
-		
+		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));		
 		sportsMatchRepo.save(sportsMatch);
 
 		// model.addAttribute("title", "Hello from new");

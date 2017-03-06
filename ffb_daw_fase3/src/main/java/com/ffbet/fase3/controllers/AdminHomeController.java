@@ -17,7 +17,6 @@ import com.ffbet.fase3.repositories.PromotionRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.UserRepository;
-import com.ffbet.fase3.repositories.UserRepositoryAuthenticationProvider;
 import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
@@ -50,7 +49,6 @@ public class AdminHomeController extends RedirectController {
 	Egames_match_repository egamesMatchRepo;
 	@Autowired
 	UserAuthComponent usercomponent;
-	private String redirectLogOut = "redirect:/logOut/";
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
