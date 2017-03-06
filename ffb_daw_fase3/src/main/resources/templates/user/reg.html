@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
     <title>FFBet - Entra y apuesta</title>
     <link rel="icon" type="image/png" href="user/img/faviconFFBpng.png" />
     <link href="user/css/bootstrap.min.css" rel="stylesheet">
@@ -70,10 +71,10 @@
         <section class="active"> <img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
             <li>
-                <a href="index"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
+                <a href="user"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
             </li>
             <li>
-                <a href="apuestasdeportivas"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
+                <a href="user"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
             </li>
             <li>
                 <a href="apuestasesports"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
@@ -120,7 +121,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>Nuevo usuario <img class="logoReg" src="user/img/faviconFFBpng.png" width="50x"></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="" method="post">
+                    
+                        <form class="form-horizontal" action="signup/new" method="post">
                             <fieldset>
                                 <!-- Name input-->
                                 <div class="form-group">
@@ -131,12 +133,12 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Primer apellido</label>
                                     <div class="col-md-9">
-                                        <input id="name" name="name" type="text" placeholder="Tu primer apellido" class="form-control" required> </div>
+                                        <input id="name" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" required> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Segundo apellido</label>
                                     <div class="col-md-9">
-                                        <input id="name" name="name" type="text" placeholder="Tu segundo apellido" class="form-control" required> </div>
+                                        <input id="surname" name="name" type="text" placeholder="Tu segundo apellido" class="form-control" required> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">DNI/NIF</label>
@@ -152,7 +154,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="country">País</label>
                                     <div class="col-md-9">
-                                        <select>
+                                        <select name="country">
                                             <!-- ISO-3166-1: Alpha-3 Codes-->
                                             <option value="AFG">Afghanistan</option>
                                             <option value="ALA">Åland Islands</option>
@@ -414,29 +416,36 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Domicilio</label>
                                     <div class="col-md-9">
-                                        <input id="street" name="street" type="text" placeholder="Tu domicilio" class="form-control"> </div>
+                                        <input id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Teléfono</label>
                                     <div class="col-md-9">
-                                        <input id="telf" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control"> </div>
+                                        <input id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="password">Contraseña</label>
+                                    
+                     {{#isPassOkey}}
+                   <label class="col-md-3 control-label">  Contraseñas no coinciden</label>
+                     {{/isPassOkey}}
                                     <div class="col-md-9">
-                                        <input id="password" name="password" type="password" placeholder="Introduce tu contraseña" class="form-control" required> </div>
+                                        <input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" required> </div>
+                               
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="password">Repite Contraseña</label>
                                     <div class="col-md-9">
-                                        <input id="passwordRepeat" name="password" type="password" placeholder="Repite tu contraseña" class="form-control" required> </div>
+                                        <input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" required> </div>
                                 </div>
+                                
                                 <!-- Form actions -->
                                 <div class="form-group">
                                     <div class="col-md-12 widget-right">
                                         <p style="float:left;">
                                             <h6>Recuerde que al registrase está aceptando las <a href="politica">políticas internas</a> de  &#64; ffbet.com <img src="user/img/+18.png" height="16px"> 2017</h6> </p>
                                         <button type="submit" class="btn btn-default btn-md pull-right">Registrarme</button>
+                                         <input type="hidden" name="_csrf" value="{{token}}"/>
                                     </div>
                                 </div>
                             </fieldset>

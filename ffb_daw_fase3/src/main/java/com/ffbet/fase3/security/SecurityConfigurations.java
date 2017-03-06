@@ -32,6 +32,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
+		http.authorizeRequests().antMatchers("/signup/new").permitAll();
+
+		http.authorizeRequests().antMatchers("/signup").permitAll();
+//		"signup/new"
 
 		// Private pages (all other pages)
 
