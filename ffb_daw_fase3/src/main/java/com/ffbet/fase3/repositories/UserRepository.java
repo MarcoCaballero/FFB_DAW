@@ -8,7 +8,9 @@ import com.ffbet.fase3.domain.User;
  *
  */
 import java.lang.String;
+import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByName(String name);
+	User findByEmail(String email);
 }

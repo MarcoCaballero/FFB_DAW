@@ -4,10 +4,15 @@
 package com.ffbet.fase3.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.ffbet.fase3.domain.EgamesTeam;
 import com.ffbet.fase3.domain.SportTeam;
+import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
  * Abstract parent class {@link RedirectController} Defines an abstract class
@@ -21,7 +26,7 @@ import com.ffbet.fase3.domain.SportTeam;
  * @version 1.0
  */
 public abstract class RedirectController {
-
+	
 	/**
 	 * Method {@linkplain check_url()} to get the correct template from similar
 	 * URLs. Considering wrong path = "/page/" or /page/method/", a good path
@@ -53,6 +58,8 @@ public abstract class RedirectController {
 		}
 
 	}
+	
+	
 	
 	
 

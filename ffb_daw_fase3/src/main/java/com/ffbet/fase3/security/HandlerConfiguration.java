@@ -37,8 +37,7 @@ class ResourcesContextHandlerInterceptor extends HandlerInterceptorAdapter {
 			final ModelAndView modelAndView) throws Exception {
 		if (modelAndView != null && isDefinitiveUrl(request)){
 			modelAndView.addObject("resources", checkResourcesContext(request));
-		
-			
+					
 		}
 		
 
