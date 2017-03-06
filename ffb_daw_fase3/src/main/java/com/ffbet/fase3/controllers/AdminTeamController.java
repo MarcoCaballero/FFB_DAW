@@ -4,7 +4,11 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
@@ -53,29 +57,7 @@ public class AdminTeamController extends RedirectController {
 	}
 
 		
-	/**
-	 * Method {@linkplain getTeams()} uses the abstract class
-	 * {@link RedirectController} to get the correct template from similar URLs,
-	 * and shows it through the browser with the team [selected by id]
-	 * properties.
-	 * 
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = { "/admin-teams/{id}", "/admin-teams/{id}/" })
-	public String getTeamByID(HttpServletRequest request, Model model, @PathVariable("id") String idString) {
-		//something to do......
-		try {
-			long id = Long.parseLong(idString);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return redirect;
-
-	}
-
+	
 
 	/**
 	 * Method {@linkplain addTeam()} uses the abstract class

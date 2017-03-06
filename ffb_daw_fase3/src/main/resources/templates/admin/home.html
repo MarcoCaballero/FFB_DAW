@@ -3,6 +3,7 @@
 
 <head>
 <meta charset="UTF-8" />
+<base href="/">
 <meta name="viewport"
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
 <title>FFBet - ADMIN</title>
@@ -125,7 +126,7 @@
 										<th data-field="E-mail" data-sortable="true">E-mail</th>
 										<th data-field="Role" data-sortable="true">Role</th>
 
-										<th data-field="Actions" data-sortable="true">Action</th>
+										<th data-field="Actions" data-sortable="true">Actions</th>
 									</tr>
 								</thead>
 								{{#Users}}
@@ -135,17 +136,17 @@
 									<td>{{#surname}}{{.}}{{/surname}}</td>
 									<td>{{email}}</td>
 									<td>{{#roles}}{{.}}{{/roles}}</td>
-									<td>
-										<a href="#" class="btn btn-mini btn-warning">
-											<i class="icon-plus"></i> 
-											Hacer Administrador
-										</a> 
-										<a href="/admin-home/delete/{{id}}" class="btn btn-mini btn-danger">
-											<i class="icon-edit"></i>
+									<td><a href="#" class="btn btn-mini btn-warning"> <i
+											class="icon-plus"></i> Administrador
+									</a> <a href="/admin-home/delete/{{id}}"
+										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
 											Borrar Usuario
-											</a>
+									</a>
+									<a href="/admin-home/delete/{{id}}"
+										class="btn btn-mini btn-primary"> <i class="icon-edit"></i>
+											Degradar usuario
+									</a>
 									</td>
-
 								</tr>
 								{{/Users}}
 							</table>

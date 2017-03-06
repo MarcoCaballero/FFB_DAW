@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import com.ffbet.fase3.repositories.UserRepositoryAuthenticationProvider;
 
-
 /**
  * @author Marco
  *
@@ -29,16 +28,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		// Public pages
-
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		http.authorizeRequests().antMatchers("/signup/new").permitAll();
-
 		http.authorizeRequests().antMatchers("/signup").permitAll();
-//		"signup/new"
 
-		// Private pages (all other pages)
-
+		// Private pages
 		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/admin/").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/admin-*").hasAnyRole("ADMIN");
@@ -57,6 +52,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user-*/*/*").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/user-*/*/*/").hasAnyRole("USER");
 
+		// Acces Denied redirect
+		http.exceptionHandling().accessDeniedPage("/decideDenied");
+
 		// Login form
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
@@ -69,6 +67,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.logout().logoutSuccessUrl("/login");
 
 		// http.csrf().disable();
+
+		// Allow h2 console
 		http.csrf().ignoringAntMatchers("/h2-console/**");
 	}
 
