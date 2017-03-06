@@ -28,7 +28,7 @@ $(document).ready(function () {
     $("#mask-phoneExt").mask("(999) 999-9999? x99999");
     $("#mask-phoneInt").mask("+40 999 999 999");
     $("#mask-date").mask("99/99/9999");
-    $(".mask-date").mask("99/99/9999");
+    $(".mask-date").mask("9999/99/99");
     $("#mask-ssn").mask("999-99-9999");
     $("#mask-productKey").mask("a*-999-a999", {
         placeholder: "*"
@@ -36,8 +36,10 @@ $(document).ready(function () {
     $("#mask-eyeScript").mask("~9.99 ~9.99 999");
     $("#mask-percent").mask("99%");
     $(".mask-percent").mask("99%");
-    $("#mask-hour").mask("99:99");
-    $(".mask-hour").mask("99:99");
+    $("#mask-hour").mask("99:99:99");
+    $(".mask-hour").mask("99:99:99");
+    $("#mask-hour-try").mask("99:99:99");
+    $(".mask-hour-try").mask("99:99:99");
     $(".mask-number").mask("99");
     //------------- Toggle button  -------------//
     $('.normal-toggle-button').toggleButtons();
