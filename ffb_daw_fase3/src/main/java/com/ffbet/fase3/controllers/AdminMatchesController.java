@@ -1,5 +1,9 @@
 package com.ffbet.fase3.controllers;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -59,14 +63,14 @@ public class AdminMatchesController extends RedirectController {
 	@GetMapping(value = { "/admin-matches", "/admin-matches/" })
 	public String getMatchTemplate(HttpServletRequest request, Model model) {
 
-		model.addAttribute("title", "Hello from ");
-
 		model.addAttribute("Equipo1", teamRepo.findAll());
 		model.addAttribute("Equipo2", teamRepo.findAll());
 		
 		model.addAttribute("Teams", teamRepo.findAll());
 		
 		model.addAttribute("Matches", sportsMatchRepo.findAll());
+		
+		//model.addAttribute("", );
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -107,16 +111,26 @@ public class AdminMatchesController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-matches/new" })
-	public String addMatch(HttpServletRequest request, Model model, SportsMatch sportsMatch,
-			@RequestParam ("homeTeam") String homeTeam, @RequestParam ("visitingTeam") String visitingTeam) {
+	public String addMatch(SportsMatch sportsMatch, @RequestParam ("dateMatch") Date date,
+			@RequestParam ("timeMatch") Time time, @RequestParam ("homeTeam") String homeTeam,
+			@RequestParam ("visitingTeam") String visitingTeam){
 		
-		List<SportTeam> listaEquipos = teamRepo.findAll();
+		sportsMatch.setDate(date);
+		System.out.println(time);
+		sportsMatch.setTime(time);
 		
-		//String homeTeam = (String) request.getAttribute("homeTeam");
-		//String visitingTeam = (String) request.getAttribute("visitingTeam");
+		//sportsMatch.setTime(time);
+		//sportsMatch.setTime(time);
+		/*
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
+        parseFormat.parse(dateFormat.format(date));
+        */
 		
 		sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
 		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
+		
+		List<SportTeam> listaEquipos = teamRepo.findAll();
 		
 		sportsMatchRepo.save(sportsMatch);
 
