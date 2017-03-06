@@ -50,6 +50,13 @@ public class Promotion {
 		this.title = title;
 		this.promotionCode = promotionCode;
 	}
+	
+	public Promotion(String type, String title, String description, String promotionCode) {
+		this.type = type;
+		this.title = title;
+		this.description = description;
+		this.promotionCode = promotionCode;
+	}
 
 	/**
 	 * @param (required) type, the type of promotion
