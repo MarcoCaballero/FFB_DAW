@@ -35,6 +35,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user").permitAll();
 		http.authorizeRequests().antMatchers("/user/").permitAll();
 
+		http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+
 		// Private pages
 		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/admin/").hasAnyRole("ADMIN");
@@ -65,13 +67,15 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.formLogin().failureUrl("/loginError");
 
 		// Logout
-		http.logout().logoutUrl("/logOut").deleteCookies("JSESSIONID", "remember-me");
+//		http.logout().logoutUrl("/logOut").deleteCookies("JSESSIONID", "remember-me");
+		http.logout().logoutUrl("/logOut");
 		http.logout().logoutSuccessUrl("/login");
 
 		// http.csrf().disable();
 
 		// Allow h2 console
 		http.csrf().ignoringAntMatchers("/h2-console/**");
+		http.headers().frameOptions().disable();
 	}
 
 	@Override
