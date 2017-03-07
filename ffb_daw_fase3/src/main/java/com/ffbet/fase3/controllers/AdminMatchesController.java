@@ -2,9 +2,6 @@ package com.ffbet.fase3.controllers;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.repositories.SportTeamRepository;
@@ -49,6 +44,9 @@ public class AdminMatchesController extends RedirectController {
 	@Autowired
 	private SportTeamRepository teamRepo;
 
+	private boolean badDate = true;
+	private boolean badTime = true;
+
 	/* ADMIN */
 
 	/**
@@ -65,12 +63,15 @@ public class AdminMatchesController extends RedirectController {
 
 		model.addAttribute("Equipo1", teamRepo.findAll());
 		model.addAttribute("Equipo2", teamRepo.findAll());
-		
+
 		model.addAttribute("Teams", teamRepo.findAll());
-		
+
 		model.addAttribute("Matches", sportsMatchRepo.findAll());
-		
-		//model.addAttribute("", );
+
+		// model.addAttribute("noDate", badDate);
+		// model.addAttribute("noTime", badTime);
+
+		// model.addAttribute("", );
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -111,30 +112,59 @@ public class AdminMatchesController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-matches/new" })
-	public String addMatch(SportsMatch sportsMatch, @RequestParam ("dateMatch") Date date,
-			@RequestParam ("timeMatch") Time time, @RequestParam ("homeTeam") String homeTeam,
-			@RequestParam ("visitingTeam") String visitingTeam){
-		
-		sportsMatch.setDate(date);
-		System.out.println(time);
-		sportsMatch.setTime(time);
-		
-		//sportsMatch.setTime(time);
-		//sportsMatch.setTime(time);
-		/*
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
-        parseFormat.parse(dateFormat.format(date));
-        */
-		
-		sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
-		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
-		
-		List<SportTeam> listaEquipos = teamRepo.findAll();
-		
-		sportsMatchRepo.save(sportsMatch);
+	public String addMatch(Model model, SportsMatch sportsMatch, @RequestParam("dateMatch") String date,
+			@RequestParam("timeMatch") String time, @RequestParam("homeTeam") String homeTeam,
+			@RequestParam("visitingTeam") String visitingTeam/*
+																 * , @RequestParam
+																 * ("quotaHomeVictory")
+																 * String
+																 * quotaHomeVictory,
+																 * 
+																 * @RequestParam
+																 * ("quotaDraw")
+																 * String
+																 * quotaDraw,
+																 * 
+																 * @RequestParam
+																 * ("quotaVisitingVictory")
+																 * String
+																 * quotaVisitingVictory
+																 */) {
 
-		// model.addAttribute("title", "Hello from new");
+		try {
+			sportsMatch.setDate(Date.valueOf(date));
+			badDate = false;
+		} catch (Exception e) {
+			badDate = true;
+		}
+
+		try {
+			sportsMatch.setTime(Time.valueOf(time));
+			badTime = false;
+		} catch (Exception e) {
+			badTime = true;
+		}
+
+		if (!badDate && !badTime) {
+			sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
+			sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
+
+			sportsMatchRepo.save(sportsMatch);
+		}
+
+		/*
+		 * sportsMatch.setQuotaHomeVictory(Integer.parseInt(quotaHomeVictory));
+		 * sportsMatch.setQuotaDraw(Integer.parseInt(quotaDraw));
+		 * sportsMatch.setQuotaVisitingVictory(Integer.parseInt(
+		 * quotaVisitingVictory));
+		 * 
+		 * //sportsMatch.setTime(time); //sportsMatch.setTime(time);
+		 * 
+		 * SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		 * SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
+		 * parseFormat.parse(dateFormat.format(date));
+		 */
+
 		return redirect;
 
 	}
