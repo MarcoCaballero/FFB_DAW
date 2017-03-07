@@ -9,7 +9,7 @@ public enum TemplatesPath {
 	
 	USER_HOME("user/index"),
 	USER_SPORT_BET("user/apuestasdeportivas"),
-	USER_EGAMES_BET("user/apuestasegames"),
+	USER_EGAMES_BET("user/apuestasesports"),
 	USER_USER_ACCOUNT("user/micuenta"),
 	USER_PROMOTIONS("user/promos"),
 	USER_ADD_CREDIT("user/depositar"),

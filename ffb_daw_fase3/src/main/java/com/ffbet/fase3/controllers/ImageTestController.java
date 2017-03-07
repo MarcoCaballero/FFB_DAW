@@ -86,9 +86,9 @@ public class ImageTestController {
 																		// find
 																		// next
 																		// toSelect
-		byte[] imageByte = sport_team.getLogo_image();
+		
 		try {
-			IOUtils.write(imageByte, response.getOutputStream());
+			IOUtils.write(sport_team.getLogo_image(), response.getOutputStream());
 
 		} catch (Exception e) {
 			// TODO: handle exception

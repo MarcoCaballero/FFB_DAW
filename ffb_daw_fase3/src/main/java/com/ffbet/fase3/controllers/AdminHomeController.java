@@ -68,11 +68,12 @@ public class AdminHomeController extends RedirectController {
 			totalMoney += ticket.getAmount();
 		}
 
-	
-
+		if (usercomponent.isLoggedUser()) {
 			User userlogged = usercomponent.getLoggedUser();
 			activeUser = userlogged.getName();
-		
+		} else {
+			return "redirect:/logOut";
+		}
 
 		model.addAttribute("UsuarioActivo", activeUser);
 		model.addAttribute("Users", userRepo.findAll());
@@ -94,6 +95,38 @@ public class AdminHomeController extends RedirectController {
 	public String removeUser(@PathVariable Long id) {
 
 		userRepo.delete(id);
+		return "redirect:/admin/";
+	}
+
+	@GetMapping("/admin-home/downgrade/{id}")
+	public String downgradeUser(@PathVariable Long id) {
+		
+		User user = userRepo.findOne(id);
+		
+		if (user.getRoles().size() > 1) {
+			user.setRoles("ROLE_USER");
+		}
+		
+		userRepo.save(user);
+		System.out.println("DOWNGRADE " + userRepo.findOne(id).getRoles().size());
+		return "redirect:/admin/";
+	}
+
+	@GetMapping("/admin-home/upgrade/{id}")
+	public String upgradeUser(@PathVariable Long id) {
+
+		User user = userRepo.findOne(id);
+		if (user.getRoles().size() < 2) {
+			user.addRole("ROLE_ADMIN");
+		}
+		System.out.println("UPGRADE " + userRepo.findOne(id).getRoles().size());
+		for (int i = 0; i < user.getRoles().size(); i++) {
+			System.out.println("UPGRADE " + i + "ROLE : " + user.getRoles().get(i));
+			
+		}
+		
+		userRepo.save(user);
+		
 		return "redirect:/admin/";
 	}
 

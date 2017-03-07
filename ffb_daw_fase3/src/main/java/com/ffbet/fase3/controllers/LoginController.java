@@ -21,8 +21,15 @@ import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
+ * Controller class {@link LoginController} provides methods to map the URL's
+ * that reference to the LOGIN, REGISTER, and other main functions. This
+ * controller also extends to an Abstract class {@link RedirectController} that
+ * provides methods common to several controllers
+ * 
+ * 
+ * @see {@link RedirectController}
  * @author Marco
- *
+ * @version 1.0
  */
 @Controller
 public class LoginController extends RedirectController {
@@ -40,7 +47,6 @@ public class LoginController extends RedirectController {
 
 	private boolean isErrorLogin = false;
 	private boolean isErrorPass = false;
-	private boolean isMenPhoto = true;
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class

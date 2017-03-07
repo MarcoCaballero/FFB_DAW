@@ -46,6 +46,14 @@ public class BetTicket {
 
 	@Column
 	private boolean isFinished;
+	
+	
+
+	/**
+	 * 
+	 */
+	public BetTicket() {
+	}
 
 	/**
 	 * @param id

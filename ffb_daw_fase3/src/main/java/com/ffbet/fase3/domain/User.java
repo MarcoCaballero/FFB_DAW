@@ -75,9 +75,11 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
+	@Column
 	private boolean isMen;
+	@Column
 	private boolean isPhotoSelected;
-	
+	@Column
 	private double credit;
 
 	/* CONSTRUCTORS */
@@ -307,6 +309,17 @@ public class User {
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
+	
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRole(String role){
+		this.getRoles().add(role);
+	}
 
 	/**
 	 * @return the id
@@ -378,12 +391,7 @@ public class User {
 		this.isMen = isMen;
 	}
 
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
+	
 
 	/**
 	 * @return the isPhotoSelected

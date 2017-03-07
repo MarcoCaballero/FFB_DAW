@@ -67,9 +67,6 @@
 						class="icon-bar"></span>
 				</button>
 
-
-
-
 				{{#isUsermenuActive}}
 
 				<ul class="user-menu">
@@ -106,15 +103,15 @@
 											</p>
 											<p class="text-left small">
 												{{user.email}} <a style="color: black;"
-													href="micuenta">
+													href="user-account">
 													<h6 style="color: black;">
 														Tu saldo es:<em><i> {{user.credit}} €</i></em>
 													</h6>
 												</a>
 											</p>
 											<p class="text-left">
-												<a href="depositar" class="btn btn-primary btn-block btn-sm">Depositar</a>
-												<a href="micuenta" class="btn btn-primary btn-block btn-sm"
+												<a href="user-account/addCredit" class="btn btn-primary btn-block btn-sm">Depositar</a>
+												<a href="user-account" class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
 													 Mi cuenta
 												</a>
@@ -140,7 +137,7 @@
 								</div>
 							</li>
 						</ul></li>
-					<li class="dropdown pull-right fixing"><a href="micuenta"
+					<li class="dropdown pull-right fixing"><a href="user-account"
 						class="dropdown-toggle">
 							<h6 style="color: white;">
 								Tu saldo es:<em><i> {{user.credit}} €</i></em>
@@ -166,7 +163,7 @@
 										<li style="display: block;"><a href="login.html"> <img
 												class="img-circle" src="user/img/userBlocked.svg" height="30px"/>  Entrar
 										</a></li>
-										<li style="display: block;"><a href="politica"> <img
+										<li style="display: block;"><a href="ffbet/policy-terms"> <img
 												class="img-circle" src="user/img/policy.svg"  height="30px" />  Política de privacidad
 										</a></li>
 									</ul></li>
@@ -176,9 +173,7 @@
 					<!-- /.container-fluid -->
 				</nav>
 
-				{{/isUsermenuActive}} <a href="depositar.html"><img
-					class="imgfixedmenu" src="user/img/walletmdesign.png"
-					style="float: left;" width="35px"></a>
+				{{/isUsermenuActive}} 
 			</div>
 		</div>
 		<!-- /.container-fluid -->
@@ -193,21 +188,21 @@
 			<img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%">
 		</section>
 		<ul class="nav menu">
-			<li class="active"><a href="index"> <img
+			<li class="active"><a href="user"> <img
 					class="glyph stroked home" src="user/img/home.svg" /> Home
 			</a></li>
-			<li><a href="apuestasdeportivas"> <img
+			<li><a href="user-sportsBet"> <img
 					class="glyph stroked home" src="user/img/ball.svg" />Apuestas
 					Deportivas
 			</a></li>
-			<li><a href="apuestasesports"> <img
+			<li><a href="user-EsportsBet"> <img
 					class="glyph stroked pencil" src="user/img/games_b.svg" />
 					Apuestas E-games
 			</a></li>
-			<li><a href="promociones"> <img class="glyph stroked pencil"
+			<li><a href="user-promos"> <img class="glyph stroked pencil"
 					src="user/img/star.svg" /> Ofertas y Promociones
 			</a></li>
-			<li><a href="micuenta"> <img class="glyph stroked pencil"
+			<li><a href="user-account"> <img class="glyph stroked pencil"
 					src="user/img/userlogo.svg" />Mi Cuenta
 			</a></li>
 			<li role="presentation" class="divider"></li>
@@ -221,7 +216,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="index"> <span class="glyphicon glyphicon-home">
+				<li><a href="user"> <span class="glyphicon glyphicon-home">
 							HOME</span>
 				</a></li>
 			</ol>
@@ -259,7 +254,7 @@
 								alt="Second slide">
 							<div class="container">
 								<div class="carousel-caption">
-									<a class="btn btn-lg btn-primary" href="apuestasdeportivas"
+									<a class="btn btn-lg btn-primary" href="user-sportsBet"
 										role="button">¡Apuesta ya!</a>
 								</div>
 							</div>
@@ -546,7 +541,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<a href="promociones"><img class="user/img-responsive"
+					<a href="user-promos"><img class="user/img-responsive"
 						src="user/img/rooney.jpg" style="width: 469px"></a>
 					<div class="card-content">
 						<span class="card-title">ÚLTIMAS PROMOCIONES</span>
@@ -559,10 +554,10 @@
 						<div style="font-family: fantasy;">
 							<p
 								style="display: inline; margin-left: 20px; margin-right: 10px;">
-								<a href="apuestasdeportivas" style="font-size: xx-large">DEPORTES</a>
+								<a href="user-sportsBet" style="font-size: xx-large">DEPORTES</a>
 							</p>
 							<p style="display: inline; margin-left: 20px;">
-								<a href="apuestasesports" style="font-size: xx-large">JUEGOS</a>
+								<a href="user-EsportsBet" style="font-size: xx-large">JUEGOS</a>
 							</p>
 						</div>
 					</div>
@@ -576,8 +571,6 @@
 	<div id="footer"
 		class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
 		<div class="container-fluid">
-			<!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
-                        
                             <!-- CAROUSEL PARTNERS ROW-->
 			<div class="row">
 				<div id="jssor_1">
@@ -654,17 +647,17 @@
 			<div class="row">
 				<ul class="menu_info">
 					<li><strong>TOP LINKS</strong></li>
-					<li><a href="index" class="enlaceFooter"> Home </a></li>
-					<li><a href="apuestasdeportivas" class="enlaceFooter">
+					<li><a href="user" class="enlaceFooter"> Home </a></li>
+					<li><a href="user-sportsBet" class="enlaceFooter">
 							Apuestas Deportivas </a></li>
-					<li><a href="apuestasesports" class="enlaceFooter">
+					<li><a href="user-EsportsBet" class="enlaceFooter">
 							Apuestas E-games </a></li>
-					<li><a href="promociones" class="enlaceFooter"> Ofertas y
+					<li><a href="user-promos" class="enlaceFooter"> Ofertas y
 							Promociones </a></li>
 				</ul>
 				<ul class="menu_info">
 					<li><strong>INFO</strong></li>
-					<li><a href="politica.html" class="enlaceFooter"> Privacy
+					<li><a href="ffbet/policy-terms" class="enlaceFooter"> Privacy
 							policy </a></li>
 					<li><a href="http://politicadecookies.com/"
 						class="enlaceFooter"> Cookie policy </a></li>
@@ -681,7 +674,7 @@
 			</ul>
 			<div class="row">
 				<div class="copyright">
-					<a href="@" target="_self"></a><img src="user/img/+18.png"
+					<a href="ffbet/policy-terms" target="_self"></a><img src="user/img/+18.png"
 						height="25px"> <span>Copyright © 2017 FFbet.com
 						(España)</span>
 				</div>

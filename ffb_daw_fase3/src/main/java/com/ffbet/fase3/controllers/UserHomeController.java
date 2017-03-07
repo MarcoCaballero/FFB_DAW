@@ -11,7 +11,7 @@ import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
  * Controller class {@link UserHomeController} provides methods to map the URL's
- * that reference to the HOME, LOGIN, REGISTER, and other main functions. This
+ * that reference to the HOME. This
  * controller also extends to an Abstract class {@link RedirectController} that
  * provides methods common to several controllers
  * 
