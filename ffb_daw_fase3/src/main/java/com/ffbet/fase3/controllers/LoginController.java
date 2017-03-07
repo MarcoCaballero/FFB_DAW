@@ -40,6 +40,7 @@ public class LoginController extends RedirectController {
 
 	private boolean isErrorLogin = false;
 	private boolean isErrorPass = false;
+	private boolean isMenPhoto = true;
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -111,7 +112,7 @@ public class LoginController extends RedirectController {
 
 	@PostMapping("signup/new")
 	public String addUser(ModelAndView model, @RequestParam("telf") String telephone, @RequestParam("pass") String pass,
-			@RequestParam("passRepeat") String passRepeat, User user) {
+			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex, User user) {
 		String redirectFromRole = redirectSignup;
 		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
 
@@ -133,6 +134,15 @@ public class LoginController extends RedirectController {
 				user.setRoles("ROLE_USER");
 			}
 
+			
+			if(sex.equals("MAN")){
+				user.setMen(true);
+			}else{
+				user.setMen(false);
+			}
+			
+			
+			user.setCredit(0.0);
 			userRepo.save(user);
 		} else {
 			System.out.println("HOLA CONTRASEÑAS DISTINTAS");

@@ -32,6 +32,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		http.authorizeRequests().antMatchers("/signup/new").permitAll();
 		http.authorizeRequests().antMatchers("/signup").permitAll();
+		http.authorizeRequests().antMatchers("/user").permitAll();
+		http.authorizeRequests().antMatchers("/user/").permitAll();
 
 		// Private pages
 		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
@@ -43,8 +45,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/admin-*/*/*").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/admin-*/*/*/").hasAnyRole("ADMIN");
 
-		http.authorizeRequests().antMatchers("/user").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user/").hasAnyRole("USER");
+//		http.authorizeRequests().antMatchers("/user").hasAnyRole("USER");
+//		http.authorizeRequests().antMatchers("/user/").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/user-*").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/user-*/").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/user-*/*").hasAnyRole("USER");
