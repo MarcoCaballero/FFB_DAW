@@ -164,6 +164,10 @@ public class AdminMatchesController extends RedirectController {
 		 * SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
 		 * parseFormat.parse(dateFormat.format(date));
 		 */
+		
+		sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
+		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));		
+		sportsMatchRepo.save(sportsMatch);
 
 		return redirect;
 
