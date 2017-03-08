@@ -66,32 +66,49 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
+
+
+
+
+				{{#isUsermenuActive}}
+
 				<ul class="user-menu">
 					<li class="dropdown pull-right" style="margin-top: -3%;"><a
-						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
-								class="glyph stroked male-user"> <img class="img-circle"
-									src="user/img/pedroaccount.jpg" height="25px" /> </svg> Pedro
-							Espinoza <span class="caret"></span></a>
+						href="#" class="dropdown-toggle" data-toggle="dropdown">
+						 <svg class="glyph stroked male-user"> 
+						 {{#isMen}}
+						 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
+						 {{/isMen}}
+						 {{^isMen}}
+						 	<img class="img-circle" src="user/img/userGirl.svg" height="25px" /> 
+						 {{/isMen}}
+						 
+						 </svg> 
+						 {{user.email}}
+						<span class="caret"></span></a>
 						<ul class="dropdown-menu" style="border-radius: 10%;">
 							<li>
 								<div class="navbar-login">
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
-												<svg class="glyph stroked male-user"> <img
-														class="user/img-circle" src="user/img/pedroaccount.jpg"
-														style="height: 100px" /> </svg>
+												 {{#isMen}}
+												 	<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
+												 {{/isMen}}
+												 {{^isMen}}
+												 	<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
+												 {{/isMen}}
 											</p>
 										</div>
 										<div class="col-lg-8">
 											<p class="text-left">
-												<strong>Pedro Espinoza</strong>
+												<strong>{{user.name}}</strong>
 											</p>
 											<p class="text-left small">
-												correoElectronico@email.com <a style="color: black;"
+												{{user.email}} <a style="color: black;"
 													href="micuenta">
 													<h6 style="color: black;">
-														Tu saldo es:<em><i>19,99€</i></em>
+														Tu saldo es:<em><i> {{user.credit}} €</i></em>
 													</h6>
 												</a>
 											</p>
@@ -99,9 +116,7 @@
 												<a href="depositar" class="btn btn-primary btn-block btn-sm">Depositar</a>
 												<a href="micuenta" class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
-													<svg class="glyph stroked gear hidden"> <img
-															class="glyph stroked pencil" src="user/img/userlogo.svg"
-															width="16px"> </svg> Mi cuenta
+													 Mi cuenta
 												</a>
 											</p>
 										</div>
@@ -115,11 +130,9 @@
 										<div class="col-lg-12">
 											<form action="/logOut" method="POST">
 												<p>
-													<input type="submit" value="Cerrar Sesión" class="btn btn-danger btn-block" /> 
-														<input type="hidden" name="_csrf" value="{{token}}" />
-													<svg class="glyph stroked cancel">
-                                                        <use xlink:href="#stroked-cancel"></use>
-                                                    </svg>
+													<input type="submit" value="Cerrar Sesión"
+														class="btn btn-danger btn-block" /> <input type="hidden"
+														name="_csrf" value="{{token}}" />
 												</p>
 											</form>
 										</div>
@@ -130,12 +143,42 @@
 					<li class="dropdown pull-right fixing"><a href="micuenta"
 						class="dropdown-toggle">
 							<h6 style="color: white;">
-								Tu saldo es:<em><i>19,99€</i></em>
+								Tu saldo es:<em><i> {{user.credit}} €</i></em>
 							</h6>
 					</a></li>
 				</ul>
-				<a href="depositar.html"><img class="imgfixedmenu"
-					src="user/img/walletmdesign.png" style="float: left;" width="35px"></a>
+
+				{{/isUsermenuActive}} {{^isUsermenuActive}}
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a href="#" type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target="#sidebar-collapse"> <span
+								class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</a> <a class="navbar-brand" href="#"> </a>
+							<ul class="user-menu">
+								<li class="dropdown pull-right"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown"><img class="img-circle" src="user/img/userBlocked.svg" style="height: 30px;"/>
+										Acceder <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li style="display: block;"><a href="login.html"> <img
+												class="img-circle" src="user/img/userBlocked.svg" height="30px"/>  Entrar
+										</a></li>
+										<li style="display: block;"><a href="politica"> <img
+												class="img-circle" src="user/img/policy.svg"  height="30px" />  Política de privacidad
+										</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+
+				{{/isUsermenuActive}} <a href="depositar.html"><img
+					class="imgfixedmenu" src="user/img/walletmdesign.png"
+					style="float: left;" width="35px"></a>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
@@ -168,8 +211,7 @@
 					src="user/img/userlogo.svg" />Mi Cuenta
 			</a></li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="signup"> <svg
-						class="glyph stroked male-user">
+			<li><a href="signup"> <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate
 			</a></li>
@@ -233,8 +275,8 @@
 										<code>100€</code>
 									</p>
 									<p>
-										<a class="btn btn-lg btn-primary" href="signup"
-											role="button">REGISTRATE HOY</a>
+										<a class="btn btn-lg btn-primary" href="signup" role="button">REGISTRATE
+											HOY</a>
 									</p>
 								</div>
 							</div>

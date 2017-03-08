@@ -74,6 +74,11 @@ public class User {
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
+	
+	private boolean isMen;
+	private boolean isPhotoSelected;
+	
+	private double credit;
 
 	/* CONSTRUCTORS */
 
@@ -83,6 +88,11 @@ public class User {
 	public User() {
 	}
 
+	
+	
+	
+	
+	
 	/**
 	 * All own parameters constructor
 	 * 
@@ -121,13 +131,15 @@ public class User {
 	 * @param e_mail
 	 * @param password
 	 */
-	public User(String name, String surname, String dni, String email, String password, String... roles) {
+	public User(String name, String surname, String dni, String email, String password, boolean isMen, String... roles) {
 		this.name = name;
 		this.surname = surname;
 		this.dni = dni;
 		this.email = email;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.isMen = isMen;
+		this.isPhotoSelected = false;
 	}
 
 	/* GETTERS & SETTER */
@@ -294,6 +306,121 @@ public class User {
 	 */
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the user_FB_account
+	 */
+	public UserFB getUser_FB_account() {
+		return user_FB_account;
+	}
+
+	/**
+	 * @param user_FB_account the user_FB_account to set
+	 */
+	public void setUser_FB_account(UserFB user_FB_account) {
+		this.user_FB_account = user_FB_account;
+	}
+
+	/**
+	 * @return the bet_tickets
+	 */
+	public List<BetTicket> getBet_tickets() {
+		return bet_tickets;
+	}
+
+	/**
+	 * @param bet_tickets the bet_tickets to set
+	 */
+	public void setBet_tickets(List<BetTicket> bet_tickets) {
+		this.bet_tickets = bet_tickets;
+	}
+
+	/**
+	 * @return the promos
+	 */
+	public List<Promotion> getPromos() {
+		return promos;
+	}
+
+	/**
+	 * @param promos the promos to set
+	 */
+	public void setPromos(List<Promotion> promos) {
+		this.promos = promos;
+	}
+
+	/**
+	 * @return the isMen
+	 */
+	public boolean isMen() {
+		return isMen;
+	}
+
+	/**
+	 * @param isMen the isMen to set
+	 */
+	public void setMen(boolean isMen) {
+		this.isMen = isMen;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	/**
+	 * @return the isPhotoSelected
+	 */
+	public boolean isPhotoSelected() {
+		return isPhotoSelected;
+	}
+
+	/**
+	 * @param isPhotoSelected the isPhotoSelected to set
+	 */
+	public void setPhotoSelected(boolean isPhotoSelected) {
+		this.isPhotoSelected = isPhotoSelected;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the credit
+	 */
+	public double getCredit() {
+		return credit;
+	}
+
+
+
+
+
+
+	/**
+	 * @param credit the credit to set
+	 */
+	public void setCredit(double credit) {
+		this.credit = credit;
 	}
 
 

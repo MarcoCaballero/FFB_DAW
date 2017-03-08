@@ -16,13 +16,18 @@ public class DatabaseUsersLoader {
 
 	@PostConstruct
 	private void initDatabase() {
-		
+
 		for (int i = 0; i < 10; i++) {
-			userRepository.save(new User("user", "surname", "12334-Z", "user@hotmail" + i + ".com", "pass", "ROLE_USER"));
-			
-			
+			if (i % 2 == 0) {
+				userRepository.save(
+						new User("user", "surname", "12334-Z", "user@hotmail" + i + ".com", "pass", true, "ROLE_USER"));
+			} else {
+				userRepository.save(
+						new User("user", "surname", "12334-Z", "user@hotmail" + i + ".com", "pass", false, "ROLE_USER"));
+			}
 		}
-		userRepository.save(new User("Admin", "surname", "12334-Z", "admin@hotmail.com", "passadmin", "ROLE_ADMIN"));
+		userRepository
+				.save(new User("Admin", "surname", "12334-Z", "admin@hotmail.com", "passadmin", true, "ROLE_ADMIN"));
 	}
 
 }
