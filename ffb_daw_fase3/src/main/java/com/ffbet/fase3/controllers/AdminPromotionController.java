@@ -196,8 +196,9 @@ public class AdminPromotionController extends RedirectController{
 	 * @param promotionCode
 	 * @return String
 	 */
-	@PostMapping(value = { "/admin-promotions/new", "/admin-promotions/new/" })
-	public String addPromotion(Model model, HttpServletRequest request, @RequestParam String type, @RequestParam String promotionCode, @RequestParam String title, @RequestParam String description) {
+	@PostMapping(value = { "/admin-promotions/new", "/admin-promotions/new/"})
+	public String addPromotion(Model model, HttpServletRequest request, @RequestParam String type, 
+			@RequestParam String promotionCode, @RequestParam String title, @RequestParam String description) {
 		
 		Promotion newPromotion = new Promotion(type,title,description,promotionCode);
 		
