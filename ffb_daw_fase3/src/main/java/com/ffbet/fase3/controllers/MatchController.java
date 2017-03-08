@@ -34,13 +34,36 @@ public class MatchController {
 		sports.setTime(time);
 		sports.setHomeTeam("Real Madrid");
 		sports.setVisitingTeam("Atlético");
+		sports.setType("Futbol");
 		sports.setQuotaHomeVictory(50);
 		sports.setQuotaVisitingVictory(30);
 		sports.setQuotaDraw(40);
 		sports.setHomePoints(1);
 		sports.setVisitingPoints(2);
 		
+		SportsMatch sports1 = new SportsMatch();
+		sports1.setDate(date);
+		sports1.setTime(time);
+		sports1.setHomeTeam("Fuenlabrada");
+		sports1.setVisitingTeam("Venezuela");
+		sports1.setType("Futbol");
+		sports1.setQuotaHomeVictory(50);
+		sports1.setQuotaVisitingVictory(30);
+		sports1.setQuotaDraw(40);
+		
+		SportsMatch sports2 = new SportsMatch();
+		sports2.setDate(date);
+		sports2.setTime(time);
+		sports2.setHomeTeam("Azul");
+		sports2.setVisitingTeam("Rojo");
+		sports2.setType("Baloncesto");
+		sports2.setQuotaHomeVictory(50);
+		sports2.setQuotaVisitingVictory(30);
+		sports2.setQuotaDraw(40);
+		
 		sportsRepo.save(sports);
+		sportsRepo.save(sports1);
+		sportsRepo.save(sports2);
 		
 		EgamesMatch egames = new EgamesMatch();
 		egames.setDate(date);

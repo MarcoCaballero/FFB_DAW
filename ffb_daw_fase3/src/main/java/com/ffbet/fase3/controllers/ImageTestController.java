@@ -63,7 +63,7 @@ public class ImageTestController {
 		sport_team_repo.save(sp1);
 		sport_team_repo.save(sp2);
 		
-		uploadImageShield("C:\\Users\\Marco\\Desktop\\gato.jpg", "P_001", 0);
+		uploadImageShield("C:\\Users\\ADRI\\Desktop\\gato.jpg", "P_001", 0);
 
 	}
 

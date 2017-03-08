@@ -73,10 +73,10 @@ public class SportTeam extends Team {
 	 * @param country
 	 * @param city
 	 */
-	public SportTeam(String slogan, String stadium, String president, int leagues, int cups, int champions,
+	public SportTeam(String slogan, String stadium, String type,String president, int leagues, int cups, int champions,
 			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
 			String google_Uri, long id, String name, String coach, String country, String city) {
-		super(name, coach, country, city);
+		super(name, coach, country, city, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
 		this.president = president;
@@ -111,10 +111,10 @@ public class SportTeam extends Team {
 	 * @param name
 	 * @param coach
 	 */
-	public SportTeam(String slogan, String stadium, String president, int leagues, int cups, int champions,
+	public SportTeam(String slogan, String stadium, String type, String president, int leagues, int cups, int champions,
 			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
 			String google_Uri, long id, String name, String coach) {
-		super(name, coach);
+		super(name, coach, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
 		this.president = president;
