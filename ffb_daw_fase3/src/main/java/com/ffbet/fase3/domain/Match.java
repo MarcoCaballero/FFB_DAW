@@ -40,20 +40,16 @@ public abstract class Match {
 	protected Date date;
 	@Column(nullable = false)
 	protected Time time;
-
-	//@Column(nullable = false)
-	protected String type;
-	//@Column(nullable = false)
-
 	@Column(nullable = false)
-
+	protected String type;
+	@Column(nullable = false)
 	protected String homeTeam;
 	@Column(nullable = false)
 	protected String visitingTeam;
 	@Column(nullable = false)
-	protected int quotaHomeVictory;
+	protected double quotaHomeVictory;
 	@Column(nullable = false)
-	protected int quotaVisitingVictory;
+	protected double quotaVisitingVictory;
 	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	
@@ -146,19 +142,19 @@ public abstract class Match {
 		this.visitingTeam = visitingTeam;
 	}
 
-	public int getQuotaHomeVictory() {
+	public double getQuotaHomeVictory() {
 		return quotaHomeVictory;
 	}
 
-	public void setQuotaHomeVictory(int quotaHomeVictory) {
+	public void setQuotaHomeVictory(double quotaHomeVictory) {
 		this.quotaHomeVictory = quotaHomeVictory;
 	}
 
-	public int getQuotaVisitingVictory() {
+	public double getQuotaVisitingVictory() {
 		return quotaVisitingVictory;
 	}
 
-	public void setQuotaVisitingVictory(int quotaVisitingVictory) {
+	public void setQuotaVisitingVictory(double quotaVisitingVictory) {
 		this.quotaVisitingVictory = quotaVisitingVictory;
 	}
 	
