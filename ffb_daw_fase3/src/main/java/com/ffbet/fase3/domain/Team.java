@@ -33,6 +33,9 @@ public abstract class Team {
 	@Column(nullable = false)
 	protected String name;
 	
+	//@Column(nullable = false)
+	protected String type;
+	
 	@Column(nullable = false)
 	protected String coach;
 	
@@ -59,8 +62,9 @@ public abstract class Team {
 	 * @param country, country of the team.
 	 * @param city,  city of the team.
 	 */
-	public Team(String name, String coach, String country, String city) {
+	public Team(String name, String type, String coach, String country, String city) {
 		this.name = name;
+		this.type = type;
 		this.coach = coach;
 		this.country = country;
 		this.city = city;
@@ -73,8 +77,9 @@ public abstract class Team {
 	 * @param country, country of the team.
 	 * @param city,  city of the team.
 	 */
-	public Team(String name, String coach) {
+	public Team(String name,String type, String coach) {
 		this.name = name;
+		this.type = type;
 		this.coach = coach;
 		this.country = "";
 		this.city = "";
@@ -83,6 +88,16 @@ public abstract class Team {
 
 	//GETTER & SETTER
 	
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
 	/**
 	 * @return the id
 	 */

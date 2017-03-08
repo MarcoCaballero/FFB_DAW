@@ -21,11 +21,15 @@ import javax.persistence.Entity;
 public class EgamesMatch extends Match {
 
 	@Column(nullable = false)
-	private int quotaHomeFirstBlood;
+	private double quotaHomeFirstBlood;
 	@Column(nullable = false)
-	private int quotaVisitingFirstBlood;
+	private double quotaVisitingFirstBlood;
 	private String winnerTeam;
 	private String firstBloodTeam;
+	private boolean winHome;
+	private boolean firstBloodHome;
+	private boolean winVisiting;
+	private boolean firstBloodVisiting;
 
 	// CONSTRUCTORS
 
@@ -46,9 +50,10 @@ public class EgamesMatch extends Match {
 	 *            quotaVisitingFirstBlood, the quota of visiting first blood's
 	 *            bet
 	 */
-	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
-			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood) {
-		super(date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+
+	public EgamesMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam,
+			int quotaHomeVictory, int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood) {
+		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;
@@ -67,10 +72,10 @@ public class EgamesMatch extends Match {
 	 * @param firstBloodTeam,
 	 *            the team who makes the first blood
 	 */
-	public EgamesMatch(long id, Date date, Time time, String homeTeam, String visitingTeam, int quotaHomeVictory,
-			int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood, String winnerTeam,
-			String firstBloodTeam) {
-		super(date, time, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+	public EgamesMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam,
+			int quotaHomeVictory, int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood,
+			String winnerTeam, String firstBloodTeam) {
+		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;
@@ -80,19 +85,57 @@ public class EgamesMatch extends Match {
 
 	// GETTERS & SETTERS
 
+ 
+	
 	public int getQuotaHomeFirstBlood() {
 		return quotaHomeFirstBlood;
 	}
 
-	public void setQuotaHomeFirstBlood(int quotaHomeFirstBlood) {
+	public boolean isWinVisiting() {
+		return winVisiting;
+	}
+
+	public void setWinVisiting(boolean winVisiting) {
+		this.winVisiting = winVisiting;
+	}
+
+	public boolean isFirstBloodVisiting() {
+		return firstBloodVisiting;
+	}
+
+	public void setFirstBloodVisiting(boolean firstBloodVisiting) {
+		this.firstBloodVisiting = firstBloodVisiting;
+	}
+
+	public boolean isWinHome() {
+		return winHome;
+	}
+
+	public void setWinHome(boolean winHome) {
+		this.winHome = winHome;
+	}
+
+	public boolean isFirstBloodHome() {
+		return firstBloodHome;
+	}
+
+	public void setFirstBloodHome(boolean firstBloodHome) {
+		this.firstBloodHome = firstBloodHome;
+	}
+
+	public double getQuotaHomeFirstBlood() {
+		return quotaHomeFirstBlood;
+	}
+
+	public void setQuotaHomeFirstBlood(double quotaHomeFirstBlood) {
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 	}
 
-	public int getQuotaVisitingFirstBlood() {
+	public double getQuotaVisitingFirstBlood() {
 		return quotaVisitingFirstBlood;
 	}
 
-	public void setQuotaVisitingFirstBlood(int quotaVisitingFirstBlood) {
+	public void setQuotaVisitingFirstBlood(double quotaVisitingFirstBlood) {
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;
 	}
 
