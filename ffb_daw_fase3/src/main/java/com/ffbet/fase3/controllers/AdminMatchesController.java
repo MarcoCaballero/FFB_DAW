@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 
@@ -43,6 +45,15 @@ public class AdminMatchesController extends RedirectController {
 
 	@Autowired
 	private SportTeamRepository teamRepo;
+	
+	@Autowired
+	private Egames_match_repository egamesMatchRepo;
+
+	private boolean badDate = false;
+	private boolean badTime = false;
+	private boolean badQuota = false;
+	
+	private boolean equalTeams = false;
 
 	/* ADMIN */
 
@@ -60,12 +71,17 @@ public class AdminMatchesController extends RedirectController {
 
 		model.addAttribute("Equipo1", teamRepo.findAll());
 		model.addAttribute("Equipo2", teamRepo.findAll());
-		
+
 		model.addAttribute("Teams", teamRepo.findAll());
-		
+
 		model.addAttribute("Matches", sportsMatchRepo.findAll());
-		
-		//model.addAttribute("", );
+
+		model.addAttribute("noDate", badDate);
+		model.addAttribute("noTime", badTime);
+		model.addAttribute("noQuota", badQuota);
+		model.addAttribute("noTeams", equalTeams);
+
+		// model.addAttribute("", );
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -105,28 +121,110 @@ public class AdminMatchesController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping(value = { "/admin-matches/new" })
-	public String addMatch(SportsMatch sportsMatch, @RequestParam ("dateMatch") Date date,
-			@RequestParam ("timeMatch") Time time, @RequestParam ("homeTeam") String homeTeam,
-			@RequestParam ("visitingTeam") String visitingTeam){
-		
-		sportsMatch.setDate(date);
-		System.out.println(time);
-		sportsMatch.setTime(time);
-		
-		//sportsMatch.setTime(time);
-		//sportsMatch.setTime(time);
-		/*
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
-        parseFormat.parse(dateFormat.format(date));
-        */
-		
-		sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
-		sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));		
-		sportsMatchRepo.save(sportsMatch);
+	@PostMapping(value = { "/admin-matches/newSportsMatch" })
+	public String addSportsMatch(SportsMatch sportsMatch, @RequestParam("dateMatch") String date,
+			@RequestParam("timeMatch") String time, @RequestParam("homeTeam") String homeTeam,
+			@RequestParam("visitingTeam") String visitingTeam,
+			@RequestParam("quotaHomeVictoryWeb") String quotaHomeVictory,
+			@RequestParam("quotaDrawWeb") String quotaDraw,
+			@RequestParam("quotaVisitingVictoryWeb") String quotaVisitingVictory) {
 
-		// model.addAttribute("title", "Hello from new");
+		try {
+			sportsMatch.setDate(Date.valueOf(date));
+			badDate = false;
+		} catch (Exception e) {
+			badDate = true;
+		}
+
+		try {
+			sportsMatch.setTime(Time.valueOf(time));
+			badTime = false;
+		} catch (Exception e) {
+			badTime = true;
+		}
+
+		try {
+			sportsMatch.setQuotaHomeVictory(Integer.parseInt(quotaHomeVictory));
+			sportsMatch.setQuotaDraw(Integer.parseInt(quotaDraw));
+			sportsMatch.setQuotaVisitingVictory(Integer.parseInt(quotaVisitingVictory));
+			badQuota = false;
+		} catch (Exception e) {
+			badQuota = true;
+		}
+
+		System.out.println("date: " + badDate + "time: " + badTime + "quota: " + badQuota);
+		
+		if(homeTeam.toString().equals(visitingTeam.toString())){
+			equalTeams = true;
+			System.out.println("Equipos iguales");
+		}else{
+			equalTeams = false;
+		}
+
+		if (!badDate && !badTime && !badQuota && !equalTeams) {
+			sportsMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
+			sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
+
+			sportsMatchRepo.save(sportsMatch);
+		}
+
+		return redirect;
+
+	}
+	
+	@PostMapping(value = { "/admin-matches/newEGamesMatch" })
+	public String addEGamesMatch(EgamesMatch egamesMatch, @RequestParam("dateMatchEg") String date,
+			@RequestParam("timeMatchEg") String time, @RequestParam("homeTeam") String homeTeam,
+			@RequestParam("visitingTeamEg") String visitingTeam,
+			@RequestParam("quotaHomeVictoryWebEg") String quotaHomeVictory,
+			@RequestParam("quotaVisitingVictoryWebEg") String quotaVisitingVictory,
+			@RequestParam("quotaHomeFirstBloodWebEg") String quotaHomeFirstBlood,
+			@RequestParam("quotaVisitingFirstBloodWebEg") String quotaVisitingFirstBlood) {
+		
+		String tiempo = "";
+
+		try {
+			egamesMatch.setDate(Date.valueOf(date));
+			badDate = false;
+		} catch (Exception e) {
+			badDate = true;
+		}
+
+		tiempo = time.concat(":00");
+		System.out.println(tiempo);
+		
+		try {
+			egamesMatch.setTime(Time.valueOf(tiempo));
+			badTime = false;
+		} catch (Exception e) {
+			badTime = true;
+			System.out.println(Time.valueOf(tiempo));
+		}
+
+		try {
+			egamesMatch.setQuotaHomeVictory(Integer.parseInt(quotaHomeVictory));
+			egamesMatch.setQuotaVisitingVictory(Integer.parseInt(quotaVisitingVictory));
+			badQuota = false;
+		} catch (Exception e) {
+			badQuota = true;
+		}
+
+		System.out.println("date: " + badDate + "time: " + badTime + "quota: " + badQuota);
+		
+		if(homeTeam.toString().equals(visitingTeam.toString())){
+			equalTeams = true;
+			System.out.println("Equipos iguales");
+		}else{
+			equalTeams = false;
+		}
+
+		if (!badDate && !badTime && !badQuota && !equalTeams) {
+			egamesMatch.getTeams().add(teamRepo.findByName(homeTeam).get(0));
+			egamesMatch.getTeams().add(teamRepo.findByName(visitingTeam).get(0));
+
+			egamesMatchRepo.save(egamesMatch);
+		}
+
 		return redirect;
 
 	}
