@@ -103,6 +103,8 @@
 											local</th>
 										<th data-field="visitingPoints" data-sortable="true">Puntos
 											visitante</th>
+
+										<th data-field="Actions" data-sortable="true">Actions</th>
 									</tr>
 								</thead>
 								{{#Matches}}
@@ -117,6 +119,10 @@
 									<td>{{#quotaDraw}}{{.}}{{/quotaDraw}}</td>
 									<td>{{#homePoints}}{{.}}{{/homePoints}}</td>
 									<td>{{#visitingPoints}}{{.}}{{/visitingPoints}}</td>
+									<td><a href="/admin-matches/delete/{{id}}"
+										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
+											Borrar Partido
+									</a></td>
 								</tr>
 								{{/Matches}}
 							</table>
@@ -161,7 +167,7 @@
 								<h5>Añadir partido fútbol</h5> </a>
 						</div>
 						<div class="collapse" id="collapseOne">
-							<form action="admin-matches/newSportsMatch" method="post">
+							<form action="admin-matches/newFootballMatch" method="post">
 								<div class="widget-content">
 									<div class="widget-content nopadding">
 										<div class="control-group">
@@ -169,24 +175,24 @@
 											<div class="controls">
 												<div class="input-append date datepicker">
 													<input type="date" data-date-format="dd-mm-yyyy"
-														class="span11 mask-date" name="dateMatch" /> <span
+														class="span11 mask-date" name="dateFootball" /> <span
 														class="add-on"><i class="icon-th"></i></span>
 												</div>
 											</div>
-											{{#noDate}}
+											{{#noDateFootball}}
 											<p style="color: red">Fecha incorrecta</p>
-											{{/noDate}}
+											{{/noDateFootball}}
 										</div>
 										<div class="control-group">
 											<label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
 											<div class="controls">
 												<input type="time" id="mask-hour-try"
-													class="span5 mask text" name="timeMatch" />
+													class="span5 mask text" name="timeFootball" />
 											</div>
-											{{#noTime}}
+											{{#noTimeFootball}}
 											<p style="color: red">Hora incorrecta</p>
-											{{/noTime}}
+											{{/noTimeFootball}}
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
@@ -203,9 +209,9 @@
 													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
-											{{#noTeams}}
+											{{#noTeamsFootball}}
 											<p style="color: red">Los equipos deben ser distintos</p>
-											{{/noTeams}}
+											{{/noTeamsFootball}}
 										</div>
 
 										<div class="control-group">
@@ -216,9 +222,9 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaHomeVictoryWeb" /> <span class="add-on">%</span>
-													<input type="text" placeholder="Cuota: @3.15" class="span6"
-														disabled />
+														name="quotaHomeVictoryWebFootball" /> <span
+														class="add-on">%</span> <input type="text"
+														placeholder="Cuota: @3.15" class="span6" disabled />
 												</div>
 											</div>
 										</div>
@@ -230,8 +236,8 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaDrawWeb" /> <span class="add-on">%</span> <input
-														type="text" placeholder="Cuota: @3.15" class="span6"
+														name="quotaDrawWebFootball" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
 														disabled />
 												</div>
 											</div>
@@ -244,15 +250,18 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaVisitingVictoryWeb" /> <span class="add-on">%</span>
-													<input type="text" placeholder="Cuota: @3.15" class="span6"
-														disabled />
+														name="quotaVisitingVictoryWebFootball" /> <span
+														class="add-on">%</span> <input type="text"
+														placeholder="Cuota: @3.15" class="span6" disabled />
 												</div>
 											</div>
 										</div>
-										{{#noQuota}}
+										{{#noQuotaFootball}}
 										<p style="color: red">Complete todos los campos de cuota</p>
-										{{/noQuota}}
+										{{/noQuotaFootball}} {{#noSumQuotaFootball}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuotaFootball}}
 										<div class="form-actions">
 											<input type="hidden" name="_csrf" value="{{token}}" /> <input
 												type="submit" class="btn btn-success" value="Save" />
@@ -266,11 +275,11 @@
 						<div class="widget-title">
 							<a href="#collapseOne2" data-toggle="collapse"> <span
 								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir partido Basket</h5>
+								<h5>Añadir partido Baloncesto</h5>
 							</a>
 						</div>
 						<div class="collapse in" id="collapseOne2">
-							<form action="admin-matches/newSportsMatch" method="post">
+							<form action="admin-matches/newBasketMatch" method="post">
 								<div class="widget-content">
 									<div class="widget-content nopadding">
 										<div class="control-group">
@@ -278,24 +287,24 @@
 											<div class="controls">
 												<div class="input-append date datepicker">
 													<input type="date" data-date-format="dd-mm-yyyy"
-														class="span11 mask-date" name="dateMatch" /> <span
+														class="span11 mask-date" name="dateBasket" /> <span
 														class="add-on"><i class="icon-th"></i></span>
 												</div>
 											</div>
-											{{#noDate}}
+											{{#noDateBasket}}
 											<p style="color: red">Fecha incorrecta</p>
-											{{/noDate}}
+											{{/noDateBasket}}
 										</div>
 										<div class="control-group">
 											<label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
 											<div class="controls">
-												<input type="text" id="mask-hour-try"
-													class="span5 mask text" name="timeMatch" />
+												<input type="time" id="mask-hour-try"
+													class="span5 mask text" name="timeBasket" />
 											</div>
-											{{#noTime}}
+											{{#noTimeBasket}}
 											<p style="color: red">Hora incorrecta</p>
-											{{/noTime}}
+											{{/noTimeBasket}}
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
@@ -312,9 +321,9 @@
 													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
-											{{#noTeams}}
+											{{#noTeamsBasket}}
 											<p style="color: red">Los equipos deben ser distintos</p>
-											{{/noTeams}}
+											{{/noTeamsBasket}}
 										</div>
 
 										<div class="control-group">
@@ -325,7 +334,7 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaHomeVictoryWeb" /> <span class="add-on">%</span>
+														name="quotaHomeVictoryWebBasket" /> <span class="add-on">%</span>
 													<input type="text" placeholder="Cuota: @3.15" class="span6"
 														disabled />
 												</div>
@@ -339,7 +348,7 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaDrawWeb" value="0" /> <span class="add-on">%</span>
+														name="quotaDrawWebBasket" /> <span class="add-on">%</span>
 													<input type="text" placeholder="Cuota: @3.15" class="span6"
 														disabled />
 												</div>
@@ -353,15 +362,18 @@
 														placeholder="0% - 90%"
 														data-title="Han de sumar entre 105% y 110%"
 														class="span4 tip mask-percent" data-original-title=""
-														name="quotaVisitingVictoryWeb" /> <span class="add-on">%</span>
-													<input type="text" placeholder="Cuota: @3.15" class="span6"
-														disabled />
+														name="quotaVisitingVictoryWebBasket" /> <span
+														class="add-on">%</span> <input type="text"
+														placeholder="Cuota: @3.15" class="span6" disabled />
 												</div>
 											</div>
 										</div>
-										{{#noQuota}}
+										{{#noQuotaBasket}}
 										<p style="color: red">Complete todos los campos de cuota</p>
-										{{/noQuota}}
+										{{/noQuotaBasket}} {{#noSumQuotaBasket}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuotaBasket}}
 										<div class="form-actions">
 											<input type="hidden" name="_csrf" value="{{token}}" /> <input
 												type="submit" class="btn btn-success" value="Save" />
@@ -381,10 +393,9 @@
 							</a>
 						</div>
 						<div class="collapse" id="collapseTwo">
-							<form action="admin-matches/newEGamesMatch" method="post"></form>
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
+							<form action="admin-matches/newLOLMatch" method="post">
+								<div class="widget-content">
+									<div class="widget-content nopadding">
 										<div class="control-group">
 											<label class="control-label">Fecha(dd-mm-yy)</label>
 											<div class="controls">
@@ -394,64 +405,65 @@
 														class="add-on"><i class="icon-th"></i></span>
 												</div>
 											</div>
-											{{#noDate}}
+											{{#noDateLOL}}
 											<p style="color: red">Fecha incorrecta</p>
-											{{/noDate}}
+											{{/noDateLOL}}
 										</div>
 										<div class="control-group">
 											<label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
 											<div class="controls">
-												<input type="text" id="mask-hour-try"
+												<input type="time" id="mask-hour-try"
 													class="span5 mask text" name="timeMatchEg" />
 											</div>
-											{{#noTime}}
+											{{#noTimeLOL}}
 											<p style="color: red">Hora incorrecta</p>
-											{{/noTime}}
+											{{/noTimeLOL}}
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
+												<select name="homeTeam">{{#Teams}}
+													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
+												<select name="visitingTeam">{{#Teams}}
+													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
 										</div>
+										{{#noTeamsLOL}}
+										<p style="color: red">Los equipos deben ser distintos</p>
+										{{/noTeamsLOL}}
 										<div class="control-group">
 											<label class="control-label">Victoria local</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-local-lol" type="text"
+													<input id="percent-local-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaHomeVictoryWebEg" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label">VIctoria visitante</label>
+											<label class="control-label">Victoria visitante</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-visitant-lol" type="text"
+													<input id="percent-visitant-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaVisitingVictoryWebEg" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
@@ -459,12 +471,13 @@
 											<label class="control-label">First Blood Local</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-fblocal-lol" type="text"
+													<input id="percent-fblocal-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaHomeFirstBloodWebEg" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
@@ -472,96 +485,110 @@
 											<label class="control-label">First Blood Visitante</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-fbvisitante-lol" type="text"
+													<input id="percent-fbvisitante-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaVisitingFirstBloodWebEg" /> <span
+														class="add-on">%</span> <input type="text"
 														placeholder="Cuota: @3.15" class="span6" disabled>
 												</div>
 											</div>
 										</div>
+										{{#noQuotaLOL}}
+										<p style="color: red">Complete todos los campos de cuota</p>
+										{{/noQuotaLOL}} {{#noSumQuotaLOL}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuotaLOL}}
 										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
+											<input type="hidden" name="_csrf" value="{{token}}" /> <input
+												type="submit" class="btn btn-success" value="Save" />
 										</div>
-									</form>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 					<div class="widget-box collapsible">
 						<div class="widget-title">
 							<a href="#collapseTwo2" data-toggle="collapse"> <span
 								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir partido CS:GO</h5>
+								<h5>Añadir partido CS-GO</h5>
 							</a>
 						</div>
 						<div class="collapse in" id="collapseTwo2">
-							<div class="widget-content">
-								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
+							<form action="admin-matches/newCSMatch" method="post">
+								<div class="widget-content">
+									<div class="widget-content nopadding">
 										<div class="control-group">
 											<label class="control-label">Fecha(dd-mm-yy)</label>
 											<div class="controls">
-												<div data-date="12-02-2012"
-													class="input-append date datepicker">
-													<input id="mask-date-3" type="text" value="12-02-2012"
-														data-date-format="dd-mm-yyyy" class="span11"> <span
+												<div class="input-append date datepicker">
+													<input type="date" data-date-format="dd-mm-yyyy"
+														class="span11 mask-date" name="dateMatchCs" /> <span
 														class="add-on"><i class="icon-th"></i></span>
 												</div>
 											</div>
+											{{#noDateCS}}
+											<p style="color: red">Fecha incorrecta</p>
+											{{/noDateCS}}
 										</div>
 										<div class="control-group">
 											<label for="normal" class="control-label">Hora
-												(hh-mm)</label>
+												(hh:mm:ss)</label>
 											<div class="controls">
-												<input type="text" id="hora-partido-CS"
-													class="span5 mask text mask-hour">
+												<input type="time" id="mask-hour-try"
+													class="span5 mask text" name="timeMatchCs" />
 											</div>
+											{{#noTimeCS}}
+											<p style="color: red">Hora incorrecta</p>
+											{{/noTimeCS}}
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
+												<select name="homeTeam">{{#Teams}}
+													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select>
-													<option>Equipo 1</option>
-													<option>Equipo 2</option>
-													<option>Equipo 3</option>
+												<select name="visitingTeam">{{#Teams}}
+													<option value="{{name}}">{{name}}</option> {{/Teams}}
 												</select>
 											</div>
 										</div>
+										{{#noTeamsCS}}
+										<p style="color: red">Los equipos deben ser distintos</p>
+										{{/noTeamsCS}}
 										<div class="control-group">
 											<label class="control-label">Victoria local</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-local-cs" type="text"
+													<input id="percent-local-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaHomeVictoryWebCs" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label">VIctoria visitante</label>
+											<label class="control-label">Victoria visitante</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-visitante-cs" type="text"
+													<input id="percent-visitant-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%Local + %Visitante = 105%-110%"
-														class="span4 tip" data-original-title=""> <span
-														class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaVisitingVictoryWebCs" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
@@ -569,12 +596,13 @@
 											<label class="control-label">First Blood Local</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-fblocal-cs" type="text"
+													<input id="percent-fblocal-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
-														placeholder="Cuota: @3.15" class="span6" disabled>
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaHomeFirstBloodWebCs" /> <span class="add-on">%</span>
+													<input type="text" placeholder="Cuota: @3.15" class="span6"
+														disabled>
 												</div>
 											</div>
 										</div>
@@ -582,21 +610,29 @@
 											<label class="control-label">First Blood Visitante</label>
 											<div class="controls">
 												<div class="input-append">
-													<input id="percent-fbvisitante-cs" type="text"
+													<input id="percent-fbvisitante-lol" type="number"
 														placeholder="0% - 90%"
 														data-title="%FBLocal + %FBVisitante = 105%-110%"
-														class="span4 tip mask-percent" data-original-title="">
-													<span class="add-on">%</span> <input type="text"
+														class="span4 tip mask-percent" data-original-title=""
+														name="quotaVisitingFirstBloodWebCs" /> <span
+														class="add-on">%</span> <input type="text"
 														placeholder="Cuota: @3.15" class="span6" disabled>
 												</div>
 											</div>
 										</div>
+										{{#noQuotaCS}}
+										<p style="color: red">Complete todos los campos de cuota</p>
+										{{/noQuotaCS}} {{#noSumQuotaCS}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuotaCS}}
 										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
+											<input type="hidden" name="_csrf" value="{{token}}" /> <input
+												type="submit" class="btn btn-success" value="Save" />
 										</div>
-									</form>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>

@@ -82,7 +82,7 @@ public class ImageTestController {
 			throws FileNotFoundException, IOException {
 		response.addHeader("Content/type", "image/jpeg");
 
-		SportTeam sport_team = sport_team_repo.findByName(name).get(0);// -->
+		SportTeam sport_team = sport_team_repo.findByName(name);// -->
 																		// find
 																		// next
 																		// toSelect
@@ -110,7 +110,7 @@ public class ImageTestController {
 	 * 
 	 */
 	public void uploadImageShield(String path, String name, int toSelect) {
-		SportTeam s_t = sport_team_repo.findByName(name).get(0);// --> toSelect
+		SportTeam s_t = sport_team_repo.findByName(name);// --> toSelect
 		try {
 			FileInputStream f_in = new FileInputStream(path);
 
