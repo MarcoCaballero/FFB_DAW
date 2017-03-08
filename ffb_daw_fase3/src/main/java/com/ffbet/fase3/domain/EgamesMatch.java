@@ -26,6 +26,10 @@ public class EgamesMatch extends Match {
 	private double quotaVisitingFirstBlood;
 	private String winnerTeam;
 	private String firstBloodTeam;
+	private boolean winHome;
+	private boolean firstBloodHome;
+	private boolean winVisiting;
+	private boolean firstBloodVisiting;
 
 	// CONSTRUCTORS
 
@@ -80,6 +84,44 @@ public class EgamesMatch extends Match {
 	}
 
 	// GETTERS & SETTERS
+
+ 
+	
+	public int getQuotaHomeFirstBlood() {
+		return quotaHomeFirstBlood;
+	}
+
+	public boolean isWinVisiting() {
+		return winVisiting;
+	}
+
+	public void setWinVisiting(boolean winVisiting) {
+		this.winVisiting = winVisiting;
+	}
+
+	public boolean isFirstBloodVisiting() {
+		return firstBloodVisiting;
+	}
+
+	public void setFirstBloodVisiting(boolean firstBloodVisiting) {
+		this.firstBloodVisiting = firstBloodVisiting;
+	}
+
+	public boolean isWinHome() {
+		return winHome;
+	}
+
+	public void setWinHome(boolean winHome) {
+		this.winHome = winHome;
+	}
+
+	public boolean isFirstBloodHome() {
+		return firstBloodHome;
+	}
+
+	public void setFirstBloodHome(boolean firstBloodHome) {
+		this.firstBloodHome = firstBloodHome;
+	}
 
 	public double getQuotaHomeFirstBlood() {
 		return quotaHomeFirstBlood;

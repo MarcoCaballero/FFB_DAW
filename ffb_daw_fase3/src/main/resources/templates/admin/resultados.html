@@ -85,6 +85,7 @@
 														<th data-field="equipoLocal" data-sortable="true">Equipo local</th>
 														<th data-field="equipoVisitante" data-sortable="true">Equipo Visitante</th>
 														<th data-field="Resultado" data-sortable="true">Resultado</th>
+														<th data-field="Resultado" data-sortable="true">Acciones</th>
 												</thead>
 												{{#footballMatch}}
 													<tr>
@@ -92,15 +93,22 @@
 														<td>{{homeTeam}}</td>
 														<td>{{visitingTeam}}</td>
 														<td>
-															<form action="admin-scores/update/{{id}}" method="post">
+															<form id="formId{{id}}" action="admin-scores/updateSports/{{id}}" method="post">
 																<div style="padding:0px; margin-top:0px; margin-bottom:0px;">
+																<div style="float:right;">
 																	<input type="number" class="span2" placeholder="{{homePoints}}" name="homePoints" />-
 																	<input type="number" class="span2" placeholder="{{visitingPoints}}" name="visitingPoints" />
+																</div>
+																	
 																	<input type="hidden" name="_csrf" value="{{token}}" /> 
-																	<input style="border-left_10px" type="submit" class="btn btn-success" value="Guardar" />
+																	<input style="border-left:10px; display:none" type="submit" class="btn btn-success" value="Guardar" />
 																</div>
 															</form>
 														</td>
+														<td>
+															<button style="border-left:10px" onclick="functionSubmit('formId{{id}}');" class="btn btn-success buttonSave">Guardar</button>
+														</td>
+														
 													</tr>
 												{{/footballMatch}}
 											</table>
@@ -127,6 +135,7 @@
 														<th data-field="equipoLocal" data-sortable="true">Equipo local</th>
 														<th data-field="equipoVisitante" data-sortable="true">Equipo Visitante</th>
 														<th data-field="Resultado" data-sortable="true">Resultado</th>
+														<th data-field="Acciones" data-sortable="true">Acciones</th>
 												</thead>
 												{{#basketballMatch}}
 													<tr>
@@ -134,14 +143,17 @@
 														<td>{{homeTeam}}</td>
 														<td>{{visitingTeam}}</td>
 														<td>
-															<form action="admin-scores/update/{{id}}" method="post">
-																<div style="padding:0px; margin-top:0px; margin-bottom:0px;" >
+															<form id="formId{{id}}" action="admin-scores/updateSports/{{id}}" method="post">
+																<div style="padding:0px; margin-top:0px; margin-bottom:0px;">
 																	<input type="number" class="span2" placeholder="{{homePoints}}" name="homePoints" />-
 																	<input type="number" class="span2" placeholder="{{visitingPoints}}" name="visitingPoints" />
 																	<input type="hidden" name="_csrf" value="{{token}}" /> 
-																	<input style="border-left_10px" type="submit" class="btn btn-success" value="Guardar" />
+																	<input style="border-left:10px; display:none" type="submit" class="btn btn-success" value="Guardar" />
 																</div>
 															</form>
+														</td>
+														<td>
+															<button style="border-left:10px" onclick="functionSubmit('formId{{id}}');" class="btn btn-success buttonSave">Guardar</button>
 														</td>
 													</tr>
 												{{/basketballMatch}}
@@ -163,46 +175,56 @@
 						<div class="collapse in" id="collapseTwo">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-																				<div class="panel-body">
+									<div class="panel-body">
 											<table class="table table-bordered">
 												<thead>
 												<tr>
 														<th data-field="id" data-sortable="true">ID</th>
 														<th data-field="equipoLocal" data-sortable="true">Equipo local</th>
 														<th data-field="equipoVisitante" data-sortable="true">Equipo Visitante</th>
-														<th data-field="winningTeam" data-sortable="true">Resultados</th>
+														<th data-field="result" data-sortable="true">Resultado</th>
+														<th data-field="actions" data-sortable="true">Acciones</tr>
 												</thead>
-												{{#egamesMatch}}
+												{{#lolMatch}}
 													<tr>
 														<td>{{id}}</td>
-														<td>{{homeTeam}}</td>
-														<td>{{visitingTeam}}</td>
+														<td>{{homeTeam}} 
+															<strong>{{#winHome}}-G-{{/winHome}} </strong>
+															<strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+														</td>
+														<td>{{visitingTeam}} 
+															<strong>{{#winVisiting}}-G-{{/winVisiting}} </strong>
+															<strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+														</td>
 														<td>
-															<div class="control-group">
-																<label for="checkboxes" class="control-label">Ganador</label>
+															<form id="formId{{id}}" action="admin-scores/updateEgames/{{id}}" method="post">
 																<div class="controls">
-																	<div data-toggle="buttons-radio" class="btn-group">
-									
-																			<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-																			<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-									
-																	</div>
+																		<div class="controls">
+																			<div class="controls">
+																				<select style="min-width:200px;" name ="winningTeam">-G-
+																					<option value="{{homeTeam}}">Gana Local -G-</option>
+																					<option value="{{visitingTeam}}">Gana Visitante  -G-</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="controls">
+																			<div class="controls">
+																				<select style="min-width:200px;" name ="firstBlood">-FB-
+																					<option value="{{homeTeam}}">Primera Sangre Local  -FB-</option>
+																					<option value="{{visitingTeam}}">Primera Sangre Visitante-FB-</option>
+																				</select>
+																			</div>
+																		</div>
 																</div>
-															</div>
-															<div class="control-group">
-																<label for="checkboxes" class="control-label">First Blood</label>
-																<div class="controls">
-																	<div data-toggle="buttons-radio" class="btn-group">
-
-																			<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-																			<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-							
-																	</div>
-																</div>
-															</div>
+																<input type="hidden" name="_csrf" value="{{token}}" /> 
+																<input style="border-left:10px; display:none" type="submit" class="btn btn-success" value="Guardar" />
+															</form>
+														</td>
+														<td>
+															<button style="border-left:10px" onclick="functionSubmit('formId{{id}}');" class="btn btn-success buttonSave">Guardar</button>
 														</td>
 													</tr>
-												{{/egamesMatch}}
+												{{/lolMatch}}
 											</table>
 										</div>
 								</div>
@@ -219,40 +241,58 @@
 						<div class="collapse in" id="collapseTwo2">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Partidos disponibles</label>
-											<div class="controls">
-												<select>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-												</select>
-											</div>
+																		<div class="panel-body">
+											<table class="table table-bordered">
+												<thead>
+												<tr>
+														<th data-field="id" data-sortable="true">ID</th>
+														<th data-field="equipoLocal" data-sortable="true">Equipo local</th>
+														<th data-field="equipoVisitante" data-sortable="true">Equipo Visitante</th>
+														<th data-field="result" data-sortable="true">Resultado</th>
+														<th data-field="actions" data-sortable="true">Acciones</tr>
+												</thead>
+												{{#csgoMatch}}
+													<tr>
+														<td>{{id}}</td>
+														<td>{{homeTeam}} 
+															<strong>{{#winHome}}-G-{{/winHome}} </strong>
+															<strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+														</td>
+														<td>{{visitingTeam}} 
+															<strong>{{#winVisiting}}-G-{{/winVisiting}} </strong>
+															<strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+														</td>
+														<td>
+															<form id="formId{{id}}" action="admin-scores/updateEgames/{{id}}" method="post">
+																<div class="controls">
+																		<div class="controls">
+																			<div class="controls">
+																				<select style="min-width:200px;" name ="winningTeam">-G-
+																					<option value="{{homeTeam}}">Gana Local -G-</option>
+																					<option value="{{visitingTeam}}">Gana Visitante  -G-</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="controls">
+																			<div class="controls">
+																				<select style="min-width:200px;" name ="firstBlood">-FB-
+																					<option value="{{homeTeam}}">Primera Sangre Local  -FB-</option>
+																					<option value="{{visitingTeam}}">Primera Sangre Visitante-FB-</option>
+																				</select>
+																			</div>
+																		</div>
+																</div>
+																<input type="hidden" name="_csrf" value="{{token}}" /> 
+																<input style="border-left:10px; display:none" type="submit" class="btn btn-success" value="Guardar" />
+															</form>
+														</td>
+														<td>
+															<button style="border-left:10px" onclick="functionSubmit('formId{{id}}');" class="btn btn-success buttonSave">Guardar</button>
+														</td>
+													</tr>
+												{{/csgoMatch}}
+											</table>
 										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">Ganador</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">First
-												Blood</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -305,6 +345,16 @@
 		window.onload = function() {
 			startTime();
 		}
+		
+	</script>
+	<script type="text/javascript">
+	
+	
+	
+	function functionSubmit(formId){
+		document.getElementById(formId).submit();	
+	}
+	
 	</script>
 </body>
 

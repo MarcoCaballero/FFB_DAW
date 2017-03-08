@@ -72,6 +72,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 		// Allow h2 console
 		http.csrf().ignoringAntMatchers("/h2-console/**");
+		http.headers().frameOptions().disable();
 	}
 
 	@Override
