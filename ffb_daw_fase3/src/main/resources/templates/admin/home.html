@@ -136,16 +136,18 @@
 									<td>{{#surname}}{{.}}{{/surname}}</td>
 									<td>{{email}}</td>
 									<td>{{#roles}}{{.}}{{/roles}}</td>
-									<td><a href="#" class="btn btn-mini btn-warning"> <i
-											class="icon-plus"></i> Administrador
-									</a> <a href="/admin-home/delete/{{id}}"
-										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
-											Borrar Usuario
-									</a>
-									<a href="/admin-home/delete/{{id}}"
-										class="btn btn-mini btn-primary"> <i class="icon-edit"></i>
-											Degradar usuario
-									</a>
+									<td>
+										<a href="admin-home/upgrade/{{id}}" class="btn btn-mini btn-warning"> <i
+												class="icon-plus"></i> Administrador
+										</a> 
+										<a href="admin-home/delete/{{id}}"
+											class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
+												Borrar Usuario
+										</a>
+										<a href="/admin-home/downgrade/{{id}}"
+											class="btn btn-mini btn-primary"> <i class="icon-edit"></i>
+												Degradar usuario
+										</a>
 									</td>
 								</tr>
 								{{/Users}}

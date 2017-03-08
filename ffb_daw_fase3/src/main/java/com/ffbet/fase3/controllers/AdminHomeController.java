@@ -62,19 +62,15 @@ public class AdminHomeController extends RedirectController {
 	@GetMapping(value = { "/admin-home", "/admin-home/", "/admin", "/admin/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
 		int totalMoney = 0;
-		String activeUser = "NO REGISTRADO";
 		for (int i = 0; i < betRepo.findAll().size(); i++) {
 			BetTicket ticket = betRepo.findAll().get(i);
 			totalMoney += ticket.getAmount();
 		}
 
-	
+		//Si se apaga el servidor con el usuario conectado, desconectar al llamar
+		if (!usercomponent.isLoggedUser())
+			return "redirect:/logOut";
 
-			User userlogged = usercomponent.getLoggedUser();
-			activeUser = userlogged.getName();
-		
-
-		model.addAttribute("UsuarioActivo", activeUser);
 		model.addAttribute("Users", userRepo.findAll());
 		model.addAttribute("totalUSer", userRepo.findAll().size());
 		model.addAttribute("totalTeams", sportTeamRepo.findAll().size() + egamesTeamRepo.findAll().size());
@@ -94,6 +90,38 @@ public class AdminHomeController extends RedirectController {
 	public String removeUser(@PathVariable Long id) {
 
 		userRepo.delete(id);
+		return "redirect:/admin/";
+	}
+
+	@GetMapping("/admin-home/downgrade/{id}")
+	public String downgradeUser(@PathVariable Long id) {
+
+		User user = userRepo.findOne(id);
+
+		if (user.getRoles().size() > 1) {
+			user.setRoles("ROLE_USER");
+		}
+
+		userRepo.save(user);
+		System.out.println("DOWNGRADE " + userRepo.findOne(id).getRoles().size());
+		return "redirect:/admin/";
+	}
+
+	@GetMapping("/admin-home/upgrade/{id}")
+	public String upgradeUser(@PathVariable Long id) {
+
+		User user = userRepo.findOne(id);
+		if (user.getRoles().size() < 2) {
+			user.addRole("ROLE_ADMIN");
+		}
+		System.out.println("UPGRADE " + userRepo.findOne(id).getRoles().size());
+		for (int i = 0; i < user.getRoles().size(); i++) {
+			System.out.println("UPGRADE " + i + "ROLE : " + user.getRoles().get(i));
+
+		}
+
+		userRepo.save(user);
+
 		return "redirect:/admin/";
 	}
 

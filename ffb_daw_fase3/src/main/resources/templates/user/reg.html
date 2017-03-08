@@ -23,32 +23,41 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="#" type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse"> <span
-					class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-					<span class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="navbar-brand" href="#"> </a>
-				<ul class="user-menu">
-					<li class="dropdown pull-right"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"> <svg
-								class="glyph stroked male-user">
-                                <use xlink:href="#stroked-male-user"></use>
-                            </svg> User <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li style="display: block;"><a href="login.html"> <svg
-										class="glyph stroked male-user">
-                                        <use
-											xlink:href="#stroked-male-user"></use>
-                                    </svg> Entrar
-							</a></li>
-							<li style="display: block;"><a href="politica.html"> <svg
-										class="glyph stroked gear">
-                                        <use xlink:href="#stroked-gear"></use>
-                                    </svg>Política de privacidad
-							</a></li>
-
-						</ul></li>
-				</ul>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a href="#" type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target="#sidebar-collapse"> <span
+								class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</a> <a class="navbar-brand" href="#"> </a>
+							<ul class="user-menu">
+								<li class="dropdown pull-right"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown"><img
+										class="img-circle" src="user/img/userBlocked.svg"
+										style="height: 30px;" /> Acceder <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li style="display: block;"><a href="login"> <img
+												class="img-circle" src="user/img/userBlocked.svg"
+												height="30px" /> Entrar
+										</a></li>
+										<li style="display: block;"><a href="ffbet/policy-terms">
+												<img class="img-circle" src="user/img/policy.svg"
+												height="30px" /> Política de privacidad
+										</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
@@ -75,9 +84,6 @@
 			</a></li>
 			<li><a href="promociones"> <img class="glyph stroked pencil"
 					src="user/img/star.svg" /> Ofertas y Promociones
-			</a></li>
-			<li><a href="micuenta"> <img class="glyph stroked pencil"
-					src="user/img/userlogo.svg" />Mi Cuenta
 			</a></li>
 			<li role="presentation" class="divider"></li>
 			<li class="active"><a href="registrarse"> <svg
@@ -129,7 +135,7 @@
 									<label class="col-md-3 control-label" for="name">Primer
 										apellido</label>
 									<div class="col-md-9">
-										<input id="name" name="surname" type="text"
+										<input id="surname" name="surname" type="text"
 											placeholder="Tu primer apellido" class="form-control"
 											required>
 									</div>
@@ -138,7 +144,7 @@
 									<label class="col-md-3 control-label" for="name">Segundo
 										apellido</label>
 									<div class="col-md-9">
-										<input id="surname" name="name" type="text"
+										<input id="secondSurname" name="secondSurname" type="text"
 											placeholder="Tu segundo apellido" class="form-control"
 											required>
 									</div>

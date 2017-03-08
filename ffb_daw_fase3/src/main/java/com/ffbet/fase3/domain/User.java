@@ -41,6 +41,9 @@ public class User {
 
 	@Column(nullable = false)
 	private String surname;
+	
+	@Column
+	private String secondSurname;
 
 	@Column(nullable = false)
 	private String dni;
@@ -48,7 +51,7 @@ public class User {
 	@Column(nullable = false)
 	private String email;
 
-	private int telephone;
+	private String telephone;
 
 	@Column(nullable = false)
 	private String password;
@@ -75,9 +78,11 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
+	@Column
 	private boolean isMen;
+	@Column
 	private boolean isPhotoSelected;
-	
+	@Column
 	private double credit;
 
 	/* CONSTRUCTORS */
@@ -107,7 +112,7 @@ public class User {
 	 * @param location
 	 * @param profile_image
 	 */
-	public User(String name, String surname, String dni, String email, int telephone, String password, String country,
+	public User(String name, String surname, String dni, String email, String telephone, String password, String country,
 			String city, String location, byte[] profile_image, String... roles) {
 		this.name = name;
 		this.surname = surname;
@@ -140,6 +145,16 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.isMen = isMen;
 		this.isPhotoSelected = false;
+		
+		
+		this.country = "Añada un pais..";
+		this.city = "Añada una ciudad..";
+		this.location = "Añada un domicilio..";
+		
+		
+		
+		
+		
 	}
 
 	/* GETTERS & SETTER */
@@ -207,7 +222,7 @@ public class User {
 	/**
 	 * @return the telephone
 	 */
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
@@ -215,7 +230,7 @@ public class User {
 	 * @param telephone
 	 *            the telephone to set
 	 */
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
@@ -231,7 +246,7 @@ public class User {
 	 *            the password to set
 	 */
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
 	/**
@@ -307,6 +322,17 @@ public class User {
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
+	
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRole(String role){
+		this.getRoles().add(role);
+	}
 
 	/**
 	 * @return the id
@@ -378,12 +404,7 @@ public class User {
 		this.isMen = isMen;
 	}
 
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
+	
 
 	/**
 	 * @return the isPhotoSelected
@@ -421,6 +442,26 @@ public class User {
 	 */
 	public void setCredit(double credit) {
 		this.credit = credit;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the secondSurname
+	 */
+	public String getSecondSurname() {
+		return secondSurname;
+	}
+
+
+	/**
+	 * @param secondSurname the secondSurname to set
+	 */
+	public void setSecondSurname(String secondSurname) {
+		this.secondSurname = secondSurname;
 	}
 
 

@@ -27,7 +27,7 @@ public class DatabaseUsersLoader {
 			}
 		}
 		userRepository
-				.save(new User("Admin", "surname", "12334-Z", "admin@hotmail.com", "passadmin", true, "ROLE_ADMIN"));
+				.save(new User("Admin", "surname", "12334-Z", "admin@hotmail.com", "passadmin", true, "ROLE_ADMIN", "ROLE_USER"));
 	}
 
 }
