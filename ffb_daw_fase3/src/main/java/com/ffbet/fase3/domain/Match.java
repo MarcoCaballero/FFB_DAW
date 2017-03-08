@@ -41,6 +41,8 @@ public abstract class Match {
 	@Column(nullable = false)
 	protected Time time;
 	@Column(nullable = false)
+	protected String type;
+	@Column(nullable = false)
 	protected String homeTeam;
 	@Column(nullable = false)
 	protected String visitingTeam;
@@ -78,11 +80,12 @@ public abstract class Match {
 	 * @param (required)
 	 *            quotaVisitingVictory, the quota of visiting victory's bet
 	 */
-	public Match(Date date, Time time, String homeTeam, String visitingTeam, double quotaHomeVictory,
-			double quotaVisitingVictory) {
+	public Match(Date date, Time time,String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
+			int quotaVisitingVictory) {
 		super();
 		this.date = date;
 		this.time = time;
+		this.type=type;
 		this.homeTeam = homeTeam;
 		this.visitingTeam = visitingTeam;
 		this.quotaHomeVictory = quotaHomeVictory;
@@ -90,6 +93,14 @@ public abstract class Match {
 	}
 
 	// GETTERS & SETTERS
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public long getId() {
 		return id;
