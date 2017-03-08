@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 @Component
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {
@@ -22,26 +23,35 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private UserAuthComponent userComponent;
+
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		User user = userRepository.findByName(auth.getName());
+		String email = auth.getName();
+		String password = (String) auth.getCredentials();
+
+		User user = userRepository.findByEmail(email);
 
 		if (user == null) {
 			throw new BadCredentialsException("User not found");
 		}
 
-		String password = (String) auth.getCredentials();
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+
 			throw new BadCredentialsException("Wrong password");
-		}
+		} else {
 
-		List<GrantedAuthority> roles = new ArrayList<>();
-		for (String role : user.getRoles()) {
-			roles.add(new SimpleGrantedAuthority(role));
-		}
+			userComponent.setLoggedUser(user);
 
-		return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+			List<GrantedAuthority> roles = new ArrayList<>();
+			for (String role : user.getRoles()) {
+				roles.add(new SimpleGrantedAuthority(role));
+			}
+
+			return new UsernamePasswordAuthenticationToken(email, password, roles);
+		}
 	}
 
 	@Override

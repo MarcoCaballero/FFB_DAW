@@ -11,14 +11,23 @@ import com.ffbet.fase3.repositories.UserRepository;
 @Component
 public class DatabaseUsersLoader {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @PostConstruct
-    private void initDatabase() {
-    	
-    	userRepository.save(new User("user", "surname", "12334-Z","user@hotmail.com", "pass", "ROLE_USER" ));
-    	userRepository.save(new User("admin", "surname", "12334-Z","admin@hotmail.com", "passadmin", "ROLE_ADMIN" , "ROLE_USER"));
-    }
+	@PostConstruct
+	private void initDatabase() {
+
+		for (int i = 0; i < 10; i++) {
+			if (i % 2 == 0) {
+				userRepository.save(
+						new User("user", "surname", "12334-Z", "user@hotmail" + i + ".com", "pass", true, "ROLE_USER"));
+			} else {
+				userRepository.save(
+						new User("user", "surname", "12334-Z", "user@hotmail" + i + ".com", "pass", false, "ROLE_USER"));
+			}
+		}
+		userRepository
+				.save(new User("Admin", "surname", "12334-Z", "admin@hotmail.com", "passadmin", true, "ROLE_ADMIN"));
+	}
 
 }

@@ -21,7 +21,7 @@ import com.ffbet.fase3.domain.SportTeam;
  * @version 1.0
  */
 public abstract class RedirectController {
-
+	
 	/**
 	 * Method {@linkplain check_url()} to get the correct template from similar
 	 * URLs. Considering wrong path = "/page/" or /page/method/", a good path
@@ -53,6 +53,8 @@ public abstract class RedirectController {
 		}
 
 	}
+	
+	
 	
 	
 

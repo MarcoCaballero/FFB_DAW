@@ -1,13 +1,23 @@
 package com.ffbet.fase3.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import  com.ffbet.fase3.domain.TemplatesPath;
-
+import com.ffbet.fase3.domain.BetTicket;
+import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.repositories.BetTicketRepository;
+import com.ffbet.fase3.repositories.EgamesTeamRepository;
+import com.ffbet.fase3.repositories.Egames_match_repository;
+import com.ffbet.fase3.repositories.PromotionRepository;
+import com.ffbet.fase3.repositories.SportTeamRepository;
+import com.ffbet.fase3.repositories.Sports_match_repository;
+import com.ffbet.fase3.repositories.UserRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
  * Controller class {@link AdminHomeController} provides methods to map the
@@ -23,6 +33,23 @@ import  com.ffbet.fase3.domain.TemplatesPath;
 @Controller
 public class AdminHomeController extends RedirectController {
 
+	@Autowired
+	UserRepository userRepo;
+	@Autowired
+	EgamesTeamRepository egamesTeamRepo;
+	@Autowired
+	SportTeamRepository sportTeamRepo;
+	@Autowired
+	PromotionRepository promoRepo;
+	@Autowired
+	BetTicketRepository betRepo;
+	@Autowired
+	Sports_match_repository sportMatchRepo;
+	@Autowired
+	Egames_match_repository egamesMatchRepo;
+	@Autowired
+	UserAuthComponent usercomponent;
+
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
@@ -34,14 +61,40 @@ public class AdminHomeController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-home", "/admin-home/", "/admin", "/admin/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
-			// Checks the URLs with "/*" pattern
-			// Delete the last bar if the requested URL is like "/*/"
-			String response = check_url(request, TemplatesPath.ADMIN_HOME.toString());
-			return response;
+		int totalMoney = 0;
+		String activeUser = "NO REGISTRADO";
+		for (int i = 0; i < betRepo.findAll().size(); i++) {
+			BetTicket ticket = betRepo.findAll().get(i);
+			totalMoney += ticket.getAmount();
+		}
+
+	
+
+			User userlogged = usercomponent.getLoggedUser();
+			activeUser = userlogged.getName();
 		
-		
+
+		model.addAttribute("UsuarioActivo", activeUser);
+		model.addAttribute("Users", userRepo.findAll());
+		model.addAttribute("totalUSer", userRepo.findAll().size());
+		model.addAttribute("totalTeams", sportTeamRepo.findAll().size() + egamesTeamRepo.findAll().size());
+		model.addAttribute("totalBets", betRepo.findAll().size());
+		model.addAttribute("totalMoney", totalMoney);
+		model.addAttribute("totalPromotions", promoRepo.findAll().size());
+		model.addAttribute("totalMatches", sportMatchRepo.findAll().size() + egamesMatchRepo.findAll().size());
+
+		// Checks the URLs with "/*" pattern
+		// Delete the last bar if the requested URL is like "/*/"
+		String response = check_url(request, TemplatesPath.ADMIN_HOME.toString());
+		return response;
 
 	}
 
-	
+	@GetMapping("/admin-home/delete/{id}")
+	public String removeUser(@PathVariable Long id) {
+
+		userRepo.delete(id);
+		return "redirect:/admin/";
+	}
+
 }
