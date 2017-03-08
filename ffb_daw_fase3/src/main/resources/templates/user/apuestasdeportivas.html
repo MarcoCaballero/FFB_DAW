@@ -207,7 +207,7 @@
             </li>
             {{#isUsermenuActive}} 
             <li>
-                <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
+                <a href="user-account"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
             </li>
             <li role="presentation" class="divider"></li>
             <li>
@@ -215,7 +215,7 @@
 					 
 						<div class="progress" onclick="callHref('user-account')" >
 						  <div onclick="callHref('user-account')" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-						  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+						  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
 						    40% (4/10) Ok
 						  </div>
 						</div>
@@ -245,7 +245,7 @@
             {{^isUsermenuActive}} 
             <li role="presentation" class="divider"></li>
             <li>
-                <a href="user-signup">
+                <a href="signup">
                     <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate</a>
@@ -293,7 +293,7 @@
                                 <div class="carousel-caption">
                                     <h1>
                                     </h1>
-                                    <p class="publicidadCarousel"><code>APUESTA</code>--<code>DIVIERTETE</code>--<code>GANA</code> CON <img src="img/faviconFFBpngGreen.png" style="height: 50px;" /></p>
+                                    <p class="publicidadCarousel"><code>APUESTA</code>--<code>DIVIERTETE</code>--<code>GANA</code> CON <img src="user/img/faviconFFBpngGreen.png" style="height: 50px;" /></p>
                                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                                 </div>
                             </div>
@@ -585,25 +585,33 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row" style="padding-top:20px;">
-                            <div class="col-md-8" style="color:black; padding-top:5px;"><i>Tiene un código promocional?</i></div>
-                            <div class="col-md-4" style="color:black;">
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-8" style="color:black;"><i>Tiene un código promocional?</i></div>
+                            <div class="col-md-4" style="color:black; margin-top: 5%;">
                                 <form role="contentinfo">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="XXXXXX"> </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="row" style="padding-top:20px;">
-                            <div class="col-md-8" style="color:black; padding-top:5px;"><b>Ganancias posibles:</b></div>
-                            <div class="col-md-4" style="color:black;"><b>187.76€</b></div>
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-8" style="color:black;"><b>Ganancias posibles:</b></div>
+                            <div class="col-md-4" style="color:black; margin-top: 5%;"><b>187.76€</b></div>
                         </div>
-                        <div class="row" style="padding-top:50px;">
-                            <div class="col-md-7" style="color:black; padding-top:10px;"></div>
+                        <div class="row" style="margin-top:50px;">
+                            <div class="col-md-7" style="color:black;">Pulse para enviar:</div>
                             <div class="col-md-5" style="color:black;">
-                                 <div class="col-md-8" style="color:black; padding-top:5px; left:-40%;"><b>Pulse para enviar:</b></div>
+                                 <div class="col-md-8" ><b style="color:black; margin-top: 5%; left:-10%;"></b></div>
+                                  
+                                  
+                                  		{{#isUsermenuActive}}
                                   <div class="buttonAnimation" onclick="functionDemo2();"> <span class="plane transition"></span> <span class="check" style="display: none;"></span> </div>
-       								<p></p>
+       									{{/isUsermenuActive}}		
+       									{{^isUsermenuActive}}
+       							<div class="buttonAnimation" onclick="functionDemoCheckNot();"> <span class="plane transition"></span> <span class="checknot" style="display: none;"></span> </div>
+       									
+       									{{/isUsermenuActive}}
+       							
                             </div>
                         </div>
                         <div class="row" style="padding-top:50px;">
@@ -807,7 +815,25 @@
                     $('.plane').removeClass('active');
                     window.location.href = "user-sportsBet";
                 }, 4000)
-                
+               
+               
+            };
+            
+            function functionDemoCheckNot() {
+            	$('.plane').addClass('active');
+                setTimeout(function () {
+                    $('.checknot').fadeIn();
+                }, 500)
+                setTimeout(function () {
+                        $('.checknot').addClass('active');
+                    }, 1000)
+                    // RETURN TO DEFAULT
+                setTimeout(function () {
+                    $('.checknot').fadeOut().removeClass('active');
+                    $('.plane').removeClass('active');
+                    window.location.href = "login";
+                }, 4000)
+            	
                
             };
             

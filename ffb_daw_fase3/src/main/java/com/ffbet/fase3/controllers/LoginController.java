@@ -118,7 +118,7 @@ public class LoginController extends RedirectController {
 
 	@PostMapping("signup/new")
 	public String addUser(ModelAndView model, @RequestParam("telf") String telephone, @RequestParam("pass") String pass,
-			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex, User user) {
+			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex, @RequestParam("secondSurname") String secondSurname, User user) {
 		String redirectFromRole = redirectSignup;
 		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
 
@@ -128,8 +128,12 @@ public class LoginController extends RedirectController {
 			user.setPassword(pass);
 
 			if ((telephone != null) && telephone != "")
-				user.setTelephone(Integer.parseInt(telephone));
-
+				user.setTelephone(telephone);
+			
+			if((secondSurname != null) && secondSurname != ""){
+				user.setSecondSurname(secondSurname);
+			}
+			
 			if (userComponent.isLoggedUser()) {
 				if (userComponent.getLoggedUser().getRoles().contains("ROLE_ADMIN")) {
 					redirectFromRole = redirectAdminHome;

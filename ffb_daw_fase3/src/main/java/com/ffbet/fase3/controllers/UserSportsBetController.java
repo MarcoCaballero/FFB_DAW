@@ -40,7 +40,7 @@ public class UserSportsBetController extends RedirectController {
 		
 		
 		model.addAttribute("isUsermenuActive", showsUserMenu);
-		
+
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"

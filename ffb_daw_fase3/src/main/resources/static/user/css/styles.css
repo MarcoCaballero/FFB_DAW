@@ -1245,7 +1245,7 @@ a.todo-list-item:focus {
 .jssor_banner3 {
     position: absolute;
     display: block;
-    background: url('img/loading.gif') no-repeat center center;
+    background: url('../user/img/loading.gif') no-repeat center center;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -1666,8 +1666,8 @@ a.todo-list-item:focus {
 
 
 .buttonAnimation {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     position: absolute;
     background: rgb(244, 216, 106);
     bottom: 0;
@@ -1758,14 +1758,85 @@ a.todo-list-item:focus {
 }
 
 
-<!--PRUEBA PROGRESS-->
+
+.checknot {
+	
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(220, 45, 45, 0.94);
+    display: none;
+}
+.checknot.active {
+    display: block;
+}
+.checknot:before,
+.checknot:after {
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+}
+.checknot:before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 10px;
+    background: white;
+    -webkit-transform: rotate(-150deg);
+    -moz-transform: rotate(-150deg);
+    transform: rotate(-150deg);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 60px;
+    left: 60px;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+}
+.checknot:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 10px;
+    background: white;
+    -webkit-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 60px;
+    left: 15px;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+}
+.checknot.active:before {
+    width: 60px;
+}
+.checknot.active:after {
+    width: 60px;
+}
+
 .progress {
        cursor: help;
+       color: black;
 }
 .progress-bar {
        cursor: help;
+       
+       color: black;
 }
 
-
+#fileImage.readonly { 
+ cursor: crosshair;
+}
 
 

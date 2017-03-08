@@ -21,10 +21,25 @@ public class UserPromosController extends RedirectController{
 
 	@Autowired
 	UserAuthComponent userComp;
+
+	private boolean showsUserMenu = false;
 	
 	@GetMapping(value = { "/user-promos", "/user-promos/"})
 	public String getTemplate(HttpServletRequest request, Model model) {
+		if(userComp.isLoggedUser()){
+			showsUserMenu  = true;
+			model.addAttribute("user", userComp.getLoggedUser());
+			if(!userComp.getLoggedUser().isPhotoSelected()){
+				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
+			}else{
+				//Use image controller
+			}
+		}else{
+			showsUserMenu = false;
+		}
 		
+		
+		model.addAttribute("isUsermenuActive", showsUserMenu);
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_PROMOTIONS.toString());
