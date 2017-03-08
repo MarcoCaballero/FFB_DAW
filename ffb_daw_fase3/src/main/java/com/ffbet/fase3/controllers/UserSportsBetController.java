@@ -17,14 +17,31 @@ import com.ffbet.fase3.security.UserAuthComponent;
  *
  */
 @Controller
-public class UserSportsBetController extends RedirectController{
+public class UserSportsBetController extends RedirectController {
 
 	@Autowired
 	UserAuthComponent userComp;
-	
-	@GetMapping(value = { "/user-sportsBet", "/user-sportsBet/"})
+	private boolean showsUserMenu = false;
+
+	@GetMapping(value = { "/user-sportsBet", "/user-sportsBet/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
 		
+		if(userComp.isLoggedUser()){
+			showsUserMenu = true;
+			model.addAttribute("user", userComp.getLoggedUser());
+			if(!userComp.getLoggedUser().isPhotoSelected()){
+				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
+			}else{
+				//Use image controller
+			}
+		}else{
+			showsUserMenu = false;
+		}
+		
+		
+		model.addAttribute("isUsermenuActive", showsUserMenu);
+		
+
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_SPORT_BET.toString());

@@ -34,6 +34,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/signup").permitAll();
 		http.authorizeRequests().antMatchers("/user").permitAll();
 		http.authorizeRequests().antMatchers("/user/").permitAll();
+		http.authorizeRequests().antMatchers("/user-account/").permitAll();
+		http.authorizeRequests().antMatchers("/user-account").permitAll();
 
 		http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
 
@@ -49,12 +51,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 //		http.authorizeRequests().antMatchers("/user").hasAnyRole("USER");
 //		http.authorizeRequests().antMatchers("/user/").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*/").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*/*").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*/*/").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*/*/*").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/user-*/*/*/").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/user-account").hasAnyRole("USER");
 
 		// Acces Denied redirect
 		http.exceptionHandling().accessDeniedPage("/decideDenied");
