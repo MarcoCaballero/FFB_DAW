@@ -25,15 +25,15 @@ public class CreditCard {
 	@Column(nullable = false)
 	private String name;
 	@Column(nullable = false)
-	private String surName;
+	private String cardNumber;
 	@Column(nullable = false)
-	private String secondSurName;
+	private int expirationMonth;
 	@Column(nullable = false)
-	private int cardNumber;
-	@Column(nullable = false)
-	private String expirationDate;
+	private int expirationYear;
 	@Column(nullable = false)
 	private int securityCode;
+	@Column(nullable = false)
+	private double credit;
 	
 	// CONSTRUCTORS
 	
@@ -44,25 +44,49 @@ public class CreditCard {
 	public CreditCard() {
 	}
 	
+	
+
 	/**
-	 * @param (required) type, the type of credit card
-	 * @param (required) name, the name of the credit card's owner
-	 * @param (required) surName, the surname of the credit card's owner
-	 * @param (required) secondSurName, the second surname of the credit cards's owner
-	 * @param (required) cardNumber, the number of credit card
-	 * @param (required) expirationDate, the expiration date of credit card
-	 * @param (required) securityCode, the security code of credit card
-	 *
+	 * @param id
+	 * @param type
+	 * @param name
+	 * @param cardNumber
+	 * @param expirationMonth
+	 * @param expirationYear
+	 * @param securityCode
+	 * @param credit
 	 */
-	public CreditCard(String type, String name, String surName, String secondSurName, int cardNumber,
-			String expirationDate, int securityCode) {
+	public CreditCard(String type, String name, String cardNumber, int expirationMonth, int expirationYear,
+			int securityCode, double credit) {
 		this.type = type;
 		this.name = name;
-		this.surName = surName;
-		this.secondSurName = secondSurName;
 		this.cardNumber = cardNumber;
-		this.expirationDate = expirationDate;
+		this.expirationMonth = expirationMonth;
+		this.expirationYear = expirationYear;
 		this.securityCode = securityCode;
+		this.credit = credit;
+	}
+
+
+	
+	/**
+	 * @param id
+	 * @param type
+	 * @param name
+	 * @param cardNumber
+	 * @param expirationMonth
+	 * @param expirationYear
+	 * @param securityCode
+	 */
+	public CreditCard(String type, String name, String cardNumber, int expirationMonth, int expirationYear,
+			int securityCode) {
+		this.type = type;
+		this.name = name;
+		this.cardNumber = cardNumber;
+		this.expirationMonth = expirationMonth;
+		this.expirationYear = expirationYear;
+		this.securityCode = securityCode;
+		this.credit = 500.00;
 	}
 
 	// GETTERS & SETTERS
@@ -85,35 +109,98 @@ public class CreditCard {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSurName() {
-		return surName;
-	}
-	public void setSurName(String surName) {
-		this.surName = surName;
-	}
-	public String getSecondSurName() {
-		return secondSurName;
-	}
-	public void setSecondSurName(String secondSurName) {
-		this.secondSurName = secondSurName;
-	}
-	public int getCardNumber() {
+	
+	public String getCardNumber() {
 		return cardNumber;
 	}
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	public String getExpirationDate() {
-		return expirationDate;
-	}
-	public void setExpirationDate(String expirationDate) {
-		this.expirationDate = expirationDate;
-	}
+	
 	public int getSecurityCode() {
 		return securityCode;
 	}
 	public void setSecurityCode(int securityCode) {
 		this.securityCode = securityCode;
+	}
+
+
+
+	/**
+	 * @return the expirationMonth
+	 */
+	public int getExpirationMonth() {
+		return expirationMonth;
+	}
+
+
+
+	/**
+	 * @param expirationMonth the expirationMonth to set
+	 */
+	public void setExpirationMonth(int expirationMonth) {
+		this.expirationMonth = expirationMonth;
+	}
+
+
+
+	/**
+	 * @return the expirationYear
+	 */
+	public int getexpirationYear() {
+		return expirationYear;
+	}
+
+
+
+	/**
+	 * @param expirationYear the expirationYear to set
+	 */
+	public void setexpirationYear(int expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+	
+	
+	
+	
+	/**
+	 * @return the expirationYear
+	 */
+	public int getExpirationYear() {
+		return expirationYear;
+	}
+
+
+
+	/**
+	 * @param expirationYear the expirationYear to set
+	 */
+	public void setExpirationYear(int expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+
+
+
+	/**
+	 * @return the credit
+	 */
+	public double getCredit() {
+		return credit;
+	}
+
+
+
+	/**
+	 * @param credit the credit to set
+	 */
+	public void setCredit(double credit) {
+		this.credit = credit;
+	}
+
+
+
+	public void sendMoney(double money){
+		this.setCredit(this.getCredit()-money);
 	}
 
 }
