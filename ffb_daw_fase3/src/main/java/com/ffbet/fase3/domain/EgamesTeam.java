@@ -14,7 +14,6 @@ import javax.persistence.Entity;
 public class EgamesTeam extends Team {
 
 	/* COLUMNS */
-	private String sede;
 	private String sponsor;
 
 	/* CONSTRUCTORS */
@@ -28,7 +27,6 @@ public class EgamesTeam extends Team {
 	/**
 	 * Contains all own parameters and all parameters from superclass
 	 * 
-	 * @param sede
 	 * @param sponsor
 	 * @param id
 	 * @param name
@@ -36,43 +34,26 @@ public class EgamesTeam extends Team {
 	 * @param country
 	 * @param city
 	 */
-	public EgamesTeam(String sede, String type, String sponsor, long id, String name, String coach, String country, String city) {
+	public EgamesTeam(String type, String sponsor, long id, String name, String coach, String country, String city) {
 		super(name, coach, country, city, type);
-		this.sede = sede;
 		this.sponsor = sponsor;
 	}
 
 	/**
 	 * Contains all own parameters and the required parameters from superclass
 	 * 
-	 * @param sede
 	 * @param sponsor
 	 * @param id
 	 * @param name
 	 * @param coach
 	 */
-	public EgamesTeam(String sede, String type, String sponsor, long id, String name, String coach) {
+	public EgamesTeam(String type, String sponsor, long id, String name, String coach) {
 		super(name, coach,type);
-		this.sede = sede;
 		this.sponsor = sponsor;
 	}
 
 	/* GETTERS & SETTER */
-	/**
-	 * @return the sede
-	 */
-	public String getSede() {
-		return sede;
-	}
-
-	/**
-	 * @param sede
-	 *            the sede to set
-	 */
-	public void setSede(String sede) {
-		this.sede = sede;
-	}
-
+	
 	/**
 	 * @return the sponsor
 	 */

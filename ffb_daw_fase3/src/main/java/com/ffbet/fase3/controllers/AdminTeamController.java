@@ -9,17 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ffbet.fase3.domain.EgamesTeam;
+import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
+import com.ffbet.fase3.repositories.MatchRepository;
+import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
+import com.ffbet.fase3.repositories.TeamRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
- * Controller class {@link AdminTeamController} provides methods to map the URL's
- * that reference to the {@link Team} Entity. This controller also extends to an
- * Abstract class {@link RedirectController} that provides methods common to
- * several controllers
+ * Controller class {@link AdminTeamController} provides methods to map the
+ * URL's that reference to the {@link Team} Entity. This controller also extends
+ * to an Abstract class {@link RedirectController} that provides methods common
+ * to several controllers
  * 
  * 
  * @see {@link Team}, {@link RedirectController}
@@ -29,12 +37,29 @@ import com.ffbet.fase3.repositories.Sports_match_repository;
 @Controller
 public class AdminTeamController extends RedirectController {
 
-	String template =  TemplatesPath.ADMIN_TEAM.toString();
+	String template = TemplatesPath.ADMIN_TEAM.toString();
 	String redirect = "redirect:/admin-teams/";
+
 	@Autowired
-	Sports_match_repository sport_match_repo;
+	Sports_match_repository sportMatchRepo;
 	@Autowired
-	Egames_match_repository egames_match_repo;
+	Egames_match_repository egamesMatchRepo;
+	@Autowired
+	MatchRepository matchRepo;
+
+	@Autowired
+	TeamRepository teamRepo;
+	@Autowired
+	SportTeamRepository sportsTeamRepo;
+	@Autowired
+	EgamesTeamRepository egamesTeamRepo;
+
+	@Autowired
+	UserAuthComponent usercomponent;
+
+	private boolean noFailsNewSport = false;
+	private boolean noFailsNewEgames = false;
+
 	/* ADMIN */
 
 	/**
@@ -46,8 +71,20 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping(value = { "/admin-teams","/admin-teams/" })
+	@GetMapping(value = { "/admin-teams", "/admin-teams/" })
 	public String getTeamTemplate(HttpServletRequest request, Model model) {
+
+		if (usercomponent.isLoggedUser()) {
+			model.addAttribute("UsuarioActivo", usercomponent.getLoggedUser().getName());
+		} else {
+			return "redirect:/logOut";
+		}
+
+		model.addAttribute("SportsTeams", sportsTeamRepo.findAll());
+		model.addAttribute("EgamesTeams", egamesTeamRepo.findAll());
+
+		model.addAttribute("noBadNewSport", noFailsNewSport);
+		model.addAttribute("noBadNewEgames", noFailsNewEgames);
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -55,9 +92,6 @@ public class AdminTeamController extends RedirectController {
 		return response;
 
 	}
-
-		
-	
 
 	/**
 	 * Method {@linkplain addTeam()} uses the abstract class
@@ -68,9 +102,77 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping(value = { "/admin-teams/new", "/admin-teams/new/" })
-	public String addTeam() {
-		
+	@PostMapping(value = { "/admin-teams/newSportsTeam" })
+	public String addSportsTeam(SportTeam team, @RequestParam("sportsType") String type,
+			@RequestParam("sportsName") String name, @RequestParam("sportsCountry") String country,
+			@RequestParam("sportsCity") String city, @RequestParam("stadium") String stadium,
+			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
+			@RequestParam("sportsCoach") String coach, @RequestParam("leaguesWeb") String leagues,
+			@RequestParam("cupsWeb") String cups, @RequestParam("championsWeb") String champions,
+			@RequestParam("stadiumImage") String sImage, @RequestParam("logoImage") String lImage,
+			@RequestParam("facebook_Uri") String fb, @RequestParam("twitter_Uri") String tw,
+			@RequestParam("google_Uri") String go) {
+
+		try {
+			team.setType(type);
+			team.setName(name);
+			team.setCountry(country);
+			team.setCity(city);
+			team.setStadium(stadium);
+			team.setSlogan(slogan);
+			team.setPresident(president);
+			team.setCoach(coach);
+			team.setLeagues(Integer.parseInt(leagues));
+			team.setCups(Integer.parseInt(cups));
+			team.setChampions(Integer.parseInt(champions));
+			team.setFacebook_Uri(fb);
+			team.setTwitter_Uri(tw);
+			team.setGoogle_Uri(go);
+
+			// team.setStadium_image(sImage);
+			// team.setLogo_image(lImage);
+
+			sportsTeamRepo.save(team);
+
+			noFailsNewSport = false;
+		} catch (Exception e) {
+			noFailsNewSport = true;
+		}
+
+		return redirect;
+
+	}
+
+	/**
+	 * Method {@linkplain addTeam()} uses the abstract class
+	 * {@link RedirectController} to get the correct template from similar URLs,
+	 * and shows it through the browser with the new team ADDED.
+	 * 
+	 * @return
+	 */
+	@PostMapping(value = { "/admin-teams/newEgamesTeam" })
+	public String addEgamesTeam(EgamesTeam team, @RequestParam("egamesType") String type,
+			@RequestParam("egamesName") String name, @RequestParam("egamesCountry") String country,
+			@RequestParam("egamesCity") String city, @RequestParam("egamesCoach") String coach,
+			@RequestParam("sponsor") String sponsor) {
+
+		if ((name == " ") || (country == " ") || (city == " ") || (coach == " ") || (sponsor == " ")) {
+			team.setType(type);
+			team.setName(name);
+			team.setCountry(country);
+			team.setCity(city);
+			team.setCoach(coach);
+			team.setSponsor(sponsor);
+
+			egamesTeamRepo.save(team);
+
+			noFailsNewEgames = false;
+			
+			System.out.println("Nombre: " + name);
+		} else {
+			noFailsNewEgames = true;
+		}
+
 		return redirect;
 
 	}
@@ -84,9 +186,24 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@PutMapping("/admin-teams/update/{id}")
-	public String updateTeamByID(Model model, @PathVariable("id") long updating_id) {
+	@PutMapping("/admin-teams/updateSports/{id}")
+	public String updateSportsTeam(Model model, @PathVariable("id") long updating_id) {
+
+		return redirect;
+	}
 	
+	/**
+	 * Method {@linkplain updateTeamByID()} uses the abstract class
+	 * {@link RedirectController} to get the correct template from similar URLs,
+	 * and shows it through the browser with the updated team [selected by id].
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@PutMapping("/admin-teams/updateEgames/{id}")
+	public String updateEgamesTeam(Model model, @PathVariable("id") long updating_id) {
+
 		return redirect;
 	}
 
@@ -99,12 +216,13 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@DeleteMapping("/admin-teams/delete/{id}")
-	public String deleteTeamByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-	
+	@GetMapping("/admin-teams/delete/{id}")
+	public String deleteTeamByID(@PathVariable("id") long id) {
+
+		teamRepo.delete(id);
+
 		return redirect;
 
 	}
 
-	
 }
