@@ -85,9 +85,6 @@ public class EgamesMatch extends Match {
 
 	// GETTERS & SETTERS
 
- 
-	
-	
 	public boolean isWinVisiting() {
 		return winVisiting;
 	}

@@ -40,11 +40,17 @@
 	<div id="user-nav" class="navbar navbar-inverse">
 		<ul class="nav">
 			<li class=""><a title="" href="#"><i class="icon icon-user"></i>
-					<span class="text">Bienvenido Usuario</span><b class="caret"></b></a></li>
-			<li class=""><a title="" href="#"><i class="icon icon-cog"></i>
-					<span id="reloj" class="text">Hora Local</span></a></li>
-			<li class=""><a title="" href="#"><i
-					class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+					<span class="text">Bienvenido <em>{{UsuarioActivo}}</em></span><b
+					class="caret"></b></a></li>
+			<li class=""><a title="" href="/logOut"><i
+					class="icon icon-cog"></i> <span id="reloj" class="text">Hora
+						Local</span></a></li>
+			<li class=""><form action="/logOut" method="post">
+					<input type="submit" value="Sign Out"
+						class="btn btn-danger btn-block" /> <input type="hidden"
+						name="_csrf" value="{{token}}" />
+				</form></li>
+
 		</ul>
 	</div>
 	<!--close-top-Header-menu-->
@@ -72,8 +78,9 @@
 			<h1>Partidos</h1>
 		</div>
 		<div class="container-fluid">
+		<hr>
 			<div class="row-fluid">
-				<div class="span8">
+				<div class="span12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h5>Tabla de partidos</h5>
@@ -87,6 +94,7 @@
 								<thead>
 									<tr>
 										<th data-field="id" data-sortable="true">ID</th>
+										<th data-field="type" data-sortable="true">Tipo</th>
 										<th data-field="date" data-sortable="true">Fecha</th>
 										<th data-field="time" data-sortable="true">Hora</th>
 										<th data-field="homeTeam" data-sortable="true">Equipo
@@ -99,10 +107,10 @@
 											victoria visitante</th>
 										<th data-field="quotaDrawVictory" data-sortable="true">Cuota
 											empate</th>
-										<th data-field="homePoints" data-sortable="true">Puntos
-											local</th>
-										<th data-field="visitingPoints" data-sortable="true">Puntos
-											visitante</th>
+										<th data-field="quotaHomeFirstBlood" data-sortable="true">Cuota
+											Primera Sangre Local</th>
+										<th data-field="quotaVisitingFirstBlood" data-sortable="true">Cuota
+											Primera Sangre Visitante</th>
 
 										<th data-field="Actions" data-sortable="true">Actions</th>
 									</tr>
@@ -110,15 +118,16 @@
 								{{#Matches}}
 								<tr>
 									<td>{{id}}</td>
-									<td>{{#date}}{{.}}{{/date}}</td>
-									<td>{{#time}}{{.}}{{/time}}</td>
+									<td>{{type}}</td>
+									<td>{{date}}</td>
+									<td>{{time}}</td>
 									<td>{{homeTeam}}</td>
 									<td>{{visitingTeam}}</td>
 									<td>{{quotaHomeVictory}}</td>
 									<td>{{quotaVisitingVictory}}</td>
 									<td>{{#quotaDraw}}{{.}}{{/quotaDraw}}</td>
-									<td>{{#homePoints}}{{.}}{{/homePoints}}</td>
-									<td>{{#visitingPoints}}{{.}}{{/visitingPoints}}</td>
+									<td>{{#quotaHomeFirstBlood}}{{.}}{{/quotaHomeFirstBlood}}</td>
+									<td>{{#quotaVisitingFirstBlood}}{{.}}{{/quotaVisitingFirstBlood}}</td>
 									<td><a href="/admin-matches/delete/{{id}}"
 										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
 											Borrar Partido
@@ -129,7 +138,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="span4">
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h5>Tabla de equipos</h5>
@@ -143,12 +154,14 @@
 								<thead>
 									<tr>
 										<th data-field="id" data-sortable="true">ID</th>
+										<th data-field="type" data-sortable="true">Tipo</th>
 										<th data-field="name" data-sortable="true">Name</th>
 									</tr>
 								</thead>
 								{{#Teams}}
 								<tr>
 									<td>{{id}}</td>
+									<td>{{#type}}{{.}}{{/type}}</td>
 									<td>{{name}}</td>
 								</tr>
 								{{/Teams}}
@@ -197,16 +210,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam"> {{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="homeTeam"> {{#SportsTeams}}
+													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam"> {{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="visitingTeam"> {{#SportsTeams}}
+													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
 												</select>
 											</div>
 											{{#noTeamsFootball}}
@@ -309,16 +322,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam"> {{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="homeTeam"> {{#SportsTeams}}
+													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam"> {{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="visitingTeam"> {{#SportsTeams}}
+													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
 												</select>
 											</div>
 											{{#noTeamsBasket}}
@@ -423,16 +436,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam">{{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="homeTeam">{{#EgamesTeams}}
+													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam">{{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="visitingTeam">{{#EgamesTeams}}
+													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
 												</select>
 											</div>
 										</div>
@@ -548,16 +561,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam">{{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="homeTeam">{{#EgamesTeams}}
+													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam">{{#Teams}}
-													<option value="{{name}}">{{name}}</option> {{/Teams}}
+												<select name="visitingTeam">{{#EgamesTeams}}
+													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
 												</select>
 											</div>
 										</div>

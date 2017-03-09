@@ -29,8 +29,6 @@ public class SportTeam extends Team {
 
 	private int champions;
 
-	private int league_position;
-
 	@Column(length = 10000000)
 	@Lob
 	private byte[] stadium_image;
@@ -73,9 +71,9 @@ public class SportTeam extends Team {
 	 * @param country
 	 * @param city
 	 */
-	public SportTeam(String slogan, String stadium, String type,String president, int leagues, int cups, int champions,
-			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
-			String google_Uri, long id, String name, String coach, String country, String city) {
+	public SportTeam(String slogan, String stadium, String type, String president, int leagues, int cups, int champions,
+			byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
+			long id, String name, String coach, String country, String city) {
 		super(name, coach, country, city, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -83,7 +81,6 @@ public class SportTeam extends Team {
 		this.leagues = leagues;
 		this.cups = cups;
 		this.champions = champions;
-		this.league_position = league_position;
 		this.stadium_image = stadium_image;
 		this.logo_image = logo_image;
 		this.twitter_Uri = twitter_Uri;
@@ -112,8 +109,8 @@ public class SportTeam extends Team {
 	 * @param coach
 	 */
 	public SportTeam(String slogan, String stadium, String type, String president, int leagues, int cups, int champions,
-			int league_position, byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri,
-			String google_Uri, long id, String name, String coach) {
+			byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
+			long id, String name, String coach) {
 		super(name, coach, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -121,7 +118,6 @@ public class SportTeam extends Team {
 		this.leagues = leagues;
 		this.cups = cups;
 		this.champions = champions;
-		this.league_position = league_position;
 		this.stadium_image = stadium_image;
 		this.logo_image = logo_image;
 		this.twitter_Uri = twitter_Uri;
@@ -218,21 +214,6 @@ public class SportTeam extends Team {
 	 */
 	public void setChampions(int champions) {
 		this.champions = champions;
-	}
-
-	/**
-	 * @return the league_position
-	 */
-	public int getLeague_position() {
-		return league_position;
-	}
-
-	/**
-	 * @param league_position
-	 *            the league_position to set
-	 */
-	public void setLeague_position(int league_position) {
-		this.league_position = league_position;
 	}
 
 	/**
