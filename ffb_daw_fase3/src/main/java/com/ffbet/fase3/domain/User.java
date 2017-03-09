@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -41,7 +40,7 @@ public class User {
 
 	@Column(nullable = false)
 	private String surname;
-	
+
 	@Column
 	private String secondSurname;
 
@@ -69,21 +68,29 @@ public class User {
 	@Lob
 	private byte[] profile_image;
 
+	@Column
+	private String photoUrl;
+
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<BetTicket> bet_tickets = new ArrayList<>();
-	
+
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
-	
+
+	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
+	private List<CreditCard> cards = new ArrayList<>();
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	
+
 	@Column
 	private boolean isMen;
 	@Column
 	private boolean isPhotoSelected;
 	@Column
 	private double credit;
+	@Column
+	private double promotionCredit;
 
 	/* CONSTRUCTORS */
 
@@ -93,11 +100,6 @@ public class User {
 	public User() {
 	}
 
-	
-	
-	
-	
-	
 	/**
 	 * All own parameters constructor
 	 * 
@@ -112,8 +114,8 @@ public class User {
 	 * @param location
 	 * @param profile_image
 	 */
-	public User(String name, String surname, String dni, String email, String telephone, String password, String country,
-			String city, String location, byte[] profile_image, String... roles) {
+	public User(String name, String surname, String dni, String email, String telephone, String password,
+			String country, String city, String location, byte[] profile_image, String... roles) {
 		this.name = name;
 		this.surname = surname;
 		this.dni = dni;
@@ -136,25 +138,23 @@ public class User {
 	 * @param e_mail
 	 * @param password
 	 */
-	public User(String name, String surname, String dni, String email, String password, boolean isMen, String... roles) {
+	public User(String name, String surname, String secondSurname, String dni, String email, String password,
+			boolean isMen, String... roles) {
 		this.name = name;
 		this.surname = surname;
+		this.secondSurname = secondSurname;
 		this.dni = dni;
 		this.email = email;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.isMen = isMen;
 		this.isPhotoSelected = false;
-		
-		
+
+		this.telephone = "Añada un teléfono";
 		this.country = "Añada un pais..";
 		this.city = "Añada una ciudad..";
 		this.location = "Añada un domicilio..";
-		
-		
-		
-		
-		
+
 	}
 
 	/* GETTERS & SETTER */
@@ -185,7 +185,7 @@ public class User {
 	 * @param surname
 	 *            the surname to set
 	 */
-	public void setSurname(String surname) {
+	public void cityPre(String surname) {
 		this.surname = surname;
 	}
 
@@ -308,7 +308,7 @@ public class User {
 	public void setProfile_image(byte[] profile_image) {
 		this.profile_image = profile_image;
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -322,15 +322,16 @@ public class User {
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
-	
+
 	/**
-	 * @param roles the roles to set
+	 * @param roles
+	 *            the roles to set
 	 */
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	
-	public void addRole(String role){
+
+	public void addRole(String role) {
 		this.getRoles().add(role);
 	}
 
@@ -342,7 +343,8 @@ public class User {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -356,7 +358,8 @@ public class User {
 	}
 
 	/**
-	 * @param user_FB_account the user_FB_account to set
+	 * @param user_FB_account
+	 *            the user_FB_account to set
 	 */
 	public void setUser_FB_account(UserFB user_FB_account) {
 		this.user_FB_account = user_FB_account;
@@ -370,7 +373,8 @@ public class User {
 	}
 
 	/**
-	 * @param bet_tickets the bet_tickets to set
+	 * @param bet_tickets
+	 *            the bet_tickets to set
 	 */
 	public void setBet_tickets(List<BetTicket> bet_tickets) {
 		this.bet_tickets = bet_tickets;
@@ -384,7 +388,8 @@ public class User {
 	}
 
 	/**
-	 * @param promos the promos to set
+	 * @param promos
+	 *            the promos to set
 	 */
 	public void setPromos(List<Promotion> promos) {
 		this.promos = promos;
@@ -398,13 +403,12 @@ public class User {
 	}
 
 	/**
-	 * @param isMen the isMen to set
+	 * @param isMen
+	 *            the isMen to set
 	 */
 	public void setMen(boolean isMen) {
 		this.isMen = isMen;
 	}
-
-	
 
 	/**
 	 * @return the isPhotoSelected
@@ -414,16 +418,12 @@ public class User {
 	}
 
 	/**
-	 * @param isPhotoSelected the isPhotoSelected to set
+	 * @param isPhotoSelected
+	 *            the isPhotoSelected to set
 	 */
 	public void setPhotoSelected(boolean isPhotoSelected) {
 		this.isPhotoSelected = isPhotoSelected;
 	}
-
-
-
-
-
 
 	/**
 	 * @return the credit
@@ -432,22 +432,13 @@ public class User {
 		return credit;
 	}
 
-
-
-
-
-
 	/**
-	 * @param credit the credit to set
+	 * @param credit
+	 *            the credit to set
 	 */
 	public void setCredit(double credit) {
 		this.credit = credit;
 	}
-
-
-
-
-
 
 	/**
 	 * @return the secondSurname
@@ -456,17 +447,91 @@ public class User {
 		return secondSurname;
 	}
 
-
 	/**
-	 * @param secondSurname the secondSurname to set
+	 * @param secondSurname
+	 *            the secondSurname to set
 	 */
 	public void setSecondSurname(String secondSurname) {
 		this.secondSurname = secondSurname;
 	}
 
+	/**
+	 * @return the photo_url
+	 */
+	public String getPhoto_url() {
+		return photoUrl;
+	}
+
+	/**
+	 * @param photo_url
+	 *            the photo_url to set
+	 */
+	public void setPhoto_url(String photo_url) {
+		this.photoUrl = photo_url;
+	}
+
+	/**
+	 * @return the promotionCredit
+	 */
+	public double getPromotionCredit() {
+		return promotionCredit;
+	}
+
+	/**
+	 * @param promotionCredit
+	 *            the promotionCredit to set
+	 */
+	public void setPromotionCredit(double promotionCredit) {
+		this.promotionCredit = promotionCredit;
+	}
+
+	/**
+	 * @return the photoUrl
+	 */
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	/**
+	 * @param photoUrl
+	 *            the photoUrl to set
+	 */
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
+	/**
+	 * @param surname
+	 *            the surname to set
+	 */
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	/**
+	 * @return the cards
+	 */
+	public List<CreditCard> getCards() {
+		return cards;
+	}
+
+	/**
+	 * @param cards
+	 *            the cards to set
+	 */
+	public void setCards(List<CreditCard> cards) {
+		this.cards = cards;
+	}
 
 	/* OWN METHODS */
 
 	// No one implemented yet..
 
+	public void addCard(CreditCard card) {
+		this.getCards().add(card);
+	}
+
+	public void addCreditfromCard(double money) {
+		this.setCredit(this.getCredit() + money);
+	}
 }

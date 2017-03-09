@@ -35,12 +35,17 @@
 					<li class="dropdown pull-right" style="margin-top: -3%;"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown">
 						 <svg class="glyph stroked male-user"> 
-						 {{#isMen}}
-						 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
-						 {{/isMen}}
-						 {{^isMen}}
-						 	<img class="img-circle" src="user/img/userGirl.svg" height="25px" /> 
-						 {{/isMen}}
+							 {{#user.isPhotoSelected}}
+									<img class="img-circle"" alt=""src="images/avatars/{{user.photoUrl}}" height="25px">
+								{{/user.isPhotoSelected}}
+								{{^user.isPhotoSelected}}
+								{{#user.isMen}}
+									<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
+								{{/user.isMen}}
+								{{^user.isMen}}
+									<img class="img-circle" src="user/img/userGirl.svg" height="25px" /> 
+								{{/user.isMen}}
+						{{/user.isPhotoSelected}}
 						 
 						 </svg> 
 						 {{user.email}}
@@ -51,12 +56,17 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
-												 {{#isMen}}
-												 	<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
-												 {{/isMen}}
-												 {{^isMen}}
-												 	<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
-												 {{/isMen}}
+												 {{#user.isPhotoSelected}}
+														<img class="img-circle"" alt=""src="images/avatars/{{user.photoUrl}}" height="100px">
+													{{/user.isPhotoSelected}}
+													{{^user.isPhotoSelected}}
+													{{#user.isMen}}
+														<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
+													{{/user.isMen}}
+													{{^user.isMen}}
+														<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
+													{{/user.isMen}}
+												{{/user.isPhotoSelected}}
 											</p>
 										</div>
 										<div class="col-lg-8">
@@ -132,17 +142,41 @@
             <li>
                 <a href="promociones"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
             </li>
             <li role="presentation" class="divider"></li>
-            <li>
-                <li>
-                    <a href="registrarse">
-                        <svg class="glyph stroked male-user">
-                            <use xlink:href="#stroked-male-user"></use>
-                        </svg>Registrate</a>
-                </li>
+             <li>
+            	
+					 
+						<div class="progress" onclick="callHref('user-account')" >
+						  <div onclick="callHref('user-account')" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+						  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+						    40% (4/10) Ok
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+						    50% Complete (info)
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% Complete (warning)
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+						  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+						    70% Complete (danger)
+						  </div>
+						</div>	
+			</li>
         </ul>
     </div>
     <!--/.sidebar-->
@@ -166,92 +200,76 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>Deposita saldo en tu cuenta</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="" method="post">
+                        <form class="form-horizontal" action="user-account/addCredit/{{user.id}}" method="post">
                             <fieldset>
                                 <!-- Name input-->
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Elija forma de pago</label>
+                                    <label class="col-md-3 control-label" for="type">Elija forma de pago</label>
                                     <div class="col-md-2">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="user/img/visa.png" /> </label>
+                                                <input type="radio" name="type" id="optionsRadios1" value="visa" checked><img class="glyph stroked pencil" src="user/img/visa.png" /> </label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="user/img/mastercard.png" /> </label>
+                                                <input type="radio" name="type" id="optionsRadios1" value="mastercard" checked><img class="glyph stroked pencil" src="user/img/mastercard.png" /> </label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked><img class="glyph stroked pencil" src="user/img/visaelectron.png" /> </label>
+                                                <input type="radio" name="type" id="optionsRadios1" value="visa-e" checked><img class="glyph stroked pencil" src="user/img/visaelectron.png" /> </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Nombre*</label>
+                                    <label class="col-md-3 control-label" for="name">Titular tarjeta*</label>
                                     <div class="col-md-9">
                                         <input id="name" name="name" type="text" placeholder="Nombre" class="form-control" required> </div>
                                 </div>
+                               
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Primer apellido*</label>
-                                    <div class="col-md-9">
-                                        <input id="name" name="name" type="text" placeholder="Primer apellido" class="form-control" required> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Segundo apellido*</label>
-                                    <div class="col-md-9">
-                                        <input id="name" name="name" type="text" placeholder="Segundo apellido" class="form-control" required> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Nº Tarjeta*</label>
+                                    <label class="col-md-3 control-label" for="cardnumber">Nº Tarjeta*</label>
                                     <div class="col-md-3">
-                                        <input id="dni" name="dni" type="number" placeholder="Nº de Tarjeta" class="form-control" required> </div>
+                                        <input id="dni" name="cardNumber" type="number" min="100000000000000" max="999999999999999" placeholder="Nº de Tarjeta" class="form-control" required> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Validez*</label>
+                                    <label class="col-md-3 control-label" for="expirationDate">Validez*</label>
                                     <div class="col-md-3">
-                                        <input id="dni" name="dni" type="number" max="2999" min="2017" placeholder="Año de caducidad" class="form-control" required> </div>
+                                        <input id="dni" name="Year" type="number" max="2999" min="2017" placeholder="Año de caducidad" class="form-control" required> </div>
                                     <div class="col-md-3">
-                                        <input id="dni" name="dni" type="number" max="12" min="1" placeholder="Mes de caducidad" class="form-control" required> </div>
+                                        <input id="dni" name="Month" type="number" max="12" min="1" placeholder="Mes de caducidad" class="form-control" required> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Codigo de seguridad/CVV2*</label>
+                                    <label class="col-md-3 control-label" for="securityCode">Codigo de seguridad/CCV2*</label>
                                     <div class="col-md-2">
-                                        <input id="dni" name="dni" type="number" placeholder="Código" class="form-control" required> </div>
+                                        <input id="dni" name="ccv" max="999" min="001" type="number" placeholder="Código" class="form-control" required> </div>
                                 </div>
-                                <!-- Email input-->
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="email">Titular tarjeta*</label>
-                                    <div class="col-md-9">
-                                        <input id="email" name="email" type="text" placeholder="Nombre del titular" class="form-control" required> </div>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="country">Importe (€) *</label>
                                     <div class="col-md-2">
-                                        <select class="form-control">
-                                            <option>1.00</option>
-                                            <option>2.00</option>
-                                            <option>5.00</option>
-                                            <option>10.00</option>
-                                            <option>20.00</option>
-                                            <option>50.00</option>
-                                            <option>100.00</option>
+                                        <select class="form-control" name="amount">
+                                            <option value="1">1.00</option>
+                                            <option value="2">2.00</option>
+                                            <option value="5">5.00</option>
+                                            <option value="10">10.00</option>
+                                            <option value="20">20.00</option>
+                                            <option value="50">50.00</option>
+                                            <option value="100">100.00</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">Teléfono</label>
-                                    <div class="col-md-9">
-                                        <input id="telf" name="telf" type="number" placeholder="Teléfono de contacto" class="form-control"> </div>
-                                </div>
+                                
                                 <!-- Form actions -->
                                 <div class="form-group">
                                     <div class="col-md-12 widget-right">
                                         <label class="col-md-3 control-label" for="name">* Campo obligatorio</label>
                                         <button type="submit" class="btn btn-default btn-md pull-right">Depositar</button>
+                                        	<input type="hidden" name="_csrf" value="{{token}}" />
+                                        {{#showsCardError}} <label class="col-md-3 control-label" for="name">ERROR CON LA TARJETA, SALDO NO INTRODUCIDO</label>{{/showsCardError}}
                                     </div>
                                 </div>
                             </fieldset>
