@@ -48,7 +48,8 @@
 			$("#telephone").prop('readonly', false);
 			$("#location").prop('readonly', false);
 			$("#dni").prop('readonly', false);
-			$("#passwd").prop('readonly', false);
+			$("#pass").prop('readonly', false);
+			$("#passRepeat").prop('readonly', false);
 			document.getElementById("editarDatos").innerHTML = "Guardar";
 		} else {
 			$("#name").prop('readonly', true);
@@ -61,7 +62,9 @@
 			$("#location").prop('readonly', true);
 			$("#dni").prop('readonly', true);
 			$("#passwd").prop('readonly', true);
+			$("#passwdR").prop('readonly', true);
 			document.getElementById("editarDatos").innerHTML = "Editar";
+			document.getElementById("form-updateDataUser").submit();
 		}
 		setable = !setable;
 	}
@@ -156,13 +159,21 @@
 					<li class="dropdown pull-right" style="margin-top: -3%;"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
 								class="glyph stroked male-user"> 
-						 {{#isMen}}
-						 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
-						 {{/isMen}}
-						 {{^isMen}}
-						 	<img class="img-circle" src="user/img/userGirl.svg"
-									height="25px" /> 
-						 {{/isMen}}
+																
+						{{#user.isPhotoSelected}}
+								<img class="img-circle" src="images/avatars/{{user.photoUrl}}" height="25px" />
+						{{/user.isPhotoSelected}}
+						{{^user.isPhotoSelected}}
+							{{#user.isMen}}
+							 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
+							 {{/user.isMen}}
+							 {{^user.isMen}}
+							 	<img class="img-circle" src="user/img/userGirl.svg"
+										height="25px" /> 
+							 {{/user.isMen}}
+								
+						{{/user.isPhotoSelected}}
+						
 						 
 						 </svg> {{user.email}} <span class="caret"></span></a>
 						<ul class="dropdown-menu" style="border-radius: 10%;">
@@ -171,10 +182,15 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
-												{{#isMen}} <img class="img-circle"
-													src="user/img/boyUser.svg" height="100px" /> {{/isMen}}
-												{{^isMen}} <img class="img-circle"
-													src="user/img/userGirl.svg" height="100px" /> {{/isMen}}
+											{{#user.isPhotoSelected}}
+												<img class="img-circle" src="images/avatars/{{user.photoUrl}}" height="100px" />  
+											{{/user.isPhotoSelected}}
+											{{^user.isPhotoSelected}}
+												{{#user.isMen}} <img class="img-circle"
+													src="user/img/boyUser.svg" height="100px" /> {{/user.isMen}}
+												{{^user.isMen}} <img class="img-circle"
+													src="user/img/userGirl.svg" height="100px" /> {{/user.isMen}}
+											{{/user.isPhotoSelected}}
 											</p>
 										</div>
 										<div class="col-lg-8">
@@ -191,7 +207,7 @@
 											<p class="text-left">
 												<a href="user-account/addCredit"
 													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
-													href="user-account"
+													href="user-account/withdrawCredit"
 													class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
 													Mi cuenta </a>
@@ -239,19 +255,19 @@
 			<img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%">
 		</section>
 		<ul class="nav menu">
-			<li><a href="index"> <img class="glyph stroked home"
+			<li><a href="user"> <img class="glyph stroked home"
 					src="user/img/home.svg" /> Home
 			</a></li>
-			<li><a href="apuestasdeportivas"> <img
+			<li><a href="user-sportsBet"> <img
 					class="glyph stroked home" src="user/img/ball.svg" />Apuestas
 					Deportivas
 			</a></li>
-			<li><a href="apuestasesports"> <img
+			<li><a href="user-EsportsBet"> <img
 					class="glyph stroked pencil" src="user/img/games_b.svg" />
 					Apuestas E-games
 			</a></li>
-			<li><a href="promociones"> <img class="glyph stroked pencil"
-					src="user/img/star.svg" /> Ofertas y Promociones
+			<li><a href="user-promos"> <img class="glyph stroked pencil"
+					src="user/img/star.svg" /> Ofertas y user-promos
 			</a></li>
 			<li class="active"><a href="micuenta"> <img
 					class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi
@@ -298,7 +314,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="index"> <svg class="glyph stroked home">
+				<li><a href="user"> <svg class="glyph stroked home">
                             <use xlink:href="#stroked-home"></use>
                         </svg>
 				</a></li>
@@ -310,20 +326,30 @@
 			<div class="col-lg-10 col-sm-10 col-lg-offset-1">
 				<div class="tarjeta hovercard">
 					<div class="tarjeta-background">
-						{{#isMen}} 
-							<img class="tarjeta-bkimg" alt="" src="user/img/boyUser.svg"> 
-						{{/isMen}} 
-						{{^isMen}} 
-							<img class="tarjeta-bkimg" alt="" src="user/img/userGirl.svg">
-						{{/isMen}}
+						{{#user.isPhotoSelected}}
+								<img class="tarjeta-bkimg" alt=""src="images/avatars/{{user.photoUrl}}">
+						{{/user.isPhotoSelected}}
+						{{^user.isPhotoSelected}}
+							{{#user.isMen}} 
+								<img class="tarjeta-bkimg" alt="" src="user/img/boyUser.svg"> 
+							{{/user.isMen}} 
+							{{^user.isMen}} 
+								<img class="tarjeta-bkimg" alt="" src="user/img/userGirl.svg">
+							{{/user.isMen}}
+						{{/user.isPhotoSelected}}
 					</div>
 					<div class="useravatar">
-						{{#isMen}} 
-							<img  alt="" src="user/img/boyUser.svg"> 
-						{{/isMen}} 
-						{{^isMen}} 
-							<img  alt="" src="user/img/userGirl.svg">
-						{{/isMen}}
+						{{#user.isPhotoSelected}}
+								<img alt=""src="images/avatars/{{user.photoUrl}}">
+						{{/user.isPhotoSelected}}
+						{{^user.isPhotoSelected}}
+							{{#user.isMen}} 
+								<img  alt="" src="user/img/boyUser.svg"> 
+							{{/user.isMen}} 
+							{{^user.isMen}} 
+								<img  alt="" src="user/img/userGirl.svg">
+							{{/user.isMen}}
+						{{/user.isPhotoSelected}}
 					</div>
 					<div class="tarjeta-info">
 						<span class="tarjeta-title"><strong> {{user.name}}
@@ -381,14 +407,15 @@
 										</div>
 									</div>
 									<div class="row">
+									<form id="form-updateDataUser" class="form-horizontal" action="user-account/updateData"  method="post" enctype="multipart/form-data">
+												
 										<div class="col-md-6">
-											<form class="form-horizontal" action="" method="post">
-												<fieldset>
+											<fieldset>
 													<!-- Nombre input-->
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="name">Nombre</label>
 														<div class="col-md-9">
-															<input id="name" name="name" type="text"
+															<input id="name" name="namePre" type="text"
 																placeholder="{{user.name}}" class="form-control"
 																readonly>
 														</div>
@@ -398,7 +425,7 @@
 														<label class="col-md-3 control-label" for="email">Primer
 															Apellido</label>
 														<div class="col-md-9">
-															<input id="ap1" name="email" type="text"
+															<input id="ap1" name="surnamePre" type="text"
 																placeholder="{{user.surname}}" class="form-control"
 																readonly>
 														</div>
@@ -408,7 +435,7 @@
 														<label class="col-md-3 control-label" for="email">Segundo
 															Apellido</label>
 														<div class="col-md-9">
-															<input id="ap2" name="email" type="text"
+															<input id="ap2" name="secondSurname" type="text"
 																placeholder="{{user.secondSurname}}" class="form-control"
 																readonly>
 														</div>
@@ -417,7 +444,7 @@
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="email">Ciudad</label>
 														<div class="col-md-9">
-															<input id="city" name="email" type="text"
+															<input id="city" name="cityPre" type="text"
 																placeholder="{{user.city}}" class="form-control"
 																readonly>
 														</div>
@@ -426,7 +453,7 @@
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="email">Pais</label>
 														<div class="col-md-9">
-															<input id="country" name="email" type="text"
+															<input id="country" name="countryPre" type="text"
 																placeholder="{{user.country}}" class="form-control"
 																readonly>
 														</div>
@@ -437,20 +464,20 @@
 															<input id="fileImage" name="fileImage" type="file"
 																placeholder="Subir imagen..." class="form-control"
 																readonly>
+																{{#showsPhotoError}}<label>Hay un error con la imagen intantalo más tarde</label>{{/showsPhotoError}}
 														</div>
 													</div>
 												</fieldset>
-											</form>
+											
 										</div>
 										<div class="col-md-6">
-											<form class="form-horizontal" action="" method="post">
 												<fieldset>
 													<!-- Nombre input-->
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="name">Correo
 															electronico</label>
 														<div class="col-md-9">
-															<input id="email" name="name" type="text"
+															<input id="email" name="emailPre" type="text"
 																placeholder="{{user.email}}" class="form-control"
 																readonly="readonly">
 														</div>
@@ -459,7 +486,7 @@
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="email">Domicilio</label>
 														<div class="col-md-9">
-															<input id="location" name="email" type="text"
+															<input id="location" name="locationPre" type="text"
 																placeholder="{{user.location}}" class="form-control"
 																readonly="readonly">
 														</div>
@@ -468,7 +495,7 @@
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="email">Telefono</label>
 														<div class="col-md-9">
-															<input id="telephone" name="email" type="text"
+															<input id="telephone" name="telf" type="text"
 																placeholder="{{user.telephone}}" class="form-control"
 																readonly="readonly">
 														</div>
@@ -478,8 +505,8 @@
 														<label class="col-md-3 control-label" for="email">Nueva
 															Contraseña</label>
 														<div class="col-md-9">
-															<input id="passwd" name="email" type="password"
-																placeholder="Fax" class="form-control"
+															<input id="pass" name="pass" type="password"
+																placeholder="Escribe tu nueva contraseña" class="form-control"
 																readonly="readonly">
 														</div>
 													</div>
@@ -487,16 +514,18 @@
 														<label class="col-md-3 control-label" for="email">Repite
 															Nueva Contraseña</label>
 														<div class="col-md-9">
-															<input id="passwd" name="email" type="password"
-																placeholder="Fax" class="form-control"
+															<input id="passRepeat" name="passRepeat" type="password"
+																placeholder="Repite tu nueva contraseña" class="form-control"
 																readonly="readonly">
+																<input type="hidden" name="_csrf" value="{{token}}" />
+																{{#showsPasswdError}}<label>Contraseñas distintas</label>{{/showsPasswdError}}
 														</div>
 													</div>
 													<!-- Pais input -->
 													<div class="form-group">
 														<label class="col-md-3 control-label" for="email">DNI/NIF</label>
 														<div class="col-md-9">
-															<input id="dni" name="email" type="text"
+															<input id="dni" name="dniPre" type="text"
 																placeholder="{{user.dni}}" class="form-control"
 																readonly="readonly">
 														</div>
@@ -518,7 +547,7 @@
 												TU SALDO
 												<div style="float: right;">
 													<img style="opacity: 0.2;" class="glyph stroked pencil"
-														src="user/img/moneydep.png" />€ 19.99
+														src="user/img/moneydep.png" />€ {{user.credit}} €
 												</div>
 											</div>
 										</div>
@@ -555,7 +584,7 @@
 													<div class="col-sm-3 col-lg-5 widget-left"
 														style="background: #478949;">Total retirable</div>
 													<div class="col-sm-9 col-lg-7 widget-right">
-														<div class="large" style="margin-left: 30px;">0.0</div>
+														<div class="large" style="margin-left: 30px;">{{user.credit}} €</div>
 													</div>
 												</div>
 											</div>
@@ -663,10 +692,10 @@
 										<!--/.row-->
 									</div>
 									<div class="row">
-										<a class="btn btn-lg btn-primary" href="apuestasdeportivas"
+										<a class="btn btn-lg btn-primary" href="user-sportsBet"
 											style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
 											role="button">Apuestas deportivas</a> <a
-											class="btn btn-lg btn-primary" href="apuestasesports.html"
+											class="btn btn-lg btn-primary" href="user-EsportsBet.html"
 											style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
 											role="button">Apuestas e-games</a>
 									</div>
@@ -1216,19 +1245,19 @@
 			<div class="row">
 				<ul class="menu_info">
 					<li><strong>TOP LINKS</strong></li>
-					<li><a href="index" class="enlaceFooter"> Home </a></li>
-					<li><a href="apuestasdeportivas" class="enlaceFooter">
+					<li><a href="user" class="enlaceFooter"> Home </a></li>
+					<li><a href="user-sportsBet" class="enlaceFooter">
 							Apuestas Deportivas </a></li>
-					<li><a href="apuestasesports" class="enlaceFooter">
+					<li><a href="user-EsportsBet" class="enlaceFooter">
 							Apuestas E-games </a></li>
-					<li><a href="promociones" class="enlaceFooter"> Ofertas y
-							Promociones </a></li>
-					<li><a href="registrarse" class="enlaceFooter"> Registro </a>
+					<li><a href="user-promos" class="enlaceFooter"> Ofertas y
+							user-promos </a></li>
+					<li><a href="signup" class="enlaceFooter"> Registro </a>
 					</li>
 				</ul>
 				<ul class="menu_info">
 					<li><strong>INFO</strong></li>
-					<li><a href="#" class="enlaceFooter"> Privacy policy </a></li>
+					<li><a href="ffbet/policy-terms" class="enlaceFooter"> Privacy policy </a></li>
 					<li><a href="http://politicadecookies.com/"
 						class="enlaceFooter"> Cookie policy </a></li>
 					<li><a
