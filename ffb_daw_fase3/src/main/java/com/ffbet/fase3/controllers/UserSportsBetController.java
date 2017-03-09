@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
@@ -21,6 +22,9 @@ public class UserSportsBetController extends RedirectController {
 
 	@Autowired
 	UserAuthComponent userComp;
+
+	@Autowired
+	UserRepository userRepo;
 	private boolean showsUserMenu = false;
 
 	@GetMapping(value = { "/user-sportsBet", "/user-sportsBet/" })
@@ -28,9 +32,10 @@ public class UserSportsBetController extends RedirectController {
 		
 		if(userComp.isLoggedUser()){
 			showsUserMenu = true;
-			model.addAttribute("user", userComp.getLoggedUser());
+
+			model.addAttribute("user",  userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 			if(!userComp.getLoggedUser().isPhotoSelected()){
-				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
+				//model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			}else{
 				//Use image controller
 			}

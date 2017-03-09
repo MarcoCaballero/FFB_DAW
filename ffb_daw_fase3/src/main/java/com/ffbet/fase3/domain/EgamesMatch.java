@@ -87,10 +87,7 @@ public class EgamesMatch extends Match {
 
  
 	
-	public int getQuotaHomeFirstBlood() {
-		return quotaHomeFirstBlood;
-	}
-
+	
 	public boolean isWinVisiting() {
 		return winVisiting;
 	}

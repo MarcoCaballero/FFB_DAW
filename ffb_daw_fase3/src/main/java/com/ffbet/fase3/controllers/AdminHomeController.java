@@ -48,7 +48,7 @@ public class AdminHomeController extends RedirectController {
 	@Autowired
 	Egames_match_repository egamesMatchRepo;
 	@Autowired
-	UserAuthComponent usercomponent;
+	UserAuthComponent userComp;
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -61,16 +61,25 @@ public class AdminHomeController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-home", "/admin-home/", "/admin", "/admin/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
+		
+		if(userComp.isLoggedUser()){
+			model.addAttribute("user", userComp.getLoggedUser());
+			if(!userComp.getLoggedUser().isPhotoSelected()){
+				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
+			}else{
+				//Use image controller
+			}
+		}else{
+			return "redirect:/logOut";
+		}
+				
 		int totalMoney = 0;
 		for (int i = 0; i < betRepo.findAll().size(); i++) {
 			BetTicket ticket = betRepo.findAll().get(i);
 			totalMoney += ticket.getAmount();
 		}
 
-		//Si se apaga el servidor con el usuario conectado, desconectar al llamar
-		if (!usercomponent.isLoggedUser())
-			return "redirect:/logOut";
-
+		
 		model.addAttribute("Users", userRepo.findAll());
 		model.addAttribute("totalUSer", userRepo.findAll().size());
 		model.addAttribute("totalTeams", sportTeamRepo.findAll().size() + egamesTeamRepo.findAll().size());
