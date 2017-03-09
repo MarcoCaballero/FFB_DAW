@@ -35,10 +35,10 @@ public abstract class Match {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(updatable = false, nullable = false)
 	protected long id;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	@DateTimeFormat(pattern="yyyy-mm-dd")
 	protected Date date;
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	protected Time time;
 	@Column(nullable = false)
 	protected String type;
@@ -46,10 +46,12 @@ public abstract class Match {
 	protected String homeTeam;
 	@Column(nullable = false)
 	protected String visitingTeam;
+
 	@Column(nullable = false)
 	protected double quotaHomeVictory;
 	@Column(nullable = false)
 	protected double quotaVisitingVictory;
+
 	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	

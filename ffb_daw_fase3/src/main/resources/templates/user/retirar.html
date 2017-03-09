@@ -19,64 +19,99 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-                <ul class="user-menu">
-                    <li class="dropdown pull-right" style="margin-top:-3%;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" style="border-radius: 10%;">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p class="text-center">
-                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="img/pedroaccount.jpg" height="100px" /> </svg>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
-                                            <p class="text-left small">correoElectronico@email.com
-                                                <a style="color:black;" href="micuenta">
-                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                                            </p>
-                                            <p class="text-left"> <a href="depositar" class="btn btn-primary btn-block btn-sm">Depositar</a>
-                                                <a href="micuenta" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
-                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="navbar-login navbar-login-session">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p>
-                                                <a href="#" class="btn btn-danger btn-block">
-                                                    <svg class="glyph stroked cancel">
-                                                        <use xlink:href="#stroked-cancel"></use>
-                                                    </svg>Cerrar Sesion</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown pull-right fixing">
-                        <a href="micuenta" class="dropdown-toggle">
-                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                    </li>
-                </ul>
-                <a href="depositar"><img class="imgfixedmenu" src="user/img/walletmdesign.png" style="float:left;" width="35px"></a>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				{{#isUsermenuActive}}
+
+				<ul class="user-menu">
+					<li class="dropdown pull-right" style="margin-top: -3%;"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">
+						 <svg class="glyph stroked male-user"> 
+						 {{#isMen}}
+						 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
+						 {{/isMen}}
+						 {{^isMen}}
+						 	<img class="img-circle" src="user/img/userGirl.svg" height="25px" /> 
+						 {{/isMen}}
+						 
+						 </svg> 
+						 {{user.email}}
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" style="border-radius: 10%;">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												 {{#isMen}}
+												 	<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
+												 {{/isMen}}
+												 {{^isMen}}
+												 	<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
+												 {{/isMen}}
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>{{user.name}}</strong>
+											</p>
+											<p class="text-left small">
+												{{user.email}} <a style="color: black;"
+													href="user-account">
+													<h6 style="color: black;">
+														Tu saldo es:<em><i> {{user.credit}} €</i></em>
+													</h6>
+												</a>
+											</p>
+											<p class="text-left">
+												<a href="user-account/addCredit" class="btn btn-primary btn-block btn-sm">Depositar</a>
+												<a href="user-account" class="btn btn-primary btn-block btn-sm"
+													style="background-color: #6469c6; border-color: #6469c6;">
+													 Mi cuenta
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<form action="/logOut" method="POST">
+												<p>
+													<input type="submit" value="Cerrar Sesión"
+														class="btn btn-danger btn-block" /> <input type="hidden"
+														name="_csrf" value="{{token}}" />
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="dropdown pull-right fixing"><a href="user-account"
+						class="dropdown-toggle">
+							<h6 style="color: white;">
+								Tu saldo es:<em><i> {{user.credit}} €</i></em>
+							</h6>
+					</a></li>
+				</ul>
+
+				{{/isUsermenuActive}}
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <!--<form role="search">
 			<div class="form-group">

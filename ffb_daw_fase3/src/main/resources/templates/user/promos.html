@@ -52,89 +52,188 @@
 </head>
 
 <body>
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-                <ul class="user-menu">
-                    <li class="dropdown pull-right" style="margin-top:-3%;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" style="border-radius: 10%;">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p class="text-center">
-                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="100px" /> </svg>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
-                                            <p class="text-left small">correoElectronico@email.com
-                                                <a style="color:black;" href="micuenta">
-                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                                            </p>
-                                            <p class="text-left"> <a href="depositar" class="btn btn-primary btn-block btn-sm">Depositar</a>
-                                                <a href="micuenta" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
-                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="navbar-login navbar-login-session">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p>
-                                                <a href="#" class="btn btn-danger btn-block">
-                                                    <svg class="glyph stroked cancel">
-                                                        <use xlink:href="#stroked-cancel"></use>
-                                                    </svg>Cerrar Sesion</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown pull-right fixing">
-                        <a href="micuenta" class="dropdown-toggle">
-                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                    </li>
-                </ul>
-                <a href="depositar"><img class="imgfixedmenu" src="user/img/walletmdesign.png" style="float:left;" width="35px"></a>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				{{#isUsermenuActive}}
+
+				<ul class="user-menu">
+					<li class="dropdown pull-right" style="margin-top: -3%;"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">
+						 <svg class="glyph stroked male-user"> 
+						 {{#isMen}}
+						 	<img class="img-circle" src="user/img/boyUser.svg" height="25px" /> 
+						 {{/isMen}}
+						 {{^isMen}}
+						 	<img class="img-circle" src="user/img/userGirl.svg" height="25px" /> 
+						 {{/isMen}}
+						 
+						 </svg> 
+						 {{user.email}}
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" style="border-radius: 10%;">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												 {{#isMen}}
+												 	<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
+												 {{/isMen}}
+												 {{^isMen}}
+												 	<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
+												 {{/isMen}}
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>{{user.name}}</strong>
+											</p>
+											<p class="text-left small">
+												{{user.email}} <a style="color: black;"
+													href="user-account">
+													<h6 style="color: black;">
+														Tu saldo es:<em><i> {{user.credit}} €</i></em>
+													</h6>
+												</a>
+											</p>
+											<p class="text-left">
+												<a href="user-account/addCredit" class="btn btn-primary btn-block btn-sm">Depositar</a>
+												<a href="user-account" class="btn btn-primary btn-block btn-sm"
+													style="background-color: #6469c6; border-color: #6469c6;">
+													 Mi cuenta
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<form action="/logOut" method="POST">
+												<p>
+													<input type="submit" value="Cerrar Sesión"
+														class="btn btn-danger btn-block" /> <input type="hidden"
+														name="_csrf" value="{{token}}" />
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="dropdown pull-right fixing"><a href="user-account"
+						class="dropdown-toggle">
+							<h6 style="color: white;">
+								Tu saldo es:<em><i> {{user.credit}} €</i></em>
+							</h6>
+					</a></li>
+				</ul>
+
+				{{/isUsermenuActive}} {{^isUsermenuActive}}
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a href="#" type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target="#sidebar-collapse"> <span
+								class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</a> <a class="navbar-brand" href="#"> </a>
+							<ul class="user-menu">
+								<li class="dropdown pull-right"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown"><img class="img-circle" src="user/img/userBlocked.svg" style="height: 30px;"/>
+										Acceder <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li style="display: block;"><a href="login"> <img
+												class="img-circle" src="user/img/userBlocked.svg" height="30px"/>  Entrar
+										</a></li>
+										<li style="display: block;"><a href="ffbet/policy-terms"> <img
+												class="img-circle" src="user/img/policy.svg"  height="30px" />  Política de privacidad
+										</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+
+				{{/isUsermenuActive}} 
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <section class="active"> <img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
             <li>
-                <a href="index"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
+                <a href="user"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
             </li>
             <li>
-                <a href="apuestasdeportivas"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
+                <a href="user-sportsBet"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
             </li>
             <li>
-                <a href="apuestasesports"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
+                <a href="user-EsportsBet"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
             </li>
             <li class="active">
-                <a href="promociones"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
+                <a href="user-promos"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
             </li>
+           {{#isUsermenuActive}} 
             <li>
-                <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
+                <a href="user-account"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
             </li>
             <li role="presentation" class="divider"></li>
             <li>
-                <a href="registrarse">
+            	
+					 
+						<div class="progress" onclick="callHref('user-account')" >
+						  <div onclick="callHref('user-account')" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+						  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+						    40% (4/10) Ok
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+						    50% Complete (info)
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% Complete (warning)
+						  </div>
+						</div>
+						
+						<div class="progress">
+						  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+						  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+						    70% Complete (danger)
+						  </div>
+						</div>	
+			</li>
+            {{/isUsermenuActive}} 
+            {{^isUsermenuActive}} 
+            <li role="presentation" class="divider"></li>
+            <li>
+                <a href="signup">
                     <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
                     </svg>Registrate</a>
             </li>
+            {{/isUsermenuActive}} 
         </ul>
     </div>
     <!--/.sidebar-->
@@ -142,13 +241,13 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li>
-                    <a href="index">
+                    <a href="user">
                         <svg class="glyph stroked home">
                             <use xlink:href="#stroked-home"></use>
                         </svg>
                     </a>
                 </li>
-                <li class="active">Ofertas y promociones</li>
+                <li class="active">Ofertas y user-promos</li>
             </ol>
         </div>
         <!--/.row-->
@@ -177,7 +276,7 @@
                 </div>
             </div>
         </div>
-        <div class="tt1"> Promociones de fútbol </div>
+        <div class="tt1"> user-promos de fútbol </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
@@ -284,15 +383,15 @@
             <div class="row">
                 <ul class="menu_info">
                     <li> <strong>TOP LINKS</strong> </li>
-                    <li> <a href="index" class="enlaceFooter"> Home </a> </li>
-                    <li> <a href="apuestasdeportivas" class="enlaceFooter"> Apuestas Deportivas </a> </li>
-                    <li> <a href="apuestasesports" class="enlaceFooter"> Apuestas E-games </a> </li>
-                    <li> <a href="promociones" class="enlaceFooter"> Ofertas y Promociones </a> </li>
-                    <li> <a href="registrarse" class="enlaceFooter"> Registro </a> </li>
+                    <li> <a href="user" class="enlaceFooter"> Home </a> </li>
+                    <li> <a href="user-sportsBet" class="enlaceFooter"> Apuestas Deportivas </a> </li>
+                    <li> <a href="user-EsportsBet" class="enlaceFooter"> Apuestas E-games </a> </li>
+                    <li> <a href="user-promos" class="enlaceFooter"> Ofertas y user-promos </a> </li>
+                    <li> <a href="signup" class="enlaceFooter"> Registro </a> </li>
                 </ul>
                 <ul class="menu_info">
                     <li> <strong>INFO</strong> </li>
-                    <li> <a href="politica.html" class="enlaceFooter"> Privacy policy </a> </li>
+                    <li> <a href="ffbet/policy-terms" class="enlaceFooter"> Privacy policy </a> </li>
                     <li> <a href="http://politicadecookies.com/" class="enlaceFooter"> Cookie policy </a> </li>
                     <li> <a href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#" class="enlaceFooter">  User policy </a> </li>
                     <li> <a href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo" class="enlaceFooter">  Responsible Gaming </a> </li>
