@@ -61,6 +61,16 @@ public class ImageTestController {
 		SportTeam sp2 = new SportTeam();
 		sp2.setName("Equipo 2");
 		sp2.setCoach("Queseroni");
+
+		EgamesTeam eg_team1 = new EgamesTeam();
+		eg_team1.setName("ORIGEN");
+		eg_team1.setCity("Murcia");
+		eg_team1.setCoach("Camacho");
+		
+		EgamesTeam eg_team2 = new EgamesTeam();
+		eg_team2.setName("SKT T1");
+		eg_team2.setCity("Tokyo");
+		eg_team2.setCoach("Simeone");
 		
 		SportsMatch sportMatch1 = new SportsMatch();
 		sportMatch1.setHomeTeam("RealMadrid");
@@ -115,7 +125,8 @@ public class ImageTestController {
 		 * sport_team.setShield_image(IOUtils.toByteArray(f_in)); } catch
 		 * (Exception e) { // TODO: handle exception e.printStackTrace(); }
 		 */
-		egame_team_repo.save(eg_team);
+		egame_team_repo.save(eg_team1);
+		egame_team_repo.save(eg_team2);
 		sport_team_repo.save(sport_team);
 		sport_team_repo.save(sp1);
 		sport_team_repo.save(sp2);

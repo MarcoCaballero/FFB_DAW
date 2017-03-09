@@ -48,7 +48,7 @@ public abstract class Team {
 	
 	
 	//CONSTRUCTORS
-	
+
 	/**
 	 * Void constructor
 	 * */
@@ -159,6 +159,16 @@ public abstract class Team {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
+	public List<Match> getMatches() {
+		return matches;
+	}
+
+
+	public void setMatches(List<Match> matches) {
+		this.matches = matches;
+	}
+
 		
 	
 	/*CLASS METHODS TO BE USED BY SUBCLASSES */

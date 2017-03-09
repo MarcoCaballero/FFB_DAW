@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
+import com.ffbet.fase3.repositories.TeamRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
  * Controller class {@link AdminMatchesController} provides methods to map the
@@ -44,13 +47,22 @@ public class AdminMatchesController extends RedirectController {
 	private Sports_match_repository sportsMatchRepo;
 
 	@Autowired
-	private SportTeamRepository teamRepo;
-
-	@Autowired
 	private Egames_match_repository egamesMatchRepo;
 	
 	@Autowired
 	private MatchRepository matchRepo;
+	
+	@Autowired
+	private SportTeamRepository sportsTeamRepo;
+	
+	@Autowired
+	private EgamesTeamRepository egamesTeamRepo;
+	
+	@Autowired
+	private TeamRepository teamRepo;
+	
+	@Autowired
+	UserAuthComponent usercomponent;
 
 	// Variables for football
 	private boolean badDate = false;
@@ -93,13 +105,19 @@ public class AdminMatchesController extends RedirectController {
 	 */
 	@GetMapping(value = { "/admin-matches", "/admin-matches/" })
 	public String getMatchTemplate(HttpServletRequest request, Model model) {
+		
+		if(usercomponent.isLoggedUser()){
+			model.addAttribute("UsuarioActivo", usercomponent.getLoggedUser().getName());
+		}else{
+			return "redirect:/logOut";
+		}
 
-		model.addAttribute("Equipo1", teamRepo.findAll());
-		model.addAttribute("Equipo2", teamRepo.findAll());
-
-		model.addAttribute("Teams", teamRepo.findAll());
+		model.addAttribute("SportsTeams", sportsTeamRepo.findAll());
+		model.addAttribute("EgamesTeams", egamesTeamRepo.findAll());
 
 		model.addAttribute("Matches", matchRepo.findAll());
+		model.addAttribute("Teams", teamRepo.findAll());
+		
 
 		// Atributtes for football
 		model.addAttribute("noDateFootball", badDate);
@@ -129,28 +147,6 @@ public class AdminMatchesController extends RedirectController {
 		model.addAttribute("noTeamsCS", equalTeamsC);
 		model.addAttribute("noSumQuotaCS", sumQuotaOkC);
 
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, template);
-		return response;
-
-	}
-
-	/**
-	 * Method {@linkplain getTeams()} uses the abstract class
-	 * {@link RedirectController} to get the correct template from similar URLs,
-	 * and shows it through the browser with the match [selected by id]
-	 * properties.
-	 * 
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = { "/admin-matches/{id}", "/admin-matches/{id}/" })
-	public String getMatchByID(HttpServletRequest request, Model model, @PathVariable("id") long id) {
-
-		model.addAttribute("title", "Hello from " + String.valueOf(id));
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, template);
@@ -214,8 +210,9 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		if (!badDate && !badTime && !badQuota && !equalTeams && !sumQuotaOk) {
-			sportsMatch.getTeams().add(teamRepo.findByName(homeTeam));
-			sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam));
+			sportsMatch.setType("Fútbol");
+			sportsMatch.getTeams().add(sportsTeamRepo.findByName(homeTeam));
+			sportsMatch.getTeams().add(sportsTeamRepo.findByName(visitingTeam));
 
 			sportsMatchRepo.save(sportsMatch);
 		}
@@ -268,8 +265,9 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		if (!badDateB && !badTimeB && !badQuotaB && !equalTeamsB && !sumQuotaOkB) {
-			sportsMatch.getTeams().add(teamRepo.findByName(homeTeam));
-			sportsMatch.getTeams().add(teamRepo.findByName(visitingTeam));
+			sportsMatch.setType("Baloncesto");
+			sportsMatch.getTeams().add(sportsTeamRepo.findByName(homeTeam));
+			sportsMatch.getTeams().add(sportsTeamRepo.findByName(visitingTeam));
 
 			sportsMatchRepo.save(sportsMatch);
 		}
@@ -328,8 +326,9 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		if (!badDateL && !badTimeL && !badQuotaL && !equalTeamsL && !sumQuotaOkL) {
-			egamesMatch.getTeams().add(teamRepo.findByName(homeTeam));
-			egamesMatch.getTeams().add(teamRepo.findByName(visitingTeam));
+			egamesMatch.setType("LOL");
+			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
+			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
 			egamesMatchRepo.save(egamesMatch);
 		}
 
@@ -388,32 +387,14 @@ public class AdminMatchesController extends RedirectController {
 		}
 		
 		if (!badDateC && !badTimeC && !badQuotaC && !equalTeamsC && !sumQuotaOkC) {
-			egamesMatch.getTeams().add(teamRepo.findByName(homeTeam));
-			egamesMatch.getTeams().add(teamRepo.findByName(visitingTeam));
+			egamesMatch.setType("CS");
+			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
+			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
 
 			egamesMatchRepo.save(egamesMatch);
 		}
 
 		return redirect;
-
-	}
-
-	/**
-	 * Method {@linkplain updateTeamByID()} uses the abstract class
-	 * {@link RedirectController} to get the correct template from similar URLs,
-	 * and shows it through the browser with the updated match [selected by id].
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@PutMapping("/admin-matches/update/{id}")
-	public String updateMatchByID(HttpServletRequest request, Model model, @PathVariable("id") long updating_id) {
-
-		// Checks the URLs with "/*" pattern
-		// Delete the last bar if the requested URL is like "/*/"
-		String response = check_url(request, template);
-		return response;
 
 	}
 
