@@ -33,7 +33,7 @@ public abstract class Team {
 	@Column(nullable = false)
 	protected String name;
 	
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	protected String type;
 	
 	@Column(nullable = false)
