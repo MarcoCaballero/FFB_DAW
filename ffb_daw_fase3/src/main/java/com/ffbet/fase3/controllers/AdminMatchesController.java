@@ -114,6 +114,12 @@ public class AdminMatchesController extends RedirectController {
 
 		model.addAttribute("SportsTeams", sportsTeamRepo.findAll());
 		model.addAttribute("EgamesTeams", egamesTeamRepo.findAll());
+		
+		model.addAttribute("FootballTeams", sportsTeamRepo.findByType("Fútbol"));
+		model.addAttribute("BasketTeams", sportsTeamRepo.findByType("Baloncesto"));
+		
+		model.addAttribute("LOLTeams", egamesTeamRepo.findByType("LOL"));
+		model.addAttribute("CSTeams", egamesTeamRepo.findByType("CS-GO"));
 
 		model.addAttribute("Matches", matchRepo.findAll());
 		model.addAttribute("Teams", teamRepo.findAll());
