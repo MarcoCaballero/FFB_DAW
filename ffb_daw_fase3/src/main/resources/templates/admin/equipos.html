@@ -113,54 +113,58 @@
 								</thead>
 								{{#SportsTeams}}
 								<tr>
+									<form id="formSportsId{{id}}"
+										action="admin-teams/updateSports/{{id}}">
 									<td>{{id}}</td>
-									<td><input type="text" name="type" value="{{type}}"
-										class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="name"
-										value="{{name}}" class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="coach"
-										value="{{#coach}}{{.}}{{/coach}}" class="span12"
+									<td><input type="text" name="sportsUpType"
+										placeholder="{{type}}" class="span12" style="margin-left: 20%"
+										readonly="readonly" /></td>
+									<td><input type="text" name="sportsUpName"
+										placeholder="{{name}}" class="span12" style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpCoach"
+										placeholder="{{#coach}}{{.}}{{/coach}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpCountry"
-										value="{{#country}}{{.}}{{/country}}" class="span12"
+										placeholder="{{#country}}{{.}}{{/country}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpCity"
-										value="{{#city}}{{.}}{{/city}}" class="span12"
+										placeholder="{{#city}}{{.}}{{/city}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpSlogan"
-										value="{{#slogan}}{{.}}{{/slogan}}" class="span12"
+										placeholder="{{#slogan}}{{.}}{{/slogan}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpStadium"
-										value="{{#stadium}}{{.}}{{/stadium}}" class="span12"
+										placeholder="{{#stadium}}{{.}}{{/stadium}}" class="span12"
 										style="margin-left: 20%" /></td>
-									<td><input type="number" name="sportsUpPresident"
-										value="{{#president}}{{.}}{{/president}}" class="span12"
+									<td><input type="text" name="sportsUpPresident"
+										placeholder="{{#president}}{{.}}{{/president}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="number" name="sportsUpLeagues"
-										value="{{#leagues}}{{.}}{{/leagues}}" class="span12"
+										placeholder="{{#leagues}}{{.}}{{/leagues}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="number" name="sportsUpCups"
-										value="{{#cups}}{{.}}{{/cups}}" class="span12"
+										placeholder="{{#cups}}{{.}}{{/cups}}" class="span12"
 										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpChampions"
-										value="{{#champions}}{{.}}{{/champions}}" class="span12"
+									<td><input type="number" name="sportsUpChampions"
+										placeholder="{{#champions}}{{.}}{{/champions}}" class="span12"
 										style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpFb"
-										value="{{#facebook_Uri}}{{.}}{{/facebook_Uri}}" class="span12"
-										style="margin-left: 20%" /></td>
+										placeholder="{{#facebook_Uri}}{{.}}{{/facebook_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpTw"
-										value="{{#twitter_Uri}}{{.}}{{/twitter_Uri}}" class="span12"
-										style="margin-left: 20%" /></td>
+										placeholder="{{#twitter_Uri}}{{.}}{{/twitter_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
 									<td><input type="text" name="sportsUpGo"
-										value="{{#google_Uri}}{{.}}{{/google_Uri}}" class="span12"
-										style="margin-left: 20%" /></td>
+										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
 
-									<td><a href="/admin-teams/updateSports/{{id}}"
-										class="btn btn-mini btn-info"
-										style="margin-left: 30%; margin-bottom: 20%"> Editar </a></td>
+									<td><button type="submit" class="btn btn-mini btn-info"
+											style="margin-left: 30%; margin-bottom: 20%">Editar
+										</button></td>
 									<td><a href="/admin-teams/delete/{{id}}"
 										class="btn btn-mini btn-danger"
 										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+									</form>
 								</tr>
 								{{/SportsTeams}}
 							</table>
@@ -191,23 +195,40 @@
 										<th data-field="city" data-sortable="true">Ciudad</th>
 										<th data-field="sponsor" data-sortable="true">Sponsor</th>
 
-										<th data-field="Actions" data-sortable="true">Actions</th>
+										<th data-field="Actions" data-sortable="true"><p
+												style="margin-left: 80%; padding-top: 25%">Actions</p></th>
 									</tr>
 								</thead>
 								{{#EgamesTeams}}
 								<tr>
+									<form id="formEgamesId{{id}}"
+										action="admin-teams/updateEgames/{{id}}">
 									<td>{{id}}</td>
-									<td>{{#type}}{{.}}{{/type}}</td>
-									<td>{{name}}</td>
-									<td>{{#coach}}{{.}}{{/coach}}</td>
-									<td>{{#country}}{{.}}{{/country}}</td>
-									<td>{{#city}}{{.}}{{/city}}</td>
-									<td>{{#sponsor}}{{.}}{{/sponsor}}</td>
+									<td><input type="text" name="egamesUpType"
+										placeholder="{{type}}" class="span5" style="margin-left: 35%"
+										readonly="readonly" /></td>
+									<td><input type="text" name="egamesUpName"
+										placeholder="{{name}}" class="span10" style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCoach"
+										placeholder="{{#coach}}{{.}}{{/coach}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCountry"
+										placeholder="{{#country}}{{.}}{{/country}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCity"
+										placeholder="{{#city}}{{.}}{{/city}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCity"
+										placeholder="{{#sponsor}}{{.}}{{/sponsor}}" class="span10"
+										style="margin-left: 10%" /></td>
 
+									<td><button type="submit" class="btn btn-mini btn-info"
+											style="margin-left: 30%; margin-bottom: 20%">Editar
+										</button></td>
 									<td><a href="/admin-teams/delete/{{id}}"
-										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
-											Borrar Partido
-									</a></td>
+										class="btn btn-mini btn-danger"
+										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+									</form>
 								</tr>
 								{{/EgamesTeams}}
 							</table>
