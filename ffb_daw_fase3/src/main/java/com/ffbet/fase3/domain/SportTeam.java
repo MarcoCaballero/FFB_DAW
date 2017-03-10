@@ -36,6 +36,10 @@ public class SportTeam extends Team {
 	@Column(length = 10000000)
 	@Lob
 	private byte[] logo_image;
+	
+	private String stadiumUrl;
+	
+	private String logoUrl;
 
 	private String twitter_Uri;
 	private String facebook_Uri;
@@ -244,6 +248,22 @@ public class SportTeam extends Team {
 	 */
 	public void setLogo_image(byte[] logo_image) {
 		this.logo_image = logo_image;
+	}
+	
+	public String getStadiumUrl() {
+		return stadiumUrl;
+	}
+
+	public void setStadiumUrl(String stadiumUrl) {
+		this.stadiumUrl = stadiumUrl;
+	}
+
+	public String getLogoUrl() {
+		return logoUrl;
+	}
+
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
 	}
 
 	/**
