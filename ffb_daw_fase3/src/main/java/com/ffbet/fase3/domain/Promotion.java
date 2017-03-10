@@ -28,7 +28,7 @@ public class Promotion {
 	private String description;
 	@Column(nullable = false)
 	private String promotionCode;
-	private byte[] promotionImage;
+	private String promotionImage;
 	
 	// CONSTRUCTORS
 	
@@ -67,7 +67,7 @@ public class Promotion {
 	 *
 	 */
 	public Promotion(long id, String type, String title, String description, String promotionCode,
-			byte[] promotionImage) {
+			String promotionImage) {
 		this.id = id;
 		this.type = type;
 		this.title = title;
@@ -108,10 +108,10 @@ public class Promotion {
 	public void setPromotionCode(String promotionCode) {
 		this.promotionCode = promotionCode;
 	}
-	public byte[] getPromotionImage() {
+	public String getPromotionImage() {
 		return promotionImage;
 	}
-	public void setPromotionImage(byte[] promotionImage) {
+	public void setPromotionImage(String promotionImage) {
 		this.promotionImage = promotionImage;
 	}
 
