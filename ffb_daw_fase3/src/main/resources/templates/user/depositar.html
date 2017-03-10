@@ -262,15 +262,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+                                  {{#showsCardError}} <label style="color:#FA6262;"class="col-md-3 control-label" for="name">ERROR CON LA TARJETA, PUEDE QUE NO TENGA SALDO O QUE LOS DATOS NO COINCIDEN VERFIQUELO POR FAVOR</label>{{/showsCardError}}
+                                  
                                 <!-- Form actions -->
                                 <div class="form-group">
                                     <div class="col-md-12 widget-right">
                                         <label class="col-md-3 control-label" for="name">* Campo obligatorio</label>
                                         <button type="submit" class="btn btn-default btn-md pull-right">Depositar</button>
                                         	<input type="hidden" name="_csrf" value="{{token}}" />
-                                        {{#showsCardError}} <label class="col-md-3 control-label" for="name">ERROR CON LA TARJETA, SALDO NO INTRODUCIDO</label>{{/showsCardError}}
-                                    </div>
+                                        </div>
                                 </div>
                             </fieldset>
                         </form>

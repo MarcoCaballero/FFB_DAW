@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.repositories.Egames_match_repository;
+import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
@@ -29,6 +31,10 @@ public class UserHomeController extends RedirectController {
 	@Autowired
 	UserRepository userRepo;
 	private boolean showsUserMenu = false;
+	@Autowired
+	Sports_match_repository sports_match_repository;
+	@Autowired
+	Egames_match_repository egames_match_repository;
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -56,6 +62,10 @@ public class UserHomeController extends RedirectController {
 		
 		
 		model.addAttribute("isUsermenuActive", showsUserMenu);
+		model.addAttribute("footballMatchTable", sports_match_repository.findByType("Futbol"));
+		model.addAttribute("basketballMatchTable", sports_match_repository.findByType("Baloncesto"));
+		model.addAttribute("lolMatchTable", egames_match_repository.findByType("Lol"));
+		model.addAttribute("csgoMatchTable", egames_match_repository.findByType("Csgo"));
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_HOME.toString());
