@@ -15,10 +15,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class CreditCard {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column( updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false)
 	private long id;
 	@Column(nullable = false)
 	private String type;
@@ -34,17 +34,15 @@ public class CreditCard {
 	private int securityCode;
 	@Column(nullable = false)
 	private double credit;
-	
+
 	// CONSTRUCTORS
-	
+
 	/**
 	 * Void constructor
 	 *
 	 */
 	public CreditCard() {
 	}
-	
-	
 
 	/**
 	 * @param id
@@ -67,8 +65,6 @@ public class CreditCard {
 		this.credit = credit;
 	}
 
-
-	
 	/**
 	 * @param id
 	 * @param type
@@ -94,37 +90,42 @@ public class CreditCard {
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getCardNumber() {
 		return cardNumber;
 	}
+
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	
+
 	public int getSecurityCode() {
 		return securityCode;
 	}
+
 	public void setSecurityCode(int securityCode) {
 		this.securityCode = securityCode;
 	}
-
-
 
 	/**
 	 * @return the expirationMonth
@@ -133,36 +134,14 @@ public class CreditCard {
 		return expirationMonth;
 	}
 
-
-
 	/**
-	 * @param expirationMonth the expirationMonth to set
+	 * @param expirationMonth
+	 *            the expirationMonth to set
 	 */
 	public void setExpirationMonth(int expirationMonth) {
 		this.expirationMonth = expirationMonth;
 	}
 
-
-
-	/**
-	 * @return the expirationYear
-	 */
-	public int getexpirationYear() {
-		return expirationYear;
-	}
-
-
-
-	/**
-	 * @param expirationYear the expirationYear to set
-	 */
-	public void setexpirationYear(int expirationYear) {
-		this.expirationYear = expirationYear;
-	}
-	
-	
-	
-	
 	/**
 	 * @return the expirationYear
 	 */
@@ -170,16 +149,13 @@ public class CreditCard {
 		return expirationYear;
 	}
 
-
-
 	/**
-	 * @param expirationYear the expirationYear to set
+	 * @param expirationYear
+	 *            the expirationYear to set
 	 */
 	public void setExpirationYear(int expirationYear) {
 		this.expirationYear = expirationYear;
 	}
-
-
 
 	/**
 	 * @return the credit
@@ -188,19 +164,36 @@ public class CreditCard {
 		return credit;
 	}
 
-
-
 	/**
-	 * @param credit the credit to set
+	 * @param credit
+	 *            the credit to set
 	 */
 	public void setCredit(double credit) {
 		this.credit = credit;
 	}
 
+	
+	/**/
+	public boolean sendMoney(double money) {
+		if (this.getCredit() >= money) {
+			this.setCredit(this.getCredit() - money);
+			return true;
+		}
+		return false;
 
+	}
 
-	public void sendMoney(double money){
-		this.setCredit(this.getCredit()-money);
+	public boolean equalsData(String type, String name, String cardNumber, int expirationMonth, int expirationYear,
+			int ccv) {
+
+		if (this.getType().equals(type) && this.getName().equals(name) && this.getCardNumber().equals(cardNumber)
+				&& this.getExpirationMonth() == expirationMonth && this.getExpirationYear() == expirationYear
+				&& this.getSecurityCode() == ccv) {
+				return true;
+		}
+
+		return false;
+
 	}
 
 }
