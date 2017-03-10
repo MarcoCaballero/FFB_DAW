@@ -64,24 +64,29 @@ public class ImageTestController {
 		sport_team.setName("P_001");
 		sport_team.setCity("Madrid");
 		sport_team.setCoach("marianete");
+		sport_team.setType("Fútbol");
 
 		SportTeam sp1 = new SportTeam();
 		sp1.setName("Equipo 1");
 		sp1.setCoach("Peperoni");
+		sp1.setType("Fútbol");
 
 		SportTeam sp2 = new SportTeam();
 		sp2.setName("Equipo 2");
 		sp2.setCoach("Queseroni");
+		sp2.setType("Baloncesto");
 
 		EgamesTeam eg_team1 = new EgamesTeam();
 		eg_team1.setName("ORIGEN");
 		eg_team1.setCity("Murcia");
 		eg_team1.setCoach("Camacho");
+		eg_team1.setType("LOL");
 		
 		EgamesTeam eg_team2 = new EgamesTeam();
 		eg_team2.setName("SKT T1");
 		eg_team2.setCity("Tokyo");
 		eg_team2.setCoach("Simeone");
+		eg_team2.setType("CS-GO");
 		
 		SportsMatch sportMatch1 = new SportsMatch();
 		sportMatch1.setDate(Date.valueOf("2000-11-01"));
@@ -152,6 +157,7 @@ public class ImageTestController {
 		eg_team.setName("P_002");
 		eg_team.setCity("Valencia");
 		eg_team.setCoach("marianeta");
+		eg_team.setType("LOL");
 		
 		egame_team_repo.save(eg_team);
 

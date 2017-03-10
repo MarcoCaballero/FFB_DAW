@@ -119,8 +119,8 @@
 								<tr>
 									<td>{{id}}</td>
 									<td>{{type}}</td>
-									<td>{{date}}</td>
-									<td>{{time}}</td>
+									<td>{{#date}}{{.}}{{/date}}</td>
+									<td>{{#time}}{{.}}{{/time}}</td>
 									<td>{{homeTeam}}</td>
 									<td>{{visitingTeam}}</td>
 									<td>{{quotaHomeVictory}}</td>
@@ -210,16 +210,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam"> {{#SportsTeams}}
-													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
+												<select name="homeTeam"> {{#FootballTeams}}
+													<option value="{{name}}">{{name}}</option> {{/FootballTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam"> {{#SportsTeams}}
-													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
+												<select name="visitingTeam"> {{#FootballTeams}}
+													<option value="{{name}}">{{name}}</option> {{/FootballTeams}}
 												</select>
 											</div>
 											{{#noTeamsFootball}}
@@ -322,16 +322,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam"> {{#SportsTeams}}
-													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
+												<select name="homeTeam"> {{#BasketTeams}}
+													<option value="{{name}}">{{name}}</option> {{/BasketTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam"> {{#SportsTeams}}
-													<option value="{{name}}">{{name}}</option> {{/SportsTeams}}
+												<select name="visitingTeam"> {{#BasketTeams}}
+													<option value="{{name}}">{{name}}</option> {{/BasketTeams}}
 												</select>
 											</div>
 											{{#noTeamsBasket}}
@@ -436,16 +436,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam">{{#EgamesTeams}}
-													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
+												<select name="homeTeam">{{#LOLTeams}}
+													<option value="{{name}}">{{name}}</option> {{/LOLTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam">{{#EgamesTeams}}
-													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
+												<select name="visitingTeam">{{#LOLTeams}}
+													<option value="{{name}}">{{name}}</option> {{/LOLTeams}}
 												</select>
 											</div>
 										</div>
@@ -561,16 +561,16 @@
 										<div class="control-group">
 											<label class="control-label">Equipo local</label>
 											<div class="controls">
-												<select name="homeTeam">{{#EgamesTeams}}
-													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
+												<select name="homeTeam">{{#CSTeams}}
+													<option value="{{name}}">{{name}}</option> {{/CSTeams}}
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Equipo visitante</label>
 											<div class="controls">
-												<select name="visitingTeam">{{#EgamesTeams}}
-													<option value="{{name}}">{{name}}</option> {{/EgamesTeams}}
+												<select name="visitingTeam">{{#CSTeams}}
+													<option value="{{name}}">{{name}}</option> {{/CSTeams}}
 												</select>
 											</div>
 										</div>

@@ -4,11 +4,11 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ffbet.fase3.domain.EgamesTeam;
@@ -156,7 +156,7 @@ public class AdminTeamController extends RedirectController {
 			@RequestParam("egamesCity") String city, @RequestParam("egamesCoach") String coach,
 			@RequestParam("sponsor") String sponsor) {
 
-		if ((name == " ") || (country == " ") || (city == " ") || (coach == " ") || (sponsor == " ")) {
+		if (!name.isEmpty() && !country.isEmpty() && !city.isEmpty() && !coach.isEmpty() && !sponsor.isEmpty()) {
 			team.setType(type);
 			team.setName(name);
 			team.setCountry(country);
@@ -167,7 +167,7 @@ public class AdminTeamController extends RedirectController {
 			egamesTeamRepo.save(team);
 
 			noFailsNewEgames = false;
-			
+
 			System.out.println("Nombre: " + name);
 		} else {
 			noFailsNewEgames = true;
@@ -186,12 +186,65 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@PutMapping("/admin-teams/updateSports/{id}")
-	public String updateSportsTeam(Model model, @PathVariable("id") long updating_id) {
+	@RequestMapping("/admin-teams/updateSports/{id}")
+	public String updateSportsTeam(@PathVariable Long id, @RequestParam("sportsUpName") String name,
+			@RequestParam("sportsUpCoach") String coach, @RequestParam("sportsUpCountry") String country,
+			@RequestParam("sportsUpCity") String city, @RequestParam("sportsUpSlogan") String slogan,
+			@RequestParam("sportsUpStadium") String stadium, @RequestParam("sportsUpPresident") String president,
+			@RequestParam("sportsUpLeagues") String leagues, @RequestParam("sportsUpCups") String cups,
+			@RequestParam("sportsUpChampions") String champions, @RequestParam("sportsUpFb") String fb,
+			@RequestParam("sportsUpTw") String tw, @RequestParam("sportsUpGo") String go) {
+
+		SportTeam team = sportsTeamRepo.findOne(id);
+
+		try {
+			if (!name.isEmpty()) {
+				team.setName(name);
+			}
+			if (!coach.isEmpty()) {
+				team.setCoach(coach);
+			}
+			if (!country.isEmpty()) {
+				team.setCountry(country);
+			}
+			if (!city.isEmpty()) {
+				team.setCity(city);
+			}
+			if (!slogan.isEmpty()) {
+				team.setSlogan(slogan);
+			}
+			if (!slogan.isEmpty()) {
+				team.setSlogan(slogan);
+			}
+			if (!president.isEmpty()) {
+				team.setPresident(president);
+			}
+			if (!leagues.isEmpty()) {
+				team.setLeagues(Integer.parseInt(leagues));
+			}if (!cups.isEmpty()) {
+				team.setCups(Integer.parseInt(cups));
+			}if (!champions.isEmpty()) {
+				team.setChampions(Integer.parseInt(champions));
+			}
+			if (!fb.isEmpty()) {
+				team.setFacebook_Uri(fb);
+			}
+			if (!tw.isEmpty()) {
+				team.setTwitter_Uri(tw);
+			}
+			if (!go.isEmpty()) {
+				team.setGoogle_Uri(go);
+			}
+			
+			teamRepo.save(team);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 
 		return redirect;
 	}
-	
+
 	/**
 	 * Method {@linkplain updateTeamByID()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
@@ -201,8 +254,31 @@ public class AdminTeamController extends RedirectController {
 	 * @param model
 	 * @return
 	 */
-	@PutMapping("/admin-teams/updateEgames/{id}")
-	public String updateEgamesTeam(Model model, @PathVariable("id") long updating_id) {
+	@RequestMapping("/admin-teams/updateEgames/{id}")
+	public String updateEgamesTeam(@PathVariable Long id,@RequestParam("egamesUpName") String name,
+			@RequestParam("egamesUpCoach") String coach, @RequestParam("egamesUpCountry") String country,
+			@RequestParam("egamesUpCity") String city) {
+		
+		EgamesTeam team = egamesTeamRepo.getOne(id);
+		
+		try {
+			if(!name.isEmpty()){
+				team.setName(name);
+			}
+			if(!coach.isEmpty()){
+				team.setCoach(coach);
+			}
+			if(!country.isEmpty()){
+				team.setCountry(country);
+			}
+			if(!city.isEmpty()){
+				team.setCity(city);
+			}
+			
+			egamesTeamRepo.save(team);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		return redirect;
 	}

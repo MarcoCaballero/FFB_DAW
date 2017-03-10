@@ -107,31 +107,64 @@
 										<th data-field="twitter_Uri" data-sortable="true">Twitter</th>
 										<th data-field="google_Uri" data-sortable="true">Google</th>
 
-										<th data-field="Actions" data-sortable="true">Actions</th>
+										<th data-field="Actions" data-sortable="true"><p
+												style="margin-left: 80%; padding-top: 25%">Actions</p></th>
 									</tr>
 								</thead>
 								{{#SportsTeams}}
 								<tr>
+									<form id="formSportsId{{id}}"
+										action="admin-teams/updateSports/{{id}}">
 									<td>{{id}}</td>
-									<td>{{#type}}{{.}}{{/type}}</td>
-									<td>{{name}}</td>
-									<td>{{#coach}}{{.}}{{/coach}}</td>
-									<td>{{#country}}{{.}}{{/country}}</td>
-									<td>{{#city}}{{.}}{{/city}}</td>
-									<td>{{#slogan}}{{.}}{{/slogan}}</td>
-									<td>{{#stadium}}{{.}}{{/stadium}}</td>
-									<td>{{#president}}{{.}}{{/president}}</td>
-									<td>{{#leagues}}{{.}}{{/leagues}}</td>
-									<td>{{#cups}}{{.}}{{/cups}}</td>
-									<td>{{#champions}}{{.}}{{/champions}}</td>
-									<td>{{#facebook_Uri}}{{.}}{{/facebook_Uri}}</td>
-									<td>{{#twitter_Uri}}{{.}}{{/twitter_Uri}}</td>
-									<td>{{#google_Uri}}{{.}}{{/google_Uri}}</td>
+									<td><input type="text" name="sportsUpType"
+										placeholder="{{type}}" class="span12" style="margin-left: 20%"
+										readonly="readonly" /></td>
+									<td><input type="text" name="sportsUpName"
+										placeholder="{{name}}" class="span12" style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpCoach"
+										placeholder="{{#coach}}{{.}}{{/coach}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpCountry"
+										placeholder="{{#country}}{{.}}{{/country}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpCity"
+										placeholder="{{#city}}{{.}}{{/city}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpSlogan"
+										placeholder="{{#slogan}}{{.}}{{/slogan}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpStadium"
+										placeholder="{{#stadium}}{{.}}{{/stadium}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpPresident"
+										placeholder="{{#president}}{{.}}{{/president}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="number" name="sportsUpLeagues"
+										placeholder="{{#leagues}}{{.}}{{/leagues}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="number" name="sportsUpCups"
+										placeholder="{{#cups}}{{.}}{{/cups}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="number" name="sportsUpChampions"
+										placeholder="{{#champions}}{{.}}{{/champions}}" class="span12"
+										style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpFb"
+										placeholder="{{#facebook_Uri}}{{.}}{{/facebook_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpTw"
+										placeholder="{{#twitter_Uri}}{{.}}{{/twitter_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpGo"
+										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
 
+									<td><button type="submit" class="btn btn-mini btn-info"
+											style="margin-left: 30%; margin-bottom: 20%">Editar
+										</button></td>
 									<td><a href="/admin-teams/delete/{{id}}"
-										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
-											Borrar Partido
-									</a></td>
+										class="btn btn-mini btn-danger"
+										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+									</form>
 								</tr>
 								{{/SportsTeams}}
 							</table>
@@ -162,23 +195,40 @@
 										<th data-field="city" data-sortable="true">Ciudad</th>
 										<th data-field="sponsor" data-sortable="true">Sponsor</th>
 
-										<th data-field="Actions" data-sortable="true">Actions</th>
+										<th data-field="Actions" data-sortable="true"><p
+												style="margin-left: 80%; padding-top: 25%">Actions</p></th>
 									</tr>
 								</thead>
 								{{#EgamesTeams}}
 								<tr>
+									<form id="formEgamesId{{id}}"
+										action="admin-teams/updateEgames/{{id}}">
 									<td>{{id}}</td>
-									<td>{{#type}}{{.}}{{/type}}</td>
-									<td>{{name}}</td>
-									<td>{{#coach}}{{.}}{{/coach}}</td>
-									<td>{{#country}}{{.}}{{/country}}</td>
-									<td>{{#city}}{{.}}{{/city}}</td>
-									<td>{{#sponsor}}{{.}}{{/sponsor}}</td>
+									<td><input type="text" name="egamesUpType"
+										placeholder="{{type}}" class="span5" style="margin-left: 35%"
+										readonly="readonly" /></td>
+									<td><input type="text" name="egamesUpName"
+										placeholder="{{name}}" class="span10" style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCoach"
+										placeholder="{{#coach}}{{.}}{{/coach}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCountry"
+										placeholder="{{#country}}{{.}}{{/country}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCity"
+										placeholder="{{#city}}{{.}}{{/city}}" class="span10"
+										style="margin-left: 10%" /></td>
+									<td><input type="text" name="egamesUpCity"
+										placeholder="{{#sponsor}}{{.}}{{/sponsor}}" class="span10"
+										style="margin-left: 10%" /></td>
 
+									<td><button type="submit" class="btn btn-mini btn-info"
+											style="margin-left: 30%; margin-bottom: 20%">Editar
+										</button></td>
 									<td><a href="/admin-teams/delete/{{id}}"
-										class="btn btn-mini btn-danger"> <i class="icon-remove"></i>
-											Borrar Partido
-									</a></td>
+										class="btn btn-mini btn-danger"
+										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+									</form>
 								</tr>
 								{{/EgamesTeams}}
 							</table>
@@ -191,467 +241,202 @@
 				<div class="span6">
 					<div class="widget-box">
 						<div class="widget-title">
-							<a href="#collapseOneDep" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir Nuevo Equipo Deportivo</h5>
-							</a>
+							<h5>Añadir Nuevo Equipo Deportivo</h5>
 						</div>
-						<div class="collapse" id="collapseOneDep">
-							<form action="admin-teams/newSportsTeam" method="post"
-								class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">Tipo de deporte :</label>
-									<div class="controls">
-										<select name="sportsType">
-											<option value="Fútbol">Fútbol</option>
-											<option value="Baloncesto">Baloncesto</option>
-										</select>
-									</div>
+						<form action="admin-teams/newSportsTeam" method="post"
+							class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label">Tipo de deporte :</label>
+								<div class="controls">
+									<select name="sportsType">
+										<option value="Fútbol">Fútbol</option>
+										<option value="Baloncesto">Baloncesto</option>
+									</select>
 								</div>
-								<div class="control-group">
-									<label class="control-label">Nombre :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del equipo" name="sportsName" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Nombre :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del equipo" name="sportsName" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">País :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="País del equipo" name="sportsCountry" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">País :</label>
+								<div class="controls">
+									<input type="text" class="span11" placeholder="País del equipo"
+										name="sportsCountry" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Ciudad :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Ciudad del equipo" name="sportsCity" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Ciudad :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Ciudad del equipo" name="sportsCity" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Estadio :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del campo de fútbol" name="stadium" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Estadio :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del campo de fútbol" name="stadium" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Eslogan :</label>
-									<div class="controls">
-										<input type="text" class="span11" placeholder="Eslogan"
-											name="slogan" /> <span class="help-block">Frase
-											típica de la afición de este equipo</span>
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Eslogan :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Frase típica de la afición de este equipo"
+										name="slogan" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Presidente :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del presidente" name="president" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Presidente :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del presidente" name="president" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Entrenador :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del entrenador" name="sportsCoach" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Entrenador :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del entrenador" name="sportsCoach" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Ligas :</label>
-									<div class="controls">
-										<input type="number" class="span11"
-											placeholder="Número de ligas ganadas" name="leaguesWeb" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Ligas :</label>
+								<div class="controls">
+									<input type="number" class="span11"
+										placeholder="Número de ligas ganadas" name="leaguesWeb" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Copas :</label>
-									<div class="controls">
-										<input type="number" class="span11"
-											placeholder="Número de copas ganadas" name="cupsWeb" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Copas :</label>
+								<div class="controls">
+									<input type="number" class="span11"
+										placeholder="Número de copas ganadas" name="cupsWeb" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Champions :</label>
-									<div class="controls">
-										<input type="number" class="span11"
-											placeholder="Número de champions ganadas" name="championsWeb" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Champions :</label>
+								<div class="controls">
+									<input type="number" class="span11"
+										placeholder="Número de champions ganadas" name="championsWeb" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Facebook :</label>
-									<div class="controls">
-										<input type="url" class="span11"
-											placeholder="URL de su página de Facebook"
-											name="facebook_Uri" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Facebook :</label>
+								<div class="controls">
+									<input type="url" class="span11"
+										placeholder="URL de su página de Facebook" name="facebook_Uri" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Twitter :</label>
-									<div class="controls">
-										<input type="url" class="span11"
-											placeholder="URL de su página de Twitter" name="twitter_Uri" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Twitter :</label>
+								<div class="controls">
+									<input type="url" class="span11"
+										placeholder="URL de su página de Twitter" name="twitter_Uri" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Google :</label>
-									<div class="controls">
-										<input type="url" class="span11"
-											placeholder="URL de su página de Google+" name="google_Uri" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Google :</label>
+								<div class="controls">
+									<input type="url" class="span11"
+										placeholder="URL de su página de Google+" name="google_Uri" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Imagen Escudo :</label>
-									<div class="controls">
-										<input type="file" name="stadiumImage" />
-									</div>
+							</div>
+							<span class="help-block" style="margin-left: 30%">Las URLs
+								deben tener el formato de URL típico (http://...)</span>
+							<div class="control-group">
+								<label class="control-label">Imagen Escudo :</label>
+								<div class="controls">
+									<input type="file" name="stadiumImage" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Imagen Estadio :</label>
-									<div class="controls">
-										<input type="file" name="logoImage" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Imagen Estadio :</label>
+								<div class="controls">
+									<input type="file" name="logoImage" />
 								</div>
-								{{#noBadNewSport}}
-								<p style="color: red; margin-left:20%">Debe completar todos los campos</p>
-								{{/noBadNewSport}}
-								<div class="form-actions">
-									<input type="hidden" name="_csrf" value="{{token}}" /> <input
-										type="submit" class="btn btn-success" value="Añadir" />
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="widget-box">
-						<div class="widget-title">
-							<a href="#collapseTwoDep" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Editar Equipo Deportivo</h5>
-							</a>
-						</div>
-						<div class="collapse in" id="collapseTwoDep">
-							<form action="admin-teams/updateSports/{{id}}" method="post" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">Tipo de deporte :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del equipo" name="upSportsType" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Equipo a editar</label>
-									<div class="controls">
-										<select>
-											<option>Equipo 1</option>
-											<option>Equipo 2</option>
-											<option>Equipo 3</option>
-										</select>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Nombre :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del equipo" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Ciudad :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Ciudad del equipo" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Fundación :</label>
-									<div class="controls">
-										<input type="text" id="fechaModDep" class="mask-date"
-											placeholder="Fecha de fundación"> <span
-											class="help-block blue span8">99/99/9999</span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Estadio :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del campo de fútbol" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Eslogan :</label>
-									<div class="controls">
-										<input type="text" class="span11" placeholder="Eslogan" /> <span
-											class="help-block">Frasé típica de la afición de este
-											equipo</span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Presidente :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del presidente" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Entrenador :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del entrenador" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Ligas :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Número de ligas ganadas" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Copas :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Número de copas ganadas" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Champions :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Número de champions ganadas" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Facebook :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Facebook" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Google :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Google+" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Twitter :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Twitter" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Web :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página web oficial" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Imagen Escudo :</label>
-									<div class="controls">
-										<input type="file" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Imagen Estadio :</label>
-									<div class="controls">
-										<input type="file" />
-									</div>
-								</div>
-								<div class="form-actions">
-									<button type="submit" class="btn btn-info">Editar</button>
-									<button type="submit" class="btn btn-danger">Eliminar</button>
-									<button type="submit" class="btn btn-warning">Cancelar</button>
-								</div>
-							</form>
-						</div>
+							</div>
+							{{#noBadNewSport}}
+							<p style="color: red; margin-left: 20%">Debe completar todos
+								los campos</p>
+							{{/noBadNewSport}}
+							<div class="form-actions">
+								<input type="hidden" name="_csrf" value="{{token}}" /> <input
+									type="submit" class="btn btn-success" value="Añadir" />
+							</div>
+						</form>
 					</div>
 				</div>
 				<div class="span6">
 					<div class="widget-box">
 						<div class="widget-title">
-							<a href="#collapseOneEG" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Añadir Nuevo Equipo E-Games</h5>
-							</a>
+							<h5>Añadir Nuevo Equipo E-Games</h5>
 						</div>
-						<div class="collapse" id="collapseOneEG">
-							<form action="admin-teams/newEgamesTeam" method="post" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">Tipo de juego :</label>
-									<div class="controls">
-										<select name="egamesType">
-											<option value="LOL">League of legends</option>
-											<option value="CS-GO">Counter Strike GO</option>
-										</select>
-									</div>
+						<form action="admin-teams/newEgamesTeam" method="post"
+							class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label">Tipo de juego :</label>
+								<div class="controls">
+									<select name="egamesType">
+										<option value="LOL">League of legends</option>
+										<option value="CS-GO">Counter Strike GO</option>
+									</select>
 								</div>
-								<div class="control-group">
-									<label class="control-label">Nombre :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del equipo" name="egamesName" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Nombre :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del equipo" name="egamesName" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">País :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="País del equipo" name="egamesCountry" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">País :</label>
+								<div class="controls">
+									<input type="text" class="span11" placeholder="País del equipo"
+										name="egamesCountry" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Ciudad :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Ciudad del equipo" name="egamesCity" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Ciudad :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Ciudad del equipo" name="egamesCity" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Entrenador :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del entrenador" name="egamesCoach" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Entrenador :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre del entrenador" name="egamesCoach" />
 								</div>
-								<div class="control-group">
-									<label class="control-label">Sponsor :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre de la sede del equipo"
-											name="sponsor" />
-									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Sponsor :</label>
+								<div class="controls">
+									<input type="text" class="span11"
+										placeholder="Nombre de la sede del equipo" name="sponsor" />
 								</div>
-								{{#noBadNewEgames}}
-								<p style="color: red; margin-left:20%">Debe completar todos los campos</p>
-								{{/noBadNewEgames}}
-								<div class="form-actions">
-									<input type="hidden" name="_csrf" value="{{token}}" /> <input
-										type="submit" class="btn btn-success" value="Añadir" />
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="widget-box">
-						<div class="widget-title">
-							<a href="#collapseTwoEG" data-toggle="collapse"> <span
-								class="icon"><i class="icon-plus"></i></span>
-								<h5>Editar Equipo E-Games</h5>
-							</a>
-						</div>
-						<div class="collapse in" id="collapseTwoEG">
-							<form action="#" method="get" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">Tipo de juego :</label>
-									<div class="controls">
-										<label> <input type="radio" name="radios"
-											checked="checked" /> League of Legends
-										</label> <label> <input type="radio" name="radios" /> Counter
-											Strike
-										</label>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Equipo a editar</label>
-									<div class="controls">
-										<select>
-											<option>Equipo 1</option>
-											<option>Equipo 2</option>
-											<option>Equipo 3</option>
-										</select>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Nombre :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del equipo" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Sede :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre de la sede del equipo" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Fundación :</label>
-									<div class="controls">
-										<input type="text" id="fechaModGame" class="mask-date"
-											placeholder="Fecha de fundación"> <span
-											class="help-block blue span8">99/99/9999</span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Sponsor :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre de la sede del equipo" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Entrenador :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="Nombre del entrenador" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Títulos :</label>
-									<div class="controls">
-										<textarea class="span11" placeholder="Títulos ganados..."></textarea>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Facebook :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Facebook" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Google :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Google+" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Twitter :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página de Twitter" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Web :</label>
-									<div class="controls">
-										<input type="text" class="span11"
-											placeholder="URL de su página web oficial" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Imagen Escudo :</label>
-									<div class="controls">
-										<input type="file" class="span11" />
-									</div>
-								</div>
-								<div class="form-actions">
-									<button type="submit" class="btn btn-info">Editar</button>
-									<button type="submit" class="btn btn-danger">Eliminar</button>
-									<button type="submit" class="btn btn-warning">Cancelar</button>
-								</div>
-							</form>
-						</div>
+							</div>
+							{{#noBadNewEgames}}
+							<p style="color: red; margin-left: 20%">Debe completar todos
+								los campos</p>
+							{{/noBadNewEgames}}
+							<div class="form-actions">
+								<input type="hidden" name="_csrf" value="{{token}}" /> <input
+									type="submit" class="btn btn-success" value="Añadir" />
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!--Footer-part-->
 	<div class="row-fluid">
 		<div id="footer" class="span12" style="margin-left: 20%">
