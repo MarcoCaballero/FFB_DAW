@@ -106,6 +106,8 @@
 										<th data-field="facebook_Uri" data-sortable="true">Facebook</th>
 										<th data-field="twitter_Uri" data-sortable="true">Twitter</th>
 										<th data-field="google_Uri" data-sortable="true">Google</th>
+										<th data-field="imgLogo" data-sortable="true">Imagen logo</th>
+										<th data-field="imgLogo" data-sortable="true">Imagen estadio</th>
 
 										<th data-field="Actions" data-sortable="true"><p
 												style="margin-left: 80%; padding-top: 25%">Actions</p></th>
@@ -157,7 +159,14 @@
 									<td><input type="text" name="sportsUpGo"
 										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
 										class="span12" style="margin-left: 20%" /></td>
-
+									<!--
+									<td><input type="text" name="sportsUpGo"
+										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
+									<td><input type="text" name="sportsUpGo"
+										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
+										class="span12" style="margin-left: 20%" /></td>
+									-->
 									<td><button type="submit" class="btn btn-mini btn-info"
 											style="margin-left: 30%; margin-bottom: 20%">Editar
 										</button></td>
@@ -244,7 +253,7 @@
 							<h5>Añadir Nuevo Equipo Deportivo</h5>
 						</div>
 						<form action="admin-teams/newSportsTeam" method="post"
-							class="form-horizontal">
+							class="form-horizontal" enctype="multipart/form-data">
 							<div class="control-group">
 								<label class="control-label">Tipo de deporte :</label>
 								<div class="controls">
@@ -347,17 +356,18 @@
 								</div>
 							</div>
 							<span class="help-block" style="margin-left: 30%">Las URLs
-								deben tener el formato de URL típico (http://...)</span>
+								deben tener el formato de URL típico (http://www...)</span>
 							<div class="control-group">
 								<label class="control-label">Imagen Escudo :</label>
 								<div class="controls">
-									<input type="file" name="stadiumImage" />
+									<input type="file" name="logoImage" />
 								</div>
 							</div>
+							{{#showsPhotoError}}<label>Hay un error con la imagen intantalo más tarde</label>{{/showsPhotoError}}
 							<div class="control-group">
 								<label class="control-label">Imagen Estadio :</label>
 								<div class="controls">
-									<input type="file" name="logoImage" />
+									<input type="file" name="stadiumImage" />
 								</div>
 							</div>
 							{{#noBadNewSport}}

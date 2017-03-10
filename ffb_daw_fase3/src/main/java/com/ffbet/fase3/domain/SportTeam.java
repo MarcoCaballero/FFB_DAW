@@ -31,7 +31,7 @@ public class SportTeam extends Team {
 
 	@Column
 	private String stadium_image;
-
+	
 	@Column
 	private String logo_image;
 

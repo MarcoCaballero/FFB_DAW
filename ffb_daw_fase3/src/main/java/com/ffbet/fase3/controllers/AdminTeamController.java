@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ffbet.fase3.domain.EgamesTeam;
+import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
+import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.MatchRepository;
@@ -59,6 +62,8 @@ public class AdminTeamController extends RedirectController {
 
 	private boolean noFailsNewSport = false;
 	private boolean noFailsNewEgames = false;
+
+	private boolean showsPhotoError = false;
 
 	/* ADMIN */
 
@@ -109,9 +114,12 @@ public class AdminTeamController extends RedirectController {
 			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
 			@RequestParam("sportsCoach") String coach, @RequestParam("leaguesWeb") String leagues,
 			@RequestParam("cupsWeb") String cups, @RequestParam("championsWeb") String champions,
-			@RequestParam("stadiumImage") String sImage, @RequestParam("logoImage") String lImage,
 			@RequestParam("facebook_Uri") String fb, @RequestParam("twitter_Uri") String tw,
-			@RequestParam("google_Uri") String go) {
+			@RequestParam("google_Uri") String go, @RequestParam("logoImage") MultipartFile logoImg,
+			@RequestParam("stadiumImage") MultipartFile stadiumImg) {
+
+		String fileNameLogo;
+		String fileNameStadium;
 
 		try {
 			team.setType(type);
@@ -128,6 +136,28 @@ public class AdminTeamController extends RedirectController {
 			team.setFacebook_Uri(fb);
 			team.setTwitter_Uri(tw);
 			team.setGoogle_Uri(go);
+
+			if (!logoImg.isEmpty()) {
+				fileNameLogo = handleUploadImagetoDatabase(logoImg, team.getId(),
+						FilesPath.FILES_TEAMS_LOGO.toString());
+				if (fileNameLogo.equals("ERROR")) {
+					showsPhotoError = true;
+				} else {
+					showsPhotoError = false;
+					team.setLogoUrl(fileNameLogo);
+				}
+			}
+
+			if (!stadiumImg.isEmpty()) {
+				fileNameStadium = handleUploadImagetoDatabase(stadiumImg, team.getId(),
+						FilesPath.FILES_TEAMS_COVER.toString());
+				if (fileNameStadium.equals("ERROR")) {
+					showsPhotoError = true;
+				} else {
+					showsPhotoError = false;
+					team.setLogoUrl(fileNameStadium);
+				}
+			}
 
 			// team.setStadium_image(sImage);
 			// team.setLogo_image(lImage);
@@ -221,9 +251,11 @@ public class AdminTeamController extends RedirectController {
 			}
 			if (!leagues.isEmpty()) {
 				team.setLeagues(Integer.parseInt(leagues));
-			}if (!cups.isEmpty()) {
+			}
+			if (!cups.isEmpty()) {
 				team.setCups(Integer.parseInt(cups));
-			}if (!champions.isEmpty()) {
+			}
+			if (!champions.isEmpty()) {
 				team.setChampions(Integer.parseInt(champions));
 			}
 			if (!fb.isEmpty()) {
@@ -235,7 +267,7 @@ public class AdminTeamController extends RedirectController {
 			if (!go.isEmpty()) {
 				team.setGoogle_Uri(go);
 			}
-			
+
 			teamRepo.save(team);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -255,26 +287,26 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@RequestMapping("/admin-teams/updateEgames/{id}")
-	public String updateEgamesTeam(@PathVariable Long id,@RequestParam("egamesUpName") String name,
+	public String updateEgamesTeam(@PathVariable Long id, @RequestParam("egamesUpName") String name,
 			@RequestParam("egamesUpCoach") String coach, @RequestParam("egamesUpCountry") String country,
 			@RequestParam("egamesUpCity") String city) {
-		
+
 		EgamesTeam team = egamesTeamRepo.getOne(id);
-		
+
 		try {
-			if(!name.isEmpty()){
+			if (!name.isEmpty()) {
 				team.setName(name);
 			}
-			if(!coach.isEmpty()){
+			if (!coach.isEmpty()) {
 				team.setCoach(coach);
 			}
-			if(!country.isEmpty()){
+			if (!country.isEmpty()) {
 				team.setCountry(country);
 			}
-			if(!city.isEmpty()){
+			if (!city.isEmpty()) {
 				team.setCity(city);
 			}
-			
+
 			egamesTeamRepo.save(team);
 		} catch (Exception e) {
 			// TODO: handle exception
