@@ -372,48 +372,14 @@
 										</tr>
 									</thead>
 									<tbody>
+									{{#footballMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
+											<th scope="row">{{-index}}</th>
+											<th scope="row">{{date}}</th>
+											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
+											<td class="tab-resultado-partido" style="padding-left: 40px;">{{homePoints}}-{{visitingPoints}}</td>
 										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Atlético de Madrid -
-												Real Madrid</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
+									{{/footballMatchTable}}	
 									</tbody>
 								</table>
 								<!-- Contenido Futbol-->
@@ -432,42 +398,14 @@
 										</tr>
 									</thead>
 									<tbody>
+									{{#basketballMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
+											<th scope="row">{{-index}}</th>
+											<th scope="row">{{date}}</th>
+											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
+											<td class="tab-resultado-partido" style="padding-left: 40px;">{{homePoints}}-{{visitingPoints}}</td>
 										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">Detroit - L.A. lakers</td>
-											<td class="tab-resultado-partido" style="padding-left: 40px;">3.15</td>
-										</tr>
+									{{/basketballMatchTable}}	
 									</tbody>
 								</table>
 								<!-- Contenido Basket-->
@@ -485,45 +423,22 @@
 												<div class="col-xs-6 col-md-3 text-center"
 													style="width: 200px">Equipo Ganador</div>
 											</th>
+											<th>
+												<div class="col-xs-6 col-md-3 text-center"
+													style="width: 200px">Primera sangre</div>
+											</th>
 										</tr>
 									</thead>
 									<tbody>
+									{{#lolMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
+											<th scope="row">{{-index}}</th>
+											<th scope="row">{{date}}</th>
+											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{winnerTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{firstBloodTeam}}</td>											
 										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
+									{{/lolMatchTable}}	
 									</tbody>
 								</table>
 							</div>
@@ -538,45 +453,22 @@
 												<div class="col-xs-6 col-md-3 text-center"
 													style="width: 200px">Equipo Ganador</div>
 											</th>
+											<th>
+												<div class="col-xs-6 col-md-3 text-center"
+													style="width: 200px">Primera sangre</div>
+											</th>
 										</tr>
 									</thead>
 									<tbody>
+										{{#csgoMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
+											<th scope="row">{{-index}}</th>
+											<th scope="row">{{date}}</th>
+											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{winnerTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{firstBloodTeam}}</td>											
 										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
-										<tr class="tab-horario-partido">
-											<th scope="row">1</th>
-											<td class="tab-horario-partido">24/11 17:00</td>
-											<td class="tab-equipos-partido">SKT t1 - Cloud9</td>
-											<td class="tab-resultado-partido" style="padding-left: 90px;">3.15</td>
-										</tr>
+										{{/csgoMatchTable}}	
 									</tbody>
 								</table>
 							</div>
