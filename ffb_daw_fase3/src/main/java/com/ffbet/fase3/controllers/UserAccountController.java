@@ -51,7 +51,7 @@ public class UserAccountController extends RedirectController {
 	private boolean showsPhotoError = false;
 	private boolean showsPasswdError = false;
 	private boolean showsCardError = false;
-	//private boolean isPhotoSelected = false;
+	// private boolean isPhotoSelected = false;
 
 	@GetMapping(value = { "/user-account", "/user-account/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
@@ -60,9 +60,10 @@ public class UserAccountController extends RedirectController {
 			showsUserMenu = true;
 			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
-				//model.addAttribute("isMen", userComp.getLoggedUser().isMen());
+				// model.addAttribute("isMen",
+				// userComp.getLoggedUser().isMen());
 			} else {
-				//isPhotoSelected = true;
+				// isPhotoSelected = true;
 			}
 		} else {
 			showsUserMenu = false;
@@ -72,8 +73,7 @@ public class UserAccountController extends RedirectController {
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("showsPhotoError", showsPhotoError);
 		model.addAttribute("showsPasswdError", showsPasswdError);
-		//model.addAttribute("isPhotoSelected", isPhotoSelected);
-		model.addAttribute("showsCardError", showsCardError);
+		// model.addAttribute("isPhotoSelected", isPhotoSelected);
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_USER_ACCOUNT.toString());
@@ -170,6 +170,7 @@ public class UserAccountController extends RedirectController {
 			return "redirect:/logOut";
 		}
 
+		model.addAttribute("showsCardError", showsCardError);
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -218,18 +219,34 @@ public class UserAccountController extends RedirectController {
 		try {
 			if (exists) {
 				if (creditcard != null) {
-					long amountSelected = Long.parseLong(amount);
-					user.addCreditfromCard(amountSelected);
-					creditcard.sendMoney(amountSelected);
-					userRepo.save(user);
+					if (creditcard.equalsData(type, name, cardNumber, expirationMonth, expirationYear, ccv)) {
+						long amountSelected = Long.parseLong(amount);
+						if (creditcard.sendMoney(amountSelected)) {
+							user.addCreditfromCard(amountSelected);
+						} else {
+							// NOT CREDIT
+							showsCardError = true;
+							return "redirect:/user-account/addCredit";
+						}
+						userRepo.save(user);
+					} else {
+						showsCardError = true;
+						return "redirect:/user-account/addCredit";
+					}
+
 				}
 			} else {
 
 				long amountSelected = Long.parseLong(amount);
-				user.addCreditfromCard(amountSelected);
+
 				creditcard = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
 				user.addCard(creditcard);
-				creditcard.sendMoney(amountSelected);
+				if (creditcard.sendMoney(amountSelected)) {
+					user.addCreditfromCard(amountSelected);
+				} else {
+					// NOT CREDIT
+					showsCardError = true;
+				}
 
 				userRepo.save(user);
 			}

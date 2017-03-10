@@ -6,22 +6,25 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entra FFB</title>
-<link rel="stylesheet" href="user/cssExtra/bootstrap.min.css" />
-<link rel="stylesheet" href="user/cssExtra/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="user/cssExtra/matrix-login.css" />
-<link href="user/font-awesomeExtra/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="admin/css/matrix-login.css" />
+<link href="user/font-awesomeExtra/css/font-awesome.css"
+	rel="stylesheet" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
 	rel='stylesheet' type='text/css'>
 </head>
 
-<body style="background-color: #007b8b">
-	<div id="loginbox">
-		<form id="loginform" class="form-vertical" action="login"
-			method="POST">
-			<div class="control-group normal_text">
+<body id="loginBodyFFB">
+	<div id="loginbox"
+		style="position: fixed; left: 35%; margin-top: 3%;  margin-bottom: 3%;">
+		<form id="loginform" style="background-color: rgba(0, 0, 0, 0.65);"
+			class="form-vertical" action="login" method="POST">
+			<div class="control-group normal_text"
+				style="background-color: rgba(0, 0, 0, 0);">
 				<h3>
-					<img src="user/img/LogoFFBalpha.png" height="150px" alt="Logo" />
+					<img src="user/img/LogoFFBalpha.png" height="200px" alt="Logo" />
 				</h3>
 			</div>
 			<div class="control-group">
@@ -39,20 +42,27 @@
 							type="password" name="password" placeholder="Contraseña" /> <input
 							type="hidden" name="_csrf" value="{{token}}" />
 					</div>
-					<h5 style="color: red">{{#isError}} La contraseña o usuario son erroneos.
-						{{/isError}}</h5>
+					<h5 style="color: red">{{#isError}} La contraseña o usuario
+						son erroneos. {{/isError}}</h5>
 				</div>
 			</div>
 			<div class="form-actions">
-				<span class="pull-left"><a href="#"
-					class="flip-link btn btn-info" id="to-recover">¿Olvidó su
-						contraseña?</a></span> 
-						<span class="pull-right"><input type="submit" class="btn btn-success" value="SingIn"></span>
+				<span class="pull-left"><a href="login#"
+					class="flip-link btn btn-danger" id="to-recover">¿Olvidó su
+						contraseña?</a></span> <span class="pull-right"><input type="submit"
+					class="btn btn-primary" value="Entrar"></span>
+
+
+			</div>
+			<div class="row" >
+				<span class="pull-right"><a href="signup" style="font-size:medium; margin-right: 4%;" id="tipo">¿No te has registrado aún? </a></span>
 			</div>
 		</form>
-		<form id="recoverform" action="#" class="form-vertical">
-			<p class="normal_text">Introduce tu dirección de correo y te
-				enviaremos instrucciones para recuperar tu contraseña.</p>
+		<form id="recoverform" action="" class="form-vertical"
+			style="background-color: rgba(0, 0, 0, 0.65);">
+			<p class="normal_text" style="background-color: rgba(0, 0, 0, 0);">Introduce
+				tu dirección de correo y te enviaremos instrucciones para recuperar
+				tu contraseña.</p>
 			<div class="controls">
 				<div class="main_input_box">
 					<span class="add-on bg_lo"><i class="icon-envelope"></i></span> <input
@@ -60,7 +70,7 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<span class="pull-left"><a href="#"
+				<span class="pull-left"><a href="login#"
 					class="flip-link btn btn-success" id="to-login">&laquo; Volver
 						al login</a></span> <span class="pull-right"><a class="btn btn-info">Enviar</a></span>
 			</div>

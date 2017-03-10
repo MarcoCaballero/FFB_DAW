@@ -3,6 +3,7 @@ package com.ffbet.fase3.domain;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class SportsMatch extends Match {
+
 
 	private double quotaDraw;
 	private int homePoints;
@@ -30,27 +32,51 @@ public class SportsMatch extends Match {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	/**
-	 * @param quotaDraw,
-	 *            the quota of draw's bet
-	 * @param homePoints,
-	 *            the points of the home team
-	 * @param visitingPoints,
-	 *            the points of the visiting team
+	 * @param date
+	 * @param time
+	 * @param type
+	 * @param homeTeam
+	 * @param visitingTeam
+	 * @param quotaHomeVictory
+	 * @param quotaVisitingVictory
 	 */
-	public SportsMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	public SportsMatch(Date date, Time time, String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory) {
 		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SportsMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
+	/**
+	 * @param date
+	 * @param time
+	 * @param type
+	 * @param homeTeam
+	 * @param visitingTeam
+	 * @param quotaHomeVictory
+	 * @param quotaVisitingVictory
+	 * @param quotaDraw
+	 * @param homePoints
+	 * @param visitingPoints
+	 */
+	public SportsMatch(Date date, Time time, String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
 			int quotaVisitingVictory, double quotaDraw, int homePoints, int visitingPoints) {
 		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaDraw = quotaDraw;
 		this.homePoints = homePoints;
 		this.visitingPoints = visitingPoints;
+	}
+	
+	
+	
+	public SportsMatch(Date date, Time time, String type, double quotaHomeVictory,double quotaVisitingVictory, double quotaDraw, SportTeam localTeam,  SportTeam visitingTeam) {
+		super(date, time, type, localTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
+		this.quotaDraw = quotaDraw;
+		this.teams.add(localTeam);
+		this.teams.add(visitingTeam);
+		// TODO Auto-generated constructor stub
 	}
 
 	// GETTERS & SETTERS
