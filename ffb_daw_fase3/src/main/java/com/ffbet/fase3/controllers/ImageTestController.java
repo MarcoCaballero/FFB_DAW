@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,36 +84,60 @@ public class ImageTestController {
 		eg_team2.setCoach("Simeone");
 		
 		SportsMatch sportMatch1 = new SportsMatch();
+		sportMatch1.setDate(Date.valueOf("2000-11-01"));
 		sportMatch1.setHomeTeam("RealMadrid");
 		sportMatch1.setVisitingTeam("Atletico");
 		sportMatch1.setType("Futbol");
 
 		SportsMatch sportMatch2 = new SportsMatch();
+		sportMatch2.setDate(Date.valueOf("2002-01-01"));
 		sportMatch2.setHomeTeam("Fuenla");
 		sportMatch2.setVisitingTeam("Alcorcon");
 		sportMatch2.setType("Futbol");
 
 		SportsMatch sportMatch3 = new SportsMatch();
+		sportMatch3.setDate(Date.valueOf("2025-11-14"));
 		sportMatch3.setHomeTeam("RealMadrid");
 		sportMatch3.setVisitingTeam("Atletico");
 		sportMatch3.setType("Baloncesto");
 
 		SportsMatch sportMatch4 = new SportsMatch();
+		sportMatch4.setDate(Date.valueOf("2020-11-21"));
+		sportMatch1.setTime(Time.valueOf("18:05".concat(":00")));
 		sportMatch4.setHomeTeam("Barcelona");
 		sportMatch4.setVisitingTeam("Atletico");
 		sportMatch4.setType("Baloncesto");
 
 		EgamesMatch egamesMatch1 = new EgamesMatch();
 		egamesMatch1.setHomeTeam("asd");
+		egamesMatch1.setDate(Date.valueOf("2020-11-21"));
+		egamesMatch1.setTime(Time.valueOf("18:05".concat(":00")));
 		egamesMatch1.setVisitingTeam("asdddd");
 		egamesMatch1.setType("Lol");
+		egamesMatch1.setWinnerTeam("SKT");
+		egamesMatch1.setFirstBloodTeam("SKT");
 		egamesMatch1.setWinHome(true);
 		egamesMatch1.setFirstBloodVisiting(true);
+		
+		EgamesMatch egamesMatch3 = new EgamesMatch();
+		egamesMatch3.setHomeTeam("equipo de lol 2");
+		egamesMatch3.setDate(Date.valueOf("2020-11-21"));
+		egamesMatch3.setTime(Time.valueOf("18:05".concat(":00")));
+		egamesMatch3.setVisitingTeam("equipo de lol 2");
+		egamesMatch3.setType("Lol");
+		egamesMatch3.setWinnerTeam("el primero");
+		egamesMatch3.setFirstBloodTeam("el segundo");
+		egamesMatch3.setWinHome(true);
+		egamesMatch3.setFirstBloodVisiting(true);
 
 		EgamesMatch egamesMatch2 = new EgamesMatch();
 		egamesMatch2.setHomeTeam("SKT");
 		egamesMatch2.setVisitingTeam("Origin");
+		egamesMatch2.setDate(Date.valueOf("2020-11-21"));
+		egamesMatch2.setTime(Time.valueOf("18:05".concat(":00")));
 		egamesMatch2.setType("Csgo");
+		egamesMatch2.setWinnerTeam("Origin");
+		egamesMatch2.setFirstBloodTeam("SKT");
 		egamesMatch2.setWinHome(true);
 		egamesMatch2.setFirstBloodVisiting(true);
 
