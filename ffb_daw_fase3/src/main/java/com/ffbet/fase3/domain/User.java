@@ -76,6 +76,10 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
+	private List<Promotion> usedPromos = new ArrayList<>();
+
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<CreditCard> cards = new ArrayList<>();
@@ -522,6 +526,21 @@ public class User {
 	public void setCards(List<CreditCard> cards) {
 		this.cards = cards;
 	}
+	
+	/**
+	 * @return the usedPromos
+	 */
+	public List<Promotion> getUsedPromos() {
+		return usedPromos;
+	}
+
+	/**
+	 * @param usedPromos the usedPromos to set
+	 */
+	public void setUsedPromos(List<Promotion> usedPromos) {
+		this.usedPromos = usedPromos;
+	}
+	
 
 	/* OWN METHODS */
 
@@ -534,4 +553,18 @@ public class User {
 	public void addCreditfromCard(double money) {
 		this.setCredit(this.getCredit() + money);
 	}
+	
+	public boolean addPromo(Promotion promo) {
+		if(this.getUsedPromos().contains(promo)){
+			return false;
+		}else{
+			if(this.getPromos().contains(promo)){
+				return false;
+			}else{
+				this.getPromos().add(promo);
+				return true;
+			}
+		}
+	}
+
 }

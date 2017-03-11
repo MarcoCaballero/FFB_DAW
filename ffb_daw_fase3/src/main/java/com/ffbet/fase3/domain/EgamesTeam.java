@@ -34,7 +34,7 @@ public class EgamesTeam extends Team {
 	 * @param country
 	 * @param city
 	 */
-	public EgamesTeam(String type, String sponsor, long id, String name, String coach, String country, String city) {
+	public EgamesTeam(String type, String sponsor, String name, String coach, String country, String city) {
 		super(name, coach, country, city, type);
 		this.sponsor = sponsor;
 	}
@@ -47,7 +47,7 @@ public class EgamesTeam extends Team {
 	 * @param name
 	 * @param coach
 	 */
-	public EgamesTeam(String type, String sponsor, long id, String name, String coach) {
+	public EgamesTeam(String type, String sponsor, String name, String coach) {
 		super(name, coach,type);
 		this.sponsor = sponsor;
 	}

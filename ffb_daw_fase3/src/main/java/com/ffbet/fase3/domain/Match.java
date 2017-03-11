@@ -82,8 +82,8 @@ public abstract class Match {
 	 * @param (required)
 	 *            quotaVisitingVictory, the quota of visiting victory's bet
 	 */
-	public Match(Date date, Time time,String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
-			int quotaVisitingVictory) {
+	public Match(Date date, Time time,String type, String homeTeam, String visitingTeam, double quotaHomeVictory,
+			double quotaVisitingVictory) {
 		super();
 		this.date = date;
 		this.time = time;

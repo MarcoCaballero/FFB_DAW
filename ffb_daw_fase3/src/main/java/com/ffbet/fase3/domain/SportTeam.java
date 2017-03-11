@@ -29,13 +29,11 @@ public class SportTeam extends Team {
 
 	private int champions;
 
-	@Column(length = 10000000)
-	@Lob
-	private byte[] stadium_image;
-
-	@Column(length = 10000000)
-	@Lob
-	private byte[] logo_image;
+	@Column
+	private String stadium_image;
+	
+	@Column
+	private String logo_image;
 
 	private String twitter_Uri;
 	private String facebook_Uri;
@@ -48,6 +46,16 @@ public class SportTeam extends Team {
 	 */
 	public SportTeam() {
 		super();
+	}
+
+	/**
+	 * @param stadium
+	 * @param president
+	 */
+	public SportTeam(String stadium, String president, String name, String coach, String type) {
+		super(name, coach, type);
+		this.stadium = stadium;
+		this.president = president;
 	}
 
 	/**
@@ -72,8 +80,8 @@ public class SportTeam extends Team {
 	 * @param city
 	 */
 	public SportTeam(String slogan, String stadium, String type, String president, int leagues, int cups, int champions,
-			byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
-			long id, String name, String coach, String country, String city) {
+			String stadium_image, String logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
+			String name, String coach, String country, String city) {
 		super(name, coach, country, city, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -108,9 +116,9 @@ public class SportTeam extends Team {
 	 * @param name
 	 * @param coach
 	 */
-	public SportTeam(String slogan, String stadium, String type, String president, int leagues, int cups, int champions,
-			byte[] stadium_image, byte[] logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
-			long id, String name, String coach) {
+	public SportTeam(String slogan, String stadium, String president, int leagues, int cups, int champions,
+			String stadium_image, String logo_image, String twitter_Uri, String facebook_Uri, String google_Uri,
+			String name, String coach, String type) {
 		super(name, coach, type);
 		this.slogan = slogan;
 		this.stadium = stadium;
@@ -219,7 +227,7 @@ public class SportTeam extends Team {
 	/**
 	 * @return the stadium_image
 	 */
-	public byte[] getStadium_image() {
+	public String getStadium_image() {
 		return stadium_image;
 	}
 
@@ -227,14 +235,14 @@ public class SportTeam extends Team {
 	 * @param stadium_image
 	 *            the stadium_image to set
 	 */
-	public void setStadium_image(byte[] stadium_image) {
+	public void setStadium_image(String stadium_image) {
 		this.stadium_image = stadium_image;
 	}
 
 	/**
 	 * @return the logo_image
 	 */
-	public byte[] getLogo_image() {
+	public String getLogo_image() {
 		return logo_image;
 	}
 
@@ -242,7 +250,7 @@ public class SportTeam extends Team {
 	 * @param logo_image
 	 *            the logo_image to set
 	 */
-	public void setLogo_image(byte[] logo_image) {
+	public void setLogo_image(String logo_image) {
 		this.logo_image = logo_image;
 	}
 
