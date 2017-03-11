@@ -161,13 +161,13 @@
 											placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
 											class="span12" style="margin-left: 20%" /></td>
 
-										<td>{{#noLogo}} <img class="img-circle"
-											src="images/logos/{{logo_Image}}" height="25px" />
-											{{/noLogo}}
+										<td>{{#logo_image}}<img class="img-circle"
+											src="images/logos/{{.}}" height="40px" width="50px"
+											style="margin-left: 20%" />{{/logo_image}}
 										</td>
-										<td>{{#noStadium}} <img class="img-circle"
-											src="images/covers/{{stadium_Image}}" height="25px" />
-											{{/noStadium}}
+										<td>{{#stadium_image}}<img class="img-circle"
+											src="images/covers/{{.}}" height="40px" width="50px"
+											style="margin-left: 20%" />{{/stadium_image}}
 										</td>
 
 										<td><button type="submit" class="btn btn-mini btn-info"
@@ -367,15 +367,16 @@
 									<input type="file" name="logoImage" />
 								</div>
 							</div>
-							{{#showsPhotoError}}<label>Hay un error con la imagen
-								intantalo más tarde</label>{{/showsPhotoError}}
+							{{#showsLogoError}}<label>Hay un error con la imagen
+								intantalo más tarde</label>{{/showsLogoError}}
 							<div class="control-group">
 								<label class="control-label">Imagen Estadio :</label>
 								<div class="controls">
 									<input type="file" name="stadiumImage" />
 								</div>
 							</div>
-							{{#noBadNewSport}}
+							{{#showsStadiumError}}<label>Hay un error con la imagen
+								intantalo más tarde</label>{{/showsStadiumError}} {{#noBadNewSport}}
 							<p style="color: red; margin-left: 20%">Debe completar todos
 								los campos</p>
 							{{/noBadNewSport}}

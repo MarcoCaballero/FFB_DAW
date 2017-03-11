@@ -100,8 +100,8 @@ public class AdminTeamController extends RedirectController {
 		model.addAttribute("noBadNewSport", noFailsNewSport);
 		model.addAttribute("noBadNewEgames", noFailsNewEgames);
 		
-		model.addAttribute("noLogo", photoLogoError);
-		model.addAttribute("noStadium", photoStadiumError);
+		model.addAttribute("showsLogoError", photoLogoError);
+		model.addAttribute("showsStadiumError", photoStadiumError);
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -120,7 +120,7 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/newSportsTeam" })
-	public String addSportsTeam(SportTeam team, @RequestParam("sportsType") String type,
+	public String addSportsTeam(@RequestParam("sportsType") String type,
 			@RequestParam("sportsName") String name, @RequestParam("sportsCountry") String country,
 			@RequestParam("sportsCity") String city, @RequestParam("stadium") String stadium,
 			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
@@ -134,6 +134,8 @@ public class AdminTeamController extends RedirectController {
 		String fileNameStadium;
 
 		try {
+			SportTeam team = new SportTeam();
+			
 			team.setType(type);
 			team.setName(name);
 			team.setCountry(country);
@@ -148,6 +150,10 @@ public class AdminTeamController extends RedirectController {
 			team.setFacebook_Uri(fb);
 			team.setTwitter_Uri(tw);
 			team.setGoogle_Uri(go);
+			
+			sportsTeamRepo.save(team);
+			
+			team = sportsTeamRepo.findByName(name);
 
 			if (!logoImg.isEmpty()) {
 				fileNameLogo = handleUploadImagetoDatabase(logoImg, team.getId(),

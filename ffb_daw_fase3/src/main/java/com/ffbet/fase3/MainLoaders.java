@@ -42,7 +42,7 @@ public class MainLoaders {
 		
 		
 		SportTeam sportteam2 =new SportTeam("¡Més que un club!", "Camp Nou", "Barcelona", "Jusep Marí Bartomeu", 34, 38,
-				5, "photo_team_cover3.png", "photo_team_logo3.png", "https://twitter.com/fcbarcelona_es?lang=es",
+				5, "photo_team_cover2.png", "photo_team_logo2.png", "https://twitter.com/fcbarcelona_es?lang=es",
 				"https://www.facebook.com/fcbarcelona/", "https://plus.google.com/+FCBarcelona", "F.C. Barcelona",
 				"Fútbol", "Luis Enrique", "España");
 		

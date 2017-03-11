@@ -57,24 +57,6 @@ public class Promotion {
 		this.description = description;
 		this.promotionCode = promotionCode;
 	}
-
-	/**
-	 * @param (required) type, the type of promotion
-	 * @param (required) title, the title of promotion
-	 * @param description, the description of promotion
-	 * @param (required) promotionCode, the code of promotion
-	 * @param promotionImage, the publicity image of the promotion
-	 *
-	 */
-	public Promotion(long id, String type, String title, String description, String promotionCode,
-			String promotionImage) {
-		this.id = id;
-		this.type = type;
-		this.title = title;
-		this.description = description;
-		this.promotionCode = promotionCode;
-		this.promotionImage = promotionImage;
-	}
 	
 	// GETTERS & SETTERS
 	

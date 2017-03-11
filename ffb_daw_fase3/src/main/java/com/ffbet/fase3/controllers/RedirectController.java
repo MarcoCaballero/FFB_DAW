@@ -81,6 +81,8 @@ public abstract class RedirectController {
 			filename = "photo_team_cover" + id + ".jpg";
 		} else if (files_folder.equals(FilesPath.FILES_TEAMS_LOGO.toString())) {
 			filename = "photo_team_logo" + id + ".jpg";
+		} else if (files_folder.equals(FilesPath.FILES_PROMOS.toString())) {
+			filename = "photo_promo" + id + ".jpg";
 		} else {
 			filename = "unknownfoldersource" + id + ".jpg";
 		}
@@ -118,6 +120,9 @@ public abstract class RedirectController {
 			break;
 		case "logos":
 			file_folder_absolute = FilesPath.FILES_TEAMS_LOGO.toString();
+			break;
+		case "promos":
+			file_folder_absolute = FilesPath.FILES_PROMOS.toString();
 			break;
 		default:
 			file_folder_absolute = "UnknownFolder";
