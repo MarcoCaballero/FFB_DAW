@@ -344,16 +344,16 @@
 					style="margin-left: 25px; margin-right: 0px;">
 					<div class="panel-body tabs">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab"><img
+							<li class="active"><a href="user#tab1" data-toggle="tab"><img
 									class="glyph stroked home" src="user/img/football.svg"
 									style="width: 16px; height: 16px;"> FUTBOL</a></li>
-							<li><a href="#tab2" data-toggle="tab"><img
+							<li><a href="user#tab2" data-toggle="tab"><img
 									class="glyph stroked home" src="user/img/basket.svg"
 									style="width: 16px; height: 16px;"> BASKET</a></li>
-							<li><a href="#tab3" data-toggle="tab"><img
+							<li><a href="user#tab3" data-toggle="tab"><img
 									class="glyph stroked home" src="user/img/basket.svg"
 									style="width: 16px; height: 16px;"> LOL</a></li>
-							<li><a href="#tab4" data-toggle="tab"><img
+							<li><a href="user#tab4" data-toggle="tab"><img
 									class="glyph stroked home" src="user/img/basket.svg"
 									style="width: 16px; height: 16px;"> CS:GO</a></li>
 						</ul>
@@ -435,8 +435,8 @@
 											<th scope="row">{{-index}}</th>
 											<th scope="row">{{date}}</th>
 											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
-											<td class="tab-resultado-partido" style="padding-left: 80px;">{{winnerTeam}}</td>											
-											<td class="tab-resultado-partido" style="padding-left: 80px;">{{firstBloodTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{#winnerTeam}}{{.}}{{/winnerTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{#firstBloodTeam}}{{.}}{{/firstBloodTeam}}</td>											
 										</tr>
 									{{/lolMatchTable}}	
 									</tbody>
@@ -465,8 +465,8 @@
 											<th scope="row">{{-index}}</th>
 											<th scope="row">{{date}}</th>
 											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
-											<td class="tab-resultado-partido" style="padding-left: 80px;">{{winnerTeam}}</td>											
-											<td class="tab-resultado-partido" style="padding-left: 80px;">{{firstBloodTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{#winnerTeam}}{{.}}{{/winnerTeam}}</td>											
+											<td class="tab-resultado-partido" style="padding-left: 80px;">{{#firstBloodTeam}}{{.}}{{/firstBloodTeam}}</td>											
 										</tr>
 										{{/csgoMatchTable}}	
 									</tbody>
