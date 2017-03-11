@@ -42,8 +42,12 @@
 							type="password" name="password" placeholder="Contraseña" /> <input
 							type="hidden" name="_csrf" value="{{token}}" />
 					</div>
-					<h5 style="color: red">{{#isError}} La contraseña o usuario
-						son erroneos. {{/isError}}</h5>
+					{{#isError}}
+					<h5 style="color: red"> La contraseña o usuario
+						son erroneos, o 
+						<p> tienes una sesión abierta en otro dispositivo </p>
+					</h5>
+					{{/isError}}
 				</div>
 			</div>
 			<div class="form-actions">

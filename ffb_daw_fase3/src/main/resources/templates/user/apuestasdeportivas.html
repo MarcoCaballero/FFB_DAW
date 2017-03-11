@@ -352,70 +352,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                  {{#footballMatchTable}}
                                         <tr class="tab-horario-partido">
                                             <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
+                                            <td class="tab-horario-partido">{{date}} {{time}}</td>
+                                            <td class="tab-equipos-partido">{{homeTeam}} - {{visitingTeam}}</td>
                                             <td class="tab-buttons-apuesta-simple">
                                                 <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    <a href="/user-sportsBet/addMatch/{{id}}/1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@{{quotaHomeVictory}}</a>
                                                 </div>
                                                 <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    <a href="/user-sportsBet/addMatch/{{id}}/X" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@{{quotaDraw}}</a>
                                                 </div>
                                                 <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
+                                                    <a href="/user-sportsBet/addMatch/{{id}}/2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@{{quotaVisitingVictory}}</a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tab-horario-partido">
-                                            <th scope="row">1</th>
-                                            <td class="tab-horario-partido">24/11 17:00</td>
-                                            <td class="tab-equipos-partido">Atlético de Madrid - Real Madrid</td>
-                                            <td class="tab-buttons-apuesta-simple">
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-4 center-block">
-                                                    <button type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">3.15</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                     {{/footballMatchTable}}  
                                     </tbody>
                                 </table>
                                 <!-- Contenido Futbol-->
@@ -515,12 +469,14 @@
                         </svg>APUESTA</div>
                     <div class="panel-body">
                         <ul class="todo-list">
-                            <li id="apuesta1" class="todo-list-item">
+                        
+                        {{#ticketErasable.betMatchesList}}
+                            <li id="apuesta{{id}}" class="todo-list-item">
                                 <div class="checkbox">
-                                    <input type="checkbox" id="checkbox" />
+                                   
                                     <label for="checkbox">
-                                        <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
-                                        <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
+                                        <p style="color:black;"><i>Ganador del partido // {{match.homeTeam}}-{{match.visitingTeam}} </i> </p>
+                                        <p style="color:black;">24/11 19:00 <strong>{{selectedNamequota}} @{{selectedQuota}}</strong></p>
                                     </label>
                                 </div>
                                 <div class="pull-right action-buttons">
@@ -531,54 +487,9 @@
                                     </a>
                                 </div>
                             </li>
-                            <li id="apuesta2" class="todo-list-item">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="checkbox" />
-                                    <label for="checkbox">
-                                        <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
-                                        <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
-                                    </label>
-                                </div>
-                                <div class="pull-right action-buttons">
-                                    <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta2')">
-                                        <svg id="iconoBasura" class="glyph stroked trash">
-                                            <use xlink:href="#stroked-trash"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <li id="apuesta3" class="todo-list-item">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="checkbox" />
-                                    <label for="checkbox">
-                                        <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
-                                        <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
-                                    </label>
-                                </div>
-                                <div class="pull-right action-buttons">
-                                    <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta3')">
-                                        <svg id="iconoBasura" class="glyph stroked trash">
-                                            <use xlink:href="#stroked-trash"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <li id="apuesta4" class="todo-list-item">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="checkbox" />
-                                    <label for="checkbox">
-                                        <p style="color:black;"><i>Ganador del partido // Real Madrid - Atletico de Madrid </i> </p>
-                                        <p style="color:black;">24/11 19:00 <strong>Atlético de Madrid @3.51</strong></p>
-                                    </label>
-                                </div>
-                                <div class="pull-right action-buttons">
-                                    <a class="trash" href="#apuesta1" onclick="quitarapuesta('apuesta4')">
-                                        <svg id="iconoBasura" class="glyph stroked trash">
-                                            <use xlink:href="#stroked-trash"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
+                         {{/ticketErasable.betMatchesList}}
+                         
+                            
                         </ul>
                     </div>
                     <div class="panel-footer" style="background:rgba(255, 255, 255, 0.71)">
@@ -586,12 +497,12 @@
                             <div class="col-md-4" style="color:black; padding-top:5px;"><b>Importe</b></div>
                             <div class="col-md-4" style="color:white;"></div>
                             <div class="col-md-4" style="color:black;">
-                                <select class="form-control" style="border: 1px solid #2d9df3; width=80%;">
-                                    <option><b>1€</b></option>
-                                    <option><b>5€</b></option>
-                                    <option><b>10€</b></option>
-                                    <option><b>25€</b></option>
-                                    <option><b>50€</b></option>
+                                <select id="amountChange" class="form-control" style="border: 1px solid #2d9df3; width=80%;">
+                                    <option value=1 {{#selectedOne}}selected="selected"{{/selectedOne}}><b>1€</b></option>
+                                    <option value=5 {{#selectedTwo}}selected="selected"{{/selectedTwo}}><b>5€</b></option>
+                                    <option value=10 {{#selectedThree}}selected="selected"{{/selectedThree}}><b>10€</b></option>
+                                    <option value=25 {{#selectedFour}}selected="selected"{{/selectedFour}}><b>25€</b></option>
+                                    <option value=50 {{#selectedFive}}selected="selected"{{/selectedFive}}><b>50€</b></option>
                                 </select>
                             </div>
                         </div>
@@ -606,7 +517,7 @@
                         </div>
                         <div class="row" style="margin-top:20px;">
                             <div class="col-md-8" style="color:black;"><b>Ganancias posibles:</b></div>
-                            <div class="col-md-4" style="color:black; margin-top: 5%;"><b>187.76€</b></div>
+                            <div id="changeable" class="col-md-4" style="color:black; margin-top: 5%;"><b>{{#ticketErasable}}{{potentialGain}}{{/ticketErasable}}€  {{^ticketErasable}}0.00 €{{/ticketErasable}}</b></div>
                         </div>
                         <div class="row" style="margin-top:50px;">
                             <div class="col-md-7" style="color:black;">Pulse para enviar:</div>
@@ -851,6 +762,16 @@
             function  callHref(url){
             	window.location.href = url;
             };
+        </script>
+        <script type="text/javascript">
+        $("#amountChange").change(function(){
+        	
+        	
+        	str=$("select#amountChange option:selected").val();
+        	window.location.href = "/user-sportsBet/refreshQuota/" + str;
+        	
+        	
+        });
         </script>
 </body>
 
