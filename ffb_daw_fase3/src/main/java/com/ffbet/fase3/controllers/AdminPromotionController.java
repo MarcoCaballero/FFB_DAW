@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
@@ -40,11 +39,11 @@ public class AdminPromotionController extends RedirectController {
 
 	@PostConstruct
 	public void init() {
-		repository.save(new Promotion("Deporte", "Hay gol", "gomasdaea", ""));
-		repository.save(new Promotion("eSports", "frikiss", "eso213o", ""));
-		repository.save(new Promotion("Deporte", "Que tal", "que pasa", ""));
-		repository.save(new Promotion("Deporte", "Cris marica", "mariconn", ""));
-		repository.save(new Promotion("eSports", "frikiss2", "dildo", ""));
+		repository.save(new Promotion("Bono descuento", "Hay gol", "gomasdaea", "fgs4trfs"));
+		repository.save(new Promotion("Promocion regalo", "frikiss", "eso213o", "hghd55434gfsg"));
+		repository.save(new Promotion("Bono descuento", "Que tal", "que pasa", "43534sggsd"));
+		repository.save(new Promotion("Bono descuento", "Cris marica", "mariconn", "gsrgr35ghdd"));
+		repository.save(new Promotion("Promocion regalo", "frikiss2", "dildo", "sbsgse43556gfds"));
 
 	}
 
@@ -92,6 +91,7 @@ public class AdminPromotionController extends RedirectController {
 		String filePromo;
 
 		if (!title.isEmpty() && !description.isEmpty() && !promotionCode.isEmpty()) {
+			newPromotion.setType(type);
 			newPromotion.setTitle(title);
 			newPromotion.setDescription(description);
 			newPromotion.setPromotionCode(promotionCode);

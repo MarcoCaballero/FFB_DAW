@@ -2,7 +2,6 @@ package com.ffbet.fase3.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 
 /**
  * Entity object subclass {@link SportTeam} defines an Sport team object by
