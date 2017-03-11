@@ -28,7 +28,7 @@ public class Promotion {
 	private String description;
 	@Column(nullable = false)
 	private String promotionCode;
-	private byte[] promotionImage;
+	private String promotionImage;
 	
 	// CONSTRUCTORS
 	
@@ -56,24 +56,6 @@ public class Promotion {
 		this.title = title;
 		this.description = description;
 		this.promotionCode = promotionCode;
-	}
-
-	/**
-	 * @param (required) type, the type of promotion
-	 * @param (required) title, the title of promotion
-	 * @param description, the description of promotion
-	 * @param (required) promotionCode, the code of promotion
-	 * @param promotionImage, the publicity image of the promotion
-	 *
-	 */
-	public Promotion(long id, String type, String title, String description, String promotionCode,
-			byte[] promotionImage) {
-		this.id = id;
-		this.type = type;
-		this.title = title;
-		this.description = description;
-		this.promotionCode = promotionCode;
-		this.promotionImage = promotionImage;
 	}
 	
 	// GETTERS & SETTERS
@@ -108,10 +90,10 @@ public class Promotion {
 	public void setPromotionCode(String promotionCode) {
 		this.promotionCode = promotionCode;
 	}
-	public byte[] getPromotionImage() {
+	public String getPromotionImage() {
 		return promotionImage;
 	}
-	public void setPromotionImage(byte[] promotionImage) {
+	public void setPromotionImage(String promotionImage) {
 		this.promotionImage = promotionImage;
 	}
 
