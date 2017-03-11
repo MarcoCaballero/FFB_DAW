@@ -32,10 +32,10 @@ public class AdminScoreController  extends RedirectController{
 	public String getScoreTemplate(HttpServletRequest request, Model model) {
 
 		
-		model.addAttribute("footballMatch",sports_match_repository.findByType("Futbol"));
+		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol"));
 		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto"));
-		model.addAttribute("lolMatch",egames_match_repository.findByType("Lol"));
-		model.addAttribute("csgoMatch",egames_match_repository.findByType("Csgo"));
+		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL"));
+		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO"));
 		
 		String response = check_url(request, template);
 		return response;
@@ -52,6 +52,8 @@ public class AdminScoreController  extends RedirectController{
 			sportMatch.setHomePoints(Integer.parseInt(homePoints));
 			
 			sportMatch.setVisitingPoints(Integer.parseInt(visitingPoints));
+			
+			sportMatch.setFinished(true);
 			
 		} catch (Exception e) {
 			System.out.println("Puntos "+homePoints);
@@ -86,6 +88,8 @@ public class AdminScoreController  extends RedirectController{
 				egamesMatch.setFirstBloodVisiting(true);
 			}
 			egamesMatch.setFirstBloodTeam(firstBlood);
+			
+			egamesMatch.setFinished(true);
 			egames_match_repository.save(egamesMatch);
 		} catch (Exception e) {
 			

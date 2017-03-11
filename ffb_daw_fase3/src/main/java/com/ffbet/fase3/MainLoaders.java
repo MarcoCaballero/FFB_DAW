@@ -87,9 +87,13 @@ public class MainLoaders {
 		/*------------SPORT - MATCH------------*/
 		
 		
-		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		SportsMatch sp1 = new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 2.0, 2.0, 10.0, sportteam1, sportteam2);
+		sp1.setFinished(true);
+		sportsmatchrepository.save(sp1);
 		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 1.17, 5.0, 20.0, sportteam2, sportteam3));
 		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		
+		
 		
 		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Baloncesto", 2.0, 2.0, 0.0, basketTeam1, basketTeam2));
 		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Baloncesto", 2.22,1.53, 0.0, basketTeam2, basketTeam3));

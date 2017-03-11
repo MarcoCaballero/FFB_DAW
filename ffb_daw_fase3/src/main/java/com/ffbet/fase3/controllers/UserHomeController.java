@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.repositories.Egames_match_repository;
+import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
@@ -35,6 +36,8 @@ public class UserHomeController extends RedirectController {
 	Sports_match_repository sports_match_repository;
 	@Autowired
 	Egames_match_repository egames_match_repository;
+	@Autowired
+	MatchRepository matchRepository;
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -62,10 +65,10 @@ public class UserHomeController extends RedirectController {
 		
 		
 		model.addAttribute("isUsermenuActive", showsUserMenu);
-		model.addAttribute("footballMatchTable", sports_match_repository.findByType("Futbol"));
-		model.addAttribute("basketballMatchTable", sports_match_repository.findByType("Baloncesto"));
-		model.addAttribute("lolMatchTable", egames_match_repository.findByType("Lol"));
-		model.addAttribute("csgoMatchTable", egames_match_repository.findByType("Csgo"));
+		model.addAttribute("footballMatchTable", matchRepository.findByFinished("Fútbol"));
+		model.addAttribute("basketballMatchTable", matchRepository.findByFinished("Baloncesto"));
+		model.addAttribute("lolMatchTable", matchRepository.findByFinished("LOL"));
+		model.addAttribute("csgoMatchTable", matchRepository.findByFinished("CS-GO"));
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_HOME.toString());
