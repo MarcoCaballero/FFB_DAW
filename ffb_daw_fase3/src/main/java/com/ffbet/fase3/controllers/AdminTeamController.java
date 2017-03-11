@@ -15,7 +15,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +24,6 @@ import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.MatchRepository;
@@ -161,7 +159,9 @@ public class AdminTeamController extends RedirectController {
 				if (fileNameLogo.equals("ERROR")) {
 					photoLogoError = true;
 				} else {
+
 					photoLogoError = false;
+
 					team.setLogo_image(fileNameLogo);
 				}
 			}
@@ -172,8 +172,12 @@ public class AdminTeamController extends RedirectController {
 				if (fileNameStadium.equals("ERROR")) {
 					photoStadiumError = true;
 				} else {
+
+					team.setLogo_image(fileNameStadium);
+
 					photoStadiumError = false;
 					team.setStadium_image(fileNameStadium);
+
 				}
 			}
 

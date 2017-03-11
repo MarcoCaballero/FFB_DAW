@@ -33,16 +33,17 @@ public class BetTicket {
 
 	@Column(nullable = false)
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Match> matches_list = new ArrayList<>();
+	private List<BetSportMatch> betMatchesList = new ArrayList<>();
 
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Promotion applied_promo;
 
 	@Column(nullable = false)
 	private int amount;
 
-	@Column(length = 100000)
-	private int potential_gain;
+	@Column
+	private double potentialGain;
 
 	@Column
 	private boolean isFinished;
@@ -63,12 +64,12 @@ public class BetTicket {
 	 * @param potential_gain
 	 * @param isFinished
 	 */
-	public BetTicket(List<Match> matches_list, Promotion applied_promo, int amount, int potential_gain,
+	public BetTicket(List<BetSportMatch> matches_list, Promotion applied_promo, int amount, int potential_gain,
 			boolean isFinished) {
-		this.matches_list = matches_list;
+		this.betMatchesList = matches_list;
 		this.applied_promo = applied_promo;
 		this.amount = amount;
-		this.potential_gain = potential_gain;
+		this.potentialGain = potential_gain;
 		this.isFinished = isFinished;
 	}
 
@@ -89,15 +90,15 @@ public class BetTicket {
 	/**
 	 * @return the matches_list
 	 */
-	public List<Match> getMatches_list() {
-		return matches_list;
+	public List<BetSportMatch> getBetMatches_list() {
+		return betMatchesList;
 	}
 
 	/**
 	 * @param matches_list the matches_list to set
 	 */
-	public void setMatches_list(List<Match> matches_list) {
-		this.matches_list = matches_list;
+	public void setBetMatches_list(List<BetSportMatch> matches_list) {
+		this.betMatchesList = matches_list;
 	}
 
 	/**
@@ -131,15 +132,15 @@ public class BetTicket {
 	/**
 	 * @return the potential_gain
 	 */
-	public int getPotential_gain() {
-		return potential_gain;
+	public double getPotential_gain() {
+		return potentialGain;
 	}
 
 	/**
 	 * @param potential_gain the potential_gain to set
 	 */
-	public void setPotential_gain(int potential_gain) {
-		this.potential_gain = potential_gain;
+	public void setPotential_gain(double potential_gain) {
+		this.potentialGain = potential_gain;
 	}
 
 	/**
@@ -157,7 +158,16 @@ public class BetTicket {
 	}
 	
 	
+	/**/
 	
+	
+	public void calculatePotentialGains(){
+		
+	}
+	
+	public void addMatchTeam(BetSportMatch match){
+		this.getBetMatches_list().add(match);
+	}
 	
 	
 	
