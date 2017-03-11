@@ -1,9 +1,17 @@
 package com.ffbet.fase3.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +71,8 @@ public class AdminTeamController extends RedirectController {
 	private boolean noFailsNewSport = false;
 	private boolean noFailsNewEgames = false;
 
-	private boolean showsPhotoError = false;
+	private boolean photoLogoError = false;
+	private boolean photoStadiumError = false;
 
 	/* ADMIN */
 
@@ -90,6 +99,9 @@ public class AdminTeamController extends RedirectController {
 
 		model.addAttribute("noBadNewSport", noFailsNewSport);
 		model.addAttribute("noBadNewEgames", noFailsNewEgames);
+		
+		model.addAttribute("showsLogoError", photoLogoError);
+		model.addAttribute("showsStadiumError", photoStadiumError);
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -108,7 +120,7 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/newSportsTeam" })
-	public String addSportsTeam(SportTeam team, @RequestParam("sportsType") String type,
+	public String addSportsTeam(@RequestParam("sportsType") String type,
 			@RequestParam("sportsName") String name, @RequestParam("sportsCountry") String country,
 			@RequestParam("sportsCity") String city, @RequestParam("stadium") String stadium,
 			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
@@ -122,6 +134,8 @@ public class AdminTeamController extends RedirectController {
 		String fileNameStadium;
 
 		try {
+			SportTeam team = new SportTeam();
+			
 			team.setType(type);
 			team.setName(name);
 			team.setCountry(country);
@@ -136,15 +150,19 @@ public class AdminTeamController extends RedirectController {
 			team.setFacebook_Uri(fb);
 			team.setTwitter_Uri(tw);
 			team.setGoogle_Uri(go);
+			
+			sportsTeamRepo.save(team);
+			
+			team = sportsTeamRepo.findByName(name);
 
 			if (!logoImg.isEmpty()) {
 				fileNameLogo = handleUploadImagetoDatabase(logoImg, team.getId(),
 						FilesPath.FILES_TEAMS_LOGO.toString());
 				if (fileNameLogo.equals("ERROR")) {
-					showsPhotoError = true;
+					photoLogoError = true;
 				} else {
-					showsPhotoError = false;
-					team.setLogoUrl(fileNameLogo);
+					photoLogoError = false;
+					team.setLogo_image(fileNameLogo);
 				}
 			}
 
@@ -152,10 +170,10 @@ public class AdminTeamController extends RedirectController {
 				fileNameStadium = handleUploadImagetoDatabase(stadiumImg, team.getId(),
 						FilesPath.FILES_TEAMS_COVER.toString());
 				if (fileNameStadium.equals("ERROR")) {
-					showsPhotoError = true;
+					photoStadiumError = true;
 				} else {
-					showsPhotoError = false;
-					team.setLogoUrl(fileNameStadium);
+					photoStadiumError = false;
+					team.setStadium_image(fileNameStadium);
 				}
 			}
 
@@ -170,6 +188,38 @@ public class AdminTeamController extends RedirectController {
 		}
 
 		return redirect;
+
+	}
+	
+	@RequestMapping("/images/logos/{fileName}")
+	public void handleAvatarsFileLogo(Model model, HttpServletResponse response, @PathVariable String fileName,
+			HttpServletResponse res) throws FileNotFoundException, IOException {
+
+		File file = handleFileDownload(model, response, fileName, "logos", res);
+
+		if (file.exists()) {
+			res.setContentType("image/jpeg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+		}
+
+	}
+	
+	@RequestMapping("/images/covers/{fileName}")
+	public void handleAvatarsFileStadium(Model model, HttpServletResponse response, @PathVariable String fileName,
+			HttpServletResponse res) throws FileNotFoundException, IOException {
+
+		File file = handleFileDownload(model, response, fileName, "covers", res);
+
+		if (file.exists()) {
+			res.setContentType("image/jpeg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+		}
 
 	}
 

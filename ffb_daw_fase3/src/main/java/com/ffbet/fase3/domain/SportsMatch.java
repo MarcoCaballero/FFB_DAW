@@ -71,10 +71,10 @@ public class SportsMatch extends Match {
 	
 	
 	
-	public SportsMatch(Date date, Time time, String type, double quotaHomeVictory,double quotaVisitingVictory, double quotaDraw, SportTeam localTeam,  SportTeam visitingTeam) {
-		super(date, time, type, localTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
+	public SportsMatch(Date date, Time time, String type, double quotaHomeVictory,double quotaVisitingVictory, double quotaDraw, SportTeam homeTeam,  SportTeam visitingTeam) {
+		super(date, time, type, homeTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
 		this.quotaDraw = quotaDraw;
-		this.teams.add(localTeam);
+		this.teams.add(homeTeam);
 		this.teams.add(visitingTeam);
 		// TODO Auto-generated constructor stub
 	}
