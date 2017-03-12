@@ -144,7 +144,7 @@ public class AdminTeamController extends RedirectController {
 					showsPhotoError = true;
 				} else {
 					showsPhotoError = false;
-					team.setLogoUrl(fileNameLogo);
+					team.setLogo_image(fileNameLogo);
 				}
 			}
 
@@ -155,7 +155,7 @@ public class AdminTeamController extends RedirectController {
 					showsPhotoError = true;
 				} else {
 					showsPhotoError = false;
-					team.setLogoUrl(fileNameStadium);
+					team.setLogo_image(fileNameStadium);
 				}
 			}
 

@@ -43,9 +43,10 @@ public class SportsMatch extends Match {
 	 * @param quotaVisitingVictory
 	 */
 	public SportsMatch(Date date, Time time, String type, String homeTeam, String visitingTeam, int quotaHomeVictory,
-			int quotaVisitingVictory) {
+			int quotaVisitingVictory, int homePoints, int visitingPoints) {
 		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
-		// TODO Auto-generated constructor stub
+		this.homePoints = homePoints;
+		this.visitingPoints = visitingPoints;
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package com.ffbet.fase3.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +33,8 @@ public class AdminScoreController  extends RedirectController{
 	public String getScoreTemplate(HttpServletRequest request, Model model) {
 
 		
-		model.addAttribute("footballMatch",sports_match_repository.findByType("Futbol"));
-		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto"));
-		model.addAttribute("lolMatch",egames_match_repository.findByType("Lol"));
-		model.addAttribute("csgoMatch",egames_match_repository.findByType("Csgo"));
+		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL",new PageRequest(0,100)));
+		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO",new PageRequest(0,100)));
 		
 		String response = check_url(request, template);
 		return response;

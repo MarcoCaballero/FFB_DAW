@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.EgamesTeam;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.SportsMatch;
@@ -49,6 +50,9 @@ public class MainLoaders {
 				"https://twitter.com/realmadrid?lang=es", "https://www.facebook.com/RealMadrid/",
 				"https://plus.google.com/+realmadrid", "Real Madrid C.F.", "Zinedine Zidane", "España", "Madrid");
 		
+		
+		
+		
 		sporteamrepository.save(sportteam1);
 
 		sporteamrepository.save(sportteam2);
@@ -69,15 +73,123 @@ public class MainLoaders {
 		egamesteamrepository.save(new EgamesTeam("CS-GO", "SAMSUNG", "ROX", "SHIN-HYUK", "KOREA", "SEÚL"));
 		egamesteamrepository.save(new EgamesTeam("CS-GO", "FAIRY", "CLOUD9", "BOK HANG-GIU", "EEUU", "L.A."));
 		
+		EgamesTeam egamesteam1 = new EgamesTeam("LOL", "GRIETA", "SKT T1", "KKOma", "KOREA", "SEÚL"); 
+		EgamesTeam egamesteam2 = new EgamesTeam("LOL", "FAIRY", "CLOUD9", "BOK HANG-GYU", "EEUU", "L.A.");
+		EgamesTeam egamesteam3 = new EgamesTeam("CS-GO", "AGUILA", "ROJA", "KKOma", "THAY", "SEÚL"); 
+		EgamesTeam egamesteam4 = new EgamesTeam("CS-GO", "HALCON", "FURIOSO", "BOK HANG-GYU", "EEUU", "L.A.");
 		
+		egamesteamrepository.save(egamesteam1);
+		egamesteamrepository.save(egamesteam2);
+		egamesteamrepository.save(egamesteam3);
+		egamesteamrepository.save(egamesteam4);
 		/*------------SPORT - MATCH------------*/
 		
+												/*FOOTBALL*/
 		
-		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 2.0, 2.0, 10.0, sportteam1, sportteam2));
-		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 1.17, 5.0, 20.0, sportteam2, sportteam3));
-		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Fútbol", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:02"), "Fútbol", 1.17, 5.0, 20.0, sportteam2, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:03"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:04"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:05"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:06"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:07"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:08"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:09"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:10"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:11"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:22"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:33"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:44"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:55"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:66"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:77"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:88"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:99"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:12"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:13"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:14"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:15"), "Fútbol", 2.5, 2.5, 3.3, sportteam1, sportteam3));
+		
+												/*BASKETBALL*/
+		
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
+		sportsmatchrepository.save(new SportsMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "Baloncesto", 2.0, 2.0, 10.0, sportteam1, sportteam2));
 		
 		/*------------EGAMES - MATCH------------*/
+													/*LOL*/
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "LOL", 2.0, 2.0, 10.0, "SKT","SKT", 10.0, egamesteam1, egamesteam2));
+		
+													/*CS-GO*/
+		
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		egamesmatchrepository.save(new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:01"), "CS-GO", 2.0, 2.0, 10.0, "FURIOSO","DÉ", 10.0, egamesteam3, egamesteam4));
+		
 	}
 
 }
