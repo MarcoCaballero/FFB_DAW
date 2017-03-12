@@ -30,6 +30,11 @@ public class Promotion {
 	private String promotionCode;
 	private String promotionImage;
 	
+	@Column(nullable=false)
+	private int quantity;
+	
+	private boolean shown;
+	
 	// CONSTRUCTORS
 	
 	/**
@@ -45,17 +50,19 @@ public class Promotion {
 	 * @param (required) promotionCode, the code of promotion
 	 *
 	 */
-	public Promotion(String type, String title, String promotionCode) {
+	public Promotion(String type, String title, String promotionCode, int quantity) {
 		this.type = type;
 		this.title = title;
 		this.promotionCode = promotionCode;
+		this.quantity = quantity;
 	}
 	
-	public Promotion(String type, String title, String description, String promotionCode) {
+	public Promotion(String type, String title, String description, String promotionCode, int quantity) {
 		this.type = type;
 		this.title = title;
 		this.description = description;
 		this.promotionCode = promotionCode;
+		this.quantity = quantity;
 	}
 	
 	// GETTERS & SETTERS
@@ -95,6 +102,34 @@ public class Promotion {
 	}
 	public void setPromotionImage(String promotionImage) {
 		this.promotionImage = promotionImage;
+	}
+
+	/**
+	 * @return the shown
+	 */
+	public boolean isShown() {
+		return shown;
+	}
+
+	/**
+	 * @param shown the shown to set
+	 */
+	public void setShown(boolean shown) {
+		this.shown = shown;
+	}
+
+	/**
+	 * @return the quantity
+	 */
+	public int getQuantity() {
+		return quantity;
+	}
+
+	/**
+	 * @param quantity the quantity to set
+	 */
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

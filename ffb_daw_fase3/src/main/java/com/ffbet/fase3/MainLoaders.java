@@ -76,9 +76,9 @@ public class MainLoaders {
 		egamesteamrepository.save(egamesTeam2);
 		egamesteamrepository.save(egamesTeam3);
 		
-		EgamesTeam csTeam1 = new EgamesTeam("SEÚL", "GRIETA", "SKT T1", "CS-GO", "KKOMA", "KOREA");
-		EgamesTeam csTeam2 = new EgamesTeam("SEÚL", "SAMSUNG", "ROX", "CS-GO", "SHIN-HYUK", "KOREA");
-		EgamesTeam csTeam3 = new EgamesTeam("L.A.", "FAIRY", "CLOUD9", "CS-GO", "BOK HANG-GIU", "EEUU");
+		EgamesTeam csTeam1 = new EgamesTeam("SEÚL", "GRIETA", "ENVYUS", "CS-GO", "KKOMA", "KOREA");
+		EgamesTeam csTeam2 = new EgamesTeam("SEÚL", "SAMSUNG", "NA VI", "CS-GO", "SHIN-HYUK", "KOREA");
+		EgamesTeam csTeam3 = new EgamesTeam("L.A.", "FAIRY", "VIRTUS PRO", "CS-GO", "BOK HANG-GIU", "EEUU");
 
 		egamesteamrepository.save(csTeam1);
 		egamesteamrepository.save(csTeam2);

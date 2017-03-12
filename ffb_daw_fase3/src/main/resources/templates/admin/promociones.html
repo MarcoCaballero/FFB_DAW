@@ -87,9 +87,8 @@
 									<label class="control-label">Tipo de promoción:</label>
 									<div class="controls">
 										<select name="type">
-											<option value="Bonos gratuitos">Bonos gratuitos</option>
-											<option value="Promociones de fútbol">Promociones de
-												fútbol</option>
+											<option value="BONODESCUENTO">Bonos descuento</option>
+											<option value=ROMOCIONREGALO">Promociones regalo</option>
 										</select>
 									</div>
 								</div>
@@ -111,9 +110,17 @@
 								<div class="control-group">
 									<label class="control-label">Código promocional:</label>
 									<div class="controls">
-										<input type="password" class="span11"
+										<input type="text" class="span11"
 											placeholder="Introduzca el código de activación"
 											name="promoCode" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Cantidad de
+										descuento/regalo:</label>
+									<div class="controls">
+										<input type="number" class="span11" placeholder="Cantidad"
+											name="promoQuantity" />
 									</div>
 								</div>
 								{{#isPromo}} <label style="color: red">Deben completar
@@ -152,6 +159,7 @@
 										<th data-field="title" data-sortable="true">Título</th>
 										<th data-field="description" data-sortable="true">Descripcion</th>
 										<th data-field="promotionCode" data-sortable="true">Código</th>
+										<th data-field="promotionQuantity" data-sortable="true">Cantidad</th>
 										<th data-field="promotionImage" data-sortable="true">Foto
 											promocion</th>
 										<th data-field="delete" data-sortable="true">Eliminar
@@ -165,6 +173,7 @@
 									<td>{{#title}}{{.}}{{/title}}</td>
 									<td>{{#description}}{{.}}{{/description}}</td>
 									<td>{{#promotionCode}}{{.}}{{/promotionCode}}</td>
+									<td>{{#quantity}}{{.}}{{/quantity}}</td>
 									<td>{{#promotionImage}}<img src="images/promos/{{.}}"
 										height="40px" width="50px" style="margin-left: 20%" />{{/promotionImage}}
 									</td>

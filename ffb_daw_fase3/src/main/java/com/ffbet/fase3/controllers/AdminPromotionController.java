@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
@@ -40,11 +39,11 @@ public class AdminPromotionController extends RedirectController {
 
 	@PostConstruct
 	public void init() {
-		repository.save(new Promotion("Deporte", "Hay gol", "gomasdaea", ""));
-		repository.save(new Promotion("eSports", "frikiss", "eso213o", ""));
-		repository.save(new Promotion("Deporte", "Que tal", "que pasa", ""));
-		repository.save(new Promotion("Deporte", "Cris marica", "mariconn", ""));
-		repository.save(new Promotion("eSports", "frikiss2", "dildo", ""));
+		repository.save(new Promotion("BONODESCUENTO", "Hay gol", "gomasdaea", "fgs4trfs", 5));
+		repository.save(new Promotion("PROMOCIONREGALO", "frikiss", "eso213o", "hghd55434gfsg", 5));
+		repository.save(new Promotion("BONODESCUENTO", "Que tal", "que pasa", "43534sggsd", 10));
+		repository.save(new Promotion("BONODESCUENTO", "Cris marica", "mariconn", "gsrgr35ghdd", 20));
+		repository.save(new Promotion("PROMOCIONREGALO", "frikiss2", "dildo", "sbsgse43556gfds", 3));
 
 	}
 
@@ -82,27 +81,30 @@ public class AdminPromotionController extends RedirectController {
 	 * @param description
 	 * @param promotionCode
 	 * @return String
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@PostMapping(value = { "/admin-promotions/new" })
 	public String addPromotion(Promotion newPromotion, @RequestParam String type,
 			@RequestParam("promoCode") String promotionCode, @RequestParam("promoTitle") String title,
-			@RequestParam("promoDescription") String description, @RequestParam("promoImage") MultipartFile image) throws IOException {
-		
+			@RequestParam("promoDescription") String description, @RequestParam("promoImage") MultipartFile image,
+			@RequestParam("promoQuantity" ) String quantity)
+			throws IOException {
+
 		String filePromo;
 
-		if (!title.isEmpty() && !description.isEmpty() && !promotionCode.isEmpty()) {
+		if (!title.isEmpty() && !description.isEmpty() && !promotionCode.isEmpty() && !quantity.isEmpty()) {
+			newPromotion.setType(type);
 			newPromotion.setTitle(title);
 			newPromotion.setDescription(description);
 			newPromotion.setPromotionCode(promotionCode);
-			
+			newPromotion.setQuantity(Integer.parseInt(quantity));
+
 			repository.save(newPromotion);
 
 			repository.findByTitle(title);
-			
+
 			if (!image.isEmpty()) {
-				filePromo = handleUploadImagetoDatabase(image, newPromotion.getId(),
-						FilesPath.FILES_PROMOS.toString());
+				filePromo = handleUploadImagetoDatabase(image, newPromotion.getId(), FilesPath.FILES_PROMOS.toString());
 				if (filePromo.equals("ERROR")) {
 					photoError = true;
 				} else {
@@ -120,7 +122,7 @@ public class AdminPromotionController extends RedirectController {
 
 		return redirect;
 	}
-	
+
 	@RequestMapping("/images/promos/{fileName}")
 	public void handleAvatarsFileLogo(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {

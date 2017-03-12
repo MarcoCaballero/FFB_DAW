@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ffbet.fase3.domain.EgamesMatch;
@@ -83,14 +82,16 @@ public class AdminMatchesController extends RedirectController {
 	private boolean badTimeL = false;
 	private boolean badQuotaL = false;
 	private boolean equalTeamsL = false;
-	private boolean sumQuotaOkL = false;
+	private boolean sumQuota1OkL = false;
+	private boolean sumQuota2OkL = false;
 
 	// Variables for LOL
 	private boolean badDateC = false;
 	private boolean badTimeC = false;
 	private boolean badQuotaC = false;
 	private boolean equalTeamsC = false;
-	private boolean sumQuotaOkC = false;
+	private boolean sumQuota1OkC = false;
+	private boolean sumQuota2OkC = false;
 
 	/* ADMIN */
 
@@ -144,14 +145,16 @@ public class AdminMatchesController extends RedirectController {
 		model.addAttribute("noTimeLOL", badTimeL);
 		model.addAttribute("noQuotaLOL", badQuotaL);
 		model.addAttribute("noTeamsLOL", equalTeamsL);
-		model.addAttribute("noSumQuotaLOL", sumQuotaOkL);
+		model.addAttribute("noSumQuota1LOL", sumQuota1OkL);
+		model.addAttribute("noSumQuota2LOL", sumQuota2OkL);
 
 		// Atributtes for CS
 		model.addAttribute("noDateCS", badDateC);
 		model.addAttribute("noTimeCS", badTimeC);
 		model.addAttribute("noQuotaCS", badQuotaC);
 		model.addAttribute("noTeamsCS", equalTeamsC);
-		model.addAttribute("noSumQuotaCS", sumQuotaOkC);
+		model.addAttribute("noSumQuota1CS", sumQuota1OkC);
+		model.addAttribute("noSumQuota2CS", sumQuota2OkC);
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -192,9 +195,9 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		try {
-			sportsMatch.setQuotaHomeVictory(Double.parseDouble(quotaHomeVictory));
-			sportsMatch.setQuotaDraw(Double.parseDouble(quotaDraw));
-			sportsMatch.setQuotaVisitingVictory(Double.parseDouble(quotaVisitingVictory));
+			sportsMatch.setQuotaHomeVictory(quota(Double.parseDouble(quotaHomeVictory)));
+			sportsMatch.setQuotaDraw(quota(Double.parseDouble(quotaDraw)));
+			sportsMatch.setQuotaVisitingVictory(quota(Double.parseDouble(quotaVisitingVictory)));
 			badQuota = false;
 
 			double suma = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory)
@@ -249,8 +252,8 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		try {
-			sportsMatch.setQuotaHomeVictory(Double.parseDouble(quotaHomeVictory));
-			sportsMatch.setQuotaVisitingVictory(Double.parseDouble(quotaVisitingVictory));
+			sportsMatch.setQuotaHomeVictory(quota(Double.parseDouble(quotaHomeVictory)));
+			sportsMatch.setQuotaVisitingVictory(quota(Double.parseDouble(quotaVisitingVictory)));
 			badQuotaB = false;
 
 			double suma = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory);
@@ -306,19 +309,25 @@ public class AdminMatchesController extends RedirectController {
 		}
 
 		try {
-			egamesMatch.setQuotaHomeVictory(Double.parseDouble(quotaHomeVictory));
-			egamesMatch.setQuotaVisitingVictory(Double.parseDouble(quotaVisitingVictory));
-			egamesMatch.setQuotaHomeFirstBlood(Double.parseDouble(quotaHomeFirstBlood));
-			egamesMatch.setQuotaVisitingFirstBlood(Double.parseDouble(quotaVisitingFirstBlood));
+			egamesMatch.setQuotaHomeVictory(quota(Double.parseDouble(quotaHomeVictory)));
+			egamesMatch.setQuotaVisitingVictory(quota(Double.parseDouble(quotaVisitingVictory)));
+			egamesMatch.setQuotaHomeFirstBlood(quota(Double.parseDouble(quotaHomeFirstBlood)));
+			egamesMatch.setQuotaVisitingFirstBlood(quota(Double.parseDouble(quotaVisitingFirstBlood)));
 			badQuotaL = false;
 
-			double suma = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory)
-					+ Double.parseDouble(quotaHomeFirstBlood) + Double.parseDouble(quotaVisitingFirstBlood);
+			double suma1 = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory);
+			double suma2 = Double.parseDouble(quotaHomeFirstBlood) + Double.parseDouble(quotaVisitingFirstBlood);
 
-			if (suma == 110.0) {
-				sumQuotaOkL = false;
+			if (suma1 == 110.0 && suma2 == 110.0) {
+				sumQuota1OkL = false;
 			} else {
-				sumQuotaOkL = true;
+				sumQuota1OkL = true;
+			}
+			
+			if (suma2 == 110.0) {
+				sumQuota2OkL = false;
+			} else {
+				sumQuota2OkL = true;
 			}
 
 		} catch (Exception e) {
@@ -331,7 +340,7 @@ public class AdminMatchesController extends RedirectController {
 			equalTeamsL = false;
 		}
 
-		if (!badDateL && !badTimeL && !badQuotaL && !equalTeamsL && !sumQuotaOkL) {
+		if (!badDateL && !badTimeL && !badQuotaL && !equalTeamsL && !sumQuota1OkL && !sumQuota2OkL) {
 			egamesMatch.setType("LOL");
 			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
 			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
@@ -366,19 +375,25 @@ public class AdminMatchesController extends RedirectController {
 		}
 		
 		try {
-			egamesMatch.setQuotaHomeVictory(Double.parseDouble(quotaHomeVictory));
-			egamesMatch.setQuotaVisitingVictory(Double.parseDouble(quotaVisitingVictory));
-			egamesMatch.setQuotaHomeFirstBlood(Double.parseDouble(quotaHomeFirstBlood));
-			egamesMatch.setQuotaVisitingFirstBlood(Double.parseDouble(quotaVisitingFirstBlood));
+			egamesMatch.setQuotaHomeVictory(quota(Double.parseDouble(quotaHomeVictory)));
+			egamesMatch.setQuotaVisitingVictory(quota(Double.parseDouble(quotaVisitingVictory)));
+			egamesMatch.setQuotaHomeFirstBlood(quota(Double.parseDouble(quotaHomeFirstBlood)));
+			egamesMatch.setQuotaVisitingFirstBlood(quota(Double.parseDouble(quotaVisitingFirstBlood)));
 			badQuotaC = false;
 
-			double suma = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory)
-					+ Double.parseDouble(quotaHomeFirstBlood) + Double.parseDouble(quotaVisitingFirstBlood);
+			double suma1 = Double.parseDouble(quotaHomeVictory) + Double.parseDouble(quotaVisitingVictory);
+			double suma2 = Double.parseDouble(quotaHomeFirstBlood) + Double.parseDouble(quotaVisitingFirstBlood);
 
-			if (suma == 110.0) {
-				sumQuotaOkC = false;
+			if (suma1 == 110.0) {
+				sumQuota1OkC = false;
 			} else {
-				sumQuotaOkC = true;
+				sumQuota1OkC = true;
+			}
+			
+			if (suma2 == 110.0) {
+				sumQuota2OkC = false;
+			} else {
+				sumQuota2OkC = true;
 			}
 
 		} catch (Exception e) {
@@ -392,8 +407,11 @@ public class AdminMatchesController extends RedirectController {
 			equalTeamsC = false;
 		}
 		
-		if (!badDateC && !badTimeC && !badQuotaC && !equalTeamsC && !sumQuotaOkC) {
+		System.out.println(homeTeam);
+		
+		if (!badDateC && !badTimeC && !badQuotaC && !equalTeamsC && !sumQuota1OkC && !sumQuota2OkC) {
 			egamesMatch.setType("CS");
+			System.out.println(egamesTeamRepo.findByName(homeTeam));
 			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
 			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
 
@@ -421,4 +439,15 @@ public class AdminMatchesController extends RedirectController {
 		return redirect;
 
 	}
+	
+	// cálculo de la cuota (el precio de la apuesta)
+		public double quota(double quotaRight){
+			
+			double myQuota;
+			
+			myQuota = 1/(quotaRight/100);
+			
+			return myQuota;
+		}
+		
 }
