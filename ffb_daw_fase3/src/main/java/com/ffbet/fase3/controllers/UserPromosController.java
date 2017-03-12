@@ -39,8 +39,6 @@ public class UserPromosController extends RedirectController{
 
 	private boolean showsUserMenu = false;
 	
-	private boolean promoCheked = false;
-	
 	@GetMapping(value = { "/user-promos", "/user-promos/"})
 	public String getTemplate(HttpServletRequest request, Model model) {
 		if(userComp.isLoggedUser()){
@@ -52,10 +50,8 @@ public class UserPromosController extends RedirectController{
 		
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		
-		model.addAttribute("PromotionDiscount", promoRepository.findByType("Bono descuento"));
-		model.addAttribute("PromotionPresent", promoRepository.findByType("Promocion regalo"));
-		
-		model.addAttribute("checked", promoCheked);
+		model.addAttribute("PromotionDiscount", promoRepository.findByType("BONODESCUENTO"));
+		model.addAttribute("PromotionPresent", promoRepository.findByType("PROMOCIONREGALO"));
 		
 		String response = check_url(request, template);
 		return response;
@@ -69,10 +65,21 @@ public class UserPromosController extends RedirectController{
 		System.out.println(promoRepository.findOne(id).getTitle());
 		
 		try {
-			user.addPromo(promoRepository.findOne(id));
-			promoCheked = true;
+			Promotion promo = promoRepository.findOne(id);
+			user.addPromo(promo);
+			promo.setShown(true);
+			
+			for (Promotion p : promoRepository.findAll()) {
+				if(!p.equals(promo)){
+					p.setShown(false);
+				}
+			}
+			
+			promoRepository.save(promo);
+			userRepo.save(user);
+			
 		} catch (Exception e) {
-			promoCheked = false;
+			
 		}
 		
 		return redirect;

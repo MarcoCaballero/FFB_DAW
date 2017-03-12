@@ -282,9 +282,9 @@
 						</div>
 						<div class="card-action">
 							<a href="user-promos/subscribe/{{id}}" class="span6">Código <span
-								class="glyphicon glyphicon-tag"></span></a> {{#checked}} <label
-								class="span6" style="margin-left: 30%">{{promotionCode}}</label>
-							{{/checked}}
+								class="glyphicon glyphicon-tag"></span></a> {{#isShown}} <label
+								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">{{promotionCode}}</label>
+							{{/isShown}}
 						</div>
 					</div>
 				</div>
