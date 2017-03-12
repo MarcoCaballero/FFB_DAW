@@ -85,6 +85,17 @@ public class EgamesMatch extends Match {
 		this.firstBloodTeam = firstBloodTeam;
 	}
 
+	public EgamesMatch(Date date, Time time, String type, double quotaHomeVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood, String firstBloodTeam, String winnerTeam, double quotaVisitingVictory,  EgamesTeam localTeam,  EgamesTeam visitingTeam) {
+		super(date, time, type, localTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
+		this.teams.add(localTeam);
+		this.teams.add(visitingTeam);
+		this.quotaHomeFirstBlood=quotaHomeFirstBlood;
+		this.quotaVisitingFirstBlood=quotaVisitingFirstBlood;
+		this.firstBloodTeam=firstBloodTeam;
+		this.winnerTeam=winnerTeam;
+		// TODO Auto-generated constructor stub
+	}
+	
 	// GETTERS & SETTERS
 
 	public boolean isWinVisiting() {

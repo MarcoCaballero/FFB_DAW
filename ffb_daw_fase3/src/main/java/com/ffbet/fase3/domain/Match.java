@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -51,9 +53,10 @@ public abstract class Match {
 	protected double quotaHomeVictory;
 	@Column(nullable = false)
 	protected double quotaVisitingVictory;
-	
+  
+	@JsonIgnore
 	protected boolean isFinished;
-
+  
 	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	
