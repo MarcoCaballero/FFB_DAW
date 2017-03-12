@@ -16,5 +16,11 @@ public interface MatchRepository extends JpaRepository<Match, Long>{
 	
 	@Query("SELECT u FROM SportsMatch u where u.isFinished = false AND u.type = :type")
 	List<SportsMatch> findByNotFinished(@Param("type") String type);
+	
+	@Query("SELECT u FROM SportsMatch u where u.isFinished = false AND u.type = :type AND (u.homeTeam = :nameTeam OR visitingTeam = :nameTeam)")
+	List<SportsMatch> findByNotFinishedAndTeam(@Param("type") String type, @Param("nameTeam") String nameTeam);
+	
+	@Query("SELECT u FROM SportsMatch u where u.isFinished = true AND u.type = :type AND (u.homeTeam = :nameTeam OR visitingTeam = :nameTeam)")
+	List<SportsMatch> findByFinishedAndTeam(@Param("type") String type, @Param("nameTeam") String nameTeam);
 
 }

@@ -708,15 +708,17 @@
 								</div>
 								<div class="row" style="margin-bottom: 5%;">
 									<div class="col-sm-6">
+										{{#SelectedTeam}}
 										<h3 class="card-title">
-											<img src="user/img/atm_escudo_card.png" height="150px"
+											<img src="images/logos/{{logo_image}}" height="150px"
 												style="margin-left: 10%; float: left">
 										</h3>
 										<a data-toggle="collapse" href="#collapseEquipos"
 											class="btn btn-primary">Cambiar equipo</a>
 									</div>
 									<div class="col-sm-6">
-										<h3 class="card-title">Club Atlético de Madrid</h3>
+										<h3 class="card-title">{{name}}</h3>
+										{{/SelectedTeam}}
 									</div>
 								</div>
 								<div id="collapseEquipos" class="row collapse">
@@ -729,38 +731,36 @@
 													<div class="card-container manual-flip">
 														<div class="card">
 															<div class="front">
-																<div class="cover">
-																	{{#stadium_image}}<img src="images/covers/{{.}}" />{{/stadium_image}}
-																</div>
-																<div class="user">
-																	{{#logo_image}} <img class="img-circle"
-																		src="images/logos/{{.}}" />{{/logo_image}}
-																</div>
-																<div class="content">
-																	<div class="main">
-																		<h3 class="name">{{name}}</h3>
-																		<p class="text-center">
-																		<form class="form-horizontal" action="" method="post">
+																<form action="user-account/selectionTeam/{{id}}">
+																	<div class="cover">
+																		{{#stadium_image}}<img src="images/covers/{{.}}" />{{/stadium_image}}
+																	</div>
+																	<div class="user">
+																		{{#logo_image}} <img class="img-circle"
+																			src="images/logos/{{.}}" />{{/logo_image}}
+																	</div>
+																	<div class="content">
+																		<div class="main">
+																			<h3 class="name">{{name}}</h3>
+																			<p class="text-center">
 																			<fieldset>
 																				<div class="form-group">
 																					<div class="col-md-12 widget-right">
-																						<button type=""
-																							class="btn btn-default btn-md pull-right">
-																							<img src="user/img/checked.svg" width="25px">
-																						</button>
+																						<button type="submit"
+																							class="btn btn-default btn-md pull-right">Seleccionar</button>
 																					</div>
 																				</div>
 																			</fieldset>
-																		</form>
-																		</p>
+																			</p>
+																		</div>
+																		<div class="footer">
+																			<button class="btn btn-simple"
+																				onclick="rotateCard(this)">
+																				<i class="fa fa-mail-forward"></i> More info
+																			</button>
+																		</div>
 																	</div>
-																	<div class="footer">
-																		<button class="btn btn-simple"
-																			onclick="rotateCard(this)">
-																			<i class="fa fa-mail-forward"></i> More info
-																		</button>
-																	</div>
-																</div>
+																</form>
 															</div>
 															<!-- end front panel -->
 															<div class="back">
@@ -854,7 +854,9 @@
 																<td>{{homeTeam}} - {{visitingTeam}}</td>
 																<td>{{date}}</td>
 															</tr>
-															{{/notFinishedMatches}}
+															{{/notFinishedMatches}} {{^notFinishedMatches}}
+															<label>Este equipo no tiene partidos en los
+																próximos días</label> {{/notFinishedMatches}}
 														</table>
 													</div>
 													<div class="tab-pane fade" id="tab5sub">
@@ -871,6 +873,9 @@
 																<td>{{homeTeam}} - {{visitingTeam}}</td>
 																<td>{{homePoints}} - {{visitingPoints}}</td>
 																<td>{{date}}</td> {{/finishedMatches}}
+																{{^finishedMatches}}
+																<label>Este equipo no ha jugado ningún partido
+																	desde hace tiempo</label> {{/finishedMatches}}
 															</tr>
 														</table>
 													</div>
