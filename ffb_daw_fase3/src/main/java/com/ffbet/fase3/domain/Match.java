@@ -53,8 +53,10 @@ public abstract class Match {
 	protected double quotaHomeVictory;
 	@Column(nullable = false)
 	protected double quotaVisitingVictory;
-	
+  
 	@JsonIgnore
+	protected boolean isFinished;
+  
 	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	
@@ -163,6 +165,20 @@ public abstract class Match {
 		this.quotaVisitingVictory = quotaVisitingVictory;
 	}
 	
+	/**
+	 * @return the isFinished
+	 */
+	public boolean isFinished() {
+		return isFinished;
+	}
+
+	/**
+	 * @param isFinished the isFinished to set
+	 */
+	public void setFinished(boolean isFinished) {
+		this.isFinished = isFinished;
+	}
+
 	public List<Team> getTeams() {
 		return teams;
 	}

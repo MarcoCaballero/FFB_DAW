@@ -107,7 +107,8 @@
 										<th data-field="twitter_Uri" data-sortable="true">Twitter</th>
 										<th data-field="google_Uri" data-sortable="true">Google</th>
 										<th data-field="imgLogo" data-sortable="true">Imagen logo</th>
-										<th data-field="imgLogo" data-sortable="true">Imagen estadio</th>
+										<th data-field="imgLogo" data-sortable="true">Imagen
+											estadio</th>
 
 										<th data-field="Actions" data-sortable="true"><p
 												style="margin-left: 80%; padding-top: 25%">Actions</p></th>
@@ -117,62 +118,64 @@
 								<tr>
 									<form id="formSportsId{{id}}"
 										action="admin-teams/updateSports/{{id}}">
-									<td>{{id}}</td>
-									<td><input type="text" name="sportsUpType"
-										placeholder="{{type}}" class="span12" style="margin-left: 20%"
-										readonly="readonly" /></td>
-									<td><input type="text" name="sportsUpName"
-										placeholder="{{name}}" class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpCoach"
-										placeholder="{{#coach}}{{.}}{{/coach}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpCountry"
-										placeholder="{{#country}}{{.}}{{/country}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpCity"
-										placeholder="{{#city}}{{.}}{{/city}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpSlogan"
-										placeholder="{{#slogan}}{{.}}{{/slogan}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpStadium"
-										placeholder="{{#stadium}}{{.}}{{/stadium}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpPresident"
-										placeholder="{{#president}}{{.}}{{/president}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="number" name="sportsUpLeagues"
-										placeholder="{{#leagues}}{{.}}{{/leagues}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="number" name="sportsUpCups"
-										placeholder="{{#cups}}{{.}}{{/cups}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="number" name="sportsUpChampions"
-										placeholder="{{#champions}}{{.}}{{/champions}}" class="span12"
-										style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpFb"
-										placeholder="{{#facebook_Uri}}{{.}}{{/facebook_Uri}}"
-										class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpTw"
-										placeholder="{{#twitter_Uri}}{{.}}{{/twitter_Uri}}"
-										class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpGo"
-										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
-										class="span12" style="margin-left: 20%" /></td>
-									<!--
-									<td><input type="text" name="sportsUpGo"
-										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
-										class="span12" style="margin-left: 20%" /></td>
-									<td><input type="text" name="sportsUpGo"
-										placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
-										class="span12" style="margin-left: 20%" /></td>
-									-->
-									<td><button type="submit" class="btn btn-mini btn-info"
-											style="margin-left: 30%; margin-bottom: 20%">Editar
-										</button></td>
-									<td><a href="/admin-teams/delete/{{id}}"
-										class="btn btn-mini btn-danger"
-										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+										<td>{{id}}</td>
+										<td><input type="text" name="sportsUpType"
+											placeholder="{{type}}" class="span12" readonly="readonly" /></td>
+										<td><input type="text" name="sportsUpName"
+											placeholder="{{name}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpCoach"
+											placeholder="{{#coach}}{{.}}{{/coach}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpCountry"
+											placeholder="{{#country}}{{.}}{{/country}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpCity"
+											placeholder="{{#city}}{{.}}{{/city}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpSlogan"
+											placeholder="{{#slogan}}{{.}}{{/slogan}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpStadium"
+											placeholder="{{#stadium}}{{.}}{{/stadium}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpPresident"
+											placeholder="{{#president}}{{.}}{{/president}}"
+											class="span12" style="margin-left: 20%" /></td>
+										<td><input type="number" name="sportsUpLeagues"
+											placeholder="{{#leagues}}{{.}}{{/leagues}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="number" name="sportsUpCups"
+											placeholder="{{#cups}}{{.}}{{/cups}}" class="span12"
+											style="margin-left: 20%" /></td>
+										<td><input type="number" name="sportsUpChampions"
+											placeholder="{{#champions}}{{.}}{{/champions}}"
+											class="span12" style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpFb"
+											placeholder="{{#facebook_Uri}}{{.}}{{/facebook_Uri}}"
+											class="span12" style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpTw"
+											placeholder="{{#twitter_Uri}}{{.}}{{/twitter_Uri}}"
+											class="span12" style="margin-left: 20%" /></td>
+										<td><input type="text" name="sportsUpGo"
+											placeholder="{{#google_Uri}}{{.}}{{/google_Uri}}"
+											class="span12" style="margin-left: 20%" /></td>
+
+										<td>{{#logo_image}}<img class="img-circle"
+											src="images/logos/{{.}}" height="40px" width="50px"
+											style="margin-left: 20%" />{{/logo_image}}
+										</td>
+										<td>{{#stadium_image}}<img class="img-circle"
+											src="images/covers/{{.}}" height="40px" width="50px"
+											style="margin-left: 20%" />{{/stadium_image}}
+										</td>
+
+										<td><button type="submit" class="btn btn-mini btn-info"
+												style="margin-left: 30%; margin-bottom: 20%">Editar
+											</button></td>
+										<td><a href="/admin-teams/delete/{{id}}"
+											class="btn btn-mini btn-danger"
+											style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
 									</form>
 								</tr>
 								{{/SportsTeams}}
@@ -212,31 +215,32 @@
 								<tr>
 									<form id="formEgamesId{{id}}"
 										action="admin-teams/updateEgames/{{id}}">
-									<td>{{id}}</td>
-									<td><input type="text" name="egamesUpType"
-										placeholder="{{type}}" class="span5" style="margin-left: 35%"
-										readonly="readonly" /></td>
-									<td><input type="text" name="egamesUpName"
-										placeholder="{{name}}" class="span10" style="margin-left: 10%" /></td>
-									<td><input type="text" name="egamesUpCoach"
-										placeholder="{{#coach}}{{.}}{{/coach}}" class="span10"
-										style="margin-left: 10%" /></td>
-									<td><input type="text" name="egamesUpCountry"
-										placeholder="{{#country}}{{.}}{{/country}}" class="span10"
-										style="margin-left: 10%" /></td>
-									<td><input type="text" name="egamesUpCity"
-										placeholder="{{#city}}{{.}}{{/city}}" class="span10"
-										style="margin-left: 10%" /></td>
-									<td><input type="text" name="egamesUpCity"
-										placeholder="{{#sponsor}}{{.}}{{/sponsor}}" class="span10"
-										style="margin-left: 10%" /></td>
+										<td>{{id}}</td>
+										<td><input type="text" name="egamesUpType"
+											placeholder="{{type}}" class="span5" style="margin-left: 35%"
+											readonly="readonly" /></td>
+										<td><input type="text" name="egamesUpName"
+											placeholder="{{name}}" class="span10"
+											style="margin-left: 10%" /></td>
+										<td><input type="text" name="egamesUpCoach"
+											placeholder="{{#coach}}{{.}}{{/coach}}" class="span10"
+											style="margin-left: 10%" /></td>
+										<td><input type="text" name="egamesUpCountry"
+											placeholder="{{#country}}{{.}}{{/country}}" class="span10"
+											style="margin-left: 10%" /></td>
+										<td><input type="text" name="egamesUpCity"
+											placeholder="{{#city}}{{.}}{{/city}}" class="span10"
+											style="margin-left: 10%" /></td>
+										<td><input type="text" name="egamesUpCity"
+											placeholder="{{#sponsor}}{{.}}{{/sponsor}}" class="span10"
+											style="margin-left: 10%" /></td>
 
-									<td><button type="submit" class="btn btn-mini btn-info"
-											style="margin-left: 30%; margin-bottom: 20%">Editar
-										</button></td>
-									<td><a href="/admin-teams/delete/{{id}}"
-										class="btn btn-mini btn-danger"
-										style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
+										<td><button type="submit" class="btn btn-mini btn-info"
+												style="margin-left: 30%; margin-bottom: 20%">Editar
+											</button></td>
+										<td><a href="/admin-teams/delete/{{id}}"
+											class="btn btn-mini btn-danger"
+											style="margin-left: 30%; margin-bottom: 20%"> Borrar </a></td>
 									</form>
 								</tr>
 								{{/EgamesTeams}}
@@ -363,14 +367,16 @@
 									<input type="file" name="logoImage" />
 								</div>
 							</div>
-							{{#showsPhotoError}}<label>Hay un error con la imagen intantalo más tarde</label>{{/showsPhotoError}}
+							{{#showsLogoError}}<label>Hay un error con la imagen
+								intantalo más tarde</label>{{/showsLogoError}}
 							<div class="control-group">
 								<label class="control-label">Imagen Estadio :</label>
 								<div class="controls">
 									<input type="file" name="stadiumImage" />
 								</div>
 							</div>
-							{{#noBadNewSport}}
+							{{#showsStadiumError}}<label>Hay un error con la imagen
+								intantalo más tarde</label>{{/showsStadiumError}} {{#noBadNewSport}}
 							<p style="color: red; margin-left: 20%">Debe completar todos
 								los campos</p>
 							{{/noBadNewSport}}

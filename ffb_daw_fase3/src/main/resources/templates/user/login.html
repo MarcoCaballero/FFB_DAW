@@ -17,6 +17,9 @@
 </head>
 
 <body id="loginBodyFFB">
+<video autoplay loop muted poster="screenshot.jpg" id="background">
+    <source src="user/img/video.mp4" type="video/mp4">
+</video>
 	<div id="loginbox"
 		style="position: fixed; left: 35%; margin-top: 3%;  margin-bottom: 3%;">
 		<form id="loginform" style="background-color: rgba(0, 0, 0, 0.65);"
@@ -42,8 +45,12 @@
 							type="password" name="password" placeholder="Contraseña" /> <input
 							type="hidden" name="_csrf" value="{{token}}" />
 					</div>
-					<h5 style="color: red">{{#isError}} La contraseña o usuario
-						son erroneos. {{/isError}}</h5>
+					{{#isError}}
+					<h5 style="color: red"> La contraseña o usuario
+						son erroneos, o 
+						<p> tienes una sesión abierta en otro dispositivo </p>
+					</h5>
+					{{/isError}}
 				</div>
 			</div>
 			<div class="form-actions">

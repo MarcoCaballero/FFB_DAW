@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ffbet.fase3.domain.EgamesMatch;
@@ -37,6 +35,11 @@ public class AdminScoreController  extends RedirectController{
 		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto",new PageRequest(0,100)));
 		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL",new PageRequest(0,100)));
 		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO",new PageRequest(0,100)));
+
+		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol"));
+		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto"));
+		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL"));
+		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO"));
 		
 		String response = check_url(request, template);
 		return response;
@@ -53,6 +56,8 @@ public class AdminScoreController  extends RedirectController{
 			sportMatch.setHomePoints(Integer.parseInt(homePoints));
 			
 			sportMatch.setVisitingPoints(Integer.parseInt(visitingPoints));
+			
+			sportMatch.setFinished(true);
 			
 		} catch (Exception e) {
 			System.out.println("Puntos "+homePoints);
@@ -87,6 +92,8 @@ public class AdminScoreController  extends RedirectController{
 				egamesMatch.setFirstBloodVisiting(true);
 			}
 			egamesMatch.setFirstBloodTeam(firstBlood);
+			
+			egamesMatch.setFinished(true);
 			egames_match_repository.save(egamesMatch);
 		} catch (Exception e) {
 			

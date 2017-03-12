@@ -64,10 +64,6 @@ public class User {
 	@Column
 	private String location;
 
-	@Column(length = 10000000)
-	@Lob
-	private byte[] profile_image;
-
 	@Column
 	private String photoUrl;
 
@@ -76,10 +72,9 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
-	
+
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> usedPromos = new ArrayList<>();
-
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<CreditCard> cards = new ArrayList<>();
@@ -119,7 +114,7 @@ public class User {
 	 * @param profile_image
 	 */
 	public User(String name, String surname, String dni, String email, String telephone, String password,
-			String country, String city, String location, byte[] profile_image, String... roles) {
+			String country, String city, String location, String... roles) {
 		this.name = name;
 		this.surname = surname;
 		this.dni = dni;
@@ -130,7 +125,6 @@ public class User {
 		this.country = country;
 		this.city = city;
 		this.location = location;
-		this.profile_image = profile_image;
 	}
 
 	/**
@@ -296,21 +290,6 @@ public class User {
 	 */
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	/**
-	 * @return the profile_image
-	 */
-	public byte[] getProfile_image() {
-		return profile_image;
-	}
-
-	/**
-	 * @param profile_image
-	 *            the profile_image to set
-	 */
-	public void setProfile_image(byte[] profile_image) {
-		this.profile_image = profile_image;
 	}
 
 	/**
@@ -526,7 +505,7 @@ public class User {
 	public void setCards(List<CreditCard> cards) {
 		this.cards = cards;
 	}
-	
+
 	/**
 	 * @return the usedPromos
 	 */
@@ -535,12 +514,12 @@ public class User {
 	}
 
 	/**
-	 * @param usedPromos the usedPromos to set
+	 * @param usedPromos
+	 *            the usedPromos to set
 	 */
 	public void setUsedPromos(List<Promotion> usedPromos) {
 		this.usedPromos = usedPromos;
 	}
-	
 
 	/* OWN METHODS */
 
@@ -554,17 +533,45 @@ public class User {
 		this.setCredit(this.getCredit() + money);
 	}
 	
+	public void addPromotionCredit(double money){
+		this.setPromotionCredit(this.getPromotionCredit()+money);
+	}
+	
+	public void addCreditFromFFB(double money){
+		this.setCredit(this.getCredit() + money);
+	}
+	
+	public void addBet(BetTicket ticket){
+		this.getBet_tickets().add(ticket);
+	}
+
 	public boolean addPromo(Promotion promo) {
-		if(this.getUsedPromos().contains(promo)){
+		if (this.getUsedPromos().contains(promo)) {
 			return false;
-		}else{
-			if(this.getPromos().contains(promo)){
+		} else {
+			if (this.getPromos().contains(promo)) {
 				return false;
-			}else{
+			} else {
 				this.getPromos().add(promo);
 				return true;
 			}
 		}
+	}
+	
+	public boolean payFromCredit(double money){
+		if(this.getCredit()>=money){
+			this.setCredit(this.getCredit()-money);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean payFromPromotionCredit(double money){
+		if(this.getPromotionCredit()>=money){
+			this.setPromotionCredit(this.getPromotionCredit()-money);
+			return true;
+		}
+		return false;
 	}
 
 }

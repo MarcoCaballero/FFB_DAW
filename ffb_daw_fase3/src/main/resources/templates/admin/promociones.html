@@ -8,19 +8,15 @@
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
 <title>FFBet - ADMIN</title>
 
-<link rel="icon" type="image/png"
-	href="admin/img/faviconFFBpng.png" />
+<link rel="icon" type="image/png" href="admin/img/faviconFFBpng.png" />
 <link rel="stylesheet" href="admin/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="admin/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="admin/css/matrix-style.css" />
 <link rel="stylesheet" href="admin/css/matrix-media.css" />
 <link rel="stylesheet" href="admin/css/uniform.css" />
 <link rel="stylesheet" href="admin/css/select2.css" />
-<link rel="stylesheet"
-	href="admin/css/bootstrap-wysihtml5.css" />
-<link href="admin/font-awesome/css/font-awesome.css"
-	rel="stylesheet" />
+<link rel="stylesheet" href="admin/css/bootstrap-wysihtml5.css" />
+<link href="admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
 	rel='stylesheet' type='text/css' />
@@ -28,8 +24,7 @@
 
 
 <link href="user/css/datepicker3.css" rel="stylesheet">
-<link href="user/css/bootstrap-table.css"
-	rel="stylesheet">
+<link href="user/css/bootstrap-table.css" rel="stylesheet">
 
 <!--Icons-->
 <script src="user/js/lumino.glyphs.js"></script>
@@ -79,52 +74,78 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span6">
-                        <div class="widget-box">
-                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                <h5>Editor de promociones</h5> </div>
-                            <div class="widget-content nopadding">
-                                <form action="admin-promotions/new" method="post" class="form-horizontal">
-                                    <div class="control-group">
-                                        <label class="control-label">Tipo de promoción:</label>
-                                        <div class="controls">
-                                            <select name = "type">
-                                                <option value="Bonos gratuitos">Bonos gratuitos</option>
-                                                <option value="Promociones de fútbol">Promociones de fútbol</option>
-                                         	</select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label">Título de la promoción:</label>
-                                        <div class="controls">
-                                            <input type="text" class="span11" placeholder="Título" name="title" /> </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label">Descripción de la promoción:</label>
-                                        <div class="controls">
-                                            <textarea class="span11"  placeholder="Descripción" name="description"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                    	<label class="control-label">Código promocional:</label>
-                                        <div class="controls">
-                                            <input type="password" class="span11" placeholder="Introduzca el código de activación" name="promotionCode"/> </div>
-                                     </div>
-                                    <div class="control-group">
-                                        <label class="control-label">Imagen promocional :</label>
-                                        <div class="controls">
-                                            <input type="file" class="span11" /> </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <input type="hidden" name="_csrf" value="{{token}}" /> <input
-												type="submit" class="btn btn-success" value="Publicar" />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-align-justify"></i>
+							</span>
+							<h5>Editor de promociones</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<form action="admin-promotions/new" method="post"
+								class="form-horizontal" enctype="multipart/form-data">
+								<div class="control-group">
+									<label class="control-label">Tipo de promoción:</label>
+									<div class="controls">
+										<select name="type">
+											<option value="BONODESCUENTO">Bonos descuento</option>
+											<option value=ROMOCIONREGALO">Promociones regalo</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Título de la promoción:</label>
+									<div class="controls">
+										<input type="text" class="span11" placeholder="Título"
+											name="promoTitle" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Descripción de la
+										promoción:</label>
+									<div class="controls">
+										<textarea class="span11" placeholder="Descripción"
+											name="promoDescription"></textarea>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Código promocional:</label>
+									<div class="controls">
+										<input type="text" class="span11"
+											placeholder="Introduzca el código de activación"
+											name="promoCode" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Cantidad de
+										descuento/regalo:</label>
+									<div class="controls">
+										<input type="number" class="span11" placeholder="Cantidad"
+											name="promoQuantity" />
+									</div>
+								</div>
+								{{#isPromo}} <label style="color: red">Deben completar
+									todos los campos</label> {{/isPromo}}
+								<div class="control-group">
+									<label class="control-label">Imagen promocional:</label>
+									<div class="controls">
+										<input type="file" class="span11" name="promoImage" />
+									</div>
+								</div>
+								{{#showsError}}<label>Hay un error con la imagen
+									intantalo más tarde</label>{{/showsError}}
+								<div class="form-actions">
+									<input type="hidden" name="_csrf" value="{{token}}" /> <input
+										type="submit" class="btn btn-success" value="Publicar" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 				<div class="span6">
 					<div class="panel panel-default">
-						<div class="panel-heading">Promociones existentes</div>
+						<div class="panel-heading">
+							<h5>Promociones existentes</h5>
+						</div>
 						<div class="panel-body">
 							<table data-toggle="table" data-show-refresh="true"
 								data-show-toggle="true" data-show-columns="true"
@@ -138,25 +159,33 @@
 										<th data-field="title" data-sortable="true">Título</th>
 										<th data-field="description" data-sortable="true">Descripcion</th>
 										<th data-field="promotionCode" data-sortable="true">Código</th>
-										<th data-field="delete" data-sortable="true">Eliminar promocion</th>
+										<th data-field="promotionQuantity" data-sortable="true">Cantidad</th>
+										<th data-field="promotionImage" data-sortable="true">Foto
+											promocion</th>
+										<th data-field="delete" data-sortable="true">Eliminar
+											promocion</th>
 									</tr>
 								</thead>
 								{{#promotions}}
 								<tr>
-									<td>{{id}}</td>
-									<td>{{type}}</td>
-									<td>{{title}}</td>
-									<td>{{description}}</td>
-									<td>{{promotionCode}}</td>
-									<td>
-									<form action="admin-promotions/delete/{{id}}" method="post">
-										<div class="form-actions">
-											<input type="hidden" name="_csrf" value="{{token}}" /> 
-											<input type="submit" class="btn btn-success" value="Eliminar" />
-										</div>
-									</form>
+									<td>{{#id}}{{.}}{{/id}}</td>
+									<td>{{#type}}{{.}}{{/type}}</td>
+									<td>{{#title}}{{.}}{{/title}}</td>
+									<td>{{#description}}{{.}}{{/description}}</td>
+									<td>{{#promotionCode}}{{.}}{{/promotionCode}}</td>
+									<td>{{#quantity}}{{.}}{{/quantity}}</td>
+									<td>{{#promotionImage}}<img src="images/promos/{{.}}"
+										height="40px" width="50px" style="margin-left: 20%" />{{/promotionImage}}
 									</td>
-									
+									<td>
+										<form action="admin-promotions/delete/{{id}}" method="post">
+											<div class="form-actions">
+												<input type="hidden" name="_csrf" value="{{token}}" /> <input
+													type="submit" class="btn btn-danger" value="Eliminar" />
+											</div>
+										</form>
+									</td>
+
 								</tr>
 								{{/promotions}}
 							</table>

@@ -3,8 +3,6 @@
  */
 package com.ffbet.fase3.controllers;
 
-import static org.mockito.Matchers.booleanThat;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,9 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
+import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.CreditCardRepository;
+import com.ffbet.fase3.repositories.MatchRepository;
+import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
@@ -44,6 +45,12 @@ public class UserAccountController extends RedirectController {
 	UserAuthComponent userComp;
 	@Autowired
 	CreditCardRepository creditCardRepo;
+
+	@Autowired
+	MatchRepository matchRepo;
+	@Autowired
+	SportTeamRepository teamRepo;
+
 	String photoA = "";
 	String redirectToAccount = "redirect:/user-account/";
 
@@ -52,6 +59,7 @@ public class UserAccountController extends RedirectController {
 	private boolean showsPasswdError = false;
 	private boolean showsCardError = false;
 	// private boolean isPhotoSelected = false;
+	private Team team = null;
 
 	@GetMapping(value = { "/user-account", "/user-account/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
@@ -59,12 +67,6 @@ public class UserAccountController extends RedirectController {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
-			if (!userComp.getLoggedUser().isPhotoSelected()) {
-				// model.addAttribute("isMen",
-				// userComp.getLoggedUser().isMen());
-			} else {
-				// isPhotoSelected = true;
-			}
 		} else {
 			showsUserMenu = false;
 			return "redirect:/logOut";
@@ -73,6 +75,25 @@ public class UserAccountController extends RedirectController {
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("showsPhotoError", showsPhotoError);
 		model.addAttribute("showsPasswdError", showsPasswdError);
+
+		// model.addAttribute("notFinishedMatches",
+		// matchRepo.findByNotFinished("Fútbol"));
+		// model.addAttribute("finishedMatches",
+		// matchRepo.findByFinished("Fútbol"));
+
+		if (team == null) {
+			final long num = 1;
+			team = teamRepo.findOne(num);
+		}
+
+		model.addAttribute("Teams", teamRepo.findByType("Fútbol"));
+
+		if (team != null) {
+			model.addAttribute("SelectedTeam", team);
+			model.addAttribute("notFinishedMatches", matchRepo.findByNotFinishedAndTeam("Fútbol", team.getName()));
+			model.addAttribute("finishedMatches", matchRepo.findByFinishedAndTeam("Fútbol", team.getName()));
+		}
+
 		// model.addAttribute("isPhotoSelected", isPhotoSelected);
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -258,6 +279,16 @@ public class UserAccountController extends RedirectController {
 
 		return redirectToAccount;
 
+	}
+
+	@RequestMapping("/user-account/selectionTeam/{id}")
+	public String selectionTeam(Model model, @PathVariable long id) {
+
+		team = teamRepo.findOne(id);
+
+		// model.addAttribute("SelectedTeam", team);
+
+		return redirectToAccount;
 	}
 
 }

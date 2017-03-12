@@ -51,12 +51,14 @@ public class EgamesMatch extends Match {
 	 *            bet
 	 */
 
-	public EgamesMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam,
-			int quotaHomeVictory, int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood) {
-		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
+	public EgamesMatch(Date date, Time time, String type, EgamesTeam homeTeam, EgamesTeam visitingTeam,
+			double quotaHomeVictory, double quotaVisitingVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood) {
+		super(date, time, type, homeTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
 		this.quotaVisitingFirstBlood = quotaVisitingFirstBlood;
+		this.teams.add(homeTeam);
+		this.teams.add(visitingTeam);
 	}
 
 	/**
@@ -72,8 +74,8 @@ public class EgamesMatch extends Match {
 	 * @param firstBloodTeam,
 	 *            the team who makes the first blood
 	 */
-	public EgamesMatch(long id, Date date, Time time, String type, String homeTeam, String visitingTeam,
-			int quotaHomeVictory, int quotaVisitingVictory, int quotaHomeFirstBlood, int quotaVisitingFirstBlood,
+	public EgamesMatch(Date date, Time time, String type, String homeTeam, String visitingTeam,
+			double quotaHomeVictory, double quotaVisitingVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood,
 			String winnerTeam, String firstBloodTeam) {
 		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
