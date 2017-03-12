@@ -31,15 +31,18 @@ public class BetTicket {
 	@Column(updatable = false, nullable = false)
 	protected long id;
 
-	@Column(nullable = false)
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<BetSportMatch> betMatchesList = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<BetESportMatch> betEspMatchesList = new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Promotion applied_promo;
 
 	@Column(nullable = false)
-	private int amount;
+	private double amount;
 
 	@Column
 	private double potentialGain;
@@ -61,7 +64,7 @@ public class BetTicket {
 	 * @param potential_gain
 	 * @param isFinished
 	 */
-	public BetTicket(List<BetSportMatch> matches_list, Promotion applied_promo, int amount, int potential_gain,
+	public BetTicket(List<BetSportMatch> matches_list, Promotion applied_promo, double amount, int potential_gain,
 			boolean isFinished) {
 		this.betMatchesList = matches_list;
 		this.applied_promo = applied_promo;
@@ -118,7 +121,7 @@ public class BetTicket {
 	/**
 	 * @return the amount
 	 */
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
@@ -126,7 +129,7 @@ public class BetTicket {
 	 * @param amount
 	 *            the amount to set
 	 */
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -142,7 +145,49 @@ public class BetTicket {
 	 *            the potential_gain to set
 	 */
 	public void setPotential_gain(double potential_gain) {
-		this.potentialGain = potential_gain;
+		this.potentialGain = Math.round(potential_gain*100.00)/100.00;
+	}
+
+	/**
+	 * @return the betMatchesList
+	 */
+	public List<BetSportMatch> getBetMatchesList() {
+		return betMatchesList;
+	}
+
+	/**
+	 * @param betMatchesList the betMatchesList to set
+	 */
+	public void setBetMatchesList(List<BetSportMatch> betMatchesList) {
+		this.betMatchesList = betMatchesList;
+	}
+
+	/**
+	 * @return the betEspMatchesList
+	 */
+	public List<BetESportMatch> getBetEspMatchesList() {
+		return betEspMatchesList;
+	}
+
+	/**
+	 * @param betEspMatchesList the betEspMatchesList to set
+	 */
+	public void setBetEspMatchesList(List<BetESportMatch> betEspMatchesList) {
+		this.betEspMatchesList = betEspMatchesList;
+	}
+
+	/**
+	 * @return the potentialGain
+	 */
+	public double getPotentialGain() {
+		return potentialGain;
+	}
+
+	/**
+	 * @param potentialGain the potentialGain to set
+	 */
+	public void setPotentialGain(double potentialGain) {
+		this.potentialGain = potentialGain;
 	}
 
 	/**
@@ -167,6 +212,10 @@ public class BetTicket {
 		for (BetSportMatch bm : this.betMatchesList) {
 			gain *= bm.getSelectedQuota();
 		}
+		
+		for (BetESportMatch bm : this.betEspMatchesList) {
+			gain *= bm.getSelectedQuota();
+		}
 		gain *= multiplicator;
 		return gain;
 	}
@@ -174,14 +223,15 @@ public class BetTicket {
 	public void addMatchTeam(BetSportMatch match) {
 		this.getBetMatches_list().add(match);
 	}
+	public void addEMatchTeam(BetESportMatch match) {
+		this.getBetEspMatchesList().add(match);
+	}
 
 	public boolean applyPromo(Promotion promo){
-		if(promo.getType().equals(PromotionType.PROMO_GIFT.toString())){
-			
-		}else if(promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())){
-			
-		}else{
-			//Handle error;
+	
+		if(promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())){
+			this.setAmount(promo.applyDiscount(this.getAmount()));
+			return true;
 		}
 		return false;
 		

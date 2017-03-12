@@ -534,7 +534,11 @@ public class User {
 	}
 	
 	public void addPromotionCredit(double money){
-		this.setPromotionCredit(money);
+		this.setPromotionCredit(this.getPromotionCredit()+money);
+	}
+	
+	public void addCreditFromFFB(double money){
+		this.setCredit(this.getCredit() + money);
 	}
 	
 	public void addBet(BetTicket ticket){
