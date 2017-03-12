@@ -480,6 +480,10 @@
 												</div>
 											</div>
 										</div>
+										{{#noSumQuota1LOL}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuota1LOL}}
 										<div class="control-group">
 											<label class="control-label">First Blood Local</label>
 											<div class="controls">
@@ -510,10 +514,10 @@
 										</div>
 										{{#noQuotaLOL}}
 										<p style="color: red">Complete todos los campos de cuota</p>
-										{{/noQuotaLOL}} {{#noSumQuotaLOL}}
+										{{/noQuotaLOL}} {{#noSumQuota2LOL}}
 										<p style="color: red">La suma de los porcentajes debe ser
 											110</p>
-										{{/noSumQuotaLOL}}
+										{{/noSumQuota2LOL}}
 										<div class="form-actions">
 											<input type="hidden" name="_csrf" value="{{token}}" /> <input
 												type="submit" class="btn btn-success" value="Save" />
@@ -605,6 +609,10 @@
 												</div>
 											</div>
 										</div>
+										{{#noSumQuota1CS}}
+										<p style="color: red">La suma de los porcentajes debe ser
+											110</p>
+										{{/noSumQuota1CS}}
 										<div class="control-group">
 											<label class="control-label">First Blood Local</label>
 											<div class="controls">
@@ -635,10 +643,10 @@
 										</div>
 										{{#noQuotaCS}}
 										<p style="color: red">Complete todos los campos de cuota</p>
-										{{/noQuotaCS}} {{#noSumQuotaCS}}
+										{{/noQuotaCS}} {{#noSumQuota2CS}}
 										<p style="color: red">La suma de los porcentajes debe ser
 											110</p>
-										{{/noSumQuotaCS}}
+										{{/noSumQuota2CS}}
 										<div class="form-actions">
 											<input type="hidden" name="_csrf" value="{{token}}" /> <input
 												type="submit" class="btn btn-success" value="Save" />

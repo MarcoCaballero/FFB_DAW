@@ -69,7 +69,7 @@
 								class="glyph stroked male-user"> 
 							 {{#user.isPhotoSelected}}
 									<img class="img-circle" " alt=""
-									src="images/avatars/{{user.photoUrl}}" height="25px"/>
+									src="images/avatars/{{user.photoUrl}}" height="25px" />
 								{{/user.isPhotoSelected}}
 								{{^user.isPhotoSelected}}
 								{{#user.isMen}}
@@ -260,157 +260,61 @@
 			</ol>
 		</div>
 		<!--/.row-->
-		<div class="tt1">Bonos gratuitos</div>
+		<div class="tt1">Bonos descuento</div>
 		<div class="container">
 			<div class="row">
+				{{#PromotionDiscount}}
 				<div class="col-sm-5">
 					<div class="card">
 						<div class="card-image">
-							<img class="img-responsive" src="user/img/jug.jpg">
+							{{#promotionImage}} <img src="images/promos/{{.}}" height="200px"
+								width="458px" /> {{/promotionImage}} {{^promotionImage}} <img
+								src="user/img/logo-promocion-fantasma.jpg" height="200px"
+								width="458px" /> {{/promotionImage}}
 						</div>
 						<div class="card-content">
-							<span class="card-title">Bono de bienvenida (10€ por
-								registro)</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
+							{{#title}}<span class="card-title">{{.}}</span>{{/title}}
 						</div>
 						<div class="card-action">
-							<p>Regalo de bienvenida para todos los nuevos clientes de
-								FFBet. Tan solo registrate y recibirás este cupón gratuito
-								instantáneamente. ¡DISFRUTA!</p>
-							<a href="#" target="new_blank">Código <span
-								class="glyphicon glyphicon-tag"></span></a>
+							{{#description}}
+							<p>{{.}}</p>
+							{{/description}}
+						</div>
+						<div class="card-action">
+							<a href="user-promos/subscribe/{{id}}" class="span6">Código <span
+								class="glyphicon glyphicon-tag"></span></a> {{#isShown}} <label
+								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">{{promotionCode}}</label>
+							{{/isShown}}
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
-					<div class="card">
-						<div class="card-image">
-							<img class="img-responsive" src="user/img/lol.png">
-						</div>
-						<div class="card-content">
-							<span class="card-title">Bono gratis en eGames (5€ por
-								usuario)</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
-						</div>
-						<div class="card-action">
-							<p>¡ORGULLO FRIKI! League of Legends, Overwatch, Counter
-								Strike... Prueba nuestra sección de eGames gratis con este cupón
-								y demuestra tu lado más friki.</p>
-							<a href="#" target="new_blank">Código <span
-								class="glyphicon glyphicon-tag"></span></a>
-						</div>
-					</div>
-				</div>
+				{{/PromotionDiscount}}
 			</div>
 		</div>
-		<div class="tt1">user-promos de fútbol</div>
+		<div class="tt1">Promociones regalo</div>
 		<div class="container">
 			<div class="row">
+				{{#PromotionPresent}}
 				<div class="col-sm-5">
 					<div class="card">
 						<div class="card-image">
-							<img class="img-responsive" src="user/img/clasico.jpg">
+							{{#promotionImage}} <img src="images/promos/{{.}}" height="200px"
+								width="458px" /> {{/promotionImage}}{{^promotionImage}} <img
+								src="user/img/logo-promocion-fantasma.jpg" height="200px"
+								width="458px" /> {{/promotionImage}}
 						</div>
 						<div class="card-content">
-							<span class="card-title">Supercuota Real Madrid - FC
-								Barcelona</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
+							{{#title}}<span class="card-title">{{.}}</span>{{/title}}
 						</div>
 						<div class="card-action">
-							<p>Se acerca el esperado clásico de la LFP, ¿tienes ya tu
-								equipo favorito? Para aumentar la emoción del encuentro hemos
-								incrementado las cuotas [RM:3.75 X:5.0 FCB:3.75]. El partido del
-								año, ¿de qué lado se decantará el partido? Sé el primero en
-								adivinar el ganador. ¡FALTA POCO!</p>
-							<a href="#" target="new_blank">Código <span
+							{{#description}}
+							<p>{{.}}</p>
+							{{/description}} <a href="#" target="new_blank">Código <span
 								class="glyphicon glyphicon-tag"></span></a>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
-					<div class="card">
-						<div class="card-image">
-							<img class="img-responsive" src="user/img/equipos.jpg">
-						</div>
-						<div class="card-content">
-							<span class="card-title">Bonficación en combis de fútbol
-								(10%)</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
-						</div>
-						<div class="card-action">
-							<p>
-								¿Te consideras futbolero? ¡Demuestranoslo! Añadimos una cuota
-								extra (1.10) a tu combinada de fútbol, no importa la liga:
-								Premier League, La Liga, Ligue 1... ¡Aquí tienes tu oportunidad
-								para aumentar tus ganancias! <br> Buena suerte.
-							</p>
-							<a href="#" target="new_blank">Código <span
-								class="glyphicon glyphicon-tag"></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="tt1">Otros deportes</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-5">
-					<div class="card">
-						<div class="card-image">
-							<img class="img-responsive" src="user/img/rafa.jpg">
-						</div>
-						<div class="card-content">
-							<span class="card-title">30% reintegro si Rafael Nadal
-								pierde</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
-						</div>
-						<div class="card-action">
-							<p>¡TODOS SOMOS RAFA! Nadal necesita nuestro apoyo más que
-								nunca, por eso si no consigue la victoria devolvemos el 30% de
-								la cantidad apostada.</p>
-							<a href="#" target="new_blank">Código <span
-								class="glyphicon glyphicon-tag"></span></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-5">
-					<div class="card">
-						<div class="card-image">
-							<img class="img-responsive" src="user/img/nba.jpg">
-						</div>
-						<div class="card-content">
-							<span class="card-title">Bonificación en combinadas NBA
-								(5%)</span>
-							<button type="button" id="show" class="btn btn-custom pull-right"
-								aria-label="Left Align">
-								<i class="fa fa-ellipsis-v"></i>
-							</button>
-						</div>
-						<div class="card-action">
-							<p>Playoffs 2017, ALL STAR 2017... La mejor liga de
-								baloncesto del mundo quiere brindarnos un gran espectáculo,
-								aportamos una cuota extra (1.05) para vivir toda la emoción que
-								se merece.</p>
-							<a href="#" target="new_blank">Código <span
-								class="glyphicon glyphicon-tag"></span></a>
-						</div>
-					</div>
-				</div>
+				{{/PromotionPresent}}
 			</div>
 		</div>
 	</div>
