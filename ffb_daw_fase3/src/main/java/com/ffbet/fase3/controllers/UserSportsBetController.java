@@ -57,6 +57,7 @@ public class UserSportsBetController extends RedirectController {
 	BetTicket ticket_erasable = null;
 
 	private boolean showsUserMenu = false;
+	
 	private boolean selectedOne = false;
 	private boolean selectedTwo = false;
 	private boolean selectedThree = false;
@@ -72,6 +73,8 @@ public class UserSportsBetController extends RedirectController {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+			
+			updatedUser.setPromotionCredit(10);
 			model.addAttribute("user", updatedUser);
 
 		} else {
@@ -101,17 +104,14 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet/addMatch/{id}/{quota}", "/user-sportsBet/addMatch/{id}/{quota}/" })
 	public String addMatchToTicket(HttpServletRequest request, Model model, @PathVariable("id") String idPre,
 			@PathVariable String quota) {
-		System.out.println("HOLA FROM NEW");
 
 		try {
 			long id = Long.parseLong(idPre);
-			double gain;
 			SportsMatch match = sportsMatchRepository.findOne(id);
 			if (ticket_erasable == null) {
 				ticket_erasable = new BetTicket();
-				ticket_erasable.setPotential_gain(1);
 			}
-			gain = ticket_erasable.getPotential_gain();
+			
 			boolean isLocalSelected = false;
 			boolean isVisitingSelected = false;
 			switch (quota) {
@@ -121,16 +121,13 @@ public class UserSportsBetController extends RedirectController {
 			case "2":
 				isVisitingSelected = true;
 				break;
-			case "X":
-				isVisitingSelected = true;
-				break;
-
+			
 			}
 			BetSportMatch betMatch = new BetSportMatch(match, isLocalSelected, !isLocalSelected && !isVisitingSelected,
 					isVisitingSelected);
 			ticket_erasable.addMatchTeam(betMatch);
-			ticket_erasable.setPotential_gain(gain *= betMatch.getSelectedQuota());
-			System.out.println("GANAS :" + gain);
+			ticket_erasable.setPotential_gain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
+			System.out.println("GANAS :" + ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -143,9 +140,40 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet/refreshQuota/{prize}", "/user-sportsBet/refreshQuota/{prize}" })
 	public String refreshQuota(HttpServletRequest request, Model model, @PathVariable int prize) {
 
+		switchMultiplicator(prize);
 		if (ticket_erasable != null) {
-			ticket_erasable.setPotential_gain(ticket_erasable.getPotential_gain() * prize);
+			ticket_erasable.setPotential_gain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 		}
+
+		return redirect;
+
+	}
+	
+	
+	
+	@GetMapping(value = { "/user-sportsBet/sendBet", "/user-sportsBet/sendBet/{id}" })
+	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable String id) {
+
+		if (userComp.isLoggedUser()) {
+			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+			if(request.getRequestURI().endsWith("sendBet")){
+								
+				updatedUser.addBet(ticket_erasable);
+				userRepo.save(updatedUser);
+				ticket_erasable = null;
+			}else{
+				//handle promo; 
+			}
+
+		} else {
+			return "redirect:/login/";
+		}
+
+		return redirect;
+
+	}
+
+	public void switchMultiplicator(int prize) {
 		switch (prize) {
 		case 1:
 			selectedOne = true;
@@ -185,8 +213,19 @@ public class UserSportsBetController extends RedirectController {
 
 		}
 
-		return redirect;
+	}
 
+	public int updatedMultiplicator() {
+		
+		if (selectedTwo)
+			return 5;
+		if (selectedThree)
+			return 10;
+		if (selectedFour)
+			return 25;
+		if (selectedFive)
+			return 50;
+		return 1;
 	}
 
 }

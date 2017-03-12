@@ -532,6 +532,14 @@ public class User {
 	public void addCreditfromCard(double money) {
 		this.setCredit(this.getCredit() + money);
 	}
+	
+	public void addPromotionCredit(double money){
+		this.setPromotionCredit(money);
+	}
+	
+	public void addBet(BetTicket ticket){
+		this.getBet_tickets().add(ticket);
+	}
 
 	public boolean addPromo(Promotion promo) {
 		if (this.getUsedPromos().contains(promo)) {
@@ -544,6 +552,22 @@ public class User {
 				return true;
 			}
 		}
+	}
+	
+	public boolean payFromCredit(double money){
+		if(this.getCredit()>=money){
+			this.setCredit(this.getCredit()-money);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean payFromPromotionCredit(double money){
+		if(this.getPromotionCredit()>=money){
+			this.setPromotionCredit(this.getPromotionCredit()-money);
+			return true;
+		}
+		return false;
 	}
 
 }
