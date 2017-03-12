@@ -36,19 +36,19 @@ public class MainLoaders {
 		/*------------SPORT - TEAM------------*/
 		
 		SportTeam sportteam1 = new SportTeam("¡Ganar, Ganar y Ganar!", "Vicente Calderón", "Madrid", "Enrique Cerezo",
-				10, 10, 0, "photo_team_cover1.png", "photo_team_logo1.png", "https://twitter.com/atleti?lang=es",
+				10, 10, 0, "photo_team_cover1.jpg", "photo_team_logo1.jpg", "https://twitter.com/atleti?lang=es",
 				"https://www.facebook.com/AtleticodeMadrid/", "https://plus.google.com/+atleticodemadrid",
 				"Atlético de Madrid", "Fútbol", "Diego Simeone", "España");
 		
 		
 		SportTeam sportteam2 =new SportTeam("¡Més que un club!", "Camp Nou", "Barcelona", "Jusep Marí Bartomeu", 34, 38,
-				5, "photo_team_cover2.png", "photo_team_logo2.png", "https://twitter.com/fcbarcelona_es?lang=es",
+				5, "photo_team_cover2.jpg", "photo_team_logo2.jpg", "https://twitter.com/fcbarcelona_es?lang=es",
 				"https://www.facebook.com/fcbarcelona/", "https://plus.google.com/+FCBarcelona", "F.C. Barcelona",
 				"Fútbol", "Luis Enrique", "España");
 		
 		
 		SportTeam sportteam3 =new SportTeam("¡Así, Así, Así! Así gana el Madrid", "Santiago Bernabéu", "Madrid",
-				"Florentino Pérez", 33, 19, 10, "photo_team_cover3.png", "photo_team_logo3.png",
+				"Florentino Pérez", 33, 19, 10, "photo_team_cover3.jpg", "photo_team_logo3.jpg",
 				"https://twitter.com/realmadrid?lang=es", "https://www.facebook.com/RealMadrid/",
 				"https://plus.google.com/+realmadrid", "Real Madrid C.F.", "Fútbol", "Zinedine Zidane", "España");
 		
