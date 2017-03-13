@@ -21,6 +21,7 @@ import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.TeamRepository;
+import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
@@ -59,9 +60,10 @@ public class AdminMatchesController extends RedirectController {
 	
 	@Autowired
 	private TeamRepository teamRepo;
-	
 	@Autowired
-	UserAuthComponent usercomponent;
+	UserAuthComponent userComp;
+	@Autowired
+	UserRepository userRepo;
 
 	// Variables for football
 	private boolean badDate = false;
@@ -107,8 +109,8 @@ public class AdminMatchesController extends RedirectController {
 	@GetMapping(value = { "/admin-matches", "/admin-matches/" })
 	public String getMatchTemplate(HttpServletRequest request, Model model) {
 		
-		if(usercomponent.isLoggedUser()){
-			model.addAttribute("UsuarioActivo", usercomponent.getLoggedUser().getName());
+		if(userComp.isLoggedUser()){
+			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 		}else{
 			return "redirect:/logOut";
 		}

@@ -45,7 +45,7 @@ public class AdminScoreController extends RedirectController {
 
 
 		if (userComp.isLoggedUser()) {
-			model.addAttribute("user", userComp.getLoggedUser());
+			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			} else {
