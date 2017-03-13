@@ -2,332 +2,451 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FFBet - Entra y apuesta</title>
-    <link rel="icon" type="image/png" href="user/img/faviconFFBpng.png" />
-    <link href="user/css/bootstrap.min.css" rel="stylesheet">
-    <link href="user/css/datepicker3.css" rel="stylesheet">
-    <link href="user/css/styles.css" rel="stylesheet">
-    <!--Icons-->
-    <script src="user/js/lumino.glyphs.js"></script>
-    <script src="user/js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jssor_1_slider_init = function () {
-            var jssor_1_options = {
-                $AutoPlay: true
-                , $Idle: 0
-                , $AutoPlaySteps: 4
-                , $SlideDuration: 2500
-                , $SlideEasing: $Jease$.$Linear
-                , $PauseOnHover: 4
-                , $SlideWidth: 140
-                , $Cols: 7
-            };
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-            /*responsive code begin*/
-            /*you can remove responsive code if you don't want the slider scales while window resizing*/
-            function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 1200);
-                    jssor_1_slider.$ScaleWidth(refSize);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider();
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            /*responsive code end*/
-        };
-    </script>
-    <!--[if lt IE 9]>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FFBet - Entra y apuesta</title>
+<link rel="icon" type="image/png" href="user/img/faviconFFBpng.png" />
+<link href="user/css/bootstrap.min.css" rel="stylesheet">
+<link href="user/css/datepicker3.css" rel="stylesheet">
+<link href="user/css/styles.css" rel="stylesheet">
+<!--Icons-->
+<script src="user/js/lumino.glyphs.js"></script>
+<script src="user/js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jssor_1_slider_init = function() {
+		var jssor_1_options = {
+			$AutoPlay : true,
+			$Idle : 0,
+			$AutoPlaySteps : 4,
+			$SlideDuration : 2500,
+			$SlideEasing : $Jease$.$Linear,
+			$PauseOnHover : 4,
+			$SlideWidth : 140,
+			$Cols : 7
+		};
+		var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+		/*responsive code begin*/
+		/*you can remove responsive code if you don't want the slider scales while window resizing*/
+		function ScaleSlider() {
+			var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+			if (refSize) {
+				refSize = Math.min(refSize, 1200);
+				jssor_1_slider.$ScaleWidth(refSize);
+			} else {
+				window.setTimeout(ScaleSlider, 30);
+			}
+		}
+		ScaleSlider();
+		$Jssor$.$AddEvent(window, "load", ScaleSlider);
+		$Jssor$.$AddEvent(window, "resize", ScaleSlider);
+		$Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+		/*responsive code end*/
+	};
+</script>
+<!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
 </head>
 
 <body>
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-                <ul class="user-menu">
-                    <li class="dropdown pull-right" style="margin-top:-3%;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="25px" /> </svg> Pedro Espinoza <span class="caret"></span></a>
-                        <ul class="dropdown-menu" style="border-radius: 10%;">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p class="text-center">
-                                                <svg class="glyph stroked male-user"> <img class="img-circle" src="user/img/pedroaccount.jpg" height="100px" /> </svg>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="text-left"><strong>Pedro Espinoza</strong></p>
-                                            <p class="text-left small">correoElectronico@email.com
-                                                <a style="color:black;" href="micuenta">
-                                                    <h6 style="color:black;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                                            </p>
-                                            <p class="text-left"> <a href="depositar" class="btn btn-primary btn-block btn-sm">Depositar</a>
-                                                <a href="micuenta" class="btn btn-primary btn-block btn-sm" style="background-color: #6469c6;border-color:#6469c6;">
-                                                    <svg class="glyph stroked gear hidden"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" width="16px"> </svg> Mi cuenta</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="navbar-login navbar-login-session">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p>
-                                                <a href="#" class="btn btn-danger btn-block">
-                                                    <svg class="glyph stroked cancel">
-                                                        <use xlink:href="#stroked-cancel"></use>
-                                                    </svg>Cerrar Sesion</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown pull-right fixing">
-                        <a href="micuenta" class="dropdown-toggle">
-                            <h6 style="color:white;">Tu saldo es:<em><i>19,99€</i></em></h6> </a>
-                    </li>
-                </ul>
-                <a href="depositar"><img class="imgfixedmenu" src="user/img/walletmdesign.png" style="float:left;" width="35px"></a>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-        <section class="active"> <img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%"> </section>
-        <ul class="nav menu">
-            <li>
-                <a href="index"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
-            </li>
-            <li>
-                <a href="apuestasdeportivas"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
-            </li>
-            <li>
-                <a href="apuestasesports"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
-            </li>
-            <li class="active">
-                <a href="promociones"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
-            </li>
-            <li>
-                <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
-            </li>
-            <li role="presentation" class="divider"></li>
-            <li>
-                <a href="registrarse">
-                    <svg class="glyph stroked male-user">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				{{#isUsermenuActive}}
+
+				<ul class="user-menu">
+					<li class="dropdown pull-right" style="margin-top: -3%;"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
+								class="glyph stroked male-user"> 
+							 {{#user.isPhotoSelected}}
+									<img class="img-circle" " alt=""
+									src="images/avatars/{{user.photoUrl}}" height="25px" />
+								{{/user.isPhotoSelected}}
+								{{^user.isPhotoSelected}}
+								{{#user.isMen}}
+									<img class="img-circle" src="user/img/boyUser.svg"
+									height="25px" /> 
+								{{/user.isMen}}
+								{{^user.isMen}}
+									<img class="img-circle" src="user/img/userGirl.svg"
+									height="25px" /> 
+								{{/user.isMen}}
+						{{/user.isPhotoSelected}}
+						 
+						 </svg> {{user.email}} <span class="caret"></span></a>
+						<ul class="dropdown-menu" style="border-radius: 10%;">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												{{#user.isPhotoSelected}} <img class="img-circle"
+													src="images/avatars/{{user.photoUrl}}" height="100px" />
+												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
+												{{#user.isMen}} <img class="img-circle"
+													src="user/img/boyUser.svg" height="100px" />
+												{{/user.isMen}} {{^user.isMen}} <img class="img-circle"
+													src="user/img/userGirl.svg" height="100px" />
+												{{/user.isMen}} {{/user.isPhotoSelected}}
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>{{user.name}}</strong>
+											</p>
+											<p class="text-left small">
+												{{user.email}} <a style="color: black;" href="user-account">
+													<h6 style="color: black;">
+														Tu saldo es:<em><i> {{user.credit}} €</i></em>
+													</h6>
+
+													<h6 style="color: black;">
+														Tu saldo Promocional* :<em><i>
+																{{user.promotionCredit}} €</i></em>
+													</h6>
+
+												</a>
+											</p>
+											<p class="text-left">
+												<a href="user-account/addCredit"
+													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
+													href="user-account/withdrawCredit"
+													class="btn btn-primary btn-block btn-sm"
+													style="background-color: #6469c6; border-color: #6469c6;">
+													Mi cuenta </a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<form action="/logOut" method="POST">
+												<p>
+													<input type="submit" value="Cerrar Sesión"
+														class="btn btn-danger btn-block" /> <input type="hidden"
+														name="_csrf" value="{{token}}" />
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="dropdown pull-right fixing"><a href="user-account"
+						class="dropdown-toggle">
+							<h6 style="color: white;">
+								Tu saldo es:<em><i> {{user.credit}} €
+										({{user.promotionCredit}} €)*</i></em>
+							</h6>
+					</a></li>
+				</ul>
+
+				{{/isUsermenuActive}} {{^isUsermenuActive}}
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a href="#" type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target="#sidebar-collapse"> <span
+								class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</a> <a class="navbar-brand" href="#"> </a>
+							<ul class="user-menu">
+								<li class="dropdown pull-right"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown"><img
+										class="img-circle" src="user/img/userBlocked.svg"
+										style="height: 30px;" /> Acceder <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li style="display: block;"><a href="login"> <img
+												class="img-circle" src="user/img/userBlocked.svg"
+												height="30px" /> Entrar
+										</a></li>
+										<li style="display: block;"><a href="ffbet/policy-terms">
+												<img class="img-circle" src="user/img/policy.svg"
+												height="30px" /> Política de privacidad
+										</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+
+				{{/isUsermenuActive}}
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<section class="active">
+			<img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%">
+		</section>
+		<ul class="nav menu">
+			<li><a href="user"> <img class="glyph stroked home"
+					src="user/img/home.svg" /> Home
+			</a></li>
+			<li><a href="user-sportsBet"> <img
+					class="glyph stroked home" src="user/img/ball.svg" />Apuestas
+					Deportivas
+			</a></li>
+			<li><a href="user-EsportsBet"> <img
+					class="glyph stroked pencil" src="user/img/games_b.svg" />
+					Apuestas E-games
+			</a></li>
+			<li class="active"><a href="user-promos"> <img
+					class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y
+					Promociones
+			</a></li> {{#isUsermenuActive}}
+			<li><a href="user-account"> <img
+					class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi
+					Cuenta
+			</a></li>
+			<li role="presentation" class="divider"></li> {{/isUsermenuActive}}
+			{{^isUsermenuActive}}
+			<li role="presentation" class="divider"></li>
+			<li><a href="signup"> <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
-                    </svg>Registrate</a>
-            </li>
-        </ul>
-    </div>
-    <!--/.sidebar-->
-    <div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li>
-                    <a href="index">
-                        <svg class="glyph stroked home">
+                    </svg>Registrate
+			</a></li> {{/isUsermenuActive}}
+		</ul>
+	</div>
+	<!--/.sidebar-->
+	<div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="user"> <svg class="glyph stroked home">
                             <use xlink:href="#stroked-home"></use>
                         </svg>
-                    </a>
-                </li>
-                <li class="active">Ofertas y promociones</li>
-            </ol>
-        </div>
-        <!--/.row-->
-        <div class="tt1"> Bonos gratuitos </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/jug.jpg"> </div>
-                        <div class="card-content"> <span class="card-title">Bono de bienvenida (10€ por registro)</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>Regalo de bienvenida para todos los nuevos clientes de FFBet. Tan solo registrate y recibirás este cupón gratuito instantáneamente. ¡DISFRUTA!</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/lol.png"> </div>
-                        <div class="card-content"> <span class="card-title">Bono gratis en eGames (5€ por usuario)</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>¡ORGULLO FRIKI! League of Legends, Overwatch, Counter Strike... Prueba nuestra sección de eGames gratis con este cupón y demuestra tu lado más friki.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tt1"> Promociones de fútbol </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/clasico.jpg"> </div>
-                        <div class="card-content"> <span class="card-title">Supercuota Real Madrid - FC Barcelona</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>Se acerca el esperado clásico de la LFP, ¿tienes ya tu equipo favorito? Para aumentar la emoción del encuentro hemos incrementado las cuotas [RM:3.75 X:5.0 FCB:3.75]. El partido del año, ¿de qué lado se decantará el partido? Sé el primero en adivinar el ganador. ¡FALTA POCO!</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/equipos.jpg"> </div>
-                        <div class="card-content"> <span class="card-title">Bonficación en combis de fútbol (10%)</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>¿Te consideras futbolero? ¡Demuestranoslo! Añadimos una cuota extra (1.10) a tu combinada de fútbol, no importa la liga: Premier League, La Liga, Ligue 1... ¡Aquí tienes tu oportunidad para aumentar tus ganancias!
-                                <br> Buena suerte.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tt1"> Otros deportes </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/rafa.jpg"> </div>
-                        <div class="card-content"> <span class="card-title">30% reintegro si Rafael Nadal pierde</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>¡TODOS SOMOS RAFA! Nadal necesita nuestro apoyo más que nunca, por eso si no consigue la victoria devolvemos el 30% de la cantidad apostada.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-image"> <img class="img-responsive" src="user/img/nba.jpg"> </div>
-                        <div class="card-content"> <span class="card-title">Bonificación en combinadas NBA (5%)</span>
-                            <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align"> <i class="fa fa-ellipsis-v"></i> </button>
-                        </div>
-                        <div class="card-action">
-                            <p>Playoffs 2017, ALL STAR 2017... La mejor liga de baloncesto del mundo quiere brindarnos un gran espectáculo, aportamos una cuota extra (1.05) para vivir toda la emoción que se merece.</p> <a href="#" target="new_blank">Código <span class="glyphicon glyphicon-tag"></span></a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--./main-->
-    <div id="footer" class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
-        <div class="container-fluid">
-            <!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+				</a></li>
+				<li class="active">Ofertas y user-promos</li>
+			</ol>
+		</div>
+		<!--/.row-->
+		<div class="tt1">Bonos descuento</div>
+		<div class="container">
+			<div class="row">
+				{{#PromotionDiscount}}
+				<div class="col-sm-5">
+					<div class="card">
+						<div class="card-image">
+							{{#promotionImage}} <img src="images/promos/{{.}}" height="200px"
+								width="458px" /> {{/promotionImage}} {{^promotionImage}} <img
+								src="user/img/logo-promocion-fantasma.jpg" height="200px"
+								width="458px" /> {{/promotionImage}}
+						</div>
+						<div class="card-content">
+							{{#title}}<span class="card-title">{{.}}</span>{{/title}}
+						</div>
+						<div class="card-action">
+							{{#description}}
+							<p>{{.}}</p>
+							{{/description}}
+						</div>
+						<div class="card-action">
+							<a href="user-promos/subscribe/{{id}}" class="span6">Código <span
+								class="glyphicon glyphicon-tag"></span></a> {{#isShown}} <label
+								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">{{promotionCode}}</label>
+							{{/isShown}}
+						</div>
+					</div>
+				</div>
+				{{/PromotionDiscount}}
+			</div>
+		</div>
+		<div class="tt1">Promociones regalo</div>
+		<div class="container">
+			<div class="row">
+				{{#PromotionPresent}}
+				<div class="col-sm-5">
+					<div class="card">
+						<div class="card-image">
+							{{#promotionImage}} <img src="images/promos/{{.}}" height="200px"
+								width="458px" /> {{/promotionImage}}{{^promotionImage}} <img
+								src="user/img/logo-promocion-fantasma.jpg" height="200px"
+								width="458px" /> {{/promotionImage}}
+						</div>
+						<div class="card-content">
+							{{#title}}<span class="card-title">{{.}}</span>{{/title}}
+						</div>
+						<div class="card-action">
+							{{#description}}
+							<p>{{.}}</p>
+							{{/description}} <a href="user-promos/subscribe/{{id}}">Código <span
+								class="glyphicon glyphicon-tag"></span></a> {{#showsPromoError}} <label
+								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">Código
+								ya solicitado</label> {{/showsPromoError}}
+
+						</div>
+					</div>
+				</div>
+				{{/PromotionPresent}}
+			</div>
+		</div>
+	</div>
+	<!--./main-->
+	<div id="footer"
+		class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
+		<div class="container-fluid">
+			<!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
                         
                             <!-- CAROUSEL PARTNERS ROW-->
-            <div class="row">
-                <div id="jssor_1">
-                    <!-- Loading Screen -->
-                    <div class="jssor_banner" data-u="loading">
-                        <div class="jssor_banner2"></div>
-                        <div class="jssor_banner3"></div>
-                    </div>
-                    <div class="jssor_slides" data-u="slides">
-                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_2.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/slide_jsor_3.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                        <div> <img data-u="image" src="user/img/juegoseguro.png" height="50px" /> </div>
-                        <div class="jsorpadding"> </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    jssor_1_slider_init();
-                </script>
-            </div>
-            <!-- #endregion Jssor Slider End -->
-            <ul class="nav menu">
-                <li role="presentation" class="pp"></li>
-            </ul>
-            <div class="row"> <img src="user/img/barra_liga_santander.png" class="imagen_equipos"> </div>
-            <ul class="nav menu">
-                <li role="presentation" class="pp"></li>
-            </ul>
-            <div class="row">
-                <ul class="menu_info">
-                    <li> <strong>TOP LINKS</strong> </li>
-                    <li> <a href="index" class="enlaceFooter"> Home </a> </li>
-                    <li> <a href="apuestasdeportivas" class="enlaceFooter"> Apuestas Deportivas </a> </li>
-                    <li> <a href="apuestasesports" class="enlaceFooter"> Apuestas E-games </a> </li>
-                    <li> <a href="promociones" class="enlaceFooter"> Ofertas y Promociones </a> </li>
-                    <li> <a href="registrarse" class="enlaceFooter"> Registro </a> </li>
-                </ul>
-                <ul class="menu_info">
-                    <li> <strong>INFO</strong> </li>
-                    <li> <a href="politica.html" class="enlaceFooter"> Privacy policy </a> </li>
-                    <li> <a href="http://politicadecookies.com/" class="enlaceFooter"> Cookie policy </a> </li>
-                    <li> <a href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#" class="enlaceFooter">  User policy </a> </li>
-                    <li> <a href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo" class="enlaceFooter">  Responsible Gaming </a> </li>
-                </ul>
-            </div>
-            <ul class="nav menu">
-                <li role="presentation" class="pp"></li>
-            </ul>
-            <div class="row">
-                <div class="copyright">
-                    <a href="@" target="_self"></a><img src="user/img/+18.png" height="25px"> <span>Copyright © 2017 FFbet.com (España)</span> </div>
-            </div>
-        </div>
-    </div>
-    <!--/.footer-->
-    <script src="user/js/jquery-1.11.1.min.js"></script>
-    <script src="user/js/bootstrap.min.js"></script>
-    <script src="user/js/chart.min.js"></script>
-    <script src="user/js/chart-data.js"></script>
-    <script src="user/js/easypiechart.js"></script>
-    <script src="user/js/easypiechart-data.js"></script>
-    <script src="user/js/bootstrap-datepicker.js"></script>
-    <script>
-        ! function ($) {
-            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-        $(window).on('resize', function () {
-            if ($(window).width() > 767) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function () {
-            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>
+			<div class="row">
+				<div id="jssor_1">
+					<!-- Loading Screen -->
+					<div class="jssor_banner" data-u="loading">
+						<div class="jssor_banner2"></div>
+						<div class="jssor_banner3"></div>
+					</div>
+					<div class="jssor_slides" data-u="slides">
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					jssor_1_slider_init();
+				</script>
+			</div>
+			<!-- #endregion Jssor Slider End -->
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<img src="user/img/barra_liga_santander.png" class="imagen_equipos">
+			</div>
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<ul class="menu_info">
+					<li><strong>TOP LINKS</strong></li>
+					<li><a href="user" class="enlaceFooter"> Home </a></li>
+					<li><a href="user-sportsBet" class="enlaceFooter">
+							Apuestas Deportivas </a></li>
+					<li><a href="user-EsportsBet" class="enlaceFooter">
+							Apuestas E-games </a></li>
+					<li><a href="user-promos" class="enlaceFooter"> Ofertas y
+							user-promos </a></li>
+					<li><a href="signup" class="enlaceFooter"> Registro </a></li>
+				</ul>
+				<ul class="menu_info">
+					<li><strong>INFO</strong></li>
+					<li><a href="ffbet/policy-terms" class="enlaceFooter">
+							Privacy policy </a></li>
+					<li><a href="http://politicadecookies.com/"
+						class="enlaceFooter"> Cookie policy </a></li>
+					<li><a
+						href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#"
+						class="enlaceFooter"> User policy </a></li>
+					<li><a
+						href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo"
+						class="enlaceFooter"> Responsible Gaming </a></li>
+				</ul>
+			</div>
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<div class="copyright">
+					<a href="@" target="_self"></a><img src="user/img/+18.png"
+						height="25px"> <span>Copyright © 2017 FFbet.com
+						(España)</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/.footer-->
+	<script src="user/js/jquery-1.11.1.min.js"></script>
+	<script src="user/js/bootstrap.min.js"></script>
+	<script src="user/js/chart.min.js"></script>
+	<script src="user/js/chart-data.js"></script>
+	<script src="user/js/easypiechart.js"></script>
+	<script src="user/js/easypiechart-data.js"></script>
+	<script src="user/js/bootstrap-datepicker.js"></script>
+	<script>
+		!function($) {
+			$(document)
+					.on(
+							"click",
+							"ul.nav li.parent > a > span.icon",
+							function() {
+								$(this).find('em:first').toggleClass(
+										"glyphicon-minus");
+							});
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+		$(window).on('resize', function() {
+			if ($(window).width() > 767)
+				$('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767)
+				$('#sidebar-collapse').collapse('hide')
+		})
+	</script>
+	<script type="text/javascript">
+		function callHref(url) {
+			window.location.href = url;
+		};
+	</script>
 </body>
 
 </html>

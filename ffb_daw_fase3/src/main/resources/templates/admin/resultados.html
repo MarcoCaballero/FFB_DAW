@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+<base href="/">
 <title>Matrix Admin</title>
+<base href="/">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="admin/css/bootstrap.min.css" />
@@ -26,12 +28,18 @@
 	<!--top-Header-menu-->
 	<div id="user-nav" class="navbar navbar-inverse">
 		<ul class="nav">
-			<li class=""><a title="" href="#"><i class="icon icon-user"></i>
-					<span class="text">Bienvenido Usuario</span><b class="caret"></b></a></li>
-			<li class=""><a title="" href="#"><i class="icon icon-cog"></i>
-					<span id="reloj" class="text">Hora Local</span></a></li>
-			<li class=""><a title="" href="#"><i
-					class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+			<li class=""><a title="" href=""><i class="icon icon-user"></i>
+					<span class="text">Bienvenido <em>{{user.name}}</em></span><b
+					class="caret"></b></a></li>
+			<li class=""><a title="" href=""><i
+					class="icon icon-cog"></i> <span id="reloj" class="text">Hora
+						Local</span></a></li>
+			<li class=""><form action="/logOut" method="post">
+					<input type="submit" value="Sign Out"
+						class="btn btn-danger btn-block" /> <input type="hidden"
+						name="_csrf" value="{{token}}" />
+				</form></li>
+
 		</ul>
 	</div>
 	<!--close-top-Header-menu-->
@@ -39,15 +47,14 @@
 		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
 			Dashboard</a>
 		<ul>
-			<li><a href="cpanelhome"><i class="icon icon-home"></i> <span>Home</span></a>
+			<li><a href="admin"><i class="icon icon-home"></i> <span>Home</span></a>
 			</li>
-			<li><a href="cpanelequipo"><i class="icon icon-signal"></i>
-					<span>Equipos</span></a></li>
-			<li><a href="cpanelpartido"><i class="icon icon-inbox"></i>
+			<li><a href="admin-teams"><i class="icon icon-signal"></i> <span>Equipos</span></a></li>
+			<li><a href="admin-matches"><i class="icon icon-inbox"></i>
 					<span>Partidos</span></a></li>
-			<li class="active"><a href="cpanelresultado"><i
+			<li class="active"><a href="admin-scores"><i
 					class="icon icon-th"></i> <span>Resultados</span></a></li>
-			<li><a href="cpanelpromocion"><i class="icon icon-th-list"></i>
+			<li><a href="admin-promotions"><i class="icon icon-th-list"></i>
 					<span>Promociones</span> </a></li>
 		</ul>
 	</div>
@@ -57,7 +64,7 @@
 		<div id="content-header">
 			<div id="breadcrumb">
 				<a href="#" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> Home</a> <a href="#" class="current">Resultados</a>
+					class="icon-home"></i> Home</a> <a href="admin" class="current">Resultados</a>
 			</div>
 			<h1>Resultados</h1>
 		</div>
@@ -75,44 +82,55 @@
 						<div class="collapse in" id="collapseOne">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Partidos disponibles</label>
-											<div class="controls">
-												<select>
-													<option>Atletico De Madrid - Real Madrid 24/11</option>
-													<option>Atletico De Madrid - Real Madrid 24/11</option>
-													<option>Atletico De Madrid - Real Madrid 24/11</option>
-													<option>Atletico De Madrid - Real Madrid 24/11</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Goles local</label>
-											<div class="controls">
-												<div class="input-prepend">
-													<span class="add-on"><i class="icon"><img
-															src="admin/img/ball.svg" height="20em" class="autowidth"></i></span>
-													<input type="text" placeholder="prepend"
-														class="span11 mask-number">
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Goles visitante</label>
-											<div class="controls">
-												<div class="input-prepend">
-													<span class="add-on"><i class="icon"><img
-															src="admin/img/ball.svg" height="20em" class="autowidth"></i></span>
-													<input type="text" placeholder="prepend"
-														class="span11 mask-number">
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="Resultado" data-sortable="true">Resultado</th>
+													<th data-field="Guardado" data-sortable="true">Guardado</th>
+													<th data-field="Resultado" data-sortable="true">Acciones</th>
+											</thead>
+											{{#footballMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}}</td>
+												<td>{{visitingTeam}}</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateSports/{{id}}" method="post">
+														<div
+															style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+															<div style="float: right;">
+																<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{homePoints}}" name="homePoints" />- 
+																	<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{visitingPoints}}" name="visitingPoints" />
+															</div>
+
+															<input type="hidden" name="_csrf" value="{{token}}" /> <input
+																style="border-left: 10px; display: none" type="submit"
+																class="btn btn-success" value="Guardar" />
+														</div>
+													</form>
+												</td>
+												<td>
+												<strong>{{#isFinished}}Sí{{/isFinished}}{{^isFinished}}-{{/isFinished}}</strong>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+
+											</tr>
+											{{/footballMatch}}
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -127,44 +145,55 @@
 						<div class="collapse in" id="collapseOne2">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Partidos disponibles</label>
-											<div class="controls">
-												<select>
-													<option>L.A. LAkers - Detroit Pistons 24/11</option>
-													<option>L.A. LAkers - Detroit Pistons 24/11</option>
-													<option>L.A. LAkers - Detroit Pistons 24/11</option>
-													<option>L.A. LAkers - Detroit Pistons 24/11</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Goles local</label>
-											<div class="controls">
-												<div class="input-prepend">
-													<span class="add-on"><i class="icon"><img
-															src="admin/img/basket.svg" height="20em"
-															class="autowidth"></i></span> <input type="text"
-														placeholder="prepend" class="span11 mask-number">
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Goles visitante</label>
-											<div class="controls">
-												<div class="input-prepend">
-													<span class="add-on"><i class="icon"><img
-															src="admin/img/basket.svg" height="20em"
-															class="autowidth"></i></span> <input type="text"
-														placeholder="prepend" class="span11 mask-number">
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="Resultado" data-sortable="true">Resultado</th>
+													<th data-field="Guardado" data-sortable="true">Guardado</th>
+													<th data-field="Acciones" data-sortable="true">Acciones</th>
+											</thead>
+											{{#basketballMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}}</td>
+												<td>{{visitingTeam}}</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateSports/{{id}}" method="post">
+														<div
+															style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+															<div style="float: right;">
+																<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{homePoints}}" name="homePoints" />- 
+																	<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{visitingPoints}}" name="visitingPoints" />
+															</div>
+
+															<input type="hidden" name="_csrf" value="{{token}}" /> <input
+																style="border-left: 10px; display: none" type="submit"
+																class="btn btn-success" value="Guardar" />
+														</div>
+													</form>
+												</td>
+												<td>
+												<strong>{{#isFinished}}Sí{{/isFinished}}{{^isFinished}}-{{/isFinished}}</strong>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+
+											</tr>
+											{{/basketballMatch}}
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -181,40 +210,66 @@
 						<div class="collapse in" id="collapseTwo">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Partidos disponibles</label>
-											<div class="controls">
-												<select>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">Ganador</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">First
-												Blood</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="result" data-sortable="true">Resultado</th>
+													<th data-field="actions" data-sortable="true">Acciones
+												</tr>
+											</thead>
+											{{#lolMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}} <strong>{{#winHome}}-G-{{/winHome}}
+												</strong> <strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+												</td>
+												<td>{{visitingTeam}} <strong>{{#winVisiting}}-G-{{/winVisiting}}
+												</strong> <strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+												</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateEgames/{{id}}" method="post">
+														<div class="controls">
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="winningTeam">-G-
+																		<option value="{{homeTeam}}">Gana Local -G-</option>
+																		<option value="{{visitingTeam}}">Gana
+																			Visitante -G-</option>
+																	</select>
+																</div>
+															</div>
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="firstBlood">-FB-
+																		<option value="{{homeTeam}}">Primera Sangre
+																			Local -FB-</option>
+																		<option value="{{visitingTeam}}">Primera
+																			Sangre Visitante-FB-</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<input type="hidden" name="_csrf" value="{{token}}" /> <input
+															style="border-left: 10px; display: none" type="submit"
+															class="btn btn-success" value="Guardar" />
+													</form>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+											</tr>
+											{{/lolMatch}}
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -229,40 +284,66 @@
 						<div class="collapse in" id="collapseTwo2">
 							<div class="widget-content">
 								<div class="widget-content nopadding">
-									<form action="#" method="get" class="form-horizontal">
-										<div class="control-group">
-											<label class="control-label">Partidos disponibles</label>
-											<div class="controls">
-												<select>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-													<option>Partido SKT-CLOUD9 24/11</option>
-												</select>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">Ganador</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="control-group">
-											<label for="checkboxes" class="control-label">First
-												Blood</label>
-											<div class="controls">
-												<div data-toggle="buttons-radio" class="btn-group">
-													<button class="btn btn-primary btn-local" type="button">LOCAL</button>
-													<button class="btn btn-primary btn-local" type="button">VISITANTE</button>
-												</div>
-											</div>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success">Save</button>
-										</div>
-									</form>
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="result" data-sortable="true">Resultado</th>
+													<th data-field="actions" data-sortable="true">Acciones
+												</tr>
+											</thead>
+											{{#csgoMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}} <strong>{{#winHome}}-G-{{/winHome}}
+												</strong> <strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+												</td>
+												<td>{{visitingTeam}} <strong>{{#winVisiting}}-G-{{/winVisiting}}
+												</strong> <strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+												</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateEgames/{{id}}" method="post">
+														<div class="controls">
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="winningTeam">-G-
+																		<option value="{{homeTeam}}">Gana Local -G-</option>
+																		<option value="{{visitingTeam}}">Gana
+																			Visitante -G-</option>
+																	</select>
+																</div>
+															</div>
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="firstBlood">-FB-
+																		<option value="{{homeTeam}}">Primera Sangre
+																			Local -FB-</option>
+																		<option value="{{visitingTeam}}">Primera
+																			Sangre Visitante-FB-</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<input type="hidden" name="_csrf" value="{{token}}" /> <input
+															style="border-left: 10px; display: none" type="submit"
+															class="btn btn-success" value="Guardar" />
+													</form>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+											</tr>
+											{{/csgoMatch}}
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -314,6 +395,11 @@
 		}
 		window.onload = function() {
 			startTime();
+		}
+	</script>
+	<script type="text/javascript">
+		function functionSubmit(formId) {
+			document.getElementById(formId).submit();
 		}
 	</script>
 </body>
