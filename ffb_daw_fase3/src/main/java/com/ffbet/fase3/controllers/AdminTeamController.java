@@ -159,7 +159,6 @@ public class AdminTeamController extends RedirectController {
 				if (fileNameLogo.equals("ERROR")) {
 					photoLogoError = true;
 				} else {
-					showsPhotoError = false;
           
 					photoLogoError = false;
           
@@ -173,8 +172,6 @@ public class AdminTeamController extends RedirectController {
 				if (fileNameStadium.equals("ERROR")) {
 					photoStadiumError = true;
 				} else {
-          
-					showsPhotoError = false;
 					team.setLogo_image(fileNameStadium);
           
 					photoStadiumError = false;
