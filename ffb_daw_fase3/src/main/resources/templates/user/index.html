@@ -375,11 +375,11 @@
 											</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="bodyAppend-football">
 									{{#footballMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">{{-index}}</th>
-											<th scope="row">{{date}}</th>
+											<td class="tab-index-partido">{{id}}</th>
+											<td class="tab-date-partido">{{date}}</th>
 											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
 											<td class="tab-resultado-partido" style="padding-left: 40px;">{{homePoints}}-{{visitingPoints}}</td>
 										</tr>
@@ -387,7 +387,14 @@
 									</tbody>
 								</table>
 								<!-- Contenido Futbol-->
+								<div id="toShow-football" style="padding-left:40%">
+									<button id="more-scores-football"> + Resultados</button>
+								</div>
+								<div id="another-results-football" style="padding-left:40%"></div>
+								<div id="spinner-football" style="padding-left:45%"></div>
+								
 							</div>
+							
 							<div class="tab-pane fade" id="tab2">
 								<!-- Contenido Futbol-->
 								<table class="table table-striped">
@@ -401,10 +408,10 @@
 											</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="bodyAppend-basket">
 									{{#basketballMatchTable}}
 										<tr class="tab-horario-partido">
-											<th scope="row">{{-index}}</th>
+											<th scope="row">{{id}}</th>
 											<th scope="row">{{date}}</th>
 											<td class="tab-equipos-partido">{{homeTeam}}-{{visitingTeam}}</td>
 											<td class="tab-resultado-partido" style="padding-left: 40px;">{{homePoints}}-{{visitingPoints}}</td>
@@ -413,6 +420,11 @@
 									</tbody>
 								</table>
 								<!-- Contenido Basket-->
+								<div id="toShow-basket" style="padding-left:40%">
+									<button id="more-scores-basket"> + Resultados</button>
+								</div>
+								<div id="another-results-basket" style="padding-left:40%"></div>
+								<div id="spinner-basket" style="padding-left:45%"></div>
 							</div>
 							<div class="tab-pane fade" id="tab3">
 								<!-- Contenido Futbol-->
@@ -433,7 +445,7 @@
 											</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="bodyAppend-lol">
 									{{#lolMatchTable}}
 										<tr class="tab-horario-partido">
 											<th scope="row">{{-index}}</th>
@@ -445,6 +457,11 @@
 									{{/lolMatchTable}}	
 									</tbody>
 								</table>
+								<div id="toShow-lol" style="padding-left:40%">
+									<button id="more-scores-lol"> + Resultados</button>
+								</div>
+								<div id="another-results-lol" style="padding-left:40%"></div>
+								<div id="spinner-lol" style="padding-left:45%"></div>
 							</div>
 							<div class="tab-pane fade" id="tab4">
 								<!-- Contenido CS-->
@@ -463,7 +480,7 @@
 											</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="bodyAppend-csgo">
 										{{#csgoMatchTable}}
 										<tr class="tab-horario-partido">
 											<th scope="row">{{-index}}</th>
@@ -475,6 +492,11 @@
 										{{/csgoMatchTable}}	
 									</tbody>
 								</table>
+								<div id="toShow-csgo" style="padding-left:40%">
+									<button id="more-scores-csgo"> + Resultados</button>
+								</div>
+								<div id="another-results-csgo" style="padding-left:40%"></div>
+								<div id="spinner-csgo" style="padding-left:45%"></div>
 							</div>
 						</div>
 					</div>
@@ -623,6 +645,7 @@
 		</div>
 	</div>
 	<!--/.footer-->
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="user/js/jquery-1.11.1.min.js"></script>
 	<script src="user/js/bootstrap.min.js"></script>
 	<script src="user/js/chart.min.js"></script>
@@ -657,6 +680,143 @@
     	window.location.href = url;
     };
 	</script>
+	<script type="text/javascript">
+	pageF=1;
+	$(document).ready(function () {
+	    $('#more-scores-football').click(function () {
+	    	//$('#toShow').empty();
+	        $('#spinner-football').html("<img src='user/img/spinner1_opt.gif'/>");
+	        
+	        $.ajax({
+	            url: "http://localhost:8080//user/footbalResults/?page="+pageF+"&size="+10
+	        }).done(function (data) {
+
+ 	        	$('#spinner-football').empty();
+	            for (var j = 0; j < data.content.length; j++) {
+	                var footballMatch = data.content[j];
+	                $('#bodyAppend-football').append('<tr class='+'tab-horario-partido'+'><td>'+ footballMatch.id +'</td>' + '<td>' + footballMatch.date + '</td>' +
+	                    '<td>' + footballMatch.visitingTeam + '-' + footballMatch.homeTeam + '</td>' + '<td style='+'padding-left:40px;'+'>' + footballMatch.homePoints + "-" + footballMatch.visitingPoints + "</td></tr>");
+	                $('td').addClass("tab-horario-partido");
+	                
+	            }
+	            
+	            if(data.last==false){
+	            	pageF++;
+	            	
+	            }else{
+	            	$('#more-scores-football').hide();
+	            }
+	            
+	            
+	        });
+	        
+	    })
+	    
+	})
+	</script>
+	<script type="text/javascript">
+	pageB=1;
+	$(document).ready(function () {
+	    $('#more-scores-basket').click(function () {
+
+	        $('#spinner-basket').html("<img src='user/img/spinner1_opt.gif'/>");
+	        
+	        $.ajax({
+	            url: "http://localhost:8080//user/basketballResults/?page="+pageB+"&size="+10
+	        }).done(function (data) {
+
+ 	        	$('#spinner-basket').empty();
+	            for (var j = 0; j < data.content.length; j++) {
+	                var basketballMatch = data.content[j];
+	                $('#bodyAppend-basket').append('<tr class='+'tab-horario-partido'+'><td>'+ basketballMatch.id +'</td>' + '<td>' + basketballMatch.date + '</td>' +
+	                    '<td>' + basketballMatch.visitingTeam + '-' + basketballMatch.homeTeam + '</td>' + '<td style='+'padding-left:40px;'+'>' + basketballMatch.homePoints + "-" + basketballMatch.visitingPoints + "</td></tr>");
+	                $('td').addClass("tab-horario-partido");
+	                
+	            }
+	            
+	            if(data.last==false){
+	            	pageB++;
+	            	
+	            }else{
+	            	$('#more-scores-basket').hide();
+	            }
+	            
+	            
+	        });
+	        
+	    })
+	    
+	})
+	</script>
+	<script type="text/javascript">
+	pageL=1;
+	$(document).ready(function () {
+	    $('#more-scores-lol').click(function () {
+
+	        $('#spinner-lol').html("<img src='user/img/spinner1_opt.gif'/>");
+	        
+	        $.ajax({
+	            url: "http://localhost:8080//user/lolResults/?page="+pageL+"&size="+10
+	        }).done(function (data) {
+
+ 	        	$('#spinner-lol').empty();
+	            for (var j = 0; j < data.content.length; j++) {
+	                var lolMatch = data.content[j];
+	                $('#bodyAppend-lol').append('<tr class='+'tab-horario-partido'+'><td>'+ lolMatch.id +'</td>' + '<td>' + lolMatch.date + '</td>' +
+	                    '<td>' + lolMatch.visitingTeam + '-' + lolMatch.homeTeam + '</td>' + '<td style='+'padding-left:80px;'+'>' + lolMatch.winnerTeam+ '</td>'+'<td style='+'padding-left:80px;'+'>'+lolMatch.firstBloodTeam+'</td></tr>');
+	                $('td').addClass("tab-horario-partido");
+	                
+	            }
+	            
+	            if(data.last==false){
+	            	pageL++;
+	            	
+	            }else{
+	            	$('#more-scores-lol').hide();
+	            }
+	            
+	            
+	        });
+	        
+	    })
+	    
+	})
+	</script>
+	<script type="text/javascript">
+	pageC=1;
+	$(document).ready(function () {
+	    $('#more-scores-csgo').click(function () {
+
+	        $('#spinner-csgo').html("<img src='user/img/spinner1_opt.gif'/>");
+	        
+	        $.ajax({
+	            url: "http://localhost:8080//user/csgoResults/?page="+pageC+"&size="+10
+	        }).done(function (data) {
+
+ 	        	$('#spinner-csgo').empty();
+	            for (var j = 0; j < data.content.length; j++) {
+	                var csgoMatch = data.content[j];
+	                $('#bodyAppend-csgo').append('<tr class='+'tab-horario-partido'+'><td>'+ csgoMatch.id +'</td>' + '<td>' + csgoMatch.date + '</td>' +
+	                    '<td>' + csgoMatch.visitingTeam + '-' + csgoMatch.homeTeam + '</td>' + '<td style='+'padding-left:80px;'+'>' + csgoMatch.winnerTeam+ '</td>'+'<td style='+'padding-left:80px;'+'>'+csgoMatch.firstBloodTeam+'</td></tr>');
+	                $('td').addClass("tab-horario-partido");
+	                
+	            }
+	            
+	            if(data.last==false){
+	            	pageC++;
+	            	
+	            }else{
+	            	$('#more-scores-csgo').hide();
+	            }
+	            
+	            
+	        });
+	        
+	    })
+	    
+	})
+	</script>
+	
 	
 </body>
 

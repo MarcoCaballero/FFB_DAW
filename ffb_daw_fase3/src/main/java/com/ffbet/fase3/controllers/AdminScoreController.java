@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class AdminScoreController extends RedirectController {
 	@GetMapping(value = { "/admin-scores", "/admin-scores/" })
 	public String getScoreTemplate(HttpServletRequest request, Model model) {
 
+
 		if (userComp.isLoggedUser()) {
 			model.addAttribute("user", userComp.getLoggedUser());
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
@@ -53,10 +55,18 @@ public class AdminScoreController extends RedirectController {
 			return "redirect:/logOut";
 		}
 
-		model.addAttribute("footballMatch", sports_match_repository.findByType("Fútbol"));
-		model.addAttribute("basketballMatch", sports_match_repository.findByType("Baloncesto"));
-		model.addAttribute("lolMatch", egames_match_repository.findByType("LOL"));
-		model.addAttribute("csgoMatch", egames_match_repository.findByType("CS-GO"));
+	
+		
+		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol",new PageRequest(0,100)));
+		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto",new PageRequest(0,100)));
+		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL",new PageRequest(0,100)));
+		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO",new PageRequest(0,100)));
+
+		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol"));
+		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto"));
+		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL"));
+		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO"));
+		
 
 		String response = check_url(request, template);
 		return response;
