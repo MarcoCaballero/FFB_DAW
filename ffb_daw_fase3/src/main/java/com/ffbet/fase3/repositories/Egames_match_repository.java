@@ -7,10 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ffbet.fase3.domain.EgamesMatch;
-import com.ffbet.fase3.domain.EgamesTeam;
 
 public interface Egames_match_repository extends JpaRepository<EgamesMatch, Long>{
 	
-	List<EgamesTeam> findByType(String type);
+	List<EgamesMatch> findByType(String type);
 	Page<EgamesMatch> findByType(String type, Pageable pageable);
 }
