@@ -203,6 +203,12 @@
 													<h6 style="color: black;">
 														Tu saldo es:<em><i> {{user.credit}} €</i></em>
 													</h6>
+
+													<h6 style="color: black;">
+														Tu saldo Promocional* :<em><i>
+																{{user.promotionCredit}} €</i></em>
+													</h6>
+
 												</a>
 											</p>
 											<p class="text-left">
@@ -237,7 +243,8 @@
 					<li class="dropdown pull-right fixing"><a href="user-account"
 						class="dropdown-toggle">
 							<h6 style="color: white;">
-								Tu saldo es:<em><i> {{user.credit}} €</i></em>
+								Tu saldo es:<em><i> {{user.credit}} €
+										({{user.promotionCredit}} €)*</i></em>
 							</h6>
 					</a></li>
 				</ul>
@@ -270,7 +277,7 @@
 			<li><a href="user-promos"> <img class="glyph stroked pencil"
 					src="user/img/star.svg" /> Ofertas y Promociones
 			</a></li>
-			<li class="active"><a href="micuenta"> <img
+			<li class="active"><a href="user-account"> <img
 					class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi
 					Cuenta
 			</a></li>
@@ -625,29 +632,19 @@
 															<thead>
 																<tr>
 																	<th>Apuesta</th>
-																	<th>Fecha</th>
+																	<th>Promoción Aplicada</th>
 																	<th>Importe Apostado</th>
 																	<th>Posibles ganancias</th>
 																</tr>
 															</thead>
+															{{#listBetOwnerNotFinished}}
 															<tr>
-																<td>#1002</td>
-																<td>19/11 20:48</td>
-																<td>22.00€</td>
-																<td>400.00€</td>
+																<td>#100{{id}}</td>
+																<td>{{#applied_promo}}{{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
+																<td>{{amount}} €</td>
+																<td>{{potentialGain}} €</td>
 															</tr>
-															<tr>
-																<td>#1043</td>
-																<td>19/11 20:48</td>
-																<td>2.00€</td>
-																<td>100.00€</td>
-															</tr>
-															<tr>
-																<td>#1247</td>
-																<td>19/11 20:48</td>
-																<td>12.00€</td>
-																<td>2100.00€</td>
-															</tr>
+															{{/listBetOwnerNotFinished}}
 														</table>
 													</div>
 													<div class="tab-pane fade" id="tab2sub">
@@ -655,29 +652,27 @@
 															<thead>
 																<tr>
 																	<th>Apuesta</th>
-																	<th>Fecha</th>
+																	<th>Promoción</th>
 																	<th>Importe Apostado</th>
 																	<th>Ganancia obtenida</th>
+																	<th>Acciones</th>
 																</tr>
 															</thead>
+															{{#listBetOwnerFinished}}
 															<tr>
-																<td>#1002</td>
-																<td>19/11 20:48</td>
-																<td>22.00€</td>
-																<td>400.00€</td>
+																<td>#100{{id}}</td>
+																<td>{{#applied_promo}}{{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
+																<td>{{amount}} €</td>
+																<td>{{#isLosed}}Perdida
+																	€{{/isLosed}}{{^isLosed}}{{potentialGain}}
+																	€s{{/isLosed}}</td>
+																<td>
+																	<a href="/user-account/checkBet/{{id}}" class="btn btn-primary">Editar</a>
+																	<a href="" class="btn btn-warning">Borrar</a>
+																
+																</td>
 															</tr>
-															<tr>
-																<td>#1043</td>
-																<td>19/11 20:48</td>
-																<td>2.00€</td>
-																<td>PIERDE</td>
-															</tr>
-															<tr>
-																<td>#1247</td>
-																<td>19/11 20:48</td>
-																<td>12.00€</td>
-																<td>2100.00€</td>
-															</tr>
+															{{/listBetOwnerFinished}}
 														</table>
 													</div>
 												</div>
@@ -747,15 +742,15 @@
 																				<div class="form-group">
 																					<div class="col-md-12 widget-right">
 																						<input type="submit"
-																							class="btn btn-default btn-md pull-right" value="Seleccionar" />
+																							class="btn btn-default btn-md pull-right"
+																							value="Seleccionar" />
 																					</div>
 																				</div>
 																			</fieldset>
 																			</p>
 																		</div>
 																		<div class="footer">
-																			<a class="btn btn-simple"
-																				onclick="rotateCard(this)">
+																			<a class="btn btn-simple" onclick="rotateCard(this)">
 																				<i class="fa fa-mail-forward"></i> More info
 																			</a>
 																		</div>

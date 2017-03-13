@@ -16,7 +16,6 @@ import javax.persistence.Entity;
 @Entity
 public class SportsMatch extends Match {
 
-
 	private double quotaDraw;
 	private int homePoints;
 	private int visitingPoints;
@@ -31,7 +30,6 @@ public class SportsMatch extends Match {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	/**
 	 * @param date
 	 * @param time
@@ -47,7 +45,7 @@ public class SportsMatch extends Match {
 		this.homePoints = homePoints;
 		this.visitingPoints = visitingPoints;
 	}
-	
+
 	/**
 	 * @param date
 	 * @param time
@@ -68,10 +66,9 @@ public class SportsMatch extends Match {
 		this.homePoints = homePoints;
 		this.visitingPoints = visitingPoints;
 	}
-	
-	
-	
-	public SportsMatch(Date date, Time time, String type, double quotaHomeVictory,double quotaVisitingVictory, double quotaDraw, SportTeam homeTeam,  SportTeam visitingTeam) {
+
+	public SportsMatch(Date date, Time time, String type, double quotaHomeVictory, double quotaVisitingVictory,
+			double quotaDraw, SportTeam homeTeam, SportTeam visitingTeam) {
 		super(date, time, type, homeTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
 		this.quotaDraw = quotaDraw;
 		this.teams.add(homeTeam);
@@ -103,6 +100,25 @@ public class SportsMatch extends Match {
 
 	public void setVisitingPoints(int visitingPoints) {
 		this.visitingPoints = visitingPoints;
+	}
+
+	public boolean getWinnerTeam(String nameWinner) {
+		boolean isWinner = false;
+		if (this.getHomePoints() > this.getVisitingPoints()) {
+			if(nameWinner.equals(this.getTeams().get(0).getName())){
+				isWinner = true;
+			}
+		} else if (this.getHomePoints() < this.getVisitingPoints()) {
+			if(nameWinner.equals(this.getTeams().get(1).getName())){
+				isWinner = true;
+			}
+		} else {
+			if(nameWinner.equals("EMPATE")){
+				isWinner = true;
+			}
+		}
+		return isWinner;
+
 	}
 
 }

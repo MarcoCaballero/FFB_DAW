@@ -56,17 +56,14 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
-												 {{#user.isPhotoSelected}}
-														<img class="img-circle"" alt=""src="images/avatars/{{user.photoUrl}}" height="100px">
-													{{/user.isPhotoSelected}}
-													{{^user.isPhotoSelected}}
-													{{#user.isMen}}
-														<img class="img-circle" src="user/img/boyUser.svg" height="100px" /> 
-													{{/user.isMen}}
-													{{^user.isMen}}
-														<img class="img-circle" src="user/img/userGirl.svg" height="100px" /> 
-													{{/user.isMen}}
-												{{/user.isPhotoSelected}}
+												{{#user.isPhotoSelected}} <img class="img-circle"
+													src="images/avatars/{{user.photoUrl}}" height="100px" />
+												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
+												{{#user.isMen}} <img class="img-circle"
+													src="user/img/boyUser.svg" height="100px" />
+												{{/user.isMen}} {{^user.isMen}} <img class="img-circle"
+													src="user/img/userGirl.svg" height="100px" />
+												{{/user.isMen}} {{/user.isPhotoSelected}}
 											</p>
 										</div>
 										<div class="col-lg-8">
@@ -74,19 +71,25 @@
 												<strong>{{user.name}}</strong>
 											</p>
 											<p class="text-left small">
-												{{user.email}} <a style="color: black;"
-													href="user-account">
+												{{user.email}} <a style="color: black;" href="user-account">
 													<h6 style="color: black;">
 														Tu saldo es:<em><i> {{user.credit}} €</i></em>
 													</h6>
+
+													<h6 style="color: black;">
+														Tu saldo Promocional* :<em><i>
+																{{user.promotionCredit}} €</i></em>
+													</h6>
+
 												</a>
 											</p>
 											<p class="text-left">
-												<a href="user-account/addCredit" class="btn btn-primary btn-block btn-sm">Depositar</a>
-												<a href="user-account" class="btn btn-primary btn-block btn-sm"
+												<a href="user-account/addCredit"
+													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
+													href="user-account/withdrawCredit"
+													class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
-													 Mi cuenta
-												</a>
+													Mi cuenta </a>
 											</p>
 										</div>
 									</div>
@@ -112,7 +115,8 @@
 					<li class="dropdown pull-right fixing"><a href="user-account"
 						class="dropdown-toggle">
 							<h6 style="color: white;">
-								Tu saldo es:<em><i> {{user.credit}} €</i></em>
+								Tu saldo es:<em><i> {{user.credit}} €
+										({{user.promotionCredit}} €)*</i></em>
 							</h6>
 					</a></li>
 				</ul>
@@ -131,28 +135,22 @@
         <section class="active"> <img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%"> </section>
         <ul class="nav menu">
             <li>
-                <a href="index"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
+                <a href="user"> <img class="glyph stroked home" src="user/img/home.svg" /> Home</a>
             </li>
             <li>
-                <a href="apuestasdeportivas"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
+                <a href="user-sportsbet"> <img class="glyph stroked home" src="user/img/ball.svg" />Apuestas Deportivas</a>
             </li>
             <li>
-                <a href="apuestasesports"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
+                <a href="user-Esportsbet"> <img class="glyph stroked pencil" src="user/img/games_b.svg" /> Apuestas E-games</a>
             </li>
             <li>
-                <a href="promociones"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y Promociones</a>
+                <a href="user-promos"> <img class="glyph stroked pencil" src="user/img/star.svg" /> Ofertas y user-promos</a>
             </li>
-            <li>
-                <a href="micuenta"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
+            <li class="active">
+                <a href="user-account"> <img class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi Cuenta</a>
             </li>
             <li role="presentation" class="divider"></li>
-            <li>
-                <li>
-                    <a href="registrarse">
-                        <svg class="glyph stroked male-user">
-                            <use xlink:href="#stroked-male-user"></use>
-                        </svg>Registrate</a>
-                </li>
+            
         </ul>
     </div>
     <!--/.sidebar-->
@@ -160,7 +158,7 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li>
-                    <a href="index">
+                    <a href="user">
                         <svg class="glyph stroked home">
                             <use xlink:href="#stroked-home"></use>
                         </svg>
@@ -273,11 +271,11 @@
             <div class="row">
                 <ul class="menu_info">
                     <li> <strong>TOP LINKS</strong> </li>
-                    <li> <a href="index" class="enlaceFooter"> Home </a> </li>
-                    <li> <a href="apuestasdeportivas" class="enlaceFooter"> Apuestas Deportivas </a> </li>
-                    <li> <a href="apuestasesports" class="enlaceFooter"> Apuestas E-games </a> </li>
-                    <li> <a href="promociones" class="enlaceFooter"> Ofertas y Promociones </a> </li>
-                    <li> <a href="registrarse" class="enlaceFooter"> Registro </a> </li>
+                    <li> <a href="user" class="enlaceFooter"> Home </a> </li>
+                    <li> <a href="user-sportsbet" class="enlaceFooter"> Apuestas Deportivas </a> </li>
+                    <li> <a href="user-Esportsbet" class="enlaceFooter"> Apuestas E-games </a> </li>
+                    <li> <a href="user-promos" class="enlaceFooter"> Ofertas y user-promos </a> </li>
+                    <li> <a href="signup" class="enlaceFooter"> Registro </a> </li>
                 </ul>
                 <ul class="menu_info">
                     <li> <strong>INFO</strong> </li>
