@@ -532,16 +532,25 @@ public class User {
 	public void addCreditfromCard(double money) {
 		this.setCredit(this.getCredit() + money);
 	}
-	
-	public void addPromotionCredit(double money){
-		this.setPromotionCredit(this.getPromotionCredit()+money);
+
+	public void addCreditToCard(long id, double money) {
+		for (CreditCard card : this.getCards()) {
+			if (card.getId() == id) {
+				if (this.payFromCredit(money))
+					card.setCredit(card.getCredit() + money);
+			}
+		}
 	}
-	
-	public void addCreditFromFFB(double money){
+
+	public void addPromotionCredit(double money) {
+		this.setPromotionCredit(this.getPromotionCredit() + money);
+	}
+
+	public void addCreditFromFFB(double money) {
 		this.setCredit(this.getCredit() + money);
 	}
-	
-	public void addBet(BetTicket ticket){
+
+	public void addBet(BetTicket ticket) {
 		this.getBet_tickets().add(ticket);
 	}
 
@@ -557,23 +566,21 @@ public class User {
 			}
 		}
 	}
-	
-	public boolean payFromCredit(double money){
-		if(this.getCredit()>=money){
-			this.setCredit(this.getCredit()-money);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean payFromPromotionCredit(double money){
-		if(this.getPromotionCredit()>=money){
-			this.setPromotionCredit(this.getPromotionCredit()-money);
-			return true;
-		}
-		return false;
-	}
-	
 
+	public boolean payFromCredit(double money) {
+		if (this.getCredit() >= money) {
+			this.setCredit(this.getCredit() - money);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean payFromPromotionCredit(double money) {
+		if (this.getPromotionCredit() >= money) {
+			this.setPromotionCredit(this.getPromotionCredit() - money);
+			return true;
+		}
+		return false;
+	}
 
 }

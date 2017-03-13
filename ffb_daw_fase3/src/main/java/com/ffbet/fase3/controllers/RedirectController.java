@@ -128,7 +128,7 @@ public abstract class RedirectController {
 			file_folder_absolute = "UnknownFolder";
 			break;
 		}
-		System.out.println("ME REQUIEREN");
+		
 		if(!file_folder_absolute.equals("UnknownFolder")){
 			File file = new File(file_folder_absolute, fileName + ".jpg");
 			return file;

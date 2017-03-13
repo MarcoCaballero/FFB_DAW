@@ -54,6 +54,9 @@ public class BetTicket {
 
 	@Column
 	private boolean isLosed;
+	
+	@Column
+	private boolean isUsed;
 
 	/**
 	 * 
@@ -211,6 +214,23 @@ public class BetTicket {
 	 */
 	public void setLosed(boolean isLosed) {
 		this.isLosed = isLosed;
+	}
+	
+	
+	
+
+	/**
+	 * @return the isUsed
+	 */
+	public boolean isUsed() {
+		return isUsed;
+	}
+
+	/**
+	 * @param isUsed the isUsed to set
+	 */
+	public void setUsed(boolean isUsed) {
+		this.isUsed = isUsed;
 	}
 
 	/**
