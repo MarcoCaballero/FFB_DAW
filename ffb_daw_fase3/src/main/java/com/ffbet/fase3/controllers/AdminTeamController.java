@@ -30,6 +30,7 @@ import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
 import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.TeamRepository;
+import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
 /**
@@ -64,7 +65,9 @@ public class AdminTeamController extends RedirectController {
 	EgamesTeamRepository egamesTeamRepo;
 
 	@Autowired
-	UserAuthComponent usercomponent;
+	UserAuthComponent userComp;
+	@Autowired
+	UserRepository userRepo;
 
 	private boolean noFailsNewSport = false;
 	private boolean noFailsNewEgames = false;
@@ -86,8 +89,8 @@ public class AdminTeamController extends RedirectController {
 	@GetMapping(value = { "/admin-teams", "/admin-teams/" })
 	public String getTeamTemplate(HttpServletRequest request, Model model) {
 
-		if (usercomponent.isLoggedUser()) {
-			model.addAttribute("UsuarioActivo", usercomponent.getLoggedUser().getName());
+		if (userComp.isLoggedUser()) {
+			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 		} else {
 			return "redirect:/logOut";
 		}

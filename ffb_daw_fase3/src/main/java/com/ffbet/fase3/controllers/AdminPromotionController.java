@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -24,6 +23,8 @@ import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.repositories.PromotionRepository;
+import com.ffbet.fase3.repositories.UserRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 @Controller
 public class AdminPromotionController extends RedirectController {
@@ -36,6 +37,10 @@ public class AdminPromotionController extends RedirectController {
 
 	private boolean goodPromo = false;
 	private boolean photoError = false;
+	@Autowired
+	UserAuthComponent userComp;
+	@Autowired
+	UserRepository userRepo;
 
 	/**
 	 * Method {@linkplain getPromotionsTemplate()} uses the abstract class
@@ -49,6 +54,18 @@ public class AdminPromotionController extends RedirectController {
 	@GetMapping(value = { "/admin-promotions", "/admin-promotions/" })
 	public String getPromotionsTemplate(HttpServletRequest request, Model model) {
 
+		
+		if(userComp.isLoggedUser()){
+			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+		}else{
+			return "redirect:/logOut";
+		}
+		
+		
+		
+		
+		
+		
 		model.addAttribute("promotions", repository.findAll());
 
 		model.addAttribute("isPromo", goodPromo);
