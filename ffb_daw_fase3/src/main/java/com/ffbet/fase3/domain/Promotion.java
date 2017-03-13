@@ -58,13 +58,22 @@ public class Promotion {
 		this.promotionCode = promotionCode;
 		this.quantity = quantity;
 	}
-
+	
 	public Promotion(String type, String title, String description, String promotionCode, int quantity) {
 		this.type = type;
 		this.title = title;
 		this.description = description;
 		this.promotionCode = promotionCode;
 		this.quantity = quantity;
+	}
+
+	public Promotion(String type, String title, String description, String promotionCode, int quantity, String promotionImage) {
+		this.type = type;
+		this.title = title;
+		this.description = description;
+		this.promotionCode = promotionCode;
+		this.quantity = quantity;
+		this.promotionImage = promotionImage;
 	}
 
 	// GETTERS & SETTERS
