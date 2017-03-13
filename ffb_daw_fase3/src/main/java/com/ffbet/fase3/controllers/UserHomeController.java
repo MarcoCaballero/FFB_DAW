@@ -1,11 +1,19 @@
 package com.ffbet.fase3.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.MatchRepository;
@@ -39,6 +47,8 @@ public class UserHomeController extends RedirectController {
 	@Autowired
 	MatchRepository matchRepository;
 
+	static boolean showButton = true;
+	static int pages = 0;
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
@@ -63,17 +73,41 @@ public class UserHomeController extends RedirectController {
 			showsUserMenu = false;
 		}
 		
-		
+
 		model.addAttribute("isUsermenuActive", showsUserMenu);
+
+		model.addAttribute("footballMatchTable", sports_match_repository.findByType("Fútbol",new PageRequest(0,10)));
+		model.addAttribute("basketballMatchTable", sports_match_repository.findByType("Baloncesto",new PageRequest(0,10)));
+		model.addAttribute("lolMatchTable", egames_match_repository.findByType("LOL",new PageRequest(0,10)));
+		model.addAttribute("csgoMatchTable", egames_match_repository.findByType("CS-GO",new PageRequest(0,10)));
+
 		model.addAttribute("footballMatchTable", matchRepository.findByFinished("Fútbol"));
 		model.addAttribute("basketballMatchTable", matchRepository.findByFinished("Baloncesto"));
 		model.addAttribute("lolMatchTable", matchRepository.findByFinished("LOL"));
 		model.addAttribute("csgoMatchTable", matchRepository.findByFinished("CS-GO"));
+    
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_HOME.toString());
 		return response;
 
 	}
+	
+	@GetMapping(value = { "/moreResults"})
+	public List<SportsMatch> moreResults() {
+		List<SportsMatch> scores = new ArrayList<SportsMatch>();
+		List<SportsMatch> listaAux = sports_match_repository.findAll();
+		for(int i=(pages*1); i<listaAux.size();i++){
+			if(i==1)
+				break;
+			scores.add(listaAux.get(i));
+		}
+		return scores;
+
+	}
+	
+	
+
+
 
 }
