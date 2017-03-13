@@ -667,8 +667,8 @@
 																	€{{/isLosed}}{{^isLosed}}{{potentialGain}}
 																	€s{{/isLosed}}</td>
 																<td>
-																	<a href="/user-account/checkBet/{{id}}" class="btn btn-primary">Editar</a>
-																	<a href="" class="btn btn-warning">Borrar</a>
+																	{{^isUsed}}<a href="/user-account/checkBet/{{id}}" class="btn btn-primary">Canjear</a>{{/isUsed}}
+																	<a href="/user-account/removeBetMatch/{{id}}" class="btn btn-danger">Borrar</a>
 																
 																</td>
 															</tr>
