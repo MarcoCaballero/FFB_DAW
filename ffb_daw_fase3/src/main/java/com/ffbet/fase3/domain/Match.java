@@ -54,9 +54,9 @@ public abstract class Match {
 	@Column(nullable = false)
 	protected double quotaVisitingVictory;
   
-	@JsonIgnore
 	protected boolean isFinished;
   
+	@JsonIgnore
 	@ManyToMany
 	protected List<Team> teams = new ArrayList<>();
 	
