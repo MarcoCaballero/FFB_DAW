@@ -3,6 +3,9 @@
  */
 package com.ffbet.fase3.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +56,7 @@ public class UserPromosController extends RedirectController {
 
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("showsPromoError", showsPromoError);
-
+		
 		model.addAttribute("PromotionDiscount", promoRepository.findByType("BONODESCUENTO"));
 		model.addAttribute("PromotionPresent", promoRepository.findByType("PROMOCIONREGALO"));
 

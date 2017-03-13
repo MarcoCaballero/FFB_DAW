@@ -37,16 +37,6 @@ public class AdminPromotionController extends RedirectController {
 	private boolean goodPromo = false;
 	private boolean photoError = false;
 
-	@PostConstruct
-	public void init() {
-		repository.save(new Promotion("BONODESCUENTO", "Hay gol", "gomasdaea", "fgs4trfs", 5));
-		repository.save(new Promotion("PROMOCIONREGALO", "frikiss", "eso213o", "hghd55434gfsg", 5));
-		repository.save(new Promotion("BONODESCUENTO", "Que tal", "que pasa", "43534sggsd", 10));
-		repository.save(new Promotion("BONODESCUENTO", "Cris marica", "mariconn", "gsrgr35ghdd", 20));
-		repository.save(new Promotion("PROMOCIONREGALO", "frikiss2", "dildo", "sbsgse43556gfds", 3));
-
-	}
-
 	/**
 	 * Method {@linkplain getPromotionsTemplate()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
