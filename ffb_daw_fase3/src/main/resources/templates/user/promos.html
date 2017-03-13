@@ -214,40 +214,8 @@
 					class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi
 					Cuenta
 			</a></li>
-			<li role="presentation" class="divider"></li>
-			<li>
-
-
-				<div class="progress" onclick="callHref('user-account')">
-					<div onclick="callHref('user-account')"
-						class="progress-bar progress-bar-success progress-bar-striped active"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 10%">40% (4/10) Ok</div>
-				</div>
-
-				<div class="progress">
-					<div
-						class="progress-bar progress-bar-info progress-bar-striped active"
-						role="progressbar" aria-valuenow="50" aria-valuemin="0"
-						aria-valuemax="100" style="width: 50%">50% Complete (info)</div>
-				</div>
-
-				<div class="progress">
-					<div
-						class="progress-bar progress-bar-warning progress-bar-striped active"
-						role="progressbar" aria-valuenow="60" aria-valuemin="0"
-						aria-valuemax="100" style="width: 60%">60% Complete
-						(warning)</div>
-				</div>
-
-				<div class="progress">
-					<div
-						class="progress-bar progress-bar-danger progress-bar-striped active"
-						role="progressbar" aria-valuenow="70" aria-valuemin="0"
-						aria-valuemax="100" style="width: 70%">70% Complete (danger)
-					</div>
-				</div>
-			</li> {{/isUsermenuActive}} {{^isUsermenuActive}}
+			<li role="presentation" class="divider"></li> {{/isUsermenuActive}}
+			{{^isUsermenuActive}}
 			<li role="presentation" class="divider"></li>
 			<li><a href="signup"> <svg class="glyph stroked male-user">
                         <use xlink:href="#stroked-male-user"></use>
@@ -318,9 +286,9 @@
 							<p>{{.}}</p>
 							{{/description}} <a href="user-promos/subscribe/{{id}}">Código <span
 								class="glyphicon glyphicon-tag"></span></a> {{#showsPromoError}} <label
-								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">Código ya solicitado</label>
-							{{/showsPromoError}}
-								
+								class="span6" style="margin-left: 30%" id="labelPromo{{id}}">Código
+								ya solicitado</label> {{/showsPromoError}}
+
 						</div>
 					</div>
 				</div>
