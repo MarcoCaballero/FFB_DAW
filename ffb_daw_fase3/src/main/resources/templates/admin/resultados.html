@@ -32,8 +32,11 @@
 					<span class="text">Bienvenido Usuario</span><b class="caret"></b></a></li>
 			<li class=""><a title="" href="#"><i class="icon icon-cog"></i>
 					<span id="reloj" class="text">Hora Local</span></a></li>
-			<li class=""><a title="" href="#"><i
-					class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+			<li class=""><form action="/logOut" method="post">
+					<input type="submit" value="Sign Out"
+						class="btn btn-danger btn-block" /> <input type="hidden"
+						name="_csrf" value="{{token}}" />
+				</form></li>
 		</ul>
 	</div>
 	<!--close-top-Header-menu-->
@@ -46,9 +49,9 @@
 			<li><a href="admin-teams"><i class="icon icon-signal"></i> <span>Equipos</span></a></li>
 			<li><a href="admin-matches"><i class="icon icon-inbox"></i>
 					<span>Partidos</span></a></li>
-			<li class="active"><a href="resultado"><i
+			<li class="active"><a href="admin-scores"><i
 					class="icon icon-th"></i> <span>Resultados</span></a></li>
-			<li><a href="admin-promos"><i class="icon icon-th-list"></i>
+			<li><a href="admin-promotions"><i class="icon icon-th-list"></i>
 					<span>Promociones</span> </a></li>
 		</ul>
 	</div>
@@ -58,7 +61,7 @@
 		<div id="content-header">
 			<div id="breadcrumb">
 				<a href="#" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> Home</a> <a href="#" class="current">Resultados</a>
+					class="icon-home"></i> Home</a> <a href="admin" class="current">Resultados</a>
 			</div>
 			<h1>Resultados</h1>
 		</div>
