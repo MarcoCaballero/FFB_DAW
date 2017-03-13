@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,11 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.repositories.BetTicketRepository;
 import com.ffbet.fase3.repositories.CreditCardRepository;
 import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.SportTeamRepository;
@@ -45,7 +49,8 @@ public class UserAccountController extends RedirectController {
 	UserAuthComponent userComp;
 	@Autowired
 	CreditCardRepository creditCardRepo;
-
+	@Autowired
+	BetTicketRepository betticketrepo;
 	@Autowired
 	MatchRepository matchRepo;
 	@Autowired
@@ -63,10 +68,24 @@ public class UserAccountController extends RedirectController {
 
 	@GetMapping(value = { "/user-account", "/user-account/" })
 	public String getTemplate(HttpServletRequest request, Model model) {
-
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+
+			User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+			List<BetTicket> listBetAll = betticketrepo.findByFinished();
+			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
+			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
+			for (BetTicket bt : updateduser.getBet_tickets()) {
+				if (listBetAll.contains(bt)) {
+					listBetOwnerFinished.add(bt);
+				} else {
+					listBetOwnerNotFinished.add(bt);
+				}
+			}
+
+			model.addAttribute("listBetOwnerFinished", listBetOwnerFinished);
+			model.addAttribute("listBetOwnerNotFinished", listBetOwnerNotFinished);
+			model.addAttribute("user", updateduser);
 		} else {
 			showsUserMenu = false;
 			return "redirect:/logOut";
@@ -289,6 +308,41 @@ public class UserAccountController extends RedirectController {
 		// model.addAttribute("SelectedTeam", team);
 
 		return redirectToAccount;
+	}
+
+	@GetMapping("/user-account/checkBet/{id}")
+	public String checkBets(Model model, @PathVariable long id) {
+
+		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+		BetTicket ticketTocheck = betticketrepo.findOne(id);
+		boolean notCheckedYet = false;
+
+		for (BetTicket bt : updateduser.getBet_tickets()) {
+			if (bt.getId() == id) {
+				notCheckedYet = true;
+			}
+		}
+		if (notCheckedYet) {
+			if (ticketTocheck.checkTicket()) {
+				if (ticketTocheck.checkFinishedTicket()) {
+					updateduser.addCreditFromFFB(ticketTocheck.getPotentialGain());
+					ticketTocheck.setWinned(true);
+					ticketTocheck.setLosed(false);
+					// HA GANADO INGRESO DINERO
+				} else {
+					ticketTocheck.setWinned(false);
+					ticketTocheck.setLosed(false);
+				}
+
+			} else {
+				ticketTocheck.setWinned(false);
+				ticketTocheck.setLosed(true);
+			}
+		}
+
+		userRepo.save(updateduser);
+		return redirectToAccount;
+
 	}
 
 }

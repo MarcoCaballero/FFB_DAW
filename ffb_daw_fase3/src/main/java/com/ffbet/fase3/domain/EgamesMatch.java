@@ -52,7 +52,8 @@ public class EgamesMatch extends Match {
 	 */
 
 	public EgamesMatch(Date date, Time time, String type, EgamesTeam homeTeam, EgamesTeam visitingTeam,
-			double quotaHomeVictory, double quotaVisitingVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood) {
+			double quotaHomeVictory, double quotaVisitingVictory, double quotaHomeFirstBlood,
+			double quotaVisitingFirstBlood) {
 		super(date, time, type, homeTeam.getName(), visitingTeam.getName(), quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
@@ -74,9 +75,9 @@ public class EgamesMatch extends Match {
 	 * @param firstBloodTeam,
 	 *            the team who makes the first blood
 	 */
-	public EgamesMatch(Date date, Time time, String type, String homeTeam, String visitingTeam,
-			double quotaHomeVictory, double quotaVisitingVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood,
-			String winnerTeam, String firstBloodTeam) {
+	public EgamesMatch(Date date, Time time, String type, String homeTeam, String visitingTeam, double quotaHomeVictory,
+			double quotaVisitingVictory, double quotaHomeFirstBlood, double quotaVisitingFirstBlood, String winnerTeam,
+			String firstBloodTeam) {
 		super(date, time, type, homeTeam, visitingTeam, quotaHomeVictory, quotaVisitingVictory);
 		// TODO Auto-generated constructor stub
 		this.quotaHomeFirstBlood = quotaHomeFirstBlood;
@@ -149,6 +150,38 @@ public class EgamesMatch extends Match {
 
 	public void setFirstBloodTeam(String firstBloodTeam) {
 		this.firstBloodTeam = firstBloodTeam;
+	}
+
+	/**/
+
+	public boolean getWinnerTeam(String nameWinner) {
+
+		if (this.winHome) {
+			if (nameWinner.equals(this.getTeams().get(0).getName())) {
+				return true;
+			}
+		} else {
+			if (nameWinner.equals(this.getTeams().get(1).getName())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean getFBWinnerTeam(String nameWinner) {
+
+		if (this.isFirstBloodHome()) {
+			if (nameWinner.equals(this.getTeams().get(0).getName())) {
+				return true;
+			}
+		} else {
+			if (nameWinner.equals(this.getTeams().get(1).getName())) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

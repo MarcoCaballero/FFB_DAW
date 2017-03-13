@@ -82,8 +82,6 @@ public class UserSportsBetController extends RedirectController {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-
-			updatedUser.setPromotionCredit(20);
 			userRepo.save(updatedUser);
 			model.addAttribute("user", updatedUser);
 
@@ -144,7 +142,7 @@ public class UserSportsBetController extends RedirectController {
 				BetSportMatch betMatch = new BetSportMatch(match, isLocalSelected,
 						!isLocalSelected && !isVisitingSelected, isVisitingSelected);
 				ticket_erasable.addMatchTeam(betMatch);
-				ticket_erasable.setPotential_gain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
+				ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 
 			}
 
@@ -162,7 +160,7 @@ public class UserSportsBetController extends RedirectController {
 
 		switchMultiplicator(prize);
 		if (ticket_erasable != null) {
-			ticket_erasable.setPotential_gain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
+			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 		}
 
 		return redirect;
@@ -190,9 +188,13 @@ public class UserSportsBetController extends RedirectController {
 			}
 
 			double amountToPay = ticket_erasable.getAmount();
+			double promoQuantityDouble = Double.valueOf(promoQuantity);
+			if(promoQuantityDouble>amountToPay){
+				promoQuantityDouble=amountToPay;
+			}
 			showsMoneyError = false;
-			if (updatedUser.payFromPromotionCredit(promoQuantity)) {
-				amountToPay -= promoQuantity;
+			if (updatedUser.payFromPromotionCredit(promoQuantityDouble)) {
+				amountToPay -= promoQuantityDouble;
 
 			} else {
 				showsMoneyError = true;
@@ -201,7 +203,7 @@ public class UserSportsBetController extends RedirectController {
 
 			if (!updatedUser.payFromCredit(amountToPay)) {
 				// no credit error
-				updatedUser.addPromotionCredit(promoQuantity);
+				updatedUser.addPromotionCredit(promoQuantityDouble);
 				showsMoneyError = true;
 				return redirect;
 			}
