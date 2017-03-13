@@ -23,25 +23,25 @@ public class UserAjaxController {
 	@RequestMapping(value = { "/user/footbalResults/"}, method= RequestMethod.GET)
 	public Page<SportsMatch> getFootballMatch(Pageable page) {
 
-		return sport_match_repository.findByType("Fútbol",page);
+		return sport_match_repository.findByTypeFinished("Fútbol",page);
 	}
 	
 	@RequestMapping(value = { "/user/basketballResults/"}, method= RequestMethod.GET)
 	public Page<SportsMatch> getBasketballMatch(Pageable page) {
 
-		return sport_match_repository.findByType("Baloncesto",page);
+		return sport_match_repository.findByTypeFinished("Baloncesto",page);
 	}
 	
 	@RequestMapping(value = { "/user/lolResults/"}, method= RequestMethod.GET)
 	public Page<EgamesMatch> getLolMatch(Pageable page) {
 
-		return egames_match_repository.findByType("LOL",page);
+		return egames_match_repository.findByTypeFinished("LOL",page);
 	}
 	
 	@RequestMapping(value = { "/user/csgoResults/"}, method= RequestMethod.GET)
 	public Page<EgamesMatch> getCsgoMatch(Pageable page) {
 
-		return egames_match_repository.findByType("CS-GO",page);
+		return egames_match_repository.findByTypeFinished("CS-GO",page);
 	}
 	
 

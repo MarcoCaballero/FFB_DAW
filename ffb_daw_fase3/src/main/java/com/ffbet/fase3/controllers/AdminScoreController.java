@@ -61,13 +61,7 @@ public class AdminScoreController extends RedirectController {
 		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto",new PageRequest(0,100)));
 		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL",new PageRequest(0,100)));
 		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO",new PageRequest(0,100)));
-
-		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol"));
-		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto"));
-		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL"));
-		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO"));
 		
-
 		String response = check_url(request, template);
 		return response;
 

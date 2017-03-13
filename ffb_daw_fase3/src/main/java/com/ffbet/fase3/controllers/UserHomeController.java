@@ -76,16 +76,16 @@ public class UserHomeController extends RedirectController {
 
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 
-		model.addAttribute("footballMatchTable", sports_match_repository.findByType("Fútbol",new PageRequest(0,10)));
-		model.addAttribute("basketballMatchTable", sports_match_repository.findByType("Baloncesto",new PageRequest(0,10)));
-		model.addAttribute("lolMatchTable", egames_match_repository.findByType("LOL",new PageRequest(0,10)));
-		model.addAttribute("csgoMatchTable", egames_match_repository.findByType("CS-GO",new PageRequest(0,10)));
+		model.addAttribute("footballMatchTable", sports_match_repository.findByTypeFinished("Fútbol",new PageRequest(0,10)));
+		model.addAttribute("basketballMatchTable", sports_match_repository.findByTypeFinished("Baloncesto",new PageRequest(0,10)));
+		model.addAttribute("lolMatchTable", egames_match_repository.findByTypeFinished("LOL",new PageRequest(0,10)));
+		model.addAttribute("csgoMatchTable", egames_match_repository.findByTypeFinished("CS-GO",new PageRequest(0,10)));
 
-		model.addAttribute("footballMatchTable", matchRepository.findByFinished("Fútbol"));
+		/*model.addAttribute("footballMatchTable", matchRepository.findByFinished("Fútbol"));
 		model.addAttribute("basketballMatchTable", matchRepository.findByFinished("Baloncesto"));
 		model.addAttribute("lolMatchTable", matchRepository.findByFinished("LOL"));
 		model.addAttribute("csgoMatchTable", matchRepository.findByFinished("CS-GO"));
-    
+    */
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
 		String response = check_url(request, TemplatesPath.USER_HOME.toString());
