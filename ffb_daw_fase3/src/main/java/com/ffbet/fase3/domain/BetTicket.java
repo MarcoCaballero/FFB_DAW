@@ -31,10 +31,9 @@ public class BetTicket {
 	@Column(updatable = false, nullable = false)
 	protected long id;
 
-	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<BetSportMatch> betMatchesList = new ArrayList<>();
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<BetESportMatch> betEspMatchesList = new ArrayList<>();
 
@@ -49,6 +48,12 @@ public class BetTicket {
 
 	@Column
 	private boolean isFinished;
+
+	@Column
+	private boolean isWinned;
+
+	@Column
+	private boolean isLosed;
 
 	/**
 	 * 
@@ -134,21 +139,6 @@ public class BetTicket {
 	}
 
 	/**
-	 * @return the potential_gain
-	 */
-	public double getPotential_gain() {
-		return potentialGain;
-	}
-
-	/**
-	 * @param potential_gain
-	 *            the potential_gain to set
-	 */
-	public void setPotential_gain(double potential_gain) {
-		this.potentialGain = Math.round(potential_gain*100.00)/100.00;
-	}
-
-	/**
 	 * @return the betMatchesList
 	 */
 	public List<BetSportMatch> getBetMatchesList() {
@@ -156,7 +146,8 @@ public class BetTicket {
 	}
 
 	/**
-	 * @param betMatchesList the betMatchesList to set
+	 * @param betMatchesList
+	 *            the betMatchesList to set
 	 */
 	public void setBetMatchesList(List<BetSportMatch> betMatchesList) {
 		this.betMatchesList = betMatchesList;
@@ -170,7 +161,8 @@ public class BetTicket {
 	}
 
 	/**
-	 * @param betEspMatchesList the betEspMatchesList to set
+	 * @param betEspMatchesList
+	 *            the betEspMatchesList to set
 	 */
 	public void setBetEspMatchesList(List<BetESportMatch> betEspMatchesList) {
 		this.betEspMatchesList = betEspMatchesList;
@@ -184,10 +176,41 @@ public class BetTicket {
 	}
 
 	/**
-	 * @param potentialGain the potentialGain to set
+	 * @param potentialGain
+	 *            the potentialGain to set
 	 */
 	public void setPotentialGain(double potentialGain) {
-		this.potentialGain = potentialGain;
+		this.potentialGain = Math.round(potentialGain * 100.00) / 100.00;
+	}
+
+	/**
+	 * @return the isWinned
+	 */
+	public boolean isWinned() {
+		return !this.isLosed && this.isFinished;
+	}
+
+	/**
+	 * @param isWinned
+	 *            the isWinned to set
+	 */
+	public void setWinned(boolean isWinned) {
+		this.isWinned = isWinned;
+	}
+
+	/**
+	 * @return the isLosed
+	 */
+	public boolean isLosed() {
+		return isLosed;
+	}
+
+	/**
+	 * @param isLosed
+	 *            the isLosed to set
+	 */
+	public void setLosed(boolean isLosed) {
+		this.isLosed = isLosed;
 	}
 
 	/**
@@ -212,7 +235,7 @@ public class BetTicket {
 		for (BetSportMatch bm : this.betMatchesList) {
 			gain *= bm.getSelectedQuota();
 		}
-		
+
 		for (BetESportMatch bm : this.betEspMatchesList) {
 			gain *= bm.getSelectedQuota();
 		}
@@ -223,18 +246,64 @@ public class BetTicket {
 	public void addMatchTeam(BetSportMatch match) {
 		this.getBetMatches_list().add(match);
 	}
+
 	public void addEMatchTeam(BetESportMatch match) {
 		this.getBetEspMatchesList().add(match);
 	}
 
-	public boolean applyPromo(Promotion promo){
-	
-		if(promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())){
+	public boolean applyPromo(Promotion promo) {
+
+		if (promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())) {
 			this.setAmount(promo.applyDiscount(this.getAmount()));
 			return true;
 		}
 		return false;
-		
+
 	}
 
+	public boolean checkTicket() {
+		boolean isFinished = true;
+		boolean isWinner = true;
+		for (BetESportMatch bEm : betEspMatchesList) {
+			if (bEm.getMatch().isFinished()) {
+				if (!bEm.getMatch().getWinnerTeam(bEm.getSelectedNamequota())) {
+					isWinner = false;
+				}
+				if (!bEm.getMatch().getFBWinnerTeam(bEm.getSelectedNamequota())) {
+					isWinner = false;
+				}
+			}
+
+		}
+		for (BetSportMatch bSm : betMatchesList) {
+			if (bSm.getMatch().isFinished()) {
+
+				if (!bSm.getMatch().getWinnerTeam(bSm.getSelectedNamequota())) {
+					isWinner = false;
+				}
+			}
+
+		}
+
+		return isFinished && isWinner;
+
+	}
+
+	public boolean checkFinishedTicket() {
+		boolean isFinished = true;
+		for (BetESportMatch bEm : betEspMatchesList) {
+			if (!bEm.getMatch().isFinished())
+				isFinished = false;
+
+		}
+		for (BetSportMatch bSm : betMatchesList) {
+			if (!bSm.getMatch().isFinished())
+				isFinished = false;
+
+		}
+
+		this.isFinished=isFinished;
+		return isFinished;
+
+	}
 }

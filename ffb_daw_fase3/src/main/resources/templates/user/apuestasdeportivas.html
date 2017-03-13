@@ -102,8 +102,8 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
-												{{#user.isPhotoSelected}} <img class="img-circle" " alt=""
-													src="images/avatars/{{user.photoUrl}}" height="100px">
+												{{#user.isPhotoSelected}} <img class="img-circle"
+													src="images/avatars/{{user.photoUrl}}" height="100px" />
 												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
 												{{#user.isMen}} <img class="img-circle"
 													src="user/img/boyUser.svg" height="100px" />
@@ -121,12 +121,18 @@
 													<h6 style="color: black;">
 														Tu saldo es:<em><i> {{user.credit}} €</i></em>
 													</h6>
+
+													<h6 style="color: black;">
+														Tu saldo Promocional* :<em><i>
+																{{user.promotionCredit}} €</i></em>
+													</h6>
+
 												</a>
 											</p>
 											<p class="text-left">
 												<a href="user-account/addCredit"
 													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
-													href="user-account"
+													href="user-account/withdrawCredit"
 													class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
 													Mi cuenta </a>
@@ -155,7 +161,8 @@
 					<li class="dropdown pull-right fixing"><a href="user-account"
 						class="dropdown-toggle">
 							<h6 style="color: white;">
-								Tu saldo es:<em><i> {{user.credit}} €</i></em>
+								Tu saldo es:<em><i> {{user.credit}} €
+										({{user.promotionCredit}} €)*</i></em>
 							</h6>
 					</a></li>
 				</ul>

@@ -49,6 +49,7 @@ public class AdminHomeController extends RedirectController {
 	Egames_match_repository egamesMatchRepo;
 	@Autowired
 	UserAuthComponent userComp;
+	
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -112,7 +113,7 @@ public class AdminHomeController extends RedirectController {
 		}
 
 		userRepo.save(user);
-		System.out.println("DOWNGRADE " + userRepo.findOne(id).getRoles().size());
+		
 		return "redirect:/admin/";
 	}
 
@@ -123,11 +124,7 @@ public class AdminHomeController extends RedirectController {
 		if (user.getRoles().size() < 2) {
 			user.addRole("ROLE_ADMIN");
 		}
-		System.out.println("UPGRADE " + userRepo.findOne(id).getRoles().size());
-		for (int i = 0; i < user.getRoles().size(); i++) {
-			System.out.println("UPGRADE " + i + "ROLE : " + user.getRoles().get(i));
-
-		}
+	
 
 		userRepo.save(user);
 
