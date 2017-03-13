@@ -76,7 +76,11 @@ public class UserAccountController extends RedirectController {
 			List<BetTicket> listBetAll = betticketrepo.findByFinished();
 			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
 			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
+			double amountInBet = 1;
+			double winAmountInBet = 1;
 			for (BetTicket bt : updateduser.getBet_tickets()) {
+				amountInBet*=bt.getAmount();
+				winAmountInBet*=bt.getPotentialGain();
 				if (listBetAll.contains(bt)) {
 					listBetOwnerFinished.add(bt);
 				} else {
@@ -86,6 +90,8 @@ public class UserAccountController extends RedirectController {
 
 			model.addAttribute("listBetOwnerFinished", listBetOwnerFinished);
 			model.addAttribute("listBetOwnerNotFinished", listBetOwnerNotFinished);
+			model.addAttribute("amountInBet", amountInBet);
+			model.addAttribute("winAmountInBet", winAmountInBet);
 			model.addAttribute("user", updateduser);
 		} else {
 			showsUserMenu = false;
@@ -301,6 +307,32 @@ public class UserAccountController extends RedirectController {
 
 	}
 
+	@PostMapping("/user-account/userDevolveCredit")
+	public String devolveFromFFB(Model model, @RequestParam("amountTo") String amount,
+			@RequestParam("cardNumber") String cardNumber) {
+
+		try {
+			if(!cardNumber.equals("NO")){
+				double amountD = Double.parseDouble(amount);
+				User user = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+				for (CreditCard card : user.getCards()) {
+					if (card.getCardNumber().equals(cardNumber)) {
+						user.addCreditToCard(card.getId(), amountD);
+						userRepo.save(user);
+					}
+				}
+			}
+			
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return redirectToAccount;
+
+	}
+
 	@RequestMapping("/user-account/selectionTeam/{id}")
 	public String selectionTeam(Model model, @PathVariable long id) {
 
@@ -314,15 +346,14 @@ public class UserAccountController extends RedirectController {
 	@GetMapping("/user-account/checkBet/{id}")
 	public String checkBets(Model model, @PathVariable long id) {
 
-		
 		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
 		BetTicket ticketTocheck = betticketrepo.findOne(id);
 		boolean notCheckedYet = false;
 
 		for (BetTicket bt : updateduser.getBet_tickets()) {
 			if (bt.getId() == id) {
-				if(!bt.isUsed()){
-					
+				if (!bt.isUsed()) {
+
 					notCheckedYet = true;
 				}
 			}
@@ -348,13 +379,10 @@ public class UserAccountController extends RedirectController {
 		}
 
 		userRepo.save(updateduser);
-		return redirectToAccount+"#tab2sub";
-		
-		
-		
+		return redirectToAccount + "#tab2sub";
 
 	}
-	
+
 	@GetMapping(value = { "/user-account/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
