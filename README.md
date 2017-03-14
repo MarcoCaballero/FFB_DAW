@@ -73,9 +73,48 @@
 
 
 #### Diagramas de la aplicación:
+#### Diagrama de navegación:
+![Diagrama de navegacion](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n/Diagrama%20de%20Navegacion.png)
+
 #### Diagramas de clases:
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/DomainDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/AjaxControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/SecurityDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/BetsControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/HomeControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/LoginControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/MatchControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/PromotionControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/TeamControllerDiagram.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/UserAccountControllerDiagram.png
 
+#### Diagrama de Base de Datos:
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20base%20de%20datos/modelDB.png
 
+#### Pantallazos de la página web:
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/LOGIN.png
+
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20HOME.jpg
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20MATCHES.jpg
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20PROMOTIONS.jpg
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20SCORES.jpg
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20TEAMS.jpg
+
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME%20-%20PUBLIC.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PUBLIC.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET-%20PUBLIC.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/REG.png
+
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME-%20PRIVATE.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PRIVATE.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET%20-%20PRIVATE.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PROMOTIONS.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20DATA.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MONEY.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20BETS.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MY%20TEAMS.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PAY%20IN.png
+https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/WITHDRAWAL.png
 
     
 #### Tecnologias usadas para el desarrollo de la aplicación:
