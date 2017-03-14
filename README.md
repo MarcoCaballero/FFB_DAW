@@ -1,7 +1,7 @@
 # FFB_DAW
 ### Friends&amp;Fun&amp;Bet ----- DAW WEB PROJECT --- URJC ETSII
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Project/PSpropios/LogoFFB.png)
+![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png)
 
 
 #### Descripción: 
@@ -51,7 +51,7 @@
 
 
 
-#### Estructura del cPanel:
+#### Estructura del Admin:
 
 
 + HOME: página principal del cPanel donde podemos acceder a cada uno de los apartados tanto desde la barra de menú como en la parte interna de la página. Todas las páginas pueden acceder a la barra de menú, por lo que esta página carece de importancia fundamental.
@@ -69,6 +69,11 @@
 + PROMOCIONES: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
 
 + LOGIN: página para acceder con un usuario a FFBetAdmin. Compuesta por un formulario donde el usuario debe introducir correo electrónico y contraseña para acceder a su cuenta. Si el usuario no recuerda su contraseña, posee la opción: Olvidaste contraseña.
+
+
+
+#### Diagramas de la aplicación:
+#### Diagramas de clases:
 
 
 
