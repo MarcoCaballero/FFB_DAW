@@ -77,44 +77,44 @@
 ![Diagrama de navegacion](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n/Diagrama%20de%20Navegacion.png)
 
 #### Diagramas de clases:
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/DomainDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/AjaxControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/SecurityDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/BetsControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/HomeControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/LoginControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/MatchControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/PromotionControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/TeamControllerDiagram.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/UserAccountControllerDiagram.png
+![Clases de dominio] (https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/DomainDiagram.png)
+![AjaxControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/AjaxControllerDiagram.png)
+![SecurityDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/SecurityDiagram.png)
+![BetsControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/BetsControllerDiagram.png)
+![HomeControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/HomeControllerDiagram.png)
+![LoginControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/LoginControllerDiagram.png)
+![MatchControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/MatchControllerDiagram.png)
+![PromotionControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/PromotionControllerDiagram.png)
+![TeamControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/TeamControllerDiagram.png)
+![UserAccountControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/UserAccountControllerDiagram.png)
 
 #### Diagrama de Base de Datos:
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20base%20de%20datos/modelDB.png
+![modelDB](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20base%20de%20datos/modelDB.png)
 
 #### Pantallazos de la página web:
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/LOGIN.png
+![LOGIN](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/LOGIN.png)
 
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20HOME.jpg
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20MATCHES.jpg
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20PROMOTIONS.jpg
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20SCORES.jpg
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20TEAMS.jpg
+![ADMIN-HOME](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20HOME.jpg)
+![ADMIN-MATCHES](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20MATCHES.jpg)
+![ADMIN-PROMOTIONS](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20PROMOTIONS.jpg)
+![ADMIN-SCORES](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20SCORES.jpg)
+![ADMIN-TEAMS](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/ADMIN%20-%20TEAMS.jpg)
 
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME%20-%20PUBLIC.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PUBLIC.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET-%20PUBLIC.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/REG.png
+![HOME-PUBLIC](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME%20-%20PUBLIC.png)
+![SPORTSBET-PUBLIC](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PUBLIC.png)
+![EGAMESBET-PUBLIC](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET-%20PUBLIC.png)
+![REG](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/REG.png)
 
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME-%20PRIVATE.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PRIVATE.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET%20-%20PRIVATE.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PROMOTIONS.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20DATA.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MONEY.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20BETS.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MY%20TEAMS.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PAY%20IN.png
-https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/WITHDRAWAL.png
+![HOME-PRIVATE](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/HOME-%20PRIVATE.png)
+![SPORTSBET-PRIVATE](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/SPORTS%20BET%20-%20PRIVATE.png)
+![EGAMESBET-PRIVATE](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/EGAMES%20BET%20-%20PRIVATE.png)
+![PROMOTIONS](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PROMOTIONS.png)
+![USERACCOUNT-DATA](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20DATA.png)
+![USERACCOUNT-MONEY](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MONEY.png)
+![USERACCOUNT-BETS](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20BETS.png)
+![USERACCOUNT-TEAMS](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/USER%20ACCOUNT%20-%20MY%20TEAMS.png)
+![PAYIN](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/PAY%20IN.png)
+![WITHDRAWAL](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Pantallazos/WITHDRAWAL.png)
 
     
 #### Tecnologias usadas para el desarrollo de la aplicación:
