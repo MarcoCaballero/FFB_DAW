@@ -142,6 +142,5 @@
 Desarrolladores:
 @AdrianPedriza
 @peloxoo
-@jesusprieto22
 @MarcoCaballero
 
