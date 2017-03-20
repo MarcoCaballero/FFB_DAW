@@ -275,6 +275,7 @@ public class BetTicket {
 
 		if (promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())) {
 			this.setAmount(promo.applyDiscount(this.getAmount()));
+			this.setApplied_promo(promo);
 			return true;
 		}
 		return false;
