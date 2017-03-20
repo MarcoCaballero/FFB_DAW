@@ -76,11 +76,11 @@ public class UserAccountController extends RedirectController {
 			List<BetTicket> listBetAll = betticketrepo.findByFinished();
 			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
 			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
-			double amountInBet = 1;
-			double winAmountInBet = 1;
+			double amountInBet = 0;
+			double winAmountInBet = 0;
 			for (BetTicket bt : updateduser.getBet_tickets()) {
-				amountInBet*=bt.getAmount();
-				winAmountInBet*=bt.getPotentialGain();
+				amountInBet+=bt.getAmount();
+				winAmountInBet+=bt.getPotentialGain();
 				if (listBetAll.contains(bt)) {
 					listBetOwnerFinished.add(bt);
 				} else {

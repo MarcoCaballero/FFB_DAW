@@ -31,10 +31,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id;
-
-	@OneToOne
-	private UserFB user_FB_account;
-
+	
 	@Column(nullable = false)
 	private String name;
 
@@ -333,20 +330,7 @@ public class User {
 		this.id = id;
 	}
 
-	/**
-	 * @return the user_FB_account
-	 */
-	public UserFB getUser_FB_account() {
-		return user_FB_account;
-	}
-
-	/**
-	 * @param user_FB_account
-	 *            the user_FB_account to set
-	 */
-	public void setUser_FB_account(UserFB user_FB_account) {
-		this.user_FB_account = user_FB_account;
-	}
+	
 
 	/**
 	 * @return the bet_tickets
