@@ -78,15 +78,12 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet", "/user-sportsBet/" })
 	public String getTemplate(HttpServletRequest request, Model model, HttpSession session,
 			HttpServletResponse response) {
-
+		showsUserMenu = false;
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
 			userRepo.save(updatedUser);
 			model.addAttribute("user", updatedUser);
-
-		} else {
-			showsUserMenu = false;
 		}
 
 		model.addAttribute("isUsermenuActive", showsUserMenu);
@@ -179,18 +176,17 @@ public class UserSportsBetController extends RedirectController {
 				if (!promotionrepo.findByPromotionCode(code).isEmpty()) {
 					Promotion promoToapply = promotionrepo.findByPromotionCode(code).get(0);
 					showsPromoError = false;
-
-					if (!ticket_erasable.applyPromo(promoToapply)) {
+					if (!ticket_erasable.applyPromo(promoToapply))
 						showsPromoError = true;
-					}
+
 				}
 
 			}
 
 			double amountToPay = ticket_erasable.getAmount();
 			double promoQuantityDouble = Double.valueOf(promoQuantity);
-			if(promoQuantityDouble>amountToPay){
-				promoQuantityDouble=amountToPay;
+			if (promoQuantityDouble > amountToPay) {
+				promoQuantityDouble = amountToPay;
 			}
 			showsMoneyError = false;
 			if (updatedUser.payFromPromotionCredit(promoQuantityDouble)) {

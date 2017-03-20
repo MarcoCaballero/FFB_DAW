@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>ffb_daw_fase3</name>
-	<description>Proyecto de DAW, construcci�n de sitio web con html5, css3, javascript, jQuey, springboot y mustache.</description>
+	<description>Proyecto de DAW, construcción de sitio web con html5, css3, javascript, jQuey, springboot y mustache.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -53,10 +53,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mustache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-social-facebook</artifactId>
 		</dependency>
 		<!-- SECURITY -->
 		<dependency>

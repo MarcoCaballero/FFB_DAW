@@ -19,9 +19,7 @@ import com.ffbet.fase3.domain.BetESportMatch;
 import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.EgamesMatch;
-import com.ffbet.fase3.domain.EgamesTeam;
 import com.ffbet.fase3.domain.Promotion;
-import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.BetSportMatchRepository;
@@ -30,8 +28,6 @@ import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.MatchRepository;
 import com.ffbet.fase3.repositories.PromotionRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
 import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
 
@@ -84,16 +80,11 @@ public class UserEsportsBetController extends RedirectController {
 	public String getTemplate(HttpServletRequest request, Model model, HttpSession session,
 			HttpServletResponse response) {
 
+		showsUserMenu = false;
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-			userRepo.save(updatedUser);
-			model.addAttribute("user", updatedUser);
-
-		} else {
-			showsUserMenu = false;
+			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
 		}
-
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("ticketErasable", ticket_erasable);
 		model.addAttribute("lolMatchTable", matchRepository.findByNotFinished("LOL"));

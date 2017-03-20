@@ -72,7 +72,7 @@
 
 
 
-#### Diagramas de la aplicación:
+### Diagramas de la aplicación:
 #### Diagrama de navegación:
 ![Diagrama de navegacion](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n/Diagrama%20de%20Navegacion.png)
 
@@ -142,6 +142,5 @@
 Desarrolladores:
 @AdrianPedriza
 @peloxoo
-@jesusprieto22
 @MarcoCaballero
 

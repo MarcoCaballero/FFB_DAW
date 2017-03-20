@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
@@ -76,11 +75,11 @@ public class UserAccountController extends RedirectController {
 			List<BetTicket> listBetAll = betticketrepo.findByFinished();
 			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
 			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
-			double amountInBet = 1;
-			double winAmountInBet = 1;
+			double amountInBet = 0;
+			double winAmountInBet = 0;
 			for (BetTicket bt : updateduser.getBet_tickets()) {
-				amountInBet*=bt.getAmount();
-				winAmountInBet*=bt.getPotentialGain();
+				amountInBet+=bt.getAmount();
+				winAmountInBet+=bt.getPotentialGain();
 				if (listBetAll.contains(bt)) {
 					listBetOwnerFinished.add(bt);
 				} else {
