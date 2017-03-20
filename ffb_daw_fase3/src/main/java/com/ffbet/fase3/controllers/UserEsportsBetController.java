@@ -143,7 +143,8 @@ public class UserEsportsBetController extends RedirectController {
 					break;
 
 				}
-				BetESportMatch bm = new BetESportMatch(match, isLocalSelected, isVisitingSelected, isFBlocalSelected, isFBVisitingSelected);
+				BetESportMatch bm = new BetESportMatch(match, isLocalSelected, isVisitingSelected, isFBlocalSelected,
+						isFBVisitingSelected);
 				ticket_erasable.addEMatchTeam(bm);
 				ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 
@@ -182,9 +183,11 @@ public class UserEsportsBetController extends RedirectController {
 				if (!promotionrepo.findByPromotionCode(code).isEmpty()) {
 					Promotion promoToapply = promotionrepo.findByPromotionCode(code).get(0);
 					showsPromoError = false;
-
-					if (!ticket_erasable.applyPromo(promoToapply)) {
+					if (!updatedUser.addUsedPromo(promoToapply)) {
+						ticket_erasable.applyPromo(promoToapply);
 						showsPromoError = true;
+
+						return redirect;
 					}
 				}
 
@@ -192,8 +195,8 @@ public class UserEsportsBetController extends RedirectController {
 
 			double amountToPay = ticket_erasable.getAmount();
 			double promoQuantityDouble = Double.valueOf(promoQuantity);
-			if(promoQuantityDouble>amountToPay){
-				promoQuantityDouble=amountToPay;
+			if (promoQuantityDouble > amountToPay) {
+				promoQuantityDouble = amountToPay;
 			}
 			showsMoneyError = false;
 			if (updatedUser.payFromPromotionCredit(promoQuantityDouble)) {
@@ -227,7 +230,6 @@ public class UserEsportsBetController extends RedirectController {
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
 		ticket_erasable.getBetEspMatchesList().remove(ticket_erasable.getBetEspMatchesList().get((int) id));
-		
 
 		return redirect;
 

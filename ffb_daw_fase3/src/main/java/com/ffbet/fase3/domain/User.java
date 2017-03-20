@@ -30,7 +30,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id;
-	
+
 	@Column(nullable = false)
 	private String name;
 
@@ -329,8 +329,6 @@ public class User {
 		this.id = id;
 	}
 
-	
-
 	/**
 	 * @return the bet_tickets
 	 */
@@ -548,6 +546,16 @@ public class User {
 				return true;
 			}
 		}
+	}
+
+	public boolean addUsedPromo(Promotion promo) {
+		if (this.getPromos().contains(promo) && !this.getUsedPromos().contains(promo)) {
+			this.getPromos().remove(promo);
+			this.getUsedPromos().add(promo);
+			return true;
+		}
+
+		return false;
 	}
 
 	public boolean payFromCredit(double money) {

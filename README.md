@@ -77,17 +77,26 @@
 ![Diagrama de navegacion](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n/Diagrama%20de%20Navegacion.png).
 #### Diagramas de clases:
 
-
++ Domain:
 ![Dominio](https://raw.githubusercontent.com/MarcoCaballero/FFB_DAW/develop/Material%20adicional/Diagramas%20de%20clases/DomainDiagram.png).
++ Ajax Controller:
 ![AjaxControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/AjaxControllerDiagram.png).
-![SecurityDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/SecurityDiagram.png).
++ Bets Controllers:
 ![BetsControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/BetsControllerDiagram.png).
++Homes Controllers:
 ![HomeControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/HomeControllerDiagram.png).
++Login, Logout, and main functions:
 ![LoginControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/LoginControllerDiagram.jpg).
++Match Controller:
 ![MatchControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/MatchControllerDiagram.jpg).
++Promotions Controller:
 ![PromotionControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/PromotionControllerDiagram.jpg).
++Teams Controllers:
 ![TeamControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/TeamControllerDiagram.jpg).
++Users Account Controller:
 ![UserAccountControllerDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/UserAccountControllerDiagram.png).
++Security :
+![SecurityDiagram](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagramas%20de%20clases/SecurityDiagram.png).
 
 #### Diagrama de Base de Datos:
 ![modelDB](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20base%20de%20datos/modelDB.png).

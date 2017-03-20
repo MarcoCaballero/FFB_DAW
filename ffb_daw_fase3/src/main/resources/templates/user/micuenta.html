@@ -214,7 +214,7 @@
 											<p class="text-left">
 												<a href="user-account/addCredit"
 													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
-													href="user-account/withdrawCredit"
+													href="user-account"
 													class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
 													Mi cuenta </a>
@@ -298,7 +298,7 @@
 
 
 				</div>
-				<p>{{#applied_promo}}{{promotionCode}}{{/applied_promo}}</p>
+				<p>{{#applied_promo}}{{title}}: {{promotionCode}}{{/applied_promo}}</p>
 				<p>Posibles Ganancias: {{potentialGain}} €</p>{{/listBetOwnerNotFinished}}
 			</li>
 
@@ -628,7 +628,7 @@
 															{{#listBetOwnerNotFinished}}
 															<tr>
 																<td>#100{{id}}</td>
-																<td>{{#applied_promo}}{{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
+																<td>{{#applied_promo}}{{title}}: {{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
 																<td>{{amount}} €</td>
 																<td>{{potentialGain}} €</td>
 															</tr>
@@ -649,7 +649,7 @@
 															{{#listBetOwnerFinished}}
 															<tr>
 																<td>#100{{id}}</td>
-																<td>{{#applied_promo}}{{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
+																<td>{{#applied_promo}}{{title}}: {{promotionCode}}{{/applied_promo}}{{^applied_promo}}--_--{{/applied_promo}}</td>
 																<td>{{amount}} €</td>
 																<td>{{#isLosed}}Perdida
 																	€{{/isLosed}}{{^isLosed}}{{potentialGain}}
