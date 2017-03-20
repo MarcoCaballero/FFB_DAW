@@ -176,13 +176,17 @@ public class UserSportsBetController extends RedirectController {
 				if (!promotionrepo.findByPromotionCode(code).isEmpty()) {
 					Promotion promoToapply = promotionrepo.findByPromotionCode(code).get(0);
 					showsPromoError = false;
-					if (!ticket_erasable.applyPromo(promoToapply))
+					if (!updatedUser.addUsedPromo(promoToapply)) {
+						ticket_erasable.applyPromo(promoToapply);
 						showsPromoError = true;
-
+						return redirect;
+							
+					}
 				}
 
 			}
-
+			
+			
 			double amountToPay = ticket_erasable.getAmount();
 			double promoQuantityDouble = Double.valueOf(promoQuantity);
 			if (promoQuantityDouble > amountToPay) {

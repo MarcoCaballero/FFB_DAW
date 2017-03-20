@@ -54,7 +54,7 @@ public class BetTicket {
 
 	@Column
 	private boolean isLosed;
-	
+
 	@Column
 	private boolean isUsed;
 
@@ -215,9 +215,6 @@ public class BetTicket {
 	public void setLosed(boolean isLosed) {
 		this.isLosed = isLosed;
 	}
-	
-	
-	
 
 	/**
 	 * @return the isUsed
@@ -227,7 +224,8 @@ public class BetTicket {
 	}
 
 	/**
-	 * @param isUsed the isUsed to set
+	 * @param isUsed
+	 *            the isUsed to set
 	 */
 	public void setUsed(boolean isUsed) {
 		this.isUsed = isUsed;
@@ -271,14 +269,12 @@ public class BetTicket {
 		this.getBetEspMatchesList().add(match);
 	}
 
-	public boolean applyPromo(Promotion promo) {
+	public void applyPromo(Promotion promo) {
 
 		if (promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())) {
 			this.setAmount(promo.applyDiscount(this.getAmount()));
 			this.setApplied_promo(promo);
-			return true;
 		}
-		return false;
 
 	}
 
@@ -323,7 +319,7 @@ public class BetTicket {
 
 		}
 
-		this.isFinished=isFinished;
+		this.isFinished = isFinished;
 		return isFinished;
 
 	}

@@ -84,7 +84,7 @@ public class UserPromosController extends RedirectController {
 					}
 				}
 				user.addPromo(promo);
-				promoRepository.save(promo);
+				//promoRepository.save(promo);
 				userRepo.save(user);
 
 			} catch (Exception e) {
