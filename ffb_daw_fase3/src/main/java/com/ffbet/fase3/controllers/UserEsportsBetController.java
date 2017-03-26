@@ -22,14 +22,10 @@ import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.BetSportMatchRepository;
-import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.repositories.EgamesTeamRepository;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.PromotionRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.PromoService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * @author Marco
@@ -40,27 +36,12 @@ public class UserEsportsBetController extends RedirectController {
 
 	@Autowired
 	UserAuthComponent userComp;
-
 	@Autowired
-	UserRepository userRepo;
-
+	private UserService userService;
 	@Autowired
-	EgamesTeamRepository egamesTeamRepository;
-
+	private MatchService matchService;
 	@Autowired
-	Egames_match_repository egamesMatchRepository;
-
-	@Autowired
-	MatchRepository matchRepository;
-
-	@Autowired
-	BetSportMatchRepository betMatchRepo;
-
-	@Autowired
-	BetTicketRepository betTicketRepo;
-
-	@Autowired
-	PromotionRepository promotionrepo;
+	private PromoService promoService;
 
 	BetTicket ticket_erasable = null;
 
@@ -83,12 +64,12 @@ public class UserEsportsBetController extends RedirectController {
 		showsUserMenu = false;
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		}
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("ticketErasable", ticket_erasable);
-		model.addAttribute("lolMatchTable", matchRepository.findByNotFinished("LOL"));
-		model.addAttribute("csgoMatchTable", matchRepository.findByNotFinished("CS-GO"));
+		model.addAttribute("lolMatchTable", matchService.findByNotFinished("LOL"));
+		model.addAttribute("csgoMatchTable", matchService.findByNotFinished("CS-GO"));
 
 		model.addAttribute("selectedOne", selectedOne);
 		model.addAttribute("selectedTwo", selectedTwo);
@@ -114,7 +95,7 @@ public class UserEsportsBetController extends RedirectController {
 		try {
 			long id = Long.parseLong(idPre);
 
-			EgamesMatch match = egamesMatchRepository.findOne(id);
+			EgamesMatch match = matchService.findOneEgames(id);
 			if (ticket_erasable == null) {
 				ticket_erasable = new BetTicket();
 			}
@@ -176,12 +157,12 @@ public class UserEsportsBetController extends RedirectController {
 			@RequestParam("promoQuantity") int promoQuantity) {
 
 		if (userComp.isLoggedUser()) {
-			User updatedUser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+			User updatedUser = userService.findByEmail(userComp.getLoggedUser().getEmail());
 			ticket_erasable.setAmount(updatedMultiplicator());
 			if (!code.equals("")) {
 				showsPromoError = true;
-				if (!promotionrepo.findByPromotionCode(code).isEmpty()) {
-					Promotion promoToapply = promotionrepo.findByPromotionCode(code).get(0);
+				if (!promoService.findByPromotionCode(code).isEmpty()) {
+					Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
 					showsPromoError = false;
 					if (!updatedUser.addUsedPromo(promoToapply)) {
 						ticket_erasable.applyPromo(promoToapply);
@@ -215,7 +196,7 @@ public class UserEsportsBetController extends RedirectController {
 			}
 			// betTicketRepo.save(ticket_erasable);
 			updatedUser.addBet(ticket_erasable);
-			userRepo.save(updatedUser);
+			userService.save(updatedUser);
 			ticket_erasable = null;
 
 		} else {

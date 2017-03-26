@@ -30,12 +30,11 @@ import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.repositories.CreditCardRepository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.TeamService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * @author Marco
@@ -43,18 +42,18 @@ import com.ffbet.fase3.security.UserAuthComponent;
  */
 @Controller
 public class UserAccountController extends RedirectController {
+	
 	@Autowired
-	UserRepository userRepo;
+	private UserService userService;
+	@Autowired
+	private BetTicketService betTicketService;
+	@Autowired
+	private MatchService matchService;
+	@Autowired
+	private TeamService teamService;
+	
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	CreditCardRepository creditCardRepo;
-	@Autowired
-	BetTicketRepository betticketrepo;
-	@Autowired
-	MatchRepository matchRepo;
-	@Autowired
-	SportTeamRepository teamRepo;
 
 	String photoA = "";
 	String redirectToAccount = "redirect:/user-account/";
@@ -71,8 +70,8 @@ public class UserAccountController extends RedirectController {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 
-			User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-			List<BetTicket> listBetAll = betticketrepo.findByFinished();
+			User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+			List<BetTicket> listBetAll = betTicketService.findByFinished();
 			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
 			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
 			double amountInBet = 0;
@@ -108,15 +107,15 @@ public class UserAccountController extends RedirectController {
 
 		if (team == null) {
 			final long num = 1;
-			team = teamRepo.findOne(num);
+			team = teamService.findOneTeam(num);
 		}
 
-		model.addAttribute("Teams", teamRepo.findByType("Fútbol"));
+		model.addAttribute("Teams", teamService.findByTypeSports("Fútbol"));
 
 		if (team != null) {
 			model.addAttribute("SelectedTeam", team);
-			model.addAttribute("notFinishedMatches", matchRepo.findByNotFinishedAndTeam("Fútbol", team.getName()));
-			model.addAttribute("finishedMatches", matchRepo.findByFinishedAndTeam("Fútbol", team.getName()));
+			model.addAttribute("notFinishedMatches", matchService.findByNotFinishedAndTeam("Fútbol", team.getName()));
+			model.addAttribute("finishedMatches", matchService.findByFinishedAndTeam("Fútbol", team.getName()));
 		}
 
 		// model.addAttribute("isPhotoSelected", isPhotoSelected);
@@ -175,7 +174,7 @@ public class UserAccountController extends RedirectController {
 			if (!cityPre.isEmpty())
 				user.setCity(cityPre);
 
-			userRepo.save(user);
+			userService.save(user);
 		} else {
 			showsPasswdError = true;
 		}
@@ -205,7 +204,7 @@ public class UserAccountController extends RedirectController {
 	public String getTemplateCredit(HttpServletRequest request, Model model) {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			} else {
@@ -229,7 +228,7 @@ public class UserAccountController extends RedirectController {
 	public String getTemplateWithdrawCredit(HttpServletRequest request, Model model) {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			} else {
@@ -253,7 +252,7 @@ public class UserAccountController extends RedirectController {
 			@RequestParam("type") String type, @RequestParam("cardNumber") String cardNumber,
 			@RequestParam("Year") int expirationMonth, @RequestParam("Month") int expirationYear,
 			@RequestParam("ccv") int ccv, @RequestParam("amount") String amount) {
-		User user = userRepo.findOne(id);
+		User user = userService.findOne(id);
 		boolean exists = false;
 		CreditCard creditcard = null;
 		for (int i = 0; i < user.getCards().size(); i++) {
@@ -274,7 +273,7 @@ public class UserAccountController extends RedirectController {
 							showsCardError = true;
 							return "redirect:/user-account/addCredit";
 						}
-						userRepo.save(user);
+						userService.save(user);
 					} else {
 						showsCardError = true;
 						return "redirect:/user-account/addCredit";
@@ -294,7 +293,7 @@ public class UserAccountController extends RedirectController {
 					showsCardError = true;
 				}
 
-				userRepo.save(user);
+				userService.save(user);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -313,11 +312,11 @@ public class UserAccountController extends RedirectController {
 		try {
 			if(!cardNumber.equals("NO")){
 				double amountD = Double.parseDouble(amount);
-				User user = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+				User user = userService.findByEmail(userComp.getLoggedUser().getEmail());
 				for (CreditCard card : user.getCards()) {
 					if (card.getCardNumber().equals(cardNumber)) {
 						user.addCreditToCard(card.getId(), amountD);
-						userRepo.save(user);
+						userService.save(user);
 					}
 				}
 			}
@@ -335,7 +334,7 @@ public class UserAccountController extends RedirectController {
 	@RequestMapping("/user-account/selectionTeam/{id}")
 	public String selectionTeam(Model model, @PathVariable long id) {
 
-		team = teamRepo.findOne(id);
+		team = teamService.findOneTeam(id);
 
 		// model.addAttribute("SelectedTeam", team);
 
@@ -345,8 +344,8 @@ public class UserAccountController extends RedirectController {
 	@GetMapping("/user-account/checkBet/{id}")
 	public String checkBets(Model model, @PathVariable long id) {
 
-		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betticketrepo.findOne(id);
+		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		BetTicket ticketTocheck = betTicketService.findOne(id);
 		boolean notCheckedYet = false;
 
 		for (BetTicket bt : updateduser.getBet_tickets()) {
@@ -377,7 +376,7 @@ public class UserAccountController extends RedirectController {
 			}
 		}
 
-		userRepo.save(updateduser);
+		userService.save(updateduser);
 		return redirectToAccount + "#tab2sub";
 
 	}
@@ -385,10 +384,10 @@ public class UserAccountController extends RedirectController {
 	@GetMapping(value = { "/user-account/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
-		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betticketrepo.findOne(id);
+		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		BetTicket ticketTocheck = betTicketService.findOne(id);
 		updateduser.getBet_tickets().remove(ticketTocheck);
-		userRepo.save(updateduser);
+		userService.save(updateduser);
 		return redirectToAccount;
 
 	}

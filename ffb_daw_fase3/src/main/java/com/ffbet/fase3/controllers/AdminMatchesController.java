@@ -15,14 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.repositories.EgamesTeamRepository;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
-import com.ffbet.fase3.repositories.TeamRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.TeamService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link AdminMatchesController} provides methods to map the
@@ -42,28 +38,17 @@ public class AdminMatchesController extends RedirectController {
 
 	private String template = TemplatesPath.ADMIN_MATCH.toString();
 	private String redirect = "redirect:/admin-matches/";
-
-	@Autowired
-	private Sports_match_repository sportsMatchRepo;
-
-	@Autowired
-	private Egames_match_repository egamesMatchRepo;
 	
 	@Autowired
-	private MatchRepository matchRepo;
-	
+	private UserService userService;
 	@Autowired
-	private SportTeamRepository sportsTeamRepo;
-	
+	private TeamService teamService;
 	@Autowired
-	private EgamesTeamRepository egamesTeamRepo;
+	private MatchService matchService;
 	
-	@Autowired
-	private TeamRepository teamRepo;
+	
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	UserRepository userRepo;
 
 	// Variables for football
 	private boolean badDate = false;
@@ -110,22 +95,22 @@ public class AdminMatchesController extends RedirectController {
 	public String getMatchTemplate(HttpServletRequest request, Model model) {
 		
 		if(userComp.isLoggedUser()){
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		}else{
 			return "redirect:/logOut";
 		}
 
-		model.addAttribute("SportsTeams", sportsTeamRepo.findAll());
-		model.addAttribute("EgamesTeams", egamesTeamRepo.findAll());
+		model.addAttribute("SportsTeams", teamService.findAllSportsTeams());
+		model.addAttribute("EgamesTeams", teamService.findAllEgamesTeams());
 		
-		model.addAttribute("FootballTeams", sportsTeamRepo.findByType("Fútbol"));
-		model.addAttribute("BasketTeams", sportsTeamRepo.findByType("Baloncesto"));
+		model.addAttribute("FootballTeams", teamService.findByTypeSports("Fútbol"));
+		model.addAttribute("BasketTeams", teamService.findByTypeSports("Baloncesto"));
 		
-		model.addAttribute("LOLTeams", egamesTeamRepo.findByType("LOL"));
-		model.addAttribute("CSTeams", egamesTeamRepo.findByType("CS-GO"));
+		model.addAttribute("LOLTeams", teamService.findByTypeEgames("LOL"));
+		model.addAttribute("CSTeams", teamService.findByTypeEgames("CS-GO"));
 
-		model.addAttribute("Matches", matchRepo.findAll());
-		model.addAttribute("Teams", teamRepo.findAll());
+		model.addAttribute("Matches", matchService.findAllMatches());
+		model.addAttribute("Teams", teamService.findAllTeams());
 		
 
 		// Atributtes for football
@@ -222,10 +207,10 @@ public class AdminMatchesController extends RedirectController {
 
 		if (!badDate && !badTime && !badQuota && !equalTeams && !sumQuotaOk) {
 			sportsMatch.setType("Fútbol");
-			sportsMatch.getTeams().add(sportsTeamRepo.findByName(homeTeam));
-			sportsMatch.getTeams().add(sportsTeamRepo.findByName(visitingTeam));
+			sportsMatch.getTeams().add(teamService.findByNameSport(homeTeam));
+			sportsMatch.getTeams().add(teamService.findByNameSport(visitingTeam));
 
-			sportsMatchRepo.save(sportsMatch);
+			matchService.saveSportsMatch(sportsMatch);
 		}
 
 		return redirect;
@@ -277,10 +262,10 @@ public class AdminMatchesController extends RedirectController {
 
 		if (!badDateB && !badTimeB && !badQuotaB && !equalTeamsB && !sumQuotaOkB) {
 			sportsMatch.setType("Baloncesto");
-			sportsMatch.getTeams().add(sportsTeamRepo.findByName(homeTeam));
-			sportsMatch.getTeams().add(sportsTeamRepo.findByName(visitingTeam));
+			sportsMatch.getTeams().add(teamService.findByNameSport(homeTeam));
+			sportsMatch.getTeams().add(teamService.findByNameSport(visitingTeam));
 
-			sportsMatchRepo.save(sportsMatch);
+			matchService.saveSportsMatch(sportsMatch);
 		}
 
 		return redirect;
@@ -344,9 +329,10 @@ public class AdminMatchesController extends RedirectController {
 
 		if (!badDateL && !badTimeL && !badQuotaL && !equalTeamsL && !sumQuota1OkL && !sumQuota2OkL) {
 			egamesMatch.setType("LOL");
-			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
-			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
-			egamesMatchRepo.save(egamesMatch);
+			egamesMatch.getTeams().add(teamService.findByNameEgames(homeTeam));
+			egamesMatch.getTeams().add(teamService.findByNameEgames(visitingTeam));
+			
+			matchService.saveEgamesMatch(egamesMatch);
 		}
 
 		return redirect;
@@ -413,11 +399,10 @@ public class AdminMatchesController extends RedirectController {
 		
 		if (!badDateC && !badTimeC && !badQuotaC && !equalTeamsC && !sumQuota1OkC && !sumQuota2OkC) {
 			egamesMatch.setType("CS");
-			System.out.println(egamesTeamRepo.findByName(homeTeam));
-			egamesMatch.getTeams().add(egamesTeamRepo.findByName(homeTeam));
-			egamesMatch.getTeams().add(egamesTeamRepo.findByName(visitingTeam));
+			egamesMatch.getTeams().add(teamService.findByNameEgames(homeTeam));
+			egamesMatch.getTeams().add(teamService.findByNameEgames(visitingTeam));
 
-			egamesMatchRepo.save(egamesMatch);
+			matchService.saveEgamesMatch(egamesMatch);
 		}
 
 		return redirect;
@@ -436,7 +421,7 @@ public class AdminMatchesController extends RedirectController {
 	@GetMapping("/admin-matches/delete/{id}")
 	public String deleteMatchByID(@PathVariable long id) {
 
-		matchRepo.delete(id);
+		matchService.delete(id);
 		
 		return redirect;
 

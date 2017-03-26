@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.repositories.EgamesTeamRepository;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.PromotionRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.PromoService;
+import com.ffbet.fase3.services.TeamService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link AdminHomeController} provides methods to map the
@@ -32,21 +30,18 @@ import com.ffbet.fase3.security.UserAuthComponent;
  */
 @Controller
 public class AdminHomeController extends RedirectController {
-
+	
 	@Autowired
-	UserRepository userRepo;
+	private UserService userService;
 	@Autowired
-	EgamesTeamRepository egamesTeamRepo;
+	private TeamService teamService;
 	@Autowired
-	SportTeamRepository sportTeamRepo;
+	private MatchService matchService;
 	@Autowired
-	PromotionRepository promoRepo;
+	private PromoService promoService;
 	@Autowired
-	BetTicketRepository betRepo;
-	@Autowired
-	Sports_match_repository sportMatchRepo;
-	@Autowired
-	Egames_match_repository egamesMatchRepo;
+	private BetTicketService betTicketService;
+	
 	@Autowired
 	UserAuthComponent userComp;
 	
@@ -65,7 +60,7 @@ public class AdminHomeController extends RedirectController {
 		
 		if(userComp.isLoggedUser()){
 			
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 			if(!userComp.getLoggedUser().isPhotoSelected()){
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			}else{
@@ -76,19 +71,19 @@ public class AdminHomeController extends RedirectController {
 		}
 				
 		int totalMoney = 0;
-		for (int i = 0; i < betRepo.findAll().size(); i++) {
-			BetTicket ticket = betRepo.findAll().get(i);
+		for (int i = 0; i < betTicketService.findAll().size(); i++) {
+			BetTicket ticket = betTicketService.findAll().get(i);
 			totalMoney += ticket.getAmount();
 		}
 
 		
-		model.addAttribute("Users", userRepo.findAll());
-		model.addAttribute("totalUSer", userRepo.findAll().size());
-		model.addAttribute("totalTeams", sportTeamRepo.findAll().size() + egamesTeamRepo.findAll().size());
-		model.addAttribute("totalBets", betRepo.findAll().size());
+		model.addAttribute("Users", userService.findAll());
+		model.addAttribute("totalUSer", userService.findAll().size());
+		model.addAttribute("totalTeams", teamService.findAllSportsTeams().size() + teamService.findAllEgamesTeams().size());
+		model.addAttribute("totalBets", betTicketService.findAll().size());
 		model.addAttribute("totalMoney", totalMoney);
-		model.addAttribute("totalPromotions", promoRepo.findAll().size());
-		model.addAttribute("totalMatches", sportMatchRepo.findAll().size() + egamesMatchRepo.findAll().size());
+		model.addAttribute("totalPromotions", promoService.findAll().size());
+		model.addAttribute("totalMatches", matchService.findAllSports().size() + matchService.findAllEgames().size());
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -100,20 +95,20 @@ public class AdminHomeController extends RedirectController {
 	@GetMapping("/admin-home/delete/{id}")
 	public String removeUser(@PathVariable Long id) {
 
-		userRepo.delete(id);
+		userService.delete(id);
 		return "redirect:/admin/";
 	}
 
 	@GetMapping("/admin-home/downgrade/{id}")
 	public String downgradeUser(@PathVariable Long id) {
 
-		User user = userRepo.findOne(id);
+		User user = userService.findOne(id);
 
 		if (user.getRoles().size() > 1) {
 			user.setRoles("ROLE_USER");
 		}
 
-		userRepo.save(user);
+		userService.save(user);
 		
 		return "redirect:/admin/";
 	}
@@ -121,13 +116,13 @@ public class AdminHomeController extends RedirectController {
 	@GetMapping("/admin-home/upgrade/{id}")
 	public String upgradeUser(@PathVariable Long id) {
 
-		User user = userRepo.findOne(id);
+		User user = userService.findOne(id);
 		if (user.getRoles().size() < 2) {
 			user.addRole("ROLE_ADMIN");
 		}
 	
 
-		userRepo.save(user);
+		userService.save(user);
 
 		return "redirect:/admin/";
 	}
