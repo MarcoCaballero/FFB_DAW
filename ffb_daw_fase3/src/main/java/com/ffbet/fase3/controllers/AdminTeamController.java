@@ -24,14 +24,9 @@ import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.repositories.EgamesTeamRepository;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
-import com.ffbet.fase3.repositories.TeamRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.TeamService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link AdminTeamController} provides methods to map the
@@ -49,25 +44,14 @@ public class AdminTeamController extends RedirectController {
 
 	String template = TemplatesPath.ADMIN_TEAM.toString();
 	String redirect = "redirect:/admin-teams/";
-
+	
 	@Autowired
-	Sports_match_repository sportMatchRepo;
+	private UserService userService;
 	@Autowired
-	Egames_match_repository egamesMatchRepo;
-	@Autowired
-	MatchRepository matchRepo;
-
-	@Autowired
-	TeamRepository teamRepo;
-	@Autowired
-	SportTeamRepository sportsTeamRepo;
-	@Autowired
-	EgamesTeamRepository egamesTeamRepo;
+	private TeamService teamService;
 
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	UserRepository userRepo;
 
 	private boolean noFailsNewSport = false;
 	private boolean noFailsNewEgames = false;
@@ -90,13 +74,13 @@ public class AdminTeamController extends RedirectController {
 	public String getTeamTemplate(HttpServletRequest request, Model model) {
 
 		if (userComp.isLoggedUser()) {
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		} else {
 			return "redirect:/logOut";
 		}
 
-		model.addAttribute("SportsTeams", sportsTeamRepo.findAll());
-		model.addAttribute("EgamesTeams", egamesTeamRepo.findAll());
+		model.addAttribute("SportsTeams", teamService.findAllSportsTeams());
+		model.addAttribute("EgamesTeams", teamService.findAllEgamesTeams());
 
 		model.addAttribute("noBadNewSport", noFailsNewSport);
 		model.addAttribute("noBadNewEgames", noFailsNewEgames);
@@ -152,9 +136,9 @@ public class AdminTeamController extends RedirectController {
 			team.setTwitter_Uri(tw);
 			team.setGoogle_Uri(go);
 			
-			sportsTeamRepo.save(team);
+			teamService.saveSportTeam(team);
 			
-			team = sportsTeamRepo.findByName(name);
+			team = teamService.findByNameSport(name);
 
 			if (!logoImg.isEmpty()) {
 				fileNameLogo = handleUploadImagetoDatabase(logoImg, team.getId(),
@@ -183,7 +167,7 @@ public class AdminTeamController extends RedirectController {
 			// team.setStadium_image(sImage);
 			// team.setLogo_image(lImage);
 
-			sportsTeamRepo.save(team);
+			teamService.saveSportTeam(team);
 
 			noFailsNewSport = false;
 		} catch (Exception e) {
@@ -247,7 +231,7 @@ public class AdminTeamController extends RedirectController {
 			team.setCoach(coach);
 			team.setSponsor(sponsor);
 
-			egamesTeamRepo.save(team);
+			teamService.saveEgamesTeam(team);
 
 			noFailsNewEgames = false;
 
@@ -278,7 +262,7 @@ public class AdminTeamController extends RedirectController {
 			@RequestParam("sportsUpChampions") String champions, @RequestParam("sportsUpFb") String fb,
 			@RequestParam("sportsUpTw") String tw, @RequestParam("sportsUpGo") String go) {
 
-		SportTeam team = sportsTeamRepo.findOne(id);
+		SportTeam team = teamService.findOneSportTeam(id);
 
 		try {
 			if (!name.isEmpty()) {
@@ -321,7 +305,7 @@ public class AdminTeamController extends RedirectController {
 				team.setGoogle_Uri(go);
 			}
 
-			teamRepo.save(team);
+			teamService.saveSportTeam(team);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -344,7 +328,7 @@ public class AdminTeamController extends RedirectController {
 			@RequestParam("egamesUpCoach") String coach, @RequestParam("egamesUpCountry") String country,
 			@RequestParam("egamesUpCity") String city) {
 
-		EgamesTeam team = egamesTeamRepo.getOne(id);
+		EgamesTeam team = teamService.findOneEgamesTeam(id);
 
 		try {
 			if (!name.isEmpty()) {
@@ -360,7 +344,7 @@ public class AdminTeamController extends RedirectController {
 				team.setCity(city);
 			}
 
-			egamesTeamRepo.save(team);
+			teamService.saveEgamesTeam(team);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -380,7 +364,7 @@ public class AdminTeamController extends RedirectController {
 	@GetMapping("/admin-teams/delete/{id}")
 	public String deleteTeamByID(@PathVariable("id") long id) {
 
-		teamRepo.delete(id);
+		teamService.delete(id);
 
 		return redirect;
 

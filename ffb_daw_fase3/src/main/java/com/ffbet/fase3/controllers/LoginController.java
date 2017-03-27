@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link LoginController} provides methods to map the URL's
@@ -40,8 +40,10 @@ public class LoginController extends RedirectController {
 	private String redirectUserHome = "redirect:/user/";
 	private String redirectAdminHome = "redirect:/admin/";
 	private String redirectSignup = "redirect:/signup/";
+	
 	@Autowired
-	UserRepository userRepo;
+	private UserService userService;
+	
 	@Autowired
 	UserAuthComponent userComponent;
 
@@ -155,7 +157,7 @@ public class LoginController extends RedirectController {
 			}
 
 			user.setCredit(0.0);
-			userRepo.save(user);
+			userService.save(user);
 		} else {
 			System.out.println("HOLA CONTRASEÑAS DISTINTAS");
 			isErrorPass = true;
@@ -188,7 +190,7 @@ public class LoginController extends RedirectController {
 		showsUserMenu = false;
 		if (userComponent.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComponent.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComponent.getLoggedUser().getEmail()));
 		}
 		
 		

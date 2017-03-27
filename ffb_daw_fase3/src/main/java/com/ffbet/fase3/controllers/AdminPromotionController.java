@@ -22,9 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.repositories.PromotionRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.PromoService;
+import com.ffbet.fase3.services.UserService;
 
 @Controller
 public class AdminPromotionController extends RedirectController {
@@ -32,15 +32,17 @@ public class AdminPromotionController extends RedirectController {
 	private String template = TemplatesPath.ADMIN_PROMOTION.toString();
 	private String redirect = "redirect:/admin-promotions/";
 
+//	@Autowired
+//	private PromotionRepository repository;
 	@Autowired
-	private PromotionRepository repository;
+	private UserService userService;
+	@Autowired
+	private PromoService promoService;
 
 	private boolean goodPromo = false;
 	private boolean photoError = false;
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	UserRepository userRepo;
 
 	/**
 	 * Method {@linkplain getPromotionsTemplate()} uses the abstract class
@@ -56,17 +58,12 @@ public class AdminPromotionController extends RedirectController {
 
 		
 		if(userComp.isLoggedUser()){
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		}else{
 			return "redirect:/logOut";
 		}
 		
-		
-		
-		
-		
-		
-		model.addAttribute("promotions", repository.findAll());
+		model.addAttribute("promotions", promoService.findAll());
 
 		model.addAttribute("isPromo", goodPromo);
 		model.addAttribute("showsError", photoError);
@@ -106,9 +103,9 @@ public class AdminPromotionController extends RedirectController {
 			newPromotion.setPromotionCode(promotionCode);
 			newPromotion.setQuantity(Integer.parseInt(quantity));
 
-			repository.save(newPromotion);
+			promoService.save(newPromotion);
 
-			repository.findByTitle(title);
+			promoService.findByTitle(title);
 
 			if (!image.isEmpty()) {
 				filePromo = handleUploadImagetoDatabase(image, newPromotion.getId(), FilesPath.FILES_PROMOS.toString());
@@ -120,7 +117,7 @@ public class AdminPromotionController extends RedirectController {
 				}
 			}
 
-			repository.save(newPromotion);
+			promoService.save(newPromotion);
 
 			goodPromo = false;
 		} else {
@@ -159,7 +156,7 @@ public class AdminPromotionController extends RedirectController {
 	@RequestMapping(value = { "/admin-promotions/delete/{id}" })
 	public String deletePromotionByID(@PathVariable long id) {
 
-		repository.delete(id);
+		promoService.delete(id);
 		return redirect;
 
 	}

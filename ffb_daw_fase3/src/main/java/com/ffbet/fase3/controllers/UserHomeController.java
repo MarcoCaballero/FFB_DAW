@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link UserHomeController} provides methods to map the URL's
@@ -33,15 +31,12 @@ import com.ffbet.fase3.security.UserAuthComponent;
 public class UserHomeController extends RedirectController {
 
 	@Autowired
+	private UserService userService;
+	@Autowired
+	private MatchService matchService;
+
+	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	UserRepository userRepo;
-	@Autowired
-	Sports_match_repository sports_match_repository;
-	@Autowired
-	Egames_match_repository egames_match_repository;
-	@Autowired
-	MatchRepository matchRepository;
 
 	private boolean showsUserMenu = false;
 	static boolean showButton = true;
@@ -61,17 +56,16 @@ public class UserHomeController extends RedirectController {
 		showsUserMenu = false;
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		}
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 
 		model.addAttribute("footballMatchTable",
-				sports_match_repository.findByTypeFinished("Fútbol", new PageRequest(0, 10)));
+				matchService.findByTypeFinishedSports("Fútbol", new PageRequest(0, 10)));
 		model.addAttribute("basketballMatchTable",
-				sports_match_repository.findByTypeFinished("Baloncesto", new PageRequest(0, 10)));
-		model.addAttribute("lolMatchTable", egames_match_repository.findByTypeFinished("LOL", new PageRequest(0, 10)));
-		model.addAttribute("csgoMatchTable",
-				egames_match_repository.findByTypeFinished("CS-GO", new PageRequest(0, 10)));
+				matchService.findByTypeFinishedSports("Baloncesto", new PageRequest(0, 10)));
+		model.addAttribute("lolMatchTable", matchService.findByTypeFinishedEgames("LOL", new PageRequest(0, 10)));
+		model.addAttribute("csgoMatchTable", matchService.findByTypeFinishedEgames("CS-GO", new PageRequest(0, 10)));
 
 		/*
 		 * model.addAttribute("footballMatchTable",
@@ -93,7 +87,7 @@ public class UserHomeController extends RedirectController {
 	@GetMapping(value = { "/moreResults" })
 	public List<SportsMatch> moreResults() {
 		List<SportsMatch> scores = new ArrayList<SportsMatch>();
-		List<SportsMatch> listaAux = sports_match_repository.findAll();
+		List<SportsMatch> listaAux = matchService.findAllSports();
 		for (int i = (pages * 1); i < listaAux.size(); i++) {
 			if (i == 1)
 				break;

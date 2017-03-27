@@ -15,9 +15,9 @@ import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.PromotionType;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.PromotionRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.PromoService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * @author Marco
@@ -28,15 +28,14 @@ public class UserPromosController extends RedirectController {
 
 	private String template = TemplatesPath.USER_PROMOTIONS.toString();
 	private String redirect = "redirect:/user-promos/";
+	
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private PromoService promoService;
 
 	@Autowired
 	UserAuthComponent userComp;
-
-	@Autowired
-	UserRepository userRepo;
-
-	@Autowired
-	PromotionRepository promoRepository;
 
 	private boolean showsUserMenu = false;
 	private boolean showsPromoError = false;
@@ -46,13 +45,13 @@ public class UserPromosController extends RedirectController {
 		showsUserMenu = false;
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		}
 		model.addAttribute("isUsermenuActive", showsUserMenu);
 		model.addAttribute("showsPromoError", showsPromoError);
 
-		model.addAttribute("PromotionDiscount", promoRepository.findByType("BONODESCUENTO"));
-		model.addAttribute("PromotionPresent", promoRepository.findByType("PROMOCIONREGALO"));
+		model.addAttribute("PromotionDiscount", promoService.findByType("BONODESCUENTO"));
+		model.addAttribute("PromotionPresent", promoService.findByType("PROMOCIONREGALO"));
 
 		String response = check_url(request, template);
 		return response;
@@ -63,13 +62,13 @@ public class UserPromosController extends RedirectController {
 	public String addUserPromo(@PathVariable long id) {
 
 		if (userComp.isLoggedUser()) {
-			User user = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
+			User user = userService.findByEmail(userComp.getLoggedUser().getEmail());
 			try {
-				Promotion promo = promoRepository.findOne(id);
+				Promotion promo = promoService.findOne(id);
 
 				promo.setShown(true);
 
-				for (Promotion p : promoRepository.findAll()) {
+				for (Promotion p : promoService.findAll()) {
 					if (!p.equals(promo)) {
 						p.setShown(false);
 					}
@@ -85,7 +84,7 @@ public class UserPromosController extends RedirectController {
 				}
 				user.addPromo(promo);
 				//promoRepository.save(promo);
-				userRepo.save(user);
+				userService.save(user);
 
 			} catch (Exception e) {
 
