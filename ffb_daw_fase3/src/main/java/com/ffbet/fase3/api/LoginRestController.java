@@ -1,4 +1,4 @@
-package com.fbbet.fase3.api;
+package com.ffbet.fase3.api;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,6 +25,7 @@ public class LoginRestController {
 	public ResponseEntity<User> logIn() {
 
 		if (!userComponent.isLoggedUser()) {
+			System.out.println(userComponent);
 			log.info("Not user logged");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		} else {

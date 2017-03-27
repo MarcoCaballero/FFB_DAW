@@ -1,4 +1,4 @@
-package com.fbbet.fase3.api;
+package com.ffbet.fase3.api;
 
 public class AdminMatchesRestController {
 

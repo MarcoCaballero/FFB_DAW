@@ -1,4 +1,4 @@
-package com.fbbet.fase3.api;
+package com.ffbet.fase3.api;
 
 import java.util.Collection;
 
@@ -19,7 +19,6 @@ public class AdminTeamRestController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Collection<SportTeam> getTeams(){
-		System.out.println("Paso por aquí");
 		return service.findAllSportsTeams();
 	}
 	

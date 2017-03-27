@@ -19,18 +19,21 @@ public class RestSecurityConfigurations extends WebSecurityConfigurerAdapter{
 	
 	protected void configure(HttpSecurity http) throws Exception{
 		
-		http.antMatcher("/api/***");
+		http.antMatcher("/api/**");
 		
 		//URLs que necesitan autenticación para acceder a ellas
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/teams/***").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/teams/***").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/teams/***").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("ADMIN");
 		
 		// Otras URLs a las que se puede acceder sin identificarse
 		http.authorizeRequests().anyRequest().permitAll();
 		
 		// Disable CSRF protection
 		http.csrf().disable();
+		
+		// Use Http Basic Authentication
+		//http.httpBasic();
 		
 		http.logout().logoutSuccessHandler((rq, rs, a) -> {	});
 	}
