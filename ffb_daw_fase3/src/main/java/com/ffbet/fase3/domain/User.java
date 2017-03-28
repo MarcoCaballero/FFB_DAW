@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * Entity object class {@link User} defines a object to manage the web users.
  * 
@@ -25,12 +27,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Entity
 public class User {
+	
+	public interface Basico{}
+	
 	/* COLUMNS */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id;
 
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String name;
 
@@ -43,6 +49,7 @@ public class User {
 	@Column(nullable = false)
 	private String dni;
 
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String email;
 
@@ -65,7 +72,7 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<BetTicket> bet_tickets = new ArrayList<>();
-
+	
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
 
@@ -75,6 +82,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<CreditCard> cards = new ArrayList<>();
 
+	@JsonView(Basico.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
