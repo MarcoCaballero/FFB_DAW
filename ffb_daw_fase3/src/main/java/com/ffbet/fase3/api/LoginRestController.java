@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
 
@@ -21,6 +22,7 @@ public class LoginRestController {
 	@Autowired
 	private UserAuthComponent userComponent;
 
+	@JsonView(User.Basico.class)
 	@RequestMapping("/api/logIn")
 	public ResponseEntity<User> logIn() {
 

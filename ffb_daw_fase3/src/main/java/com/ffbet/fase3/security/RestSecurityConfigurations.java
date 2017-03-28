@@ -33,7 +33,7 @@ public class RestSecurityConfigurations extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		
 		// Use Http Basic Authentication
-		//http.httpBasic();
+		http.httpBasic();
 		
 		http.logout().logoutSuccessHandler((rq, rs, a) -> {	});
 	}
