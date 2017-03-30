@@ -7,35 +7,52 @@ import org.springframework.stereotype.Service;
 
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.UserRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	UserRepository userRepo;
-	
-	public List<User> findAll(){
+	@Autowired
+	UserAuthComponent userComp;
+
+	/* USER REPOSITORY METHODS */
+
+	public List<User> findAll() {
 		return userRepo.findAll();
 	}
-	
-	public User findOne(long id){
+
+	public User findOne(long id) {
 		return userRepo.findOne(id);
 	}
-	
-	public User findByName(String name){
+
+	public User findByName(String name) {
 		return userRepo.findByName(name);
 	}
-	
-	public User findByEmail(String email){
+
+	public User findByEmail(String email) {
 		return userRepo.findByEmail(email);
 	}
-	
-	public void save(User user){
+
+	public void save(User user) {
 		userRepo.save(user);
 	}
-	
-	public void delete(long id){
+
+	public void delete(long id) {
 		userRepo.delete(id);
+	}
+
+	/* USER LOGGED METHODS */
+
+	public User handleUserLoggedFromComponent() {
+
+		User userLogged = null;
+		if (userComp.isLoggedUser()) {
+			userLogged = findByEmail(userComp.getLoggedUser().getEmail());
+			save(userLogged);
+		}
+		return userLogged;
 	}
 
 }
