@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +44,7 @@ public class AdminTeamRestController {
 	}
 	
 	//añadir equipos
-	@RequestMapping(value = "/newSportTeam", method = RequestMethod.POST)
+	@PostMapping("/newSportTeam")
 	@ResponseStatus(HttpStatus.CREATED)
 	public SportTeam newSportTeam(@RequestBody SportTeam sportTeam){
 		
@@ -50,7 +53,7 @@ public class AdminTeamRestController {
 		return sportTeam;
 	}
 	
-	@RequestMapping(value = "/newEgamesTeam", method = RequestMethod.POST)
+	@PostMapping("/newEgamesTeam")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EgamesTeam newEgamesTeam(@RequestBody EgamesTeam egamesTeam){
 		
@@ -60,7 +63,7 @@ public class AdminTeamRestController {
 	}
 	
 	// actuaizar equipos ¿por id o por nombre?
-	@RequestMapping(value = "/updateSportTeam/{id}", method = RequestMethod.PUT)
+	@PutMapping("/updateSportTeam/{id}")
 	public ResponseEntity<SportTeam> updateSportTeam(@PathVariable long id, @RequestBody SportTeam updatedTeam){
 		
 		SportTeam team = teamService.findOneSportTeam(id);
@@ -76,7 +79,7 @@ public class AdminTeamRestController {
 		
 	}
 	
-	@RequestMapping(value = "/updateEgamesTeam/{name}", method = RequestMethod.PUT)
+	@PutMapping("/updateEgamesTeam/{name}")
 	public ResponseEntity<EgamesTeam> updateEgamesTeam(@PathVariable String name, @RequestBody EgamesTeam updatedTeam){
 		
 		EgamesTeam team = teamService.findByNameEgames(name);
@@ -93,7 +96,7 @@ public class AdminTeamRestController {
 	}
 	
 	// borrar equipos
-	@RequestMapping(value = "/deleteTeam/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping("/deleteTeam/{id}")
 	public ResponseEntity<Team> deleteTeam(@PathVariable long id){
 		
 		Team team = teamService.findOneTeam(id);
