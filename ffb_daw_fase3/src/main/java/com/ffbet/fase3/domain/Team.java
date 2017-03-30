@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Abstract parent class {@link Team}
  * Defines an abstract class that could be used by any child who extends it,
@@ -43,6 +45,7 @@ public abstract class Team {
 	
 	protected String city;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="teams")
 	protected List<Match> matches = new ArrayList<>();
 	
