@@ -22,6 +22,7 @@ import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
 import com.ffbet.fase3.services.PromoService;
 import com.ffbet.fase3.services.UserService;
@@ -41,7 +42,9 @@ public class UserSportsBetController extends RedirectController {
 	@Autowired
 	private MatchService matchService;
 	@Autowired
-	private  PromoService promoService;
+	private PromoService promoService;
+	@Autowired
+	private BetTicketService btService;
 
 	BetTicket ticket_erasable = null;
 
@@ -60,11 +63,14 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet", "/user-sportsBet/" })
 	public String getTemplate(HttpServletRequest request, Model model, HttpSession session,
 			HttpServletResponse response) {
-		showsUserMenu = false;
-		if (userComp.isLoggedUser()) {
+
+		// Handle user if logged else returns null
+
+		User updatedUser;
+		if ((updatedUser = userService.handleUserLoggedFromComponent()) == null) {
+			showsUserMenu = false;
+		} else {
 			showsUserMenu = true;
-			User updatedUser = userService.findByEmail(userComp.getLoggedUser().getEmail());
-			userService.save(updatedUser);
 			model.addAttribute("user", updatedUser);
 		}
 
@@ -92,38 +98,11 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet/addMatch/{id}/{quota}", "/user-sportsBet/addMatch/{id}/{quota}/" })
 	public String addMatchToTicket(HttpServletRequest request, Model model, @PathVariable("id") String idPre,
 			@PathVariable String quota) {
-		boolean matchBetYet = false;
 
 		try {
 			long id = Long.parseLong(idPre);
 
-			SportsMatch match = matchService.findOneSports(id);
-			if (ticket_erasable == null) {
-				ticket_erasable = new BetTicket();
-			}
-			for (BetSportMatch b : ticket_erasable.getBetMatches_list()) {
-				if (b.getMatch().getId() == id) {
-					matchBetYet = true;
-				}
-			}
-			if (!matchBetYet) {
-				boolean isLocalSelected = false;
-				boolean isVisitingSelected = false;
-				switch (quota) {
-				case "1":
-					isLocalSelected = true;
-					break;
-				case "2":
-					isVisitingSelected = true;
-					break;
-
-				}
-				BetSportMatch betMatch = new BetSportMatch(match, isLocalSelected,
-						!isLocalSelected && !isVisitingSelected, isVisitingSelected);
-				ticket_erasable.addMatchTeam(betMatch);
-				ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
-
-			}
+			ticket_erasable = btService.addMatchToErasableTicket(ticket_erasable, id, quota, updatedMultiplicator());
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -137,7 +116,8 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet/refreshQuota/{prize}", "/user-sportsBet/refreshQuota/{prize}" })
 	public String refreshQuota(HttpServletRequest request, Model model, @PathVariable int prize) {
 
-		switchMultiplicator(prize);
+		btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour, selectedFive,
+				btService.switchMultiplicator(prize));
 		if (ticket_erasable != null) {
 			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
 		}
@@ -162,13 +142,12 @@ public class UserSportsBetController extends RedirectController {
 						ticket_erasable.applyPromo(promoToapply);
 						showsPromoError = true;
 						return redirect;
-							
+
 					}
 				}
 
 			}
-			
-			
+
 			double amountToPay = ticket_erasable.getAmount();
 			double promoQuantityDouble = Double.valueOf(promoQuantity);
 			if (promoQuantityDouble > amountToPay) {
