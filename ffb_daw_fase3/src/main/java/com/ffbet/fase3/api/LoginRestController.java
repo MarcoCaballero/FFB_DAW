@@ -27,7 +27,6 @@ public class LoginRestController {
 	public ResponseEntity<User> logIn() {
 
 		if (!userComponent.isLoggedUser()) {
-			System.out.println(userComponent);
 			log.info("Not user logged");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		} else {
@@ -38,7 +37,7 @@ public class LoginRestController {
 	}
 
 	@RequestMapping("/api/logOut")
-	public ResponseEntity<Boolean> logOut(HttpSession session) {
+	public ResponseEntity<Boolean> logOut(HttpSession session){
 
 		if (!userComponent.isLoggedUser()) {
 			log.info("No user logged");
