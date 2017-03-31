@@ -63,7 +63,7 @@ public class UserService {
 		User userLogged = null;
 		if (userComp.isLoggedUser()) {
 			userLogged = findByEmail(userComp.getLoggedUser().getEmail());
-			save(userLogged);
+			updateUser(userLogged);
 		}
 		return userLogged;
 	}

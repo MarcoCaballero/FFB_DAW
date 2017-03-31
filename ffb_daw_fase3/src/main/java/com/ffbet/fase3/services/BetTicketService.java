@@ -8,17 +8,25 @@ import org.springframework.stereotype.Service;
 
 import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
+import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.SportsMatch;
+import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.BetTicketRepository;
+import com.ffbet.fase3.security.UserAuthComponent;
 
 @Service
 public class BetTicketService {
 
 	@Autowired
 	BetTicketRepository betTicketRepo;
-
+	@Autowired
+	UserAuthComponent userComp;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private MatchService matchService;
+	@Autowired
+	private PromoService promoService;
 
 	/* BET TICKET REPOSITORY METHODS */
 
@@ -34,29 +42,107 @@ public class BetTicketService {
 		return betTicketRepo.findByFinished();
 	}
 
-	/* LOCAL BETTICKET METHODS */
+	/* local betticket methods */
 
 	public BetTicket prepareErasableTicket(BetTicket bt) {
 		if (bt == null) {
 			bt = new BetTicket();
+			bt.setAmount(1.0);
 		}
 		return bt;
 	}
 
-	public BetTicket addMatchToErasableTicket(BetTicket bt, long id, String quota, int multiplicator) {
+	public BetTicket addMatchToErasableTicket(BetTicket bt, long id, String quota) {
 
 		SportsMatch match = matchService.findOneSports(id);
-		bt=prepareErasableTicket(bt);
+		bt = prepareErasableTicket(bt);
 
 		if (!existsMatchYet(bt, id)) {
 			BetSportMatch betMatch = new BetSportMatch(match, isLocalSelected(quota),
 					!isLocalSelected(quota) && !isVisitingSelected(quota), isVisitingSelected(quota));
 			bt.addMatchTeam(betMatch);
-			bt.setPotentialGain(bt.calculatePotentialGain(multiplicator));
+			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
 			return bt;
 		}
 
 		return null;
+	}
+
+	public BetTicket removeMatchFromErasableTicket(BetTicket bt, long id) {
+		bt.getBetMatches_list().remove(bt.getBetMatches_list().get((int) id));
+		matchService.delete(id);
+		return bt;
+	}
+
+	/*
+	 * Codigos de error: 0 = OKEY ; 1 = PROMO_NOT_FOUND ; 2 = PROMO_USED ; 3 =
+	 * PAY_ERROR
+	 */
+	public int sendBet(BetTicket bt, User user, String code, double promoquantity) {
+
+		if (!verifyPromotionalCode(code))
+			return 1;
+
+		if (!verifyUserPromotionUsage(user, code))
+			return 2;
+
+		Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
+		bt.applyPromo(promoToapply);
+
+		if (!payServices(user, bt.getAmount(), promoquantity))
+			return 3;
+
+		user.addBet(bt);
+		userService.updateUser(user);
+
+		return 0;
+	}
+
+	/* Auxiliar bet methods */
+
+	public boolean payServices(User user, Double amountToPay, Double promoQuantity) {
+
+		Double amountReal = amountToPay;
+		Double amountPromotionalPaid = promotionPayment(user, amountToPay, promoQuantity);
+		amountReal -= amountPromotionalPaid;
+
+		if (!user.payFromCredit(amountReal)) {
+			user.addPromotionCredit(amountPromotionalPaid);
+			userService.updateUser(user);
+			return false;
+		}
+
+		return true;
+	}
+
+	public Double promotionPayment(User user, Double amountToPay, Double promoQuantity) {
+		if (promoQuantity > amountToPay)
+			promoQuantity = amountToPay;
+		if (!user.payFromPromotionCredit(amountToPay))
+			return 0.0;
+
+		return amountToPay;
+	}
+
+	public boolean verifyUserPromotionUsage(User user, String code) {
+		if(!promoService.findByPromotionCode(code).isEmpty()){
+			if (user.addUsedPromo(promoService.findByPromotionCode(code).get(0))) {
+				userService.updateUser(user);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public boolean verifyPromotionalCode(String code) {
+
+		if (!code.equals("")) {
+
+			if (promoService.findByPromotionCode(code).isEmpty())
+				return false;
+		}
+		return true;
 	}
 
 	public boolean existsMatchYet(BetTicket bt, long id) {
@@ -123,16 +209,42 @@ public class BetTicketService {
 			break;
 
 		}
+
 		return selected;
 	}
 
-	public void setSelectedMultiplicator(boolean bOne, boolean bTwo, boolean bThree, boolean bFour, boolean bFive,
-			Boolean[] selected) {
-		bOne = selected[0];
-		bTwo = selected[1];
-		bThree = selected[2];
-		bFour = selected[3];
-		bFive = selected[4];
+	public BetTicket setSelectedMultiplicator(boolean bOne, boolean bTwo, boolean bThree, boolean bFour, boolean bFive,
+			Boolean[] selected, BetTicket bt) {
+		int index = 0;
+
+		for (int i = 0; i < selected.length; i++) {
+			if (selected[i]) {
+				index = i;
+			}
+		}
+		bt.setAmount((double) getMoneyFromBoolean(index));
+		return bt;
+	}
+
+	public int getMoneyFromBoolean(int i) {
+
+		switch (i) {
+		case 1:
+
+			return 5;
+		case 2:
+
+			return 10;
+		case 3:
+
+			return 25;
+		case 4:
+
+			return 50;
+
+		default:
+			return 1;
+		}
 
 	}
 
