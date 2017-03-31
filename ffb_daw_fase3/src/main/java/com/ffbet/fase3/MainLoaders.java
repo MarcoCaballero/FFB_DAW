@@ -88,13 +88,13 @@ public class MainLoaders {
 
 		/*------------LOL - TEAM------------*/
 
-		EgamesTeam egamesTeam1 = new EgamesTeam("LOL", "GRIETA", "SKT T1", "KKOMA", "KOREA", "SEÚL");
-		EgamesTeam egamesTeam2 = new EgamesTeam("LOL", "SAMSUNG", "ROX", "SHIN-HYUK", "KOREA", "SEÚL");
-		EgamesTeam egamesTeam3 = new EgamesTeam("LOL", "FAIRY", "CLOUD9", "BOK HAN-GYU", "EEUU", "SEÚL");
-		EgamesTeam egamesTeam4 = new EgamesTeam("LOL", "GRIETA", "ORIGEN", "JOSÉ LUIS", "ESPAÑA", "MURCIA");
-		EgamesTeam egamesTeam5 = new EgamesTeam("LOL", "FAIRY", "CLOUD9", "JOHN PEARL", "EEUU", "L.A.");
-		EgamesTeam egamesTeam6 = new EgamesTeam("LOL", "AGUILA", "FANATIC", "KKOMA", "THAY", "SEÚL");
-		EgamesTeam egamesTeam7 = new EgamesTeam("LOL", "HALCON", "TSM", "SAMUEL L. JACKSON", "EEUU", "L.A.");
+		EgamesTeam egamesTeam1 = new EgamesTeam("KKOMA", "GRIETA", "SKT T1", "LOL", "KOREA", "SEÚL");
+		EgamesTeam egamesTeam2 = new EgamesTeam("SHIN-HYUK", "SAMSUNG", "ROX", "LOL", "KOREA", "SEÚL");
+		EgamesTeam egamesTeam3 = new EgamesTeam("BOK HAN-GYU", "FAIRY", "CLOUD9", "LOL", "EEUU", "SEÚL");
+		EgamesTeam egamesTeam4 = new EgamesTeam("JOSÉ LUIS", "GRIETA", "ORIGEN", "LOL", "ESPAÑA", "MURCIA");
+		EgamesTeam egamesTeam5 = new EgamesTeam("JOHN PEARL", "FAIRY", "CLOUD9", "LOL", "EEUU", "L.A.");
+		EgamesTeam egamesTeam6 = new EgamesTeam("KKOMA", "AGUILA", "FANATIC", "LOL", "THAY", "SEÚL");
+		EgamesTeam egamesTeam7 = new EgamesTeam("SAMUEL L. JACKSON", "HALCON", "TSM", "LOL", "EEUU", "L.A.");
 
 		egamesteamrepository.save(egamesTeam1);
 		egamesteamrepository.save(egamesTeam2);
