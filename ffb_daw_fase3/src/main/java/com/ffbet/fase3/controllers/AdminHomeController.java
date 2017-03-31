@@ -79,11 +79,11 @@ public class AdminHomeController extends RedirectController {
 		
 		model.addAttribute("Users", userService.findAll());
 		model.addAttribute("totalUSer", userService.findAll().size());
-		model.addAttribute("totalTeams", teamService.findAllSportsTeams().size() + teamService.findAllEgamesTeams().size());
+		model.addAttribute("totalTeams", teamService.findAllTeams().size());
 		model.addAttribute("totalBets", betTicketService.findAll().size());
 		model.addAttribute("totalMoney", totalMoney);
 		model.addAttribute("totalPromotions", promoService.findAll().size());
-		model.addAttribute("totalMatches", matchService.findAllSports().size() + matchService.findAllEgames().size());
+		model.addAttribute("totalMatches", matchService.findAllMatches().size());
 
 		// Checks the URLs with "/*" pattern
 		// Delete the last bar if the requested URL is like "/*/"
@@ -106,9 +106,9 @@ public class AdminHomeController extends RedirectController {
 
 		if (user.getRoles().size() > 1) {
 			user.setRoles("ROLE_USER");
+			
+			userService.updateUser(user);
 		}
-
-		userService.save(user);
 		
 		return "redirect:/admin/";
 	}
@@ -117,12 +117,12 @@ public class AdminHomeController extends RedirectController {
 	public String upgradeUser(@PathVariable Long id) {
 
 		User user = userService.findOne(id);
+		
 		if (user.getRoles().size() < 2) {
-			user.addRole("ROLE_ADMIN");
+			user.setRoles("ROLE_USER","ROLE_ADMIN");
+			
+			userService.updateUser(user);
 		}
-	
-
-		userService.save(user);
 
 		return "redirect:/admin/";
 	}
