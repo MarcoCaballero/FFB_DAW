@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**
@@ -306,6 +307,7 @@ public class User {
 	/**
 	 * @param roles
 	 */
+	@JsonIgnore
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
