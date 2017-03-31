@@ -273,7 +273,7 @@ public class UserAccountController extends RedirectController {
 							showsCardError = true;
 							return "redirect:/user-account/addCredit";
 						}
-						userService.save(user);
+						userService.updateUser(user);
 					} else {
 						showsCardError = true;
 						return "redirect:/user-account/addCredit";
@@ -293,7 +293,7 @@ public class UserAccountController extends RedirectController {
 					showsCardError = true;
 				}
 
-				userService.save(user);
+				userService.updateUser(user);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -316,7 +316,7 @@ public class UserAccountController extends RedirectController {
 				for (CreditCard card : user.getCards()) {
 					if (card.getCardNumber().equals(cardNumber)) {
 						user.addCreditToCard(card.getId(), amountD);
-						userService.save(user);
+						userService.updateUser(user);
 					}
 				}
 			}
@@ -376,7 +376,7 @@ public class UserAccountController extends RedirectController {
 			}
 		}
 
-		userService.save(updateduser);
+		userService.updateUser(updateduser);
 		return redirectToAccount + "#tab2sub";
 
 	}
@@ -387,7 +387,7 @@ public class UserAccountController extends RedirectController {
 		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
 		BetTicket ticketTocheck = betTicketService.findOne(id);
 		updateduser.getBet_tickets().remove(ticketTocheck);
-		userService.save(updateduser);
+		userService.updateUser(updateduser);
 		return redirectToAccount;
 
 	}
