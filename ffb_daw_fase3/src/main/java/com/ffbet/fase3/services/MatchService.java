@@ -38,6 +38,10 @@ public class MatchService {
 	}
 	
 	// findOne
+	public Match findOne(long id){
+		return matchRepo.findOne(id);
+	}
+	
 	public SportsMatch findOneSports(long id){
 		return sportsRepo.findOne(id);
 	}

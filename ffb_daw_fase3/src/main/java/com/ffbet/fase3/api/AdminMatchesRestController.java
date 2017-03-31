@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,26 +31,26 @@ public class AdminMatchesRestController {
 	private MatchService service;
 	
 	/* GET ALL MATCHES */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping
 	public Collection<Match> getMatches() {
 		return service.findAllMatches();
 	}
 	
 	
 	/* GET ALL SPORTS MATCH*/
-	@RequestMapping(value = "/sports", method = RequestMethod.GET)
+	@GetMapping("/sports")
 	public Collection<SportsMatch> getMatchesSports() {
 		return service.findAllSports();
 	}
 	
 	/* GET ALL EGAMES MATCH*/
-	@RequestMapping(value = "/egames", method = RequestMethod.GET)
+	@GetMapping("/egames")
 	public Collection<EgamesMatch> getMatchesEgames() {
 		return service.findAllEgames();
 	}
 	
 	/* GET SPORTS MATCH FIND BY Id*/
-	@RequestMapping(value = "/sports/{id}", method = RequestMethod.GET)
+	@GetMapping("/sports/{id}")
 	public ResponseEntity<SportsMatch> getSportMatch(@PathVariable long id) {
 
 		SportsMatch match = service.findOneSports(id);
@@ -59,7 +62,7 @@ public class AdminMatchesRestController {
 	}
 	
 	/* GET EGAMES MATCH FIND BY Id*/
-	@RequestMapping(value = "/egames/{id}", method = RequestMethod.GET)
+	@GetMapping("/egames/{id}")
 	public ResponseEntity<EgamesMatch> getEgamesMatch(@PathVariable long id) {
 		
 		EgamesMatch match = service.findOneEgames(id);
@@ -71,26 +74,11 @@ public class AdminMatchesRestController {
 	}
 	
 	/* DELETE EGAMES MATCH FIND BY Id*/
-	@RequestMapping(value = "/delete/egames/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<EgamesMatch> deleteEgameMatch(@PathVariable long id) {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Match> deleteMatch(@PathVariable long id) {
 
 		
-		EgamesMatch match = service.findOneEgames(id);
-		service.delete(id);
-		
-		if (match != null){
-			return new ResponseEntity<>(match, HttpStatus.OK);
-		}else{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-	
-	/* DELETE SPORTS MATCH FIND BY Id*/
-	@RequestMapping(value = "/delete/sports/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<SportsMatch> deleteSportMatch(@PathVariable long id) {
-		
-		
-		SportsMatch match = service.findOneSports(id);
+		Match match = service.findOne(id);
 		service.delete(id);
 		
 		if (match != null){
@@ -101,7 +89,7 @@ public class AdminMatchesRestController {
 	}
 	
 	/* PUT EGAMES MATCH FIND BY Id*/
-	@RequestMapping(value =  "/update/egames/{id}", method = RequestMethod.PUT)
+	@PutMapping("/egames/{id}")
 	public ResponseEntity<EgamesMatch> updateEgamesMatchByID(HttpServletRequest request, 
 			 @PathVariable long id, @RequestBody EgamesMatch updateEgamesMatch) {
 			
@@ -118,7 +106,7 @@ public class AdminMatchesRestController {
 	}
 	
 	/* PUT SPORT MATCH FIND BY Id*/
-	@RequestMapping(value =  "/update/sports/{id}", method = RequestMethod.PUT)
+	@PutMapping("/sports/{id}")
 	public ResponseEntity<SportsMatch> updateSportMatchByID(HttpServletRequest request, 
 			 @PathVariable long id, @RequestBody SportsMatch updateSportsMatch) {
 			
@@ -135,7 +123,7 @@ public class AdminMatchesRestController {
 	}
 	
 	/* POST A NEW SPORT MATCH*/
-	@RequestMapping(value = "/new/sports", method = RequestMethod.POST)
+	@PostMapping("/sports")
 	@ResponseStatus(HttpStatus.CREATED)
 	public SportsMatch createSportMatch(@RequestBody SportsMatch match) {
 
@@ -145,7 +133,7 @@ public class AdminMatchesRestController {
 	}
 	
 	/* POST A NEW EGAMES MATCH*/
-	@RequestMapping(value = "/new/egames", method = RequestMethod.POST)
+	@PostMapping("/egames")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EgamesMatch createEgamesMatch(@RequestBody EgamesMatch match) {
 

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,7 +23,7 @@ public class LoginRestController {
 	private UserAuthComponent userComponent;
 
 	@JsonView(User.Basico.class)
-	@RequestMapping("/api/logIn")
+	@GetMapping("/api/logIn")
 	public ResponseEntity<User> logIn() {
 
 		if (!userComponent.isLoggedUser()) {
@@ -36,7 +36,7 @@ public class LoginRestController {
 		}
 	}
 
-	@RequestMapping("/api/logOut")
+	@GetMapping("/api/logOut")
 	public ResponseEntity<Boolean> logOut(HttpSession session){
 
 		if (!userComponent.isLoggedUser()) {
