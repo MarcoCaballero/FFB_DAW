@@ -174,7 +174,7 @@ public class UserAccountController extends RedirectController {
 			if (!cityPre.isEmpty())
 				user.setCity(cityPre);
 
-			userService.save(user);
+			userService.updateUser(user);
 		} else {
 			showsPasswdError = true;
 		}
