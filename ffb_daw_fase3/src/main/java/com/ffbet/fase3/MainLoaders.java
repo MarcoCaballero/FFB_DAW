@@ -8,11 +8,13 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.EgamesTeam;
 import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.SportTeam;
 import com.ffbet.fase3.domain.SportsMatch;
+import com.ffbet.fase3.repositories.CreditCardRepository;
 import com.ffbet.fase3.repositories.EgamesTeamRepository;
 import com.ffbet.fase3.repositories.Egames_match_repository;
 import com.ffbet.fase3.repositories.PromotionRepository;
@@ -32,6 +34,9 @@ public class MainLoaders {
 	Sports_match_repository sportsmatchrepository;
 	@Autowired
 	PromotionRepository promoRepository;
+	@Autowired
+	CreditCardRepository creditCardRepository;
+
 
 	@PostConstruct
 	private void initDatabase() {
@@ -231,6 +236,9 @@ public class MainLoaders {
 		// promoRepository.save(new Promotion("BONODESCUENTO", "ESTÁS DE
 		// SUERTE", "Apuesta ya usando esta promoción que te dará 20%",
 		// "ryui57yghrjdks", 20,"photo_promo3.jpg"));
+		
+		/* CREDIT CARD */
+		creditCardRepository.save(new CreditCard("MasterCard","Pepe","1234",11,12,002,23.33));
 	}
 
 }
