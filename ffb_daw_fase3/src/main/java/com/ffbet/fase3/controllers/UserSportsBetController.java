@@ -35,7 +35,6 @@ public class UserSportsBetController extends RedirectController {
 
 	@Autowired
 	UserAuthComponent userComp;
-
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -51,7 +50,7 @@ public class UserSportsBetController extends RedirectController {
 	private boolean showsPromoError = false;
 	private boolean showsMoneyError = false;
 
-	private boolean selectedOne = false;
+	private boolean selectedOne = true;
 	private boolean selectedTwo = false;
 	private boolean selectedThree = false;
 	private boolean selectedFour = false;
@@ -100,9 +99,9 @@ public class UserSportsBetController extends RedirectController {
 
 		try {
 			long id = Long.parseLong(idPre);
-
-			ticket_erasable = btService.addMatchToErasableTicket(ticket_erasable, id, quota, updatedMultiplicator());
-
+			ticket_erasable = btService.addMatchToErasableTicket(ticket_erasable, id, quota);
+			updateAmount((int) ticket_erasable.getAmount());
+			ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount());
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -114,11 +113,11 @@ public class UserSportsBetController extends RedirectController {
 
 	@GetMapping(value = { "/user-sportsBet/refreshQuota/{prize}", "/user-sportsBet/refreshQuota/{prize}" })
 	public String refreshQuota(HttpServletRequest request, Model model, @PathVariable int prize) {
-
-		btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour, selectedFive,
-				btService.switchMultiplicator(prize));
+		Boolean[] arrayBoolean = updateAmount(prize);
+		ticket_erasable = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
+				selectedFive, arrayBoolean, ticket_erasable);
 		if (ticket_erasable != null) {
-			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
+			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount()));
 		}
 
 		return redirect;
@@ -129,48 +128,29 @@ public class UserSportsBetController extends RedirectController {
 	public String sendSportBet(HttpServletRequest request, Model model, @RequestParam("code") String code,
 			@RequestParam("promoQuantity") int promoQuantity) {
 
-		if (userComp.isLoggedUser()) {
-			User updatedUser = userService.findByEmail(userComp.getLoggedUser().getEmail());
-			ticket_erasable.setAmount(updatedMultiplicator());
-			if (!code.equals("")) {
+		User updatedUser = userService.handleUserLoggedFromComponent();
+		if (updatedUser != null) {
+			// ticket_erasable=btService.sendBet(ticket_erasable, updatedUser,
+			// code, promoQuantity);
+
+			switch (btService.sendBet(ticket_erasable, updatedUser, code, promoQuantity)) {
+			case 1:
 				showsPromoError = true;
-				if (!promoService.findByPromotionCode(code).isEmpty()) {
-					Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
-					showsPromoError = false;
-					if (!updatedUser.addUsedPromo(promoToapply)) {
-						ticket_erasable.applyPromo(promoToapply);
-						showsPromoError = true;
-						return redirect;
+				break;
+			case 2:
+				showsPromoError = true;
+				break;
 
-					}
-				}
-
-			}
-
-			double amountToPay = ticket_erasable.getAmount();
-			double promoQuantityDouble = Double.valueOf(promoQuantity);
-			if (promoQuantityDouble > amountToPay) {
-				promoQuantityDouble = amountToPay;
-			}
-			showsMoneyError = false;
-			if (updatedUser.payFromPromotionCredit(promoQuantityDouble)) {
-				amountToPay -= promoQuantityDouble;
-
-			} else {
+			case 3:
 				showsMoneyError = true;
-				return redirect;
-			}
+				break;
 
-			if (!updatedUser.payFromCredit(amountToPay)) {
-				// no credit error
-				updatedUser.addPromotionCredit(promoQuantityDouble);
-				showsMoneyError = true;
-				return redirect;
+			default:
+				showsPromoError = false;
+				showsMoneyError = false;
+				ticket_erasable = null;
+				break;
 			}
-			// betTicketRepo.save(ticket_erasable);
-			updatedUser.addBet(ticket_erasable);
-			userService.save(updatedUser);
-			ticket_erasable = null;
 
 		} else {
 			return "redirect:/login/";
@@ -184,69 +164,20 @@ public class UserSportsBetController extends RedirectController {
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
 		ticket_erasable.getBetMatches_list().remove(ticket_erasable.getBetMatches_list().get((int) id));
-		System.out.println("REMOVED" + id);
-
-		for (BetSportMatch b : ticket_erasable.getBetMatches_list()) {
-			System.out.println("Partido : " + b.getId());
-		}
 
 		return redirect;
 
 	}
 
-	public void switchMultiplicator(int prize) {
-		switch (prize) {
-		case 1:
-			selectedOne = true;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 5:
-			selectedOne = false;
-			selectedTwo = true;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 10:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = true;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 25:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = true;
-			selectedFive = false;
-			break;
-		case 50:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = true;
-			break;
-
-		}
-
-	}
-
-	public int updatedMultiplicator() {
-
-		if (selectedTwo)
-			return 5;
-		if (selectedThree)
-			return 10;
-		if (selectedFour)
-			return 25;
-		if (selectedFive)
-			return 50;
-		return 1;
+	public Boolean[] updateAmount(int prize) {
+		Boolean[] arrayBoolean = btService.switchMultiplicator(prize);
+		selectedOne = arrayBoolean[0];
+		selectedTwo = arrayBoolean[1];
+		selectedThree = arrayBoolean[2];
+		selectedFour = arrayBoolean[3];
+		selectedFive = arrayBoolean[4];
+		ticket_erasable.setAmount((double) prize);
+		return arrayBoolean;
 	}
 
 }
