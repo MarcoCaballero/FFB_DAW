@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.Promotion;
-import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;

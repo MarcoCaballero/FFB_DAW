@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ffbet.fase3.domain.Promotion;
@@ -21,13 +23,13 @@ public class AdminPromotionRestController {
 	private PromoService promoService;
 	
 	// mostrar promociones
-	@RequestMapping(value = "/getPromos", method = RequestMethod.GET)
+	@GetMapping("/")
 	public List<Promotion> findAll(){
 		return promoService.findAll();
 	}
 	
 	// añadir promoción
-	@RequestMapping(value = "/newPromo", method = RequestMethod.PUT)
+	@PostMapping("/")
 	public Promotion newPromotion(Promotion promo){
 		promoService.save(promo);
 		
@@ -35,7 +37,7 @@ public class AdminPromotionRestController {
 	}
 	
 	// eliminar promoción por id
-	@RequestMapping(value = "/deletePromo/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Promotion> deletePromotion(@PathVariable long id){
 		Promotion promo = promoService.findOne(id);
 		

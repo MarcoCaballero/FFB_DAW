@@ -36,6 +36,19 @@ public class UserService {
 	}
 
 	public void save(User user) {
+		if (userComp.isLoggedUser()) {
+			if (userComp.getLoggedUser().getRoles().contains("ROLE_ADMIN"))
+				user.setRoles("ROLE_ADMIN");
+		} else {
+			user.setRoles("ROLE_USER");
+		}
+
+		user.setCredit(0.0);
+		userRepo.save(user);
+
+	}
+	
+	public void updateUser(User user){
 		userRepo.save(user);
 	}
 

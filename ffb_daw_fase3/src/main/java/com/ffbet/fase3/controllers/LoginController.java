@@ -143,11 +143,9 @@ public class LoginController extends RedirectController {
 			if (userComponent.isLoggedUser()) {
 				if (userComponent.getLoggedUser().getRoles().contains("ROLE_ADMIN")) {
 					redirectFromRole = redirectAdminHome;
-					user.setRoles("ROLE_ADMIN");
 				}
 			} else {
 				redirectFromRole = redirectSignup;
-				user.setRoles("ROLE_USER");
 			}
 
 			if (sex.equals("MAN")) {
@@ -156,7 +154,6 @@ public class LoginController extends RedirectController {
 				user.setMen(false);
 			}
 
-			user.setCredit(0.0);
 			userService.save(user);
 		} else {
 			System.out.println("HOLA CONTRASEÑAS DISTINTAS");

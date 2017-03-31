@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,23 +28,33 @@ public class AdminTeamRestController {
 	private TeamService teamService;
 	
 	// mostrar equipos
-	@RequestMapping(value = "/getTeams", method = RequestMethod.GET)
+	@GetMapping("/")
 	public List<Team> getTeams(){
 		return teamService.findAllTeams();
 	}
 	
-	@RequestMapping(value = "/getSportTeams", method = RequestMethod.GET)
+	@GetMapping("/sports")
 	public List<SportTeam> getSportTeams(){
 		return teamService.findAllSportsTeams();
 	}
 	
-	@RequestMapping(value = "/getEgamesTeams", method = RequestMethod.GET)
+	@GetMapping("/egames")
 	public List<EgamesTeam> getEgamesTeams(){
 		return teamService.findAllEgamesTeams();
 	}
 	
+	@GetMapping("/sports/{id}")
+	public ResponseEntity<Team> getSportTeamById(@PathVariable long id){
+		Team team = teamService.findOneSportTeam(id);
+		if(team != null){
+			return new ResponseEntity<>(team, HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	//añadir equipos
-	@PostMapping("/newSportTeam")
+	@PostMapping("/sports")
 	@ResponseStatus(HttpStatus.CREATED)
 	public SportTeam newSportTeam(@RequestBody SportTeam sportTeam){
 		
@@ -53,7 +63,7 @@ public class AdminTeamRestController {
 		return sportTeam;
 	}
 	
-	@PostMapping("/newEgamesTeam")
+	@PostMapping("/egames")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EgamesTeam newEgamesTeam(@RequestBody EgamesTeam egamesTeam){
 		
@@ -63,7 +73,7 @@ public class AdminTeamRestController {
 	}
 	
 	// actuaizar equipos ¿por id o por nombre?
-	@PutMapping("/updateSportTeam/{id}")
+	@PutMapping("/sports/{id}")
 	public ResponseEntity<SportTeam> updateSportTeam(@PathVariable long id, @RequestBody SportTeam updatedTeam){
 		
 		SportTeam team = teamService.findOneSportTeam(id);
@@ -79,10 +89,10 @@ public class AdminTeamRestController {
 		
 	}
 	
-	@PutMapping("/updateEgamesTeam/{name}")
-	public ResponseEntity<EgamesTeam> updateEgamesTeam(@PathVariable String name, @RequestBody EgamesTeam updatedTeam){
+	@PutMapping("/egames/{id}")
+	public ResponseEntity<EgamesTeam> updateEgamesTeam(@PathVariable long id, @RequestBody EgamesTeam updatedTeam){
 		
-		EgamesTeam team = teamService.findByNameEgames(name);
+		EgamesTeam team = teamService.findOneEgamesTeam(id);
 		
 		if(team != null){
 			updatedTeam.setId(team.getId());
@@ -96,7 +106,7 @@ public class AdminTeamRestController {
 	}
 	
 	// borrar equipos
-	@DeleteMapping("/deleteTeam/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Team> deleteTeam(@PathVariable long id){
 		
 		Team team = teamService.findOneTeam(id);
