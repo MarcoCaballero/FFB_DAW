@@ -23,6 +23,8 @@ public class MatchService {
 	Sports_match_repository sportsRepo;
 	@Autowired
 	Egames_match_repository egamesRepo;
+	@Autowired
+	TeamService teamService;
 	
 	// findAll
 	public List<Match> findAllMatches(){
@@ -52,10 +54,31 @@ public class MatchService {
 	
 	// save
 	public void saveSportsMatch(SportsMatch sportsMatch){
+		
+		if(sportsMatch.getType()=="Fútbol"){
+			sportsMatch.setQuotaDraw(quota(sportsMatch.getQuotaDraw()));
+		}
+		
+		sportsMatch.setQuotaHomeVictory(quota(sportsMatch.getQuotaHomeVictory()));
+		sportsMatch.setQuotaVisitingVictory(quota(sportsMatch.getQuotaVisitingVictory()));
+		
+		sportsMatch.getTeams().add(teamService.findByNameSport(sportsMatch.getHomeTeam()));
+		sportsMatch.getTeams().add(teamService.findByNameSport(sportsMatch.getVisitingTeam()));
+		System.out.println(sportsMatch.getQuotaHomeVictory());
+
 		sportsRepo.save(sportsMatch);
 	}
 	
 	public void saveEgamesMatch(EgamesMatch egamesMatch){
+		
+		egamesMatch.setQuotaHomeVictory(quota(egamesMatch.getQuotaHomeVictory()));
+		egamesMatch.setQuotaVisitingVictory(quota(egamesMatch.getQuotaVisitingVictory()));
+		egamesMatch.setQuotaHomeFirstBlood(quota(egamesMatch.getQuotaHomeFirstBlood()));
+		egamesMatch.setQuotaVisitingFirstBlood(quota(egamesMatch.getQuotaVisitingFirstBlood()));
+		
+		egamesMatch.getTeams().add(teamService.findByNameEgames(egamesMatch.getHomeTeam()));
+		egamesMatch.getTeams().add(teamService.findByNameEgames(egamesMatch.getVisitingTeam()));
+		
 		egamesRepo.save(egamesMatch);
 	}
 	
@@ -100,6 +123,15 @@ public class MatchService {
 	// findByFinishedAndTeam
 	public List<SportsMatch> findByFinishedAndTeam(String type, String nameTeam){
 		return matchRepo.findByFinishedAndTeam(type, nameTeam);
+	}
+	
+	public double quota(double quotaRight){
+		
+		double myQuota;
+		
+		myQuota = 1/(quotaRight/100);
+		
+		return myQuota;
 	}
 
 }
