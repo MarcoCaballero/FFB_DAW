@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ffbet.fase3.domain.BetESportMatch;
 import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
+import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.User;
@@ -52,7 +54,7 @@ public class BetTicketService {
 		return bt;
 	}
 
-	public BetTicket addMatchToErasableTicket(BetTicket bt, long id, String quota) {
+	public BetTicket addSportMatchToErasableTicket(BetTicket bt, long id, String quota) {
 
 		SportsMatch match = matchService.findOneSports(id);
 		bt = prepareErasableTicket(bt);
@@ -61,6 +63,22 @@ public class BetTicketService {
 			BetSportMatch betMatch = new BetSportMatch(match, isLocalSelected(quota),
 					!isLocalSelected(quota) && !isVisitingSelected(quota), isVisitingSelected(quota));
 			bt.addMatchTeam(betMatch);
+			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
+			return bt;
+		}
+
+		return null;
+	}
+
+	public BetTicket addEgamesMatchToErasableTicket(BetTicket bt, long id, String quota) {
+
+		EgamesMatch match = matchService.findOneEgames(id);
+		bt = prepareErasableTicket(bt);
+
+		if (!existsMatchYet(bt, id)) {
+			BetESportMatch bm = new BetESportMatch(match, isLocalSelected(quota), isVisitingSelected(quota),
+					isLocalFBSelected(quota), isVisitingFBSelected(quota));
+			bt.addEMatchTeam(bm);
 			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
 			return bt;
 		}
@@ -125,28 +143,35 @@ public class BetTicketService {
 	}
 
 	public boolean verifyUserPromotionUsage(User user, String code) {
-		if(!promoService.findByPromotionCode(code).isEmpty()){
+		if (!promoService.findByPromotionCode(code).isEmpty()) {
 			if (user.addUsedPromo(promoService.findByPromotionCode(code).get(0))) {
 				userService.updateUser(user);
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
 	public boolean verifyPromotionalCode(String code) {
 
-		if (!code.equals("")) {
+		if (code.equals(""))
+			return true;
+		
+		if (promoService.findByPromotionCode(code).isEmpty())
+			return false;
 
-			if (promoService.findByPromotionCode(code).isEmpty())
-				return false;
-		}
 		return true;
 	}
 
 	public boolean existsMatchYet(BetTicket bt, long id) {
 		for (BetSportMatch b : bt.getBetMatches_list()) {
+			if (b.getMatch().getId() == id) {
+				return true;
+			}
+		}
+
+		for (BetESportMatch b : bt.getBetEspMatchesList()) {
 			if (b.getMatch().getId() == id) {
 				return true;
 			}
@@ -163,6 +188,20 @@ public class BetTicketService {
 
 	public boolean isVisitingSelected(String quota) {
 		if (quota.equals("2")) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isLocalFBSelected(String quota) {
+		if (quota.equals("FB1")) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isVisitingFBSelected(String quota) {
+		if (quota.equals("FB2")) {
 			return true;
 		}
 		return false;

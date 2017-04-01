@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
-import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
@@ -99,7 +97,7 @@ public class UserSportsBetController extends RedirectController {
 
 		try {
 			long id = Long.parseLong(idPre);
-			ticket_erasable = btService.addMatchToErasableTicket(ticket_erasable, id, quota);
+			ticket_erasable = btService.addSportMatchToErasableTicket(ticket_erasable, id, quota);
 			updateAmount((int) ticket_erasable.getAmount());
 			ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount());
 		} catch (Exception e) {
@@ -163,7 +161,7 @@ public class UserSportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-sportsBet/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
-		ticket_erasable.getBetMatches_list().remove(ticket_erasable.getBetMatches_list().get((int) id));
+		ticket_erasable = btService.removeMatchFromErasableTicket(ticket_erasable, id);
 
 		return redirect;
 
