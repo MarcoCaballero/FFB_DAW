@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.security.UserAuthComponent;
 import com.ffbet.fase3.services.UserService;
 
 @RestController
@@ -25,15 +24,13 @@ public class UserRestController {
 	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserAuthComponent userComp;
 	
-	@GetMapping("/")
+	@GetMapping
 	public List<User> getUsers(){
 		return userService.findAll();
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public User newUser(@RequestBody User user){
 		userService.save(user);
@@ -41,15 +38,15 @@ public class UserRestController {
 		return user;
 	}
 	
-	@PutMapping("/")
-	public ResponseEntity<User> updateUser(@RequestBody User updatedUser){
-		User user = userComp.getLoggedUser();
+	@PutMapping
+	public ResponseEntity<User> updateUser(){
+		User user = userService.handleUserLoggedFromComponent();
 		
 		if (user != null){
-			updatedUser.setId(user.getId());
-			userService.updateUser(updatedUser);
+			//updatedUser.setId(user.getId());
+			userService.updateUser(user);
 			
-			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
