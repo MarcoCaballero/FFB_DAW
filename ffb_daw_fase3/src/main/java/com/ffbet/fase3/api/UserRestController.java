@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.services.CreditCardService;
 import com.ffbet.fase3.services.UserService;
 
 @RestController
@@ -24,6 +26,8 @@ public class UserRestController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CreditCardService cardService;
 	
 	@GetMapping
 	public List<User> getUsers(){
@@ -61,6 +65,31 @@ public class UserRestController {
 			userService.delete(id);
 			
 			return new ResponseEntity<>(user, HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping("/creditCardPlus/{amount}")
+	public ResponseEntity<CreditCard> moreUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
+		boolean error = false;
+		
+		cardService.saveCreditCard(creditCard, amount, error);
+		
+		if(!error){
+			return new ResponseEntity<>(creditCard, HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@PutMapping("/creditCardLess/{amount}")
+	public ResponseEntity<CreditCard> lessUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
+		CreditCard cd = cardService.getCard(creditCard.getCardNumber());
+		if(cd != null && cd.getCredit() < Double.parseDouble(amount)){
+			cardService.takeCredit(creditCard, amount);
+		
+			return new ResponseEntity<>(creditCard, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
