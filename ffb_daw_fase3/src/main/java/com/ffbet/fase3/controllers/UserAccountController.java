@@ -32,6 +32,7 @@ import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
 import com.ffbet.fase3.services.BetTicketService;
+import com.ffbet.fase3.services.CreditCardService;
 import com.ffbet.fase3.services.MatchService;
 import com.ffbet.fase3.services.TeamService;
 import com.ffbet.fase3.services.UserService;
@@ -51,6 +52,8 @@ public class UserAccountController extends RedirectController {
 	private MatchService matchService;
 	@Autowired
 	private TeamService teamService;
+	@Autowired
+	private CreditCardService cardService;
 	
 	@Autowired
 	UserAuthComponent userComp;
@@ -247,58 +250,18 @@ public class UserAccountController extends RedirectController {
 
 	}
 
-	@PostMapping("/user-account/addCredit/{id}")
-	public String updateUserCredit(Model model, @PathVariable("id") long id, @RequestParam("name") String name,
+	@PostMapping("/user-account/addCredit")
+	public String updateUserCredit(@RequestParam("name") String name,
 			@RequestParam("type") String type, @RequestParam("cardNumber") String cardNumber,
 			@RequestParam("Year") int expirationMonth, @RequestParam("Month") int expirationYear,
 			@RequestParam("ccv") int ccv, @RequestParam("amount") String amount) {
-		User user = userService.findOne(id);
-		boolean exists = false;
-		CreditCard creditcard = null;
-		for (int i = 0; i < user.getCards().size(); i++) {
-			if (user.getCards().get(i).getCardNumber().equals(cardNumber)) {
-				exists = true;
-				creditcard = user.getCards().get(i);
-			}
-		}
-		try {
-			if (exists) {
-				if (creditcard != null) {
-					if (creditcard.equalsData(type, name, cardNumber, expirationMonth, expirationYear, ccv)) {
-						long amountSelected = Long.parseLong(amount);
-						if (creditcard.sendMoney(amountSelected)) {
-							user.addCreditfromCard(amountSelected);
-						} else {
-							// NOT CREDIT
-							showsCardError = true;
-							return "redirect:/user-account/addCredit";
-						}
-						userService.updateUser(user);
-					} else {
-						showsCardError = true;
-						return "redirect:/user-account/addCredit";
-					}
-
-				}
-			} else {
-
-				long amountSelected = Long.parseLong(amount);
-
-				creditcard = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
-				user.addCard(creditcard);
-				if (creditcard.sendMoney(amountSelected)) {
-					user.addCreditfromCard(amountSelected);
-				} else {
-					// NOT CREDIT
-					showsCardError = true;
-				}
-
-				userService.updateUser(user);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			showsCardError = true;
-			e.printStackTrace();
+		
+		CreditCard credit = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
+		
+		//cardService.saveCreditCard(credit, amount, showsCardError);
+		
+		if(cardService.saveCreditCard(credit, amount, showsCardError)){
+			return "redirect:/user-account/addCredit";
 		}
 
 		return redirectToAccount;
@@ -308,24 +271,26 @@ public class UserAccountController extends RedirectController {
 	@PostMapping("/user-account/userDevolveCredit")
 	public String devolveFromFFB(Model model, @RequestParam("amountTo") String amount,
 			@RequestParam("cardNumber") String cardNumber) {
+		
+		cardService.takeCredit(cardService.getCard(cardNumber), amount);
 
-		try {
-			if(!cardNumber.equals("NO")){
-				double amountD = Double.parseDouble(amount);
-				User user = userService.findByEmail(userComp.getLoggedUser().getEmail());
-				for (CreditCard card : user.getCards()) {
-					if (card.getCardNumber().equals(cardNumber)) {
-						user.addCreditToCard(card.getId(), amountD);
-						userService.updateUser(user);
-					}
-				}
-			}
-			
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+//		try {
+//			if(!cardNumber.equals("NO")){
+//				double amountD = Double.parseDouble(amount);
+//				User user = userService.handleUserLoggedFromComponent();
+//				for (CreditCard card : user.getCards()) {
+//					if (card.getCardNumber().equals(cardNumber)) {
+//						user.addCreditToCard(card.getId(), amountD);
+//						userService.updateUser(user);
+//					}
+//				}
+//			}
+//			
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
 
 		return redirectToAccount;
 
