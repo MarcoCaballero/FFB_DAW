@@ -23,6 +23,7 @@ import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
 import com.ffbet.fase3.services.PromoService;
 import com.ffbet.fase3.services.UserService;
@@ -43,13 +44,16 @@ public class UserEsportsBetController extends RedirectController {
 	@Autowired
 	private PromoService promoService;
 
+	@Autowired
+	private BetTicketService btService;
+
 	BetTicket ticket_erasable = null;
 
 	private boolean showsUserMenu = false;
 	private boolean showsPromoError = false;
 	private boolean showsMoneyError = false;
 
-	private boolean selectedOne = false;
+	private boolean selectedOne = true;
 	private boolean selectedTwo = false;
 	private boolean selectedThree = false;
 	private boolean selectedFour = false;
@@ -94,42 +98,9 @@ public class UserEsportsBetController extends RedirectController {
 
 		try {
 			long id = Long.parseLong(idPre);
-
-			EgamesMatch match = matchService.findOneEgames(id);
-			if (ticket_erasable == null) {
-				ticket_erasable = new BetTicket();
-			}
-			for (BetSportMatch b : ticket_erasable.getBetMatches_list()) {
-				if (b.getMatch().getId() == id) {
-					matchBetYet = true;
-				}
-			}
-			if (!matchBetYet) {
-				boolean isLocalSelected = false;
-				boolean isVisitingSelected = false;
-				boolean isFBlocalSelected = false;
-				boolean isFBVisitingSelected = false;
-				switch (quota) {
-				case "1":
-					isLocalSelected = true;
-					break;
-				case "2":
-					isVisitingSelected = true;
-					break;
-				case "FB1":
-					isLocalSelected = true;
-					break;
-				case "FB2":
-					isVisitingSelected = true;
-					break;
-
-				}
-				BetESportMatch bm = new BetESportMatch(match, isLocalSelected, isVisitingSelected, isFBlocalSelected,
-						isFBVisitingSelected);
-				ticket_erasable.addEMatchTeam(bm);
-				ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
-
-			}
+			ticket_erasable = btService.addEgamesMatchToErasableTicket(ticket_erasable, id, quota);
+			updateAmount((int) ticket_erasable.getAmount());
+			ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount());
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -143,9 +114,11 @@ public class UserEsportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-EsportsBet/refreshQuota/{prize}", "/user-EsportsBet/refreshQuota/{prize}" })
 	public String refreshQuota(HttpServletRequest request, Model model, @PathVariable int prize) {
 
-		switchMultiplicator(prize);
+		Boolean[] arrayBoolean = updateAmount(prize);
+		ticket_erasable = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
+				selectedFive, arrayBoolean, ticket_erasable);
 		if (ticket_erasable != null) {
-			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(updatedMultiplicator()));
+			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount()));
 		}
 
 		return redirect;
@@ -156,48 +129,29 @@ public class UserEsportsBetController extends RedirectController {
 	public String sendSportBet(HttpServletRequest request, Model model, @RequestParam("code") String code,
 			@RequestParam("promoQuantity") int promoQuantity) {
 
-		if (userComp.isLoggedUser()) {
-			User updatedUser = userService.findByEmail(userComp.getLoggedUser().getEmail());
-			ticket_erasable.setAmount(updatedMultiplicator());
-			if (!code.equals("")) {
+		User updatedUser = userService.handleUserLoggedFromComponent();
+		if (updatedUser != null) {
+			// ticket_erasable=btService.sendBet(ticket_erasable, updatedUser,
+			// code, promoQuantity);
+
+			switch (btService.sendBet(ticket_erasable, updatedUser, code, promoQuantity)) {
+			case 1:
 				showsPromoError = true;
-				if (!promoService.findByPromotionCode(code).isEmpty()) {
-					Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
-					showsPromoError = false;
-					if (!updatedUser.addUsedPromo(promoToapply)) {
-						ticket_erasable.applyPromo(promoToapply);
-						showsPromoError = true;
+				break;
+			case 2:
+				showsPromoError = true;
+				break;
 
-						return redirect;
-					}
-				}
-
-			}
-
-			double amountToPay = ticket_erasable.getAmount();
-			double promoQuantityDouble = Double.valueOf(promoQuantity);
-			if (promoQuantityDouble > amountToPay) {
-				promoQuantityDouble = amountToPay;
-			}
-			showsMoneyError = false;
-			if (updatedUser.payFromPromotionCredit(promoQuantityDouble)) {
-				amountToPay -= promoQuantityDouble;
-
-			} else {
+			case 3:
 				showsMoneyError = true;
-				return redirect;
-			}
+				break;
 
-			if (!updatedUser.payFromCredit(amountToPay)) {
-				// no credit error
-				updatedUser.addPromotionCredit(promoQuantityDouble);
-				showsMoneyError = true;
-				return redirect;
+			default:
+				showsPromoError = false;
+				showsMoneyError = false;
+				ticket_erasable = null;
+				break;
 			}
-			// betTicketRepo.save(ticket_erasable);
-			updatedUser.addBet(ticket_erasable);
-			userService.save(updatedUser);
-			ticket_erasable = null;
 
 		} else {
 			return "redirect:/login/";
@@ -210,65 +164,21 @@ public class UserEsportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-EsportsBet/removeBetMatch/{id}", "/user-EsportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
 
-		ticket_erasable.getBetEspMatchesList().remove(ticket_erasable.getBetEspMatchesList().get((int) id));
+		ticket_erasable = btService.removeMatchFromErasableTicket(ticket_erasable, id);
 
 		return redirect;
 
 	}
 
-	public void switchMultiplicator(int prize) {
-		switch (prize) {
-		case 1:
-			selectedOne = true;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 5:
-			selectedOne = false;
-			selectedTwo = true;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 10:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = true;
-			selectedFour = false;
-			selectedFive = false;
-			break;
-		case 25:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = true;
-			selectedFive = false;
-			break;
-		case 50:
-			selectedOne = false;
-			selectedTwo = false;
-			selectedThree = false;
-			selectedFour = false;
-			selectedFive = true;
-			break;
-
-		}
-
-	}
-
-	public int updatedMultiplicator() {
-
-		if (selectedTwo)
-			return 5;
-		if (selectedThree)
-			return 10;
-		if (selectedFour)
-			return 25;
-		if (selectedFive)
-			return 50;
-		return 1;
+	public Boolean[] updateAmount(int prize) {
+		Boolean[] arrayBoolean = btService.switchMultiplicator(prize);
+		selectedOne = arrayBoolean[0];
+		selectedTwo = arrayBoolean[1];
+		selectedThree = arrayBoolean[2];
+		selectedFour = arrayBoolean[3];
+		selectedFive = arrayBoolean[4];
+		ticket_erasable.setAmount((double) prize);
+		return arrayBoolean;
 	}
 
 }

@@ -23,49 +23,62 @@ import com.ffbet.fase3.services.UserService;
 @RestController
 @RequestMapping("/api/user")
 public class UserRestController {
-	
+
 	@Autowired
 	private UserService userService;
+  
 	@Autowired
 	private CreditCardService cardService;
-	
+  
 	@GetMapping
-	public List<User> getUsers(){
+	public List<User> getUsers() {
 		return userService.findAll();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User newUser(@RequestBody User user){
+	public User newUser(@RequestBody User user) {
 		userService.save(user);
-		
+
 		return user;
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<User> updateUser(){
+	public ResponseEntity<User> updateUser() {
 		User user = userService.handleUserLoggedFromComponent();
-		
-		if (user != null){
-			//updatedUser.setId(user.getId());
+
+		if (user != null) {
+			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
-			
+
 			return new ResponseEntity<>(user, HttpStatus.OK);
-		}else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable long id){
+	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 		User user = userService.findOne(id);
-		
-		if(user != null){
+
+		if (user != null) {
 			userService.delete(id);
-			
+
 			return new ResponseEntity<>(user, HttpStatus.OK);
-		}else{
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	/* Credit card zone */
+
+	@PutMapping("")
+	public ResponseEntity<String> addCredit() {
+
+		if (true) {
+
+			return new ResponseEntity<>("HOLA", HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
