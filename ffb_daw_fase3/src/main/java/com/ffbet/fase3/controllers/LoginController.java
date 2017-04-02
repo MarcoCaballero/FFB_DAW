@@ -126,10 +126,10 @@ public class LoginController extends RedirectController {
 			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex,
 			@RequestParam("secondSurname") String secondSurname, User user) {
 		String redirectFromRole = redirectSignup;
-		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
+//		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
 
 		if (pass.equals(passRepeat)) {
-			System.out.println("HOLA CONTRASEÑAS IGUALES");
+//			System.out.println("HOLA CONTRASEÑAS IGUALES");
 			isErrorPass = false;
 			user.setPassword(pass);
 
@@ -145,7 +145,7 @@ public class LoginController extends RedirectController {
 					redirectFromRole = redirectAdminHome;
 				}
 			} else {
-				redirectFromRole = redirectSignup;
+				redirectFromRole = redirectLogin;
 			}
 
 			if (sex.equals("MAN")) {
@@ -156,7 +156,7 @@ public class LoginController extends RedirectController {
 
 			userService.save(user);
 		} else {
-			System.out.println("HOLA CONTRASEÑAS DISTINTAS");
+//			System.out.println("HOLA CONTRASEÑAS DISTINTAS");
 			isErrorPass = true;
 			return redirectSignup;
 		}

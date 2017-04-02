@@ -153,7 +153,7 @@ public class UserAccountController extends RedirectController {
 		}
 
 		if (pass.equals(passRepeat)) {
-			System.out.println("HOLA CONTRASEÑAS IGUALES");
+//			System.out.println("HOLA CONTRASEÑAS IGUALES");
 			showsPasswdError = false;
 			user.setPassword(pass);
 			user.setPhotoSelected(!showsPhotoError);
