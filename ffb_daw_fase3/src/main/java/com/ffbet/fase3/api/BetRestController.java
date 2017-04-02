@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ffbet.fase3.domain.BetTicket;
@@ -42,11 +44,11 @@ public class BetRestController {
 	private boolean selectedFive = false;
 
 	/* BetMatch to ticket erasable zone */
-	@PostMapping(value = { "/match?type=sports/{id}/{quota}", "/match?type=egames/{id}/{quota}" })
-	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@PathVariable long id, @PathVariable String quota,
-			HttpServletRequest request) {
+	@PatchMapping("/match")
+	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@RequestParam long id, @RequestParam String quota,
+			@RequestParam String type, HttpServletRequest request) {
 		Match match;
-		if (request.getRequestURI().contains("sports")) {
+		if (type.equals("sports")) {
 			match = matchService.findOneSports(id);
 		} else {
 			match = matchService.findOneEgames(id);
@@ -54,7 +56,7 @@ public class BetRestController {
 
 		if (match != null) {
 
-			if (match.getClass().isInstance(SportsMatch.class)) {
+			if (SportsMatch.class.isInstance(match)) {
 				ticket_erasable_SP = btService.addSportMatchToErasableTicket(ticket_erasable_SP, id, quota);
 
 				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
@@ -92,7 +94,8 @@ public class BetRestController {
 				selectedFive, btService.switchMultiplicator(prize), ticket_erasable_SP);
 
 		if (ticket_erasable_SP != null) {
-			ticket_erasable_SP.setPotentialGain(ticket_erasable_SP.calculatePotentialGain(ticket_erasable_SP.getAmount()));
+			ticket_erasable_SP
+					.setPotentialGain(ticket_erasable_SP.calculatePotentialGain(ticket_erasable_SP.getAmount()));
 			return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -113,14 +116,32 @@ public class BetRestController {
 
 	/* SEND BET ZONE */
 
-	@PostMapping("?code={code}&?promoQuantity={promoQuantity}")
-	public ResponseEntity<BetTicket> sendSportBet(HttpServletRequest request, Model model, @PathVariable String code,
-			@PathVariable int promoQuantity) {
+	@PostMapping
+	public ResponseEntity<BetTicket> sendSportBet(HttpServletRequest request, Model model, @RequestParam String code,
+			@RequestParam int promoQuantity, @RequestParam int amount) {
+		double amountDouble = 1.0;
+		try {
+			amountDouble = (double) amount;
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		if (ticket_erasable_SP != null) {
+			ticket_erasable_SP.setAmount(amountDouble);
+			ticket_erasable_SP.setPotentialGain(ticket_erasable_SP.calculatePotentialGain(ticket_erasable_SP.getAmount()));
 			if (btService.sendBet(ticket_erasable_SP, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
 				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
+			}
+		}
+
+		if (ticket_erasable_EG != null) {
+			ticket_erasable_EG.setAmount(amountDouble);
+			ticket_erasable_EG.setPotentialGain(ticket_erasable_EG.calculatePotentialGain(ticket_erasable_EG.getAmount()));
+			
+			if (btService.sendBet(ticket_erasable_EG, userService.handleUserLoggedFromComponent(), code,
+					promoQuantity) == 0) {
+				return new ResponseEntity<>(ticket_erasable_EG, HttpStatus.OK);
 			}
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);

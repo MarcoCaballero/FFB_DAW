@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Entity object class {@link BetTicket} defines a object to manage the web
  * bets. Includes prefixed {@link Amount}
@@ -99,6 +101,7 @@ public class BetTicket {
 	/**
 	 * @return the matches_list
 	 */
+	@JsonIgnore
 	public List<BetSportMatch> getBetMatches_list() {
 		return betMatchesList;
 	}
@@ -107,6 +110,7 @@ public class BetTicket {
 	 * @param matches_list
 	 *            the matches_list to set
 	 */
+	@JsonIgnore
 	public void setBetMatches_list(List<BetSportMatch> matches_list) {
 		this.betMatchesList = matches_list;
 	}
