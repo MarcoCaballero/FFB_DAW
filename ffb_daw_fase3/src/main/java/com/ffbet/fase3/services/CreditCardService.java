@@ -15,19 +15,14 @@ public class CreditCardService {
 
 	@Autowired
 	UserService userService;
-	
-	public CreditCard getCard(String cardNumber){
-		CreditCard cd;
-		if(creditCardRepo.findByCardNumber(cardNumber) != null){
-			return cd = creditCardRepo.findByCardNumber(cardNumber);
-		}
-		
-		return null;
+
+	public CreditCard getCard(String cardNumber) {
+		return creditCardRepo.findByCardNumber(cardNumber);
 	}
 
 	public CreditCard saveCreditCard(CreditCard credit, String amount) {
 		boolean error = false;
-		
+
 		User user = userService.handleUserLoggedFromComponent();
 
 		boolean exists = false;
@@ -46,7 +41,7 @@ public class CreditCardService {
 					long amountSelected = Long.parseLong(amount);
 					if (creditcard.sendMoney(amountSelected)) {
 						user.addCreditfromCard(amountSelected);
-						
+
 						creditCardRepo.save(creditcard);
 						userService.updateUser(user);
 					} else {
@@ -64,11 +59,11 @@ public class CreditCardService {
 
 			creditcard = new CreditCard(credit.getType(), credit.getName(), credit.getCardNumber(),
 					credit.getExpirationMonth(), credit.getExpirationYear(), credit.getSecurityCode());
-			
+
 			user.addCard(creditcard);
 			if (creditcard.sendMoney(amountSelected)) {
 				user.addCreditfromCard(amountSelected);
-				
+
 				creditCardRepo.save(creditcard);
 				userService.updateUser(user);
 			} else {
@@ -76,15 +71,15 @@ public class CreditCardService {
 				error = true;
 			}
 		}
-		if(error){
+		if (error) {
 			return null;
-		}else{
+		} else {
 			return creditcard;
 		}
 	}
-	
-	public CreditCard takeCredit(CreditCard credit, String amount){
-		if(!credit.getCardNumber().equals("NO")){
+
+	public CreditCard takeCredit(CreditCard credit, String amount) {
+		if (!credit.getCardNumber().equals("NO")) {
 			double amountD = Double.parseDouble(amount);
 			User user = userService.handleUserLoggedFromComponent();
 			for (CreditCard card : user.getCards()) {

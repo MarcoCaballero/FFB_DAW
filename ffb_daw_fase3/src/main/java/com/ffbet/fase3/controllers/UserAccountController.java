@@ -140,7 +140,7 @@ public class UserAccountController extends RedirectController {
 		String filename;
 		User user = userComp.getLoggedUser();
 		if (!imageMultiPartFile.isEmpty()) {
-			filename = handleUploadImagetoDatabase(imageMultiPartFile, user.getId(),
+			filename = userService.handleUploadImagetoDatabase(imageMultiPartFile, user.getId(),
 					FilesPath.FILES_AVATARS.toString());
 			if (filename.equals("ERROR")) {
 				showsPhotoError = true;
