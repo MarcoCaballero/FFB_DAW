@@ -195,12 +195,19 @@ public class MainLoaders {
 
 		EgamesMatch lM1 = new EgamesMatch(Date.valueOf("2017-05-05"), Time.valueOf("22:30:00"), "LOL", egamesTeam1,
 				egamesTeam2, 2.0, 2.0, 10.0, 10.0);
-		lM1.setFinished(true);
+//		lM1.setWinHome(true);
+//		lM1.setFirstBloodVisiting(true);
+//		lM1.setFinished(true);
 		EgamesMatch lM2 = new EgamesMatch(Date.valueOf("2017-01-22"), Time.valueOf("21:15:00"), "LOL", egamesTeam3,
 				egamesTeam2, 2.0, 2.0, 10.0, 10.0);
+		lM2.setWinVisiting(true);
+		lM2.setFirstBloodVisiting(true);
 		lM2.setFinished(true);
-		EgamesMatch lM3 = new EgamesMatch(Date.valueOf("2017-09-18"), Time.valueOf("16:20:00"), "LOL", egamesTeam3,
-				egamesTeam1, 2.0, 2.0, 10.0, 10.0);
+		EgamesMatch lM3 = new EgamesMatch(Date.valueOf("2017-09-18"), Time.valueOf("16:20:00"), "LOL", egamesTeam6,
+				egamesTeam5, 2.0, 2.0, 10.0, 10.0);
+		lM3.setWinHome(true);
+		lM3.setFirstBloodHome(true);
+		lM3.setFinished(true);
 
 		egamesmatchrepository.save(lM1);
 		egamesmatchrepository.save(lM2);
@@ -210,6 +217,8 @@ public class MainLoaders {
 
 		EgamesMatch cM1 = new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "CS-GO", csTeam1,
 				csTeam2, 0.71, 0.71, 4.0, 4.0);
+		cM1.setWinVisiting(true);
+		cM1.setFirstBloodVisiting(true);
 		cM1.setFinished(true);
 		EgamesMatch cM2 = new EgamesMatch(Date.valueOf("2017-03-20"), Time.valueOf("22:00:00"), "CS-GO", csTeam1,
 				csTeam3, 4.0, 4.0, 0.71, 0.71);
