@@ -70,7 +70,8 @@
 
 + LOGIN: página para acceder con un usuario a FFBetAdmin. Compuesta por un formulario donde el usuario debe introducir correo electrónico y contraseña para acceder a su cuenta. Si el usuario no recuerda su contraseña, posee la opción: Olvidaste contraseña.
 
-
+#### Enlace a la documentación de la API
+![API-documentation](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
 
 ### Diagramas de la aplicación:
 #### Diagrama de navegación:
