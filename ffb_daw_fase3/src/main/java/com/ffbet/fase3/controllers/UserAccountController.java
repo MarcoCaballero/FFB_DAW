@@ -43,7 +43,7 @@ import com.ffbet.fase3.services.UserService;
  */
 @Controller
 public class UserAccountController extends RedirectController {
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -54,7 +54,7 @@ public class UserAccountController extends RedirectController {
 	private TeamService teamService;
 	@Autowired
 	private CreditCardService cardService;
-	
+
 	@Autowired
 	UserAuthComponent userComp;
 
@@ -80,8 +80,8 @@ public class UserAccountController extends RedirectController {
 			double amountInBet = 0;
 			double winAmountInBet = 0;
 			for (BetTicket bt : updateduser.getBet_tickets()) {
-				amountInBet+=bt.getAmount();
-				winAmountInBet+=bt.getPotentialGain();
+				amountInBet += bt.getAmount();
+				winAmountInBet += bt.getPotentialGain();
 				if (listBetAll.contains(bt)) {
 					listBetOwnerFinished.add(bt);
 				} else {
@@ -153,7 +153,7 @@ public class UserAccountController extends RedirectController {
 		}
 
 		if (pass.equals(passRepeat)) {
-//			System.out.println("HOLA CONTRASEÑAS IGUALES");
+			// System.out.println("HOLA CONTRASEÑAS IGUALES");
 			showsPasswdError = false;
 			user.setPassword(pass);
 			user.setPhotoSelected(!showsPhotoError);
@@ -251,18 +251,18 @@ public class UserAccountController extends RedirectController {
 	}
 
 	@PostMapping("/user-account/addCredit")
-	public String updateUserCredit(@RequestParam("name") String name,
-			@RequestParam("type") String type, @RequestParam("cardNumber") String cardNumber,
-			@RequestParam("Year") int expirationMonth, @RequestParam("Month") int expirationYear,
-			@RequestParam("ccv") int ccv, @RequestParam("amount") String amount) {
-		
+	public String updateUserCredit(@RequestParam("name") String name, @RequestParam("type") String type,
+			@RequestParam("cardNumber") String cardNumber, @RequestParam("Year") int expirationMonth,
+			@RequestParam("Month") int expirationYear, @RequestParam("ccv") int ccv,
+			@RequestParam("amount") String amount) {
+
 		CreditCard credit = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
-		
-		if(cardService.saveCreditCard(credit, amount) == null){
+
+		if (cardService.saveCreditCard(credit, amount) == null) {
 			showsCardError = true;
 		}
-		
-		if(showsCardError){
+
+		if (showsCardError) {
 			return "redirect:/user-account/addCredit";
 		}
 
@@ -273,7 +273,7 @@ public class UserAccountController extends RedirectController {
 	@PostMapping("/user-account/userDevolveCredit")
 	public String devolveFromFFB(Model model, @RequestParam("amountTo") String amount,
 			@RequestParam("cardNumber") String cardNumber) {
-		
+
 		cardService.takeCredit(cardService.getCard(cardNumber), amount);
 
 		return redirectToAccount;
@@ -293,50 +293,17 @@ public class UserAccountController extends RedirectController {
 	@GetMapping("/user-account/checkBet/{id}")
 	public String checkBets(Model model, @PathVariable long id) {
 
-		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betTicketService.findOne(id);
-		boolean notCheckedYet = false;
-
-		for (BetTicket bt : updateduser.getBet_tickets()) {
-			if (bt.getId() == id) {
-				if (!bt.isUsed()) {
-
-					notCheckedYet = true;
-				}
-			}
-		}
-		if (notCheckedYet) {
-			if (ticketTocheck.checkTicket()) {
-				if (ticketTocheck.checkFinishedTicket()) {
-					updateduser.addCreditFromFFB(ticketTocheck.getPotentialGain());
-					ticketTocheck.setWinned(true);
-					ticketTocheck.setLosed(false);
-					ticketTocheck.setUsed(true);
-					// HA GANADO INGRESO DINERO
-				} else {
-					ticketTocheck.setWinned(false);
-					ticketTocheck.setLosed(false);
-				}
-
-			} else {
-				ticketTocheck.setWinned(false);
-				ticketTocheck.setLosed(true);
-				ticketTocheck.setUsed(true);
-			}
-		}
-
-		userService.updateUser(updateduser);
-		return redirectToAccount + "#tab2sub";
+		betTicketService.validateBet(id);
+		return redirectToAccount;
 
 	}
 
 	@GetMapping(value = { "/user-account/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
+		if (betTicketService.isBetCheckedYet(id)) {
+			betTicketService.removeBetTicketFromUser(id);
+		}
 
-		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betTicketService.findOne(id);
-		updateduser.getBet_tickets().remove(ticketTocheck);
-		userService.updateUser(updateduser);
 		return redirectToAccount;
 
 	}

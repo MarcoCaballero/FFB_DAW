@@ -88,7 +88,6 @@ public class BetTicketService {
 
 	public BetTicket removeMatchFromErasableTicket(BetTicket bt, long id) {
 		bt.getBetMatches_list().remove(bt.getBetMatches_list().get((int) id));
-		matchService.delete(id);
 		return bt;
 	}
 
@@ -121,7 +120,78 @@ public class BetTicketService {
 		return 0;
 	}
 
+	public BetTicket initializeAmountRest(int amount, BetTicket bt) {
+		double amountDouble = 1.0;
+		try {
+			bt.setAmount(amountDouble);
+			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
+			amountDouble = (double) amount;
+			return bt;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public boolean validateBet(long id) {
+		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		BetTicket ticketTocheck = findOne(id);
+
+		if (!isBetCheckedYet(ticketTocheck, updateduser, id)) {
+			if (ticketTocheck.checkTicket()) {
+				if (ticketTocheck.checkFinishedTicket()) {
+					updateduser.addCreditFromFFB(ticketTocheck.getPotentialGain());
+					ticketTocheck.setWinned(true);
+					ticketTocheck.setLosed(false);
+					ticketTocheck.setUsed(true);
+					// HA GANADO INGRESO DINERO
+				} else {
+					ticketTocheck.setWinned(false);
+					ticketTocheck.setLosed(false);
+				}
+
+			} else {
+				ticketTocheck.setWinned(false);
+				ticketTocheck.setLosed(true);
+				ticketTocheck.setUsed(true);
+			}
+		}
+
+		userService.updateUser(updateduser);
+		return ticketTocheck.isWinned();
+	}
+
+	public void removeBetTicketFromUser(long id) {
+		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		BetTicket ticketTocheck = findOne(id);
+		updateduser.getBet_tickets().remove(ticketTocheck);
+		userService.updateUser(updateduser);
+	}
+
 	/* Auxiliar bet methods */
+
+	public boolean isBetCheckedYet(BetTicket btToCheck, User user, long id) {
+		// TODO Auto-generated method stub
+
+		for (BetTicket bt : user.getBet_tickets()) {
+			if ((bt.getId() == id) && !bt.isUsed())
+				return true;
+		}
+
+		return false;
+	}
+
+	public boolean isBetCheckedYet(long id) {
+		// TODO Auto-generated method stub
+		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		for (BetTicket bt : updateduser.getBet_tickets()) {
+			if ((bt.getId() == id) && !bt.isUsed())
+				return true;
+		}
+
+		return false;
+	}
 
 	public boolean payServices(User user, Double amountToPay, Double promoQuantity) {
 
