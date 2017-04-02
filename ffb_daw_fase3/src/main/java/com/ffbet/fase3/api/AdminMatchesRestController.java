@@ -73,7 +73,7 @@ public class AdminMatchesRestController {
 		}
 	}
 	
-	/* DELETE EGAMES MATCH FIND BY Id*/
+	/* DELETE MATCH FIND BY Id*/
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Match> deleteMatch(@PathVariable long id) {
 
