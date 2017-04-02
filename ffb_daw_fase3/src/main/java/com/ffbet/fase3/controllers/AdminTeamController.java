@@ -141,7 +141,7 @@ public class AdminTeamController extends RedirectController {
 			team = teamService.findByNameSport(name);
 
 			if (!logoImg.isEmpty()) {
-				fileNameLogo = handleUploadImagetoDatabase(logoImg, team.getId(),
+				fileNameLogo = userService.handleUploadImagetoDatabase(logoImg, team.getId(),
 						FilesPath.FILES_TEAMS_LOGO.toString());
 				if (fileNameLogo.equals("ERROR")) {
 					photoLogoError = true;
@@ -153,7 +153,7 @@ public class AdminTeamController extends RedirectController {
 			}
 
 			if (!stadiumImg.isEmpty()) {
-				fileNameStadium = handleUploadImagetoDatabase(stadiumImg, team.getId(),
+				fileNameStadium = userService.handleUploadImagetoDatabase(stadiumImg, team.getId(),
 						FilesPath.FILES_TEAMS_COVER.toString());
 				if (fileNameStadium.equals("ERROR")) {
 					photoStadiumError = true;

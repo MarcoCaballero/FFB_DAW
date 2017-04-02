@@ -1,5 +1,6 @@
 package com.ffbet.fase3.api;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ffbet.fase3.domain.CreditCard;
+import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.services.CreditCardService;
 import com.ffbet.fase3.services.UserService;
@@ -26,10 +30,10 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
-  
+
 	@Autowired
 	private CreditCardService cardService;
-  
+
 	@GetMapping
 	public List<User> getUsers() {
 		return userService.findAll();
@@ -57,6 +61,19 @@ public class UserRestController {
 		}
 	}
 
+	@PutMapping("/uploadImage")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+		User user = userService.handleUserLoggedFromComponent();
+
+		String filename = userService.handleUploadImagetoDatabase(file, user.getId(),
+				FilesPath.FILES_AVATARS.toString());
+
+		user.setPhoto_url(filename);
+		user.setPhotoSelected(true);
+		userService.updateUser(user);
+		return filename;
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 		User user = userService.findOne(id);
@@ -71,31 +88,31 @@ public class UserRestController {
 	}
 
 	/* Credit card zone */
-	
+
 	@PutMapping("/creditCardPlus/{amount}")
-	public ResponseEntity<CreditCard> moreUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
+	public ResponseEntity<CreditCard> moreUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard) {
 		boolean error = false;
-		
+
 		CreditCard card = cardService.saveCreditCard(creditCard, amount);
-		if(card == null){
+		if (card == null) {
 			error = true;
 		}
-		if(!error){
+		if (!error) {
 			return new ResponseEntity<>(card, HttpStatus.OK);
-		}else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
-	
+
 	@PutMapping("/creditCardLess/{amount}")
-	public ResponseEntity<CreditCard> lessUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
+	public ResponseEntity<CreditCard> lessUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard) {
 		CreditCard cd = cardService.getCard(creditCard.getCardNumber());
-		
-		if(cd != null && cd.getCredit() > Double.parseDouble(amount)){
+
+		if (cd != null && cd.getCredit() > Double.parseDouble(amount)) {
 			cardService.takeCredit(cd, amount);
-		
+
 			return new ResponseEntity<>(cd, HttpStatus.OK);
-		}else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

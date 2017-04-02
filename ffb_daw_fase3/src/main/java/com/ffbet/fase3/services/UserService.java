@@ -1,10 +1,14 @@
 package com.ffbet.fase3.services;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
@@ -66,6 +70,44 @@ public class UserService {
 			updateUser(userLogged);
 		}
 		return userLogged;
+	}
+	
+	/* SUBIDA DE IMÁGENES */
+	public String handleUploadImagetoDatabase(MultipartFile imageMultiPartFile, long idPath, String files_folder)
+			throws IOException {
+		String id = String.valueOf(idPath);
+		String filename;
+
+		if (files_folder.equals(FilesPath.FILES_AVATARS.toString())) {
+			filename = "photo_avatar" + id + ".jpg";
+		} else if (files_folder.equals(FilesPath.FILES_TEAMS_COVER.toString())) {
+			filename = "photo_team_cover" + id + ".jpg";
+		} else if (files_folder.equals(FilesPath.FILES_TEAMS_LOGO.toString())) {
+			filename = "photo_team_logo" + id + ".jpg";
+		} else if (files_folder.equals(FilesPath.FILES_PROMOS.toString())) {
+			filename = "photo_promo" + id + ".jpg";
+		} else {
+			filename = "unknownfoldersource" + id + ".jpg";
+		}
+
+		if (!imageMultiPartFile.isEmpty()) {
+			try {
+				File filesFolder = new File(files_folder);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), filename);
+				System.out.println("Absoulte : " + filesFolder.getAbsolutePath());
+				imageMultiPartFile.transferTo(uploadedFile);
+				return filename;
+			} catch (Exception e) {
+				return "ERROR";
+			}
+
+		}
+		return "ERROR";
+
 	}
 
 }
