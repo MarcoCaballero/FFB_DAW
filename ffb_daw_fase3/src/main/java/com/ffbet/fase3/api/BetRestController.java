@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ffbet.fase3.domain.BetTicket;
+import com.ffbet.fase3.domain.EgamesMatch;
+import com.ffbet.fase3.domain.Match;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
@@ -30,7 +31,8 @@ public class BetRestController {
 	@Autowired
 	private UserService userService;
 
-	BetTicket ticket_erasable = null;
+	BetTicket ticket_erasable_SP = null;
+	BetTicket ticket_erasable_EG = null;
 
 	// provisional
 	private boolean selectedOne = false;
@@ -40,14 +42,28 @@ public class BetRestController {
 	private boolean selectedFive = false;
 
 	/* BetMatch to ticket erasable zone */
-	@PostMapping("/match/{id}/{quota}")
-	public ResponseEntity<BetTicket> addMatchToLocalBet(@PathVariable long id, @PathVariable String quota) {
-		SportsMatch match = matchService.findOneSports(id);
+	@PostMapping(value = { "/match?type=sports/{id}/{quota}", "/match?type=egames/{id}/{quota}" })
+	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@PathVariable long id, @PathVariable String quota,
+			HttpServletRequest request) {
+		Match match;
+		if (request.getRequestURI().contains("sports")) {
+			match = matchService.findOneSports(id);
+		} else {
+			match = matchService.findOneEgames(id);
+		}
 
 		if (match != null) {
-			ticket_erasable = btService.addMatchToErasableTicket(ticket_erasable, id, quota);
 
-			return new ResponseEntity<>(ticket_erasable, HttpStatus.OK);
+			if (match.getClass().isInstance(SportsMatch.class)) {
+				ticket_erasable_SP = btService.addSportMatchToErasableTicket(ticket_erasable_SP, id, quota);
+
+				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
+			} else {
+				ticket_erasable_EG = btService.addEgamesMatchToErasableTicket(ticket_erasable_EG, id, quota);
+
+				return new ResponseEntity<>(ticket_erasable_EG, HttpStatus.OK);
+			}
+
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -59,9 +75,9 @@ public class BetRestController {
 		SportsMatch match = matchService.findOneSports(id);
 
 		if (match != null) {
-			ticket_erasable = btService.removeMatchFromErasableTicket(ticket_erasable, id);
+			ticket_erasable_SP = btService.removeMatchFromErasableTicket(ticket_erasable_SP, id);
 
-			return new ResponseEntity<>(ticket_erasable, HttpStatus.OK);
+			return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -72,13 +88,12 @@ public class BetRestController {
 
 	@PostMapping("/quota/{prize}")
 	public ResponseEntity<BetTicket> setQuotaOnLocalBet(@PathVariable int prize) {
-		ticket_erasable = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
-				selectedFive, btService.switchMultiplicator(prize), ticket_erasable);
+		ticket_erasable_SP = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
+				selectedFive, btService.switchMultiplicator(prize), ticket_erasable_SP);
 
-		if (ticket_erasable != null) {
-			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount()));
-
-			return new ResponseEntity<>(ticket_erasable, HttpStatus.OK);
+		if (ticket_erasable_SP != null) {
+			ticket_erasable_SP.setPotentialGain(ticket_erasable_SP.calculatePotentialGain(ticket_erasable_SP.getAmount()));
+			return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -101,11 +116,11 @@ public class BetRestController {
 	@PostMapping("?code={code}&?promoQuantity={promoQuantity}")
 	public ResponseEntity<BetTicket> sendSportBet(HttpServletRequest request, Model model, @PathVariable String code,
 			@PathVariable int promoQuantity) {
-		
-		if (ticket_erasable != null) {
-			if (btService.sendBet(ticket_erasable, userService.handleUserLoggedFromComponent(), code,
+
+		if (ticket_erasable_SP != null) {
+			if (btService.sendBet(ticket_erasable_SP, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
-				return new ResponseEntity<>(ticket_erasable, HttpStatus.OK);
+				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 			}
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);

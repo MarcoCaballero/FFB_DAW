@@ -412,8 +412,8 @@
 													{{match.homeTeam}}-{{match.visitingTeam}} </i>
 											</p>
 											<p style="color: black;">
-												24/11 19:00 <strong>{{selectedNamequota}}
-													@{{selectedQuota}}</strong>
+												24/11 19:00 <strong>{{#selectedNamequota}}{{.}}{{/selectedNamequota}}{{#selectedFirstBloodNamequota}}{{.}}{{/selectedFirstBloodNamequota}}
+													Q- @{{#selectedQuota}}{{.}}{{/selectedQuota}} Q_FB- @{{#selectedFirstBloodQuota}}{{.}}{{/selectedFirstBloodQuota}}</strong>
 											</p>
 										</label>
 									</div>
