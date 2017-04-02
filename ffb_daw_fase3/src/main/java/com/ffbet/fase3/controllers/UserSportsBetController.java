@@ -111,10 +111,11 @@ public class UserSportsBetController extends RedirectController {
 
 	@GetMapping(value = { "/user-sportsBet/refreshQuota/{prize}", "/user-sportsBet/refreshQuota/{prize}" })
 	public String refreshQuota(HttpServletRequest request, Model model, @PathVariable int prize) {
-		Boolean[] arrayBoolean = updateAmount(prize);
-		ticket_erasable = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
-				selectedFive, arrayBoolean, ticket_erasable);
+
 		if (ticket_erasable != null) {
+			Boolean[] arrayBoolean = updateAmount(prize);
+			ticket_erasable = btService.setSelectedMultiplicator(selectedOne, selectedTwo, selectedThree, selectedFour,
+					selectedFive, arrayBoolean, ticket_erasable);
 			ticket_erasable.setPotentialGain(ticket_erasable.calculatePotentialGain(ticket_erasable.getAmount()));
 		}
 

@@ -98,14 +98,19 @@ public class BetTicketService {
 	 */
 	public int sendBet(BetTicket bt, User user, String code, double promoquantity) {
 
-		if (!verifyPromotionalCode(code))
-			return 1;
+		System.out.println("code : " + code);
 
-		if (!verifyUserPromotionUsage(user, code))
-			return 2;
+		if (!code.equals("")) {
 
-		Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
-		bt.applyPromo(promoToapply);
+			if (!verifyPromotionalCode(code))
+				return 1;
+
+			if (!verifyUserPromotionUsage(user, code))
+				return 2;
+
+			Promotion promoToapply = promoService.findByPromotionCode(code).get(0);
+			bt.applyPromo(promoToapply);
+		}
 
 		if (!payServices(user, bt.getAmount(), promoquantity))
 			return 3;
@@ -155,9 +160,6 @@ public class BetTicketService {
 
 	public boolean verifyPromotionalCode(String code) {
 
-		if (code.equals(""))
-			return true;
-		
 		if (promoService.findByPromotionCode(code).isEmpty())
 			return false;
 
