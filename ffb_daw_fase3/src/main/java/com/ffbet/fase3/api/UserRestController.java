@@ -71,26 +71,17 @@ public class UserRestController {
 	}
 
 	/* Credit card zone */
-
-	@PutMapping("")
-	public ResponseEntity<String> addCredit() {
-
-		if (true) {
-
-			return new ResponseEntity<>("HOLA", HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
 	
 	@PutMapping("/creditCardPlus/{amount}")
 	public ResponseEntity<CreditCard> moreUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
 		boolean error = false;
 		
-		cardService.saveCreditCard(creditCard, amount, error);
-		
+		CreditCard card = cardService.saveCreditCard(creditCard, amount);
+		if(card == null){
+			error = true;
+		}
 		if(!error){
-			return new ResponseEntity<>(creditCard, HttpStatus.OK);
+			return new ResponseEntity<>(card, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
@@ -99,10 +90,11 @@ public class UserRestController {
 	@PutMapping("/creditCardLess/{amount}")
 	public ResponseEntity<CreditCard> lessUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
 		CreditCard cd = cardService.getCard(creditCard.getCardNumber());
-		if(cd != null && cd.getCredit() < Double.parseDouble(amount)){
-			cardService.takeCredit(creditCard, amount);
 		
-			return new ResponseEntity<>(creditCard, HttpStatus.OK);
+		if(cd != null && cd.getCredit() > Double.parseDouble(amount)){
+			cardService.takeCredit(cd, amount);
+		
+			return new ResponseEntity<>(cd, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

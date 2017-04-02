@@ -258,9 +258,11 @@ public class UserAccountController extends RedirectController {
 		
 		CreditCard credit = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
 		
-		//cardService.saveCreditCard(credit, amount, showsCardError);
+		if(cardService.saveCreditCard(credit, amount) == null){
+			showsCardError = true;
+		}
 		
-		if(cardService.saveCreditCard(credit, amount, showsCardError)){
+		if(showsCardError){
 			return "redirect:/user-account/addCredit";
 		}
 
@@ -273,24 +275,6 @@ public class UserAccountController extends RedirectController {
 			@RequestParam("cardNumber") String cardNumber) {
 		
 		cardService.takeCredit(cardService.getCard(cardNumber), amount);
-
-//		try {
-//			if(!cardNumber.equals("NO")){
-//				double amountD = Double.parseDouble(amount);
-//				User user = userService.handleUserLoggedFromComponent();
-//				for (CreditCard card : user.getCards()) {
-//					if (card.getCardNumber().equals(cardNumber)) {
-//						user.addCreditToCard(card.getId(), amountD);
-//						userService.updateUser(user);
-//					}
-//				}
-//			}
-//			
-//
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		}
 
 		return redirectToAccount;
 

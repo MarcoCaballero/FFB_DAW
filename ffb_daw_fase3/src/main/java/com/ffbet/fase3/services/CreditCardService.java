@@ -17,11 +17,16 @@ public class CreditCardService {
 	UserService userService;
 	
 	public CreditCard getCard(String cardNumber){
-		return creditCardRepo.findByCardNumber(cardNumber).get(0);
+		CreditCard cd;
+		if(creditCardRepo.findByCardNumber(cardNumber) != null){
+			return cd = creditCardRepo.findByCardNumber(cardNumber);
+		}
+		
+		return null;
 	}
 
-	public boolean saveCreditCard(CreditCard credit, String amount, boolean error) {
-		error = false;
+	public CreditCard saveCreditCard(CreditCard credit, String amount) {
+		boolean error = false;
 		
 		User user = userService.handleUserLoggedFromComponent();
 
@@ -41,13 +46,13 @@ public class CreditCardService {
 					long amountSelected = Long.parseLong(amount);
 					if (creditcard.sendMoney(amountSelected)) {
 						user.addCreditfromCard(amountSelected);
+						
+						creditCardRepo.save(creditcard);
+						userService.updateUser(user);
 					} else {
 						// NOT CREDIT
 						error = true;
 					}
-					CreditCard cd = creditCardRepo.findByCardNumber(credit.getCardNumber()).get(0);
-					creditCardRepo.save(cd);
-					userService.updateUser(user);
 				} else {
 					error = true;
 				}
@@ -59,31 +64,36 @@ public class CreditCardService {
 
 			creditcard = new CreditCard(credit.getType(), credit.getName(), credit.getCardNumber(),
 					credit.getExpirationMonth(), credit.getExpirationYear(), credit.getSecurityCode());
+			
 			user.addCard(creditcard);
 			if (creditcard.sendMoney(amountSelected)) {
 				user.addCreditfromCard(amountSelected);
+				
+				creditCardRepo.save(creditcard);
+				userService.updateUser(user);
 			} else {
 				// NOT CREDIT
 				error = true;
 			}
-
-			creditCardRepo.save(credit);
-			userService.updateUser(user);
 		}
-		return error;
+		if(error){
+			return null;
+		}else{
+			return creditcard;
+		}
 	}
 	
-	public void takeCredit(CreditCard credit, String amount){
+	public CreditCard takeCredit(CreditCard credit, String amount){
 		if(!credit.getCardNumber().equals("NO")){
 			double amountD = Double.parseDouble(amount);
 			User user = userService.handleUserLoggedFromComponent();
 			for (CreditCard card : user.getCards()) {
 				if (card.getCardNumber().equals(credit.getCardNumber())) {
 					user.addCreditToCard(card.getId(), amountD);
-//					creditCardRepo.save(credit);
 					userService.updateUser(user);
 				}
 			}
 		}
+		return credit;
 	}
 }
