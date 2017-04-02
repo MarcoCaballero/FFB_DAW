@@ -21,7 +21,6 @@ import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
 import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
-import com.ffbet.fase3.services.PromoService;
 import com.ffbet.fase3.services.UserService;
 
 /**
@@ -37,8 +36,6 @@ public class UserSportsBetController extends RedirectController {
 	private UserService userService;
 	@Autowired
 	private MatchService matchService;
-	@Autowired
-	private PromoService promoService;
 	@Autowired
 	private BetTicketService btService;
 
