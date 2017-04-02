@@ -108,7 +108,7 @@ public class AdminPromotionController extends RedirectController {
 			promoService.findByTitle(title);
 
 			if (!image.isEmpty()) {
-				filePromo = handleUploadImagetoDatabase(image, newPromotion.getId(), FilesPath.FILES_PROMOS.toString());
+				filePromo = userService.handleUploadImagetoDatabase(image, newPromotion.getId(), FilesPath.FILES_PROMOS.toString());
 				if (filePromo.equals("ERROR")) {
 					photoError = true;
 				} else {
