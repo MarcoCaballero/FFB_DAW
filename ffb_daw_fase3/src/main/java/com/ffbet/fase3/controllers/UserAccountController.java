@@ -258,9 +258,9 @@ public class UserAccountController extends RedirectController {
 		
 		CreditCard credit = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
 		
-		//cardService.saveCreditCard(credit, amount, showsCardError);
+		cardService.saveCreditCard(credit, amount, showsCardError);
 		
-		if(cardService.saveCreditCard(credit, amount, showsCardError)){
+		if(showsCardError){
 			return "redirect:/user-account/addCredit";
 		}
 

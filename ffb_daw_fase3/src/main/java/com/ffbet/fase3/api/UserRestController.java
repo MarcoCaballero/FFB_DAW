@@ -74,10 +74,10 @@ public class UserRestController {
 	public ResponseEntity<CreditCard> moreUserCredit(@PathVariable String amount, @RequestBody CreditCard creditCard){
 		boolean error = false;
 		
-		cardService.saveCreditCard(creditCard, amount, error);
+		CreditCard card = cardService.saveCreditCard(creditCard, amount, error);
 		
-		if(!error){
-			return new ResponseEntity<>(creditCard, HttpStatus.OK);
+		if(card != null){
+			return new ResponseEntity<>(card, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}

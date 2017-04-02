@@ -20,7 +20,7 @@ public class CreditCardService {
 		return creditCardRepo.findByCardNumber(cardNumber).get(0);
 	}
 
-	public boolean saveCreditCard(CreditCard credit, String amount, boolean error) {
+	public CreditCard saveCreditCard(CreditCard credit, String amount, boolean error) {
 		error = false;
 		
 		User user = userService.handleUserLoggedFromComponent();
@@ -45,8 +45,10 @@ public class CreditCardService {
 						// NOT CREDIT
 						error = true;
 					}
-					CreditCard cd = creditCardRepo.findByCardNumber(credit.getCardNumber()).get(0);
-					creditCardRepo.save(cd);
+					System.out.println(credit.getId());
+					System.out.println(credit.getCredit());
+					
+					creditCardRepo.save(credit);
 					userService.updateUser(user);
 				} else {
 					error = true;
@@ -58,7 +60,8 @@ public class CreditCardService {
 			long amountSelected = Long.parseLong(amount);
 
 			creditcard = new CreditCard(credit.getType(), credit.getName(), credit.getCardNumber(),
-					credit.getExpirationMonth(), credit.getExpirationYear(), credit.getSecurityCode());
+					credit.getExpirationMonth(), credit.getExpirationYear(), credit.getSecurityCode(), 500);
+			
 			user.addCard(creditcard);
 			if (creditcard.sendMoney(amountSelected)) {
 				user.addCreditfromCard(amountSelected);
@@ -66,11 +69,13 @@ public class CreditCardService {
 				// NOT CREDIT
 				error = true;
 			}
-
-			creditCardRepo.save(credit);
+			
+			creditCardRepo.save(creditcard);
+			System.out.println(creditcard.getId());
+			System.out.println(creditcard.getCredit());
 			userService.updateUser(user);
 		}
-		return error;
+		return creditcard;
 	}
 	
 	public void takeCredit(CreditCard credit, String amount){
