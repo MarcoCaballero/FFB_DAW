@@ -123,9 +123,9 @@ public class BetTicketService {
 	public BetTicket initializeAmountRest(int amount, BetTicket bt) {
 		double amountDouble = 1.0;
 		try {
+			amountDouble = (double) amount;
 			bt.setAmount(amountDouble);
 			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
-			amountDouble = (double) amount;
 			return bt;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -135,7 +135,7 @@ public class BetTicketService {
 	}
 
 	public boolean validateBet(long id) {
-		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		User updateduser = userService.handleUserLoggedFromComponent();
 		BetTicket ticketTocheck = findOne(id);
 
 		if (!isBetCheckedYet(ticketTocheck, updateduser, id)) {
@@ -163,7 +163,7 @@ public class BetTicketService {
 	}
 
 	public void removeBetTicketFromUser(long id) {
-		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		User updateduser = userService.handleUserLoggedFromComponent();
 		BetTicket ticketTocheck = findOne(id);
 		updateduser.getBet_tickets().remove(ticketTocheck);
 		userService.updateUser(updateduser);
@@ -176,10 +176,10 @@ public class BetTicketService {
 
 		for (BetTicket bt : user.getBet_tickets()) {
 			if ((bt.getId() == id) && !bt.isUsed())
-				return true;
+				return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	public boolean isBetCheckedYet(long id) {

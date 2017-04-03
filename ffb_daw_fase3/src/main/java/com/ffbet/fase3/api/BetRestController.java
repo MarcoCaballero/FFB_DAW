@@ -34,7 +34,6 @@ public class BetRestController {
 	BetTicket ticket_erasable_SP = null;
 	BetTicket ticket_erasable_EG = null;
 
-	
 	/* BetMatch to ticket erasable zone */
 	@PatchMapping("/match")
 	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@RequestParam long id, @RequestParam String quota,
@@ -64,7 +63,7 @@ public class BetRestController {
 
 	}
 
-	@DeleteMapping("/match")
+	@DeleteMapping("/match") // .../match?id=id
 	public ResponseEntity<BetTicket> removeMatchFromLocalBet(@RequestParam long id, @RequestParam String type) {
 
 		Match match;
@@ -93,7 +92,7 @@ public class BetRestController {
 
 	/* SEND BET ZONE */
 
-	@PostMapping
+	@PostMapping // ...?code=XXXXX&promoQuantity=XXXXX&amount=XXXX
 	public ResponseEntity<BetTicket> sendSportBet(@RequestParam String code, @RequestParam int promoQuantity,
 			@RequestParam int amount) {
 
@@ -117,24 +116,27 @@ public class BetRestController {
 	}
 
 	/* VALIDATION BET ZONE */
-	@GetMapping
+	@GetMapping // ...?id=id
 	public ResponseEntity<String> validateBet(@RequestParam long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
 
 		if (bttocheck != null) {
 
-			if (btService.validateBet(id))
+			if (!bttocheck.isFinished())
+				return new ResponseEntity<>("AÚN NO HA TERMINADO", HttpStatus.CONTINUE);
 
+			if (btService.validateBet(id))
 				return new ResponseEntity<>("HAS GANADO : " + bttocheck.getPotentialGain(), HttpStatus.OK);
+
 			return new ResponseEntity<>("HAS PERDIDO : " + bttocheck.getAmount(), HttpStatus.OK);
 
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Ticket erróneo", HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@DeleteMapping
+	@DeleteMapping // .....?id=id
 	public ResponseEntity<User> removeBet(@RequestParam long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
