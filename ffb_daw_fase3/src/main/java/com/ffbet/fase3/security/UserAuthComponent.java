@@ -42,5 +42,4 @@ public class UserAuthComponent {
 		return this.user != null;
 	}
 
-
 }

@@ -127,7 +127,7 @@
 											<p class="text-left">
 												<a href="user-account/addCredit"
 													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
-													href="user-account/withdrawCredit"
+													href="user-account"
 													class="btn btn-primary btn-block btn-sm"
 													style="background-color: #6469c6; border-color: #6469c6;">
 													Mi cuenta </a>
@@ -412,8 +412,8 @@
 													{{match.homeTeam}}-{{match.visitingTeam}} </i>
 											</p>
 											<p style="color: black;">
-												24/11 19:00 <strong>{{selectedNamequota}}
-													@{{selectedQuota}}</strong>
+												24/11 19:00 <strong>{{#selectedNamequota}}{{.}}{{/selectedNamequota}}{{#selectedFirstBloodNamequota}}{{.}}{{/selectedFirstBloodNamequota}}
+													Q- @{{#selectedQuota}}{{.}}{{/selectedQuota}} Q_FB- @{{#selectedFirstBloodQuota}}{{.}}{{/selectedFirstBloodQuota}}</strong>
 											</p>
 										</label>
 									</div>

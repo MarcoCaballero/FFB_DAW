@@ -24,19 +24,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.Team;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.repositories.CreditCardRepository;
-import com.ffbet.fase3.repositories.MatchRepository;
-import com.ffbet.fase3.repositories.SportTeamRepository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
+import com.ffbet.fase3.services.CreditCardService;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.TeamService;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * @author Marco
@@ -44,18 +43,20 @@ import com.ffbet.fase3.security.UserAuthComponent;
  */
 @Controller
 public class UserAccountController extends RedirectController {
+
 	@Autowired
-	UserRepository userRepo;
+	private UserService userService;
+	@Autowired
+	private BetTicketService betTicketService;
+	@Autowired
+	private MatchService matchService;
+	@Autowired
+	private TeamService teamService;
+	@Autowired
+	private CreditCardService cardService;
+
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	CreditCardRepository creditCardRepo;
-	@Autowired
-	BetTicketRepository betticketrepo;
-	@Autowired
-	MatchRepository matchRepo;
-	@Autowired
-	SportTeamRepository teamRepo;
 
 	String photoA = "";
 	String redirectToAccount = "redirect:/user-account/";
@@ -72,15 +73,15 @@ public class UserAccountController extends RedirectController {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
 
-			User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-			List<BetTicket> listBetAll = betticketrepo.findByFinished();
+			User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+			List<BetTicket> listBetAll = betTicketService.findByFinished();
 			List<BetTicket> listBetOwnerFinished = new ArrayList<>();
 			List<BetTicket> listBetOwnerNotFinished = new ArrayList<>();
-			double amountInBet = 1;
-			double winAmountInBet = 1;
+			double amountInBet = 0;
+			double winAmountInBet = 0;
 			for (BetTicket bt : updateduser.getBet_tickets()) {
-				amountInBet*=bt.getAmount();
-				winAmountInBet*=bt.getPotentialGain();
+				amountInBet += bt.getAmount();
+				winAmountInBet += bt.getPotentialGain();
 				if (listBetAll.contains(bt)) {
 					listBetOwnerFinished.add(bt);
 				} else {
@@ -109,15 +110,15 @@ public class UserAccountController extends RedirectController {
 
 		if (team == null) {
 			final long num = 1;
-			team = teamRepo.findOne(num);
+			team = teamService.findOneTeam(num);
 		}
 
-		model.addAttribute("Teams", teamRepo.findByType("Fútbol"));
+		model.addAttribute("Teams", teamService.findByTypeSports("Fútbol"));
 
 		if (team != null) {
 			model.addAttribute("SelectedTeam", team);
-			model.addAttribute("notFinishedMatches", matchRepo.findByNotFinishedAndTeam("Fútbol", team.getName()));
-			model.addAttribute("finishedMatches", matchRepo.findByFinishedAndTeam("Fútbol", team.getName()));
+			model.addAttribute("notFinishedMatches", matchService.findByNotFinishedAndTeam("Fútbol", team.getName()));
+			model.addAttribute("finishedMatches", matchService.findByFinishedAndTeam("Fútbol", team.getName()));
 		}
 
 		// model.addAttribute("isPhotoSelected", isPhotoSelected);
@@ -139,7 +140,7 @@ public class UserAccountController extends RedirectController {
 		String filename;
 		User user = userComp.getLoggedUser();
 		if (!imageMultiPartFile.isEmpty()) {
-			filename = handleUploadImagetoDatabase(imageMultiPartFile, user.getId(),
+			filename = userService.handleUploadImagetoDatabase(imageMultiPartFile, user.getId(),
 					FilesPath.FILES_AVATARS.toString());
 			if (filename.equals("ERROR")) {
 				showsPhotoError = true;
@@ -152,7 +153,7 @@ public class UserAccountController extends RedirectController {
 		}
 
 		if (pass.equals(passRepeat)) {
-			System.out.println("HOLA CONTRASEÑAS IGUALES");
+			// System.out.println("HOLA CONTRASEÑAS IGUALES");
 			showsPasswdError = false;
 			user.setPassword(pass);
 			user.setPhotoSelected(!showsPhotoError);
@@ -176,7 +177,7 @@ public class UserAccountController extends RedirectController {
 			if (!cityPre.isEmpty())
 				user.setCity(cityPre);
 
-			userRepo.save(user);
+			userService.updateUser(user);
 		} else {
 			showsPasswdError = true;
 		}
@@ -206,7 +207,7 @@ public class UserAccountController extends RedirectController {
 	public String getTemplateCredit(HttpServletRequest request, Model model) {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			} else {
@@ -230,7 +231,7 @@ public class UserAccountController extends RedirectController {
 	public String getTemplateWithdrawCredit(HttpServletRequest request, Model model) {
 		if (userComp.isLoggedUser()) {
 			showsUserMenu = true;
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 			if (!userComp.getLoggedUser().isPhotoSelected()) {
 				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
 			} else {
@@ -249,58 +250,20 @@ public class UserAccountController extends RedirectController {
 
 	}
 
-	@PostMapping("/user-account/addCredit/{id}")
-	public String updateUserCredit(Model model, @PathVariable("id") long id, @RequestParam("name") String name,
-			@RequestParam("type") String type, @RequestParam("cardNumber") String cardNumber,
-			@RequestParam("Year") int expirationMonth, @RequestParam("Month") int expirationYear,
-			@RequestParam("ccv") int ccv, @RequestParam("amount") String amount) {
-		User user = userRepo.findOne(id);
-		boolean exists = false;
-		CreditCard creditcard = null;
-		for (int i = 0; i < user.getCards().size(); i++) {
-			if (user.getCards().get(i).getCardNumber().equals(cardNumber)) {
-				exists = true;
-				creditcard = user.getCards().get(i);
-			}
-		}
-		try {
-			if (exists) {
-				if (creditcard != null) {
-					if (creditcard.equalsData(type, name, cardNumber, expirationMonth, expirationYear, ccv)) {
-						long amountSelected = Long.parseLong(amount);
-						if (creditcard.sendMoney(amountSelected)) {
-							user.addCreditfromCard(amountSelected);
-						} else {
-							// NOT CREDIT
-							showsCardError = true;
-							return "redirect:/user-account/addCredit";
-						}
-						userRepo.save(user);
-					} else {
-						showsCardError = true;
-						return "redirect:/user-account/addCredit";
-					}
+	@PostMapping("/user-account/addCredit")
+	public String updateUserCredit(@RequestParam("name") String name, @RequestParam("type") String type,
+			@RequestParam("cardNumber") String cardNumber, @RequestParam("Year") int expirationMonth,
+			@RequestParam("Month") int expirationYear, @RequestParam("ccv") int ccv,
+			@RequestParam("amount") String amount) {
 
-				}
-			} else {
+		CreditCard credit = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
 
-				long amountSelected = Long.parseLong(amount);
-
-				creditcard = new CreditCard(type, name, cardNumber, expirationMonth, expirationYear, ccv);
-				user.addCard(creditcard);
-				if (creditcard.sendMoney(amountSelected)) {
-					user.addCreditfromCard(amountSelected);
-				} else {
-					// NOT CREDIT
-					showsCardError = true;
-				}
-
-				userRepo.save(user);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		if (cardService.saveCreditCard(credit, amount) == null) {
 			showsCardError = true;
-			e.printStackTrace();
+		}
+
+		if (showsCardError) {
+			return "redirect:/user-account/addCredit";
 		}
 
 		return redirectToAccount;
@@ -311,23 +274,7 @@ public class UserAccountController extends RedirectController {
 	public String devolveFromFFB(Model model, @RequestParam("amountTo") String amount,
 			@RequestParam("cardNumber") String cardNumber) {
 
-		try {
-			if(!cardNumber.equals("NO")){
-				double amountD = Double.parseDouble(amount);
-				User user = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-				for (CreditCard card : user.getCards()) {
-					if (card.getCardNumber().equals(cardNumber)) {
-						user.addCreditToCard(card.getId(), amountD);
-						userRepo.save(user);
-					}
-				}
-			}
-			
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		cardService.takeCredit(cardService.getCard(cardNumber), amount);
 
 		return redirectToAccount;
 
@@ -336,7 +283,7 @@ public class UserAccountController extends RedirectController {
 	@RequestMapping("/user-account/selectionTeam/{id}")
 	public String selectionTeam(Model model, @PathVariable long id) {
 
-		team = teamRepo.findOne(id);
+		team = teamService.findOneTeam(id);
 
 		// model.addAttribute("SelectedTeam", team);
 
@@ -346,50 +293,17 @@ public class UserAccountController extends RedirectController {
 	@GetMapping("/user-account/checkBet/{id}")
 	public String checkBets(Model model, @PathVariable long id) {
 
-		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betticketrepo.findOne(id);
-		boolean notCheckedYet = false;
-
-		for (BetTicket bt : updateduser.getBet_tickets()) {
-			if (bt.getId() == id) {
-				if (!bt.isUsed()) {
-
-					notCheckedYet = true;
-				}
-			}
-		}
-		if (notCheckedYet) {
-			if (ticketTocheck.checkTicket()) {
-				if (ticketTocheck.checkFinishedTicket()) {
-					updateduser.addCreditFromFFB(ticketTocheck.getPotentialGain());
-					ticketTocheck.setWinned(true);
-					ticketTocheck.setLosed(false);
-					ticketTocheck.setUsed(true);
-					// HA GANADO INGRESO DINERO
-				} else {
-					ticketTocheck.setWinned(false);
-					ticketTocheck.setLosed(false);
-				}
-
-			} else {
-				ticketTocheck.setWinned(false);
-				ticketTocheck.setLosed(true);
-				ticketTocheck.setUsed(true);
-			}
-		}
-
-		userRepo.save(updateduser);
-		return redirectToAccount + "#tab2sub";
+		betTicketService.validateBet(id);
+		return redirectToAccount;
 
 	}
 
 	@GetMapping(value = { "/user-account/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
+		if (!betTicketService.isBetCheckedYet(id)) {
+			betTicketService.removeBetTicketFromUser(id);
+		}
 
-		User updateduser = userRepo.findByEmail(userComp.getLoggedUser().getEmail());
-		BetTicket ticketTocheck = betticketrepo.findOne(id);
-		updateduser.getBet_tickets().remove(ticketTocheck);
-		userRepo.save(updateduser);
 		return redirectToAccount;
 
 	}

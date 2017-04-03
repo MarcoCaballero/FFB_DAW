@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ffbet.fase3.domain.CreditCard;
 
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long>{
+	
+	CreditCard findByCardNumber(String cardNumber);
 
 }

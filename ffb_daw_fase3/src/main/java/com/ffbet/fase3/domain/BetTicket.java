@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Entity object class {@link BetTicket} defines a object to manage the web
  * bets. Includes prefixed {@link Amount}
@@ -54,7 +56,7 @@ public class BetTicket {
 
 	@Column
 	private boolean isLosed;
-	
+
 	@Column
 	private boolean isUsed;
 
@@ -99,6 +101,7 @@ public class BetTicket {
 	/**
 	 * @return the matches_list
 	 */
+	@JsonIgnore
 	public List<BetSportMatch> getBetMatches_list() {
 		return betMatchesList;
 	}
@@ -107,6 +110,7 @@ public class BetTicket {
 	 * @param matches_list
 	 *            the matches_list to set
 	 */
+	@JsonIgnore
 	public void setBetMatches_list(List<BetSportMatch> matches_list) {
 		this.betMatchesList = matches_list;
 	}
@@ -215,9 +219,6 @@ public class BetTicket {
 	public void setLosed(boolean isLosed) {
 		this.isLosed = isLosed;
 	}
-	
-	
-	
 
 	/**
 	 * @return the isUsed
@@ -227,7 +228,8 @@ public class BetTicket {
 	}
 
 	/**
-	 * @param isUsed the isUsed to set
+	 * @param isUsed
+	 *            the isUsed to set
 	 */
 	public void setUsed(boolean isUsed) {
 		this.isUsed = isUsed;
@@ -271,13 +273,12 @@ public class BetTicket {
 		this.getBetEspMatchesList().add(match);
 	}
 
-	public boolean applyPromo(Promotion promo) {
+	public void applyPromo(Promotion promo) {
 
 		if (promo.getType().equals(PromotionType.PROMO_DISCCOUNT.toString())) {
 			this.setAmount(promo.applyDiscount(this.getAmount()));
-			return true;
+			this.setApplied_promo(promo);
 		}
-		return false;
 
 	}
 
@@ -322,7 +323,7 @@ public class BetTicket {
 
 		}
 
-		this.isFinished=isFinished;
+		this.isFinished = isFinished;
 		return isFinished;
 
 	}

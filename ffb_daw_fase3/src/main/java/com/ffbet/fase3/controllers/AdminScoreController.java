@@ -1,7 +1,5 @@
 package com.ffbet.fase3.controllers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,51 +14,41 @@ import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.TemplatesPath;
-import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.repositories.Egames_match_repository;
-import com.ffbet.fase3.repositories.Sports_match_repository;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.BetTicketService;
+import com.ffbet.fase3.services.MatchService;
+import com.ffbet.fase3.services.UserService;
 
 @Controller
 public class AdminScoreController extends RedirectController {
 
 	private String template = TemplatesPath.ADMIN_RESULTS.toString();
 	private String redirect = "redirect:/admin-scores/";
-
+	
 	@Autowired
-	private Sports_match_repository sports_match_repository;
+	private UserService userService;
 	@Autowired
-	private Egames_match_repository egames_match_repository;
+	private MatchService matchService;
+	@Autowired
+	private BetTicketService betTicketService;
 
 	@Autowired
 	UserAuthComponent userComp;
-	@Autowired
-	UserRepository userRepo;
-	@Autowired
-	BetTicketRepository betticketRepo;
 
 	@GetMapping(value = { "/admin-scores", "/admin-scores/" })
 	public String getScoreTemplate(HttpServletRequest request, Model model) {
 
 
 		if (userComp.isLoggedUser()) {
-			model.addAttribute("user", userRepo.findByEmail(userComp.getLoggedUser().getEmail()));
-			if (!userComp.getLoggedUser().isPhotoSelected()) {
-				model.addAttribute("isMen", userComp.getLoggedUser().isMen());
-			} else {
-				// Use image controller
-			}
+			model.addAttribute("user", userService.findByEmail(userComp.getLoggedUser().getEmail()));
 		} else {
 			return "redirect:/logOut";
 		}
 
-	
-		
-		model.addAttribute("footballMatch",sports_match_repository.findByType("Fútbol",new PageRequest(0,100)));
-		model.addAttribute("basketballMatch",sports_match_repository.findByType("Baloncesto",new PageRequest(0,100)));
-		model.addAttribute("lolMatch",egames_match_repository.findByType("LOL",new PageRequest(0,100)));
-		model.addAttribute("csgoMatch",egames_match_repository.findByType("CS-GO",new PageRequest(0,100)));
+		model.addAttribute("footballMatch", matchService.findByTypeSports("Fútbol", new PageRequest(0,100)));
+		model.addAttribute("basketballMatch", matchService.findByTypeSports("Baloncesto",new PageRequest(0,100)));
+		model.addAttribute("lolMatch", matchService.findByTypeEgames("LOL",new PageRequest(0,100)));
+		model.addAttribute("csgoMatch", matchService.findByTypeEgames("CS-GO",new PageRequest(0,100)));
 		
 		String response = check_url(request, template);
 		return response;
@@ -72,7 +60,7 @@ public class AdminScoreController extends RedirectController {
 			@RequestParam String homePoints, @RequestParam String visitingPoints) {
 
 		try {
-			SportsMatch sportMatch = sports_match_repository.findOne(id);
+			SportsMatch sportMatch = matchService.findOneSports(id);
 			if (homePoints.equals("")) {
 				homePoints = "0";
 			}
@@ -85,7 +73,7 @@ public class AdminScoreController extends RedirectController {
 
 			sportMatch.setFinished(true);
 			callToCheckFinish();
-			sports_match_repository.save(sportMatch);
+			matchService.saveSportsMatch(sportMatch);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,7 +88,7 @@ public class AdminScoreController extends RedirectController {
 	public String updateEgamesScoreByID(HttpServletRequest request, Model model, @PathVariable("id") long id,
 			@RequestParam String winningTeam, @RequestParam String firstBlood) {
 
-		EgamesMatch egamesMatch = egames_match_repository.findOne(id);
+		EgamesMatch egamesMatch = matchService.findOneEgames(id);
 		try {
 			egamesMatch.setWinnerTeam(winningTeam);
 			if (winningTeam.equals(egamesMatch.getHomeTeam())) {
@@ -122,7 +110,7 @@ public class AdminScoreController extends RedirectController {
 
 			egamesMatch.setFinished(true);
 			callToCheckFinish();
-			egames_match_repository.save(egamesMatch);
+			matchService.saveEgamesMatch(egamesMatch);
 		} catch (Exception e) {
 
 			System.out.println("s");
@@ -136,7 +124,7 @@ public class AdminScoreController extends RedirectController {
 
 	public void callToCheckFinish() {
 
-		for (BetTicket ticket : betticketRepo.findAll()) {
+		for (BetTicket ticket : betTicketService.findAll()) {
 			ticket.checkFinishedTicket();
 		}
 

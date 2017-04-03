@@ -12,10 +12,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * Entity object class {@link User} defines a object to manage the web users.
@@ -26,15 +28,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Entity
 public class User {
+	
+	public interface Basico{}
+	
 	/* COLUMNS */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	protected long id;
 
-	@OneToOne
-	private UserFB user_FB_account;
-
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String name;
 
@@ -47,6 +50,7 @@ public class User {
 	@Column(nullable = false)
 	private String dni;
 
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String email;
 
@@ -69,7 +73,7 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<BetTicket> bet_tickets = new ArrayList<>();
-
+	
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> promos = new ArrayList<>();
 
@@ -79,6 +83,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<CreditCard> cards = new ArrayList<>();
 
+	@JsonView(Basico.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
@@ -302,6 +307,7 @@ public class User {
 	/**
 	 * @param roles
 	 */
+	@JsonIgnore
 	public void setRoles(String... roles) {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
@@ -331,21 +337,6 @@ public class User {
 	 */
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the user_FB_account
-	 */
-	public UserFB getUser_FB_account() {
-		return user_FB_account;
-	}
-
-	/**
-	 * @param user_FB_account
-	 *            the user_FB_account to set
-	 */
-	public void setUser_FB_account(UserFB user_FB_account) {
-		this.user_FB_account = user_FB_account;
 	}
 
 	/**
@@ -565,6 +556,16 @@ public class User {
 				return true;
 			}
 		}
+	}
+
+	public boolean addUsedPromo(Promotion promo) {
+		if (this.getPromos().contains(promo) && !this.getUsedPromos().contains(promo)) {
+			this.getPromos().remove(promo);
+			this.getUsedPromos().add(promo);
+			return true;
+		}
+
+		return false;
 	}
 
 	public boolean payFromCredit(double money) {

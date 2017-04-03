@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.repositories.UserRepository;
 import com.ffbet.fase3.security.UserAuthComponent;
+import com.ffbet.fase3.services.UserService;
 
 /**
  * Controller class {@link LoginController} provides methods to map the URL's
@@ -40,13 +40,17 @@ public class LoginController extends RedirectController {
 	private String redirectUserHome = "redirect:/user/";
 	private String redirectAdminHome = "redirect:/admin/";
 	private String redirectSignup = "redirect:/signup/";
+	
 	@Autowired
-	UserRepository userRepo;
+	private UserService userService;
+	
 	@Autowired
 	UserAuthComponent userComponent;
 
 	private boolean isErrorLogin = false;
 	private boolean isErrorPass = false;
+	private boolean showsUserMenu = false;
+
 
 	/**
 	 * Method {@linkplain getTemplate()} uses the abstract class
@@ -94,7 +98,8 @@ public class LoginController extends RedirectController {
 	@RequestMapping("/logOut")
 	public String loginOut(HttpServletRequest request, Model model, HttpSession session) {
 		isErrorLogin = false;
-		if (!userComponent.isLoggedUser()) {isErrorLogin = false;
+		if (!userComponent.isLoggedUser()) {
+			isErrorLogin = false;
 			return redirectLogin;
 		} else {
 			session.invalidate();
@@ -118,44 +123,40 @@ public class LoginController extends RedirectController {
 
 	@PostMapping("signup/new")
 	public String addUser(ModelAndView model, @RequestParam("telf") String telephone, @RequestParam("pass") String pass,
-			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex, @RequestParam("secondSurname") String secondSurname, User user) {
+			@RequestParam("passRepeat") String passRepeat, @RequestParam("sex") String sex,
+			@RequestParam("secondSurname") String secondSurname, User user) {
 		String redirectFromRole = redirectSignup;
-		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
+//		System.out.println("PASS " + pass + " PASSREPEAT :" + passRepeat);
 
 		if (pass.equals(passRepeat)) {
-			System.out.println("HOLA CONTRASEÑAS IGUALES");
+//			System.out.println("HOLA CONTRASEÑAS IGUALES");
 			isErrorPass = false;
 			user.setPassword(pass);
 
 			if ((telephone != null) && telephone != "")
 				user.setTelephone(telephone);
-			
-			if((secondSurname != null) && secondSurname != ""){
+
+			if ((secondSurname != null) && secondSurname != "") {
 				user.setSecondSurname(secondSurname);
 			}
-			
+
 			if (userComponent.isLoggedUser()) {
 				if (userComponent.getLoggedUser().getRoles().contains("ROLE_ADMIN")) {
 					redirectFromRole = redirectAdminHome;
-					user.setRoles("ROLE_ADMIN");
 				}
 			} else {
-				redirectFromRole = redirectSignup;
-				user.setRoles("ROLE_USER");
+				redirectFromRole = redirectLogin;
 			}
 
-			
-			if(sex.equals("MAN")){
+			if (sex.equals("MAN")) {
 				user.setMen(true);
-			}else{
+			} else {
 				user.setMen(false);
 			}
-			
-			
-			user.setCredit(0.0);
-			userRepo.save(user);
+
+			userService.save(user);
 		} else {
-			System.out.println("HOLA CONTRASEÑAS DISTINTAS");
+//			System.out.println("HOLA CONTRASEÑAS DISTINTAS");
 			isErrorPass = true;
 			return redirectSignup;
 		}
@@ -164,19 +165,33 @@ public class LoginController extends RedirectController {
 
 	}
 
-	
 	@GetMapping("/decideDenied")
-	public String decideDenied(){
+	public String decideDenied() {
 		if (userComponent.isLoggedUser()) {
 			if (userComponent.getLoggedUser().getRoles().contains("ROLE_ADMIN")) {
 				return redirectAdminHome;
-			}else{
+			} else {
 				return redirectUserHome;
 			}
-		}else{
-		
-		return redirectSignup;
+		} else {
+
+			return redirectSignup;
+		}
+
+	}
+
+	// ffbet/policy-terms
+
+	@GetMapping("/ffbet/policy-terms")
+	public String policy(Model model) {
+		showsUserMenu = false;
+		if (userComponent.isLoggedUser()) {
+			showsUserMenu = true;
+			model.addAttribute("user", userService.findByEmail(userComponent.getLoggedUser().getEmail()));
 		}
 		
+		
+		model.addAttribute("isUsermenuActive", showsUserMenu);
+		return TemplatesPath.USER_SEE_POLICY.toString();
 	}
 }
