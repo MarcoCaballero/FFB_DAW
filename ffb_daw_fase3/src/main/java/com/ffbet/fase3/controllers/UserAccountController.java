@@ -300,7 +300,7 @@ public class UserAccountController extends RedirectController {
 
 	@GetMapping(value = { "/user-account/removeBetMatch/{id}", "/user-sportsBet/removeBetMatch/{id}/" })
 	public String sendSportBet(HttpServletRequest request, Model model, @PathVariable long id) {
-		if (betTicketService.isBetCheckedYet(id)) {
+		if (!betTicketService.isBetCheckedYet(id)) {
 			betTicketService.removeBetTicketFromUser(id);
 		}
 
