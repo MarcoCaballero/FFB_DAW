@@ -64,7 +64,7 @@ public class BetRestController {
 
 	}
 
-	@DeleteMapping("/match")
+	@DeleteMapping("/match") // .../match?id=id
 	public ResponseEntity<BetTicket> removeMatchFromLocalBet(@RequestParam long id, @RequestParam String type) {
 
 		Match match;
@@ -93,7 +93,7 @@ public class BetRestController {
 
 	/* SEND BET ZONE */
 
-	@PostMapping
+	@PostMapping // ...?code=XXXXX&promoQuantity=XXXXX&amount=XXXX
 	public ResponseEntity<BetTicket> sendSportBet(@RequestParam String code, @RequestParam int promoQuantity,
 			@RequestParam int amount) {
 
@@ -117,7 +117,7 @@ public class BetRestController {
 	}
 
 	/* VALIDATION BET ZONE */
-	@GetMapping
+	@GetMapping //...?id=id
 	public ResponseEntity<String> validateBet(@RequestParam long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
@@ -134,7 +134,7 @@ public class BetRestController {
 		}
 	}
 
-	@DeleteMapping
+	@DeleteMapping // .....?id=id
 	public ResponseEntity<User> removeBet(@RequestParam long id) {
 
 		BetTicket bttocheck = btService.findOne(id);

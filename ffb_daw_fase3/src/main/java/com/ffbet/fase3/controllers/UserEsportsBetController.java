@@ -94,7 +94,6 @@ public class UserEsportsBetController extends RedirectController {
 	@GetMapping(value = { "/user-EsportsBet/addMatch/{id}/{quota}", "/user-EsportsBet/addMatch/{id}/{quota}/" })
 	public String addMatchToTicket(HttpServletRequest request, Model model, @PathVariable("id") String idPre,
 			@PathVariable String quota) {
-		boolean matchBetYet = false;
 
 		try {
 			long id = Long.parseLong(idPre);
