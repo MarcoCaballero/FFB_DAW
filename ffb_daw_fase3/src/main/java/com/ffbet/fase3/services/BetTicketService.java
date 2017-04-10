@@ -21,8 +21,7 @@ public class BetTicketService {
 
 	@Autowired
 	BetTicketRepository betTicketRepo;
-	@Autowired
-	UserAuthComponent userComp;
+	
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -184,7 +183,7 @@ public class BetTicketService {
 
 	public boolean isBetCheckedYet(long id) {
 		// TODO Auto-generated method stub
-		User updateduser = userService.findByEmail(userComp.getLoggedUser().getEmail());
+		User updateduser = userService.handleUserLoggedFromComponent();
 		for (BetTicket bt : updateduser.getBet_tickets()) {
 			if ((bt.getId() == id) && !bt.isUsed())
 				return true;
