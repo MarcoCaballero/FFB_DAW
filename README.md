@@ -8,7 +8,7 @@
 - [ ] SPA Interface (Angular) :exclamation:
 
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png | width=100)
+![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png =100x150)
 
 
 #### Descripción: 
