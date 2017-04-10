@@ -1,7 +1,14 @@
 # FFB_DAW
 ### Friends&amp;Fun&amp;Bet ----- DAW WEB PROJECT --- URJC ETSII
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png)
+
+- [x] Traditional Interface :+1:
+- [x] Traditional backend :+1:
+- [x] API REST  :+1:
+- [ ] SPA Interface (Angular) :exclamation:
+
+
+![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png | width=100)
 
 
 #### Descripción: 
