@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport"
+	content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
+<title>FFBet - Entra y apuesta</title>
+<link rel="icon" type="image/png" href="user/img/faviconFFBpng.png" />
+<link href="user/css/bootstrap.min.css" rel="stylesheet">
+<link href="user/css/datepicker3.css" rel="stylesheet">
+<link href="user/css/styles.css" rel="stylesheet">
+
+<!--Icons-->
+<script src="user/js/lumino.glyphs.js"></script>
+<script src="user/js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
+<script src="user/js/jssor.slider-22.1.8.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jssor_1_slider_init = function() {
+		var jssor_1_options = {
+			$AutoPlay : true,
+			$Idle : 0,
+			$AutoPlaySteps : 4,
+			$SlideDuration : 2500,
+			$SlideEasing : $Jease$.$Linear,
+			$PauseOnHover : 4,
+			$SlideWidth : 140,
+			$Cols : 7
+		};
+		var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+		/*responsive code begin*/
+		/*you can remove responsive code if you don't want the slider scales while window resizing*/
+		function ScaleSlider() {
+			var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+			if (refSize) {
+				refSize = Math.min(refSize, 1200);
+				jssor_1_slider.$ScaleWidth(refSize);
+			} else {
+				window.setTimeout(ScaleSlider, 30);
+			}
+		}
+		ScaleSlider();
+		$Jssor$.$AddEvent(window, "load", ScaleSlider);
+		$Jssor$.$AddEvent(window, "resize", ScaleSlider);
+		$Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+		/*responsive code end*/
+	};
+</script>
+<script>
+	function quitarapuesta(para1) {
+		document.getElementById(para1).style.display = "none";
+	}
+</script>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				{{#isUsermenuActive}}
+
+				<ul class="user-menu">
+					<li class="dropdown pull-right" style="margin-top: -3%;"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
+								class="glyph stroked male-user"> 
+						 {{#user.isPhotoSelected}}
+									<img class="img-circle" " alt=""
+									src="images/avatars/{{user.photoUrl}}" height="25px">
+								{{/user.isPhotoSelected}}
+								{{^user.isPhotoSelected}}
+								{{#user.isMen}}
+									<img class="img-circle" src="user/img/boyUser.svg"
+									height="25px" /> 
+								{{/user.isMen}}
+								{{^user.isMen}}
+									<img class="img-circle" src="user/img/userGirl.svg"
+									height="25px" /> 
+								{{/user.isMen}}
+						{{/user.isPhotoSelected}}
+						 
+						 </svg> {{user.email}} <span class="caret"></span></a>
+						<ul class="dropdown-menu" style="border-radius: 10%;">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												{{#user.isPhotoSelected}} <img class="img-circle"
+													src="images/avatars/{{user.photoUrl}}" height="100px" />
+												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
+												{{#user.isMen}} <img class="img-circle"
+													src="user/img/boyUser.svg" height="100px" />
+												{{/user.isMen}} {{^user.isMen}} <img class="img-circle"
+													src="user/img/userGirl.svg" height="100px" />
+												{{/user.isMen}} {{/user.isPhotoSelected}}
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>{{user.name}}</strong>
+											</p>
+											<p class="text-left small">
+												{{user.email}} <a style="color: black;" href="user-account">
+													<h6 style="color: black;">
+														Tu saldo es:<em><i> {{user.credit}} €</i></em>
+													</h6>
+
+													<h6 style="color: black;">
+														Tu saldo Promocional* :<em><i>
+																{{user.promotionCredit}} €</i></em>
+													</h6>
+
+												</a>
+											</p>
+											<p class="text-left">
+												<a href="user-account/addCredit"
+													class="btn btn-primary btn-block btn-sm">Depositar</a> <a
+													href="user-account"
+													class="btn btn-primary btn-block btn-sm"
+													style="background-color: #6469c6; border-color: #6469c6;">
+													Mi cuenta </a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<form action="/logOut" method="POST">
+												<p>
+													<input type="submit" value="Cerrar Sesión"
+														class="btn btn-danger btn-block" /> <input type="hidden"
+														name="_csrf" value="{{token}}" />
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="dropdown pull-right fixing"><a href="user-account"
+						class="dropdown-toggle">
+								<h6 style="color: white;">
+								Tu saldo es:<em><i> {{user.credit}} €
+										({{user.promotionCredit}} €)*</i></em>
+							</h6>
+					</a></li>
+				</ul>
+
+				{{/isUsermenuActive}} {{^isUsermenuActive}}
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a href="#" type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target="#sidebar-collapse"> <span
+								class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</a> <a class="navbar-brand" href="#"> </a>
+							<ul class="user-menu">
+								<li class="dropdown pull-right"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown"><img
+										class="img-circle" src="user/img/userBlocked.svg"
+										style="height: 30px;" /> Acceder <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li style="display: block;"><a href="login"> <img
+												class="img-circle" src="user/img/userBlocked.svg"
+												height="30px" /> Entrar
+										</a></li>
+										<li style="display: block;"><a href="ffbet/policy-terms">
+												<img class="img-circle" src="user/img/policy.svg"
+												height="30px" /> Política de privacidad
+										</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+
+				{{/isUsermenuActive}}
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<section class="active">
+			<img class="logoBack" src="user/img/LogoFFBalpha.png" width="100%">
+		</section>
+		<ul class="nav menu">
+			<li><a href="user"> <img class="glyph stroked home"
+					src="user/img/home.svg" /> Home
+			</a></li>
+			<li><a href="user-sportsBet"> <img
+					class="glyph stroked home" src="user/img/ball.svg" />Apuestas
+					Deportivas
+			</a></li>
+			<li class="active"><a href="user-EsportsBet"> <img
+					class="glyph stroked pencil" src="user/img/games_b.svg" />
+					Apuestas E-games
+			</a></li>
+			<li><a href="user-promos"> <img class="glyph stroked pencil"
+					src="user/img/star.svg" /> Ofertas y Promociones
+			</a></li> {{#isUsermenuActive}}
+			<li><a href="user-account"> <img
+					class="glyph stroked pencil" src="user/img/userlogo.svg" />Mi
+					Cuenta
+			</a></li>
+			<li role="presentation" class="divider"></li>
+			 {{/isUsermenuActive}} {{^isUsermenuActive}}
+			<li role="presentation" class="divider"></li>
+			<li><a href="user-signup"> <svg
+						class="glyph stroked male-user">
+                        <use xlink:href="#stroked-male-user"></use>
+                    </svg>Registrate
+			</a></li> {{/isUsermenuActive}}
+		</ul>
+	</div>
+	<!--/.sidebar-->
+	<div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="user"> <svg class="glyph stroked home">
+                            <use xlink:href="#stroked-home"></use>
+                        </svg>
+				</a></li>
+				<li class="active">Apuestas E-Sports</li>
+			</ol>
+		</div>
+		<!--/.row-->
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<h1 class="page-header"></h1>
+				<div id="myVideoBG">
+					<section id="banner">
+						<iframe frameborder="0" height="100%" width="100%"
+							src="https://youtube.com/embed/tEnsqpThaFg?autoplay=1&controls=1&showinfo=0&autohide=1">
+						</iframe>
+					</section>
+				</div>
+				<div class="container">
+					<div class="videobg-caption">
+						<h1></h1>
+						<p style="color: white;">
+							<img src="user/img/faviconFFBpngGold.png" style="height: 80px;" />
+						</p>
+						<p>
+							<a class="btn btn-lg btn-primary" href="#" role="button">Apuesta
+								YA!</a>
+						</p>
+					</div>
+				</div>
+				<!-- /.carousel VIDEO-->
+			</div>
+			<!--/.row-->
+			<!--/.row-->
+			<div class="row">
+				<div class="col-md-8" style="padding-left: 30px">
+					<div class="panel panel-default">
+						<div class="panel-body tabs">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tab1" data-toggle="tab"><img
+										class="glyph stroked home" src="user/img/football.svg"
+										style="width: 16px; height: 16px;"> LOL</a></li>
+								<li><a href="#tab2" data-toggle="tab"><img
+										class="glyph stroked home" src="user/img/tennis.svg"
+										style="width: 16px; height: 16px;"> CS:GO</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="tab1">
+									<!-- Contenido Futbol-->
+									<table class="table table-striped">
+										<thead>
+											<tr class="tab-logo-liga">
+												<th colspan="3"><img class="glyph stroked home"
+													src="user/img/lol_logo.png"
+													style="width: 150px; height: 60px;"></th>
+												<th>
+													<div class="col-xs-6 col-md-3 text-center">1</div>
+													<div class="col-xs-6 col-md-3 text-center">2</div>
+													<div class="col-xs-6 col-md-3 text-center">
+														F.Blood(1)</div>
+													<div class="col-xs-6 col-md-3 text-center">
+														F.Blood(2)</div>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											{{#lolMatchTable}}
+											<tr class="tab-horario-partido">
+												<th scope="row">1</th>
+												<td class="tab-horario-partido">{{date}} {{time}}</td>
+												<td class="tab-equipos-partido">{{homeTeam}} -
+													{{visitingTeam}}</td>
+												<td class="tab-buttons-apuesta-simple">
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/1" type="button"
+															class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaHomeVictory}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/2" type="button"
+															class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaVisitingVictory}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/FB1"
+															type="button" class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaHomeFirstBlood}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/FB2"
+															type="button" class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaVisitingFirstBlood}}</a>
+													</div>
+												</td>
+											</tr>
+											{{/lolMatchTable}}
+										</tbody>
+									</table>
+									<!-- Contenido LOL-->
+								</div>
+								<div class="tab-pane fade" id="tab2">
+									<!-- Contenido CS-->
+									<table class="table table-striped">
+										<thead>
+											<tr class="tab-logo-liga">
+												<th colspan="3"><img class="glyph stroked home"
+													src="user/img/CSGO.png" style="width: 100px; height: 55px;"></th>
+												<th>
+													<div class="col-xs-6 col-md-3 text-center">1</div>
+													<div class="col-xs-6 col-md-3 text-center">2</div>
+													<div class="col-xs-6 col-md-3 text-center">
+														F.Blood(1)</div>
+													<div class="col-xs-6 col-md-3 text-center">
+														F.Blood(2)</div>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											{{#csgoMatchTable}}
+											<tr class="tab-horario-partido">
+												<th scope="row">1</th>
+												<td class="tab-horario-partido">{{date}} {{time}}</td>
+												<td class="tab-equipos-partido">{{homeTeam}} -
+													{{visitingTeam}}</td>
+												<td class="tab-buttons-apuesta-simple">
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/1" type="button"
+															class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaHomeVictory}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/2" type="button"
+															class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaVisitingVictory}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/FB1"
+															type="button" class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaHomeFirstBlood}}</a>
+													</div>
+													<div class="col-xs-6 col-md-3 center-block">
+														<a href="/user-EsportsBet/addMatch/{{id}}/FB2"
+															type="button" class="btn btn-outline-success"
+															style="border: 1px solid #5cb85c;">@{{quotaVisitingFirstBlood}}</a>
+													</div>
+												</td>
+											</tr>
+											{{/csgoMatchTable}}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/.col-->
+				<div class="col-md-4">
+					<div class="panel panel-blue">
+						<div class="panel-heading dark-overlay">
+							<svg class="glyph stroked clipboard-with-paper">
+                                <use
+									xlink:href="#stroked-clipboard-with-paper"></use>
+                            </svg>
+							APUESTA
+						</div>
+						<div class="panel-body">
+							<ul class="todo-list">
+								{{#ticketErasable.betEspMatchesList}}
+								<li id="apuesta{{id}}" class="todo-list-item">
+									<div class="checkbox">
+
+										<label for="checkbox">
+											<p style="color: black;">
+												<i>Ganador del partido //
+													{{match.homeTeam}}-{{match.visitingTeam}} </i>
+											</p>
+											<p style="color: black;">
+												24/11 19:00 <strong>{{#selectedNamequota}}{{.}}{{/selectedNamequota}}{{#selectedFirstBloodNamequota}}{{.}}{{/selectedFirstBloodNamequota}}
+													Q- @{{#selectedQuota}}{{.}}{{/selectedQuota}} Q_FB- @{{#selectedFirstBloodQuota}}{{.}}{{/selectedFirstBloodQuota}}</strong>
+											</p>
+										</label>
+									</div>
+									<div class="pull-right action-buttons">
+										<a class="trash" href="/user-EsportsBet/removeBetMatch/{{id}}">
+											<svg id="iconoBasura" class="glyph stroked trash"
+												style="margin-top: 7px;">
+                                            <use
+													xlink:href="#stroked-trash"></use>
+                                        </svg>
+										</a>
+									</div>
+								</li> {{/ticketErasable.betEspMatchesList}}
+							</ul>
+						</div>
+						<div class="panel-footer"
+							style="background: rgba(255, 255, 255, 0.71)">
+							<form id="betTicket" action="/user-EsportsBet/sendBet"
+								method="post">
+								<div class="row">
+									<div class="col-md-4" style="color: black; padding-top: 5px;">
+										<b>Importe</b>
+									</div>
+									<div class="col-md-4" style="color: white;"></div>
+									<div class="col-md-4" style="color: black;">
+										<select id="amountChangeBis" class="form-control"
+											style="border: 1px solid #2d9df3;">
+											<option value=1 {{#selectedOne}}selected="selected"{{/selectedOne}}><b>1€</b></option>
+											<option value=5 {{#selectedTwo}}selected="selected"{{/selectedTwo}}><b>5€</b></option>
+											<option value=10 {{#selectedThree}}selected="selected"{{/selectedThree}}><b>10€</b></option>
+											<option value=25 {{#selectedFour}}selected="selected"{{/selectedFour}}><b>25€</b></option>
+											<option value=50 {{#selectedFive}}selected="selected"{{/selectedFive}}><b>50€</b></option>
+										</select>
+									</div>
+								</div>
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-md-8" style="color: black;">
+										<i>Tiene un código promocional?</i>
+									</div>
+									<div class="col-md-4" style="color: black; margin-top: 5%;">
+
+										<div class="form-group">
+											<input type="text" id="code" name="code" class="form-control"
+												placeholder="XXXXXX"> <input type="hidden"
+												name="_csrf" value="{{token}}" />
+										</div>
+
+									</div>
+								</div>
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-md-8" style="color: black;">
+										<b>Ganancias posibles:</b>
+									</div>
+									<div id="changeable" class="col-md-4"
+										style="color: black; margin-top: 5%;">
+										<b>{{#ticketErasable}}{{potentialGain}}{{/ticketErasable}}€
+											{{^ticketErasable}}0.00 €{{/ticketErasable}}</b>
+									</div>
+								</div>
+								{{#isUsermenuActive}}
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-md-6" style="color: black;">
+										<b>Añadir fondos promocionales:</b>
+									</div>
+
+
+									<div class="col-xs-6">
+										<div class="range range-success">
+											<input type="range" name="promoQuantity" min="0"
+												max="{{user.promotionCredit}}" value="0"
+												onchange="rangeSuccess.value=value">
+											<output id="rangeSuccess">0</output>
+										</div>
+									</div>
+								</div>
+
+
+								{{/isUsermenuActive}} {{^isUsermenuActive}} <input type="hidden"
+									name="promoQuantity" value="0"> {{/isUsermenuActive}}
+								<div class="row">
+
+									<div class="row" style="margin-top: 50px;">
+										<div class="col-md-7" style="color: black;">Pulse para
+											enviar:</div>
+										<div class="col-md-5" style="color: black;">
+											<div class="col-md-8">
+												<b style="color: black; margin-top: 5%; left: -10%;"></b>
+											</div>
+
+
+											{{#isUsermenuActive}} {{#ticketErasable.betEspMatchesList}}
+											<div class="buttonAnimation" onclick="functionDemo2();">
+												<span class="plane transition"></span> <span class="check"
+													style="display: none;"></span>
+											</div>
+											{{/ticketErasable.betEspMatchesList}}
+											{{^ticketErasable.betEspMatchesList}}
+											<div class="buttonAnimation"
+												onclick="functionDemoCheckNot();">
+												<span class="plane transition"></span> <span class="check"
+													style="display: none;"></span>
+											</div>
+											{{/ticketErasable.betEspMatchesList}} {{/isUsermenuActive}}
+											{{^isUsermenuActive}}
+											<div class="buttonAnimation"
+												onclick="functionDemoCheckNot();">
+												<span class="plane transition"></span> <span
+													class="checknot" style="display: none;"></span>
+											</div>
+
+											{{/isUsermenuActive}}
+
+										</div>
+									</div>
+									{{#showsMoneyError}}
+									<div id="error" class="row" style="padding-top: 50px;">
+										<div class="col-md-12"
+											style="color: red; padding-top: 10px; font-size: 15px;">
+											Ha habido un problema durante la transacción de los fondos,
+											compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
+									</div>
+									{{/showsMoneyError}} {{#showsPromoError}}
+									<div class="row" style="padding-top: 50px;">
+										<div class="col-md-12"
+											style="color: red; padding-top: 10px; font-size: 15px;">
+											El código promocional no es válido, ya está usado o no
+											corresponde con una promoción aplicable al boleto de apuestas
+											deportivas.</div>
+									</div>
+									{{/showsPromoError}}
+									<div class="row" style="padding-top: 50px;">
+										<div class="col-md-12"
+											style="color: black; padding-top: 10px; font-size: 10px;">
+											Al realizar una apuesta, usted está aceptando la versión mas
+											reciente de nuestra <a href="#">política de apuestas.</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+					<!--/.col-->
+				</div>
+				<!--/.row-->
+				<div class="row">
+					<div class="col-xs-10 col-md-10 col-lg-10"
+						style="margin-left: 20%;">
+						<div class="alert bg-warning" style="width: 50%;" role="alert">
+							<svg class="glyph stroked flag">
+                            <use
+									xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#stroked-flag"></use>
+                        </svg>
+							Porcentajes de apuestas por mercado EN DIRECTO
+							<svg class="glyph stroked flag">
+                            <use
+									xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#stroked-flag"></use>
+                        </svg>
+						</div>
+					</div>
+					<div class="row" style="margin-left: 10%;">
+						<div class="col-xs-12 col-md-6 col-lg-3">
+							<div class="panel panel-blue panel-widget ">
+								<div class="row no-padding">
+									<div class="col-sm-3 col-lg-5 widget-left">
+										<img class="glyph stroked home" src="user/img/ball.svg"
+											height="45px" width="45px" />
+									</div>
+									<div class="col-sm-9 col-lg-7 widget-right">
+										<div class="large">17k</div>
+										<div class="text-muted">Fútbol</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6 col-lg-3">
+							<div class="panel panel-orange panel-widget">
+								<div class="row no-padding">
+									<div class="col-sm-3 col-lg-5 widget-left">
+										<img class="glyph stroked home" src="user/img/basket.svg"
+											height="45px" width="45px" />
+									</div>
+									<div class="col-sm-9 col-lg-7 widget-right">
+										<div class="large">5K</div>
+										<div class="text-muted">Basket.</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6 col-lg-3">
+							<div class="panel panel-teal panel-widget">
+								<div class="row no-padding">
+									<div class="col-sm-3 col-lg-5 widget-left">
+										<img class="glyph stroked home" src="user/img/games_b.svg"
+											height="45px" width="45px" />
+									</div>
+									<div class="col-sm-9 col-lg-7 widget-right">
+										<div class="large">1,2k</div>
+										<div class="text-muted">E-games</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/.row-->
+					<div class="row" style="margin-left: 10%;">
+						<div class="col-xs-6 col-md-3">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Apuestas</h4>
+									<div class="easypiechart" id="easypiechart-blue"
+										data-percent="92">
+										<span class="percent">92%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Apuestas</h4>
+									<div class="easypiechart" id="easypiechart-orange"
+										data-percent="65">
+										<span class="percent">65%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Apuestas</h4>
+									<div class="easypiechart" id="easypiechart-teal"
+										data-percent="56">
+										<span class="percent">56%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/.main-->
+	<div id="footer"
+		class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
+		<div class="container-fluid">
+			<!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+                        
+                            <!-- CAROUSEL PARTNERS ROW-->
+			<div class="row">
+				<div id="jssor_1">
+					<!-- Loading Screen -->
+					<div class="jssor_banner" data-u="loading">
+						<div class="jssor_banner2"></div>
+						<div class="jssor_banner3"></div>
+					</div>
+					<div class="jssor_slides" data-u="slides">
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_1.jpg" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/slide_jsor_2.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="img/slide_jsor_3.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+						<div>
+							<img data-u="image" src="user/img/juegoseguro.png" height="50px" />
+						</div>
+						<div class="jsorpadding"></div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					jssor_1_slider_init();
+				</script>
+			</div>
+			<!-- #endregion Jssor Slider End -->
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<img src="user/img/barra_liga_santander.png" class="imagen_equipos">
+			</div>
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<ul class="menu_info">
+					<li><strong>TOP LINKS</strong></li>
+					<li><a href="user" class="enlaceFooter"> Home </a></li>
+					<li><a href="user-sportsBet" class="enlaceFooter">
+							Apuestas Deportivas </a></li>
+					<li><a href="user-EsportsBet" class="enlaceFooter">
+							Apuestas E-games </a></li>
+					<li><a href="user-promos" class="enlaceFooter"> Ofertas y
+							Promociones </a></li>
+					<li><a href="signup" class="enlaceFooter"> Registro </a></li>
+				</ul>
+				<ul class="menu_info">
+					<li><strong>INFO</strong></li>
+					<li><a href="ffbet/policy-terms" class="enlaceFooter">
+							Privacy policy </a></li>
+					<li><a href="http://politicadecookies.com/"
+						class="enlaceFooter"> Cookie policy </a></li>
+					<li><a
+						href="http://www.loteriasyapuestas.es/es/paginas-informativas/politica-de-uso-de-la-web-y-sitios-moviles-webs-juego-y-corporativa.info?nomobile=1#"
+						class="enlaceFooter"> User policy </a></li>
+					<li><a
+						href="http://www.madrid.org/cs/Satellite?cid=1142331785996&pagename=PortalJoven%2FPage%2FJUVE_contenidoFinalMenuIzquierdo"
+						class="enlaceFooter"> Responsible Gaming </a></li>
+				</ul>
+			</div>
+			<ul class="nav menu">
+				<li role="presentation" class="pp"></li>
+			</ul>
+			<div class="row">
+				<div class="copyright">
+					<a href="@" target="_self"></a><img src="user/img/+18.png"
+						height="25px"> <span>Copyright © 2017 FFbet.com
+						(España)</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/.footer-->
+	<script src="user/js/jquery-1.11.1.min.js"></script>
+	<script src="user/js/bootstrap.min.js"></script>
+	<script src="user/js/chart.min.js"></script>
+	<script src="user/js/chart-data.js"></script>
+	<script src="user/js/easypiechart.js"></script>
+	<script src="user/js/easypiechart-data.js"></script>
+	<script src="user/js/bootstrap-datepicker.js"></script>
+	<script>
+		$('#calendar').datepicker({});
+		!function($) {
+			$(document)
+					.on(
+							"click",
+							"ul.nav li.parent > a > span.icon",
+							function() {
+								$(this).find('em:first').toggleClass(
+										"glyphicon-minus");
+							});
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+		$(window).on('resize', function() {
+			if ($(window).width() > 767)
+				$('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767)
+				$('#sidebar-collapse').collapse('hide')
+		})
+	</script>
+	<script>
+		function functionDemo2() {
+			$('.plane').addClass('active');
+			setTimeout(function() {
+				$('.check').fadeIn();
+			}, 500)
+			setTimeout(function() {
+				$('.check').addClass('active');
+			}, 1000)
+			// RETURN TO DEFAULT
+			setTimeout(function() {
+				$('.check').fadeOut().removeClass('active');
+				$('.plane').removeClass('active');
+				$('#betTicket').submit();
+			}, 4000)
+
+		};
+
+		function functionDemoCheckNot() {
+			$('.plane').addClass('active');
+			setTimeout(function() {
+				$('.checknot').fadeIn();
+			}, 500)
+			setTimeout(function() {
+				$('.checknot').addClass('active');
+			}, 1000)
+			// RETURN TO DEFAULT
+			setTimeout(function() {
+				$('.checknot').fadeOut().removeClass('active');
+				$('.plane').removeClass('active');
+				window.location.href = "login";
+			}, 4000)
+
+		};
+
+		function callHref(url) {
+			window.location.href = url;
+		};
+	</script>
+	<script type="text/javascript">
+	$("#amountChangeBis").change(function() {
+
+		str = $("select#amountChangeBis option:selected").val();
+		window.location.href = "/user-EsportsBet/refreshQuota/" + str;
+
+	});
+</script>
+</body>
+
+</html>

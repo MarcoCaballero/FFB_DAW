@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<base href="/">
+<title>Matrix Admin</title>
+<base href="/">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="admin/css/uniform.css" />
+<link rel="stylesheet" href="admin/css/select2.css" />
+<link rel="stylesheet" href="admin/css/matrix-style.css" />
+<link rel="stylesheet" href="admin/css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
+	rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<!--Header-part-->
+	<div id="header">
+		<h1></h1>
+	</div>
+	<!--close-Header-part-->
+	<!--top-Header-menu-->
+	<div id="user-nav" class="navbar navbar-inverse">
+		<ul class="nav">
+			<li class=""><a title="" href=""><i class="icon icon-user"></i>
+					<span class="text">Bienvenido <em>{{user.name}}</em></span><b
+					class="caret"></b></a></li>
+			<li class=""><a title="" href=""><i
+					class="icon icon-cog"></i> <span id="reloj" class="text">Hora
+						Local</span></a></li>
+			<li class=""><form action="/logOut" method="post">
+					<input type="submit" value="Sign Out"
+						class="btn btn-danger btn-block" /> <input type="hidden"
+						name="_csrf" value="{{token}}" />
+				</form></li>
+
+		</ul>
+	</div>
+	<!--close-top-Header-menu-->
+	<div id="sidebar">
+		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
+			Dashboard</a>
+		<ul>
+			<li><a href="admin"><i class="icon icon-home"></i> <span>Home</span></a>
+			</li>
+			<li><a href="admin-teams"><i class="icon icon-signal"></i> <span>Equipos</span></a></li>
+			<li><a href="admin-matches"><i class="icon icon-inbox"></i>
+					<span>Partidos</span></a></li>
+			<li class="active"><a href="admin-scores"><i
+					class="icon icon-th"></i> <span>Resultados</span></a></li>
+			<li><a href="admin-promotions"><i class="icon icon-th-list"></i>
+					<span>Promociones</span> </a></li>
+		</ul>
+	</div>
+	<!--sidebar-menu-->
+	<!--main-container-part-->
+	<div id="content">
+		<div id="content-header">
+			<div id="breadcrumb">
+				<a href="#" title="Go to Home" class="tip-bottom"><i
+					class="icon-home"></i> Home</a> <a href="admin" class="current">Resultados</a>
+			</div>
+			<h1>Resultados</h1>
+		</div>
+		<div class="container-fluid">
+			<hr>
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="widget-box collapsible">
+						<div class="widget-title">
+							<a href="#collapseOne" data-toggle="collapse"> <span
+								class="icon"><i class="icon-plus"></i></span>
+								<h5>Añadir resultado fútbol</h5>
+							</a>
+						</div>
+						<div class="collapse in" id="collapseOne">
+							<div class="widget-content">
+								<div class="widget-content nopadding">
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="Resultado" data-sortable="true">Resultado</th>
+													<th data-field="Guardado" data-sortable="true">Guardado</th>
+													<th data-field="Resultado" data-sortable="true">Acciones</th>
+											</thead>
+											{{#footballMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}}</td>
+												<td>{{visitingTeam}}</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateSports/{{id}}" method="post">
+														<div
+															style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+															<div style="float: right;">
+																<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{homePoints}}" name="homePoints" />- 
+																	<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{visitingPoints}}" name="visitingPoints" />
+															</div>
+
+															<input type="hidden" name="_csrf" value="{{token}}" /> <input
+																style="border-left: 10px; display: none" type="submit"
+																class="btn btn-success" value="Guardar" />
+														</div>
+													</form>
+												</td>
+												<td>
+												<strong>{{#isFinished}}Sí{{/isFinished}}{{^isFinished}}-{{/isFinished}}</strong>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+
+											</tr>
+											{{/footballMatch}}
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget-box collapsible">
+						<div class="widget-title">
+							<a href="#collapseOne2" data-toggle="collapse"> <span
+								class="icon"><i class="icon-plus"></i></span>
+								<h5>Añadir resultado Basket</h5>
+							</a>
+						</div>
+						<div class="collapse in" id="collapseOne2">
+							<div class="widget-content">
+								<div class="widget-content nopadding">
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="Resultado" data-sortable="true">Resultado</th>
+													<th data-field="Guardado" data-sortable="true">Guardado</th>
+													<th data-field="Acciones" data-sortable="true">Acciones</th>
+											</thead>
+											{{#basketballMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}}</td>
+												<td>{{visitingTeam}}</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateSports/{{id}}" method="post">
+														<div
+															style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+															<div style="float: right;">
+																<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{homePoints}}" name="homePoints" />- 
+																	<input style="min-width: 50px;" type="number" class="span3"
+																	placeholder="{{visitingPoints}}" name="visitingPoints" />
+															</div>
+
+															<input type="hidden" name="_csrf" value="{{token}}" /> <input
+																style="border-left: 10px; display: none" type="submit"
+																class="btn btn-success" value="Guardar" />
+														</div>
+													</form>
+												</td>
+												<td>
+												<strong>{{#isFinished}}Sí{{/isFinished}}{{^isFinished}}-{{/isFinished}}</strong>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+
+											</tr>
+											{{/basketballMatch}}
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="widget-box collapsible">
+						<div class="widget-title">
+							<a href="#collapseTwo" data-toggle="collapse"> <span
+								class="icon"><i class="icon-plus"></i></span>
+								<h5>Añadir resultado LOL</h5>
+							</a>
+						</div>
+						<div class="collapse in" id="collapseTwo">
+							<div class="widget-content">
+								<div class="widget-content nopadding">
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="result" data-sortable="true">Resultado</th>
+													<th data-field="actions" data-sortable="true">Acciones
+												</tr>
+											</thead>
+											{{#lolMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}} <strong>{{#winHome}}-G-{{/winHome}}
+												</strong> <strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+												</td>
+												<td>{{visitingTeam}} <strong>{{#winVisiting}}-G-{{/winVisiting}}
+												</strong> <strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+												</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateEgames/{{id}}" method="post">
+														<div class="controls">
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="winningTeam">-G-
+																		<option value="{{homeTeam}}">Gana Local -G-</option>
+																		<option value="{{visitingTeam}}">Gana
+																			Visitante -G-</option>
+																	</select>
+																</div>
+															</div>
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="firstBlood">-FB-
+																		<option value="{{homeTeam}}">Primera Sangre
+																			Local -FB-</option>
+																		<option value="{{visitingTeam}}">Primera
+																			Sangre Visitante-FB-</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<input type="hidden" name="_csrf" value="{{token}}" /> <input
+															style="border-left: 10px; display: none" type="submit"
+															class="btn btn-success" value="Guardar" />
+													</form>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+											</tr>
+											{{/lolMatch}}
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="widget-box collapsible">
+						<div class="widget-title">
+							<a href="#collapseTwo2" data-toggle="collapse"> <span
+								class="icon"><i class="icon-plus"></i></span>
+								<h5>Añadir resultado CS:GO</h5>
+							</a>
+						</div>
+						<div class="collapse in" id="collapseTwo2">
+							<div class="widget-content">
+								<div class="widget-content nopadding">
+									<div class="panel-body">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th data-field="id" data-sortable="true">ID</th>
+													<th data-field="equipoLocal" data-sortable="true">Equipo
+														local</th>
+													<th data-field="equipoVisitante" data-sortable="true">Equipo
+														Visitante</th>
+													<th data-field="result" data-sortable="true">Resultado</th>
+													<th data-field="actions" data-sortable="true">Acciones
+												</tr>
+											</thead>
+											{{#csgoMatch}}
+											<tr>
+												<td>{{id}}</td>
+												<td>{{homeTeam}} <strong>{{#winHome}}-G-{{/winHome}}
+												</strong> <strong>{{#firstBloodHome}}-FB-{{/firstBloodHome}}</strong>
+												</td>
+												<td>{{visitingTeam}} <strong>{{#winVisiting}}-G-{{/winVisiting}}
+												</strong> <strong>{{#firstBloodVisiting}}-FB-{{/firstBloodVisiting}}</strong>
+												</td>
+												<td>
+													<form id="formId{{id}}"
+														action="admin-scores/updateEgames/{{id}}" method="post">
+														<div class="controls">
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="winningTeam">-G-
+																		<option value="{{homeTeam}}">Gana Local -G-</option>
+																		<option value="{{visitingTeam}}">Gana
+																			Visitante -G-</option>
+																	</select>
+																</div>
+															</div>
+															<div class="controls">
+																<div class="controls">
+																	<select style="min-width: 200px;" name="firstBlood">-FB-
+																		<option value="{{homeTeam}}">Primera Sangre
+																			Local -FB-</option>
+																		<option value="{{visitingTeam}}">Primera
+																			Sangre Visitante-FB-</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<input type="hidden" name="_csrf" value="{{token}}" /> <input
+															style="border-left: 10px; display: none" type="submit"
+															class="btn btn-success" value="Guardar" />
+													</form>
+												</td>
+												<td>
+													<button style="border-left: 10px"
+														onclick="functionSubmit('formId{{id}}');"
+														class="btn btn-success buttonSave">Guardar</button>
+												</td>
+											</tr>
+											{{/csgoMatch}}
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end-main-container-part-->
+	<!--Footer-part-->
+	<div class="row-fluid">
+		<div id="footer" class="span12">
+			2013 &copy; Matrix Admin. Brought to you by <a
+				href="http://themedesigner.in">Themedesigner.in</a>
+		</div>
+	</div>
+	<!--end-Footer-part-->
+	<script src="admin/js/jquery.min.js"></script>
+	<script src="admin/js/jquery.ui.custom.js"></script>
+	<script src="admin/js/bootstrap.min.js"></script>
+	<script src="admin/js/bootstrap-colorpicker.js"></script>
+	<script src="admin/js/bootstrap-datepicker.js"></script>
+	<script src="admin/js/jquery.toggle.buttons.js"></script>
+	<script src="admin/js/masked.js"></script>
+	<script src="admin/js/jquery.uniform.js"></script>
+	<script src="admin/js/select2.min.js"></script>
+	<script src="admin/js/matrix.js"></script>
+	<script src="admin/js/matrix.form_common.js"></script>
+	<script src="admin/js/wysihtml5-0.3.0.js"></script>
+	<script src="admin/js/jquery.peity.min.js"></script>
+	<script src="admin/js/bootstrap-wysihtml5.js"></script>
+	<script type="text/javascript">
+		function startTime() {
+			today = new Date();
+			h = today.getHours();
+			m = today.getMinutes();
+			s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('reloj').innerHTML = h + ":" + m + ":" + s;
+			t = setTimeout('startTime()', 500);
+		}
+
+		function checkTime(i) {
+			if (i < 10) {
+				i = "0" + i;
+			}
+			return i;
+		}
+		window.onload = function() {
+			startTime();
+		}
+	</script>
+	<script type="text/javascript">
+		function functionSubmit(formId) {
+			document.getElementById(formId).submit();
+		}
+	</script>
+</body>
+
+</html>
