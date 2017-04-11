@@ -114,21 +114,21 @@
 
 ## Diagramas de la aplicación:
 
-#### Navigation diagram:
-[Navigation diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n).
+### Navigation diagram:
+[Go to ... Navigation diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n).
 
-#### Class diagrams:
-[Class diagrams!](https://raw.githubusercontent.com/MarcoCaballero/FFB_DAW/develop/Material%20adicional/Diagramas%20de%20clases).
+### Class diagrams:
+[Go to ... Class diagrams!](https://raw.githubusercontent.com/MarcoCaballero/FFB_DAW/develop/Material%20adicional/Diagramas%20de%20clases).
 
-#### Database diagram:
-![Database diagram](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
+### Database diagram:
+[Go to ... Database diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
 
-#### Website image screenshots:
-![LOGIN](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
+### Website image screenshots:
+[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
 
        
 
-Desarrolladores:
+Members:
 
 @AdrianPedriza
 @peloxoo
