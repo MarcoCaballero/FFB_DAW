@@ -124,7 +124,7 @@
 [Go to ... Database diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
 
 ### API diagrams:
-[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
+[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas%20API).
 
 ### Website image screenshots:
 [Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
