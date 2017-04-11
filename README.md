@@ -5,7 +5,7 @@
 - [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
 - [ ] SPA Interface (Angular) :exclamation:
 
-<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png" width="500">
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/SPRING-APP-TRADITIONAL%2BAPI/src/main/resources/static/user/img/LogoFFB.png" width="500">
 
 # FFBet (:mortar_board: University Project) - URJC ETSII  .
 
@@ -122,6 +122,9 @@
 
 ### Database diagram:
 [Go to ... Database diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
+
+### API diagrams:
+[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
 
 ### Website image screenshots:
 [Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
