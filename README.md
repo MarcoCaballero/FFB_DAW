@@ -1,35 +1,71 @@
-# FFB_DAW
-### Friends&amp;Fun&amp;Bet ----- DAW WEB PROJECT --- URJC ETSII
+
+![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png)
+
+# FFBet (:mortar_board: University Project)
+#### URJC ETSII  .
+
+##### TASKS
 
 
+
++ FFBet is a web application development project that simulates a sports betting website (and e-games) with simulated money and different levels of security for administrators, users and visitors. The different functionalities of FFBet can be divided into three distinct blocks:
+
+    - ~~ Visitors ~~ will be able to:
+        * Visualize the results of the finished matches, the next matches (with their respective odds) in order to plan future bets with their corresponding winnings.
+        * Visualize a section with the promotions and gifts available. 
+        * Sign up section, obtaining at that moment the permissions of the section ~~ user ~~.
+        * Visualize videos and images available in the web.
+    
+    - ~~ Users ~~ will be able to:
+        * To have their own individual section where they can edit their data (including upload pictures), review their betting history and redeem them.
+        * A purse with simulated and promotional funds (subject to the specific conditions of the service), in this wallet can be included funds from simulated cards and withdraw them to the previously used.
+        * Apostar a los diferentes partidos con sus cuotas disponibles, seleccionar la cantidad de la apuesta y el origen de los fondos y aplicar las posibles promociones.
+        * Apply and apply discount promotions / promotional funds.
+        * They inherit all the functions of ~~ Visitors ~~ .
+
+    - ~~Admins~~ : .
+        * Creation, updating, reading and deletion of matches.
+        * Creation, updating, reading and deletion of teams.
+        * Creation, updating, reading and deletion of users (including user role upgrade/downgrade).
+        * Creation, updating, reading and deletion of promotions.
+        * Visualize the WebSite Statistics.
+        
+        > Includes Spring security, cookies managment, CSRF (Cross-site request forgery) prevention.
+        
+    
+    
 - [x] Traditional Interface :+1:
 - [x] Traditional backend :+1:
 - [x] API REST  :+1:
 - [ ] SPA Interface (Angular) :exclamation:
 
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png =100x150)
-
-
 #### Descripción: 
 
-+ Somos _Friends&Fun&Bet_, el sitio web, donde podrás apostar, divertirte y ganar dinero 
-+ En la **parte _pública_** podrás:
-    - Consultar las apuestas disponibles, y preparar tu propio boleto con la ganancia prevista
-    - Utilizar las diferentes promociones para registrarte y/o obtener bonos de bienvenida
-    - Visualizar noticias relacionadas con las temáticas para apostar, o relacionadas con el [juego seguro http://www.juegoseguro.es/](http://www.juegoseguro.es/) y [juego prudente https://www.jugarbien.es/] (https://www.jugarbien.es/), así como, información los diferentes *métodos de pago* 
-+ En la **parte _privada_** podrás:
-    - Disponer un perfil exclusivo con un fondo para depositar dinero y distintas posibilidades de consultar tu historial, ganancias, y otras muchas estadisticas
-    - Seleccionar las apuestas a incluir en tu boleto y el precio que deseas apostar, obteniendo en pantalla el calculo de las ganancias previstas
-    - Comprobar el estado de tus apuestas actuales
-    - Obtener diferentes promociones y ofertas
++ Project name: FFBet.com ![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFBalpha_sin_com.png)
+
++ Content:
+    - Traditional interface
+    > HTML5, CSS3, Bootstrap, jQuery, JavaScript.
     
+    - Traditional backend
+    > Spring MVC, Spring data JPA, Spring Security, Mustache, Maven (Double release MySql & H2 database).
     
+    -API REST
+    >SpringBoot Spring MVC, Json, Spring security 
     
-#### Páginas dentro de la aplicación web:
+    -SPA Client :octocat: We are working on...
+    >Angular, Bootstrap, TypeScript, RxJS
+     
+    
+#### FBBET PAGES:
+
++ HOME: 
 
 
-+ INDEX: página principal de nuestra aplicación, contiene anuncios, barra de menú con diferentes posibilidades, footer y enlaces a promociones que ofrece la casa de apuestas. Si está registrado un usuario puede acceder desde esta y cualquiera de las páginas a su cuenta en la zona superior derecha donde a simple vista encontrará su imagen de perfil, su nombre de usuario y su saldo actual. Así como un botón para el ingreso de dinero para sus apuestas.
+
+
++ INDEX: página principal de nuestra aplicación, contiene anuncios, barra de menú, footer y enlaces a promociones que ofrece la casa de apuestas. Si está registrado un usuario puede acceder desde esta y cualquiera de las páginas a su cuenta en la zona superior derecha donde a simple vista encontrará su imagen de perfil, su nombre de usuario y su saldo actual. Así como un botón para el ingreso de dinero para sus apuestas.
 
 
 + APUESTAS DEPORTIVAS: dentro de esta página contamos con un espacio publicitario, barra de menú, footer, apuestas disponibles de los diferentes eventos deportivos (no e-games), boleto de apuestas y porcentajes y estadísticas sobre las apuestas realizadas por los usuarios de la aplicación.
