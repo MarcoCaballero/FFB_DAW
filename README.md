@@ -2,11 +2,10 @@
 
 - [x] Traditional Interface :+1:
 - [x] Traditional backend :+1:
-- [x] API REST  :+1: #### Enlace a la documentación de la API
-[API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
+- [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
 - [ ] SPA Interface (Angular) :exclamation:
 
-<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png" width="250">
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png" width="500">
 
 # FFBet (:mortar_board: University Project) - URJC ETSII  .
 
@@ -40,7 +39,7 @@
 
 #### Descripción: 
 
-+ Project name: FFBet.com  <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/develop/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFBalpha_sin_com.png" width="100">
++ Project name: FFBet.com  <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/develop/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFBalpha_sin_com.png" width="100" style="margin-bottom: -3%;">
 
 
 
@@ -96,16 +95,16 @@
 + `HOME`: página principal del cPanel donde podemos acceder a cada uno de los apartados tanto desde la barra de menú como en la parte interna de la página. Todas las páginas pueden acceder a la barra de menú, por lo que esta página carece de importancia fundamental.
 
 
-+ `EQUIPOS`: página creada con la función de administrar y gestionar (añadir o editar) los equipos. Los equipos pueden ser de deportes originales o de e-Sports, en ambos se ofrecen campos para rellenar con información como nombre, lugar, trofeos, integrantes, redes sociales...
++ `TEAMS`: página creada con la función de administrar y gestionar (añadir o editar) los equipos. Los equipos pueden ser de deportes originales o de e-Sports, en ambos se ofrecen campos para rellenar con información como nombre, lugar, trofeos, integrantes, redes sociales...
 
 
-+ `PARTIDOS`: espacio creado para la adición de cualquier tipo de evento (tanto deportes como e-sports). Por cada partido se solicitará la siguiente información: equipo local y visitante, fecha del encuentro y cuotas.
++ `MATCHES`: espacio creado para la adición de cualquier tipo de evento (tanto deportes como e-sports). Por cada partido se solicitará la siguiente información: equipo local y visitante, fecha del encuentro y cuotas.
 
 
-+ `RESULTADOS`: esta página se diseñó con la idea de añadir los resultados correspondientes a los partidos subidos en FFBet una vez hayan finalizado. Para realizar esta gestión se pide elegir el partido en cuestión dentro de la lista de partidos disponibles y anotar el resultado final del encuentro.
++ `RESULTS`: esta página se diseñó con la idea de añadir los resultados correspondientes a los partidos subidos en FFBet una vez hayan finalizado. Para realizar esta gestión se pide elegir el partido en cuestión dentro de la lista de partidos disponibles y anotar el resultado final del encuentro.
 
 
-+ `PROMOCIONES`: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
++ `PROMOTIONS`: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
 
 #### SHARED PAGES:
  
@@ -113,7 +112,7 @@
 
 + `LOGIN`: Page to login with a user to FFBet. Composed of a form where the user must enter email and password to access his account. If the user does not remember his password, he has the option: Forgot password.
 
-
++ `POLICY TERMS`: Includes the policy terms.
 
 
 ## Diagramas de la aplicación:
