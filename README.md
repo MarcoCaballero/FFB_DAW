@@ -1,15 +1,14 @@
-
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png)
-
-# FFBet (:mortar_board: University Project) #### URJC ETSII  .
-
 ##### TASKS
 
 - [x] Traditional Interface :+1:
 - [x] Traditional backend :+1:
-- [x] API REST  :+1:
+- [x] API REST  :+1: #### Enlace a la documentación de la API
+[API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
 - [ ] SPA Interface (Angular) :exclamation:
 
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png" width="250">
+
+# FFBet (:mortar_board: University Project) - URJC ETSII  .
 
 + FFBET is a web application development project that simulates a sports betting website (and e-games) with simulated money and different levels of security for administrators, users and visitors. The different functionalities of FFBet can be divided into three distinct blocks:
 
@@ -41,76 +40,81 @@
 
 #### Descripción: 
 
-+ Project name: FFBet.com  <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/develop/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFBalpha_sin_com.png" width="48">
++ Project name: FFBet.com  <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/develop/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFBalpha_sin_com.png" width="100">
 
 
 
 + Content:
     - Traditional interface
+    
     > HTML5, CSS3, Bootstrap, jQuery, JavaScript.
     
     - Traditional backend
+    
     > Spring MVC, Spring data JPA, Spring Security, Mustache, Maven (Double release MySql & H2 database).
     
-    -API REST
+    - API REST 
+        + Enlace a la documentación de la API
+        [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
+        
     >SpringBoot Spring MVC, Json, Spring security 
     
-    -SPA Client :octocat: We are working on...
+    - SPA Client :octocat: We are working on...
+    
     >Angular, Bootstrap, TypeScript, RxJS
      
     
 #### FBBET USER PAGES:
 
-+ HOME: Application main page, contains ads, promotional images, results listings and links to other pages.
++ `HOME`: Application main page, contains ads, promotional images, results listings and links to other pages.
 
-+ SPORTS BET: It is along with `E-GAMES BET` the heart of the application, the place where the bets are made, in this case the sports. Between its different sections are lists of matches and bets with their corresponding quotas.
++ `SPORTS BET`: It is along with `E-GAMES BET` the heart of the application, the place where the bets are made, in this case the sports. Between its different sections are lists of matches and bets with their corresponding quotas.
 
-+ E-GAMES BET: It is along with `SPORTS BET` the heart of the application, the place where the bets are made, in this case the e-games. Between its different sections are lists of matches and bets with their corresponding quotas. In addition it is possible to visualize the last official video of League of legends.
++ `E-GAMES BET`: It is along with `SPORTS BET` the heart of the application, the place where the bets are made, in this case the e-games. Between its different sections are lists of matches and bets with their corresponding quotas. In addition it is possible to visualize the last official video of League of legends.
 
-+ PROMOTIONS: Contains the promotions and gifts, there are two differentiated sections: promotional codes and promotional funds.
++ `PROMOTIONS`: Contains the promotions and gifts, there are two differentiated sections: promotional codes and promotional funds.
 
-+ MY ACCOUNT: his page offers different possibilities: edit the personal data of the user, check your virtual wallet, check the status of your bets and choose a team or learn about data on the team chosen as upcoming matches and the updated ranking.
++ `MY ACCOUNT`: his page offers different possibilities: edit the personal data of the user, check your virtual wallet, check the status of your bets and choose a team or learn about data on the team chosen as upcoming matches and the updated ranking.
 
-   * MY DATA: section in which the user can conúly the data of his account arranged in a form (name, surname, telephone ...). You have the option to edit them with the "Edit" button.
+   - `MY DATA`: section in which the user can conúly the data of his account arranged in a form (name, surname, telephone ...). You have the option to edit them with the "Edit" button.
    
-   * MY HISTORY: section in which all the bets made by the user, both bets made and completed and bets made and have not yet taken place, as well as the type of bet and the balance entered.
+   - `MY HISTORY`: section in which all the bets made by the user, both bets made and completed and bets made and have not yet taken place, as well as the type of bet and the balance entered.
    
-   * PURSE: a section in which the user can see his available balance to be withdrawn as the current game balance. In this section, the user has the option to enter money with the "Enter €" button and the option to withdraw it with "Withdraw €".
+   - `PURSE`: a section in which the user can see his available balance to be withdrawn as the current game balance. In this section, the user has the option to enter money with the "Enter €" button and the option to withdraw it with "Withdraw €".
    
-   * MY TEAM: a section where the user can check current information of his favorite team, such as last matches or current league classification. From here, you can also choose your favorite team with the "Choose Team" button.
+   - `MY TEAM`: a section where the user can check current information of his favorite team, such as last matches or current league classification. From here, you can also choose your favorite team with the "Choose Team" button.
    
-   * ENTER FUNDS: page to deposit balance in a certain account. In it we find a form in which the user will enter different types of data to enter balance in your account (name, card number, payment method ...).
+   - `ENTER FUNDS`: page to deposit balance in a certain account. In it we find a form in which the user will enter different types of data to enter balance in your account (name, card number, payment method ...).
    
-   * WITHDRAW FUNDS: page to withdraw balance from an account. Composed of a form in which the user enters his name, the amount to be withdrawn and the number of the card where he wants to withdraw the balance.
+   - `WITHDRAW FUNDS`: page to withdraw balance from an account. Composed of a form in which the user enters his name, the amount to be withdrawn and the number of the card where he wants to withdraw the balance.
    
- + FOOTER AND SIDEBAR: Shared between the user pages, let us navigate to others FFBet pages or safety bet advices.
+ + `FOOTER AND SIDEBAR`: Shared between the user pages, let us navigate to others FFBet pages or safety bet advices.
 
 
 #### FBBET ADMIN PAGES:
 
-+ HOME: página principal del cPanel donde podemos acceder a cada uno de los apartados tanto desde la barra de menú como en la parte interna de la página. Todas las páginas pueden acceder a la barra de menú, por lo que esta página carece de importancia fundamental.
++ `HOME`: página principal del cPanel donde podemos acceder a cada uno de los apartados tanto desde la barra de menú como en la parte interna de la página. Todas las páginas pueden acceder a la barra de menú, por lo que esta página carece de importancia fundamental.
 
 
-+ EQUIPOS: página creada con la función de administrar y gestionar (añadir o editar) los equipos. Los equipos pueden ser de deportes originales o de e-Sports, en ambos se ofrecen campos para rellenar con información como nombre, lugar, trofeos, integrantes, redes sociales...
++ `EQUIPOS`: página creada con la función de administrar y gestionar (añadir o editar) los equipos. Los equipos pueden ser de deportes originales o de e-Sports, en ambos se ofrecen campos para rellenar con información como nombre, lugar, trofeos, integrantes, redes sociales...
 
 
-+ PARTIDOS: espacio creado para la adición de cualquier tipo de evento (tanto deportes como e-sports). Por cada partido se solicitará la siguiente información: equipo local y visitante, fecha del encuentro y cuotas.
++ `PARTIDOS`: espacio creado para la adición de cualquier tipo de evento (tanto deportes como e-sports). Por cada partido se solicitará la siguiente información: equipo local y visitante, fecha del encuentro y cuotas.
 
 
-+ RESULTADOS: esta página se diseñó con la idea de añadir los resultados correspondientes a los partidos subidos en FFBet una vez hayan finalizado. Para realizar esta gestión se pide elegir el partido en cuestión dentro de la lista de partidos disponibles y anotar el resultado final del encuentro.
++ `RESULTADOS`: esta página se diseñó con la idea de añadir los resultados correspondientes a los partidos subidos en FFBet una vez hayan finalizado. Para realizar esta gestión se pide elegir el partido en cuestión dentro de la lista de partidos disponibles y anotar el resultado final del encuentro.
 
 
-+ PROMOCIONES: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
++ `PROMOCIONES`: dentro de esta sección se pueden modificar las promociones que aparecen dentro de la app web FFBet. Para ello se elige la sección donde se encuentra la promoción que desea editar y el lado concreto (posición) donde aparece en la página. A partir de estos pasos se añade la información necesaria para completar una promoción (imagen promocional, título y descripción).
 
 #### SHARED PAGES:
  
-+ SIGN UP: FFBet sign up section. It is composed of a registration form in which the user must enter some of his personal data essential to complete the registration. When a user registers he is accepting the internal policy of FFBet, which can consult in a link at the end of the registry.
++ `SIGN UP`: FFBet sign up section. It is composed of a registration form in which the user must enter some of his personal data essential to complete the registration. When a user registers he is accepting the internal policy of FFBet, which can consult in a link at the end of the registry.
 
-+ LOGIN: Page to login with a user to FFBet. Composed of a form where the user must enter email and password to access his account. If the user does not remember his password, he has the option: Forgot password.
++ `LOGIN`: Page to login with a user to FFBet. Composed of a form where the user must enter email and password to access his account. If the user does not remember his password, he has the option: Forgot password.
 
 
-#### Enlace a la documentación de la API
-![API-documentation](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
+
 
 ## Diagramas de la aplicación:
 
@@ -192,6 +196,7 @@
        
 
 Desarrolladores:
+
 @AdrianPedriza
 @peloxoo
 @MarcoCaballero
