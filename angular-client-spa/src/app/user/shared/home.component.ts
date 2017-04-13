@@ -10,27 +10,23 @@ import { TabsetComponent } from 'ngx-bootstrap';
 
 export class HomeComponent implements OnInit {
     // Public fields
-    title = 'HOME';
-
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
+    title = 'HOME';
 
 
     constructor() { }
 
     ngOnInit() { }
 
-    public alertMe(): void {
-        setTimeout(function (): void {
-            alert('You\'ve selected the alert tab!');
-        });
+    // Could be used to switch enabled/disabled a tab from out of tabs
+    disableEnable(tab_id: number) {
+        this.staticTabs.tabs[tab_id].disabled = !this.staticTabs.tabs[tab_id].disabled
     }
-
+    // Could be used to select a tab from out of tabs
     selectTab(tab_id: number) {
         this.staticTabs.tabs[tab_id].active = true;
     }
 
-    disableEnable() {
-        this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled
-    }
 }
+
