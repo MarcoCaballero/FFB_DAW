@@ -2,38 +2,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { DropdownModule } from 'ngx-dropdown';
+import { CarouselModule, TabsModule } from 'ngx-bootstrap';
 
 // App imports
-import { MenuHeaderComponent } from './menu-header.component';
-import { FooterComponent } from './footer.component';
-import { HomeComponent } from './home.component';
+import { MenuHeaderComponent } from './shared/menu-header.component';
+import { FooterComponent } from './shared/footer.component';
+import { UserComponent } from './user.component';
+import { UserRoutingModule } from './user-routing.module';
+import { routedComponents } from './user-routing.module';
 
-import { DropdownModule } from 'ngx-dropdown';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         DropdownModule,
-        RouterModule.forRoot([
-            {
-                path: 'home',
-                component: HomeComponent
-            }
-        ])
-    ],
+        CarouselModule.forRoot(),
+        TabsModule.forRoot(),
+        UserRoutingModule
+           ],
     exports: [
-        MenuHeaderComponent,
-        FooterComponent,
-        HomeComponent,
-        RouterModule,
-        DropdownModule
+        UserComponent,
+        UserRoutingModule,
+        routedComponents
     ],
     declarations: [
+        UserComponent,
         MenuHeaderComponent,
         FooterComponent,
-        HomeComponent
+        routedComponents
     ],
     providers: [],
 })

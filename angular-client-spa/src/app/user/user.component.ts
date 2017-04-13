@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-user-footer',
-    templateUrl: './footer.component.html',
+    selector: 'ffbcomp-user',
+    templateUrl: 'user.component.html',
     styleUrls: ['../../assets/css/styles.css']
 })
 
-export class FooterComponent implements OnInit {
-
-    title = 'soy footer!';
+export class UserComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
