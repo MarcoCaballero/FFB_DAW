@@ -1,9 +1,14 @@
-##### TASKS
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/build.png">
 
-- [x] Traditional Interface :+1:
-- [x] Traditional backend :+1:
-- [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
-- [ ] SPA Interface (Angular) :exclamation:
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/npm-version.png">
+
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/node-version.png">
+
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/styles.png">
+
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/TSLINT.png">
+
+***
 
 <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/SPRING-APP-TRADITIONAL%2BAPI/src/main/resources/static/user/img/LogoFFB.png" width="500">
 
@@ -60,7 +65,14 @@
     
     >Angular, Bootstrap, TypeScript, RxJS
      
-    
+##### TASKS
+
+- [x] Traditional Interface :+1:
+- [x] Traditional backend :+1:
+- [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
+- [ ] SPA Interface (Angular) :exclamation:   
+
+
 #### FBBET USER PAGES:
 
 + `HOME`: Application main page, contains ads, promotional images, results listings and links to other pages.
