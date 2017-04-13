@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
     // Could be used to switch enabled/disabled a tab from out of tabs
     disableEnable(tab_id: number) {
-        this.staticTabs.tabs[tab_id].disabled = !this.staticTabs.tabs[tab_id].disabled
+        this.staticTabs.tabs[tab_id].disabled = !this.staticTabs.tabs[tab_id].disabled;
     }
     // Could be used to select a tab from out of tabs
     selectTab(tab_id: number) {
