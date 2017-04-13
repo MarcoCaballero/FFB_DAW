@@ -2,25 +2,20 @@
     <div class="row">
         <ol class="breadcrumb">
             <li>
-                <a href="user"> <span class="glyphicon glyphicon-home">WHERE???</span> </a>
+                <a href="user/home"> <span class="glyphicon glyphicon-home"> {{title}} </span> </a>
             </li>
         </ol>
     </div>
-    <div class="row">
-        HOME
-    </div>
-
     <!--Esto ya no es común a todas las páginas-->
     <!--Publicidad y etcs-->
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <h1 class="page-header"></h1>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-
+                <!-- NGX-CAROUSEL -->
                 <carousel class="carousel-inner" role="listbox">
                     <slide>
-                        <img class="slide" src="../assets/images/slideHOmeFutbol.png" alt="First slide">
+                        <img class="slide" src="../assets/images/SlideHOmeFutbol.png" alt="First slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1></h1>
@@ -30,7 +25,7 @@
                         </div>
                     </slide>
                     <slide>
-                        <img class="slide" src="../assets/images/slideHOmeLol.png" alt="Second slide">
+                        <img class="slide" src="../assets/images/SlideHOmeLol.png" alt="Second slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <a class="btn btn-lg btn-primary" href="user-sportsBet" role="button">¡Apuesta ya!</a>
@@ -38,7 +33,7 @@
                         </div>
                     </slide>
                     <slide>
-                        <img class="slide" src="../assets/images/slideRegistrate.png" alt="Third slide">
+                        <img class="slide" src="../assets/images/SlideRegistrate.png" alt="Third slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1 class="publicidadCarousel">¡REGISTRATE YA!</h1>
@@ -49,25 +44,7 @@
                         </div>
                     </slide>
                 </carousel>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <!-- ./NGX-CAROUSEL -->
             </div>
         </div>
     </div>
@@ -77,23 +54,11 @@
         <div class="col-md-8" style="padding-left: 10px; margin-top: 0px;">
             <div class="panel panel-default" style="margin-left: 25px; margin-right: 0px;">
                 <div class="panel-body tabs">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="user#tab1" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/football.svg" style="width: 16px; height: 16px;">                                FUTBOL</a>
-                        </li>
-                        <li>
-                            <a href="user#tab2" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                BASKET</a>
-                        </li>
-                        <li>
-                            <a href="user#tab3" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                LOL</a>
-                        </li>
-                        <li>
-                            <a href="user#tab4" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                CS:GO</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1">
-                            <!-- Contenido Futbol-->
+                    <tabset #staticTabs>
+                        <tab>
+                            <template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/football.svg" style="width: 16px; height: 16px;">                                FUTBOL
+                            </template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
@@ -112,15 +77,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- Contenido Futbol-->
                             <div id="toShow-football" style="padding-left:40%">
                                 <button id="more-scores-football"> + Resultados</button>
                             </div>
                             <div id="another-results-football" style="padding-left:40%"></div>
                             <div id="spinner-football" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2">
-                            <!-- Contenido Futbol-->
+                        </tab>
+                        <tab>
+                            <template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                BASKET
+                            </template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
@@ -139,16 +105,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- Contenido Basket-->
                             <div id="toShow-basket" style="padding-left:40%">
                                 <button id="more-scores-basket"> + Resultados</button>
                             </div>
                             <div id="another-results-basket" style="padding-left:40%"></div>
                             <div id="spinner-basket" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab3">
-                            <!-- Contenido Futbol-->
-                            <!-- Contenido CS-->
+                        </tab>
+                        <tab>
+                            <template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                LOL
+                            </template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
@@ -176,9 +142,11 @@
                             </div>
                             <div id="another-results-lol" style="padding-left:40%"></div>
                             <div id="spinner-lol" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab4">
-                            <!-- Contenido CS-->
+                        </tab>
+                        <tab>
+                            <template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                CS:GO
+                            </template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
@@ -206,8 +174,9 @@
                             </div>
                             <div id="another-results-csgo" style="padding-left:40%"></div>
                             <div id="spinner-csgo" style="padding-left:45%"></div>
-                        </div>
-                    </div>
+                        </tab>
+
+                    </tabset>
                 </div>
             </div>
         </div>
