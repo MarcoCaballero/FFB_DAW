@@ -1,6 +1,6 @@
 <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/build.png">
 
-<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/npm-version.png">
+<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/EstadoRepositorio/npm-version.png">
 
 <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/EstadoRepositorio/node-version.png">
 
