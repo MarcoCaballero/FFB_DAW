@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UserModule } from './user/user.module';
     FormsModule,
     HttpModule,
     UserModule,
+    AdminModule,
     AppRoutingModule
   ],
   providers: [],
