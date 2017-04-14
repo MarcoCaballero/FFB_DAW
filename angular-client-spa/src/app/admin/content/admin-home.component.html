@@ -1,0 +1,104 @@
+<!--main-container-part-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a href="home" title="Go to Home" class="current"><i
+					class="icon-home"></i> Home</a>
+        </div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <h1 class="titulo_central">BIENVENIDO AL PANEL DE CONTROL</h1>
+            </div>
+        </div>
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb">
+                    <a href="/admin"> <i class="icon-dashboard"></i> Home
+                    </a>
+                </li>
+                <li class="bg_lg span3">
+                    <a href="/admin-teams"> <i class="icon-signal"></i>Equipos
+                    </a>
+                </li>
+                <li class="bg_ly">
+                    <a href="/admin-matches"> <i class="icon-inbox"></i>
+                        <!--<span class="label label-success">101</span>-->Partidos
+                    </a>
+                </li>
+                <li class="bg_lo">
+                    <a href="/admin-scores"> <i class="icon-th"></i>Resultados
+                    </a>
+                </li>
+                <li class="bg_ls">
+                    <a href="/admin-promotions"> <i class="icon-fullscreen"></i>Promociones
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--End-Action boxes-->
+
+
+        <div class="row-fluid">
+            <div class="span8" style="margin-top: 5%">
+                <div class="panel panel-default">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
+                            data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                            <thead>
+                                <tr>
+                                    <th data-field="Id" data-sortable="true">ID</th>
+                                    <th data-field="Name" data-sortable="true">Nombre</th>
+                                    <th data-field="Surname" data-sortable="true">Apellido</th>
+                                    <th data-field="E-mail" data-sortable="true">E-mail</th>
+                                    <th data-field="Role" data-sortable="true">Role</th>
+
+                                    <th data-field="Actions" data-sortable="true">Actions</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>id</td>
+                                <td>nombre</td>
+                                <td>apellido</td>
+                                <td>email</td>
+                                <td>roles</td>
+                                <td>
+                                    <a href="admin-home/upgrade/{{id}}" class="btn btn-mini btn-warning"> <i class="icon-plus"></i> Administrador
+                                    </a>
+                                    <a href="admin-home/delete/{{id}}" class="btn btn-mini btn-danger"> <i class="icon-remove"></i> Borrar Usuario
+                                    </a>
+                                    <a href="/admin-home/downgrade/{{id}}" class="btn btn-mini btn-primary"> <i class="icon-edit"></i> Degradar usuario
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span3" style="margin-top: 5%">
+                <ul class="site-stats">
+                    <li class="bg_lh"><i class="icon-user"></i> <strong>00</strong>
+                        <small>Total Users</small></li>
+                    <li class="bg_lh"><i class="icon-plus"></i> <strong>00</strong>
+                        <small>Total teams</small></li>
+                    <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>00</strong>
+                        <small>Total Bets</small></li>
+                    <li class="bg_lh"><i class="icon-tag"></i> <strong>00</strong>
+                        <small>Total Money</small></li>
+                    <li class="bg_lh"><i class="icon-repeat"></i> <strong>00</strong>
+                        <small>Actually promotions</small></li>
+                    <li class="bg_lh"><i class="icon-globe"></i> <strong>00</strong>
+                        <small>Total matches</small></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end-main-container-part-->
