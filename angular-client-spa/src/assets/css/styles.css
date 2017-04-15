@@ -730,7 +730,7 @@ a.bg-danger:hover {
 
 .breadcrumb {
     border-radius: 0;
-    padding: 10px 15px;
+    padding: 10px 25px;
     background: #e9ecf2;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     margin: 0;
@@ -2004,5 +2004,11 @@ body {
     outline-color: rgb(217, 83, 79);
 }
 
+
+/*Angular fixes*/
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main {
+        margin-top: 3.6em;
+    background: #e3e2eb;
+}
 
 
