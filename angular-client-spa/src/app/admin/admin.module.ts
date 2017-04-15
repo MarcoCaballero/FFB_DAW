@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AccordionModule } from 'ngx-accordion';
 
 // App import
 import { AdminHeaderComponent } from './shared/admin-header.component';
@@ -14,6 +15,7 @@ import { routedComponents } from './admin-routing.module';
     imports: [
         CommonModule,
         FormsModule,
+        AccordionModule,
         AdminRoutingModule
     ],
     exports: [
