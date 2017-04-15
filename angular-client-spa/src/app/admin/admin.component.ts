@@ -4,9 +4,8 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'ffbcomp-admin',
     templateUrl: 'admin.component.html',
-    styleUrls: ['../../assets/css/admin/bootstrap.min.css',
-    '../../assets/css/admin/bootstrap-responsive.min.css', '../../assets/css/admin/styles.css',
-    '../../assets/css/admin/media.css']
+    styleUrls: ['../../assets/css/admin/styles.css', '../../assets/css/admin/media.css',
+    '../../assets/css/admin/bootstrap.min.css']
 })
 
 export class AdminComponent implements OnInit {

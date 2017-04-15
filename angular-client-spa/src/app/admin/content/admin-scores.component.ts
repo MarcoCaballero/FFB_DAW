@@ -4,8 +4,7 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'ffbcomp-admin-scores',
     templateUrl: 'admin-scores.component.html',
-    styleUrls: ['../../../assets/css/admin/styles.css', '../../../assets/css/admin/media.css',
-        '../../../assets/css/admin/bootstrap.min.css', '../../../assets/css/admin/bootstrap-responsive.min.css']
+    styleUrls: ['../../../assets/css/admin/styles.css', '../../../assets/css/admin/media.css']
 })
 
 export class AdminScoresComponent implements OnInit {
