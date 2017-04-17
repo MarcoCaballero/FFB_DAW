@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'ngx-dropdown';
-import { CarouselModule, TabsModule } from 'ngx-bootstrap';
+import { CarouselModule, TabsModule, CollapseModule   } from 'ngx-bootstrap';
 
 // App imports
 import { MenuHeaderComponent } from './shared/menu-header.component';
@@ -20,6 +20,7 @@ import { routedComponents } from './user-routing.module';
         DropdownModule,
         CarouselModule.forRoot(),
         TabsModule.forRoot(),
+        CollapseModule .forRoot(),
         UserRoutingModule
            ],
     exports: [

@@ -2011,4 +2011,17 @@ body {
     background: #e3e2eb;
 }
 
+.col-sm-10.col-sm-offset-3.col-lg-10.col-lg-offset-2.main{
+    margin-top: 3.6em;
+    background: #e3e2eb;
+}
+
+.sub-row-ffb{
+margin-left: 3%;
+}
+span.glyphicon.glyphicon-pencil {
+    color: black;
+}
+
+
 
