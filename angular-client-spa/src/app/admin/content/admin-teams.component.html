@@ -1,8 +1,10 @@
+<ffbcomp-admin-header></ffbcomp-admin-header>
+
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="index.html" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> Home</a> <a href="admin" class="current">Gestión
+            <a routerLink="/admin/home" title="Go to Home" class="tip-bottom"><i
+					class="icon-home"></i> Home</a> <a class="current">Gestión
 					de equipos</a>
         </div>
         <h1>Gestión de Equipos</h1>
@@ -111,7 +113,7 @@
 
                                 <td><button type="submit" class="btn btn-mini btn-info" style="margin-left: 30%; margin-bottom: 20%">Editar
 											</button>
-                                            <a href="/admin-teams/delete/{{id}}" class="btn btn-mini btn-danger" style="margin-left: 30%; margin-bottom: 20%"> Borrar </a>
+                                    <a href="/admin-teams/delete/{{id}}" class="btn btn-mini btn-danger" style="margin-left: 30%; margin-bottom: 20%"> Borrar </a>
                             </tr>
                         </table>
                     </div>
@@ -121,173 +123,191 @@
         <hr>
         <div class="row-fluid">
             <div class="span6">
-                <accordion [showArrows]="true" [closeOthers]="false">
-                    <accordion-group heading="Añadir Nuevo Equipo Deportivo">
-                        <form action="admin-teams/newSportsTeam" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            <div class="control-group">
-                                <label class="control-label">Tipo de deporte :</label>
-                                <div class="controls">
-                                    <select name="sportsType">
+                <accordion [closeOthers]="false">
+                    <div class="widget-box collapsible">
+                        <accordion-group [isOpened]=true>
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir nuevo equipo deportivo</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <form action="admin-teams/newSportsTeam" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                <div class="control-group">
+                                    <label class="control-label">Tipo de deporte :</label>
+                                    <div class="controls">
+                                        <select name="sportsType">
 										<option value="Fútbol">Fútbol</option>
 										<option value="Baloncesto">Baloncesto</option>
 									</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Nombre :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del equipo" name="sportsName" />
+                                <div class="control-group">
+                                    <label class="control-label">Nombre :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del equipo" name="sportsName" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">País :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="País del equipo" name="sportsCountry" />
+                                <div class="control-group">
+                                    <label class="control-label">País :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="País del equipo" name="sportsCountry" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Ciudad :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Ciudad del equipo" name="sportsCity" />
+                                <div class="control-group">
+                                    <label class="control-label">Ciudad :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Ciudad del equipo" name="sportsCity" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Estadio :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del campo de fútbol" name="stadium" />
+                                <div class="control-group">
+                                    <label class="control-label">Estadio :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del campo de fútbol" name="stadium" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Eslogan :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Frase típica de la afición de este equipo" name="slogan" />
+                                <div class="control-group">
+                                    <label class="control-label">Eslogan :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Frase típica de la afición de este equipo" name="slogan" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Presidente :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del presidente" name="president" />
+                                <div class="control-group">
+                                    <label class="control-label">Presidente :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del presidente" name="president" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Entrenador :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del entrenador" name="sportsCoach" />
+                                <div class="control-group">
+                                    <label class="control-label">Entrenador :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del entrenador" name="sportsCoach" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Ligas :</label>
-                                <div class="controls">
-                                    <input type="number" class="span11" placeholder="Número de ligas ganadas" name="leaguesWeb" />
+                                <div class="control-group">
+                                    <label class="control-label">Ligas :</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11" placeholder="Número de ligas ganadas" name="leaguesWeb" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Copas :</label>
-                                <div class="controls">
-                                    <input type="number" class="span11" placeholder="Número de copas ganadas" name="cupsWeb" />
+                                <div class="control-group">
+                                    <label class="control-label">Copas :</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11" placeholder="Número de copas ganadas" name="cupsWeb" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Champions :</label>
-                                <div class="controls">
-                                    <input type="number" class="span11" placeholder="Número de champions ganadas" name="championsWeb" />
+                                <div class="control-group">
+                                    <label class="control-label">Champions :</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11" placeholder="Número de champions ganadas" name="championsWeb" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Facebook :</label>
-                                <div class="controls">
-                                    <input type="url" class="span11" placeholder="URL de su página de Facebook" name="facebook_Uri" />
+                                <div class="control-group">
+                                    <label class="control-label">Facebook :</label>
+                                    <div class="controls">
+                                        <input type="url" class="span11" placeholder="URL de su página de Facebook" name="facebook_Uri" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Twitter :</label>
-                                <div class="controls">
-                                    <input type="url" class="span11" placeholder="URL de su página de Twitter" name="twitter_Uri" />
+                                <div class="control-group">
+                                    <label class="control-label">Twitter :</label>
+                                    <div class="controls">
+                                        <input type="url" class="span11" placeholder="URL de su página de Twitter" name="twitter_Uri" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Google :</label>
-                                <div class="controls">
-                                    <input type="url" class="span11" placeholder="URL de su página de Google+" name="google_Uri" />
+                                <div class="control-group">
+                                    <label class="control-label">Google :</label>
+                                    <div class="controls">
+                                        <input type="url" class="span11" placeholder="URL de su página de Google+" name="google_Uri" />
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <span class="help-block" style="margin-left: 30%">Las URLs
+                                <!-- <span class="help-block" style="margin-left: 30%">Las URLs
 								deben tener el formato de URL típico (http://www...)</span> -->
-                            <div class="control-group">
-                                <label class="control-label">Imagen Escudo :</label>
-                                <div class="controls">
-                                    <input type="file" name="logoImage" />
+                                <div class="control-group">
+                                    <label class="control-label">Imagen Escudo :</label>
+                                    <div class="controls">
+                                        <input type="file" name="logoImage" />
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <label>Hay un error con la imagen
+                                <!-- <label>Hay un error con la imagen
 								intantalo más tarde</label> -->
-                            <div class="control-group">
-                                <label class="control-label">Imagen Estadio :</label>
-                                <div class="controls">
-                                    <input type="file" name="stadiumImage" />
+                                <div class="control-group">
+                                    <label class="control-label">Imagen Estadio :</label>
+                                    <div class="controls">
+                                        <input type="file" name="stadiumImage" />
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <label>Hay un error con la imagen
+                                <!-- <label>Hay un error con la imagen
 								intantalo más tarde</label> -->
-                            <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
-                            <div style="margin-left:80%">
-                                <input type="submit" class="btn btn-success" value="Añadir" />
-                            </div>
-                        </form>
-                    </accordion-group>
+                                <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
+                                <div style="margin-left:80%">
+                                    <input type="submit" class="btn btn-success" value="Añadir" />
+                                </div>
+                            </form>
+                        </accordion-group>
+                    </div>
                 </accordion>
             </div>
             <div class="span6">
-                <accordion [showArrows]="true" [closeOthers]="false">
-                    <accordion-group heading="Añadir resultado LOL">
-                        <form action="admin-teams/newEgamesTeam" method="post" class="form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label">Tipo de juego :</label>
-                                <div class="controls">
-                                    <select name="egamesType">
+                <accordion [closeOthers]="false">
+                    <div class="widget-box collapsible">
+                        <accordion-group [isOpened]=true>
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir nuevo equipo E-Games</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <form action="admin-teams/newEgamesTeam" method="post" class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Tipo de juego :</label>
+                                    <div class="controls">
+                                        <select name="egamesType">
 										<option value="LOL">League of legends</option>
 										<option value="CS-GO">Counter Strike GO</option>
 									</select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Nombre :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del equipo" name="egamesName" />
+                                <div class="control-group">
+                                    <label class="control-label">Nombre :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del equipo" name="egamesName" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">País :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="País del equipo" name="egamesCountry" />
+                                <div class="control-group">
+                                    <label class="control-label">País :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="País del equipo" name="egamesCountry" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Ciudad :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Ciudad del equipo" name="egamesCity" />
+                                <div class="control-group">
+                                    <label class="control-label">Ciudad :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Ciudad del equipo" name="egamesCity" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Entrenador :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre del entrenador" name="egamesCoach" />
+                                <div class="control-group">
+                                    <label class="control-label">Entrenador :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre del entrenador" name="egamesCoach" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Sponsor :</label>
-                                <div class="controls">
-                                    <input type="text" class="span11" placeholder="Nombre de la sede del equipo" name="sponsor" />
+                                <div class="control-group">
+                                    <label class="control-label">Sponsor :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Nombre de la sede del equipo" name="sponsor" />
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
-                            <div style="margin-left: 80%">
-                                <input type="submit" class="btn btn-success" value="Añadir" />
-                            </div>
-                        </form>
-                    </accordion-group>
+                                <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
+                                <div style="margin-left: 80%">
+                                    <input type="submit" class="btn btn-success" value="Añadir" />
+                                </div>
+                            </form>
+                        </accordion-group>
+                    </div>
                 </accordion>
             </div>
         </div>
     </div>
 </div>
+
+<ffbcomp-admin-footer></ffbcomp-admin-footer>

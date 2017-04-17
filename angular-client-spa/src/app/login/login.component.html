@@ -1,0 +1,59 @@
+<video autoplay loop muted poster="screenshot.jpg" id="background">
+    <source src="../assets/images/video.mp4" type="video/mp4">
+</video>
+<div id="loginbox" style="position: fixed; left: 35%; margin-top: 8%;  margin-bottom: 3%;">
+    <form id="loginform" style="background-color: rgba(0, 0, 0, 0.65);" class="form-vertical" action="login" method="POST">
+        <div class="control-group normal_text" style="background-color: rgba(0, 0, 0, 0);">
+            <h3>
+                <img src="../assets/images/LogoFFBalpha.png" height="200px" alt="Logo" />
+            </h3>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg" style="width:12%"><i class="icon-user"> </i></span> <input type="text" name="username" placeholder="Correo electrónico"
+                        [(ngModel)]="username" style="height:36px" />
+                </div>
+            </div>
+        </div>
+        <p style="color:red">{{username}}</p>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly" style="width:12%"><i class="icon-lock"></i></span> <input type="password" name="password" placeholder="Contraseña"
+                        [(ngModel)]="pass" style="height:36px" />
+                </div>
+                <p style="color:red">{{pass}}</p>
+                <!--
+                <div *ngIf="!isOk">
+                    <h5 style="color: red"> La contraseña o usuario son erroneos, o
+                        <p> tienes una sesión abierta en otro dispositivo </p>
+                    </h5>
+                </div>
+                -->
+            </div>
+        </div>
+        <div class="form-actions" style="margin-bottom:5%">
+            <span class="pull-right"><input type="submit" class="btn btn-primary" value="Entrar"></span>
+        </div>
+        <a routerLink="/user/home">enlace</a>
+        <!--
+        <div class="row" style="margin-bottom:5%">
+            <span class="pull-right">
+				<input type="submit" class="btn btn-primary" value="Entrar" (click)="checkCredentials()">
+			</span>
+        </div>-->
+        <div class="row">
+            <a href="signup" style="font-size:medium; margin-left: 10%;" id="tipo">¿No te has registrado aún?</a>
+        </div>
+    </form>
+</div>
+
+<!--
+        <div class="form-actions">
+            <span class="pull-left"><a href="login#"
+					class="flip-link btn btn-danger" id="to-recover">¿Olvidó su
+						contraseña?</a></span> <span class="pull-right"><input type="submit"
+					class="btn btn-primary" value="Entrar"></span>
+        </div>
+-->

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'ffbcomp-root',
     template: `
-    <ffbcomp-user></ffbcomp-user>
+    <router-outlet></router-outlet>
   `
 })
 
