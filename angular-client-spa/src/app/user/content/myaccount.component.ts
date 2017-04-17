@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
@@ -12,11 +12,19 @@ export class MyAccountComponent implements OnInit {
     // Public fields
     public isCollapsed = false;
 
+    public selectedTab = 0;
+
+    @ViewChild('staticTabs') staticTabs: TabsetComponent;
+
     title = 'MyAccount';
 
+
+    // Methods
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+
+    }
 
     public collapsed(event: any): void {
         console.log(event);
@@ -25,6 +33,16 @@ export class MyAccountComponent implements OnInit {
     public expanded(event: any): void {
         console.log(event);
     }
+
+    selectTab(tab_id: number) {
+        this.staticTabs.tabs[tab_id].active = true;
+        this.selectedTab = tab_id;
+    }
+
+    public selectTabFromInner(tab_id: number) {
+        this.selectedTab = tab_id;
+    }
+
 
 }
 

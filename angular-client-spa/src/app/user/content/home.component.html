@@ -1,3 +1,5 @@
+<ffbcomp-user-menu-header></ffbcomp-user-menu-header>
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -28,7 +30,7 @@
                         <img class="slide" src="../assets/images/SlideHOmeLol.png" alt="Second slide">
                         <div class="container">
                             <div class="carousel-caption">
-                                <a class="btn btn-lg btn-primary" href="user-sportsBet" role="button">¡Apuesta ya!</a>
+                                <a routerLink="/user/sportsbet" class="btn btn-lg btn-primary" style="color: white;" role="button">¡Apuesta ya!</a>
                             </div>
                         </div>
                     </slide>
@@ -38,7 +40,7 @@
                             <div class="carousel-caption">
                                 <h1 class="publicidadCarousel">¡REGISTRATE YA!</h1>
                                 <p class="publicidadCarousel"> Y consigue un increible bono de bienvenida de <code>100€</code> </p>
-                                <p> <a class="btn btn-lg btn-primary" href="signup" role="button">REGISTRATE
+                                <p> <a routerLink="/user/signup" class="btn btn-lg btn-primary" style="color: white;" role="button">REGISTRATE
 											HOY</a> </p>
                             </div>
                         </div>
@@ -50,7 +52,7 @@
     </div>
     <!--/.row-->
     <div class="row">
-        <div class="tt1" style="background-color: #004300; margin-left: 10px; margin-right: 10px;"> Últimos encuentros</div>
+        <div class="tt1" style="background-color: #004300; margin-left: 3%; width: 95%;"> Últimos encuentros</div>
         <div class="col-md-8" style="padding-left: 10px; margin-top: 0px;">
             <div class="panel panel-default" style="margin-left: 25px; margin-right: 0px;">
                 <div class="panel-body tabs">
@@ -62,7 +64,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 40px;"></th>
                                         <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">Resultado</div>
                                         </th>
@@ -77,11 +79,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-football" style="padding-left:40%">
-                                <button id="more-scores-football"> + Resultados</button>
-                            </div>
-                            <div id="another-results-football" style="padding-left:40%"></div>
-                            <div id="spinner-football" style="padding-left:45%"></div>
+
                         </tab>
                         <tab>
                             <template tabHeading>
@@ -90,7 +88,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/nbalogo.png" style="width: 100px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/nbalogo.png" style="width: 100px; height: 43px;"></th>
                                         <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">Resultado</div>
                                         </th>
@@ -105,20 +103,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-basket" style="padding-left:40%">
-                                <button id="more-scores-basket"> + Resultados</button>
-                            </div>
-                            <div id="another-results-basket" style="padding-left:40%"></div>
-                            <div id="spinner-basket" style="padding-left:45%"></div>
+
                         </tab>
                         <tab>
                             <template tabHeading>
-                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                LOL
+                                <span class="glyph stroked 	glyphicon glyphicon-star" style="color: black"> </span> LOL
                             </template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/lol_logo.png" style="width: 100px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/lol_logo.png" style="width: 150px; height: 60px;"></th>
                                         <th>
                                             <div class="col-xs-6 col-md-3 text-center" style="width: 200px">Equipo Ganador</div>
                                         </th>
@@ -137,15 +131,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-lol" style="padding-left:40%">
-                                <button id="more-scores-lol"> + Resultados</button>
-                            </div>
-                            <div id="another-results-lol" style="padding-left:40%"></div>
-                            <div id="spinner-lol" style="padding-left:45%"></div>
+
                         </tab>
                         <tab>
                             <template tabHeading>
-                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                CS:GO
+                                <span class="glyph stroked 	glyphicon glyphicon-star" style="color: black"> </span> CS:GO
                             </template>
                             <table class="table table-striped">
                                 <thead>
@@ -169,11 +159,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-csgo" style="padding-left:40%">
-                                <button id="more-scores-csgo"> + Resultados</button>
-                            </div>
-                            <div id="another-results-csgo" style="padding-left:40%"></div>
-                            <div id="spinner-csgo" style="padding-left:45%"></div>
+
                         </tab>
 
                     </tabset>
@@ -188,8 +174,12 @@
                 </div>
                 <div class="card-action">
                     <div style="font-family: fantasy;">
-                        <p style="display: inline; margin-left: 20px; margin-right: 10px;"> <a href="user-sportsBet" style="font-size: xx-large">DEPORTES</a> </p>
-                        <p style="display: inline; margin-left: 20px;"> <a href="user-EsportsBet" style="font-size: xx-large">JUEGOS</a> </p>
+                        <p style="display: inline; margin-left: 20px; margin-right: 10px;">
+                            <a routerLink="/user/sportsbet" style="font-size: xx-large">DEPORTES</a>
+                        </p>
+                        <p style="display: inline; margin-left: 20px;">
+                            <a routerLink="/user/egamesbet" style="font-size: xx-large">JUEGOS</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -198,3 +188,5 @@
     </div>
     <!--/.row-->
 </div>
+
+<ffbcomp-user-footer></ffbcomp-user-footer>
