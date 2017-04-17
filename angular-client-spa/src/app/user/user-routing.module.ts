@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { HomeComponent } from './shared/home.component';
+import { HomeComponent } from './content/home.component';
+import { SportsbetComponent } from './content/sportsbet.component';
+import { EgamesbetComponent } from './content/egamesbet.component';
+import { MyAccountComponent } from './content/myaccount.component';
 
 const routes: Routes = [
   {
@@ -11,6 +14,18 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'sportsbet',
+        component: SportsbetComponent
+      },
+      {
+        path: 'egamesbet',
+        component: EgamesbetComponent
+      },
+      {
+        path: 'myaccount',
+        component: MyAccountComponent
       }
     ]
   },
@@ -22,4 +37,4 @@ const routes: Routes = [
 })
 export class UserRoutingModule { }
 
-export const routedComponents = [HomeComponent];
+export const routedComponents = [HomeComponent, SportsbetComponent, EgamesbetComponent, MyAccountComponent];
