@@ -1453,8 +1453,11 @@ a.todo-list-item:focus {
 .pp {
     border-bottom: 5px solid #eee;
     margin: 20px 0;
+    animation-name: colorsChanging;
     -webkit-animation-name: colorsChanging;
+    animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+    animation-duration: 2s;
     -webkit-animation-duration: 2s;
 }
 
@@ -1471,7 +1474,10 @@ a.todo-list-item:focus {
 }
 
 .imagen_equipos {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
+    height: 3.3em;
 }
 
 .enlaceFooter {
