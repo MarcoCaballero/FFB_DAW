@@ -6,7 +6,13 @@ import { AdminTeamsComponent } from './content/admin-teams.component';
 import { AdminMatchesComponent } from './content/admin-matches.component';
 import { AdminScoresComponent } from './content/admin-scores.component';
 
+import { AdminComponent } from './admin.component';
+
 const routes: Routes = [
+    {
+        path: 'admin',
+        component: AdminComponent
+    },
     {
         path: 'admin',
         children: [

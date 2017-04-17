@@ -10,9 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
+    LoginComponent,
     AppComponent
   ],
   imports: [
