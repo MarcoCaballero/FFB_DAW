@@ -1,0 +1,126 @@
+<div id="collapseEquipos" class="row collapse">
+    <!-- PRUEBAS CARD TEAM-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-10"> #Teams
+                <div class="col-md-4 col-sm-6">
+                    <div class="card-container manual-flip">
+                        <div class="card">
+                            <div class="front">
+                                <form action="user-account/selectionTeam/  id  ">
+                                    <div class="cover"> <img src="" /> </div>
+                                    <div class="user"> <img class="img-circle" src="" /> </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name"> name </h3>
+                                            <p class="text-center">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 widget-right">
+                                                            <input type="submit" class="btn btn-default btn-md pull-right" value="Seleccionar" /> </div>
+                                                    </div>
+                                                </fieldset>
+                                            </p>
+                                        </div>
+                                        <div class="footer">
+                                            <a class="btn btn-simple" onclick="rotateCard(this)"> <i class="fa fa-mail-forward"></i> More info </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end front panel -->
+                            <div class="back">
+                                <div class="header">
+                                    <h5 class="motto"> #slogan </h5> </div>
+                                <div class="content">
+                                    <div class="main">
+                                        <h4 class="text-center"> name </h4>
+                                        <p class="text-center">
+                                            <ul>
+                                                <li> <strong>Estadio:</strong> #stadium </li>
+                                                <li> <strong>Presidente:</strong> #president </li>
+                                                <li> <strong>Entrenador:</strong> #coach </li>
+                                            </ul>
+                                        </p>
+                                        <div class="stats-container">
+                                            <div class="stats">
+                                                <h4> #leagues </h4>
+                                                <p>Ligas</p>
+                                            </div>
+                                            <div class="stats">
+                                                <h4> #cups </h4>
+                                                <p>Copas</p>
+                                            </div>
+                                            <div class="stats">
+                                                <h4> #champions </h4>
+                                                <p>Champions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"></button> <i class="fa fa-reply" />
+                                    <div class="social-links text-center">
+                                        <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                        <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                        <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end back panel -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end card-container -->
+                </div>
+                <!-- end col sm 6 -->
+            </div>
+            <!-- end col-sm-10 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!--FIN PRUEBAS -->
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"> <a href="#tab4sub" data-toggle="tab">Próximos partidos</a> </li>
+                    <li> <a href="#tab5sub" data-toggle="tab">Últimos partidos</a> </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab4sub">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Partido</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td> homeTeam - visitingTeam </td>
+                                <td> date </td>
+                            </tr>
+                    </div>
+                    <div class="tab-pane fade" id="tab5sub">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Partido</th>
+                                    <th>Resultado</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td> homeTeam - visitingTeam </td>
+                                <td> homePoints - visitingPoints </td>
+                                <td> date </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,492 @@
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+   <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="/user/home">
+                   <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
+                </a>
+            </li>
+            <li class="active">{{title}}</li>
+        </ol>
+    </div>
+    <!--Esto ya no es común a todas las páginas-->
+    <!--Publicidad y etcs-->
+    <div class="row">
+        <!-- new user -->
+        <div class="col-lg-10 col-sm-10 col-lg-offset-1">
+            <div class="tarjeta hovercard">
+                <div class="tarjeta-background">
+                    <img class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
+                </div>
+                <div class="useravatar">
+                    <img alt="" src="../assets/images/boyUser.svg">
+                </div>
+                <div class="tarjeta-info">
+                    <span class="tarjeta-title"><strong> user.name
+						</strong> <em> user.email </em></span>
+                </div>
+            </div>
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							<div class="hidden-xs">Mis Datos</div>
+						</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
+							<span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+							<div class="hidden-xs">Mi Monedero</div>
+						</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab">
+							<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+							<div class="hidden-xs">Mis apuestas</div>
+						</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab">
+							<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+							<div class="hidden-xs">Mi Equipo</div>
+						</button>
+                </div>
+            </div>
+            <div class="well">
+                <div class="tab-content">
+                    <tabset [justified]="true">
+                        <!-- tab 1 -->
+                        <tab>
+                            <div class="tab-pane fade in active collapse" id="tab1">
+                                <div class="panel panel-primary" style="background-color: #FFD288">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div style="margin-bottom: 10px;" class="col-md-12">
+                                                <div class="panel-heading">
+                                                    FICHA DE USUARIO
+                                                    <div style="float: right;">
+                                                        <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
+                                                        <button id="editarDatos" type="submit" class="btn btn-primary">Editar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <form id="form-updateDataUser" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+                                                <div class="col-md-6">
+                                                    <fieldset>
+                                                        <!-- Nombre input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="name">Nombre</label>
+                                                            <div class="col-md-9">
+                                                                <input id="name" name="namePre" type="text" placeholder="user.name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <!-- 1Apellido input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Primer
+															Apellido</label>
+                                                            <div class="col-md-9">
+                                                                <input id="ap1" name="surnamePre" type="text" placeholder="user.surname" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- 2Apellido input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Segundo
+															Apellido</label>
+                                                            <div class="col-md-9">
+                                                                <input id="ap2" name="secondSurname" type="text" placeholder="user.secondSurname" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- Ciudad input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Ciudad</label>
+                                                            <div class="col-md-9">
+                                                                <input id="city" name="cityPre" type="text" placeholder="user.city" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- Pais input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Pais</label>
+                                                            <div class="col-md-9">
+                                                                <input id="country" name="countryPre" type="text" placeholder="user.country" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="fileImage">Foto</label>
+                                                            <div class="col-md-9">
+                                                                <input id="fileImage" name="fileImage" type="file" placeholder="Subir imagen..." class="form-control">
+                                                                <label>
+                                                            Hay un error con la imagen intantalo más tarde
+                                                         </label>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <fieldset>
+                                                        <!-- Nombre input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="name">Correo
+															electronico</label>
+                                                            <div class="col-md-9">
+                                                                <input id="email" name="emailPre" type="text" placeholder="user.email" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- 1Apellido input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Domicilio</label>
+                                                            <div class="col-md-9">
+                                                                <input id="location" name="locationPre" type="text" placeholder="user.location" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- 2Apellido input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Telefono</label>
+                                                            <div class="col-md-9">
+                                                                <input id="telephone" name="telf" type="text" placeholder="user.telephone" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- Ciudad input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Nueva
+															Contraseña</label>
+                                                            <div class="col-md-9">
+                                                                <input id="pass" name="pass" type="password" placeholder="Escribe tu nueva contraseña" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">Repite Nueva Contraseña</label>
+                                                            <div class="col-md-9">
+                                                                <input id="passRepeat" name="passRepeat" type="password" placeholder="Repite tu nueva contraseña" class="form-control">
+                                                                <label>Contraseñas distintas</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Pais input -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label" for="email">DNI/NIF</label>
+                                                            <div class="col-md-9">
+                                                                <input id="dni" name="dniPre" type="text" placeholder="user.dni" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </tab>
+                        <!-- ./tab 1 -->
+                        <!-- tab 2 -->
+                        <tab>
+                            <div class="tab-pane fade in" id="tab2">
+                                <div class="panel panel-primary" style="background-color: #FFD288">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div style="margin-bottom: 10px;" class="col-md-12">
+                                                <div class="panel-heading">
+                                                    TU SALDO
+                                                    <div style="float: right;">
+                                                        <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/moneydep.png" />€
+                                                        user.credit €
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-left: 10%">
+                                            <div class="col-xs-12 col-md-9 col-lg-5">
+                                                <div class="panel panel-blue panel-widget ">
+                                                    <div class="row no-padding">
+                                                        <div class="col-sm-3 col-lg-5 widget-left" style="background: #b84f4f;">Saldo apostado</div>
+                                                        <div class="col-sm-9 col-lg-7 widget-right">
+                                                            <div class="large" style="margin-left: 30px;"> amountInBet €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-9 col-lg-5">
+                                                <div class="panel panel-blue panel-widget ">
+                                                    <div class="row no-padding">
+                                                        <div class="col-sm-3 col-lg-5 widget-left" style="background: #6470aa;">Posibles Ganancia</div>
+                                                        <div class="col-sm-9 col-lg-7 widget-right">
+                                                            <div class="large" style="margin-left: 30px;"> winAmountInBet €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-8 col-lg-5  col-lg-offset-3 col-md-offset-1">
+                                                <div class="panel panel-blue panel-widget ">
+                                                    <div class="row no-padding">
+                                                        <div class="col-sm-3 col-lg-5 widget-left" style="background: #478949;">Total retirable</div>
+                                                        <div class="col-sm-9 col-lg-7 widget-right">
+                                                            <div class="large" style="margin-left: 30px;"> user.credit €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <a class="btn btn-lg btn-primary" href="user-account/withdrawCredit" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                                role="button">Retirar €</a> <a class="btn btn-lg btn-primary"
+                                                href="user-account/addCredit" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                                role="button">Introducir €</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <!-- ./tab 2 -->
+                        <!-- tab 3 -->
+                        <tab>
+                            <div class="tab-pane fade in" id="tab3">
+                                <div class="panel panel-primary" style="background-color: #FFD288">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div style="margin-bottom: 10px;" class="col-md-12">
+                                                <div class="panel-heading">
+                                                    CONSULTA TODAS TUS APUESTAS
+                                                    <div style="float: right;">
+                                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8 col-lg-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body tabs">
+                                                        <ul class="nav nav-tabs">
+                                                            <li class="active"><a href="#tab1sub" data-toggle="tab">Apuestas en curso</a></li>
+                                                            <li><a href="#tab2sub" data-toggle="tab">Historial</a></li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane fade in active" id="tab1sub">
+                                                                <table id="apuestasEnCurso" class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Apuesta</th>
+                                                                            <th>Promoción Aplicada</th>
+                                                                            <th>Importe Apostado</th>
+                                                                            <th>Posibles ganancias</th>
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tr>
+                                                                        <td>#100 id </td>
+                                                                        <td> #applied_promo title : promotionCode</td>
+                                                                        <td> amount €</td>
+                                                                        <td> potentialGain €</td>
+                                                                    </tr>
+
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="tab2sub">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Apuesta</th>
+                                                                            <th>Promoción</th>
+                                                                            <th>Importe Apostado</th>
+                                                                            <th>Ganancia obtenida</th>
+                                                                            <th>Acciones</th>
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tr>
+                                                                        <td>#100 id </td>
+                                                                        <td> #applied_promo title </td>
+                                                                        <td> amount €</td>
+                                                                        <td> #isLosed Perdida € /isLosed ^isLosed potentialGain
+                                                                            €s /isLosed
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="/user-account/checkBet/  id  " class="btn btn-primary">Canjear</a>                                                                            /isUsed
+                                                                            <a href="/user-account/removeBetMatch/  id  " class="btn btn-danger">Borrar</a>
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/.row-->
+                                        </div>
+                                        <div class="row">
+                                            <a class="btn btn-lg btn-primary" href="user-sportsBet" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                                role="button">Apuestas deportivas
+                                        </a>
+                                            <a class="btn btn-lg btn-primary" href="user-EsportsBet.html" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                                role="button">Apuestas e-games
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <!-- ./tab 3 -->
+                        <tab>
+                            <div class="tab-pane fade in" id="tab4">
+                                <div class="panel panel-primary" style="background-color: #FFD288">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div style="margin-bottom: 10px;" class="col-md-12">
+                                                <div class="panel-heading">LO ÚLTIMO DE TUS EQUIPOS DE FÚTBOL FAVORITOS</div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom: 5%;">
+                                            <div class="col-sm-6">
+                                                <h3 class="card-title">
+                                                    <img src="../assets/images/atm_escudo_card.png" height="150px" style="margin-left: 10%; float: left">
+                                                </h3>
+                                                <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed">
+                                                    Cambiar Equipo
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h3 class="card-title"> name </h3>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-left: 5%;">
+                                            <div class="row" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="!isCollapsed">
+                                                <div class="col-md-4 col-sm-8 col-lg-4">
+                                                    <div class="card">
+
+                                                        <div class="image">
+                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
+                                                        </div>
+                                                        <div class="text">
+
+                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
+
+                                                            <h3>Equipo X</h3>
+                                                            <p>Entrenador:</p>
+                                                            <p>Entrenador:</p>
+                                                            <p>Estadio:</p>
+                                                        </div>
+                                                        <div class="social-links text-center">
+                                                            <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                            <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                            <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 col-sm-8 col-lg-4">
+                                                    <div class="card">
+
+                                                        <div class="image">
+                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
+                                                        </div>
+                                                        <div class="text">
+
+                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
+
+                                                            <h3>Equipo X</h3>
+                                                            <p>Entrenador:</p>
+                                                            <p>Entrenador:</p>
+                                                            <p>Estadio:</p>
+                                                        </div>
+                                                        <div class="social-links text-center">
+                                                            <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                            <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                            <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 col-sm-8 col-lg-4">
+                                                    <div class="card">
+
+                                                        <div class="image">
+                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
+                                                        </div>
+                                                        <div class="text">
+
+                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
+
+                                                            <h3>Equipo X</h3>
+                                                            <p>Entrenador:</p>
+                                                            <p>Entrenador:</p>
+                                                            <p>Estadio:</p>
+                                                        </div>
+                                                        <div class="social-links text-center">
+                                                            <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
+                                                            <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
+                                                            <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row sub-row-ffb">
+                                            <div class="col-md-11">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body tabs">
+                                                        <tabset #staticTabs>
+                                                            <tab>
+                                                                <template tabHeading>
+                                                                    <span class="glyphicon glyphicon-indent-left">  Próximos partidos</span>
+                                                                </template>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Partido</th>
+                                                                            <th>Fecha</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tr>
+                                                                        <td> homeTeam - visitingTeam </td>
+                                                                        <td> date </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </tab>
+                                                            <tab>
+                                                                <template tabHeading>
+                                                                    <span class="glyphicon glyphicon-indent-right">  Últimos partidos</span>
+                                                                </template>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Partido</th>
+                                                                            <th>Resultado</th>
+                                                                            <th>Fecha</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tr>
+                                                                        <td> homeTeam - visitingTeam </td>
+                                                                        <td> homePoints - visitingPoints </td>
+                                                                        <td> date </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </tab>
+                                                        </tabset>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
