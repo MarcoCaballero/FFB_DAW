@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class EgamesbetComponent implements OnInit {
-    
-    title = "E-gamesBet";
+
+    title = 'E-gamesBet';
 
     constructor() { }
 

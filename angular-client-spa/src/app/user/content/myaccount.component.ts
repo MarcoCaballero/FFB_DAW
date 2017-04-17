@@ -10,7 +10,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
 
 export class MyAccountComponent implements OnInit {
     // Public fields
-    public isCollapsed: boolean = false;
+    public isCollapsed = false;
 
     title = 'MyAccount';
 
