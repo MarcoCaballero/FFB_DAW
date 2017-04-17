@@ -8,8 +8,7 @@ import { AccordionModule } from 'ngx-accordion';
 import { AdminHeaderComponent } from './shared/admin-header.component';
 import { AdminFooterComponent } from './shared/admin-footer.component';
 import { AdminComponent } from './admin.component';
-import { AdminRoutingModule } from './admin-routing.module';
-import { routedComponents } from './admin-routing.module';
+import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 
 @NgModule({
     imports: [

@@ -1,9 +1,11 @@
+<ffbcomp-admin-header></ffbcomp-admin-header>
+
 <!--main-container-part-->
 <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="home" title="Go to Home" class="current"><i
+            <a routerLink="/admin/home" title="Go to Home" class="current"><i
 					class="icon-home"></i> Home</a>
         </div>
     </div>
@@ -19,23 +21,29 @@
             <ul class="quick-actions">
                 <li class="bg_lb">
                     <a href="/admin/home"> <i class="icon-dashboard" style="width:100%; margin-top:10%"></i>
-                    <p style="margin-top:15%">Home</p></a>
+                        <p style="margin-top:15%">Home</p>
+                    </a>
                 </li>
                 <li class="bg_lg span3">
                     <a href="/admin/teams"> <i class="icon-signal" style="width:100%; margin-top:2.5%"></i>
-                    <p style="margin-top:6%">Equipos</p></a>
+                        <p style="margin-top:6%">Equipos</p>
+                    </a>
                 </li>
                 <li class="bg_ly">
                     <a href="/admin/matches"> <i class="icon-inbox" style="width:100%; margin-top:10%"></i>
-                        <!--<span class="label label-success">101</span>--><p style="margin-top:15%">Partidos</p></a>
+                        <!--<span class="label label-success">101</span>-->
+                        <p style="margin-top:15%">Partidos</p>
+                    </a>
                 </li>
                 <li class="bg_lo">
                     <a href="/admin/scores"> <i class="icon-th" style="width:100%; margin-top:10%"></i>
-                    <p style="margin-top:15%">Resultados</p></a>
+                        <p style="margin-top:15%">Resultados</p>
+                    </a>
                 </li>
                 <li class="bg_ls">
                     <a href="/admin/promotions"> <i class="icon-fullscreen" style="width:100%; margin-top:10%"></i>
-                    <p style="margin-top:15%">Promociones</p></a>
+                        <p style="margin-top:15%">Promociones</p>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -101,3 +109,5 @@
     </div>
 </div>
 <!--end-main-container-part-->
+
+<ffbcomp-admin-footer></ffbcomp-admin-footer>
