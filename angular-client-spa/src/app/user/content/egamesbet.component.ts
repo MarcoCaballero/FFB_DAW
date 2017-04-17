@@ -14,4 +14,6 @@ export class EgamesbetComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
 }
+
