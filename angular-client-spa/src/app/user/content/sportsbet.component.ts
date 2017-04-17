@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SportsbetComponent implements OnInit {
+
     title = 'SportsBet';
+
     constructor() { }
 
     ngOnInit() { }
 
 }
+
