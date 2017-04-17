@@ -11,11 +11,12 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
     {
         path: 'admin',
-        component: AdminComponent
-    },
-    {
-        path: 'admin',
+        component: AdminComponent,
         children: [
+            {
+                path: '',
+                component: AdminHomeComponent
+            },
             {
                 path: 'home',
                 component: AdminHomeComponent
