@@ -1,9 +1,11 @@
+<ffbcomp-user-menu-header></ffbcomp-user-menu-header>
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
             <li>
                 <a routerLink="/user/home">
-                   <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
+                    <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
                 </a>
             </li>
             <li class="active">{{title}}</li>
@@ -29,7 +31,7 @@
                                     />
                                 </p>
                                 <p>
-                                    <a class="btn btn-lg btn-primary" href="#" role="button">¡Registrate
+                                    <a routerLink="/user/signup" class="btn btn-lg btn-primary" style="color: white" role="button">¡Registrate
 											ya!</a>
                                 </p>
                             </div>
@@ -47,8 +49,7 @@
                                     />
                                 </p>
                                 <p>
-                                    <a class="btn btn-lg btn-primary" href="#" role="button">Learn
-											more</a>
+                                    <a routerLink="/user/sportsbet" class="btn btn-lg btn-primary" style="color: white" role="button">Apuesta Ya!</a>
                                 </p>
                             </div>
                         </div>
@@ -63,19 +64,13 @@
                                     <code>100€</code>
                                 </p>
                                 <p>
-                                    <a class="btn btn-lg btn-primary" href="user-signup" role="button">REGISTRARSE</a>
+                                    <a routerLink="/user/signup" class="btn btn-lg btn-primary" style="color: white" role="button">REGISTRARSE</a>
                                 </p>
                             </div>
                         </div>
                     </slide>
                 </carousel>
                 <!-- ./NGX-CAROUSEL -->
-
-
-
-
-
-
             </div>
         </div>
     </div>
@@ -85,7 +80,6 @@
         <div class="col-md-7" style="padding-left: 10px; margin-left: 2em;">
             <div class="panel panel-default">
                 <div class="panel-body tabs">
-
                     <tabset #staticTabs>
                         <tab>
                             <template tabHeading>
@@ -266,7 +260,7 @@
                                 <div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px; left: 5em; right: 5em;">
                                     Ha habido un problema durante la transacción de los fondos, compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
                             </div>
-                           
+
                             <div class="row" style="padding-top: 50px;">
                                 <div class="col-md-12" style="color: black; left: 5em; right: 5em; font-size: 10px;">
                                     Al realizar una apuesta, usted está aceptando la versión mas reciente de nuestra <a href="#">política de apuestas.</a>
@@ -278,6 +272,7 @@
             </div>
             <!--/.col-->
         </div>
-
     </div>
 </div>
+
+<ffbcomp-user-footer></ffbcomp-user-footer>

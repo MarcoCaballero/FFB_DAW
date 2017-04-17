@@ -1,24 +1,22 @@
-<div class="col-sm-10 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-   <div class="row">
-        <ol class="breadcrumb">
-            <li>
-                <a routerLink="/user/home">
-                   <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
-                </a>
-            </li>
-            <li class="active">{{title}}</li>
-        </ol>
-    </div>
-    <!--Esto ya no es común a todas las páginas-->
-    <!--Publicidad y etcs-->
-    <div class="row">
+<ffbcomp-user-menu-header></ffbcomp-user-menu-header>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li>
+				<a routerLink="/user/home"> <span class="glyphicon glyphicon-home"> {{title}} </span> </a>
+			</li>
+		</ol>
+	</div>
+	<!--Esto ya no es común a todas las páginas-->
+	<!--Publicidad y etcs-->
+	<div class="row">
 		<div class="row">
 			<div class="col-lg-11 col-md-11" style="margin-left: 7rem;">
 				<h1 class="page-header"></h1>
 				<div id="myVideoBG">
 					<section id="banner">
-						<iframe frameborder="0" height="100%" width="100%"
-							src="https://youtube.com/embed/tEnsqpThaFg?autoplay=1&controls=1&showinfo=0&autohide=1">
+						<iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/tEnsqpThaFg?autoplay=1&controls=1&showinfo=0&autohide=1">
 						</iframe>
 					</section>
 				</div>
@@ -41,23 +39,16 @@
 				<div class="col-md-7" style="padding-left: 30px; margin-left: 7rem;">
 					<div class="panel panel-default">
 						<div class="panel-body tabs">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#tab1" data-toggle="tab"><img
-										class="glyph stroked home" src="../assets/images/football.svg"
-										style="width: 16px; height: 16px;"> LOL</a></li>
-								<li><a href="#tab2" data-toggle="tab"><img
-										class="glyph stroked home" src="../assets/images/tennis.svg"
-										style="width: 16px; height: 16px;"> CS:GO</a></li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane fade in active" id="tab1">
-									<!-- Contenido Futbol-->
+
+							<tabset #staticTabs>
+								<tab>
+									<template tabHeading>
+										<span class="glyph stroked 	glyphicon glyphicon-star" style="color: black"> </span> LOL
+									</template>
 									<table class="table table-striped">
 										<thead>
 											<tr class="tab-logo-liga">
-												<th colspan="3"><img class="glyph stroked home"
-													src="../assets/images/lol_logo.png"
-													style="width: 150px; height: 60px;"></th>
+												<th colspan="3"><img class="glyph stroked home" src="../assets/images/lol_logo.png" style="width: 150px; height: 60px;"></th>
 												<th>
 													<div class="col-xs-6 col-md-3 text-center">1</div>
 													<div class="col-xs-6 col-md-3 text-center">2</div>
@@ -71,43 +62,35 @@
 										<tbody>
 											<tr class="tab-horario-partido">
 												<th scope="row">1</th>
-												<td class="tab-horario-partido"> date   time </td>
-												<td class="tab-equipos-partido"> homeTeam  -
-													 visitingTeam </td>
+												<td class="tab-horario-partido"> date time </td>
+												<td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button"
-															class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button"
-															class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1"
-															type="button" class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2"
-															type="button" class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
 													</div>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-									<!-- Contenido LOL-->
-								</div>
-								<div class="tab-pane fade" id="tab2">
-									<!-- Contenido CS-->
+								</tab>
+								<tab>
+									<template tabHeading>
+										<span class="glyph stroked 	glyphicon glyphicon-star-empty" style="color: black"> </span> CS-GO
+									</template>
+
 									<table class="table table-striped">
 										<thead>
 											<tr class="tab-logo-liga">
-												<th colspan="3"><img class="glyph stroked home"
-													src="../assets/images/CSGO.png" style="width: 100px; height: 55px;"></th>
+												<th colspan="3"><img class="glyph stroked home" src="../assets/images/CSGO.png" style="width: 100px; height: 55px;"></th>
 												<th>
 													<div class="col-xs-6 col-md-3 text-center">1</div>
 													<div class="col-xs-6 col-md-3 text-center">2</div>
@@ -121,36 +104,29 @@
 										<tbody>
 											<tr class="tab-horario-partido">
 												<th scope="row">1</th>
-												<td class="tab-horario-partido"> date   time </td>
-												<td class="tab-equipos-partido"> homeTeam  -
-													 visitingTeam </td>
+												<td class="tab-horario-partido"> date time </td>
+												<td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button"
-															class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button"
-															class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1"
-															type="button" class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2"
-															type="button" class="btn btn-outline-success"
-															style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
 													</div>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-								</div>
-							</div>
+								</tab>
+							</tabset>
+
+
 						</div>
 					</div>
 				</div>
@@ -159,9 +135,8 @@
 					<div class="panel panel-blue">
 						<div class="panel-heading dark-overlay">
 							<svg class="glyph stroked clipboard-with-paper">
-                                <use
-									xlink:href="#stroked-clipboard-with-paper"></use>
-                            </svg>
+								<use xlink:href="#stroked-clipboard-with-paper"></use>
+							</svg>
 							APUESTA
 						</div>
 						<div class="panel-body">
@@ -182,28 +157,23 @@
 									</div>
 									<div class="pull-right action-buttons">
 										<a class="trash" href="/user-EsportsBet/removeBetMatch/ id ">
-											<svg id="iconoBasura" class="glyph stroked trash"
-												style="margin-top: 7px;">
-                                            <use
-													xlink:href="#stroked-trash"></use>
-                                        </svg>
+											<svg id="iconoBasura" class="glyph stroked trash" style="margin-top: 7px;">
+												<use xlink:href="#stroked-trash"></use>
+											</svg>
 										</a>
 									</div>
-								</li> 
+								</li>
 							</ul>
 						</div>
-						<div class="panel-footer"
-							style="background: rgba(255, 255, 255, 0.71)">
-							<form id="betTicket" action="/user-EsportsBet/sendBet"
-								method="post">
+						<div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
+							<form id="betTicket" action="/user-EsportsBet/sendBet" method="post">
 								<div class="row">
 									<div class="col-md-4" style="color: black; padding-top: 5px;">
 										<b>Importe</b>
 									</div>
 									<div class="col-md-4" style="color: white;"></div>
 									<div class="col-md-4" style="color: black;">
-										<select id="amountChangeBis" class="form-control"
-											style="border: 1px solid #2d9df3;">
+										<select id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
 											<option value=1 ><b>1€</b></option>
 											<option value=5 ><b>5€</b></option>
 											<option value=10><b>10€</b></option>
@@ -219,9 +189,8 @@
 									<div class="col-md-4" style="color: black; margin-top: 5%;">
 
 										<div class="form-group">
-											<input type="text" id="code" name="code" class="form-control"
-												placeholder="XXXXXX"> <input type="hidden"
-												name="_csrf" value=" token " />
+											<input type="text" id="code" name="code" class="form-control" placeholder="XXXXXX"> <input type="hidden" name="_csrf"
+											 value=" token " />
 										</div>
 
 									</div>
@@ -230,8 +199,7 @@
 									<div class="col-md-8" style="color: black;">
 										<b>Ganancias posibles:</b>
 									</div>
-									<div id="changeable" class="col-md-4"
-										style="color: black; margin-top: 5%;">
+									<div id="changeable" class="col-md-4" style="color: black; margin-top: 5%;">
 										<b>0.00 €</b>
 									</div>
 								</div>
@@ -243,9 +211,7 @@
 
 									<div class="col-xs-6">
 										<div class="range range-success">
-											<input type="range" name="promoQuantity" min="0"
-												max=" user.promotionCredit " value="0"
-												onchange="rangeSuccess.value=value">
+											<input type="range" name="promoQuantity" min="0" max=" user.promotionCredit " value="0" onchange="rangeSuccess.value=value">
 											<output id="rangeSuccess">0</output>
 										</div>
 									</div>
@@ -253,8 +219,8 @@
 								<div class="row">
 
 									<div class="row" style="margin-top: 50px;">
-										<div class="col-md-7" style="color: black;">Pulse para
-											enviar:</div>
+										<div class="col-md-7" style="color: black;">Pulse para enviar:
+										</div>
 										<div class="col-md-5" style="color: black;">
 											<div class="col-md-8">
 												<b style="color: black; margin-top: 5%; left: -10%;"></b>
@@ -262,43 +228,36 @@
 
 
 											<div class="buttonAnimation" onclick="functionDemo2();">
-												<span class="plane transition"></span> <span class="check"
-													style="display: none;"></span>
+												<span class="plane transition"></span> <span class="check" style="display: none;"></span>
 											</div>
-											
+
 
 										</div>
 									</div>
 									<div id="error" class="row" style="padding-top: 50px;">
-										<div class="col-md-12"
-											style="color: red; padding-top: 10px; font-size: 15px;">
-											Ha habido un problema durante la transacción de los fondos,
-											compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
+										<div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px;">
+											Ha habido un problema durante la transacción de los fondos, compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
 									</div>
 									<div class="row" style="padding-top: 50px;">
-										<div class="col-md-12"
-											style="color: red; padding-top: 10px; font-size: 15px;">
-											El código promocional no es válido, ya está usado o no
-											corresponde con una promoción aplicable al boleto de apuestas
-											deportivas.</div>
+										<div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px;">
+											El código promocional no es válido, ya está usado o no corresponde con una promoción aplicable al boleto de apuestas deportivas.
+										</div>
 									</div>
 									<div class="row" style="padding-top: 50px;">
-										<div class="col-md-12"
-											style="color: black; padding-top: 10px; font-size: 10px;">
-											Al realizar una apuesta, usted está aceptando la versión mas
-											reciente de nuestra <a href="#">política de apuestas.</a>
+										<div class="col-md-12" style="color: black; padding-top: 10px; font-size: 10px;">
+											Al realizar una apuesta, usted está aceptando la versión mas reciente de nuestra <a href="#">política de apuestas.</a>
 										</div>
 									</div>
 								</div>
 							</form>
 						</div>
 					</div>
-
-
 					<!--/.col-->
 				</div>
 				<!--/.row-->
-				
 			</div>
 		</div>
 	</div>
+</div>
+
+<ffbcomp-user-footer></ffbcomp-user-footer>

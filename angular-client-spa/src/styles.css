@@ -70,3 +70,13 @@
   80% {transform: rotate(360deg)}
   100% {transform: rotate(360deg)}
 }
+
+/*APP CURSORS*/
+
+li.dropdown.pull-right {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}

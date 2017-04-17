@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-sportsbet',
-    templateUrl: 'sportsbet.component.html',
+    selector: 'ffbcomp-signup',
+    templateUrl: 'signup.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
 
-export class SportsbetComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
-    title = 'SportsBet';
+    title = 'SignUp';
 
     constructor() { }
 
     ngOnInit() { }
-
 }
-
