@@ -4,7 +4,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 
 export interface User {
-    // id?: number;
+    id?: number;
     name?: string;
     email: string;
     roles: string[];
@@ -29,7 +29,7 @@ export class LoginService {
         this.http.get('http://127.0.0.1:8080/api/logIn', options).subscribe(
             response => this.processLogInResponse(response),
             error => {
-                if (error.status != 401) {
+                if (error.status !== 401) {
                     console.error('Error when asking if logged: ' +
                         JSON.stringify(error));
                 }
@@ -54,6 +54,9 @@ export class LoginService {
             response => {
                 this.processLogInResponse(response);
                 return this.user;
+            },
+            error => {
+                console.error('Error when asking if logged: ' + JSON.stringify(error));
             }
         );
     }
