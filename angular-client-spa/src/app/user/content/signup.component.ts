@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-signup',
@@ -10,8 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class SignupComponent implements OnInit {
 
     title = 'SignUp';
-
+    name = 'Tu nombre';
+    
     constructor() { }
 
+    sendSingUp(){
+       this.name = 'ei';
+    }
     ngOnInit() { }
 }
