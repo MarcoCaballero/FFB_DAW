@@ -21,10 +21,12 @@ export class LoginComponent {
         event.preventDefault();
 
         this.loginService.logIn(username, password).subscribe(
-            user => console.log(user.email),
+            user => {
+                console.log(user.email);
+                this.router.navigate(['/user']);
+        },
             error => alert('Invalid username or password')
         );
-        this.router.navigate(['/user']);
     }
 
     logOut(event: any) {
