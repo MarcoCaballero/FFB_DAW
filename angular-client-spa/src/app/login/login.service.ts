@@ -1,30 +1,77 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/Rx';
 
-import { User } from './user';
+export interface User {
+    // id?: number;
+    name?: string;
+    email: string;
+    roles: string[];
+}
+
 
 @Injectable()
 export class LoginService {
-    private loginUrl = 'api/logIn';
+    isLogged = false;
+    isAdmin = false;
+    user: User;
 
     constructor(private http: Http) { }
 
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
+    reqIsLogged() {
+        let headers = new Headers({
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+
+        let options = new RequestOptions({ headers });
+
+        this.http.get('http://127.0.0.1:8080/api/logIn', options).subscribe(
+            response => this.processLogInResponse(response),
+            error => {
+                if (error.status != 401) {
+                    console.error('Error when asking if logged: ' +
+                        JSON.stringify(error));
+                }
+            }
+        );
     }
 
-    login(username: string, password: string): Promise<User> {
-        const url = `${this.loginUrl}/${username}`;
-        return this.http.get(this.loginUrl)
-        .toPromise()
-        .then(response => response.json().data as User)
-        .catch(this.handleError);
+    private processLogInResponse(response) {
+        this.isLogged = true;
+        this.user = response.json();
+        this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
     }
 
-    logout() {
-        localStorage.removeItem('currentUser');
+    logIn(username: string, password: string) {
+        let userPass = username + ':' + password;
+        let headers = new Headers({
+            'Authorization': 'Basic ' + utf8_to_b64(userPass),
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+        let options = new RequestOptions({ headers });
+        return this.http.get('http://127.0.0.1:8080/api/logIn', options).map(
+            response => {
+                this.processLogInResponse(response);
+                return this.user;
+            }
+        );
     }
+
+    logOut() {
+
+        return this.http.get('logOut').map(
+            response => {
+                this.isLogged = false;
+                this.isAdmin = false;
+                return response;
+            }
+        );
+    }
+}
+
+function utf8_to_b64(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+        return String.fromCharCode(<any>'0x' + p1);
+    }));
 }
