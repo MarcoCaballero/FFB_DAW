@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-sportsbet',
-    templateUrl: 'sportsbet.component.html',
+    selector: 'ffbcomp-addcredit',
+    templateUrl: 'addcredit.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
 
-export class SportsbetComponent implements OnInit {
+export class AddcreditComponent implements OnInit {
 
-    title = 'Apuestas deportivas';
+    title = 'Añadir Fondos';
 
     constructor() { }
 

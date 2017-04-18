@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-sportsbet',
-    templateUrl: 'sportsbet.component.html',
+    selector: 'ffbcomp-name',
+    templateUrl: 'privacypolicy.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
 
-export class SportsbetComponent implements OnInit {
+export class PrivacypolicyComponent implements OnInit {
 
-    title = 'Apuestas deportivas';
+    title = 'Política de privacidad';
 
     constructor() { }
 
     ngOnInit() { }
-
 }

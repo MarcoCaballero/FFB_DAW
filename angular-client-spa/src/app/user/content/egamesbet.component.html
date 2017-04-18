@@ -4,8 +4,10 @@
 	<div class="row">
 		<ol class="breadcrumb">
 			<li>
-				<a routerLink="/user/home"> <span class="glyphicon glyphicon-home"> {{title}} </span> </a>
+				<a routerLink="/user/home"> <span class="glyphicon glyphicon-home">  </span>
+				</a>
 			</li>
+			<li class="active">{{title}}</li>
 		</ol>
 	</div>
 	<!--Esto ya no es común a todas las páginas-->
@@ -23,12 +25,11 @@
 				<div class="container">
 					<div class="videobg-caption">
 						<h1></h1>
-						<p style="color: white;">
+						<p>
 							<img src="../assets/images/faviconFFBpngGold.png" style="height: 80px;" />
 						</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">Apuesta
-								YA!</a>
+							<a routerLink="/user/sporstbet" class="btn btn-lg btn-primary" style="color: white;" role="button">Apuesta YA!</a>
 						</p>
 					</div>
 				</div>
@@ -134,10 +135,9 @@
 				<div class="col-md-4">
 					<div class="panel panel-blue">
 						<div class="panel-heading dark-overlay">
-							<svg class="glyph stroked clipboard-with-paper">
-								<use xlink:href="#stroked-clipboard-with-paper"></use>
-							</svg>
-							APUESTA
+							<span class="glyphicon glyphicon-tasks">
+							
+							</span> APUESTA
 						</div>
 						<div class="panel-body">
 							<ul class="todo-list">
@@ -150,105 +150,65 @@
 													 match.homeTeam - match.visitingTeam  </i>
 											</p>
 											<p style="color: black;">
-												24/11 19:00 <strong> #selectedNamequota  .  /selectedNamequota  #selectedFirstBloodNamequota  .  /selectedFirstBloodNamequota 
-													Q- @ #selectedQuota  .  /selectedQuota  Q_FB- @ #selectedFirstBloodQuota  .  /selectedFirstBloodQuota </strong>
+												24/11 19:00 <strong> #selectedNamequota  </strong>
 											</p>
 										</label>
 									</div>
 									<div class="pull-right action-buttons">
 										<a class="trash" href="/user-EsportsBet/removeBetMatch/ id ">
-											<svg id="iconoBasura" class="glyph stroked trash" style="margin-top: 7px;">
-												<use xlink:href="#stroked-trash"></use>
-											</svg>
+											<span class="glyphicon glyphicon-trash" style="margin-top: 7px; color : red;">
+											</span>
 										</a>
 									</div>
 								</li>
 							</ul>
 						</div>
 						<div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
-							<form id="betTicket" action="/user-EsportsBet/sendBet" method="post">
-								<div class="row">
-									<div class="col-md-4" style="color: black; padding-top: 5px;">
-										<b>Importe</b>
-									</div>
-									<div class="col-md-4" style="color: white;"></div>
-									<div class="col-md-4" style="color: black;">
-										<select id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
+							<form id="betTicket" action="/user-EsportsBet/sendBet" method="post" class="form-horizontal">
+								<fieldset>
+									<div class="form-group">
+										<div class="col-md-4" style="color: black; padding-top: 5px;">
+											<b>Importe</b>
+										</div>
+										<div class="col-md-4" style="color: white;"></div>
+										<div class="col-md-4" style="color: black;">
+											<select id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
 											<option value=1 ><b>1€</b></option>
 											<option value=5 ><b>5€</b></option>
 											<option value=10><b>10€</b></option>
 											<option value=25><b>25€</b></option>
 											<option value=50><b>50€</b></option>
 										</select>
-									</div>
-								</div>
-								<div class="row" style="margin-top: 20px;">
-									<div class="col-md-8" style="color: black;">
-										<i>Tiene un código promocional?</i>
-									</div>
-									<div class="col-md-4" style="color: black; margin-top: 5%;">
-
-										<div class="form-group">
-											<input type="text" id="code" name="code" class="form-control" placeholder="XXXXXX"> <input type="hidden" name="_csrf"
-											 value=" token " />
-										</div>
-
-									</div>
-								</div>
-								<div class="row" style="margin-top: 20px;">
-									<div class="col-md-8" style="color: black;">
-										<b>Ganancias posibles:</b>
-									</div>
-									<div id="changeable" class="col-md-4" style="color: black; margin-top: 5%;">
-										<b>0.00 €</b>
-									</div>
-								</div>
-								<div class="row" style="margin-top: 20px;">
-									<div class="col-md-6" style="color: black;">
-										<b>Añadir fondos promocionales:</b>
-									</div>
-
-
-									<div class="col-xs-6">
-										<div class="range range-success">
-											<input type="range" name="promoQuantity" min="0" max=" user.promotionCredit " value="0" onchange="rangeSuccess.value=value">
-											<output id="rangeSuccess">0</output>
 										</div>
 									</div>
-								</div>
-								<div class="row">
 
-									<div class="row" style="margin-top: 50px;">
-										<div class="col-md-7" style="color: black;">Pulse para enviar:
+									<div class="form-group">
+										<div class="col-md-8" style="color: black;">
+											<b>Ganancias posibles:</b>
 										</div>
-										<div class="col-md-5" style="color: black;">
-											<div class="col-md-8">
-												<b style="color: black; margin-top: 5%; left: -10%;"></b>
-											</div>
-
-
-											<div class="buttonAnimation" onclick="functionDemo2();">
-												<span class="plane transition"></span> <span class="check" style="display: none;"></span>
-											</div>
-
-
+										<div id="changeable" class="col-md-4" style="color: black; margin-top: 5%;">
+											<b>0.00 €</b>
 										</div>
 									</div>
-									<div id="error" class="row" style="padding-top: 50px;">
-										<div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px;">
-											Ha habido un problema durante la transacción de los fondos, compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
-									</div>
-									<div class="row" style="padding-top: 50px;">
-										<div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px;">
-											El código promocional no es válido, ya está usado o no corresponde con una promoción aplicable al boleto de apuestas deportivas.
+
+									<div class="form-group">
+										<div class="col-md-12">
+											<button type="submit" class="btn btn-default btn-md pull-right">Enviar</button>
 										</div>
 									</div>
-									<div class="row" style="padding-top: 50px;">
-										<div class="col-md-12" style="color: black; padding-top: 10px; font-size: 10px;">
-											Al realizar una apuesta, usted está aceptando la versión mas reciente de nuestra <a href="#">política de apuestas.</a>
+
+									<div class="form-group">
+										<div class="col-md-12 widget-right">
+											<p style="float: left; font-size: 2ch">
+
+												Recuerde que al enviar la apuesta está aceptando las
+												<a href="ffb/user-policy">políticas internas</a> de &#64; ffbet.com
+												<img src="../assets/images/+18.png" height="16px"> 2017
+
+											</p>
 										</div>
 									</div>
-								</div>
+								</fieldset>
 							</form>
 						</div>
 					</div>

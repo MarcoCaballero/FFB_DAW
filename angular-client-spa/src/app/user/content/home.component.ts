@@ -12,12 +12,8 @@ export class HomeComponent implements OnInit {
     // Public fields
     title = 'HOME';
 
-
     constructor() { }
 
     ngOnInit() { }
 
-
-
 }
-
