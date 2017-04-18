@@ -36,7 +36,7 @@
 						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
 								class="glyph stroked male-user"> 
 						 {{#user.isPhotoSelected}}
-									<img class="img-circle" " alt=""
+									<img class="img-circle" alt=""
 									src="images/avatars/{{user.photoUrl}}" height="25px">
 								{{/user.isPhotoSelected}}
 								{{^user.isPhotoSelected}}
@@ -161,82 +161,62 @@
 	</div>
 	<!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="user"> <svg class="glyph stroked home">
-                            <use xlink:href="#stroked-home"></use>
-                        </svg>
-				</a></li>
-				<li class="active">Mi cuenta / Retirar</li>
-			</ol>
-		</div>
-		<!--/.row-->
-		<!--/.row-->
-		<div class="row">
-			<div
-				class=" col-sm-10 col-md-8 col-sm-offset-2 col-lg-8 col-lg-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<span class="glyphicon glyphicon-user"></span>Retira el saldo de
-						tu cuenta
-					</div>
-					<div class="panel-body">
-						<form class="form-horizontal" action="
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <a href="user">
+                    <svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li class="active">Mi cuenta / Retirar</li>
+        </ol>
+    </div>
+    <!--/.row-->
+    <!--/.row-->
+    <div class="row">
+        <div class=" col-sm-10 col-md-8 col-sm-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span>Retira el saldo de tu cuenta </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="
 							/user-account/userDevolveCredit" method="post">
-							<fieldset>
-								<!-- Name input-->
-
-
-
-
-								<div class="form-group">
-									
-									<div class="col-md-8">
-									<label class="col-md-63 control-label" for="name">Nº
-										Tarjeta*</label>
-										<select id="amountChange" name="cardNumber"
-											class="form-control" style="border: 1px solid #2d9df3;">
-											{{#user.cards}}
-											<option value="{{cardNumber}}"><b>{{cardNumber}}</b></option>
-											{{/user.cards}} {{^user.cards}}
-											<option value="NO"><b>NO HAY TARJETAS</b></option>
-											{{/user.cards}}
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									
-									<div class="col-md-8">
-									<label class="col-md-63 control-label" for="name">Nº
-										Tarjeta*</label>
-										<div class="range range-success">
-											<input type="range" name="amountTo" min="0"
-												max="{{user.credit}}" value="0"
-												onchange="rangeSuccess.value=value">
-											<output id="rangeSuccess">0</output>
-											<input type="hidden" name="_csrf" value="{{token}}" />
-										</div>
-									</div>
-
-								</div>
-								<!-- Form actions -->
-								<div class="form-group">
-									<div class="col-md-12 widget-right">
-										<label class="col-md-3 control-label" for="name">*
-											Campo obligatorio</label>
-										<button type="submit"
-											class="btn btn-default btn-md pull-right">Retirar</button>
-									</div>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!--/.col-->
-		</div>
-		<!--/.row-->
-	</div>
+                        <fieldset>
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <label class="col-md-63 control-label" for="name">Nº Tarjeta*</label>
+                                    <select id="amountChange" name="cardNumber" class="form-control" style="border: 1px solid #2d9df3;"> {{#user.cards}}
+                                        <option value="{{cardNumber}}"><b>{{cardNumber}}</b></option> {{/user.cards}} {{^user.cards}}
+                                        <option value="NO"><b>NO HAY TARJETAS</b></option> {{/user.cards}} </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <label class="col-md-63 control-label" for="name">Nº Tarjeta*</label>
+                                    <div class="range range-success">
+                                        <input type="range" name="amountTo" min="0" max="{{user.credit}}" value="0" onchange="rangeSuccess.value=value">
+                                        <output id="rangeSuccess">0</output>
+                                        <input type="hidden" name="_csrf" value="{{token}}" /> </div>
+                                </div>
+                            </div>
+                            <!-- Form actions -->
+                            <div class="form-group">
+                                <div class="col-md-12 widget-right">
+                                    <label class="col-md-3 control-label" for="name">* Campo obligatorio</label>
+                                    <button type="submit" class="btn btn-default btn-md pull-right">Retirar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</div>
 	<!--/.main-->
 	<div id="footer"
 		class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">

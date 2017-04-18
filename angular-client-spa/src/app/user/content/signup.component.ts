@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class SignupComponent implements OnInit {
 
-    title = 'SignUp';
+    title = 'Registro';
     name = 'Tu nombre';
     
     constructor() { }

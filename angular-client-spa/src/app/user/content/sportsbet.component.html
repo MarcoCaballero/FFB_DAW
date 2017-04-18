@@ -4,8 +4,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li>
-                <a routerLink="/user/home">
-                    <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
+                <a routerLink="/user/home"> <span class="glyphicon glyphicon-home">  </span>
                 </a>
             </li>
             <li class="active">{{title}}</li>
@@ -189,84 +188,50 @@
                     </ul>
                 </div>
                 <div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
-                    <form id="betTicket" action="/user-sportsBet/sendBet" method="post">
-                        <div class="row">
-                            <div class="col-md-4" style="color: black; padding-top: 5px;">
-                                <b>Importe</b>
-                            </div>
-                            <div class="col-md-4" style="color: white;"></div>
-                            <div class="col-md-4" style="color: black;">
-                                <select id="amountChange" class="form-control" style="border: 1px solid #2d9df3;">
-										<option value=1><b>1€</b></option>
-										<option value=5><b>5€</b></option>
-										<option value=10><b>10€</b></option>
-										<option value=25><b>25€</b></option>
-										<option value=50><b>50€</b></option>
-									</select>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-md-8" style="color: black;">
-                                <i>Tiene un código promocional?</i>
-                            </div>
-                            <div class="col-md-4" style="color: black; margin-top: 5%;">
-
-                                <div class="form-group">
-                                    <input type="text" id="code" name="code" class="form-control" placeholder="XXXXXX"> <input
-                                        type="hidden" name="_csrf" value=" token " />
+                    <form id="betTicket" action="/user-EsportsBet/sendBet" method="post" class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-md-4" style="color: black; padding-top: 5px;">
+                                    <b>Importe</b>
                                 </div>
-
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-md-8" style="color: black;">
-                                <b>Ganancias posibles:</b>
-                            </div>
-                            <div id="changeable" class="col-md-4" style="color: black; margin-top: 5%;">
-                                <b> 0.00 €  </b>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-md-6" style="color: black;">
-                                <b>Añadir fondos promocionales:</b>
-                            </div>
-
-
-                            <div class="col-xs-6">
-                                <div class="range range-success">
-                                    <input type="range" name="promoQuantity" min="0" max=" user.promotionCredit " value="0" onchange="rangeSuccess.value=value">
-                                    <output id="rangeSuccess">0</output>
+                                <div class="col-md-4" style="color: white;"></div>
+                                <div class="col-md-4" style="color: black;">
+                                    <select id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
+											<option value=1 ><b>1€</b></option>
+											<option value=5 ><b>5€</b></option>
+											<option value=10><b>10€</b></option>
+											<option value=25><b>25€</b></option>
+											<option value=50><b>50€</b></option>
+										</select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="row" style="margin-top: 50px; left: 5em; right: 5em;">
-                                <div class="col-md-7" style="color: black;">Pulse para enviar:
+                            <div class="form-group">
+                                <div class="col-md-8" style="color: black;">
+                                    <b>Ganancias posibles:</b>
                                 </div>
-                                <div class="col-md-5" style="color: black;">
-                                    <div class="col-md-8">
-                                        <b style="color: black; margin-top: 5%; left: -10%;"></b>
-                                    </div>
-
-                                    <div class="buttonAnimation" onclick="functionDemo2();">
-                                        <span class="plane transition"></span> <span class="check" style="display: none;"></span>
-                                    </div>
-
-
+                                <div id="changeable" class="col-md-4" style="color: black; margin-top: 5%;">
+                                    <b>0.00 €</b>
                                 </div>
                             </div>
-                            <div id="error" class="row" style="padding-top: 50px; ">
-                                <div class="col-md-12" style="color: red; padding-top: 10px; font-size: 15px; left: 5em; right: 5em;">
-                                    Ha habido un problema durante la transacción de los fondos, compruebe que tiene fondos disponibles y vuelva intentarlo.</div>
-                            </div>
 
-                            <div class="row" style="padding-top: 50px;">
-                                <div class="col-md-12" style="color: black; left: 5em; right: 5em; font-size: 10px;">
-                                    Al realizar una apuesta, usted está aceptando la versión mas reciente de nuestra <a href="#">política de apuestas.</a>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-default btn-md pull-right">Enviar</button>
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 widget-right">
+                                    <p style="float: left; font-size: 2ch">
+
+                                        Recuerde que al enviar la apuesta está aceptando las
+                                        <a href="ffb/user-policy">políticas internas</a> de &#64; ffbet.com
+                                        <img src="../assets/images/+18.png" height="16px"> 2017
+
+                                    </p>
+                                </div>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>

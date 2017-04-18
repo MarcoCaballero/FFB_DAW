@@ -2028,6 +2028,14 @@ margin-left: 3%;
 span.glyphicon.glyphicon-pencil {
     color: black;
 }
+p.privacy-text {
+    min-height: 30em;
+}
+ul.nav.nav-justified.nav-pills {
 
+    background: #ffd48f;
+    border: 1px solid #428bca!important;
+    border-radius: 16px!important;
+}
 
 

@@ -16,7 +16,7 @@ export class MyAccountComponent implements OnInit {
 
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
-    title = 'MyAccount';
+    title = 'Mi cuenta';
 
 
     // Methods

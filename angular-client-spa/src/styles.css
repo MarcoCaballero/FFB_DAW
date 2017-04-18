@@ -80,3 +80,24 @@ li.dropdown.pull-right {
 a {
     cursor: pointer;
 }
+
+ul.nav.nav-justified.nav-pills {
+
+    background: #ffd48f;
+    border: 1px solid #428bca!important;
+    border-radius: 16px!important;
+}
+
+li.nav-item.active{
+  
+    border-radius: 16px!important;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+   border-radius: 16px!important;
+      background-color: #428bca!important;
+}
+
+.nav-pills>li>a:hover, .nav-pills>li>a:focus{
+   border-radius: 16px!important;
+   background-color: #fce0b4!important;
+}
