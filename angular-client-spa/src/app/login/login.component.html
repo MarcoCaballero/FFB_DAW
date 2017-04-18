@@ -11,49 +11,43 @@
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_lg" style="width:12%"><i class="icon-user"> </i></span> <input type="text" name="username" placeholder="Correo electrónico"
-                        [(ngModel)]="username" style="height:36px" />
+                    <span class="add-on bg_lg" style="width:12%"><i class="icon-user"> </i></span> <input type="text" name="username"
+                        placeholder="Correo electrónico" [(ngModel)]="username" style="height:36px" />
                 </div>
+                <p style="color:red">{{username}}</p>
             </div>
         </div>
-        <p style="color:red">{{username}}</p>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_ly" style="width:12%"><i class="icon-lock"></i></span> <input type="password" name="password" placeholder="Contraseña"
-                        [(ngModel)]="pass" style="height:36px" />
+                    <span class="add-on bg_ly" style="width:12%"><i class="icon-lock"></i></span> <input type="password"
+                        name="password" placeholder="Contraseña" [(ngModel)]="password" style="height:36px" />
                 </div>
-                <p style="color:red">{{pass}}</p>
-                <!--
+                <p style="color:red">{{password}}</p>
                 <div *ngIf="!isOk">
                     <h5 style="color: red"> La contraseña o usuario son erroneos, o
                         <p> tienes una sesión abierta en otro dispositivo </p>
                     </h5>
                 </div>
-                -->
             </div>
         </div>
-        <div class="form-actions" style="margin-bottom:5%">
-            <span class="pull-right"><input type="submit" class="btn btn-primary" value="Entrar"></span>
+        <div class="form-actions" style="padding-bottom:15%">
+            <span class="pull-left">
+                <a routerLink="/user/signup" class="flip-link btn btn-danger" id="to-recover">
+                    ¡Regístrate!
+                </a>
+            </span>
+            <span class="pull-right">
+                <input type="submit" class="btn btn-primary" value="Entrar" (click)="login()">
+            </span>
         </div>
-        <a routerLink="/user/home">enlace</a>
         <!--
         <div class="row" style="margin-bottom:5%">
             <span class="pull-right">
 				<input type="submit" class="btn btn-primary" value="Entrar" (click)="checkCredentials()">
 			</span>
         </div>-->
-        <div class="row">
-            <a href="signup" style="font-size:medium; margin-left: 10%;" id="tipo">¿No te has registrado aún?</a>
-        </div>
+        <!--<div class="row">
+        </div>-->
     </form>
 </div>
-
-<!--
-        <div class="form-actions">
-            <span class="pull-left"><a href="login#"
-					class="flip-link btn btn-danger" id="to-recover">¿Olvidó su
-						contraseña?</a></span> <span class="pull-right"><input type="submit"
-					class="btn btn-primary" value="Entrar"></span>
-        </div>
--->
