@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Params, Router} from '@angular/router';
 
 import { LoginService } from './login.service';
-
-import { User } from './user';
 
 @Component({
     moduleId: module.id,
@@ -10,41 +9,31 @@ import { User } from './user';
     styleUrls: ['../../assets/css/login.css']
 })
 
-export class LoginComponent implements OnInit {
-    user: User;
+export class LoginComponent {
     loading = false;
-    isOk = true;
-    username = '';
-    password = '';
 
-    constructor(private loginService: LoginService) { }
+    constructor(
+        private loginService: LoginService,
+        private router: Router
+        ) { }
 
-    ngOnInit() {
-        this.loading = false;
-        this.isOk = true;
-    }
-/*
-    login() {
-        this.loading = true;
+    logIn(event: any, username: string, password: string) {
+        event.preventDefault();
 
-        if (this.username === 'peloxo' && this.password === '123') {
-            this.isOk = true;
-        } else {
-            this.isOk = false;
-        }
-        this.loading = false;
-    };*/
-
-    login() {
-        this.loading = true;
-        this.loginService.login(this.username, this.password).then(user => {
-            this.user = user;
-            if (this.user != null) {
-                this.isOk = true;
-            } else {
-                this.isOk = false;
-            }
-        });
+        this.loginService.logIn(username, password).subscribe(
+            user => console.log(user.email),
+            error => alert('Invalid username or password')
+        );
+        this.router.navigate(['/user']);
     }
 
+    logOut(event: any) {
+        event.preventDefault();
+
+        this.loginService.logOut().subscribe(
+            response => {},
+            error => console.log('Error when trying to log out: ' + error)
+        );
+        this.router.navigate(['/user']);
+    }
 }
