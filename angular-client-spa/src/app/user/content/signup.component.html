@@ -23,14 +23,17 @@
                             <!-- Name input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Nombre</label>
-                                <div class="col-md-9">
-                                    <input id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" required>
+                                <div class="col-md-7">
+                                    <input id="name" name="name" type="text" class="form-control" [(ngModel)]="name" >
+                                </div>
+								<div class="col-md-1">
+                                    <p *ngIf="name === 'Tu nombre'" style="color: #C00">Error </p>
                                 </div>
                             </div>
                             <!-- SurName input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Primer apellido</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" required>
                                 </div>
                             </div>
@@ -38,14 +41,14 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Segundo
 										apellido</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control" required>
                                 </div>
                             </div>
                             <!-- DNI/NIF input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">DNI/NIF</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" required>
                                 </div>
                             </div>
@@ -53,14 +56,14 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="email">Correo
 										electrónico</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="email" name="email" type="text" placeholder="Tu email" class="form-control" required>
                                 </div>
                             </div>
                             <!-- Email Select input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="country">País</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <select name="country">
 											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value="AFG">Afghanistan</option>
@@ -318,28 +321,28 @@
                             <!-- City input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Ciudad</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control">
                                 </div>
                             </div>
                             <!-- Location input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Domicilio</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control">
                                 </div>
                             </div>
                             <!-- Telephone input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Teléfono</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control">
                                 </div>
                             </div>
                             <!-- Sex select input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="country">Sexo</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <select name="sex">
 											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value="MAN">HOMBRE</option>
@@ -350,7 +353,7 @@
                             <!-- Password input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="password">Contraseña</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" required>
                                 </div>
                             </div>
@@ -358,7 +361,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="password">Repite
 										Contraseña</label>
-                                <div class="col-md-9">
+                                <div class="col-md-7">
                                     <input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" required>
                                 </div>
                             </div>
@@ -372,7 +375,7 @@
                                         <img src="../assets/images/+18.png" height="16px"> 2017
 
                                     </p>
-                                    <button type="submit" class="btn btn-default btn-md pull-right">Registrarme</button>
+                                    <button type="submit" (click)="sendSingUp()" class="btn btn-default btn-md pull-right">Registrarme</button>
                                 </div>
                             </div>
                         </fieldset>
