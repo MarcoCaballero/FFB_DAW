@@ -9,7 +9,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 
 // App import
 import { LoginComponent } from './login.component';
-import { AdminRoutingModule } from './login-routing.module';
+import { LoginRoutingModule } from './login-routing.module';
 
 import { LoginService } from './login.service';
 
@@ -17,11 +17,11 @@ import { LoginService } from './login.service';
     imports: [
         CommonModule,
         FormsModule,
-        AdminRoutingModule
+        LoginRoutingModule
     ],
     exports: [
         LoginComponent,
-        AdminRoutingModule,
+        LoginRoutingModule,
     ],
     declarations: [
         LoginComponent

@@ -11,26 +11,40 @@ import { User } from './user';
 })
 
 export class LoginComponent implements OnInit {
-    users: User;
+    user: User;
     loading = false;
-    isOk = false;
+    isOk = true;
     username = '';
     password = '';
 
-    constructor(
-        private loginService: LoginService
-    ) { }
+    constructor(private loginService: LoginService) { }
 
     ngOnInit() {
         this.loading = false;
-        this.isOk = false;
+        this.isOk = true;
     }
+/*
+    login() {
+        this.loading = true;
+
+        if (this.username === 'peloxo' && this.password === '123') {
+            this.isOk = true;
+        } else {
+            this.isOk = false;
+        }
+        this.loading = false;
+    };*/
 
     login() {
         this.loading = true;
-        this.loginService.login(this.username, this.password).then(users => this.users = users);
-        if (!this.login == null) {
-            this.isOk = true;
-        }
+        this.loginService.login(this.username, this.password).then(user => {
+            this.user = user;
+            if (this.user != null) {
+                this.isOk = true;
+            } else {
+                this.isOk = false;
+            }
+        });
     }
+
 }

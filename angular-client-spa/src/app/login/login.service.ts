@@ -7,7 +7,7 @@ import { User } from './user';
 
 @Injectable()
 export class LoginService {
-    private loginUrl = 'api/login';
+    private loginUrl = 'api/logIn';
 
     constructor(private http: Http) { }
 
@@ -17,7 +17,8 @@ export class LoginService {
     }
 
     login(username: string, password: string): Promise<User> {
-        return this.http.get(this.loginUrl, JSON.stringify({username: username, password: password}))
+        const url = `${this.loginUrl}/${username}`;
+        return this.http.get(this.loginUrl)
         .toPromise()
         .then(response => response.json().data as User)
         .catch(this.handleError);
