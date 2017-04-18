@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-egamesbet',
-    templateUrl: 'egamesbet.component.html',
+    selector: 'ffbcomp-name',
+    templateUrl: 'privacypolicy.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
 
-export class EgamesbetComponent implements OnInit {
+export class PrivacypolicyComponent implements OnInit {
 
-    title = 'Apuestas electrónicas';
+    title = 'Política de privacidad';
 
     constructor() { }
 
     ngOnInit() { }
-
 }
-

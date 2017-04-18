@@ -4,8 +4,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li>
-                <a routerLink="/user/home">
-                    <a href="user/home"> <span class="glyphicon glyphicon-home">  </span> </a>
+                <a routerLink="/user/home"> <span class="glyphicon glyphicon-home">  </span>
                 </a>
             </li>
             <li class="active">{{title}}</li>
@@ -237,10 +236,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <a class="btn btn-lg btn-primary" href="user-account/withdrawCredit" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
-                                                role="button">Retirar €</a> <a class="btn btn-lg btn-primary"
-                                                href="user-account/addCredit" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
-                                                role="button">Introducir €</a>
+                                            <a routerLink="/user/withdrawcredit" class="btn btn-lg btn-primary" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9); color: white;">Retirar €
+                                                </a>
+                                            <a routerLink="/user/addcredit" class="btn btn-lg btn-primary" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9); color: white;">Introducir €
+                                                </a>
                                         </div>
                                     </div>
                                 </div>
@@ -326,10 +325,10 @@
                                             <!--/.row-->
                                         </div>
                                         <div class="row">
-                                            <a class="btn btn-lg btn-primary" href="user-sportsBet" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                            <a routerLink="/user/sportsbet" class="btn btn-lg btn-primary" style="float: right; margin-right: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9); color:white"
                                                 role="button">Apuestas deportivas
                                         </a>
-                                            <a class="btn btn-lg btn-primary" href="user-EsportsBet.html" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9);"
+                                            <a routerLink="/user/egamesbet" class="btn btn-lg btn-primary" style="float: left; margin-left: 2%; background-color: rgba(235, 199, 44, 0.9); border-color: rgba(235, 199, 44, 0.9); color:white"
                                                 role="button">Apuestas e-games
                                         </a>
                                         </div>
@@ -442,7 +441,7 @@
                                                         <tabset>
                                                             <tab>
                                                                 <template tabHeading>
-                                                                    <span class="glyphicon glyphicon-indent-left"> </span> Próximos partidos
+                                                                    <span class="glyphicon glyphicon-indent-left"> </span>                                                                    Próximos partidos
                                                                 </template>
                                                                 <table class="table">
                                                                     <thead>
@@ -459,7 +458,7 @@
                                                             </tab>
                                                             <tab>
                                                                 <template tabHeading>
-                                                                    <span class="glyphicon glyphicon-indent-right">  </span> Últimos partidos
+                                                                    <span class="glyphicon glyphicon-indent-right">  </span>                                                                    Últimos partidos
                                                                 </template>
                                                                 <table class="table">
                                                                     <thead>

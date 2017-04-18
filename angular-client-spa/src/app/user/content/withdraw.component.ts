@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ffbcomp-egamesbet',
-    templateUrl: 'egamesbet.component.html',
+    selector: 'ffbcomp-withdraw',
+    templateUrl: 'withdraw.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
 
-export class EgamesbetComponent implements OnInit {
+export class WithdrawComponent implements OnInit {
 
-    title = 'Apuestas electrónicas';
+    title = 'Retirar Fondos';
 
     constructor() { }
 
