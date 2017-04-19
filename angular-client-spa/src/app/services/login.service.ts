@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-import 'rxjs/Rx';
-
 export interface User {
     id?: number;
-    name?: string;
     email: string;
     roles: string[];
 }
@@ -17,7 +14,9 @@ export class LoginService {
     isAdmin = false;
     user: User;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+        this.reqIsLogged();
+    }
 
     reqIsLogged() {
         let headers = new Headers({
@@ -62,8 +61,7 @@ export class LoginService {
     }
 
     logOut() {
-
-        return this.http.get('logOut').map(
+        return this.http.get('http://127.0.0.1:8080/api/logOut').map(
             response => {
                 this.isLogged = false;
                 this.isAdmin = false;

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.ffbet.fase3.domain.User;
-import com.ffbet.fase3.security.UserAuthComponent;
 import com.ffbet.fase3.services.UserService;
 
 @RestController
