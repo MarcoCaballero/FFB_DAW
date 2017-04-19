@@ -2,7 +2,7 @@
     <source src="../assets/images/video.mp4" type="video/mp4">
 </video>
 <div id="loginbox" style="position: fixed; left: 35%; margin-top: 8%;  margin-bottom: 3%;">
-    <form id="loginform" style="background-color: rgba(0, 0, 0, 0.65);" class="form-vertical">
+    <form id="loginform" style="background-color: rgba(0, 0, 0, 0.65);" class="form-vertical" role="search">
         <div class="control-group normal_text" style="background-color: rgba(0, 0, 0, 0);">
             <h3>
                 <img src="../assets/images/LogoFFBalpha.png" height="200px" alt="Logo" />
@@ -36,7 +36,7 @@
                 </a>
             </span>
             <span class="pull-right">
-                <input type="submit" class="btn btn-primary" value="Entrar" (click)="login($event, username.value, password.value)">
+                <input type="submit" class="btn btn-primary" value="Entrar" (click)="logIn($event, username.value, password.value)">
             </span>
         </div>
         <!--
