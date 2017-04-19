@@ -10,6 +10,8 @@ import { AdminFooterComponent } from './shared/admin-footer.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 
+import { LoginService } from '../services/login.service';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -28,7 +30,9 @@ import { AdminRoutingModule, routedComponents } from './admin-routing.module';
         AdminFooterComponent,
         routedComponents
     ],
-    providers: [],
+    providers: [
+        LoginService
+    ],
 })
 
 export class AdminModule { }

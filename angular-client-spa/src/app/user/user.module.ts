@@ -12,6 +12,7 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { routedComponents } from './user-routing.module';
 
+import { LoginService } from '../services/login.service';
 
 @NgModule({
     imports: [
@@ -34,6 +35,8 @@ import { routedComponents } from './user-routing.module';
         FooterComponent,
         routedComponents
     ],
-    providers: [],
+    providers: [
+        LoginService
+    ],
 })
 export class UserModule { }
