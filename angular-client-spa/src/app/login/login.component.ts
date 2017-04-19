@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Params, Router} from '@angular/router';
+import { Router} from '@angular/router';
 
-import { LoginService } from './login.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
     moduleId: module.id,
@@ -23,19 +23,13 @@ export class LoginComponent {
         this.loginService.logIn(username, password).subscribe(
             user => {
                 console.log(user.email);
-                this.router.navigate(['/user']);
+                if (user.roles[0] === 'ROLE_ADMIN') {
+                    this.router.navigate(['/admin']);
+                } else {
+                    this.router.navigate(['/user']);
+                }
         },
             error => alert('Invalid username or password')
         );
-    }
-
-    logOut(event: any) {
-        event.preventDefault();
-
-        this.loginService.logOut().subscribe(
-            response => {},
-            error => console.log('Error when trying to log out: ' + error)
-        );
-        this.router.navigate(['/user']);
     }
 }
