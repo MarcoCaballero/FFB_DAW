@@ -25,39 +25,79 @@
 							<!-- Name input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Nombre</label>
-								<div class="col-md-9">
-									<input id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" required>
+								<div class="col-md-7">
+									<input id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" [(ngModel)]="name" >
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidName()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidName()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- SurName input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Primer apellido</label>
-								<div class="col-md-9">
-									<input id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" required>
+								<div class="col-md-7">
+									<input id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" [(ngModel)]="surname">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidSurname()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidSurname()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Second SurName input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Segundo
 										apellido</label>
-								<div class="col-md-9">
-									<input id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control" required>
+								<div class="col-md-7">
+									<input id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control" [(ngModel)]="secondSurname">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidSecondsurname()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidSecondsurname()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- DNI/NIF input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">DNI/NIF</label>
-								<div class="col-md-9">
-									<input id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" required>
+								<div class="col-md-7">
+									<input id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" [(ngModel)]="dni"required>
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidDni()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidDni()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Email input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="email">Correo
 										electrónico</label>
-								<div class="col-md-9">
-									<input id="email" name="email" type="text" placeholder="Tu email" class="form-control" required>
+								<div class="col-md-7">
+									<input id="email" name="email" type="text" placeholder="Tu email" class="form-control" [(ngModel)]="email">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidEmail()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidEmail()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Email Select input-->
 							<div class="form-group">
@@ -320,23 +360,47 @@
 							<!-- City input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Ciudad</label>
-								<div class="col-md-9">
-									<input id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control">
+								<div class="col-md-7">
+									<input id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control" [(ngModel)]="city">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidCity()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidCity()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Location input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Domicilio</label>
-								<div class="col-md-9">
-									<input id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control">
+								<div class="col-md-7">
+									<input id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control" [(ngModel)]="home">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidHome()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidHome()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Telephone input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Teléfono</label>
-								<div class="col-md-9">
-									<input id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control">
+								<div class="col-md-7">
+									<input id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control" [(ngModel)]="telephone">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidTelephone()">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+									<p *ngIf="isValidTelephone()">
+										<img class="logoReg" src="../assets/images/Tick_form.png">
+									</p>
+                                </div>
 							</div>
 							<!-- Sex select input-->
 							<div class="form-group">
@@ -352,17 +416,33 @@
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="password">Contraseña</label>
-								<div class="col-md-9">
-									<input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" required>
+								<div class="col-md-7">
+									<input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" [(ngModel)]="firstPassword">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidFirstPass()" style="color: #C00">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+                                </div>
+								<div class="col-md-1">
+                                    <p *ngIf="firstPassword === 'not idem'" style="color: #C00">No coinciden </p>
+                                </div>
 							</div>
 							<!-- Password Repeat input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="password">Repite
 										Contraseña</label>
 								<div class="col-md-9">
-									<input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" required>
+									<input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" [(ngModel)]="secondPassword">
 								</div>
+								<div class="col-md-1">
+                                    <p *ngIf="isInvalidSecondPass()" style="color: #C00">
+										<img class="logoReg" src="../assets/images/invalid-form.png">
+									</p>
+                                </div>
+								<div class="col-md-1">
+                                    <p *ngIf="secondPassword === 'not idem'" style="color: #C00">No coinciden </p>
+                                </div>
 							</div>
 							<!-- Form actions -->
 							<div class="form-group">
@@ -375,7 +455,7 @@
 										<img src="../assets/images/+18.png" height="16px"> 2017
 
 									</p>
-									<button type="submit" class="btn btn-default btn-md pull-right">Registrarme</button>
+									<button type="submit" (click)="sendSingUp()" class="btn btn-default btn-md pull-right">Registrarme</button>
 								</div>
 							</div>
 						</fieldset>
