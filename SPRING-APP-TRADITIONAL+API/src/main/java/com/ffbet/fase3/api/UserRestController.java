@@ -39,6 +39,17 @@ public class UserRestController {
 		return userService.findAll();
 	}
 
+	// Obtener usuario por id
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable long id) {
+		User user = userService.findOne(id);
+		if (user != null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public User newUser(@RequestBody User user) {

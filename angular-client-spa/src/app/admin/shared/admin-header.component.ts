@@ -19,7 +19,6 @@ export class AdminHeaderComponent {
     ) { }
 
     logOut() {
-
         this.loginService.logOut().subscribe(
             response => {
                 this.router.navigate(['/login']);

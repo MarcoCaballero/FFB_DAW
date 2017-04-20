@@ -10,8 +10,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 
-import { LoginService } from '../services/login.service';
-
 @NgModule({
     imports: [
         CommonModule,
@@ -25,9 +23,7 @@ import { LoginService } from '../services/login.service';
     declarations: [
         LoginComponent
     ],
-    providers: [
-        LoginService
-    ],
+    providers: [],
 })
 
 export class LoginModule { }
