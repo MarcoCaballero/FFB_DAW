@@ -14,6 +14,7 @@ export class LoginService implements OnDestroy {
     isAdmin = false;
     user: User;
     credentials: string;
+    public token: string;
 
     ngOnDestroy() {
         console.log('localStorage called from ngOnDestroy');
@@ -22,7 +23,10 @@ export class LoginService implements OnDestroy {
 
     constructor(
         private http: Http,
-        private userService: UserService) { }
+        private userService: UserService) {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
+    }
 
     logIn(username: string, password: string) {
         this.credentials = utf8_to_b64(username + ':' + password);
@@ -35,9 +39,10 @@ export class LoginService implements OnDestroy {
                 let id = response.json().id;
                 localStorage.setItem('credentials', this.credentials);
                 localStorage.setItem('id', String(id));
-                this.userService.setHeaders(this.credentials);
+                this.userService.setCredentials(this.credentials);
                 this.user = response.json();
                 this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+                // to set credential in all services
                 localStorage.setItem('user', username);
                 localStorage.setItem('password', password);
                 this.isLogged = true;
