@@ -14,7 +14,7 @@
               <span class="icon-bar"></span> <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <ul class="user-menu">
+            <ul *ngIf="!loginService.isLogged" class="user-menu">
               <li class="dropdown pull-right" dropdown>
                 <a type="button" class="dropdown-toggle" dropdown-open>
                   <img class="img-circle" src="../assets/images/userBlocked.svg" style="height: 30px;" /> Acceder
@@ -26,6 +26,20 @@
                   </li>
                   <li style="display: block;">
                     <a routerLink="/user/policy-privacy"> <img class="img-circle" src="../assets/images/policy.svg" height="30px" /> Política de privacidad </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <ul *ngIf="loginService.isLogged" class="user-menu">
+              <li class="dropdown pull-right" dropdown>
+                <a type="button" class="dropdown-toggle" dropdown-open>
+                  <img class="img-circle" src="../assets/images/userBlocked.svg" style="height: 30px;" /> Cuenta
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li style="display: block;">
+                    <input type="submit" value="Salir" (click)="logOut()" />
                   </li>
                 </ul>
               </li>

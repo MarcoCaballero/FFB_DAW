@@ -12,6 +12,9 @@ import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
 
+import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +28,10 @@ import { LoginModule } from './login/login.module';
     AdminModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

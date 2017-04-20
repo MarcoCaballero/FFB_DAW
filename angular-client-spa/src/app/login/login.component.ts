@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Params, Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import { LoginService } from './login.service';
+import { User } from '../model/user.model';
+
+import { LoginService } from '../services/login.service';
 
 @Component({
     moduleId: module.id,
@@ -11,31 +13,27 @@ import { LoginService } from './login.service';
 
 export class LoginComponent {
     loading = false;
+    user: User;
+
 
     constructor(
         private loginService: LoginService,
         private router: Router
-        ) { }
+    ) { }
 
     logIn(event: any, username: string, password: string) {
         event.preventDefault();
 
         this.loginService.logIn(username, password).subscribe(
             user => {
-                console.log(user.email);
-                this.router.navigate(['/user']);
-        },
+                this.user = user;
+                if (this.loginService.isAdmin) {
+                    this.router.navigate(['/admin']);
+                } else {
+                    this.router.navigate(['/user']);
+                }
+            },
             error => alert('Invalid username or password')
         );
-    }
-
-    logOut(event: any) {
-        event.preventDefault();
-
-        this.loginService.logOut().subscribe(
-            response => {},
-            error => console.log('Error when trying to log out: ' + error)
-        );
-        this.router.navigate(['/user']);
     }
 }

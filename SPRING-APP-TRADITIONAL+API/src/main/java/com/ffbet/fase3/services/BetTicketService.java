@@ -14,7 +14,6 @@ import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.SportsMatch;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.repositories.BetTicketRepository;
-import com.ffbet.fase3.security.UserAuthComponent;
 
 @Service
 public class BetTicketService {
