@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../model/user.model';
 
 import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -12,12 +13,10 @@ import { LoginService } from '../services/login.service';
 })
 
 export class LoginComponent {
-    loading = false;
-    user: User;
-
-
+ 
     constructor(
         private loginService: LoginService,
+        private authService: AuthService,
         private router: Router
     ) { }
 
@@ -26,12 +25,17 @@ export class LoginComponent {
 
         this.loginService.logIn(username, password).subscribe(
             user => {
-                this.user = user;
-                if (this.loginService.isAdmin) {
-                    this.router.navigate(['/admin']);
+                if (this.authService.isLogged()) {
+                    if (this.authService.isAdmin()) {
+                        this.router.navigate(['/admin']);
+                    } else {
+                        this.router.navigate(['/user']);
+                    }
                 } else {
-                    this.router.navigate(['/user']);
+                    console.error('Invalid username or password');
+                    alert('Invalid username or password');
                 }
+
             },
             error => alert('Invalid username or password')
         );
