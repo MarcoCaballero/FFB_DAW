@@ -6,8 +6,8 @@ import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 
 
-import { AdminAuthGuard } from './services/adminAuth.guard';
-import { UserAuthGuard } from './services/userAuth.guard';
+import { AdminAuthGuard } from './core/adminAuth.guard';
+import { UserAuthGuard } from './core/userAuth.guard';
 
 
 

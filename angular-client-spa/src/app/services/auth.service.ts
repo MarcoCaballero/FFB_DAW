@@ -21,7 +21,6 @@ export class AuthService {
     buildUser(user: User) {
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
-
     }
 
     getCredentials() {
@@ -33,14 +32,16 @@ export class AuthService {
     }
 
     isAdmin() {
-        if (this.isLogged())
+        if (this.isLogged()) {
             return this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+        }
         return false
     }
 
     isLogged() {
-        if (this.user !== null)
+        if (this.user !== null) {
             return true
+        }
         return false
     }
 
