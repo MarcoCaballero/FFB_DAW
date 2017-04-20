@@ -12,6 +12,9 @@ import { WithdrawComponent } from './content/withdraw.component';
 import { AddcreditComponent } from './content/addcredit.component';
 import { PrivacypolicyComponent } from './content/privacypolicy.component';
 
+
+import { UserAuthGuard } from '../services/userAuth.guard';
+
 const routes: Routes = [
   {
     path: 'user',
@@ -35,7 +38,8 @@ const routes: Routes = [
       },
       {
         path: 'myaccount',
-        component: MyAccountComponent
+        component: MyAccountComponent,
+        canActivate: [UserAuthGuard]
       },
       {
         path: 'signup',
