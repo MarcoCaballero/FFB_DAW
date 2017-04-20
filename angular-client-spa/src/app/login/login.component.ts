@@ -13,10 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 
 export class LoginComponent {
-    loading = false;
-    user: User;
-
-
+ 
     constructor(
         private loginService: LoginService,
         private authService: AuthService,
@@ -28,10 +25,8 @@ export class LoginComponent {
 
         this.loginService.logIn(username, password).subscribe(
             user => {
-                this.user = user;
-                 console.log('login.component.ts :32' + this.user);
-                if (this.authService.isLogged) {
-                    if (this.authService.isAdmin) {
+                if (this.authService.isLogged()) {
+                    if (this.authService.isAdmin()) {
                         this.router.navigate(['/admin']);
                     } else {
                         this.router.navigate(['/user']);
