@@ -23,8 +23,6 @@ export class LoginService implements OnDestroy {
 
     logIn(username: string, password: string) {
 
-        console.log('login.service.ts START!');
-
         // Build and store AuthService credentials (field)
         this.authService.buildCredentials(username, password);
 
@@ -39,12 +37,7 @@ export class LoginService implements OnDestroy {
 
         return this.http.get('http://127.0.0.1:8080/api/logIn', options).map(
             response => {
-                // let id = response.json().id;
-                // localStorage.setItem('id', String(id));
-                // let user = response.json();
-                console.log('login.service.ts :42' + response.json());
-                // this.authService.buildUser(user);
-                // console.log('login.service.ts :44' + this.authService.getUser());
+                
                 this.authService.buildUser(response.json());
                 return response;
 
@@ -56,7 +49,9 @@ export class LoginService implements OnDestroy {
         let headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
+
         let options = new RequestOptions({ headers });
+        
         return this.http.get('http://127.0.0.1:8080/api/logOut', options).map(
             response => {
                 // Important!

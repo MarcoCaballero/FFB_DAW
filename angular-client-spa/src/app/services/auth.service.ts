@@ -33,25 +33,19 @@ export class AuthService {
     }
 
     isAdmin() {
-
-        if (this.isLogged)
-            this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+        if (this.isLogged())
+            return this.user.roles.indexOf('ROLE_ADMIN') !== -1;
         return false
     }
 
-
     isLogged() {
-
         if (this.user !== null)
             return true
         return false
-
     }
 
     reloadAuth() {
-
         this.setUser(JSON.parse(localStorage.getItem('user')));
-
         this.setCredentials(localStorage.getItem('credentials'));
     }
 
