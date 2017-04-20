@@ -9,8 +9,9 @@ export class UserAuthGuard implements CanActivate {
 
     canActivate() {
         console.log('CanActivate User' + this.authService.isLogged());
-        if (this.authService.isLogged())
+        if (this.authService.isLogged()) {
             return true;
+        }
         this.router.navigate(['/login']);
         return false;
     }

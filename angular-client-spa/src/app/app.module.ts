@@ -40,8 +40,6 @@ import { UserAuthGuard } from './core/userAuth.guard';
     AuthService,
     AdminAuthGuard,
     UserAuthGuard
-
-    
   ],
   bootstrap: [AppComponent]
 })

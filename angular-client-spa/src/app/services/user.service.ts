@@ -17,10 +17,10 @@ export class UserService {
 
 
     getUser(id: number) {
-        let headers: Headers = new Headers({
+        const headers: Headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
-        let options = new RequestOptions({ headers });
+        const options = new RequestOptions({ headers });
         return this.http.get('http://127.0.0.1:8080/api/user/' + id.toString(), options)
             .map(response => {
                 this.user = response.json();
