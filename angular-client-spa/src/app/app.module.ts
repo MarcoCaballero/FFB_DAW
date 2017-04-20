@@ -14,6 +14,7 @@ import { LoginModule } from './login/login.module';
 
 import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
+import { ScoreService } from './services/score.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     LoginService,
+    ScoreService,
     UserService
   ],
   bootstrap: [AppComponent]
