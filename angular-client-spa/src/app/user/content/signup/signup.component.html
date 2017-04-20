@@ -26,78 +26,80 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Nombre</label>
 								<div class="col-md-7">
-									<input id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" [(ngModel)]="name" >
+									<input #checkname id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" [(ngModel)]="name">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidName()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checkname)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidName()">
+									<p *ngIf="!isEmpty(checkname)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- SurName input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Primer apellido</label>
 								<div class="col-md-7">
-									<input id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" [(ngModel)]="surname">
+									<input #checksurname id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" [(ngModel)]="surname">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidSurname()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checksurname)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidSurname()">
+									<p *ngIf="!isEmpty(checksurname)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Second SurName input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Segundo
 										apellido</label>
 								<div class="col-md-7">
-									<input id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control" [(ngModel)]="secondSurname">
+									<input #checksecondSurname id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control"
+									 [(ngModel)]="secondSurname">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidSecondsurname()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checksecondSurname)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidSecondsurname()">
+									<p *ngIf="!isEmpty(checksecondSurname)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- DNI/NIF input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">DNI/NIF</label>
 								<div class="col-md-7">
-									<input id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" [(ngModel)]="dni"required>
+									<input #checkdni id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" [(ngModel)]="dni"
+									 required>
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidDni()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checkdni)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidDni()">
+									<p *ngIf="!isEmpty(checkdni)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Email input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="email">Correo
 										electrónico</label>
 								<div class="col-md-7">
-									<input id="email" name="email" type="text" placeholder="Tu email" class="form-control" [(ngModel)]="email">
+									<input #checkemail id="email" name="email" type="text" placeholder="Tu email" class="form-control" [(ngModel)]="email">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidEmail()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checkemail)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidEmail()">
+									<p *ngIf="!isEmpty(checkemail)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Email Select input-->
 							<div class="form-group">
@@ -361,56 +363,60 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Ciudad</label>
 								<div class="col-md-7">
-									<input id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control" [(ngModel)]="city">
+									<input #checkcity id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control" [(ngModel)]="city">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidCity()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checkcity)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidCity()">
+									<p *ngIf="!isEmpty(checkcity)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Location input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Domicilio</label>
 								<div class="col-md-7">
-									<input id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control" [(ngModel)]="home">
+									<input #checkstreet id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control" [(ngModel)]="home">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidHome()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checkstreet)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidHome()">
+									<p *ngIf="!isEmpty(checkstreet)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Telephone input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Teléfono</label>
 								<div class="col-md-7">
-									<input id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control" [(ngModel)]="telephone">
+									<input #checktelephone id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control"
+									 [(ngModel)]="telephone">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidTelephone()">
+								<div *ngIf="checkFields" class="col-md-1">
+									<p *ngIf="isEmpty(checktelephone)">
 										<img class="logoReg" src="../assets/images/invalid-form.png">
 									</p>
-									<p *ngIf="isValidTelephone()">
+									<p *ngIf="!isEmpty(checktelephone)">
 										<img class="logoReg" src="../assets/images/Tick_form.png">
 									</p>
-                                </div>
+								</div>
 							</div>
 							<!-- Sex select input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="country">Sexo</label>
 								<div class="col-md-9">
-									<select name="sex">
+									<select #sex name="sex">
 											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value="MAN">HOMBRE</option>
 											<option value="WOMAN">MUJER</option>
 									</select>
+								</div>
+								<div *ngIf="checkFields" class="col-md-1">
+
 								</div>
 							</div>
 							<!-- Password input-->
@@ -419,14 +425,7 @@
 								<div class="col-md-7">
 									<input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" [(ngModel)]="firstPassword">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidFirstPass()" style="color: #C00">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-                                </div>
-								<div class="col-md-1">
-                                    <p *ngIf="firstPassword === 'not idem'" style="color: #C00">No coinciden </p>
-                                </div>
+
 							</div>
 							<!-- Password Repeat input-->
 							<div class="form-group">
@@ -435,14 +434,7 @@
 								<div class="col-md-7">
 									<input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" [(ngModel)]="secondPassword">
 								</div>
-								<div class="col-md-1">
-                                    <p *ngIf="isInvalidSecondPass()" style="color: #C00">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-                                </div>
-								<div class="col-md-1">
-                                    <p *ngIf="secondPassword === 'not idem'" style="color: #C00">No coinciden </p>
-                                </div>
+
 							</div>
 							<!-- Form actions -->
 							<div class="form-group">

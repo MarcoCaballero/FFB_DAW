@@ -5,7 +5,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
     moduleId: module.id,
     selector: 'ffbcomp-myaccount',
     templateUrl: 'myaccount.component.html',
-    styleUrls: ['../../../assets/css/styles.css', '../../../assets/css/cardstyle.css', '../../../assets/css/cardstyletop.css']
+    styleUrls: ['../../../../assets/css/styles.css', '../../../../assets/css/cardstyle.css', '../../../../assets/css/cardstyletop.css']
 })
 
 export class MyAccountComponent implements OnInit {

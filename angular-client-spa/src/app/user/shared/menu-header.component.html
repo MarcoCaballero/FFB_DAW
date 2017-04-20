@@ -14,7 +14,7 @@
               <span class="icon-bar"></span> <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <ul *ngIf="!loginService.isLogged" class="user-menu">
+            <ul *ngIf="!authService.isLogged" class="user-menu">
               <li class="dropdown pull-right" dropdown>
                 <a type="button" class="dropdown-toggle" dropdown-open>
                   <img class="img-circle" src="../assets/images/userBlocked.svg" style="height: 30px;" /> Acceder
@@ -31,16 +31,18 @@
               </li>
             </ul>
 
-            <ul *ngIf="loginService.isLogged" class="user-menu">
+            <ul *ngIf="authService.isLogged" class="user-menu">
               <li class="dropdown pull-right" dropdown>
                 <a type="button" class="dropdown-toggle" dropdown-open>
                   <img class="img-circle" src="../assets/images/userBlocked.svg" style="height: 30px;" /> Cuenta
                   <span class="caret"></span>
                 </a>
+
                 <ul class="dropdown-menu" role="menu">
                   <li style="display: block;">
-                    <input type="submit" value="Salir" (click)="logOut()" />
+                    <button class="btn btn-danger" value="Salir" (click)="logOut()">Salir</button>
                   </li>
+
                 </ul>
               </li>
             </ul>

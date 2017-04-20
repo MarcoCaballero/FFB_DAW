@@ -16,8 +16,8 @@ import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { ScoreService } from './services/score.service';
-import { AdminAuthGuard } from './services/adminAuth.guard';
-import { UserAuthGuard } from './services/userAuth.guard';
+import { AdminAuthGuard } from './core/adminAuth.guard';
+import { UserAuthGuard } from './core/userAuth.guard';
 
 
 @NgModule({

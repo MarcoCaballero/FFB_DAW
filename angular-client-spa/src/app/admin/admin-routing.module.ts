@@ -8,7 +8,7 @@ import { AdminScoresComponent } from './content/admin-scores.component';
 import { AdminComponent } from './admin.component';
 
 
-import { AdminAuthGuard } from '../services/adminAuth.guard';
+import { AdminAuthGuard } from '../core/adminAuth.guard';
 
 const routes: Routes = [
     {
