@@ -3,64 +3,66 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import { loginUrl } from '../paths';
+
 import { User } from '../model/user.model';
 
-import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class LoginService implements OnDestroy {
-
-    isLogged = false;
-    isAdmin = false;
-    user: User;
-    credentials: string;
-    public token: string;
 
     ngOnDestroy() {
         console.log('localStorage called from ngOnDestroy');
         localStorage.clear();
     }
 
-    constructor(
-        private http: Http,
-        private userService: UserService) {
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
+    constructor(private http: Http, private authService: AuthService) {
+
     }
 
     logIn(username: string, password: string) {
-        this.credentials = utf8_to_b64(username + ':' + password);
+
+        console.log('login.service.ts START!');
+
+        // Build and store AuthService credentials (field)
+        this.authService.buildCredentials(username, password);
+
+        // Create headers to send Basic auth
         let headers = new Headers({
-            'Authorization': 'Basic ' + this.credentials
+            'Authorization': 'Basic ' + this.authService.getCredentials()
         });
+
+        // Create options header
         let options = new RequestOptions({ headers });
+
+
         return this.http.get('http://127.0.0.1:8080/api/logIn', options).map(
             response => {
-                let id = response.json().id;
-                localStorage.setItem('credentials', this.credentials);
-                localStorage.setItem('id', String(id));
-                this.userService.setCredentials(this.credentials);
-                this.user = response.json();
-                this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
-                // to set credential in all services
-                localStorage.setItem('user', username);
-                localStorage.setItem('password', password);
-                this.isLogged = true;
-                return this.user;
+                // let id = response.json().id;
+                // localStorage.setItem('id', String(id));
+                // let user = response.json();
+                console.log('login.service.ts :42' + response.json());
+                // this.authService.buildUser(user);
+                // console.log('login.service.ts :44' + this.authService.getUser());
+                this.authService.buildUser(response.json());
+                return response;
+
             })
             .catch(error => Observable.throw('Server error'));
     }
 
     logOut() {
         let headers = new Headers({
-            'Authorization': 'Basic ' + this.credentials
+            'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         let options = new RequestOptions({ headers });
         return this.http.get('http://127.0.0.1:8080/api/logOut', options).map(
             response => {
+                // Important!
                 localStorage.clear();
-                this.isLogged = false;
-                this.isAdmin = false;
+                this.authService.setCredentials(null);
+                this.authService.setUser(null);
                 return response;
             }
         );
