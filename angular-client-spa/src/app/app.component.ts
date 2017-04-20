@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from './services/user.service';
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-root',
@@ -9,8 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private userService: UserService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.userService.setCredentials(localStorage.getItem('credentials'));
+    }
 
 }

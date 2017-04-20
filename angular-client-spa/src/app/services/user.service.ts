@@ -9,18 +9,24 @@ import { User } from '../model/user.model';
 export class UserService {
 
     user: User;
-    users: User[];
+    // users: User[];
     credentials: string;
 
     constructor(private http: Http) { }
 
-    setHeaders(credentials: string) {
+    setAuthOnReaload() {
+        this.setCredentials(localStorage.getItem('credentials'));
+    }
+
+    setCredentials(credentials: string) {
         this.credentials = credentials;
     }
 
     getUser(id: number) {
         this.credentials = localStorage.getItem('credentials');
-        let headers: Headers = new Headers({'Authorization': 'Basic ' + this.credentials});
+        let headers: Headers = new Headers({
+            'Authorization': 'Basic ' + this.credentials
+        });
         let options = new RequestOptions({ headers });
         return this.http.get('http://127.0.0.1:8080/api/user/' + id.toString(), options)
             .map(response => {

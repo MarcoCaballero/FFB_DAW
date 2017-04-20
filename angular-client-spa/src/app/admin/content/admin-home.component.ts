@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '../../services/user.service';
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-admin-home',
@@ -9,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AdminHomeComponent implements OnInit {
-    title = 'ADMIN - HOME';
 
-    constructor() { }
+    constructor(
+        private userService: UserService
+    ) {}
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log('admin: ' + this.userService.credentials);
+    }
 }
