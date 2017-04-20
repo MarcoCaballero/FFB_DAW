@@ -35,14 +35,14 @@ export class AuthService {
         if (this.isLogged()) {
             return this.user.roles.indexOf('ROLE_ADMIN') !== -1;
         }
-        return false
+        return false;
     }
 
     isLogged() {
         if (this.user !== null) {
-            return true
+            return true;
         }
-        return false
+        return false;
     }
 
     reloadAuth() {
@@ -57,14 +57,8 @@ export class AuthService {
     setUser(user: User) {
         this.user = user;
     }
-
-
-
-
-
-
-
 }
+
 
 /* Function util */
 function utf8_to_b64(str) {

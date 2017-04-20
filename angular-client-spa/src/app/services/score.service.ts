@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,  RequestOptions } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 
 import { SportMatch } from '../model/sport-match.model';
 
@@ -8,16 +8,15 @@ export class ScoreService {
 
     private matchFootballResults: SportMatch[] = [];
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) { }
 
-    getFootballMatches(){
-        
-        this.http.get("http://127.0.0.1:8080/api/matches/sports").subscribe(
-            response => //response => this.extractFootballMatch(response)
-            {
-                let matches = response.json();
-                for(let i of matches){
-                    if((i.isFinished) && (i.type === "Football")){
+    getFootballMatches() {
+        // response => this.extractFootballMatch(response)
+        this.http.get('http://127.0.0.1:8080/api/matches/sports').subscribe(
+            response => {
+                const matches = response.json();
+                for (const i of matches) {
+                    if ((i.isFinished) && (i.type === 'Football')) {
                         this.matchFootballResults.push(i);
                     }
                 }
@@ -33,7 +32,7 @@ export class ScoreService {
         let matches: SportMatch[] = [];
         matches = response.json();
         for(let i of matches){
-            if((i.isFinished) && (i.type === "Football")){
+            if((i.isFinished) && (i.type === 'Football')){
                 this.matchFootballResults.push(i);
             }
         }

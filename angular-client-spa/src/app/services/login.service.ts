@@ -27,31 +27,29 @@ export class LoginService implements OnDestroy {
         this.authService.buildCredentials(username, password);
 
         // Create headers to send Basic auth
-        let headers = new Headers({
+        const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
 
         // Create options header
-        let options = new RequestOptions({ headers });
+        const options = new RequestOptions({ headers });
 
 
         return this.http.get('http://127.0.0.1:8080/api/logIn', options).map(
             response => {
-                
                 this.authService.buildUser(response.json());
                 return response;
-
             })
             .catch(error => Observable.throw('Server error'));
     }
 
     logOut() {
-        let headers = new Headers({
+        const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
 
-        let options = new RequestOptions({ headers });
-        
+        const options = new RequestOptions({ headers });
+
         return this.http.get('http://127.0.0.1:8080/api/logOut', options).map(
             response => {
                 // Important!

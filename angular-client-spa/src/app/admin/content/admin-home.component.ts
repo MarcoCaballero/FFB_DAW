@@ -20,6 +20,6 @@ export class AdminHomeComponent implements OnInit {
 
     ngOnInit() {
         this.authService.reloadAuth();
-        console.log('User' + this.authService.getUser() + 'Credentials' + this.authService.getCredentials())
+        console.log('User' + this.authService.getUser() + 'Credentials' + this.authService.getCredentials());
     }
 }

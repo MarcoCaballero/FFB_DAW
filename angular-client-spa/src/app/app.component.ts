@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.authService.setUser(JSON.parse(localStorage.getItem('user')));
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         localStorage.clear();
     }
 

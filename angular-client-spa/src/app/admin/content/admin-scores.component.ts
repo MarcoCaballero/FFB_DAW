@@ -11,7 +11,7 @@ import { SportMatch } from '../../model/sport-match.model';
     selector: 'ffbcomp-admin-scores',
     templateUrl: 'admin-scores.component.html',
     styleUrls: ['../../../assets/css/admin/styles.css', '../../../assets/css/admin/media.css',
-    '../../../assets/css/admin/bootstrap.min.css']
+        '../../../assets/css/admin/bootstrap.min.css']
 })
 
 export class AdminScoresComponent implements OnInit {
@@ -19,8 +19,8 @@ export class AdminScoresComponent implements OnInit {
 
     private matchFootballResults: SportMatch[] = [];
 
-    constructor(private scoreService: ScoreService) {}
-        
+    constructor(private scoreService: ScoreService) { }
+
 
     ngOnInit() {
         this.matchFootballResults = this.scoreService.getFootballMatches();
