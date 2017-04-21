@@ -9,6 +9,16 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
+import { AdminModule } from './admin/admin.module';
+import { LoginModule } from './login/login.module';
+
+import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
+import { ScoreService } from './services/score.service';
+import { AdminAuthGuard } from './core/adminAuth.guard';
+import { UserAuthGuard } from './core/userAuth.guard';
+
 
 @NgModule({
   declarations: [
@@ -18,10 +28,19 @@ import { UserModule } from './user/user.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    LoginModule,
     UserModule,
+    AdminModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    UserService,
+    ScoreService,
+    AuthService,
+    AdminAuthGuard,
+    UserAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

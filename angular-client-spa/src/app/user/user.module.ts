@@ -1,9 +1,9 @@
-// Third pary imports
+// Third party imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'ngx-dropdown';
-import { CarouselModule, TabsModule } from 'ngx-bootstrap';
+import { CarouselModule, TabsModule, CollapseModule } from 'ngx-bootstrap';
 
 // App imports
 import { MenuHeaderComponent } from './shared/menu-header.component';
@@ -12,6 +12,7 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { routedComponents } from './user-routing.module';
 
+import { LoginService } from '../services/login.service';
 
 @NgModule({
     imports: [
@@ -20,12 +21,13 @@ import { routedComponents } from './user-routing.module';
         DropdownModule,
         CarouselModule.forRoot(),
         TabsModule.forRoot(),
+        CollapseModule.forRoot(),
         UserRoutingModule
-           ],
+    ],
     exports: [
         UserComponent,
-        UserRoutingModule,
-        routedComponents
+        routedComponents,
+        UserRoutingModule
     ],
     declarations: [
         UserComponent,
@@ -33,6 +35,8 @@ import { routedComponents } from './user-routing.module';
         FooterComponent,
         routedComponents
     ],
-    providers: [],
+    providers: [
+        LoginService
+    ],
 })
 export class UserModule { }

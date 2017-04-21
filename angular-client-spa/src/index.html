@@ -8,12 +8,29 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--<link rel="icon" type="image/x-icon" href="favicon.ico">-->
+  <link href="assets/css/admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
   <link rel="icon" type="image/png" href="assets/images/faviconFFBpng.png" />
 </head>
 
 <body>
-  <ffbcomp-root>Loading...</ffbcomp-root>
+
+  <ffbcomp-root>
+    <div class="container-dots">
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7" />
+        </filter>
+      </defs>
+    </svg>
+  </ffbcomp-root>
 </body>
 
 </html>

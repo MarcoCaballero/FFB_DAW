@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
     moduleId: module.id,
@@ -14,4 +15,5 @@ export class HomeComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
 }

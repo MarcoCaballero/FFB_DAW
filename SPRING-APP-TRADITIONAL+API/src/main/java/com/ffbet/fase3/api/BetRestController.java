@@ -7,15 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.Match;
 import com.ffbet.fase3.domain.SportsMatch;
-import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
 import com.ffbet.fase3.services.UserService;
@@ -35,9 +34,9 @@ public class BetRestController {
 	BetTicket ticket_erasable_EG = null;
 
 	/* BetMatch to ticket erasable zone */
-	@PatchMapping("/match")
-	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@RequestParam long id, @RequestParam String quota,
-			@RequestParam String type, HttpServletRequest request) {
+	@PatchMapping("/match/{id}/{type}/{quota}")
+	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@PathVariable long id, @PathVariable String quota,
+			@PathVariable String type, HttpServletRequest request) {
 		Match match;
 		if (type.equals("sports")) {
 			match = matchService.findOneSports(id);
@@ -62,9 +61,8 @@ public class BetRestController {
 		}
 
 	}
-
-	@DeleteMapping("/match") // .../match?id=id
-	public ResponseEntity<BetTicket> removeMatchFromLocalBet(@RequestParam long id, @RequestParam String type) {
+	@DeleteMapping("/match/{id}/{type}") 
+	public ResponseEntity<BetTicket> removeMatchFromLocalBet(@PathVariable long id, @PathVariable String type) {
 
 		Match match;
 		if (type.equals("sports")) {
@@ -92,9 +90,11 @@ public class BetRestController {
 
 	/* SEND BET ZONE */
 
-	@PostMapping // ...?code=XXXXX&promoQuantity=XXXXX&amount=XXXX
-	public ResponseEntity<BetTicket> sendSportBet(@RequestParam String code, @RequestParam int promoQuantity,
-			@RequestParam int amount) {
+	@PostMapping("/{amount}") 
+	public ResponseEntity<BetTicket> sendSportBet(@PathVariable int amount) {
+		
+		String code = "";
+		int promoQuantity = 0;
 
 		if (ticket_erasable_SP != null) {
 			ticket_erasable_SP = btService.initializeAmountRest(amount, ticket_erasable_SP);
@@ -116,28 +116,25 @@ public class BetRestController {
 	}
 
 	/* VALIDATION BET ZONE */
-	@GetMapping // ...?id=id
-	public ResponseEntity<String> validateBet(@RequestParam long id) {
+	@GetMapping("/{id}") 
+	public ResponseEntity<BetTicket> validateBet(@PathVariable long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
 
 		if (bttocheck != null) {
-
-			if (!bttocheck.isFinished())
-				return new ResponseEntity<>("AÚN NO HA TERMINADO", HttpStatus.CONTINUE);
-
-			if (btService.validateBet(id))
-				return new ResponseEntity<>("HAS GANADO : " + bttocheck.getPotentialGain(), HttpStatus.OK);
-
-			return new ResponseEntity<>("HAS PERDIDO : " + bttocheck.getAmount(), HttpStatus.OK);
-
+			// salida en json
+			if (bttocheck.isFinished()){
+				btService.validateBet(id);
+			}
+			
+			return new ResponseEntity<>(btService.findOne(id), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Ticket erróneo", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@DeleteMapping // .....?id=id
-	public ResponseEntity<User> removeBet(@RequestParam long id) {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<BetTicket> removeBet(@PathVariable long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
 
@@ -145,7 +142,7 @@ public class BetRestController {
 
 			btService.removeBetTicketFromUser(id);
 
-			return new ResponseEntity<>(userService.handleUserLoggedFromComponent(), HttpStatus.OK);
+			return new ResponseEntity<>(bttocheck, HttpStatus.OK);
 
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

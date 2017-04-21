@@ -15,17 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ffbet.fase3.domain.BetESportMatch;
-import com.ffbet.fase3.domain.BetSportMatch;
 import com.ffbet.fase3.domain.BetTicket;
-import com.ffbet.fase3.domain.EgamesMatch;
-import com.ffbet.fase3.domain.Promotion;
 import com.ffbet.fase3.domain.TemplatesPath;
 import com.ffbet.fase3.domain.User;
 import com.ffbet.fase3.security.UserAuthComponent;
 import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
-import com.ffbet.fase3.services.PromoService;
 import com.ffbet.fase3.services.UserService;
 
 /**
@@ -41,8 +36,6 @@ public class UserEsportsBetController extends RedirectController {
 	private UserService userService;
 	@Autowired
 	private MatchService matchService;
-	@Autowired
-	private PromoService promoService;
 
 	@Autowired
 	private BetTicketService btService;

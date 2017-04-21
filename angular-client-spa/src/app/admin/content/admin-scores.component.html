@@ -1,0 +1,214 @@
+<ffbcomp-admin-header></ffbcomp-admin-header>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a routerLink="/admin/home" title="Go to Home" class="tip-bottom"><i
+					class="icon-home"></i> Home</a> <a class="current">Resultados</a>
+        </div>
+        <h1>Resultados</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <accordion [closeOthers]="false">
+                    <div class="widget-box collapsible">
+                        <accordion-group [isOpened]=true>
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir resultado Fútbol</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" data-sortable="true">ID</th>
+                                        <th data-field="equipoLocal" data-sortable="true">Local
+                                        </th>
+                                        <th data-field="equipoVisitante" data-sortable="true">Visitante
+                                        </th>
+                                        <th data-field="Resultado" data-sortable="true">Resultado</th>
+                                        <th data-field="Guardado" data-sortable="true">Guardado</th>
+                                        <th data-field="Resultado" data-sortable="true">Acciones</th>
+                                </thead>
+                                <p *ngFor="let matchFootBallResult of matchFootballResults">
+                                    <tr>
+                                        <td>{{matchFootBallResult.id}}</td>
+                                        <td>{{matchFootBallResult.homeTeam}}</td>
+                                        <td>{{matchFootBallResult.visitingTeam}}</td>
+                                        <td>
+                                            <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+                                                <div style="float: right;">
+                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="homePoints" name="{{matchFootBallResult.homePoints}}" />-
+                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="visitingPoints" name="{{matchFootBallResult.visitingPoints}}" />
+                                                </div>
+                                                <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <strong>-</strong>
+                                        </td>
+                                        <td>
+                                            <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                        </td>
+                                    </tr>
+                                </p>
+                            </table>
+                        </accordion-group>
+                    </div>
+                    <div class="widget-box collapsible">
+                        <accordion-group>
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir resultado Baloncesto</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" data-sortable="true">ID</th>
+                                        <th data-field="equipoLocal" data-sortable="true">Equipo local
+                                        </th>
+                                        <th data-field="equipoVisitante" data-sortable="true">Equipo Visitante
+                                        </th>
+                                        <th data-field="Resultado" data-sortable="true">Resultado</th>
+                                        <th data-field="Guardado" data-sortable="true">Guardado</th>
+                                        <th data-field="Acciones" data-sortable="true">Acciones</th>
+                                </thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>homeTeam</td>
+                                    <td>visitingTeam</td>
+                                    <td>
+                                        <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+                                            <div style="float: right;">
+                                                <input style="min-width: 50px;" type="number" class="span3" placeholder="homePoints" name="homePoints" />-
+                                                <input style="min-width: 50px;" type="number" class="span3" placeholder="visitingPoints" name="visitingPoints" />
+                                            </div>
+                                            <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong>-</strong>
+                                    </td>
+                                    <td>
+                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </accordion-group>
+                    </div>
+                </accordion>
+            </div>
+            <div class="span6">
+                <accordion [closeOthers]="false">
+                    <div class="widget-box collapsible">
+                        <accordion-group [isOpened]="true">
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir resultado LOL</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" data-sortable="true">ID</th>
+                                        <th data-field="equipoLocal" data-sortable="true">Equipo local
+                                        </th>
+                                        <th data-field="equipoVisitante" data-sortable="true">Equipo Visitante
+                                        </th>
+                                        <th data-field="result" data-sortable="true">Resultado</th>
+                                        <th data-field="actions" data-sortable="true">Acciones
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>homeTeam</td>
+                                    <td>visitingTeam</td>
+                                    <td>
+                                        <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+                                            <div style="float: right;">
+                                                <select name="winningTeam" style="width:100%">
+																		<option value="homeTeam">Gana Local</option>
+																		<option value="visitingTeam">Gana
+																			Visitante</option>
+																	</select>
+                                                <select name="firstBlood" style="width:100%">
+																		<option value="homeTeam">Primera Sangre Local</option>
+																		<option value="visitingTeam">Primera
+																			Sangre Visitante</option>
+																	</select>
+                                            </div>
+                                            <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </accordion-group>
+                    </div>
+                    <div class="widget-box collapsible">
+                        <accordion-group>
+                            <accordion-heading>
+                                <div class="widget-title">
+                                    <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Añadir resultado CS:GO</h5></a>
+                                </div>
+                            </accordion-heading>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" data-sortable="true">ID</th>
+                                        <th data-field="equipoLocal" data-sortable="true">Equipo local
+                                        </th>
+                                        <th data-field="equipoVisitante" data-sortable="true">Equipo Visitante
+                                        </th>
+                                        <th data-field="result" data-sortable="true">Resultado</th>
+                                        <th data-field="actions" data-sortable="true">Acciones
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>homeTeam
+                                    </td>
+                                    <td>visitingTeam
+                                    </td>
+                                    <td>
+                                        <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+                                            <div style="float: right;">
+                                                <select name="winningTeam" style="width:100%">
+																		<option value="homeTeam">Gana Local</option>
+																		<option value="visitingTeam">Gana
+																			Visitante</option>
+																	</select>
+                                                <select name="firstBlood" style="width:100%">
+																		<option value="homeTeam">Primera Sangre Local</option>
+																		<option value="visitingTeam">Primera
+																			Sangre Visitante</option>
+																	</select>
+                                            </div>
+                                            <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </accordion-group>
+                    </div>
+                </accordion>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ffbcomp-admin-footer></ffbcomp-admin-footer>

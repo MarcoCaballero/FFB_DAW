@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { AuthService } from './services/auth.service';
 
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-root',
     template: `
-    <ffbcomp-user></ffbcomp-user>
+    <router-outlet></router-outlet>
   `
 })
 
-export class AppComponent implements OnInit {
-    constructor() { }
+export class AppComponent implements OnInit, OnDestroy {
+    constructor(
+        private authService: AuthService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.authService.reloadAuth(); // Reload atuh.service fields from localStorage
+    }
+
+    ngOnDestroy() {
+        localStorage.clear();
+    }
 
 }

@@ -34,6 +34,7 @@ public class User {
 	/* COLUMNS */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basico.class)
 	@Column(updatable = false, nullable = false)
 	protected long id;
 

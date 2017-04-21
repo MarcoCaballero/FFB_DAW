@@ -1,26 +1,23 @@
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="margin-top: 3.6em;">
+<ffbcomp-user-menu-header></ffbcomp-user-menu-header>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
             <li>
-                <a href="user"> <span class="glyphicon glyphicon-home">WHERE???</span> </a>
+                <a routerLink="/user/home"> <span class="glyphicon glyphicon-home"> </span> </a>
             </li>
         </ol>
     </div>
-    <div class="row">
-        HOME
-    </div>
-
     <!--Esto ya no es común a todas las páginas-->
     <!--Publicidad y etcs-->
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <h1 class="page-header"></h1>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-
+                <!-- NGX-CAROUSEL -->
                 <carousel class="carousel-inner" role="listbox">
                     <slide>
-                        <img class="slide" src="../assets/images/slideHOmeFutbol.png" alt="First slide">
+                        <img class="slide" src="../assets/images/SlideHOmeFutbol.png" alt="First slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1></h1>
@@ -30,74 +27,44 @@
                         </div>
                     </slide>
                     <slide>
-                        <img class="slide" src="../assets/images/slideHOmeLol.png" alt="Second slide">
+                        <img class="slide" src="../assets/images/SlideHOmeLol.png" alt="Second slide">
                         <div class="container">
                             <div class="carousel-caption">
-                                <a class="btn btn-lg btn-primary" href="user-sportsBet" role="button">¡Apuesta ya!</a>
+                                <a routerLink="/user/sportsbet" class="btn btn-lg btn-primary" style="color: white;" role="button">¡Apuesta ya!</a>
                             </div>
                         </div>
                     </slide>
                     <slide>
-                        <img class="slide" src="../assets/images/slideRegistrate.png" alt="Third slide">
+                        <img class="slide" src="../assets/images/SlideRegistrate.png" alt="Third slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1 class="publicidadCarousel">¡REGISTRATE YA!</h1>
                                 <p class="publicidadCarousel"> Y consigue un increible bono de bienvenida de <code>100€</code> </p>
-                                <p> <a class="btn btn-lg btn-primary" href="signup" role="button">REGISTRATE
+                                <p> <a routerLink="/user/signup" class="btn btn-lg btn-primary" style="color: white;" role="button">REGISTRATE
 											HOY</a> </p>
                             </div>
                         </div>
                     </slide>
                 </carousel>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <!-- ./NGX-CAROUSEL -->
             </div>
         </div>
     </div>
     <!--/.row-->
     <div class="row">
-        <div class="tt1" style="background-color: #004300; margin-left: 10px; margin-right: 10px;"> Últimos encuentros</div>
+        <div class="tt1" style="background-color: #004300; margin-left: 3%; width: 95%;"> Últimos encuentros</div>
         <div class="col-md-8" style="padding-left: 10px; margin-top: 0px;">
             <div class="panel panel-default" style="margin-left: 25px; margin-right: 0px;">
                 <div class="panel-body tabs">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="user#tab1" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/football.svg" style="width: 16px; height: 16px;">                                FUTBOL</a>
-                        </li>
-                        <li>
-                            <a href="user#tab2" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                BASKET</a>
-                        </li>
-                        <li>
-                            <a href="user#tab3" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                LOL</a>
-                        </li>
-                        <li>
-                            <a href="user#tab4" data-toggle="tab"><img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                CS:GO</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1">
-                            <!-- Contenido Futbol-->
+                    <tabset #staticTabs>
+                        <tab>
+                            <ng-template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/football.svg" style="width: 16px; height: 16px;">                                FUTBOL
+                            </ng-template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 40px;"></th>
                                         <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">Resultado</div>
                                         </th>
@@ -112,19 +79,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- Contenido Futbol-->
-                            <div id="toShow-football" style="padding-left:40%">
-                                <button id="more-scores-football"> + Resultados</button>
-                            </div>
-                            <div id="another-results-football" style="padding-left:40%"></div>
-                            <div id="spinner-football" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2">
-                            <!-- Contenido Futbol-->
+
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <img class="glyph stroked home" src="../assets/images/basket.svg" style="width: 16px; height: 16px;">                                BASKET
+                            </ng-template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/nbalogo.png" style="width: 100px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/nbalogo.png" style="width: 100px; height: 43px;"></th>
                                         <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">Resultado</div>
                                         </th>
@@ -139,20 +103,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- Contenido Basket-->
-                            <div id="toShow-basket" style="padding-left:40%">
-                                <button id="more-scores-basket"> + Resultados</button>
-                            </div>
-                            <div id="another-results-basket" style="padding-left:40%"></div>
-                            <div id="spinner-basket" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab3">
-                            <!-- Contenido Futbol-->
-                            <!-- Contenido CS-->
+
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <span class="glyph stroked 	glyphicon glyphicon-star" style="color: black"> </span> LOL
+                            </ng-template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/lol_logo.png" style="width: 100px; height: 30px;"></th>
+                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/lol_logo.png" style="width: 150px; height: 60px;"></th>
                                         <th>
                                             <div class="col-xs-6 col-md-3 text-center" style="width: 200px">Equipo Ganador</div>
                                         </th>
@@ -171,14 +131,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-lol" style="padding-left:40%">
-                                <button id="more-scores-lol"> + Resultados</button>
-                            </div>
-                            <div id="another-results-lol" style="padding-left:40%"></div>
-                            <div id="spinner-lol" style="padding-left:45%"></div>
-                        </div>
-                        <div class="tab-pane fade" id="tab4">
-                            <!-- Contenido CS-->
+
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <span class="glyph stroked 	glyphicon glyphicon-star" style="color: black"> </span> CS:GO
+                            </ng-template>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
@@ -201,13 +159,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="toShow-csgo" style="padding-left:40%">
-                                <button id="more-scores-csgo"> + Resultados</button>
-                            </div>
-                            <div id="another-results-csgo" style="padding-left:40%"></div>
-                            <div id="spinner-csgo" style="padding-left:45%"></div>
-                        </div>
-                    </div>
+
+                        </tab>
+
+                    </tabset>
                 </div>
             </div>
         </div>
@@ -219,8 +174,12 @@
                 </div>
                 <div class="card-action">
                     <div style="font-family: fantasy;">
-                        <p style="display: inline; margin-left: 20px; margin-right: 10px;"> <a href="user-sportsBet" style="font-size: xx-large">DEPORTES</a> </p>
-                        <p style="display: inline; margin-left: 20px;"> <a href="user-EsportsBet" style="font-size: xx-large">JUEGOS</a> </p>
+                        <p style="display: inline; margin-left: 20px; margin-right: 10px;">
+                            <a routerLink="/user/sportsbet" style="font-size: xx-large">DEPORTES</a>
+                        </p>
+                        <p style="display: inline; margin-left: 20px;">
+                            <a routerLink="/user/egamesbet" style="font-size: xx-large">JUEGOS</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -229,3 +188,5 @@
     </div>
     <!--/.row-->
 </div>
+
+<ffbcomp-user-footer></ffbcomp-user-footer>

@@ -730,7 +730,7 @@ a.bg-danger:hover {
 
 .breadcrumb {
     border-radius: 0;
-    padding: 10px 15px;
+    padding: 10px 25px;
     background: #e9ecf2;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     margin: 0;
@@ -1453,8 +1453,11 @@ a.todo-list-item:focus {
 .pp {
     border-bottom: 5px solid #eee;
     margin: 20px 0;
+    animation-name: colorsChanging;
     -webkit-animation-name: colorsChanging;
+    animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+    animation-duration: 2s;
     -webkit-animation-duration: 2s;
 }
 
@@ -1471,7 +1474,10 @@ a.todo-list-item:focus {
 }
 
 .imagen_equipos {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
+    height: 3.3em;
 }
 
 .enlaceFooter {
@@ -2004,5 +2010,32 @@ body {
     outline-color: rgb(217, 83, 79);
 }
 
+
+/*Angular fixes*/
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main {
+        margin-top: 3.6em;
+    background: #e3e2eb;
+}
+
+.col-sm-10.col-sm-offset-3.col-lg-10.col-lg-offset-2.main{
+    margin-top: 3.6em;
+    background: #e3e2eb;
+}
+
+.sub-row-ffb{
+margin-left: 3%;
+}
+span.glyphicon.glyphicon-pencil {
+    color: black;
+}
+p.privacy-text {
+    min-height: 30em;
+}
+ul.nav.nav-justified.nav-pills {
+
+    background: #ffd48f;
+    border: 1px solid #428bca!important;
+    border-radius: 16px!important;
+}
 
 
