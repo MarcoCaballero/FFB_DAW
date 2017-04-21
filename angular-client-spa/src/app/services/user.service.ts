@@ -3,6 +3,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import { AuthService } from './auth.service';
+
 import { User } from '../model/user.model';
 
 @Injectable()
@@ -10,24 +12,15 @@ export class UserService {
 
     user: User;
     // users: User[];
-    credentials: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private authService: AuthService) { }
 
-    setAuthOnReaload() {
-        this.setCredentials(localStorage.getItem('credentials'));
-    }
-
-    setCredentials(credentials: string) {
-        this.credentials = credentials;
-    }
 
     getUser(id: number) {
-        this.credentials = localStorage.getItem('credentials');
-        let headers: Headers = new Headers({
-            'Authorization': 'Basic ' + this.credentials
+        const headers: Headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
         });
-        let options = new RequestOptions({ headers });
+        const options = new RequestOptions({ headers });
         return this.http.get('http://127.0.0.1:8080/api/user/' + id.toString(), options)
             .map(response => {
                 this.user = response.json();

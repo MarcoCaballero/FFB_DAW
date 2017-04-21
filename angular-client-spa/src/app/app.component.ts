@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -10,13 +10,18 @@ import { UserService } from './services/user.service';
   `
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
     constructor(
-        private userService: UserService
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
-        this.userService.setCredentials(localStorage.getItem('credentials'));
+        this.authService.setCredentials(localStorage.getItem('credentials'));
+        this.authService.setUser(JSON.parse(localStorage.getItem('user')));
+    }
+
+    ngOnDestroy() {
+        localStorage.clear();
     }
 
 }

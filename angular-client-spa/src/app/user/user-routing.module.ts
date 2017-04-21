@@ -4,13 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
 import { HomeComponent } from './content/home.component';
-import { SportsbetComponent } from './content/sportsbet.component';
-import { EgamesbetComponent } from './content/egamesbet.component';
-import { MyAccountComponent } from './content/myaccount.component';
-import { SignupComponent } from './content/signup.component';
-import { WithdrawComponent } from './content/withdraw.component';
-import { AddcreditComponent } from './content/addcredit.component';
-import { PrivacypolicyComponent } from './content/privacypolicy.component';
+import { SportsbetComponent } from './content/bet/sportsbet.component';
+import { EgamesbetComponent } from './content/bet/egamesbet.component';
+import { WithdrawComponent } from './content/myaccount/withdraw.component';
+import { AddcreditComponent } from './content/myaccount/addcredit.component';
+import { MyAccountComponent } from './content/myaccount/myaccount.component';
+import { SignupComponent } from './content/signup/signup.component';
+import { PrivacypolicyComponent } from './content/policy/privacypolicy.component';
+
+
+import { UserAuthGuard } from '../core/userAuth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +22,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        redirectTo: '/user/home',
+        pathMatch: 'full'
       },
       {
         path: 'home',
@@ -35,7 +39,8 @@ const routes: Routes = [
       },
       {
         path: 'myaccount',
-        component: MyAccountComponent
+        component: MyAccountComponent,
+        canActivate: [UserAuthGuard]
       },
       {
         path: 'signup',
