@@ -23,6 +23,11 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(this.user));
     }
 
+    clear() {
+        this.setCredentials(null);
+        this.setUser(null);
+    }
+
     getCredentials() {
         return this.credentials;
     }
