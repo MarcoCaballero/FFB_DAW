@@ -8,7 +8,6 @@ export class AdminAuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) { }
 
     canActivate() {
-        console.log('CanActivate Admin' + this.authService.isAdmin());
         if (this.authService.isAdmin()) {
             return true;
         }
