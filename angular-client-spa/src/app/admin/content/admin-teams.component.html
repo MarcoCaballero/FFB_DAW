@@ -42,25 +42,25 @@
                                     <th data-field="Actions" data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td><input type="text" name="sportsUpType" placeholder="type" class="span12" readonly="readonly"
+                            <tr *ngFor="let sportTeam of sportTeams">
+                                <td>{{sportTeam.id}}</td>
+                                <td><input type="text" name="sportsUpType" placeholder="{{sportTeam.type}}" class="span12" readonly="readonly"
                                     /></td>
-                                <td><input type="text" name="sportsUpName" placeholder="name" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCoach" placeholder="coach" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCountry" placeholder="country" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCity" placeholder="city" class="span12" /></td>
-                                <td><input type="text" name="sportsUpSlogan" placeholder="slogan" class="span12" /></td>
-                                <td><input type="text" name="sportsUpStadium" placeholder="stadium" class="span12" /></td>
-                                <td><input type="text" name="sportsUpPresident" placeholder="president" class="span12" /></td>
-                                <td><input type="number" name="sportsUpLeagues" placeholder="leagues" class="span12" /></td>
-                                <td><input type="number" name="sportsUpCups" placeholder="cups" class="span12" /></td>
-                                <td><input type="number" name="sportsUpChampions" placeholder="champions" class="span12" /></td>
-                                <td><input type="text" name="sportsUpFb" placeholder="Facebook" class="span12" /></td>
-                                <td><input type="text" name="sportsUpTw" placeholder="Twitter" class="span12" /></td>
-                                <td><input type="text" name="sportsUpGo" placeholder="Google+" class="span12" /></td>
-                                <td>Imagen escudo</td>
-                                <td>Imagen estadio</td>
+                                <td><input type="text" name="sportsUpName" placeholder="{{sportTeam.name}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCoach" placeholder="{{sportTeam.coach}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCountry" placeholder="{{sportTeam.country}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCity" placeholder="{{sportTeam.city}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpSlogan" placeholder="{{sportTeam.slogan}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpStadium" placeholder="{{sportTeam.stadium}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpPresident" placeholder="{{sportTeam.president}}" class="span12" /></td>
+                                <td><input type="number" name="sportsUpLeagues" placeholder="{{sportTeam.leagues}}" class="span12" /></td>
+                                <td><input type="number" name="sportsUpCups" placeholder="{{sportTeam.cups}}" class="span12" /></td>
+                                <td><input type="number" name="sportsUpChampions" placeholder="{{sportTeam.champions}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpFb" placeholder="{{sportTeam.facebook_Uri}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpTw" placeholder="{{sportTeam.twitter_Uri}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpGo" placeholder="{{sportTeam.google_Uri}}" class="span12" /></td>
+                                <td>Foto escudo</td>
+                                <td>Foto estadio</td>
                                 <td><button type="submit" class="btn btn-mini btn-info" style="margin-bottom: 20%">Editar
 											</button>
                                     <a href="/admin-teams/delete/{{id}}" class="btn btn-mini btn-danger"> Borrar </a>
