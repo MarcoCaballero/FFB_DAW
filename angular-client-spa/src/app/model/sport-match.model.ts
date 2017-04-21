@@ -1,5 +1,5 @@
 
-import { SportTeam } from '../model/sport-team.model';
+import { Team } from '../model/team.model';
 
 export interface SportMatch {
   id: number;
@@ -11,7 +11,7 @@ export interface SportMatch {
   quotaHomeVictory: string;
   quotaVisitingVictory: string;
   isFinished: boolean;
-  teams: SportTeam[];
+  teams: Team[];
   quotaDraw: number;
   homePoints: number;
   visitingPoints: number;
