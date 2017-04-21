@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import { loginUrl } from '../paths';
+import { loginUrl, logoutUrl } from '../paths';
 
 import { User } from '../model/user.model';
 
@@ -13,31 +13,28 @@ import { AuthService } from './auth.service';
 export class LoginService implements OnDestroy {
 
     ngOnDestroy() {
-        console.log('localStorage called from ngOnDestroy');
-        localStorage.clear();
+        localStorage.clear(); // Clear locarStorage onDestroy
     }
 
-    constructor(private http: Http, private authService: AuthService) {
-
-    }
+    constructor(private http: Http, private authService: AuthService) { }
 
     logIn(username: string, password: string) {
 
-        // Build and store AuthService credentials (field)
-        this.authService.buildCredentials(username, password);
 
-        // Create headers to send Basic auth
+        this.authService.buildCredentials(username, password);   // Build and store AuthService credentials (field)
+
+
         const headers = new Headers({
-            'Authorization': 'Basic ' + this.authService.getCredentials()
+            'Authorization': 'Basic ' + this.authService.getCredentials()   // Create headers to send Basic auth
         });
 
-        // Create options header
-        const options = new RequestOptions({ headers });
+
+        const options = new RequestOptions({ headers });  // Create options header
 
 
-        return this.http.get('http://127.0.0.1:8080/api/logIn', options).map(
+        return this.http.get(loginUrl, options).map(
             response => {
-                this.authService.buildUser(response.json());
+                this.authService.buildUser(response.json());  // Create a persistent user by Auth.service
                 return response;
             })
             .catch(error => Observable.throw('Server error'));
@@ -45,25 +42,21 @@ export class LoginService implements OnDestroy {
 
     logOut() {
         const headers = new Headers({
-            'Authorization': 'Basic ' + this.authService.getCredentials()
+            'Authorization': 'Basic ' + this.authService.getCredentials() // Get persistent user credentials
         });
 
-        const options = new RequestOptions({ headers });
+        const options = new RequestOptions({ headers }); // Create options header
 
-        return this.http.get('http://127.0.0.1:8080/api/logOut', options).map(
+        return this.http.get(logoutUrl, options).map(
             response => {
                 // Important!
-                localStorage.clear();
-                this.authService.setCredentials(null);
-                this.authService.setUser(null);
+                localStorage.clear(); // Clear localstorage
+                this.authService.clear(); // Clear authService
                 return response;
             }
         );
     }
 
-    checkCredentials() {
-        return (localStorage.getItem('user') !== null);
-    }
 }
 
 function utf8_to_b64(str) {
