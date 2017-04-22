@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TeamService } from '../../services/team.service';
 
@@ -13,19 +14,45 @@ import { Team } from '../../model/team.model';
 })
 
 export class AdminTeamsComponent implements OnInit {
-    sportTeams: Team[];
+    sportsTeams: Team[];
+    egamesTeams: Team[];
+    newSportTeam: any = {};
+    newEgameTeam: any = {};
 
     constructor(
-        private teamService: TeamService
+        private teamService: TeamService,
+        private router: Router
     ) { }
 
     ngOnInit() {
-        this.sportTeams = [];
-        this.teamService.getSportsTeams().then(sportTeams => this.sportTeams = sportTeams);
-        this.checkSportTeam();
+        this.teamService.getSportsTeams().then(sportsTeams => this.sportsTeams = sportsTeams);
+        this.teamService.getEgamesTeams().then(egamesTeams => this.egamesTeams = egamesTeams);
     }
 
-    checkSportTeam() {
-        console.log(this.sportTeams);
+    newSportsTeam() {
+        this.teamService.newSportsTeam(this.newSportTeam);
+        location.reload();
+    }
+    newEgamesTeam() {
+        this.teamService.newEgamesTeam(this.newEgameTeam);
+        location.reload();
+    }
+
+    updateSportsTeam(team: Team) {
+        this.teamService.updateSportsTeam(team);
+        location.reload();
+    }
+
+    updateEgamesTeam(team: Team) {
+        this.teamService.updateEgamesTeam(team);
+        location.reload();
+    }
+
+    removeTeam(team: Team) {
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el equipo ' + team.name + '?');
+        if (confirmationMessage) {
+            this.teamService.removeTeam(team.id);
+            location.reload();
+        }
     }
 }
