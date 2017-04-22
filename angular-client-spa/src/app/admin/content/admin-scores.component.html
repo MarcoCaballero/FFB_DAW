@@ -40,18 +40,20 @@
                                         <td>
                                             <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                                 <div style="float: right;">
-                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="{{matchFootBallResult.homePoints}}" name="homePoints" />-
-                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="{{matchFootBallResult.visitingPoints}}" name="visitingPoints" />
+                                                    <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.homePoints" name="homePoints" />-
+                                                    <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.visitingPoints" name="visitingPoints" />
                                                 </div>
                                                 <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                             </div>
 
                                         </td>
                                         <td>
-                                            <strong>-</strong>
+                                            <strong *ngIf="matchFootBallResult.isFinished">Si</strong>
+                                            <strong *ngIf="! matchFootBallResult.isFinished">-</strong>
                                         </td>
                                         <td>
-                                            <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                            <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchFootBallResult)" style="margin-bottom: 20%">Guardar</button>
+                                            <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(matchFootBallResult)"> Borrar </button>
                                         </td>
                                     </tr>
                             </table>
@@ -77,15 +79,15 @@
                                         <th data-field="Guardado" data-sortable="true">Guardado</th>
                                         <th data-field="Acciones" data-sortable="true">Acciones</th>
                                 </thead>
-                                <tr>
-                                    <td>id</td>
-                                    <td>homeTeam</td>
-                                    <td>visitingTeam</td>
+                                <tr *ngFor="let matchBasketballResult of matchBasketballResults">
+                                    <td>{{matchBasketballResult.id}}</td>
+                                    <td>{{matchBasketballResult.homeTeam}}</td>
+                                    <td>{{matchBasketballResult.visitingTeam}}</td>
                                     <td>
                                         <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                             <div style="float: right;">
-                                                <input style="min-width: 50px;" type="number" class="span3" placeholder="homePoints" name="homePoints" />-
-                                                <input style="min-width: 50px;" type="number" class="span3" placeholder="visitingPoints" name="visitingPoints" />
+                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchBasketballResult.homePoints" name="homePoints" />-
+                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchBasketballResult.homePoints" name="visitingPoints" />
                                             </div>
                                             <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                         </div>
@@ -94,7 +96,8 @@
                                         <strong>-</strong>
                                     </td>
                                     <td>
-                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchBasketballResult)" style="margin-bottom: 20%">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(matchBasketballResult)"> Borrar </button>
                                     </td>
 
                                 </tr>
@@ -125,10 +128,10 @@
                                         <th data-field="actions" data-sortable="true">Acciones
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>id</td>
-                                    <td>homeTeam</td>
-                                    <td>visitingTeam</td>
+                                <tr *ngFor="let matchLolResult of matchLolResults">
+                                    <td>{{matchLolResult.id}}</td>
+                                    <td>{{matchLolResult.homeTeam}}</td>
+                                    <td>{{matchLolResult.visitingTeam}}</td>
                                     <td>
                                         <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                             <div style="float: right;">
@@ -147,7 +150,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-info" (click)="updateEgamesMatch(matchLolResult)" style="margin-bottom: 20%">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-danger" (click)="removeEgamesMatch(matchLolResult)"> Borrar </button>
                                     </td>
                                 </tr>
                             </table>

@@ -61,6 +61,18 @@ public class AdminMatchesRestController {
 		return service.findAllEgames();
 	}
 	
+	/* GET ALL LOL MATCH*/
+	@GetMapping("/egames/lol")
+	public Collection<EgamesMatch> getMatchesLol() {
+		return service.findAllLol();
+	}
+	
+	/* GET ALL CS:GO MATCH*/
+	@GetMapping("/egames/cs")
+	public Collection<EgamesMatch> getMatchesCs() {
+		return service.findAllCs();
+	}
+	
 	/* GET SPORTS MATCH FIND BY Id*/
 	@GetMapping("/sports/{id}")
 	public ResponseEntity<SportsMatch> getSportMatch(@PathVariable long id) {

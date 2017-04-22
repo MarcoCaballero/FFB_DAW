@@ -38,6 +38,12 @@ public class MatchService {
 	public List<EgamesMatch> findAllEgames(){
 		return egamesRepo.findAll();
 	}
+	public List<EgamesMatch> findAllLol(){
+		return egamesRepo.findByType("LOL");
+	}
+	public List<EgamesMatch> findAllCs(){
+		return egamesRepo.findByType("CS-GO");
+	}
 	
 	public List<SportsMatch> findAllFootball(){
 		return sportsRepo.findByType("Fútbol");
