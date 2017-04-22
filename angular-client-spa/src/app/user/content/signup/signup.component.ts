@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserService } from '../../../services/user.service';
+
+import { User } from '../../../model/user.model';
 
 @Component({
     moduleId: module.id,
@@ -11,8 +16,12 @@ export class SignupComponent implements OnInit {
 
     title = 'Registro';
     checkFields = false;
+    user: any = {};
 
-    constructor() { }
+    constructor(
+        private userService: UserService,
+        private router: Router
+        ) { }
 
 
     isEmpty(str: HTMLInputElement) {
@@ -27,4 +36,9 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit() { }
+
+    newUser() {
+        this.userService.newUser(this.user);
+        this.router.navigate(['/login']);
+    }
 }

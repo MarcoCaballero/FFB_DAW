@@ -20,13 +20,13 @@
 					 width="50x">
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="signup/new" method="post">
+					<form class="form-horizontal" (ngSubmit)="newUser()">
 						<fieldset>
 							<!-- Name input-->
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Nombre</label>
 								<div class="col-md-7">
-									<input #checkname id="name" name="name" type="text" placeholder="Tu nombre" class="form-control" [(ngModel)]="name">
+									<input [(ngModel)]="user.name" name="name" id="name" type="text" placeholder="Tu nombre" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checkname)">
@@ -41,7 +41,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Primer apellido</label>
 								<div class="col-md-7">
-									<input #checksurname id="surname" name="surname" type="text" placeholder="Tu primer apellido" class="form-control" [(ngModel)]="surname">
+									<input [(ngModel)]="user.surname" name="surname" id="surname" type="text" placeholder="Tu primer apellido" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checksurname)">
@@ -57,8 +57,7 @@
 								<label class="col-md-3 control-label" for="name">Segundo
 										apellido</label>
 								<div class="col-md-7">
-									<input #checksecondSurname id="secondSurname" name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control"
-									 [(ngModel)]="secondSurname">
+									<input [(ngModel)]="user.secondSurname" name="secondSurname" id="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checksecondSurname)">
@@ -73,8 +72,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">DNI/NIF</label>
 								<div class="col-md-7">
-									<input #checkdni id="dni" name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" [(ngModel)]="dni"
-									 required>
+									<input [(ngModel)]="user.dni" name="dni" id="dni" type="text" placeholder="Tu documento de identidad" class="form-control" required>
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checkdni)">
@@ -90,7 +88,7 @@
 								<label class="col-md-3 control-label" for="email">Correo
 										electrónico</label>
 								<div class="col-md-7">
-									<input #checkemail id="email" name="email" type="text" placeholder="Tu email" class="form-control" [(ngModel)]="email">
+									<input [(ngModel)]="user.email" name="email" id="email" type="text" placeholder="Tu email" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checkemail)">
@@ -105,7 +103,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="country">País</label>
 								<div class="col-md-9">
-									<select name="country">
+									<select [(ngModel)]="user.country" name="country">
    											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value="AFG">Afghanistan</option>
 											<option value="ALA">Åland Islands</option>
@@ -363,7 +361,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Ciudad</label>
 								<div class="col-md-7">
-									<input #checkcity id="city" name="city" type="text" placeholder="Tu ciudad" class="form-control" [(ngModel)]="city">
+									<input [(ngModel)]="user.city" name="city" id="city" type="text" placeholder="Tu ciudad" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checkcity)">
@@ -378,7 +376,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Domicilio</label>
 								<div class="col-md-7">
-									<input #checkstreet id="street" name="location" type="text" placeholder="Tu domicilio" class="form-control" [(ngModel)]="home">
+									<input [(ngModel)]="user.location" name="location" id="street" type="text" placeholder="Tu domicilio" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checkstreet)">
@@ -393,8 +391,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Teléfono</label>
 								<div class="col-md-7">
-									<input #checktelephone id="telephone" name="telf" type="text" placeholder="Tu teléfono de contacto" class="form-control"
-									 [(ngModel)]="telephone">
+									<input [(ngModel)]="user.telephone" name="telephone" id="telephone" type="text" placeholder="Tu teléfono de contacto" class="form-control">
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
 									<p *ngIf="isEmpty(checktelephone)">
@@ -409,10 +406,10 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="country">Sexo</label>
 								<div class="col-md-9">
-									<select #sex name="sex">
+									<select [(ngModel)]="user.sex" name="sex">
 											<!-- ISO-3166-1: Alpha-3 Codes-->
-											<option value="MAN">HOMBRE</option>
-											<option value="WOMAN">MUJER</option>
+											<option value=true>HOMBRE</option>
+											<option value=false>MUJER</option>
 									</select>
 								</div>
 								<div *ngIf="checkFields" class="col-md-1">
@@ -423,7 +420,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="password">Contraseña</label>
 								<div class="col-md-7">
-									<input id="password" name="pass" type="password" placeholder="Introduce tu contraseña" class="form-control" [(ngModel)]="firstPassword">
+									<input [(ngModel)]="user.password" name="password" id="password" type="password" placeholder="Introduce tu contraseña" class="form-control" [(ngModel)]="firstPassword">
 								</div>
 
 							</div>
@@ -447,7 +444,7 @@
 										<img src="../assets/images/+18.png" height="16px"> 2017
 
 									</p>
-									<button type="submit" (click)="sendSingUp()" class="btn btn-default btn-md pull-right">Registrarme</button>
+									<button class="btn btn-default btn-md pull-right">Registrarme</button>
 								</div>
 							</div>
 						</fieldset>
