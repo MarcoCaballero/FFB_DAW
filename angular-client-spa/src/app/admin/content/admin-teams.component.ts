@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ById } from '../../core/sort-functions';
+
 import { TeamService } from '../../services/team.service';
 
 import { Team } from '../../model/team.model';
@@ -28,29 +30,54 @@ export class AdminTeamsComponent implements OnInit {
     }
 
     newSportsTeam() {
-        this.teamService.newSportsTeam(this.newSportTeam);
-        location.reload();
+        this.teamService
+            .newSportsTeam(this.newSportTeam)
+            .then(() => {
+                this.sportsTeams.push(this.newSportTeam);
+            })
+
     }
     newEgamesTeam() {
-        this.teamService.newEgamesTeam(this.newEgameTeam);
-        location.reload();
+        this.teamService
+            .newEgamesTeam(this.newEgameTeam)
+            .then(() => {
+                this.egamesTeams.push(this.newEgameTeam);
+            })
     }
 
     updateSportsTeam(team: Team) {
-        this.teamService.updateSportsTeam(team);
-        location.reload();
+        this.teamService
+            .updateSportsTeam(team)
+            .then(() => {
+                this.sportsTeams = this.sportsTeams.filter(t => t.id !== team.id);
+                this.sportsTeams.push(team);
+                this.sportsTeams.sort(ById);
+            });
     }
 
     updateEgamesTeam(team: Team) {
-        this.teamService.updateEgamesTeam(team);
-        location.reload();
+        this.teamService
+            .updateEgamesTeam(team)
+            .then(() => {
+                this.egamesTeams = this.egamesTeams.filter(t => t.id !== team.id);
+                this.egamesTeams.push(team);
+                this.egamesTeams.sort(ById);
+            });
     }
 
     removeTeam(team: Team) {
         const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el equipo ' + team.name + '?');
         if (confirmationMessage) {
-            this.teamService.removeTeam(team.id);
-            location.reload();
+            this.teamService
+                .removeTeam(team.id)
+                .then(() => {
+                    if (team.type === "Fútbol" || team.type === "Baloncesto") {
+                        this.sportsTeams = this.sportsTeams.filter(t => t !== team);
+                    } else {
+                        this.egamesTeams = this.egamesTeams.filter(t => t !== team);
+                    }
+                })
+
         }
     }
 }
