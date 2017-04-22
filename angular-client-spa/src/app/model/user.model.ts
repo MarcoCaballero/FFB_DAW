@@ -8,9 +8,10 @@ export interface User {
   secondSurname: string;
   dni: string;
   telephone: string;
-  passwordHash?: string;
+  password?: string;
   country?: string;
   city?: string;
   location?: string[];
+  sex?: boolean;
   photoUrl?: string;
 }
