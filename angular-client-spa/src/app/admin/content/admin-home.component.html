@@ -68,19 +68,19 @@
                                     <th data-field="Actions" data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td>nombre</td>
-                                <td>apellido</td>
-                                <td>email</td>
-                                <td>roles</td>
+                            <tr *ngFor="let user of users">
+                                <td>{{user.id}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.surname}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.roles}}</td>
                                 <td>
-                                    <a href="admin-home/upgrade/{{id}}" class="btn btn-mini btn-warning"> <i class="icon-plus"></i> Administrador
-                                    </a>
-                                    <a href="admin-home/delete/{{id}}" class="btn btn-mini btn-danger"> <i class="icon-remove"></i> Borrar Usuario
-                                    </a>
-                                    <a href="/admin-home/downgrade/{{id}}" class="btn btn-mini btn-primary"> <i class="icon-edit"></i> Degradar usuario
-                                    </a>
+                                    <button type="submit" (click)="upgrade(user)" class="btn btn-mini btn-warning"> <i class="icon-plus"></i> Administrador
+                                    </button>
+                                    <button type="submit" (click)="deleteUser(user)" class="btn btn-mini btn-danger"> <i class="icon-remove"></i> Borrar Usuario
+                                    </button>
+                                    <button type="submit" (click)="downgrade(user)" class="btn btn-mini btn-primary"> <i class="icon-edit"></i> Degradar usuario
+                                    </button>
                                 </td>
                             </tr>
                         </table>
