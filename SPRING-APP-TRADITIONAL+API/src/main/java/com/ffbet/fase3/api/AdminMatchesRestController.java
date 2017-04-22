@@ -120,7 +120,7 @@ public class AdminMatchesRestController {
 		EgamesMatch match =service.findOneEgames(id);
 			
 		if(match != null){
-			updateEgamesMatch.setId(id);
+			//updateEgamesMatch.setId(id);
 			service.saveEgamesMatch(updateEgamesMatch);
 			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{
@@ -137,7 +137,7 @@ public class AdminMatchesRestController {
 		SportsMatch match =service.findOneSports(id);
 			
 		if(match != null){
-			updateSportsMatch.setId(id);
+			//updateSportsMatch.setId(id);
 			service.saveSportsMatch(updateSportsMatch);
 			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{

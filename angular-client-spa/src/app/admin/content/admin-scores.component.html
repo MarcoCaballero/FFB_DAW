@@ -30,7 +30,6 @@
                                         <th data-field="equipoVisitante" data-sortable="true">Visitante
                                         </th>
                                         <th data-field="Resultado" data-sortable="true">Resultado</th>
-                                        <th data-field="Guardado" data-sortable="true">Guardado</th>
                                         <th data-field="Resultado" data-sortable="true">Acciones</th>
                                 </thead>
                                     <tr *ngFor="let matchFootBallResult of matchFootballResults">
@@ -46,10 +45,6 @@
                                                 <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                             </div>
 
-                                        </td>
-                                        <td>
-                                            <strong *ngIf="matchFootBallResult.isFinished">Si</strong>
-                                            <strong *ngIf="! matchFootBallResult.isFinished">-</strong>
                                         </td>
                                         <td>
                                             <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchFootBallResult)" style="margin-bottom: 20%">Guardar</button>
@@ -76,7 +71,6 @@
                                         <th data-field="equipoVisitante" data-sortable="true">Equipo Visitante
                                         </th>
                                         <th data-field="Resultado" data-sortable="true">Resultado</th>
-                                        <th data-field="Guardado" data-sortable="true">Guardado</th>
                                         <th data-field="Acciones" data-sortable="true">Acciones</th>
                                 </thead>
                                 <tr *ngFor="let matchBasketballResult of matchBasketballResults">
@@ -87,13 +81,10 @@
                                         <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                             <div style="float: right;">
                                                 <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchBasketballResult.homePoints" name="homePoints" />-
-                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchBasketballResult.homePoints" name="visitingPoints" />
+                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchBasketballResult.visitingPoints" name="visitingPoints" />
                                             </div>
                                             <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                         </div>
-                                    </td>
-                                    <td>
-                                        <strong>-</strong>
                                     </td>
                                     <td>
                                         <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchBasketballResult)" style="margin-bottom: 20%">Guardar</button>
@@ -130,23 +121,21 @@
                                 </thead>
                                 <tr *ngFor="let matchLolResult of matchLolResults">
                                     <td>{{matchLolResult.id}}</td>
-                                    <td>{{matchLolResult.homeTeam}}</td>
-                                    <td>{{matchLolResult.visitingTeam}}</td>
+                                    <td>{{matchLolResult.homeTeam}}<strong *ngIf="isWinnerTeam(matchLolResult, matchLolResult.homeTeam)">  -G-</strong><strong *ngIf="isFirstBloodTeam(matchLolResult, matchLolResult.homeTeam)">  -FB-</strong></td>
+                                    <td>{{matchLolResult.visitingTeam}}<strong *ngIf="isWinnerTeam(matchLolResult, matchLolResult.visitingTeam)">  -G-</strong><strong *ngIf="isFirstBloodTeam(matchLolResult, matchLolResult.visitingTeam)">  -FB-</strong></td>
                                     <td>
                                         <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                             <div style="float: right;">
-                                                <select name="winningTeam" style="width:100%">
-																		<option value="homeTeam">Gana Local</option>
-																		<option value="visitingTeam">Gana
-																			Visitante</option>
-																	</select>
-                                                <select name="firstBlood" style="width:100%">
-																		<option value="homeTeam">Primera Sangre Local</option>
-																		<option value="visitingTeam">Primera
-																			Sangre Visitante</option>
-																	</select>
+                                                <select [(ngModel)]="matchLolResult.winnerTeam" name= "winnerTeam" style="width:100%">
+														<option value="{{matchLolResult.homeTeam}}">Gana Local</option>
+														<option value="{{matchLolResult.visitingTeam}}">GanaVisitante</option>
+												</select>
+                                                <select [(ngModel)]="matchLolResult.firstBloodTeam" name= "firstBloodTeam" style="width:100%">
+														<option value="{{matchLolResult.homeTeam}}">Primera Sangre Local</option>
+														<option value="{{matchLolResult.visitingTeam}}">Primera Sangre Visitante</option>
+												</select>
                                             </div>
-                                            <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
+
                                         </div>
                                     </td>
                                     <td>
@@ -177,23 +166,21 @@
                                         <th data-field="actions" data-sortable="true">Acciones
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>id</td>
-                                    <td>homeTeam
-                                    </td>
-                                    <td>visitingTeam
-                                    </td>
+                                <tr *ngFor="let matchCsResult of matchCsResults">
+                                    <td>{{matchCsResult.id}}</td>
+                                    <td>{{matchCsResult.homeTeam}}<strong *ngIf="isWinnerTeam(matchCsResult, matchCsResult.homeTeam)">  -G-</strong><strong *ngIf="isFirstBloodTeam(matchCsResult, matchCsResult.homeTeam)">  -FB-</strong></td>
+                                    <td>{{matchCsResult.visitingTeam}}<strong *ngIf="isWinnerTeam(matchCsResult, matchCsResult.visitingTeam)">  -G-</strong><strong *ngIf="isFirstBloodTeam(matchCsResult, matchCsResult.visitingTeam)">  -FB-</strong></td>
                                     <td>
                                         <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                             <div style="float: right;">
-                                                <select name="winningTeam" style="width:100%">
-																		<option value="homeTeam">Gana Local</option>
-																		<option value="visitingTeam">Gana
+                                                <select [(ngModel)]="matchCsResult.winnerTeam" style="width:100%">
+																		<option value="{{matchCsResult.homeTeam}}">Gana Local</option>
+																		<option value="{{matchCsResult.visitingTeam}}">Gana
 																			Visitante</option>
 																	</select>
-                                                <select name="firstBlood" style="width:100%">
-																		<option value="homeTeam">Primera Sangre Local</option>
-																		<option value="visitingTeam">Primera
+                                                <select [(ngModel)]="matchCsResult.firstBloodTeam" style="width:100%">
+																		<option value="{{matchCsResult.homeTeam}}">Primera Sangre Local</option>
+																		<option value="{{matchCsResult.visitingTeam}}">Primera
 																			Sangre Visitante</option>
 																	</select>
                                             </div>
@@ -201,7 +188,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-info" (click)="updateEgamesMatch(matchCsResult)" style="margin-bottom: 20%">Guardar</button>
+                                        <button type="submit" class="btn btn-mini btn-danger" (click)="removeEgamesMatch(matchCsResult)"> Borrar </button>
                                     </td>
                                 </tr>
                             </table>

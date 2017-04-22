@@ -49,7 +49,18 @@ export class ScoreService {
 
     }
 
-    updateMatchResult(matchFootBallResult: SportMatch): Promise <SportMatch>{
+    getCsMatches(): Promise<EgamesMatch[]>  {
+        return this.http.get('http://127.0.0.1:8080/api/matches/egames/cs')
+            .toPromise()
+            .then(
+            response => {
+                return response.json();
+            })
+            .catch(error => console.error(error));
+
+    }
+
+    updateSportMatchResult(matchFootBallResult: SportMatch): Promise <SportMatch>{
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials(),
             'Content-Type': 'application/json'
@@ -61,7 +72,19 @@ export class ScoreService {
             .catch(error => console.error(error));
     }
 
-    removeMatchResult(id: number): Promise<any>{
+    updateEgamesMatchResult(matchEgamesResult: EgamesMatch): Promise <EgamesMatch>{
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials(),
+            'Content-Type': 'application/json'
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.put('http://127.0.0.1:8080/api/matches/egames/' + matchEgamesResult.id, JSON.stringify(matchEgamesResult), options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    removeSportMatchResult(id: number): Promise<any>{
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
@@ -72,4 +95,18 @@ export class ScoreService {
             .then(undefined)
             .catch(error => console.error(error));
     }
+
+    removeEgamesMatchResult(id: number): Promise<any>{
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        console.log(this.authService.getCredentials());
+        return this.http.delete('http://127.0.0.1:8080/api/matches/' + id, options)
+            .toPromise()
+            .then(undefined)
+            .catch(error => console.error(error));
+    }
+
+    
 }
