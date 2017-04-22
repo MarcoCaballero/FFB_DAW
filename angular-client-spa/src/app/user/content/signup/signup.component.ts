@@ -38,7 +38,18 @@ export class SignupComponent implements OnInit {
     ngOnInit() { }
 
     newUser() {
+        console.log(this.user.name);
+        console.log(this.user.surname);
+        console.log(this.user.secondSurname);
+        console.log(this.user.dni);
+        console.log(this.user.email);
+        console.log(this.user.country);
+        console.log(this.user.city);
+        console.log(this.user.location);
+        console.log(this.user.telephone);
+        console.log(this.user.men);
+        console.log(this.user.password);
         this.userService.newUser(this.user);
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
     }
 }
