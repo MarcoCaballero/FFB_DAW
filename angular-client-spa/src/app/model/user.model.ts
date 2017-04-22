@@ -4,14 +4,14 @@ export interface User {
   email: string;
   roles: string[];
   name: string;
-  surname: string;
-  secondSurname: string;
-  dni: string;
-  telephone: string;
-  password?: string;
+  password: string;
+  surname?: string;
+  secondSurname?: string;
+  dni?: string;
+  telephone?: string;
   country?: string;
   city?: string;
-  location?: string[];
-  sex?: boolean;
+  location?: string;
+  men?: boolean;
   photoUrl?: string;
 }

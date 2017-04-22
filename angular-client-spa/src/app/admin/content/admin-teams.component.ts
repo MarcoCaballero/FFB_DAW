@@ -34,7 +34,7 @@ export class AdminTeamsComponent implements OnInit {
             .newSportsTeam(this.newSportTeam)
             .then(() => {
                 this.sportsTeams.push(this.newSportTeam);
-            })
+            });
 
     }
     newEgamesTeam() {
@@ -42,7 +42,7 @@ export class AdminTeamsComponent implements OnInit {
             .newEgamesTeam(this.newEgameTeam)
             .then(() => {
                 this.egamesTeams.push(this.newEgameTeam);
-            })
+            });
     }
 
     updateSportsTeam(team: Team) {
@@ -71,13 +71,12 @@ export class AdminTeamsComponent implements OnInit {
             this.teamService
                 .removeTeam(team.id)
                 .then(() => {
-                    if (team.type === "Fútbol" || team.type === "Baloncesto") {
+                    if (team.type === 'Fútbol' || team.type === 'Baloncesto') {
                         this.sportsTeams = this.sportsTeams.filter(t => t !== team);
                     } else {
                         this.egamesTeams = this.egamesTeams.filter(t => t !== team);
                     }
-                })
-
+                });
         }
     }
 }
