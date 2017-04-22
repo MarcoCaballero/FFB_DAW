@@ -39,6 +39,14 @@ public class MatchService {
 		return egamesRepo.findAll();
 	}
 	
+	public List<SportsMatch> findAllFootball(){
+		return sportsRepo.findByType("Fútbol");
+	}
+	
+	public List<SportsMatch> findAllBasketball(){
+		return sportsRepo.findByType("Baloncesto");
+	}
+	
 	// findOne
 	public Match findOne(long id){
 		return matchRepo.findOne(id);

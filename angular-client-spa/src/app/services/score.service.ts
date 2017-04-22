@@ -11,7 +11,7 @@ export class ScoreService {
     constructor(private http: Http) {}
 
     getFootballMatches(): Promise<SportMatch[]>  {
-        return this.http.get('http://127.0.0.1:8080/api/matches/sports')
+        return this.http.get('http://127.0.0.1:8080/api/matches/sports/football')
             .toPromise()
             .then(
             response => {

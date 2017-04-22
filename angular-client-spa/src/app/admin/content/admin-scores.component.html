@@ -33,16 +33,15 @@
                                         <th data-field="Guardado" data-sortable="true">Guardado</th>
                                         <th data-field="Resultado" data-sortable="true">Acciones</th>
                                 </thead>
-                                <p *ngFor="let matchFootBallResult of matchFootballResults">
-                                    <tr>
+                                    <tr *ngFor="let matchFootBallResult of matchFootballResults">
                                         <td>{{matchFootBallResult.id}}</td>
                                         <td>{{matchFootBallResult.homeTeam}}</td>
                                         <td>{{matchFootBallResult.visitingTeam}}</td>
                                         <td>
                                             <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
                                                 <div style="float: right;">
-                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="homePoints" name="{{matchFootBallResult.homePoints}}" />-
-                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="visitingPoints" name="{{matchFootBallResult.visitingPoints}}" />
+                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="{{matchFootBallResult.homePoints}}" name="homePoints" />-
+                                                    <input style="min-width: 50px;" type="number" class="span3" placeholder="{{matchFootBallResult.visitingPoints}}" name="visitingPoints" />
                                                 </div>
                                                 <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                             </div>
@@ -55,7 +54,6 @@
                                             <button style="border-left: 10px" class="btn btn-success buttonSave">Guardar</button>
                                         </td>
                                     </tr>
-                                </p>
                             </table>
                         </accordion-group>
                     </div>

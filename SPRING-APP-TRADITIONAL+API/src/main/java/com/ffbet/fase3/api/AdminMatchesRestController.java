@@ -43,6 +43,18 @@ public class AdminMatchesRestController {
 		return service.findAllSports();
 	}
 	
+	/* GET ALL FOOTBALL MATCH*/
+	@GetMapping("/sports/football")
+	public Collection<SportsMatch> getMatchesFootball() {
+		return service.findAllFootball();
+	}
+	
+	/* GET ALL BASKETBALL MATCH*/
+	@GetMapping("/sports/basketball")
+	public Collection<SportsMatch> getMatchesBasketball() {
+		return service.findAllBasketball();
+	}
+	
 	/* GET ALL EGAMES MATCH*/
 	@GetMapping("/egames")
 	public Collection<EgamesMatch> getMatchesEgames() {
