@@ -19,9 +19,7 @@ export class TeamService {
         return this.http.get('http://127.0.0.1:8080/api/teams/sports')
             .toPromise()
             .then(
-            response => {
-                return response.json();
-            })
+            response => response.json())
             .catch(error => console.error(error));
     }
 

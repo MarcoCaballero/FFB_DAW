@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { TeamService } from '../../services/team.service';
 
@@ -20,8 +19,7 @@ export class AdminTeamsComponent implements OnInit {
     newEgameTeam: any = {};
 
     constructor(
-        private teamService: TeamService,
-        private router: Router
+        private teamService: TeamService
     ) { }
 
     ngOnInit() {
