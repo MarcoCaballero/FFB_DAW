@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
-
 
 import { ScoreService } from '../../services/score.service';
+
 import { SportMatch } from '../../model/sport-match.model';
 
 
@@ -17,13 +16,15 @@ import { SportMatch } from '../../model/sport-match.model';
 export class AdminScoresComponent implements OnInit {
     title = 'ADMIN - SCORES';
 
-    private matchFootballResults: SportMatch[] = [];
+    private matchFootballResults: SportMatch[];
 
-    constructor(private scoreService: ScoreService) { }
+    constructor(
+        private scoreService: ScoreService
+    ) { }
 
 
     ngOnInit() {
-        this.matchFootballResults = this.scoreService.getFootballMatches();
-        console.log(this.matchFootballResults);
+        this.matchFootballResults = [];
+        this.scoreService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
     }
 }

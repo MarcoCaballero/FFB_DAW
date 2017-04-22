@@ -1,41 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 
 import { SportMatch } from '../model/sport-match.model';
 
 @Injectable()
 export class ScoreService {
 
-    private matchFootballResults: SportMatch[] = [];
+    constructor(private http: Http) {}
 
-    constructor(private http: Http) { }
-
-    getFootballMatches() {
-        // response => this.extractFootballMatch(response)
-        this.http.get('http://127.0.0.1:8080/api/matches/sports').subscribe(
+    getFootballMatches(): Promise<SportMatch[]>  {
+        return this.http.get('http://127.0.0.1:8080/api/matches/sports')
+            .toPromise()
+            .then(
             response => {
-                const matches = response.json();
-                for (const i of matches) {
-                    if ((i.isFinished) && (i.type === 'Football')) {
-                        this.matchFootballResults.push(i);
-                    }
-                }
-            },
-            error => {
-                console.error(error);
-            }
-        );
-        return this.matchFootballResults;
+                return response.json();
+            })
+            .catch(error => console.error(error));
+
     }
 
-    /*private extractFootballMatch(response: Response){
-        let matches: SportMatch[] = [];
-        matches = response.json();
-        for(let i of matches){
-            if((i.isFinished) && (i.type === 'Football')){
-                this.matchFootballResults.push(i);
-            }
-        }
-        return this.matchFootballResults;
-    }*/
+    
 }
