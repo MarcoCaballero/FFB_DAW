@@ -42,28 +42,28 @@
                                     <th data-field="Actions" data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let sportTeam of sportTeams">
+                            <tr *ngFor="let sportTeam of sportsTeams">
                                 <td>{{sportTeam.id}}</td>
-                                <td><input type="text" name="sportsUpType" placeholder="{{sportTeam.type}}" class="span12" readonly="readonly"
+                                <td><input type="text" name="sportsUpType" value="{{sportTeam.type}}" class="span12" readonly="readonly"
                                     /></td>
-                                <td><input type="text" name="sportsUpName" placeholder="{{sportTeam.name}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCoach" placeholder="{{sportTeam.coach}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCountry" placeholder="{{sportTeam.country}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpCity" placeholder="{{sportTeam.city}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpSlogan" placeholder="{{sportTeam.slogan}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpStadium" placeholder="{{sportTeam.stadium}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpPresident" placeholder="{{sportTeam.president}}" class="span12" /></td>
-                                <td><input type="number" name="sportsUpLeagues" placeholder="{{sportTeam.leagues}}" class="span12" /></td>
-                                <td><input type="number" name="sportsUpCups" placeholder="{{sportTeam.cups}}" class="span12" /></td>
-                                <td><input type="number" name="sportsUpChampions" placeholder="{{sportTeam.champions}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpFb" placeholder="{{sportTeam.facebook_Uri}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpTw" placeholder="{{sportTeam.twitter_Uri}}" class="span12" /></td>
-                                <td><input type="text" name="sportsUpGo" placeholder="{{sportTeam.google_Uri}}" class="span12" /></td>
+                                <td><input type="text" name="sportsUpName" [(ngModel)]="sportTeam.name" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCoach" [(ngModel)]="sportTeam.coach" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCountry" [(ngModel)]="sportTeam.country" class="span12" /></td>
+                                <td><input type="text" name="sportsUpCity" [(ngModel)]="sportTeam.city" class="span12" /></td>
+                                <td><input type="text" name="sportsUpSlogan" [(ngModel)]="sportTeam.slogan" class="span12" /></td>
+                                <td><input type="text" name="sportsUpStadium" [(ngModel)]="sportTeam.stadium" class="span12" /></td>
+                                <td><input type="text" name="sportsUpPresident" [(ngModel)]="sportTeam.president" class="span12" /></td>
+                                <td><input type="number" name="sportsUpLeagues" [(ngModel)]="sportTeam.leagues" class="span12" /></td>
+                                <td><input type="number" name="sportsUpCups" [(ngModel)]="sportTeam.cups" class="span12" /></td>
+                                <td><input type="number" name="sportsUpChampions" [(ngModel)]="sportTeam.champions" class="span12" /></td>
+                                <td><input type="text" name="sportsUpFb" [(ngModel)]="sportTeam.facebook_Uri" class="span12" /></td>
+                                <td><input type="text" name="sportsUpTw" [(ngModel)]="sportTeam.twitter_Uri" class="span12" /></td>
+                                <td><input type="text" name="sportsUpGo" [(ngModel)]="sportTeam.google_Uri" class="span12" /></td>
                                 <td>Foto escudo</td>
                                 <td>Foto estadio</td>
-                                <td><button type="submit" class="btn btn-mini btn-info" style="margin-bottom: 20%">Editar
+                                <td><button type="submit" class="btn btn-mini btn-info" (click)="updateSportsTeam(sportTeam)" style="margin-bottom: 20%">Editar
 											</button>
-                                    <a href="/admin-teams/delete/{{id}}" class="btn btn-mini btn-danger"> Borrar </a>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeTeam(sportTeam)"> Borrar </button>
                                 </td>
                             </tr>
                         </table>
@@ -96,24 +96,24 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td><input type="text" name="egamesUpType" placeholder="type" class="span10" style="margin-left: 10%"
+                            <tr *ngFor="let egamesTeam of egamesTeams">
+                                <td>{{egamesTeam.id}}</td>
+                                <td><input type="text" name="egamesUpType" placeholder="{{egamesTeam.type}}" class="span10" style="margin-left: 10%"
                                         readonly="readonly" /></td>
-                                <td><input type="text" name="egamesUpName" placeholder="name" class="span10" style="margin-left: 10%"
+                                <td><input type="text" name="egamesUpName" [(ngModel)]="egamesTeam.name" class="span10" style="margin-left: 10%"
                                     /></td>
-                                <td><input type="text" name="egamesUpCoach" placeholder="coach" class="span10" style="margin-left: 10%"
+                                <td><input type="text" name="egamesUpCoach" [(ngModel)]="egamesTeam.coach" class="span10" style="margin-left: 10%"
                                     /></td>
-                                <td><input type="text" name="egamesUpCountry" placeholder="country" class="span10" style="margin-left: 10%"
+                                <td><input type="text" name="egamesUpCountry" [(ngModel)]="egamesTeam.country" class="span10" style="margin-left: 10%"
                                     /></td>
-                                <td><input type="text" name="egamesUpCity" placeholder="city" class="span10" style="margin-left: 10%"
+                                <td><input type="text" name="egamesUpCity" [(ngModel)]="egamesTeam.city" class="span10" style="margin-left: 10%"
                                     /></td>
-                                <td><input type="text" name="egamesUpCity" placeholder="sponsor" class="span10" style="margin-left: 10%"
+                                <td><input type="text" name="egamesUpCity" [(ngModel)]="egamesTeam.sponsor" class="span10" style="margin-left: 10%"
                                     /></td>
 
-                                <td><button type="submit" class="btn btn-mini btn-info" style="margin-left: 30%; margin-bottom: 20%">Editar
+                                <td><button type="submit" class="btn btn-mini btn-info" (click)="updateEgamesTeam(egamesTeam)" style="margin-left: 15%; margin-bottom: 20%">Editar
 											</button>
-                                    <a href="/admin-teams/delete/{{id}}" class="btn btn-mini btn-danger" style="margin-left: 30%; margin-bottom: 20%"> Borrar </a>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeTeam(egamesTeam)" style="margin-left: 15%; margin-bottom: 20%"> Borrar </button>
                             </tr>
                         </table>
                     </div>
@@ -132,11 +132,11 @@
                                     <h5>Añadir nuevo equipo deportivo</h5></a>
                                 </div>
                             </accordion-heading>
-                            <form action="admin-teams/newSportsTeam" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <form class="form-horizontal" (ngSubmit)="newSportsTeam()">
                                 <div class="control-group">
                                     <label class="control-label">Tipo de deporte :</label>
                                     <div class="controls">
-                                        <select name="sportsType">
+                                        <select [(ngModel)]="newSportTeam.type" name="type">
 										<option value="Fútbol">Fútbol</option>
 										<option value="Baloncesto">Baloncesto</option>
 									</select>
@@ -145,79 +145,79 @@
                                 <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del equipo" name="sportsName" />
+                                        <input [(ngModel)]="newSportTeam.name" name="name" class="span11" placeholder="Nombre del equipo" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">País :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="País del equipo" name="sportsCountry" />
+                                        <input [(ngModel)]="newSportTeam.country" name="country" type="text" class="span11" placeholder="País del equipo" name="sportsCountry" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ciudad :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Ciudad del equipo" name="sportsCity" />
+                                        <input [(ngModel)]="newSportTeam.city" name="city" type="text" class="span11" placeholder="Ciudad del equipo" name="sportsCity" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Estadio :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del campo de fútbol" name="stadium" />
+                                        <input [(ngModel)]="newSportTeam.stadium" name="stadium" type="text" class="span11" placeholder="Nombre del campo de fútbol" name="stadium" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Eslogan :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Frase típica de la afición de este equipo" name="slogan" />
+                                        <input [(ngModel)]="newSportTeam.slogan" name="slogan" type="text" class="span11" placeholder="Frase típica de la afición de este equipo" name="slogan" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Presidente :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del presidente" name="president" />
+                                        <input [(ngModel)]="newSportTeam.president" name="president" type="text" class="span11" placeholder="Nombre del presidente" name="president" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Entrenador :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del entrenador" name="sportsCoach" />
+                                        <input [(ngModel)]="newSportTeam.coach" name="coach" type="text" class="span11" placeholder="Nombre del entrenador" name="sportsCoach" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ligas :</label>
                                     <div class="controls">
-                                        <input type="number" class="span11" placeholder="Número de ligas ganadas" name="leaguesWeb" />
+                                        <input [(ngModel)]="newSportTeam.leagues" name="leagues" type="number" class="span11" placeholder="Número de ligas ganadas" name="leaguesWeb" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Copas :</label>
                                     <div class="controls">
-                                        <input type="number" class="span11" placeholder="Número de copas ganadas" name="cupsWeb" />
+                                        <input [(ngModel)]="newSportTeam.cups" name="cups" type="number" class="span11" placeholder="Número de copas ganadas" name="cupsWeb" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Champions :</label>
                                     <div class="controls">
-                                        <input type="number" class="span11" placeholder="Número de champions ganadas" name="championsWeb" />
+                                        <input [(ngModel)]="newSportTeam.champions" name="champions" type="number" class="span11" placeholder="Número de champions ganadas" name="championsWeb" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Facebook :</label>
                                     <div class="controls">
-                                        <input type="url" class="span11" placeholder="URL de su página de Facebook" name="facebook_Uri" />
+                                        <input [(ngModel)]="newSportTeam.facebook" name="facebook" type="url" class="span11" placeholder="URL de su página de Facebook" name="facebook_Uri" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Twitter :</label>
                                     <div class="controls">
-                                        <input type="url" class="span11" placeholder="URL de su página de Twitter" name="twitter_Uri" />
+                                        <input [(ngModel)]="newSportTeam.twitter" name="twitter" type="url" class="span11" placeholder="URL de su página de Twitter" name="twitter_Uri" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Google :</label>
                                     <div class="controls">
-                                        <input type="url" class="span11" placeholder="URL de su página de Google+" name="google_Uri" />
+                                        <input [(ngModel)]="newSportTeam.google" name="google" type="url" class="span11" placeholder="URL de su página de Google+" name="google_Uri" />
                                     </div>
                                 </div>
                                 <!-- <span class="help-block" style="margin-left: 30%">Las URLs
@@ -240,7 +240,7 @@
 								intantalo más tarde</label> -->
                                 <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
                                 <div style="margin-left:80%">
-                                    <input type="submit" class="btn btn-success" value="Añadir" />
+                                    <button class="btn btn-success">Añadir</button>
                                 </div>
                             </form>
                         </accordion-group>
@@ -257,11 +257,11 @@
                                     <h5>Añadir nuevo equipo E-Games</h5></a>
                                 </div>
                             </accordion-heading>
-                            <form action="admin-teams/newEgamesTeam" method="post" class="form-horizontal">
+                            <form class="form-horizontal" (ngSubmit)="newEgamesTeam()">
                                 <div class="control-group">
                                     <label class="control-label">Tipo de juego :</label>
                                     <div class="controls">
-                                        <select name="egamesType">
+                                        <select [(ngModel)]="newEgameTeam.type" name="type">
 										<option value="LOL">League of legends</option>
 										<option value="CS-GO">Counter Strike GO</option>
 									</select>
@@ -270,36 +270,36 @@
                                 <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del equipo" name="egamesName" />
+                                        <input [(ngModel)]="newEgameTeam.name" name="name" class="span11" placeholder="Nombre del equipo" name="egamesName" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">País :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="País del equipo" name="egamesCountry" />
+                                        <input [(ngModel)]="newEgameTeam.country" name="country" class="span11" placeholder="País del equipo" name="egamesCountry" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ciudad :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Ciudad del equipo" name="egamesCity" />
+                                        <input [(ngModel)]="newEgameTeam.city" name="city" class="span11" placeholder="Ciudad del equipo" name="egamesCity" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Entrenador :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre del entrenador" name="egamesCoach" />
+                                        <input [(ngModel)]="newEgameTeam.coach" name="coach" class="span11" placeholder="Nombre del entrenador" name="egamesCoach" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Sponsor :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" placeholder="Nombre de la sede del equipo" name="sponsor" />
+                                        <input [(ngModel)]="newEgameTeam.sponsor" name="sponsor" class="span11" placeholder="Nombre del patrocinador principal del equipo" name="sponsor" />
                                     </div>
                                 </div>
                                 <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
                                 <div style="margin-left: 80%">
-                                    <input type="submit" class="btn btn-success" value="Añadir" />
+                                    <button class="btn btn-success">Añadir</button>
                                 </div>
                             </form>
                         </accordion-group>

@@ -58,6 +58,7 @@ public class UserRestController {
 		return user;
 	}
 
+	// update the own user
 	@PutMapping
 	public ResponseEntity<User> updateUser() {
 		User user = userService.handleUserLoggedFromComponent();
@@ -66,6 +67,18 @@ public class UserRestController {
 			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
 
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateUserOne(@PathVariable long id) {
+		User user = userService.findOne(id);
+
+		if (user != null) {
+			userService.updateUser(user);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
