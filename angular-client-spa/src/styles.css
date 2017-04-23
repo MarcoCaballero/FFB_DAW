@@ -13,7 +13,7 @@
   animation: rotate-move 2s ease-in-out infinite;
 }
 
-.dot { 
+.dot {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -89,7 +89,7 @@ ul.nav.nav-justified.nav-pills {
 }
 
 li.nav-item.active{
-  
+
     border-radius: 16px!important;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
@@ -100,4 +100,22 @@ li.nav-item.active{
 .nav-pills>li>a:hover, .nav-pills>li>a:focus{
    border-radius: 16px!important;
    background-color: #fce0b4!important;
+}
+
+/*Ng-form error styles*/
+input.ng-invalid{
+  border-left: 5px solid red;
+}
+input.ng-valid{
+  border-left: 5px solid green;
+}
+select.ng-pristine.ng-invalid{
+  border-left: 5px solid red;
+}
+select.ng-dirty.ng-valid{
+  border-left: 5px solid green;
+}
+.alert.alert-danger.ffbalert{
+      max-width: 50%;
+    margin-left: 40%;
 }
