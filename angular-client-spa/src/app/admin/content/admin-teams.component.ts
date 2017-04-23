@@ -49,12 +49,13 @@ export class AdminTeamsComponent implements OnInit {
 
     }
 
-    newEgamesTeam() {
+    newEgamesTeam(team: Team) {
+        console.log(team);
         this.teamService
-            .newEgamesTeam(this.newEgameTeam)
+            .newEgamesTeam(team)
             .then(() => {
                 this.getEgamesTeams();
-                 this.addAlert('El equipo :  '  + ' ha sido correctamente añadido ');
+                 this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
             });
     }
 
