@@ -64,9 +64,7 @@ public class UserRestController {
 	}
 
 	@PutMapping
-	public ResponseEntity<User> updateUser() {
-		User user = userService.handleUserLoggedFromComponent();
-
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		if (user != null) {
 			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
@@ -76,7 +74,8 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	
 	@PutMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
 		User user = userService.handleUserLoggedFromComponent();

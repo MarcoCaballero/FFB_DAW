@@ -23,27 +23,26 @@ export class AdminHomeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.userService.getUsers().then(users => this.users = users);
+        this.getUsers();
     }
 
     upgrade(user: User) {
-        console.log(user);
+
         user.roles = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.userService.updateUser(user)
-        .then(() => {
-            this.users.filter(t => t.id !== user.id);
-            this.users.push(user);
-        });
+        this.userService
+            .updateUser(user)
+            .then(() => {
+                this.getUsers();
+            });
     }
 
     downgrade(user: User) {
-        console.log(user);
         user.roles = ['ROLE_USER'];
         this.userService.updateUser(user)
-        .then(() => {
-            this.users.filter(t => t.id !== user.id);
-            this.users.push(user);
-        });
+            .then(() => {
+
+                this.getUsers();
+            });
     }
 
     deleteUser(user: User) {
@@ -52,10 +51,15 @@ export class AdminHomeComponent implements OnInit {
             this.userService
                 .removeUser(user.id)
                 .then(() => {
-                    this.users = this.users.filter(t => t !== user);
+
+                    this.getUsers();
                 }
                 );
         }
+    }
+
+    getUsers() {
+        this.userService.getUsers().then(users => this.users = users);
     }
 
 
