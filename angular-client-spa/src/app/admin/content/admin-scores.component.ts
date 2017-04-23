@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ScoreService } from '../../services/score.service';
 
+import { ById } from '../../core/sort-functions';
+
 import { SportMatch } from '../../model/sport-match.model';
 import { EgamesMatch } from '../../model/egames-match.model';
 import { Team } from "app/model/team.model";
@@ -39,10 +41,19 @@ export class AdminScoresComponent implements OnInit {
         this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
     }
 
-    updateSportMatch(matchSportResult: SportMatch){
-        this.scoreService.updateSportMatchResult(matchSportResult);
-        location.reload();
+
+    updateFootballSportMatch(matchSportResult: SportMatch){
+        this.scoreService
+        .updateSportMatchResult(matchSportResult)
+        .then(()=> {});
     }
+
+    updateBasketballSportMatch(matchSportResult: SportMatch){
+        this.scoreService
+        .updateSportMatchResult(matchSportResult)
+        .then(()=> {});
+    }
+
 
     updateEgamesMatch(matchEgamesResult: EgamesMatch){
         this.scoreService.updateEgamesMatchResult(matchEgamesResult);
@@ -58,7 +69,15 @@ export class AdminScoresComponent implements OnInit {
         }
     }
 
-    removeSportMatch(matchFootBallResult: SportMatch){
+    removeFootballSportMatch(matchFootBallResult: SportMatch){
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchFootBallResult.homeTeam + '-' + matchFootBallResult.visitingTeam + '?');
+        if(confirmationMessage){
+                this.scoreService.removeSportMatchResult(matchFootBallResult.id);
+                location.reload();
+        }
+    }
+
+    removeBasketballSportMatch(matchFootBallResult: SportMatch){
         const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchFootBallResult.homeTeam + '-' + matchFootBallResult.visitingTeam + '?');
         if(confirmationMessage){
                 this.scoreService.removeSportMatchResult(matchFootBallResult.id);
