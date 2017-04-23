@@ -37,17 +37,6 @@ export class UserService {
         .catch(error => console.error(error));
     }
 
-    updateRoleUser(user: User): Promise<User> {
-        const headers = new Headers({
-            'Authorization': 'Basic ' + this.authService.getCredentials()
-        });
-        const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/user/' + user.id, options)
-            .toPromise()
-            .then(response => response.json())
-            .catch(error => console.error(error));
-    }
-
     updateUser(user: User): Promise<User> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials(),
