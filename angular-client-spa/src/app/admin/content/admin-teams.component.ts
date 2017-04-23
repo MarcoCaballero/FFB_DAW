@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
 import { ById } from '../../core/sort-functions';
 
@@ -15,6 +15,7 @@ import { Team } from '../../model/team.model';
 })
 
 export class AdminTeamsComponent implements OnInit {
+    public alerts: any = [];
     sportsTeams: Team[];
     egamesTeams: Team[];
     newSportTeam: any = {};
@@ -25,23 +26,36 @@ export class AdminTeamsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.teamService.getSportsTeams().then(sportsTeams => this.sportsTeams = sportsTeams);
-        this.teamService.getEgamesTeams().then(egamesTeams => this.egamesTeams = egamesTeams);
+        this.getSportsTeams();
+        this.getEgamesTeams();
     }
 
-    newSportsTeam() {
+    public addAlert(msg: string): void {
+        this.alerts.push({
+            type: 'success',
+            msg: msg,
+            timeout: 5000
+        });
+    }
+
+    newSportsTeam(team: Team) {
+        console.log(team);
         this.teamService
-            .newSportsTeam(this.newSportTeam)
+            .newSportsTeam(team)
             .then(() => {
-                this.sportsTeams.push(this.newSportTeam);
+                this.getSportsTeams();
+                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
             });
 
     }
-    newEgamesTeam() {
+
+    newEgamesTeam(team: Team) {
+        console.log(team);
         this.teamService
-            .newEgamesTeam(this.newEgameTeam)
+            .newEgamesTeam(team)
             .then(() => {
-                this.egamesTeams.push(this.newEgameTeam);
+                this.getEgamesTeams();
+                 this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
             });
     }
 
@@ -49,9 +63,7 @@ export class AdminTeamsComponent implements OnInit {
         this.teamService
             .updateSportsTeam(team)
             .then(() => {
-                this.sportsTeams = this.sportsTeams.filter(t => t.id !== team.id);
-                this.sportsTeams.push(team);
-                this.sportsTeams.sort(ById);
+                this.getSportsTeams();
             });
     }
 
@@ -59,9 +71,7 @@ export class AdminTeamsComponent implements OnInit {
         this.teamService
             .updateEgamesTeam(team)
             .then(() => {
-                this.egamesTeams = this.egamesTeams.filter(t => t.id !== team.id);
-                this.egamesTeams.push(team);
-                this.egamesTeams.sort(ById);
+                this.getEgamesTeams();
             });
     }
 
@@ -69,14 +79,18 @@ export class AdminTeamsComponent implements OnInit {
         const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el equipo ' + team.name + '?');
         if (confirmationMessage) {
             this.teamService
-                .removeTeam(team.id)
+                .deleteTeam(team.id)
                 .then(() => {
-                    if (team.type === 'Fútbol' || team.type === 'Baloncesto') {
-                        this.sportsTeams = this.sportsTeams.filter(t => t !== team);
-                    } else {
-                        this.egamesTeams = this.egamesTeams.filter(t => t !== team);
-                    }
+                    this.getSportsTeams();
+                    this.getEgamesTeams();
                 });
         }
+    }
+
+    getSportsTeams() {
+        this.teamService.getSportsTeams().then(sportsTeams => this.sportsTeams = sportsTeams);
+    }
+    getEgamesTeams() {
+        this.teamService.getEgamesTeams().then(egamesTeams => this.egamesTeams = egamesTeams);
     }
 }
