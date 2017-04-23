@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer.component';
 import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { routedComponents } from './user-routing.module';
+import { PlainAnimationComponent } from './shared/plain-animation.component';
 
 import { LoginService } from '../services/login.service';
 
@@ -33,6 +34,7 @@ import { LoginService } from '../services/login.service';
         UserComponent,
         MenuHeaderComponent,
         FooterComponent,
+        PlainAnimationComponent,
         routedComponents
     ],
     providers: [
