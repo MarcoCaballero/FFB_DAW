@@ -279,54 +279,59 @@
                                     <h5>Añadir nuevo equipo E-Games</h5></a>
                                 </div>
                             </accordion-heading>
-                            <form class="form-horizontal" (ngSubmit)="newEgamesTeam()">
+                            <form #newEgamesTeamForm="ngForm" class="form-horizontal" (ngSubmit)="newEgamesTeam(newEgamesTeamForm.value)" novalidate>
                                 <div class="control-group">
                                     <label class="control-label">Tipo de juego :</label>
                                     <div class="controls form-group">
-                                        <select [(ngModel)]="newEgameTeam.type" name="type">
+                                        <select ngModel #egTypeRef="ngModel" name="type" required>
 										<option value="LOL">League of legends</option>
 										<option value="CS-GO">Counter Strike GO</option>
 									</select>
+                                    </div>
+                                    <div [hidden]="egTypeRef.valid || egNameRef.untouched" class="alert alert-danger ffbalert">
+                                        Por favor introduce un tipo
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls form-group">
-                                        <input [(ngModel)]="newEgameTeam.name" name="name" class="span11 form-control" placeholder="Nombre del equipo" required
+                                        <input ngModel #egNameRef="ngModel" name="name" minlength="2" class="span11 form-control" placeholder="Nombre del equipo" required
                                         />
+                                        <b>{{egNameRef.className}}</b>
+                                    </div>
+                                    <div [hidden]="egNameRef.valid || egNameRef.pristine" class="alert alert-danger ffbalert">
+                                        Por favor introduce un nombre
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">País :</label>
                                     <div class="controls form-group">
-                                        <input [(ngModel)]="newEgameTeam.country" name="country" class="span11 form-control" placeholder="País del equipo" name="egamesCountry"
-                                        />
+                                        <input ngModel name="country" class="span11 form-control" placeholder="País del equipo" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ciudad :</label>
                                     <div class="controls form-group">
-                                        <input [(ngModel)]="newEgameTeam.city" name="city" class="span11 form-control" placeholder="Ciudad del equipo" name="egamesCity"
-                                        />
+                                        <input ngModel name="city" class="span11 form-control" placeholder="Ciudad del equipo" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Entrenador :</label>
                                     <div class="controls form-group">
-                                        <input [(ngModel)]="newEgameTeam.coach" name="coach" class="span11 form-control" placeholder="Nombre del entrenador" name="egamesCoach"
-                                        />
+                                        <input ngModel name="coach" class="span11 form-control" placeholder="Nombre del entrenador" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Sponsor :</label>
                                     <div class="controls form-group">
-                                        <input [(ngModel)]="newEgameTeam.sponsor" name="sponsor" class="span11 form-control" placeholder="Nombre del patrocinador principal del equipo"
-                                            name="sponsor" />
+                                        <input ngModel name="sponsor" class="span11 form-control" placeholder="Nombre del patrocinador principal del equipo" />
                                     </div>
                                 </div>
-                                <!-- <p style="color: red; margin-left: 20%">Debe completar todos los campos</p> -->
-                                <div style="margin-left: 80%">
-                                    <button class="btn btn-success">Añadir</button>
+                                <div [hidden]="newEgamesTeamForm.form.valid" style="max-width: 60%;" class="alert alert-warning">
+                                    Please look at the errors
+                                </div>
+                                <div style="margin-left:80%">
+                                    <button [disabled]="!newEgamesTeamForm.form.valid" type="submit" class="btn btn-success">Añadir</button>
                                 </div>
                             </form>
                         </accordion-group>
