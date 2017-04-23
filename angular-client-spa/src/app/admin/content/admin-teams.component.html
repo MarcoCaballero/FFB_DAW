@@ -176,7 +176,11 @@
                                 <div class="control-group">
                                     <label class="control-label">País :</label>
                                     <div class="controls form-group">
-                                        <input ngModel name="country" type="text" class="span11 form-control" placeholder="País del equipo" />
+                                        <input ngModel #spCountryRef="ngModel" name="country" type="text" class="span11 form-control" placeholder="País del equipo"
+                                            required/>
+                                    </div>
+                                    <div [hidden]="spCountryRef.valid || spCountryRef.pristine" class="alert alert-danger ffbalert">
+                                        Por favor introduce un nombre
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -295,8 +299,8 @@
                                 <div class="control-group">
                                     <label class="control-label">Nombre :</label>
                                     <div class="controls form-group">
-                                        <input ngModel #egNameRef="ngModel" name="name" minlength="2" class="span11 form-control" placeholder="Nombre del equipo" required
-                                        />
+                                        <input ngModel #egNameRef="ngModel" name="name" minlength="2" class="span11 form-control" placeholder="Nombre del equipo"
+                                            required />
                                         <b>{{egNameRef.className}}</b>
                                     </div>
                                     <div [hidden]="egNameRef.valid || egNameRef.pristine" class="alert alert-danger ffbalert">
