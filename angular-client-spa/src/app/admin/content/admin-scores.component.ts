@@ -39,7 +39,7 @@ export class AdminScoresComponent implements OnInit {
         this.getBasketballSportsMatches();
         this.getLolEgamesMatches();
         this.getCsEgamesMatches();
-        
+
     }
 
 
@@ -54,6 +54,7 @@ export class AdminScoresComponent implements OnInit {
 
 
     updateEgamesMatch(matchEgamesResult: EgamesMatch){
+        console.log(JSON.stringify(matchEgamesResult));
         this.scoreService
         .updateEgamesMatchResult(matchEgamesResult)
         .then(()=>{
@@ -111,7 +112,7 @@ export class AdminScoresComponent implements OnInit {
     getBasketballSportsMatches() {
         this.scoreService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
     }
-    
+
     getLolEgamesMatches(){
         this.scoreService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
     }
@@ -120,5 +121,5 @@ export class AdminScoresComponent implements OnInit {
     getCsEgamesMatches(){
         this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
     }
-    
+
 }
