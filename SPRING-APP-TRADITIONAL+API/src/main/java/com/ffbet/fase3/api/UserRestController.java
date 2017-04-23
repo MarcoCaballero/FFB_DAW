@@ -1,11 +1,16 @@
 package com.ffbet.fase3.api;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,11 +63,8 @@ public class UserRestController {
 		return user;
 	}
 
-	// update the own user
 	@PutMapping
-	public ResponseEntity<User> updateUser() {
-		User user = userService.handleUserLoggedFromComponent();
-
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		if (user != null) {
 			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
@@ -73,18 +75,7 @@ public class UserRestController {
 		}
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUserOne(@PathVariable long id) {
-		User user = userService.findOne(id);
-
-		if (user != null) {
-			userService.updateUser(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
+	
 	@PutMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
 		User user = userService.handleUserLoggedFromComponent();
@@ -96,6 +87,22 @@ public class UserRestController {
 		user.setPhotoSelected(true);
 		userService.updateUser(user);
 		return filename;
+	}
+
+	@GetMapping("/avatar/{id}")
+	public void getAvatarImage(@PathVariable long id, HttpServletResponse response)
+			throws FileNotFoundException, IOException {
+
+		User user = userService.findOne(id);
+
+		if (user != null) {
+			if (user.getPhoto_url() != null) {
+				response.addHeader("Content-type", "image/jpeg");
+				FileCopyUtils.copy(
+						new FileInputStream(userService.handleFileDownload(response, user.getPhoto_url(), "avatars")),
+						response.getOutputStream());
+			}
+		}
 	}
 
 	@DeleteMapping("/{id}")

@@ -89,7 +89,6 @@ export class TeamService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        console.log(this.authService.getCredentials());
         return this.http.delete('http://127.0.0.1:8080/api/teams/' + id, options)
             .toPromise()
             .then(undefined)
