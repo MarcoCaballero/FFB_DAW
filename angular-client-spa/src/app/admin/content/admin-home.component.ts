@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../../services/auth.service';
+import { ById } from '../../core/sort-functions';
+
 import { UserService } from '../../services/user.service';
 
 import { User } from '../../model/user.model';
@@ -15,31 +16,45 @@ import { User } from '../../model/user.model';
 
 export class AdminHomeComponent implements OnInit {
     users: User[];
+    user: User;
 
     constructor(
-        private userService: UserService, private authService: AuthService
+        private userService: UserService
     ) { }
 
     ngOnInit() {
-        // this.authService.reloadAuth();
         this.userService.getUsers().then(users => this.users = users);
     }
 
     upgrade(user: User) {
+        console.log(user);
         user.roles = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.userService.updateUser(user);
+        this.userService.updateRoleUser(user)
+        .then(() => {
+            this.users.filter(t => t.id !== user.id);
+            this.users.push(user);
+        });
     }
 
     downgrade(user: User) {
+        console.log(user);
         user.roles = ['ROLE_USER'];
-        this.userService.updateUser(user);
+        this.userService.updateRoleUser(user)
+        .then(() => {
+            this.users.filter(t => t.id !== user.id);
+            this.users.push(user);
+        });
     }
 
     deleteUser(user: User) {
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar al usuario ' + user.name + '?');
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar al usuario ' + user.id + '?');
         if (confirmationMessage) {
-            this.userService.removeUser(user.id);
-            location.reload();
+            this.userService
+                .removeUser(user.id)
+                .then(() => {
+                    this.users = this.users.filter(t => t !== user);
+                }
+                );
         }
     }
 
