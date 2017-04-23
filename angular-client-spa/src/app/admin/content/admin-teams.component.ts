@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
 import { ById } from '../../core/sort-functions';
 
@@ -48,6 +48,7 @@ export class AdminTeamsComponent implements OnInit {
             });
 
     }
+
     newEgamesTeam() {
         this.teamService
             .newEgamesTeam(this.newEgameTeam)
