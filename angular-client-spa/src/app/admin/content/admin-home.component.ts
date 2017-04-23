@@ -29,7 +29,7 @@ export class AdminHomeComponent implements OnInit {
     upgrade(user: User) {
         console.log(user);
         user.roles = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.userService.updateRoleUser(user)
+        this.userService.updateUser(user)
         .then(() => {
             this.users.filter(t => t.id !== user.id);
             this.users.push(user);
@@ -39,7 +39,7 @@ export class AdminHomeComponent implements OnInit {
     downgrade(user: User) {
         console.log(user);
         user.roles = ['ROLE_USER'];
-        this.userService.updateRoleUser(user)
+        this.userService.updateUser(user)
         .then(() => {
             this.users.filter(t => t.id !== user.id);
             this.users.push(user);

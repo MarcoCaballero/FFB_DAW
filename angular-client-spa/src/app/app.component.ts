@@ -5,14 +5,13 @@ import { AuthService } from './services/auth.service';
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-root',
-    host: { 'window:beforeunload': 'clearAuth' },
     template: `
     <router-outlet></router-outlet>
   `
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-    @HostListener('window:beforeunload') clearAuth() {
+    @HostListener('window:onclose') clearAuth() {
         console.log('Cleaning credential authorization.....');
         this.authService.clear();
         localStorage.clear();

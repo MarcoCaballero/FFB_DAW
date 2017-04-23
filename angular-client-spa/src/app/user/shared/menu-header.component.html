@@ -71,12 +71,15 @@
     <li routerLink="/user/egamesbet" routerLinkActive="active">
       <a> <img class="glyph stroked pencil" src="../assets/images/games_b.svg" /> Apuestas E-games </a>
     </li>
-    <li routerLink="/user/myaccount" routerLinkActive="active">
-      <a> <img class="glyph stroked pencil" src="../assets/images/userlogo.svg" />Mi Cuenta
-      </a>
+    <li routerLink="/user/policy-privacy" routerLinkActive="active">
+      <a> <span class="glyphicon glyphicon-lock" style="color: black;" src="../assets/images/games_b.svg" ></span> Política de FFB </a>
     </li>
     <li role="presentation" class="divider"></li>
-    <li routerLink="/user/signup" routerLinkActive="active">
+    <li *ngIf="authService.isLogged()" routerLink="/user/myaccount" routerLinkActive="active">
+      <a> <img class="glyph stroked pencil"  src="../assets/images/userlogo.svg" />Mi Cuenta
+      </a>
+    </li>
+    <li *ngIf="!authService.isLogged()" routerLink="/user/signup" routerLinkActive="active">
       <a>
         <span class="	glyphicon glyphicon-pencil"> </span>Registrate
       </a>
