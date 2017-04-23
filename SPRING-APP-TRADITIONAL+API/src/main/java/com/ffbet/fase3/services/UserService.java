@@ -1,8 +1,11 @@
 package com.ffbet.fase3.services;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +54,8 @@ public class UserService {
 		userRepo.save(user);
 
 	}
-	
-	public void updateUser(User user){
+
+	public void updateUser(User user) {
 		userRepo.save(user);
 	}
 
@@ -71,7 +74,7 @@ public class UserService {
 		}
 		return userLogged;
 	}
-	
+
 	/* SUBIDA DE IMÁGENES */
 	public String handleUploadImagetoDatabase(MultipartFile imageMultiPartFile, long idPath, String files_folder)
 			throws IOException {
@@ -107,6 +110,38 @@ public class UserService {
 
 		}
 		return "ERROR";
+
+	}
+
+	/* MUESTRA DE IMÁGENES */
+	public File handleFileDownload(HttpServletResponse response, String fileName, String fileFolder) throws FileNotFoundException, IOException {
+		String file_folder_absolute;
+		switch (fileFolder) {
+		case "avatars":
+			file_folder_absolute = FilesPath.FILES_AVATARS.toString();
+			break;
+		case "covers":
+			file_folder_absolute = FilesPath.FILES_TEAMS_COVER.toString();
+			break;
+		case "logos":
+			file_folder_absolute = FilesPath.FILES_TEAMS_LOGO.toString();
+			break;
+		case "promos":
+			file_folder_absolute = FilesPath.FILES_PROMOS.toString();
+			break;
+		default:
+			file_folder_absolute = "UnknownFolder";
+			break;
+		}
+
+		if (!file_folder_absolute.equals("UnknownFolder")) {
+			File file = new File(file_folder_absolute, fileName);
+			System.out.println(file);
+			return file;
+		} else {
+			response.sendError(404, "File" + fileName + "(" + fileFolder + ") does not exist");
+			return null;
+		}
 
 	}
 

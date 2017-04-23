@@ -1,11 +1,16 @@
 package com.ffbet.fase3.api;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -94,8 +99,42 @@ public class AdminTeamRestController {
 			team.setStadium_image(filenameStadium);
 			teamService.saveSportTeam(team);
 			return new ResponseEntity<>(team, HttpStatus.OK);
-		}else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/logo/{id}")
+	public void getLogoImage(@PathVariable long id, HttpServletResponse response)
+			throws FileNotFoundException, IOException {
+
+		SportTeam team = teamService.findOneSportTeam(id);
+
+		if (team != null) {
+			if (team.getLogo_image() != null) {
+				response.addHeader("Content-type", "image/jpeg");
+				FileCopyUtils.copy(
+						new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
+						response.getOutputStream());
+			}
+		}
+	}
+
+	@GetMapping("/stadium/{id}")
+	public void getStadiumImage(@PathVariable long id, HttpServletResponse response)
+			throws FileNotFoundException, IOException {
+
+		SportTeam team = teamService.findOneSportTeam(id);
+
+		if (team != null) {
+			if (team.getStadium_image() != null) {
+				response.addHeader("Content-type", "image/jpeg");
+				userService.handleFileDownload(response, team.getStadium_image(), "covers");
+				FileCopyUtils.copy(
+						new FileInputStream(
+								userService.handleFileDownload(response, team.getStadium_image(), "covers")),
+						response.getOutputStream());
+			}
 		}
 	}
 
