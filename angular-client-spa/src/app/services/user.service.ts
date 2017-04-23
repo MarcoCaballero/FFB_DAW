@@ -31,7 +31,7 @@ export class UserService {
         });
         const options = new RequestOptions({ headers });
         console.log(JSON.stringify(user));
-        return this.http.post('http://127.0.0.1:8080/api/user', JSON.stringify(user))
+        return this.http.post('http://127.0.0.1:8080/api/user', JSON.stringify(user), options)
         .toPromise()
         .then(response => response.json())
         .catch(error => console.error(error));
