@@ -43,10 +43,34 @@ public class AdminMatchesRestController {
 		return service.findAllSports();
 	}
 	
+	/* GET ALL FOOTBALL MATCH*/
+	@GetMapping("/sports/football")
+	public Collection<SportsMatch> getMatchesFootball() {
+		return service.findAllFootball();
+	}
+	
+	/* GET ALL BASKETBALL MATCH*/
+	@GetMapping("/sports/basketball")
+	public Collection<SportsMatch> getMatchesBasketball() {
+		return service.findAllBasketball();
+	}
+	
 	/* GET ALL EGAMES MATCH*/
 	@GetMapping("/egames")
 	public Collection<EgamesMatch> getMatchesEgames() {
 		return service.findAllEgames();
+	}
+	
+	/* GET ALL LOL MATCH*/
+	@GetMapping("/egames/lol")
+	public Collection<EgamesMatch> getMatchesLol() {
+		return service.findAllLol();
+	}
+	
+	/* GET ALL CS:GO MATCH*/
+	@GetMapping("/egames/cs")
+	public Collection<EgamesMatch> getMatchesCs() {
+		return service.findAllCs();
 	}
 	
 	/* GET SPORTS MATCH FIND BY Id*/
@@ -96,7 +120,7 @@ public class AdminMatchesRestController {
 		EgamesMatch match =service.findOneEgames(id);
 			
 		if(match != null){
-			updateEgamesMatch.setId(id);
+			//updateEgamesMatch.setId(id);
 			service.saveEgamesMatch(updateEgamesMatch);
 			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{
@@ -113,7 +137,7 @@ public class AdminMatchesRestController {
 		SportsMatch match =service.findOneSports(id);
 			
 		if(match != null){
-			updateSportsMatch.setId(id);
+			//updateSportsMatch.setId(id);
 			service.saveSportsMatch(updateSportsMatch);
 			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{
