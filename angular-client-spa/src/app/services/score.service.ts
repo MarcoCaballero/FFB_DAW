@@ -12,11 +12,11 @@ import { EgamesMatch } from "app/model/egames-match.model";
 export class ScoreService {
 
     constructor(
-        private http: Http, 
+        private http: Http,
         private authService: AuthService
-    ) {}
+    ) { }
 
-    getFootballMatches(): Promise<SportMatch[]>  {
+    getFootballMatches(): Promise<SportMatch[]> {
         return this.http.get('http://127.0.0.1:8080/api/matches/sports/football')
             .toPromise()
             .then(
@@ -27,7 +27,7 @@ export class ScoreService {
 
     }
 
-    getBasketballMatches(): Promise<SportMatch[]>  {
+    getBasketballMatches(): Promise<SportMatch[]> {
         return this.http.get('http://127.0.0.1:8080/api/matches/sports/basketball')
             .toPromise()
             .then(
@@ -38,7 +38,7 @@ export class ScoreService {
 
     }
 
-    getLolMatches(): Promise<EgamesMatch[]>  {
+    getLolMatches(): Promise<EgamesMatch[]> {
         return this.http.get('http://127.0.0.1:8080/api/matches/egames/lol')
             .toPromise()
             .then(
@@ -49,7 +49,7 @@ export class ScoreService {
 
     }
 
-    getCsMatches(): Promise<EgamesMatch[]>  {
+    getCsMatches(): Promise<EgamesMatch[]> {
         return this.http.get('http://127.0.0.1:8080/api/matches/egames/cs')
             .toPromise()
             .then(
@@ -60,7 +60,7 @@ export class ScoreService {
 
     }
 
-    updateSportMatchResult(matchFootBallResult: SportMatch): Promise <SportMatch>{
+    updateSportMatchResult(matchFootBallResult: SportMatch): Promise<SportMatch> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials(),
             'Content-Type': 'application/json'
@@ -72,19 +72,20 @@ export class ScoreService {
             .catch(error => console.error(error));
     }
 
-    updateEgamesMatchResult(matchEgamesResult: EgamesMatch): Promise <EgamesMatch>{
+    updateEgamesMatchResult(matchEgamesResult: EgamesMatch): Promise<EgamesMatch> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials(),
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
+        console.log(JSON.stringify(matchEgamesResult));
         return this.http.put('http://127.0.0.1:8080/api/matches/egames/' + matchEgamesResult.id, JSON.stringify(matchEgamesResult), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
     }
 
-    removeSportMatchResult(id: number): Promise<any>{
+    removeSportMatchResult(id: number): Promise<any> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
@@ -96,7 +97,7 @@ export class ScoreService {
             .catch(error => console.error(error));
     }
 
-    removeEgamesMatchResult(id: number): Promise<any>{
+    removeEgamesMatchResult(id: number): Promise<any> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
@@ -108,5 +109,5 @@ export class ScoreService {
             .catch(error => console.error(error));
     }
 
-    
+
 }
