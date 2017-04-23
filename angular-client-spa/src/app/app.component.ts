@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.authService.reloadAuth(); // Reload atuh.service fields from localStorage
+        this.authService.reloadAuth(); // Reload auth.service fields from localStorage
     }
 
     ngOnDestroy() {
