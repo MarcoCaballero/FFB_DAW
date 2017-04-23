@@ -84,7 +84,7 @@ export class TeamService {
     }
 
     // remove a team
-    removeTeam(id: number): Promise<any> {
+    deleteTeam(id: number): Promise<any> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });

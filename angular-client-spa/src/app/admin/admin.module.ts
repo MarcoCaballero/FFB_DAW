@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-accordion';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 // App import
 import { AdminHeaderComponent } from './shared/admin-header.component';
@@ -18,6 +19,7 @@ import { TeamService } from '../services/team.service';
         CommonModule,
         FormsModule,
         AccordionModule,
+        AlertModule.forRoot(),
         AdminRoutingModule
     ],
     exports: [
