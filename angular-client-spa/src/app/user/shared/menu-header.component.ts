@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../../services/login.service';
@@ -10,13 +10,18 @@ import { AuthService } from '../../services/auth.service';
     templateUrl: './menu-header.component.html',
     styleUrls: ['../../../assets/css/styles.css']
 })
-export class MenuHeaderComponent {
+export class MenuHeaderComponent implements OnInit {
 
     constructor(
         private loginService: LoginService,
         private authService: AuthService,
         private router: Router
     ) { }
+
+    ngOnInit() {
+        this.authService.reloadAuth(); // Reload auth.service fields from localStorage
+        console.log('Im logged? : ' + this.authService.isLogged() + 'maybe as: ' + this.authService.getUser());
+    }
 
     logOut() {
         this.loginService.logOut().subscribe(
