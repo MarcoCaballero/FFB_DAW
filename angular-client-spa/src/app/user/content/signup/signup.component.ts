@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../../services/user.service';
@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
     title = 'Registro';
     checkFields = false;
     user: any = {};
+    @ViewChild('formName') myForm: HTMLFormElement;
 
     constructor(
         private userService: UserService,
@@ -38,18 +39,7 @@ export class SignupComponent implements OnInit {
     ngOnInit() { }
 
     newUser() {
-        console.log(this.user.name);
-        console.log(this.user.surname);
-        console.log(this.user.secondSurname);
-        console.log(this.user.dni);
-        console.log(this.user.email);
-        console.log(this.user.country);
-        console.log(this.user.city);
-        console.log(this.user.location);
-        console.log(this.user.telephone);
-        console.log(this.user.men);
-        console.log(this.user.password);
         this.userService.newUser(this.user);
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     }
 }
