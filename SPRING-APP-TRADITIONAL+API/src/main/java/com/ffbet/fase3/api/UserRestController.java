@@ -74,8 +74,7 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	
+
 	@PutMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
 		User user = userService.handleUserLoggedFromComponent();
@@ -90,18 +89,19 @@ public class UserRestController {
 	}
 
 	@GetMapping("/avatar/{id}")
-	public void getAvatarImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getAvatarImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		User user = userService.findOne(id);
 
-		if (user != null) {
-			if (user.getPhoto_url() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				FileCopyUtils.copy(
-						new FileInputStream(userService.handleFileDownload(response, user.getPhoto_url(), "avatars")),
-						response.getOutputStream());
-			}
+		if (user != null && user.getPhoto_url() != null) {
+			response.addHeader("Content-type", "image/jpeg");
+			FileCopyUtils.copy(
+					new FileInputStream(userService.handleFileDownload(response, user.getPhoto_url(), "avatars")),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 

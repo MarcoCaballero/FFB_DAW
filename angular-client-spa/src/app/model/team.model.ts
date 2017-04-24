@@ -18,6 +18,6 @@ export interface Team {
   facebook?: string;
   google?: string;
   sponsor?: string;
-  logoImage?: File;
-  stadiumImage?: File;
+  logo_image?: string;
+  stadium_image?: string;
 }
