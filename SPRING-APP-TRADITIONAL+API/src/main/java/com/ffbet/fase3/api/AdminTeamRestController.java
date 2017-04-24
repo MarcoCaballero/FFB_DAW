@@ -105,37 +105,40 @@ public class AdminTeamRestController {
 	}
 
 	@GetMapping("/logo/{id}")
-	public void getLogoImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getLogoImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
 
-		if (team != null) {
-			if (team.getLogo_image() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				FileCopyUtils.copy(
-						new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
-						response.getOutputStream());
-			}
+		if (team != null && team.getLogo_image() != "unknown") {
+			FileCopyUtils.copy(
+					new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\logos\\unknown-shield.png"), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@GetMapping("/stadium/{id}")
-	public void getStadiumImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getStadiumImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
 
-		if (team != null) {
-			if (team.getStadium_image() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				userService.handleFileDownload(response, team.getStadium_image(), "covers");
-				FileCopyUtils.copy(
-						new FileInputStream(
-								userService.handleFileDownload(response, team.getStadium_image(), "covers")),
-						response.getOutputStream());
-			}
+		if (team != null && team.getStadium_image() != "unknown") {
+			FileCopyUtils.copy(
+					new FileInputStream(userService.handleFileDownload(response, team.getStadium_image(), "covers")),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\covers\\unknown-stadium.png"), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+
 	}
 
 	// actuaizar equipos
