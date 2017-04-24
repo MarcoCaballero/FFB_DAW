@@ -103,34 +103,24 @@ export class AdminScoresComponent implements OnInit {
         return false;
     }
 
-    // setWinnerTeam(match: EgamesMatch, team1: string, team2: string) {
-    //     if (this.isWinnerTeam(match, team1)) {
-            
-    //     }
-    // }
-
-    // setFirstBloodTeam(match: EgamesMatch, team: string) {
-    //     if (match.firstBloodTeam === team) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
 
     getFootballSportsMatches() {
-        this.scoreService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
+        this.scoreService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches.filter(matches => matches.finished === false))
     }
 
     getBasketballSportsMatches() {
-        this.scoreService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
+        this.scoreService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches.filter(matches => matches.finished === false))
     }
 
     getLolEgamesMatches() {
-        this.scoreService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
+        this.scoreService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches.filter(matches => matches.finished === false));
     }
 
 
     getCsEgamesMatches() {
-        this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
+        this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches.filter(matches => matches.finished === false));
     }
+
+    
 
 }

@@ -33,25 +33,25 @@
                                         <th data-field="Resultado" data-sortable="true">Acciones</th>
                                 </thead>
                                 <tr *ngFor="let matchFootBallResult of matchFootballResults">
-                                    <td>{{matchFootBallResult.id}}</td>
-                                    <td>{{matchFootBallResult.homeTeam}}</td>
-                                    <td>{{matchFootBallResult.visitingTeam}}</td>
-                                    <td>
-                                        <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
-                                            <div style="float: right;">
-                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.homePoints" name="homePoints"
-                                                />-
-                                                <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.visitingPoints" name="visitingPoints"
-                                                />
+                                        <td>{{matchFootBallResult.id}}</td>
+                                        <td>{{matchFootBallResult.homeTeam}}</td>
+                                        <td>{{matchFootBallResult.visitingTeam}}</td>
+                                        <td>
+                                            <div style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+                                                <div style="float: right;">
+                                                    <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.homePoints" name="homePoints"
+                                                    />-
+                                                    <input style="min-width: 50px;" type="number" class="span3" [(ngModel)]="matchFootBallResult.visitingPoints" name="visitingPoints"
+                                                    />
+                                                </div>
+                                                <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
                                             </div>
-                                            <input style="border-left: 10px; display: none" type="submit" class="btn btn-success" value="Guardar" />
-                                        </div>
 
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchFootBallResult)" style="margin-bottom: 20%">Guardar</button>
-                                        <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(matchFootBallResult)"> Borrar </button>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-mini btn-info" (click)="updateSportMatch(matchFootBallResult)" style="margin-bottom: 20%">Guardar</button>
+                                            <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(matchFootBallResult)"> Borrar </button>
+                                        </td>
                                 </tr>
                             </table>
                         </accordion-group>
