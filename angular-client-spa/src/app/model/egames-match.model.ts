@@ -19,6 +19,6 @@ export interface EgamesMatch {
   firstBloodTeam: string;
   winHome: boolean;
   firstBloodHome: boolean;
-  winVisiting: boolean,
-  firstBloodVisiting; boolean
+  winVisiting: boolean;
+  firstBloodVisiting: boolean;
 }

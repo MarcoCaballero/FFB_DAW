@@ -1,11 +1,16 @@
 package com.ffbet.fase3.api;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -94,9 +99,46 @@ public class AdminTeamRestController {
 			team.setStadium_image(filenameStadium);
 			teamService.saveSportTeam(team);
 			return new ResponseEntity<>(team, HttpStatus.OK);
-		}else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("/logo/{id}")
+	public ResponseEntity<HttpStatus> getLogoImage(@PathVariable long id, HttpServletResponse response)
+			throws FileNotFoundException, IOException {
+
+		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
+
+		if (team != null && team.getLogo_image() != "unknown") {
+			FileCopyUtils.copy(
+					new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\logos\\unknown-shield.png"), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/stadium/{id}")
+	public ResponseEntity<HttpStatus> getStadiumImage(@PathVariable long id, HttpServletResponse response)
+			throws FileNotFoundException, IOException {
+
+		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
+
+		if (team != null && team.getStadium_image() != "unknown") {
+			FileCopyUtils.copy(
+					new FileInputStream(userService.handleFileDownload(response, team.getStadium_image(), "covers")),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\covers\\unknown-stadium.png"), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 	// actuaizar equipos
