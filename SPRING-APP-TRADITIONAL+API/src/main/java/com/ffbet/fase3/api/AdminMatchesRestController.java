@@ -121,7 +121,7 @@ public class AdminMatchesRestController {
 			
 		if(match != null){
 			//updateEgamesMatch.setId(id);
-			service.saveEgamesMatch(updateEgamesMatch);
+			service.saveEgamesMatch(match);
 			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

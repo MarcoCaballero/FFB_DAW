@@ -20,9 +20,9 @@ export class UserService {
 
     getUser(id: number): Promise<User> {
         return this.http.get('http://127.0.0.1:8080/api/user' + id)
-        .toPromise()
-        .then(response => response.json())
-        .catch(error => console.error(error));
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
     }
 
     newUser(user: User): Promise<User> {
@@ -30,11 +30,11 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        console.log(JSON.stringify(user));
+
         return this.http.post('http://127.0.0.1:8080/api/user', JSON.stringify(user), options)
-        .toPromise()
-        .then(response => response.json())
-        .catch(error => console.error(error));
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
     }
 
     updateUser(user: User): Promise<User> {
@@ -43,12 +43,14 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-
+        console.log(user);
         return this.http.put('http://127.0.0.1:8080/api/user/', JSON.stringify(user), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
     }
+
+
 
     removeUser(id: number): Promise<any> {
         const headers = new Headers({
