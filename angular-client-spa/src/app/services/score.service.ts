@@ -32,6 +32,7 @@ export class ScoreService {
             .toPromise()
             .then(
             response => {
+                
                 return response.json();
             })
             .catch(error => console.error(error));

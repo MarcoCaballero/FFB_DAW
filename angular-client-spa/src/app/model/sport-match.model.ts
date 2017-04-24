@@ -10,7 +10,7 @@ export interface SportMatch {
   visitingTeam: string;
   quotaHomeVictory: string;
   quotaVisitingVictory: string;
-  isFinished: boolean;
+  finished: boolean;
   teams: Team[];
   quotaDraw: number;
   homePoints: number;
