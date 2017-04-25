@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 import { EgamesMatch } from "app/model/egames-match.model";
 
 @Injectable()
-export class ScoreService {
+export class MatchService {
 
     constructor(
         private http: Http,
