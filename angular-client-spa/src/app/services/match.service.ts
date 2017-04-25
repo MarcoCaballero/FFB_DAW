@@ -32,6 +32,7 @@ export class MatchService {
             .toPromise()
             .then(
             response => {
+                
                 return response.json();
             })
             .catch(error => console.error(error));
