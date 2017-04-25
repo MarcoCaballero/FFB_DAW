@@ -1,5 +1,6 @@
 package com.ffbet.fase3.api;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -105,19 +106,20 @@ public class AdminTeamRestController {
 	}
 
 	@GetMapping("/logo/{id}")
-	public ResponseEntity<HttpStatus> getLogoImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<File> getLogoImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getLogo_image() != "unknown") {
+			File file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
 			FileCopyUtils.copy(
-					new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
+					new FileInputStream(file),
 					response.getOutputStream());
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(file, HttpStatus.OK);
 		} else {
-			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\logos\\unknown-shield.png"), response.getOutputStream());
+			FileCopyUtils.copy(new FileInputStream("target\\files\\teams\\logos\\unknown-shield.png"), response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
