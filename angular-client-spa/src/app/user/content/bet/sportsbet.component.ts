@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SportMatch } from "app/model/sport-match.model";
-import { ScoreService } from "app/services/score.service";
+import { SportMatch } from 'app/model/sport-match.model';
+import { MatchService } from 'app/services/match.service';
 
 @Component({
     moduleId: module.id,
@@ -15,19 +15,21 @@ export class SportsbetComponent implements OnInit {
     private footballMatches: SportMatch[];
     private basketballMatches: SportMatch[];
 
-    constructor(private scoreService: ScoreService) { }
+    constructor(private matchService: MatchService) { }
 
     ngOnInit() {
         this.getFootballMatchesFinished();
         this.getBasketballMatchesFinished();
     }
 
-     getFootballMatchesFinished(){
-        this.scoreService.getFootballMatches().then(sportMatches => this.footballMatches = sportMatches.filter(matches => matches.finished === false))
+     getFootballMatchesFinished() {
+        this.matchService.getFootballMatches()
+        .then(sportMatches => this.footballMatches = sportMatches.filter(matches => matches.finished === false));
     }
 
-    getBasketballMatchesFinished(){
-        this.scoreService.getBasketballMatches().then(sportMatches => this.basketballMatches = sportMatches.filter(matches => matches.finished === false))
+    getBasketballMatchesFinished() {
+        this.matchService.getBasketballMatches()
+        .then(sportMatches => this.basketballMatches = sportMatches.filter(matches => matches.finished === false));
     }
 
 }
