@@ -87,29 +87,36 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="tab-logo-liga">
-                                        <th colspan="3"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 40px;"></th>
+                                        <th colspan="2"><img class="glyph stroked home" src="../assets/images/ligasantander.png" style="width: 200px; height: 40px;"></th>
                                         <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">1</div>
+                                        </th>
+                                        <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">x</div>
+                                        </th>
+                                        <th style="text-align: left;">
                                             <div class="col-xs-6 col-md-4 text-center">2</div>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tab-horario-partido">
-                                        <th scope="row">1</th>
-                                        <td class="tab-horario-partido"> date time </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam
+                                    <tr *ngFor="let footballMatch of footballMatches" class="tab-horario-partido">
+                                        <th scope="row">{{footballMatch.id}}</th>
+                                        <td class="tab-equipos-partido"> {{footballMatch.homeTeam}} - {{footballMatch.visitingTeam}}
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaHomeVictory}} </a>
                                             </div>
+                                        </td>
+                                        <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /X" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaDraw </a>
+                                                <a href="/user-sportsBet/addMatch/ id /X" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaDraw}} </a>
                                             </div>
+                                        </td>
+                                        <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaVisitingVictory}} </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -131,18 +138,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tab-horario-partido">
-                                        <th scope="row">1</th>
-                                        <td class="tab-horario-partido"> date time </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam
+                                    <tr *ngFor="let basketballMatch of basketballMatches" class="tab-horario-partido">
+                                        <th scope="row">{{basketballMatch.id}}</th>
+                                        <td class="tab-horario-partido">{{basketballMatch.date}}</td>
+                                        <td class="tab-equipos-partido">{{basketballMatch.homeTeam}} - {{basketballMatch.visitingTeam}}
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{basketballMatch.quotaHomeVictory}}</a>
                                             </div>
 
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{basketballMatch.quotaVisitingVictory}}</a>
                                             </div>
                                         </td>
                                     </tr>
