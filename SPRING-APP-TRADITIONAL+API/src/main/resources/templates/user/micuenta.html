@@ -161,7 +161,7 @@
 								class="glyph stroked male-user">
 
 						{{#user.isPhotoSelected}}
-								<img class="img-circle" src="static/files/avatars/{{user.photoUrl}}"
+								<img class="img-circle" src="files/avatars/{{user.photoUrl}}"
 									height="25px" />
 						{{/user.isPhotoSelected}}
 						{{^user.isPhotoSelected}}
@@ -185,7 +185,7 @@
 										<div class="col-lg-4">
 											<p class="text-center">
 												{{#user.isPhotoSelected}} <img class="img-circle"
-													src="static/files/avatars/{{user.photoUrl}}" height="100px" />
+													src="files/avatars/{{user.photoUrl}}" height="100px" />
 												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
 												{{#user.isMen}} <img class="img-circle"
 													src="user/img/boyUser.svg" height="100px" />
@@ -321,7 +321,7 @@
 				<div class="tarjeta hovercard">
 					<div class="tarjeta-background">
 						{{#user.isPhotoSelected}} <img class="tarjeta-bkimg" alt=""
-							src="static/files/avatars/{{user.photoUrl}}">
+							src="files/avatars/{{user.photoUrl}}">
 						{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
 						{{#user.isMen}} <img class="tarjeta-bkimg" alt=""
 							src="user/img/boyUser.svg"> {{/user.isMen}} {{^user.isMen}}
@@ -330,7 +330,7 @@
 					</div>
 					<div class="useravatar">
 						{{#user.isPhotoSelected}} <img alt=""
-							src="static/files/avatars/{{user.photoUrl}}">
+							src="files/avatars/{{user.photoUrl}}">
 						{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
 						{{#user.isMen}} <img alt="" src="user/img/boyUser.svg">
 						{{/user.isMen}} {{^user.isMen}} <img alt=""
@@ -695,7 +695,7 @@
 									<div class="col-sm-6">
 										{{#SelectedTeam}}
 										<h3 class="card-title">
-											<img src="static/files/logos/{{logo_image}}" height="150px"
+											<img src="files/logos/{{logo_image}}" height="150px"
 												style="margin-left: 10%; float: left">
 										</h3>
 										<a data-toggle="collapse" href="#collapseEquipos"
@@ -718,11 +718,11 @@
 															<div class="front">
 																<form action="user-account/selectionTeam/{{id}}">
 																	<div class="cover">
-																		{{#stadium_image}}<img src="static/files/covers/{{.}}" />{{/stadium_image}}
+																		{{#stadium_image}}<img src="files/covers/{{.}}" />{{/stadium_image}}
 																	</div>
 																	<div class="user">
 																		{{#logo_image}} <img class="img-circle"
-																			src="static/files/logos/{{.}}" />{{/logo_image}}
+																			src="files/logos/{{.}}" />{{/logo_image}}
 																	</div>
 																	<div class="content">
 																		<div class="main">
