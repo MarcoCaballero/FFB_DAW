@@ -3,6 +3,7 @@ package com.ffbet.fase3.api;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -96,9 +97,8 @@ public class UserRestController {
 
 		if (user != null && user.getPhoto_url() != null) {
 			response.addHeader("Content-type", "image/jpeg");
-			FileCopyUtils.copy(
-					new FileInputStream(userService.handleFileDownload(response, user.getPhoto_url(), "avatars")),
-					response.getOutputStream());
+			InputStream file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
+			FileCopyUtils.copy(file, response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

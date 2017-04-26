@@ -3,11 +3,13 @@ package com.ffbet.fase3.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,7 +116,7 @@ public class UserService {
 	}
 
 	/* MUESTRA DE IMÁGENES */
-	public File handleFileDownload(HttpServletResponse response, String fileName, String fileFolder) throws FileNotFoundException, IOException {
+	public InputStream handleFileDownload(HttpServletResponse response, String fileName, String fileFolder) throws FileNotFoundException, IOException {
 		String file_folder_absolute;
 		switch (fileFolder) {
 		case "avatars":
@@ -135,9 +137,13 @@ public class UserService {
 		}
 
 		if (!file_folder_absolute.equals("UnknownFolder")) {
-			File file = new File(file_folder_absolute, fileName);
-			System.out.println(file);
-			return file;
+//			File file = new File(file_folder_absolute, fileName);
+//			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream(file_folder_absolute + "/" + fileName);
+
+//			File file = this.getClass().getResourceAsStream(file_folder_absolute + "/" + fileName);
+//			System.out.println(file);
+			return is;
 		} else {
 			response.sendError(404, "File" + fileName + "(" + fileFolder + ") does not exist");
 			return null;
