@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatchService } from '../../services/match.service';
+
+import { Team } from '../../model/team.model';
+import { SportMatch} from '../../model/sport-match.model';
+import { EgamesMatch} from '../../model/egames-match.model';
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-admin-matches',
@@ -9,7 +15,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AdminMatchesComponent implements OnInit {
-    title = 'ADMIN - MATCHES';
+    teams: Team[];
+    sportsMatches: SportMatch[];
+    egamesMatches: EgamesMatch[];
 
     constructor() { }
 

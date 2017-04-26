@@ -19,13 +19,15 @@
 
         <hr>
         <div class="row-fluid">
-
             <div class="span12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>Tabla de equipos deportivos</h5>
-                    </div>
-                    <div class="panel-body">
+                <accordion [closeOthers]="false">
+                    <accordion-group [isOpened]=true>
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de equipos deportivos</h5></a>
+                            </div>
+                        </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
                             data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
                             <thead>
@@ -73,8 +75,9 @@
                                     /></td>
                                 <td><input type="text" name="sportsUpTw" [(ngModel)]="sportTeam.twitter_Uri" class="span12" /></td>
                                 <td><input type="text" name="sportsUpGo" [(ngModel)]="sportTeam.google_Uri" class="span12" /></td>
-                                <td><img *ngIf="sportTeam.logo_image !=='unknown'" src="http://localhost:8080/api/teams/logo/{{sportTeam.id}}" /></td>
-                                <td><img *ngIf="sportTeam.stadium_image !=='unknown'" src="http://localhost:8080/api/teams/stadium/{{sportTeam.id}}"/></td>
+                                <td><img src="http://localhost:8080/api/teams/logo/{{sportTeam.id}}" /></td>
+                                <td><img src="http://localhost:8080/api/teams/stadium/{{sportTeam.id}}" style="height: 30px"
+                                    /></td>
                                 <td><button type="submit" class="btn btn-mini btn-info" (click)="updateSportsTeam(sportTeam)"
                                         style="margin-bottom: 20%">Editar
 											</button>
@@ -82,18 +85,14 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>Tabla de equipos egames</h5>
-                    </div>
-                    <div class="panel-body">
+                    </accordion-group>
+                    <accordion-group [isOpened]="true">
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de equipos egames</h5></a>
+                            </div>
+                        </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
                             data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
                             <thead>
@@ -133,11 +132,11 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                </div>
+                    </accordion-group>
+                </accordion>
             </div>
         </div>
-        <hr>
+
         <div class="row-fluid">
             <div class="span6">
                 <accordion [closeOthers]="false">

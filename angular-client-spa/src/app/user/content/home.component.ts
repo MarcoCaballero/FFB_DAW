@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { SportMatch } from 'app/model/sport-match.model';
+import { MatchService } from 'app/services/match.service';
+import { EgamesMatch } from 'app/model/egames-match.model';
 
 @Component({
     moduleId: module.id,
@@ -9,11 +12,41 @@ import { TabsetComponent } from 'ngx-bootstrap';
 })
 
 export class HomeComponent implements OnInit {
-    // Public fields
-    title = 'HOME';
+    private footballMatches: SportMatch[];
+    private basketballMatches: SportMatch[];
+    private lolMatches: EgamesMatch[];
+    private csMatches: EgamesMatch[];
 
-    constructor() { }
+    constructor(
+        private matchService: MatchService
+        ) {}
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.getFootballMatchesFinished();
+        this.getBasketballMatchesFinished();
+        this.getLolMatchesFinished();
+        this.getCsMatchesFinished();
+    }
+
+    getFootballMatchesFinished(){
+        this.matchService.getFootballMatches()
+        .then(sportMatches => this.footballMatches = sportMatches.filter(matches => matches.finished === true));
+    }
+
+    getBasketballMatchesFinished(){
+        this.matchService.getBasketballMatches()
+        .then(sportMatches => this.basketballMatches = sportMatches.filter(matches => matches.finished === true));
+    }
+
+    getLolMatchesFinished() {
+        this.matchService.getLolMatches()
+        .then(egamesMatches => this.lolMatches = egamesMatches.filter(matches => matches.finished === true));
+    }
+
+    getCsMatchesFinished() {
+        this.matchService.getCsMatches()
+        .then(egamesMatches => this.csMatches = egamesMatches.filter(matches => matches.finished === true));
+    }
+
 
 }

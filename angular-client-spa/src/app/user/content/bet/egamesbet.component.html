@@ -61,22 +61,22 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="tab-horario-partido">
-												<th scope="row">1</th>
-												<td class="tab-horario-partido"> date time </td>
-												<td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
+											<tr *ngFor="let lolMatch of lolMatches" class="tab-horario-partido">
+												<th scope="row">{{lolMatch.id}}</th>
+												<td class="tab-horario-partido">{{lolMatchdate}}</td>
+												<td class="tab-equipos-partido">{{lolMatch.homeTeam}} - {{lolMatch.visitingTeam}}</td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeFirstBlood}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingFirstBlood}}</a>
 													</div>
 												</td>
 											</tr>
@@ -103,22 +103,22 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="tab-horario-partido">
-												<th scope="row">1</th>
-												<td class="tab-horario-partido"> date time </td>
-												<td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
+											<tr *ngFor="let csMatch of csMatches" class="tab-horario-partido">
+												<th scope="row">{{csMatch.id}}</th>
+												<td class="tab-horario-partido">{{csMatch.date}}</td>
+												<td class="tab-equipos-partido">{{csMatch.homeTeam}} - {{csMatch.visitingTeam}}</td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingVictory </a>
+														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaHomeFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeFirstBlood}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ quotaVisitingFirstBlood </a>
+														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingFirstBlood}}</a>
 													</div>
 												</td>
 											</tr>

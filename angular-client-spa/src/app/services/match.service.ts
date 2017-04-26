@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 import { EgamesMatch } from "app/model/egames-match.model";
 
 @Injectable()
-export class ScoreService {
+export class MatchService {
 
     constructor(
         private http: Http,
@@ -32,6 +32,7 @@ export class ScoreService {
             .toPromise()
             .then(
             response => {
+                
                 return response.json();
             })
             .catch(error => console.error(error));

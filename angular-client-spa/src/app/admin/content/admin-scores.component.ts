@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ScoreService } from '../../services/score.service';
+import { MatchService } from '../../services/match.service';
 
 import { ById } from '../../core/sort-functions';
 
@@ -18,15 +18,13 @@ import { Team } from "app/model/team.model";
 })
 
 export class AdminScoresComponent implements OnInit {
-    title = 'ADMIN - SCORES';
-
     private matchFootballResults: SportMatch[];
     private matchBasketballResults: SportMatch[];
     private matchLolResults: EgamesMatch[];
     private matchCsResults: EgamesMatch[];
 
     constructor(
-        private scoreService: ScoreService
+        private matchService: MatchService
     ) { }
 
 
@@ -44,7 +42,7 @@ export class AdminScoresComponent implements OnInit {
 
 
     updateSportMatch(matchSportResult: SportMatch) {
-        this.scoreService
+        this.matchService
             .updateSportMatchResult(matchSportResult)
             .then(() => {
                 this.getFootballSportsMatches();
@@ -55,7 +53,7 @@ export class AdminScoresComponent implements OnInit {
 
     updateEgamesMatch(matchEgamesResult: EgamesMatch) {
         console.log(JSON.stringify(matchEgamesResult));
-        this.scoreService
+        this.matchService
             .updateEgamesMatchResult(matchEgamesResult)
             .then(() => {
                 this.getLolEgamesMatches();
@@ -67,7 +65,7 @@ export class AdminScoresComponent implements OnInit {
     removeEgamesMatch(matchEgamesResult: EgamesMatch) {
         const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchEgamesResult.homeTeam + '-' + matchEgamesResult.visitingTeam + '?');
         if (confirmationMessage) {
-            this.scoreService
+            this.matchService
                 .removeEgamesMatchResult(matchEgamesResult.id)
                 .then(() => {
                     this.getCsEgamesMatches();
@@ -80,7 +78,7 @@ export class AdminScoresComponent implements OnInit {
     removeSportMatch(matchSportResult: SportMatch) {
         const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchSportResult.homeTeam + '-' + matchSportResult.visitingTeam + '?');
         if (confirmationMessage) {
-            this.scoreService
+            this.matchService
                 .removeSportMatchResult(matchSportResult.id)
                 .then(() => {
                     this.getFootballSportsMatches();
@@ -103,34 +101,23 @@ export class AdminScoresComponent implements OnInit {
         return false;
     }
 
-    // setWinnerTeam(match: EgamesMatch, team1: string, team2: string) {
-    //     if (this.isWinnerTeam(match, team1)) {
-            
-    //     }
-    // }
-
-    // setFirstBloodTeam(match: EgamesMatch, team: string) {
-    //     if (match.firstBloodTeam === team) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     getFootballSportsMatches() {
-        this.scoreService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
+        this.matchService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
     }
 
     getBasketballSportsMatches() {
-        this.scoreService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
+        this.matchService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
     }
 
     getLolEgamesMatches() {
-        this.scoreService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
+        this.matchService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
     }
 
 
     getCsEgamesMatches() {
-        this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
+        this.matchService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
     }
+
+
 
 }

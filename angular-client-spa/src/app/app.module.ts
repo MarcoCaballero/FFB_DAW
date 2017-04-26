@@ -15,7 +15,7 @@ import { LoginModule } from './login/login.module';
 import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { ScoreService } from './services/score.service';
+import { MatchService } from './services/match.service';
 import { AdminAuthGuard } from './core/adminAuth.guard';
 import { UserAuthGuard } from './core/userAuth.guard';
 
@@ -36,7 +36,7 @@ import { UserAuthGuard } from './core/userAuth.guard';
   providers: [
     LoginService,
     UserService,
-    ScoreService,
+    MatchService,
     AuthService,
     AdminAuthGuard,
     UserAuthGuard
