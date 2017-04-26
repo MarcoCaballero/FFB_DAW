@@ -15,7 +15,6 @@ public class Application {
 	}
 	
 	@Bean
-
     public WebMvcConfigurer corsConfigurer() {
 
         return new WebMvcConfigurerAdapter() {
@@ -37,4 +36,6 @@ public class Application {
         };
 
     }
+	
+	
 }

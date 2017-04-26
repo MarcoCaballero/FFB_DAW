@@ -63,37 +63,4 @@ public abstract class RedirectController {
 
 	}
 
-
-	public File handleFileDownload(Model model, HttpServletResponse response, String fileName,
-			String fileFolder, HttpServletResponse res) throws FileNotFoundException, IOException {
-		String file_folder_absolute;
-		switch (fileFolder) {
-		case "avatars":
-			file_folder_absolute = FilesPath.FILES_AVATARS.toString();
-			break;
-		case "covers":
-			file_folder_absolute = FilesPath.FILES_TEAMS_COVER.toString();
-			break;
-		case "logos":
-			file_folder_absolute = FilesPath.FILES_TEAMS_LOGO.toString();
-			break;
-		case "promos":
-			file_folder_absolute = FilesPath.FILES_PROMOS.toString();
-			break;
-		default:
-			file_folder_absolute = "UnknownFolder";
-			break;
-		}
-		
-		if(!file_folder_absolute.equals("UnknownFolder")){
-			File file = new File(file_folder_absolute, fileName + ".jpg");
-			return file;
-		}else{
-			res.sendError(404, "File" + fileName + "(" + fileFolder + ") does not exist");
-			return null;
-		}
-		
-
-	}
-
 }
