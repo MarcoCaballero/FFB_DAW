@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -106,20 +107,21 @@ public class AdminTeamRestController {
 	}
 
 	@GetMapping("/logo/{id}")
-	public ResponseEntity<File> getLogoImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getLogoImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getLogo_image() != "unknown") {
-			File file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
-			FileCopyUtils.copy(
-					new FileInputStream(file),
-					response.getOutputStream());
-			return new ResponseEntity<>(file, HttpStatus.OK);
+			InputStream file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
+			FileCopyUtils.copy(file, response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			FileCopyUtils.copy(new FileInputStream("target\\files\\teams\\logos\\unknown-shield.png"), response.getOutputStream());
+			// CLasspath access
+			InputStream is = this.getClass().getClassLoader()
+					.getResourceAsStream(FilesPath.FILES_TEAMS_LOGO + "/" + "unknown-shield.png");
+			FileCopyUtils.copy(is, response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -132,12 +134,13 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getStadium_image() != "unknown") {
-			FileCopyUtils.copy(
-					new FileInputStream(userService.handleFileDownload(response, team.getStadium_image(), "covers")),
-					response.getOutputStream());
+			InputStream file = userService.handleFileDownload(response, team.getStadium_image(), "covers");
+			FileCopyUtils.copy(file, response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			FileCopyUtils.copy(new FileInputStream("src\\main\\resources\\static\\files\\teams\\covers\\unknown-stadium.png"), response.getOutputStream());
+			InputStream is = this.getClass().getClassLoader()
+					.getResourceAsStream(FilesPath.FILES_TEAMS_COVER + "/" + "unknown-stadium.png");
+			FileCopyUtils.copy(is, response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
