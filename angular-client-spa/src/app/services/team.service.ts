@@ -14,12 +14,19 @@ export class TeamService {
         private http: Http,
         private authService: AuthService) { }
 
+    // get every teams
+    getTeams(): Promise<Team[]> {
+        return this.http.get('http://127.0.0.1:8080/api/teams')
+        .toPromise()
+        .then(response => response.json())
+        .catch(error => console.error(error));
+    }
+
     // get sports teams
     getSportsTeams(): Promise<Team[]> {
         return this.http.get('http://127.0.0.1:8080/api/teams/sports')
             .toPromise()
-            .then(
-            response => response.json())
+            .then(response => response.json())
             .catch(error => console.error(error));
     }
 

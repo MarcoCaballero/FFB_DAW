@@ -39,12 +39,17 @@ export class AdminTeamsComponent implements OnInit {
     }
 
     newSportsTeam(team: Team) {
-        console.log(team);
+        if (team.logo_image == null) {
+            team.logo_image = 'unknown';
+        }
+        if (team.stadium_image == null) {
+            team.stadium_image = 'unknown';
+        }
         this.teamService
             .newSportsTeam(team)
             .then(() => {
                 this.getSportsTeams();
-                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
+                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido');
             });
 
     }

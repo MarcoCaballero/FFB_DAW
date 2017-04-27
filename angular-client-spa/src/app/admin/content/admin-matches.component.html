@@ -1,6 +1,12 @@
 <ffbcomp-admin-header></ffbcomp-admin-header>
 
 <div id="content">
+    <div *ngFor="let alert of alerts" style="position: fixed; margin-left: 70%; z-index: 10">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+    <div *ngFor="let badAlert of badAlerts" style="position: fixed; margin-left: 70%; z-index: 10">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
     <div id="content-header">
         <div id="breadcrumb">
             <a routerLink="/admin/home" title="Go to Home" class="tip-bottom"><i
@@ -17,7 +23,7 @@
                         <accordion-heading>
                             <div class="widget-title">
                                 <a><span class="icon"><i class="icon-plus"></i></span>
-                                    <h5>Tabla de partidos deportivos</h5></a>
+                                    <h5>Tabla de partidos de fútbol</h5></a>
                             </div>
                         </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
@@ -25,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="type" data-sortable="true">Tipo</th>
                                     <th data-field="date" data-sortable="true">Fecha</th>
                                     <th data-field="time" data-sortable="true">Hora</th>
                                     <th data-field="homeTeam" data-sortable="true">Equipo local
@@ -34,24 +39,23 @@
                                     </th>
                                     <th data-field="quotaHomeVictory" data-sortable="true">Cuota victoria local</th>
                                     <th data-field="quotaVisitingVictory" data-sortable="true">Cuota victoria visitante</th>
-                                    <th data-field="quotaDrawVictory" data-sortable="true">Cuota empate
-                                    </th>
+                                    <th data-field="quotaDrawVictory" data-sortable="true">Cuota empate</th>
+                                    <th data-field="quotaDrawVictory" data-sortable="true">Resultado</th>
                                     <th data-field="Actions" data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td>type</td>
-                                <td>date</td>
-                                <td>time</td>
-                                <td>homeTeam</td>
-                                <td>visitingTeam</td>
-                                <td>123</td>
-                                <td>123</td>
-                                <td>000</td>
+                            <tr *ngFor="let footballMatch of footballMatches">
+                                <td>{{footballMatch.id}}</td>
+                                <td>{{footballMatch.date}}</td>
+                                <td>{{footballMatch.time}}</td>
+                                <td>{{footballMatch.homeTeam}}</td>
+                                <td>{{footballMatch.visitingTeam}}</td>
+                                <td>{{footballMatch.quotaHomeVictory}}</td>
+                                <td>{{footballMatch.quotaVisitingVictory}}</td>
+                                <td>{{footballMatch.quotaDraw}}</td>
+                                <td>{{footballMatch.homePoints}} - {{footballMatch.visitingPoints}}</td>
                                 <td>
-                                    <a href="/admin-matches/delete/{{id}}" class="btn btn-mini btn-danger"> <i class="icon-remove"></i> Borrar Partido
-                                    </a>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(footballMatch)"> Borrar </button>
                                 </td>
                             </tr>
                         </table>
@@ -60,7 +64,7 @@
                         <accordion-heading>
                             <div class="widget-title">
                                 <a><span class="icon"><i class="icon-plus"></i></span>
-                                    <h5>Tabla de partidos egames</h5></a>
+                                    <h5>Tabla de partidos de baloncesto</h5></a>
                             </div>
                         </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
@@ -68,7 +72,47 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="type" data-sortable="true">Tipo</th>
+                                    <th data-field="date" data-sortable="true">Fecha</th>
+                                    <th data-field="time" data-sortable="true">Hora</th>
+                                    <th data-field="homeTeam" data-sortable="true">Equipo local
+                                    </th>
+                                    <th data-field="visitingTeam" data-sortable="true">Equipo visitante
+                                    </th>
+                                    <th data-field="quotaHomeVictory" data-sortable="true">Cuota victoria local</th>
+                                    <th data-field="quotaVisitingVictory" data-sortable="true">Cuota victoria visitante</th>
+                                    <th data-field="quotaDrawVictory" data-sortable="true">Cuota empate</th>
+                                    <th data-field="quotaDrawVictory" data-sortable="true">Resultado</th>
+                                    <th data-field="Actions" data-sortable="true">Actions</th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let basketballMatch of basketballMatches">
+                                <td>{{basketballMatch.id}}</td>
+                                <td>{{basketballMatch.date}}</td>
+                                <td>{{basketballMatch.time}}</td>
+                                <td>{{basketballMatch.homeTeam}}</td>
+                                <td>{{basketballMatch.visitingTeam}}</td>
+                                <td>{{basketballMatch.quotaHomeVictory}}</td>
+                                <td>{{basketballMatch.quotaVisitingVictory}}</td>
+                                <td>{{basketballMatch.quotaDraw}}</td>
+                                <td>{{basketballMatch.homePoints}} - {{basketballMatch.visitingPoints}}</td>
+                                <td>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeSportMatch(basketballMatch)"> Borrar </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </accordion-group>
+                    <accordion-group [isOpened]="true">
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de partidos de LOL</h5></a>
+                            </div>
+                        </accordion-heading>
+                        <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
+                            data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="date" data-sortable="true">Fecha</th>
                                     <th data-field="time" data-sortable="true">Hora</th>
                                     <th data-field="homeTeam" data-sortable="true">Equipo local
@@ -79,23 +123,70 @@
                                     <th data-field="quotaVisitingVictory" data-sortable="true">Cuota victoria visitante</th>
                                     <th data-field="quotaHomeFirstBlood" data-sortable="true">Cuota Primera Sangre Local</th>
                                     <th data-field="quotaVisitingFirstBlood" data-sortable="true">Cuota Primera Sangre Visitante</th>
+                                    <th data-field="resultado" data-sortable="true">Ganador</th>
+                                    <th data-field="resultado" data-sortable="true">Primera sangre</th>
                                     <th data-field="Actions" data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td>type</td>
-                                <td>date</td>
-                                <td>time</td>
-                                <td>homeTeam</td>
-                                <td>visitingTeam</td>
-                                <td>123</td>
-                                <td>123</td>
-                                <td>123</td>
-                                <td>123</td>
+                            <tr *ngFor="let lolMatch of lolMatches">
+                                <td>{{lolMatch.id}}</td>
+                                <td>{{lolMatch.date}}</td>
+                                <td>{{lolMatch.time}}</td>
+                                <td>{{lolMatch.homeTeam}}</td>
+                                <td>{{lolMatch.visitingTeam}}</td>
+                                <td>{{lolMatch.quotaHomeVictory}}</td>
+                                <td>{{lolMatch.quotaVisitingVictory}}</td>
+                                <td>{{lolMatch.quotaHomeFirstBlood}}</td>
+                                <td>{{lolMatch.quotaVisitingFirstBlood}}</td>
+                                <td>{{lolMatch.winnerTeam}}</td>
+                                <td>{{lolMatch.firstBloodTeam}}</td>
                                 <td>
-                                    <a href="/admin-matches/delete/{{id}}" class="btn btn-mini btn-danger"> <i class="icon-remove"></i> Borrar Partido
-                                    </a>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeEgamesMatch(lolMatch)"> Borrar </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </accordion-group>
+                    <accordion-group [isOpened]="true">
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de partidos de CS-GO</h5></a>
+                            </div>
+                        </accordion-heading>
+                        <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
+                            data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="id" data-sortable="true">ID</th>
+                                    <th data-field="date" data-sortable="true">Fecha</th>
+                                    <th data-field="time" data-sortable="true">Hora</th>
+                                    <th data-field="homeTeam" data-sortable="true">Equipo local
+                                    </th>
+                                    <th data-field="visitingTeam" data-sortable="true">Equipo visitante
+                                    </th>
+                                    <th data-field="quotaHomeVictory" data-sortable="true">Cuota victoria local</th>
+                                    <th data-field="quotaVisitingVictory" data-sortable="true">Cuota victoria visitante</th>
+                                    <th data-field="quotaHomeFirstBlood" data-sortable="true">Cuota Primera Sangre Local</th>
+                                    <th data-field="quotaVisitingFirstBlood" data-sortable="true">Cuota Primera Sangre Visitante</th>
+                                    <th data-field="resultado" data-sortable="true">Ganador</th>
+                                    <th data-field="resultado" data-sortable="true">Primera sangre</th>
+                                    <th data-field="Actions" data-sortable="true">Actions</th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let csMatch of csMatches">
+                                <td>{{csMatch.id}}</td>
+                                <td>{{csMatch.date}}</td>
+                                <td>{{csMatch.time}}</td>
+                                <td>{{csMatch.homeTeam}}</td>
+                                <td>{{csMatch.visitingTeam}}</td>
+                                <td>{{csMatch.quotaHomeVictory}}</td>
+                                <td>{{csMatch.quotaVisitingVictory}}</td>
+                                <td>{{csMatch.quotaHomeFirstBlood}}</td>
+                                <td>{{csMatch.quotaVisitingFirstBlood}}</td>
+                                <td>{{csMatch.winnerTeam}}</td>
+                                <td>{{csMatch.firstBloodTeam}}</td>
+                                <td>
+                                    <button type="submit" class="btn btn-mini btn-danger" (click)="removeEgamesMatch(csMatch)"> Borrar </button>
                                 </td>
                             </tr>
                         </table>
@@ -107,7 +198,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <accordion [closeOthers]="false">
-                    <accordion-group [isOpened]="true">
+                    <accordion-group [isOpened]="false">
                         <accordion-heading>
                             <div class="widget-title">
                                 <a><span class="icon"><i class="icon-plus"></i></span>
@@ -123,10 +214,10 @@
                                     <th data-field="name" data-sortable="true">Name</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>id</td>
-                                <td>type</td>
-                                <td>name</td>
+                            <tr *ngFor="let team of teams">
+                                <td>{{team.id}}</td>
+                                <td>{{team.type}}</td>
+                                <td>{{team.name}}</td>
                             </tr>
                         </table>
                     </accordion-group>
@@ -144,48 +235,51 @@
                                     <h5>Añadir partido Fútbol</h5></a>
                             </div>
                         </accordion-heading>
-                        <form action="admin-matches/newFootballMatch" method="post">
+                        <form #newFootballMatchForm="ngForm" class="form-horizontal" (ngSubmit)="newFootballMatch(newFootballMatchForm.value)" novalidate>
                             <div class="control-group">
                                 <label class="control-label">Fecha(dd-mm-yy)</label>
                                 <div class="controls">
                                     <div class="input-append date datepicker">
-                                        <input type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" name="dateFootball" />                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input ngModel #spDateRef="ngModel" name="date" type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" required
+                                        /> <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    <div [hidden]="spDateRef.valid || spTimeRef.untouched" class="alert alert-danger ffbalert">
+                                        Por favor introduce una fecha correcta
                                     </div>
                                 </div>
-                                <!-- <p style="color: red">Fecha incorrecta</p> -->
                             </div>
                             <div class="control-group">
                                 <label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
                                 <div class="controls">
-                                    <input type="time" id="mask-hour-try" class="span5 mask text" name="timeFootball" />
+                                    <input ngModel #spTimeRef="ngModel" name="time" type="time" id="mask-hour-try" class="span5 mask text" required />
                                 </div>
-                                <!-- <p style="color: red">Hora incorrecta</p> -->
+                                <div [hidden]="spTimeRef.valid || spTimeRef.pristine" class="alert alert-danger ffbalert">
+                                    Por favor introduce una hora correcta
+                                </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo local</label>
                                 <div class="controls">
-                                    <select name="homeTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spHomeTeamRef="ngModel" name="homeTeam" required>
+									    <option *ngFor="let team of footballTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo visitante</label>
                                 <div class="controls">
-                                    <select name="visitingTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spVisitingTeamRef="ngModel" name="visitingTeam" required>
+									    <option *ngFor="let team of footballTeams">{{team.name}}</option>
+									</select>
                                 </div>
-                                <!-- <p style="color: red">Los equipos deben ser distintos</p> -->
                             </div>
-
                             <div class="control-group">
                                 <label class="control-label">Victoria local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-local-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeVictoryWebFootball" />
+                                        <input ngModel #spQuotaHV name="quotaHomeVictory" id="percent-local-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span> <input type="text" placeholder="Cuota: @3.15" class="span6"
                                             disabled />
                                     </div>
@@ -195,8 +289,8 @@
                                 <label class="control-label">Empate</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-empate-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaDrawWebFootball" />
+                                        <input ngModel #spQuotaD name="quotaDraw" id="percent-empate-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled />
                                     </div>
@@ -206,17 +300,18 @@
                                 <label class="control-label">Victoria visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-visitante-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaVisitingVictoryWebFootball" />
+                                        <input ngModel #spQuotaVV name="quotaVisitingVictory" id="percent-visitante-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span> <input type="text" placeholder="Cuota: @3.15" class="span6"
                                             disabled />
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Complete todos los campos de cuota</p>
-                                    <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
+                            <div [hidden]="newFootballMatchForm.form.valid" style="max-width: 60%;" class="alert alert-warning">
+                                Please look at the errors
+                            </div>
                             <div style="margin-left: 80%">
-                                <input type="submit" class="btn btn-success" value="Save" />
+                                <button [disabled]="!newFootballMatchForm.form.valid" type="submit" class="btn btn-success">Añadir</button>
                             </div>
                         </form>
                     </accordion-group>
@@ -227,59 +322,63 @@
                                     <h5>Añadir partido Baloncesto</h5></a>
                             </div>
                         </accordion-heading>
-                        <form action="admin-matches/newBasketMatch" method="post">
+                        <form #newBasketballMatchForm="ngForm" class="form-horizontal" (ngSubmit)="newBasketballMatch(newBasketballMatchForm.value)"
+                            novalidate>
                             <div class="control-group">
                                 <label class="control-label">Fecha(dd-mm-yy)</label>
                                 <div class="controls">
                                     <div class="input-append date datepicker">
-                                        <input type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" name="dateBasket" />                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input ngModel #spDateRef="ngModel" name="date" type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" required
+                                        /> <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    <div [hidden]="spDateRef.valid || spTimeRef.untouched" class="alert alert-danger ffbalert">
+                                        Por favor introduce una fecha correcta
                                     </div>
                                 </div>
-                                <!-- <p style="color: red">Fecha incorrecta</p> -->
                             </div>
                             <div class="control-group">
                                 <label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
                                 <div class="controls">
-                                    <input type="time" id="mask-hour-try" class="span5 mask text" name="timeBasket" />
+                                    <input ngModel #spTimeRef="ngModel" name="time" type="time" id="mask-hour-try" class="span5 mask text" required />
                                 </div>
-                                <!-- <p style="color: red">Hora incorrecta</p> -->
+                                <div [hidden]="spTimeRef.valid || spTimeRef.pristine" class="alert alert-danger ffbalert">
+                                    Por favor introduce una hora correcta
+                                </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo local</label>
                                 <div class="controls">
-                                    <select name="homeTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spHomeTeamRef="ngModel" name="homeTeam" required>
+									    <option *ngFor="let team of basketballTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo visitante</label>
                                 <div class="controls">
-                                    <select name="visitingTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spVisitingTeamRef="ngModel" name="visitingTeam" required>
+									    <option *ngFor="let team of basketballTeams">{{team.name}}</option>
+									</select>
                                 </div>
-                                <!-- <p style="color: red">Los equipos deben ser distintos</p> -->
                             </div>
-
                             <div class="control-group">
                                 <label class="control-label">Victoria local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-local-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeVictoryWebBasket" />
-                                        <span class="add-on">%</span>
-                                        <input type="text" placeholder="Cuota: @3.15" class="span6" disabled />
+                                        <input ngModel #spQuotaHV name="quotaHomeVictory" id="percent-local-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
+                                        <span class="add-on">%</span> <input type="text" placeholder="Cuota: @3.15" class="span6"
+                                            disabled />
                                     </div>
                                 </div>
                             </div>
-                            <div class="control-group" style="display: none">
+                            <div class="control-group">
                                 <label class="control-label">Empate</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-empate-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaDrawWebBasket" />
+                                        <input ngModel #spQuotaD name="quotaDraw" id="percent-empate-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled />
                                     </div>
@@ -289,17 +388,18 @@
                                 <label class="control-label">Victoria visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-visitante-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaVisitingVictoryWebBasket" />
+                                        <input ngModel #spQuotaVV name="quotaVisitingVictory" id="percent-visitante-fut" type="number" placeholder="0% - 90%" data-title="Han de sumar entre 105% y 110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span> <input type="text" placeholder="Cuota: @3.15" class="span6"
                                             disabled />
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Complete todos los campos de cuota</p>
-                                    <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
+                            <div [hidden]="newBasketballMatchForm.form.valid" style="max-width: 60%;" class="alert alert-warning">
+                                Please look at the errors
+                            </div>
                             <div style="margin-left: 80%">
-                                <input type="submit" class="btn btn-success" value="Save" />
+                                <button [disabled]="!newBasketballMatchForm.form.valid" type="submit" class="btn btn-success">Añadir</button>
                             </div>
                         </form>
                     </accordion-group>
@@ -314,47 +414,52 @@
                                     <h5>Añadir partido LOL</h5></a>
                             </div>
                         </accordion-heading>
-                        <form action="admin-matches/newLOLMatch" method="post">
+                        <form #newLOLMatchForm="ngForm" class="form-horizontal" (ngSubmit)="newLOLMatch(newLOLMatchForm.value)" novalidate>
                             <div class="control-group">
                                 <label class="control-label">Fecha(dd-mm-yy)</label>
                                 <div class="controls">
                                     <div class="input-append date datepicker">
-                                        <input type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" name="dateMatchEg" />                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input ngModel #spDateRef="ngModel" name="date" type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" required
+                                        />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    <div [hidden]="spDateRef.valid || spTimeRef.untouched" class="alert alert-danger ffbalert">
+                                        Por favor introduce una fecha correcta
                                     </div>
                                 </div>
-                                <!-- <p style="color: red">Fecha incorrecta</p> -->
                             </div>
                             <div class="control-group">
                                 <label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
                                 <div class="controls">
-                                    <input type="time" id="mask-hour-try" class="span5 mask text" name="timeMatchEg" />
+                                    <input ngModel #spTimeRef="ngModel" name="time" type="time" id="mask-hour-try" class="span5 mask text" required />
                                 </div>
-                                <!-- <p style="color: red">Hora incorrecta</p> -->
+                                <div [hidden]="spTimeRef.valid || spTimeRef.pristine" class="alert alert-danger ffbalert">
+                                    Por favor introduce una hora correcta
+                                </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo local</label>
                                 <div class="controls">
-                                    <select name="homeTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spHomeTeamRef="ngModel" name="homeTeam" required>
+									    <option *ngFor="let team of lolTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo visitante</label>
                                 <div class="controls">
-                                    <select name="visitingTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spVisitingTeamRef="ngModel" name="visitingTeam" required>
+									    <option *ngFor="let team of lolTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Los equipos deben ser distintos</p> -->
                             <div class="control-group">
                                 <label class="control-label">Victoria local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-local-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeVictoryWebEg" />
+                                        <input ngModel #spQuotaHV name="quotaHomeVictory" id="percent-local-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
@@ -364,19 +469,20 @@
                                 <label class="control-label">Victoria visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-visitant-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaVisitingVictoryWebEg" />                                        <span class="add-on">%</span>
+                                        <input ngModel #spQuotaVV name="quotaVisitingVictory" id="percent-visitant-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
+                                        <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
                             <div class="control-group">
                                 <label class="control-label">First Blood Local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-fblocal-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeFirstBloodWebEg" />                                        <span class="add-on">%</span>
+                                        <input ngModel #spQuotaHomeFB name="quotaHomeFirstBlood" id="percent-fblocal-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
+                                        <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
                                 </div>
@@ -385,17 +491,18 @@
                                 <label class="control-label">First Blood Visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-fbvisitante-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%"
-                                            class="span4 tip mask-percent" data-original-title="" name="quotaVisitingFirstBloodWebEg"
+                                        <input ngModel #spQuotaVisitingFB name="quotaVisitingFirstBlood" id="percent-fbvisitante-lol" type="number" placeholder="0% - 90%"
+                                            data-title="%FBLocal + %FBVisitante = 105%-110%" class="span4 tip mask-percent" required
                                         /> <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Complete todos los campos de cuota</p>
-                                    <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
-                            <div style="margin-left:80%">
-                                <input type="submit" class="btn btn-success" value="Save" />
+                            <div [hidden]="newLOLMatchForm.form.valid" style="max-width: 60%;" class="alert alert-warning">
+                                Please look at the errors
+                            </div>
+                            <div style="margin-left: 80%">
+                                <button [disabled]="!newLOLMatchForm.form.valid" type="submit" class="btn btn-success">Añadir</button>
                             </div>
                         </form>
                     </accordion-group>
@@ -406,48 +513,52 @@
                                     <h5>Añadir partido CS:GO</h5></a>
                             </div>
                         </accordion-heading>
-                        <form action="admin-matches/newCSMatch" method="post">
+                        <form #newCSMatchForm="ngForm" class="form-horizontal" (ngSubmit)="newCSMatch(newCSMatchForm.value)" novalidate>
                             <div class="control-group">
                                 <label class="control-label">Fecha(dd-mm-yy)</label>
                                 <div class="controls">
                                     <div class="input-append date datepicker">
-                                        <input type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" name="dateMatchCs" />
+                                        <input ngModel #spDateRef="ngModel" name="date" type="date" data-date-format="dd-mm-yyyy" class="span11 mask-date" required
+                                        />
                                         <span class="add-on"><i class="icon-th"></i></span>
                                     </div>
+                                    <div [hidden]="spDateRef.valid || spTimeRef.untouched" class="alert alert-danger ffbalert">
+                                        Por favor introduce una fecha correcta
+                                    </div>
                                 </div>
-                                <!-- <p style="color: red">Fecha incorrecta</p> -->
                             </div>
                             <div class="control-group">
                                 <label for="normal" class="control-label">Hora
 												(hh:mm:ss)</label>
                                 <div class="controls">
-                                    <input type="time" id="mask-hour-try" class="span5 mask text" name="timeMatchCs" />
+                                    <input ngModel #spTimeRef="ngModel" name="time" type="time" id="mask-hour-try" class="span5 mask text" required />
                                 </div>
-                                <!-- <p style="color: red">Hora incorrecta</p> -->
+                                <div [hidden]="spTimeRef.valid || spTimeRef.pristine" class="alert alert-danger ffbalert">
+                                    Por favor introduce una hora correcta
+                                </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo local</label>
                                 <div class="controls">
-                                    <select name="homeTeam">
-													<option value="name">name</option>
-												</select>
+                                    <select ngModel #spHomeTeamRef="ngModel" name="homeTeam" required>
+									    <option *ngFor="let team of csTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Equipo visitante</label>
                                 <div class="controls">
-                                    <select name="visitingTeam">
-													<option value="name">name</option> 
-												</select>
+                                    <select ngModel #spVisitingTeamRef="ngModel" name="visitingTeam" required>
+									    <option *ngFor="let team of csTeams">{{team.name}}</option>
+									</select>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Los equipos deben ser distintos</p> -->
                             <div class="control-group">
                                 <label class="control-label">Victoria local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-local-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeVictoryWebCs" />
+                                        <input ngModel #spQuotaHV name="quotaHomeVictory" id="percent-local-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
@@ -457,20 +568,19 @@
                                 <label class="control-label">Victoria visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-visitant-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaVisitingVictoryWebCs" />
+                                        <input ngModel #spQuotaVV name="quotaVisitingVictory" id="percent-visitant-lol" type="number" placeholder="0% - 90%" data-title="%Local + %Visitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
                             <div class="control-group">
                                 <label class="control-label">First Blood Local</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-fblocal-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%" class="span4 tip mask-percent"
-                                            data-original-title="" name="quotaHomeFirstBloodWebCs" />
+                                        <input ngModel #spQuotaHomeFB name="quotaHomeFirstBlood" id="percent-fblocal-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%"
+                                            class="span4 tip mask-percent" required />
                                         <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
@@ -480,17 +590,18 @@
                                 <label class="control-label">First Blood Visitante</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input id="percent-fbvisitante-lol" type="number" placeholder="0% - 90%" data-title="%FBLocal + %FBVisitante = 105%-110%"
-                                            class="span4 tip mask-percent" data-original-title="" name="quotaVisitingFirstBloodWebCs"
+                                        <input ngModel #spQuotaVisitingFB name="quotaVisitingFirstBlood" id="percent-fbvisitante-lol" type="number" placeholder="0% - 90%"
+                                            data-title="%FBLocal + %FBVisitante = 105%-110%" class="span4 tip mask-percent" required
                                         /> <span class="add-on">%</span>
                                         <input type="text" placeholder="Cuota: @3.15" class="span6" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p style="color: red">Complete todos los campos de cuota</p>
-                                    <p style="color: red">La suma de los porcentajes debe ser 110</p> -->
+                            <div [hidden]="newCSMatchForm.form.valid" style="max-width: 60%;" class="alert alert-warning">
+                                Please look at the errors
+                            </div>
                             <div style="margin-left: 80%">
-                                <input type="submit" class="btn btn-success" value="Save" />
+                                <button [disabled]="!newCSMatchForm.form.valid" type="submit" class="btn btn-success">Añadir</button>
                             </div>
                         </form>
                     </accordion-group>
