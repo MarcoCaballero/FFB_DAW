@@ -16,6 +16,7 @@ import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { MatchService } from './services/match.service';
+import { BetService } from './services/bet.service';
 import { AdminAuthGuard } from './core/adminAuth.guard';
 import { UserAuthGuard } from './core/userAuth.guard';
 
@@ -38,6 +39,7 @@ import { UserAuthGuard } from './core/userAuth.guard';
     UserService,
     MatchService,
     AuthService,
+    BetService,
     AdminAuthGuard,
     UserAuthGuard
   ],

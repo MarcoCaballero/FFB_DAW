@@ -106,17 +106,17 @@
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaHomeVictory}} </a>
+                                                <a (click)="addSportMatchToBet(footballMatch, '1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaHomeVictory}} </a>
                                             </div>
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /X" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaDraw}} </a>
+                                                <a (click)="addSportMatchToBet(footballMatch, 'X')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaDraw}} </a>
                                             </div>
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaVisitingVictory}} </a>
+                                                <a (click)="addSportMatchToBet(footballMatch, '2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;"> {{footballMatch.quotaVisitingVictory}} </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -170,28 +170,26 @@
                     APUESTA
                 </div>
                 <div class="panel-body">
-                    <ul class="todo-list">
-                        <li id="apuesta id " class="todo-list-item">
+                    <ul class="todo-list" *ngIf="sportTicket">
+                        <li *ngFor="let betMatch of sportTicket.betMatchesList" id="apuesta id " class="todo-list-item">
                             <div class="checkbox">
                                 <label for="checkbox">
 										<p style="color: black;">
 											<i>Ganador del partido //
-												 match.homeTeam - match.visitingTeam  </i>
+												 {{betMatch.match.homeTeam}} - {{betMatch.match.visitingTeam}}  </i>
 										</p>
 										<p style="color: black;">
-											24/11 19:00 <strong> selectedNamequota 
-												@ selectedQuota </strong>
+											24/11 19:00 <strong> {{betMatch.selectedNamequota}}
+												@ {{betMatch.selectedQuota}} </strong>
+
 										</p>
 									</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a class="trash" href="/user-sportsBet/removeBetMatch/ id ">
-                                    <svg id="iconoBasura" class="glyph stroked trash">
-                                        <use xlink:href="#stroked-trash"></use>
-                                    </svg>
-                                </a>
+
+                                <a (click)="removeSportMatchToBet(betMatch.match.id)" class="glyphicon glyphicon-trash" style="margin-left: 10%;margin-top: 7px; color : red;">
+												</a>
                             </div>
                         </li>
+
                     </ul>
                 </div>
                 <div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
@@ -232,10 +230,11 @@
                                     <p style="float: left; font-size: 2ch">
 
                                         Recuerde que al enviar la apuesta está aceptando las
-                                        <a href="ffb/user-policy">políticas internas</a> de &#64; ffbet.com
+                                        <a routerLink="/user/policy-privacy">políticas internas</a> de &#64; ffbet.com
                                         <img src="../assets/images/+18.png" height="16px"> 2017
-
                                     </p>
+                                    <hr>
+                                    <hr>
                                 </div>
                             </div>
                         </fieldset>

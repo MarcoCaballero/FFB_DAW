@@ -1,5 +1,5 @@
 
-import { Team } from '../model/team.model';
+import { Team } from './team.model';
 
 export interface SportMatch {
   id: number;
