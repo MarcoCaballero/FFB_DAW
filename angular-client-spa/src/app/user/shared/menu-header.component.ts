@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['../../../assets/css/styles.css']
 })
 export class MenuHeaderComponent implements OnInit {
+    // Public fields
+    public isCollapsed = true;
 
     constructor(
         private loginService: LoginService,
@@ -31,6 +33,16 @@ export class MenuHeaderComponent implements OnInit {
             error => console.log('Error when trying to log out: ' + error)
         );
     }
+
+    public collapsed(event: any): void {
+        console.log(event);
+    }
+
+    public expanded(event: any): void {
+        console.log(event);
+    }
+
+
 }
 
 
