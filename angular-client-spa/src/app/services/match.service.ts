@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { SportMatch } from '../model/sport-match.model';
 
 import { AuthService } from './auth.service';
-import { EgamesMatch } from "app/model/egames-match.model";
+import { EgamesMatch } from '../model/egames-match.model';
 
 @Injectable()
 export class MatchService {
@@ -32,7 +32,6 @@ export class MatchService {
             .toPromise()
             .then(
             response => {
-                
                 return response.json();
             })
             .catch(error => console.error(error));
@@ -61,13 +60,38 @@ export class MatchService {
 
     }
 
+    newSportMatch(match: SportMatch): Promise<SportMatch> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials(),
+            'Content-Type': 'application/json'
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.post('http://127.0.0.1:8080/api/matches/sports', JSON.stringify(match), options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    newEgamesMatch(match: EgamesMatch): Promise<EgamesMatch> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials(),
+            'Content-Type': 'application/json'
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.post('http://127.0.0.1:8080/api/matches/egames', JSON.stringify(match), options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
     updateSportMatchResult(matchFootBallResult: SportMatch): Promise<SportMatch> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials(),
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/matches/sports/' + matchFootBallResult.id, JSON.stringify(matchFootBallResult), options)
+        return this.http.put('http://127.0.0.1:8080/api/matches/sports/' + matchFootBallResult.id,
+            JSON.stringify(matchFootBallResult), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));

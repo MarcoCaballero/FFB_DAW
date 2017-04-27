@@ -6,7 +6,7 @@ import { ById } from '../../core/sort-functions';
 
 import { SportMatch } from '../../model/sport-match.model';
 import { EgamesMatch } from '../../model/egames-match.model';
-import { Team } from "app/model/team.model";
+import { Team } from '../../model/team.model';
 
 
 @Component({
@@ -58,25 +58,27 @@ export class AdminScoresComponent implements OnInit {
             .then(() => {
                 this.getLolEgamesMatches();
                 this.getCsEgamesMatches();
-            })
+            });
     }
 
 
     removeEgamesMatch(matchEgamesResult: EgamesMatch) {
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchEgamesResult.homeTeam + '-' + matchEgamesResult.visitingTeam + '?');
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido '
+        + matchEgamesResult.homeTeam + '-' + matchEgamesResult.visitingTeam + '?');
         if (confirmationMessage) {
             this.matchService
                 .removeEgamesMatchResult(matchEgamesResult.id)
                 .then(() => {
                     this.getCsEgamesMatches();
                     this.getLolEgamesMatches();
-                })
+                });
         }
     }
 
 
     removeSportMatch(matchSportResult: SportMatch) {
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchSportResult.homeTeam + '-' + matchSportResult.visitingTeam + '?');
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido '
+        + matchSportResult.homeTeam + '-' + matchSportResult.visitingTeam + '?');
         if (confirmationMessage) {
             this.matchService
                 .removeSportMatchResult(matchSportResult.id)
@@ -102,20 +104,26 @@ export class AdminScoresComponent implements OnInit {
     }
 
     getFootballSportsMatches() {
-        this.matchService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
+        this.matchService.getFootballMatches()
+        .then(sportMatches => this.matchFootballResults = sportMatches
+        .filter(matches => matches.finished === false));
     }
 
     getBasketballSportsMatches() {
-        this.matchService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
+        this.matchService.getBasketballMatches()
+        .then(sportMatches => this.matchBasketballResults = sportMatches
+        .filter(matches => matches.finished === false));
     }
 
     getLolEgamesMatches() {
-        this.matchService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
+        this.matchService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches
+        .filter(matches => matches.finished === false));
     }
 
 
     getCsEgamesMatches() {
-        this.matchService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
+        this.matchService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches.
+        filter(matches => matches.finished === false));
     }
 
 
