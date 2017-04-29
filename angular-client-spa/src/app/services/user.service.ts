@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { AuthService } from './auth.service';
 
 import { User } from '../model/user.model';
+import { CreditCard } from '../model/creditCard.model';
 
 @Injectable()
 export class UserService {
@@ -30,7 +31,6 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-
         return this.http.post('http://127.0.0.1:8080/api/user', JSON.stringify(user), options)
             .toPromise()
             .then(response => response.json())
@@ -43,7 +43,6 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        console.log(user);
         return this.http.put('http://127.0.0.1:8080/api/user/', JSON.stringify(user), options)
             .toPromise()
             .then(response => response.json())
@@ -55,7 +54,6 @@ export class UserService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        console.log(this.authService.getCredentials());
         return this.http.delete('http://127.0.0.1:8080/api/user/' + id, options)
             .toPromise()
             .then(undefined)
@@ -68,6 +66,17 @@ export class UserService {
         });
         const options = new RequestOptions({ headers });
         return this.http.put('http://127.0.0.1:8080/api/user/' + 'uploadImage', formData, options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    creditCardPlus(card: CreditCard): Promise<CreditCard> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.put('http://127.0.0.1:8080/api/user/creditCardPlus/' + card.credit, card, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
