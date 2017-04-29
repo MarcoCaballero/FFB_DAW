@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 
+import { UserService } from '../../../services/user.service';
+
+
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-myaccount',
@@ -20,7 +24,7 @@ export class MyAccountComponent implements OnInit {
 
 
     // Methods
-    constructor() { }
+    constructor(private userService: UserService) { }
 
     ngOnInit() {
 
@@ -41,6 +45,16 @@ export class MyAccountComponent implements OnInit {
 
     public selectTabFromInner(tab_id: number) {
         this.selectedTab = tab_id;
+    }
+
+    uploadFile(event) {
+        let file: File = event.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        console.log(file.name);
+        let title = this.userService
+            .uploadFile(formData)
+            .then(response => { console.log(response) });
     }
 
 

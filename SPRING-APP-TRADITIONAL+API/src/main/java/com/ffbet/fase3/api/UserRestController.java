@@ -1,5 +1,6 @@
 package com.ffbet.fase3.api;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -76,8 +78,8 @@ public class UserRestController {
 		}
 	}
 
-	@PutMapping("/uploadImage")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+	@PutMapping(value = "/uploadImage", consumes = "multipart/form-data")
+	public String handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
 		User user = userService.handleUserLoggedFromComponent();
 
 		String filename = userService.handleUploadImagetoDatabase(file, user.getId(),
@@ -97,8 +99,8 @@ public class UserRestController {
 
 		if (user != null && user.getPhoto_url() != null) {
 			response.addHeader("Content-type", "image/jpeg");
-			InputStream file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
-			FileCopyUtils.copy(file, response.getOutputStream());
+			File file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

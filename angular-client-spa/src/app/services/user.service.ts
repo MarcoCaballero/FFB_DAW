@@ -50,8 +50,6 @@ export class UserService {
             .catch(error => console.error(error));
     }
 
-
-
     removeUser(id: number): Promise<any> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
@@ -61,6 +59,17 @@ export class UserService {
         return this.http.delete('http://127.0.0.1:8080/api/user/' + id, options)
             .toPromise()
             .then(undefined)
+            .catch(error => console.error(error));
+    }
+
+    uploadFile(formData): Promise<string> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.put('http://127.0.0.1:8080/api/user/' + 'uploadImage', formData, options)
+            .toPromise()
+            .then(response => response.json())
             .catch(error => console.error(error));
     }
 

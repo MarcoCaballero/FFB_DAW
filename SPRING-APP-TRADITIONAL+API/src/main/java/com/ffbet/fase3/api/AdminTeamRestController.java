@@ -114,8 +114,8 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getLogo_image() != "unknown") {
-			InputStream file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
-			FileCopyUtils.copy(file, response.getOutputStream());
+			File file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			// CLasspath access
@@ -134,8 +134,8 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getStadium_image() != "unknown") {
-			InputStream file = userService.handleFileDownload(response, team.getStadium_image(), "covers");
-			FileCopyUtils.copy(file, response.getOutputStream());
+			File file = userService.handleFileDownload(response, team.getLogo_image(), "covers");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			InputStream is = this.getClass().getClassLoader()
