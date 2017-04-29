@@ -18,59 +18,48 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>Deposita saldo en tu cuenta</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" action="user-account/addCredit" method="post">
+                    <form #creditForm="ngForm" class="form-horizontal" (ngSubmit)="creditPlus(creditForm.value)" novalidate>
                         <fieldset>
                             <!-- Name input-->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="type">Elija forma de pago</label>
-                                <div class="col-md-2">
-                                    <div class="radio">
-                                        <label>
-                                                <input type="radio" name="type" id="optionsRadios1" value="visa" checked><img class="glyph stroked pencil" src="../assets/images/visa.png" /> </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="radio">
-                                        <label>
-                                                <input type="radio" name="type" id="optionsRadios1" value="mastercard" checked><img class="glyph stroked pencil" src="../assets/images/mastercard.png" /> </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="radio">
-                                        <label>
-                                                <input type="radio" name="type" id="optionsRadios1" value="visa-e" checked><img class="glyph stroked pencil" src="../assets/images/visaelectron.png" /> </label>
-                                    </div>
-                                </div>
+                            <div class="btn-group">
+                                <input type="radio" [(ngModel)]="radioModel" name="type" id="optionsRadios1" btnRadio="visa" value="visa" checked>
+                                <img class="glyph stroked pencil" src="../assets/images/visa.png" />
+                                <input type="radio" [(ngModel)]="radioModel" name="type" id="optionsRadios1" btnRadio="mastercard" value="mastercard">
+                                <img class="glyph stroked pencil" src="../assets/images/mastercard.png" />
+                                <input type="radio" [(ngModel)]="radioModel" name="type" id="optionsRadios1" btnRadio="electron" value="visa-e">
+                                <img class="glyph stroked pencil" src="../assets/images/visaelectron.png" />
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Titular tarjeta*</label>
                                 <div class="col-md-9">
-                                    <input id="name" name="name" type="text" placeholder="Nombre" class="form-control" required>                                    </div>
+                                    <input id="name" ngModel name="name" type="text" placeholder="Nombre" class="form-control" required>                                    </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="cardnumber">Nº Tarjeta*</label>
                                 <div class="col-md-3">
-                                    <input id="dni" name="cardNumber" type="number" min="100000000000000" max="999999999999999" placeholder="Nº de Tarjeta" class="form-control"
-                                        required> </div>
+                                    <input id="dni" ngModel name="cardNumber" type="number" min="100000000000000" max="999999999999999" placeholder="Nº de Tarjeta"
+                                        class="form-control" required> </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="expirationDate">Validez*</label>
                                 <div class="col-md-3">
-                                    <input id="dni" name="Year" type="number" max="2999" min="2017" placeholder="Año de caducidad" class="form-control" required>                                    </div>
+                                    <input id="dni" ngModel name="expirationYear" type="number" max="2999" min="2017" placeholder="Año de caducidad" class="form-control"
+                                        required> </div>
                                 <div class="col-md-3">
-                                    <input id="dni" name="Month" type="number" max="12" min="1" placeholder="Mes de caducidad" class="form-control" required>                                    </div>
+                                    <input id="dni" ngModel name="expirationMonth" type="number" max="12" min="1" placeholder="Mes de caducidad" class="form-control"
+                                        required> </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="securityCode">Codigo de seguridad/CCV2*</label>
                                 <div class="col-md-2">
-                                    <input id="dni" name="ccv" max="999" min="001" type="number" placeholder="Código" class="form-control" required>                                    </div>
+                                    <input id="dni" ngModel name="securityCode" max="999" min="001" type="number" placeholder="Código" class="form-control" required>                                    </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="country">Importe (€) *</label>
                                 <div class="col-md-2">
-                                    <select class="form-control" name="amount">
+                                    <select class="form-control" ngModel name="credit" required>
                                             <option value="1">1.00</option>
                                             <option value="2">2.00</option>
                                             <option value="5">5.00</option>
@@ -81,13 +70,11 @@
                                         </select>
                                 </div>
                             </div>
-                            <label style="color:#FA6262;" class="col-md-3 control-label" for="name">ERROR CON LA TARJETA, PUEDE QUE NO TENGA SALDO O QUE LOS DATOS NO COINCIDEN VERFIQUELO POR FAVOR</label>
-
                             <!-- Form actions -->
                             <div class="form-group">
                                 <div class="col-md-12 widget-right">
                                     <label class="col-md-3 control-label" for="name">* Campo obligatorio</label>
-                                    <button type="submit" class="btn btn-default btn-md pull-right">Depositar</button>
+                                    <button [disabled]="!creditForm.form.valid" type="submit" class="btn btn-default btn-md pull-right" routerLink="/user/myaccount">Depositar</button>
                                 </div>
                             </div>
                         </fieldset>

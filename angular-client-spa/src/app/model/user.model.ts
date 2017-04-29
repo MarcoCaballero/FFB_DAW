@@ -1,6 +1,7 @@
+import { CreditCard } from '../model/creditCard.model';
 
 export interface User {
-  id?: number;
+  id: number;
   email: string;
   roles: string[];
   name: string;
@@ -14,4 +15,5 @@ export interface User {
   location?: string;
   men?: boolean;
   photoUrl?: string;
+  cards?: CreditCard[];
 }
