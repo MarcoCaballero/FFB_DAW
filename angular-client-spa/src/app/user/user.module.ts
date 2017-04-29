@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'ngx-dropdown';
-import { CarouselModule, TabsModule, CollapseModule } from 'ngx-bootstrap';
+import { CarouselModule, TabsModule, CollapseModule, ButtonsModule } from 'ngx-bootstrap';
 
 // App imports
 import { MenuHeaderComponent } from './shared/menu-header.component';
@@ -23,6 +23,7 @@ import { LoginService } from '../services/login.service';
         CarouselModule.forRoot(),
         TabsModule.forRoot(),
         CollapseModule.forRoot(),
+        ButtonsModule.forRoot(),
         UserRoutingModule
     ],
     exports: [

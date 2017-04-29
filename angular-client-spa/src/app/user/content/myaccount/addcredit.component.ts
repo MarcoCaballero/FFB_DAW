@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '../../../services/user.service';
+
+import { CreditCard } from '../../../model/creditCard.model';
+
 @Component({
     moduleId: module.id,
     selector: 'ffbcomp-addcredit',
@@ -8,11 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AddcreditComponent implements OnInit {
+    public radioModel: string = 'visa';
+    selectedCard: boolean;
+    creditCard: CreditCard;
 
     title = 'Añadir Fondos';
 
-    constructor() { }
+    constructor(
+        private userService: UserService
+    ) { }
 
     ngOnInit() { }
+
+    creditPlus(card: CreditCard) {
+        this.userService.creditCardPlus(card);
+    }
 
 }
