@@ -117,10 +117,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="fileImage">Foto</label>
                                                             <div class="col-md-9">
-                                                                <input id="fileImage" name="fileImage" type="file" placeholder="Subir imagen..." class="form-control">
-                                                                <label>
-                                                            Hay un error con la imagen intantalo más tarde
-                                                         </label>
+                                                                <input id="fileImage" name="fileImage" type="file" (change)=" uploadFile($event)" placeholder="Subir imagen..." class="form-control">
                                                             </div>
                                                         </div>
                                                     </fieldset>

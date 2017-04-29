@@ -106,15 +106,14 @@ public class AdminTeamController extends RedirectController {
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/newSportsTeam" })
-	public String addSportsTeam(@RequestParam("sportsType") String type,
-			@RequestParam("sportsName") String name, @RequestParam("sportsCountry") String country,
-			@RequestParam("sportsCity") String city, @RequestParam("stadium") String stadium,
-			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
-			@RequestParam("sportsCoach") String coach, @RequestParam("leaguesWeb") String leagues,
-			@RequestParam("cupsWeb") String cups, @RequestParam("championsWeb") String champions,
-			@RequestParam("facebook_Uri") String fb, @RequestParam("twitter_Uri") String tw,
-			@RequestParam("google_Uri") String go, @RequestParam("logoImage") MultipartFile logoImg,
-			@RequestParam("stadiumImage") MultipartFile stadiumImg) {
+	public String addSportsTeam(@RequestParam("sportsType") String type, @RequestParam("sportsName") String name,
+			@RequestParam("sportsCountry") String country, @RequestParam("sportsCity") String city,
+			@RequestParam("stadium") String stadium, @RequestParam("slogan") String slogan,
+			@RequestParam("president") String president, @RequestParam("sportsCoach") String coach,
+			@RequestParam("leaguesWeb") String leagues, @RequestParam("cupsWeb") String cups,
+			@RequestParam("championsWeb") String champions, @RequestParam("facebook_Uri") String fb,
+			@RequestParam("twitter_Uri") String tw, @RequestParam("google_Uri") String go,
+			@RequestParam("logoImage") MultipartFile logoImg, @RequestParam("stadiumImage") MultipartFile stadiumImg) {
 
 		String fileNameLogo;
 		String fileNameStadium;
@@ -183,15 +182,15 @@ public class AdminTeamController extends RedirectController {
 	public void handleAvatarsFileLogo(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		InputStream file = userService.handleFileDownload(response, fileName, "logos");
-		FileCopyUtils.copy(file, response.getOutputStream());
+		File file = userService.handleFileDownload(response, fileName, "logos");
 
-
-		if (file != null) {
+		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			FileCopyUtils.copy(file, response.getOutputStream());
+
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+
 		} else {
-			res.sendError(404, "File" + fileName  + "does not exist");
+			res.sendError(404, "File" + fileName + "does not exist");
 		}
 
 	}
@@ -199,17 +198,16 @@ public class AdminTeamController extends RedirectController {
 	public void handleAvatarsFileStadium(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		InputStream file = userService.handleFileDownload(response, fileName, "covers");
-		FileCopyUtils.copy(file, response.getOutputStream());
+		File file = userService.handleFileDownload(response, fileName, "covers");
 
-
-		if (file != null) {
+		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			FileCopyUtils.copy(file, response.getOutputStream());
-		} else {
-			res.sendError(404, "File" + fileName  + "does not exist");
-		}
 
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+
+		} else {
+			res.sendError(404, "File" + fileName + "does not exist");
+		}
 	}
 
 	/**

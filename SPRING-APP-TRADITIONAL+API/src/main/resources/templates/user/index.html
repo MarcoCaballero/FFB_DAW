@@ -64,13 +64,13 @@
                 <ul class="user-menu">
                     <li class="dropdown pull-right" style="margin-top: -3%;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user"> {{#user.isPhotoSelected}} <img class="img-circle" alt="" src="files/avatars/{{user.photoUrl}}" height="25px"> {{/user.isPhotoSelected}} {{^user.isPhotoSelected}} {{#user.isMen}} <img class="img-circle" src="user/img/boyUser.svg" height="25px" /> {{/user.isMen}} {{^user.isMen}} <img class="img-circle" src="user/img/userGirl.svg" height="25px" /> {{/user.isMen}} {{/user.isPhotoSelected}} </svg> {{user.email}} <span class="caret"></span></a>
+                            <svg class="glyph stroked male-user"> {{#user.isPhotoSelected}} <img class="img-circle" alt="" src="static/files/avatars/{{user.photoUrl}}" height="25px"> {{/user.isPhotoSelected}} {{^user.isPhotoSelected}} {{#user.isMen}} <img class="img-circle" src="user/img/boyUser.svg" height="25px" /> {{/user.isMen}} {{^user.isMen}} <img class="img-circle" src="user/img/userGirl.svg" height="25px" /> {{/user.isMen}} {{/user.isPhotoSelected}} </svg> {{user.email}} <span class="caret"></span></a>
                         <ul class="dropdown-menu" style="border-radius: 10%;">
                             <li>
                                 <div class="navbar-login">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <p class="text-center"> {{#user.isPhotoSelected}} <img class="img-circle" src="files/avatars/{{user.photoUrl}}" height="100px" /> {{/user.isPhotoSelected}} {{^user.isPhotoSelected}} {{#user.isMen}} <img class="img-circle" src="user/img/boyUser.svg" height="100px" /> {{/user.isMen}} {{^user.isMen}} <img class="img-circle" src="user/img/userGirl.svg" height="100px" /> {{/user.isMen}} {{/user.isPhotoSelected}} </p>
+                                            <p class="text-center"> {{#user.isPhotoSelected}} <img class="img-circle" src="static/files/avatars/{{user.photoUrl}}" height="100px" /> {{/user.isPhotoSelected}} {{^user.isPhotoSelected}} {{#user.isMen}} <img class="img-circle" src="user/img/boyUser.svg" height="100px" /> {{/user.isMen}} {{^user.isMen}} <img class="img-circle" src="user/img/userGirl.svg" height="100px" /> {{/user.isMen}} {{/user.isPhotoSelected}} </p>
                                         </div>
                                         <div class="col-lg-8">
                                             <p class="text-left"> <strong>{{user.name}}</strong> </p>
