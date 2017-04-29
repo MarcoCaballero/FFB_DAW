@@ -15,6 +15,7 @@ import { UserService } from '../../../services/user.service';
 export class MyAccountComponent implements OnInit {
     // Public fields
     public isCollapsed = false;
+    public filename: string;
 
     public selectedTab = 0;
 
@@ -50,6 +51,7 @@ export class MyAccountComponent implements OnInit {
     uploadFile(event) {
         let file: File = event.target.files[0];
         const formData = new FormData();
+        this.filename = file.name;
         formData.append('file', file, file.name);
         console.log(file.name);
         let title = this.userService
