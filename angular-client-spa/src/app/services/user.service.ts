@@ -65,7 +65,7 @@ export class UserService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/user/' + 'uploadImage', formData, options)
+        return this.http.post('http://127.0.0.1:8080/api/storage/', formData, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
