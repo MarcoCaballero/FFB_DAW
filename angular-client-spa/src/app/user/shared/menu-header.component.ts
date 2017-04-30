@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../../services/login.service';
@@ -12,7 +12,10 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MenuHeaderComponent implements OnInit {
     // Public fields
-    public isCollapsed = true;
+    public isCollapsed = true; // !Important to keep menu visible
+    @HostListener('window:resize') setCollapsed() {
+        this.isCollapsed = true;
+    }
 
     constructor(
         private loginService: LoginService,
@@ -22,7 +25,6 @@ export class MenuHeaderComponent implements OnInit {
 
     ngOnInit() {
         this.authService.reloadAuth(); // Reload auth.service fields from localStorage
-        console.log('Im logged? : ' + this.authService.isLogged() + 'maybe as: ' + this.authService.getUser());
     }
 
     logOut() {

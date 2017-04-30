@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 
+
+import { User } from '../../../model/user.model';
+
 import { UserService } from '../../../services/user.service';
 
 
@@ -15,9 +18,9 @@ import { UserService } from '../../../services/user.service';
 export class MyAccountComponent implements OnInit {
     // Public fields
     public isCollapsed = false;
-    public filename: string;
-
     public selectedTab = 0;
+    public userLogged: User;
+    public readOnly = "readonly";
 
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
@@ -28,7 +31,19 @@ export class MyAccountComponent implements OnInit {
     constructor(private userService: UserService) { }
 
     ngOnInit() {
+        this.setUserLogged(JSON.parse(localStorage.getItem('user')));
+        this.getUser(this.userLogged.id);
+        console.log(this.userLogged);
+    }
 
+    public getUser(id: number) {
+        this.userService
+            .getUser(id)
+            .then(response => this.userLogged = response)
+    }
+
+    public setUserLogged(user: User) {
+        this.userLogged = user;
     }
 
     public collapsed(event: any): void {
@@ -51,12 +66,14 @@ export class MyAccountComponent implements OnInit {
     uploadFile(event) {
         let file: File = event.target.files[0];
         const formData = new FormData();
-        this.filename = file.name;
         formData.append('file', file, file.name);
         console.log(file.name);
         let title = this.userService
             .uploadFile(formData)
-            .then(response => { console.log(response) });
+            .then(response => {
+                this.getUser(this.userLogged.id);
+                console.log(this.userLogged)
+            });
     }
 
 

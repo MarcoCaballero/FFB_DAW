@@ -17,14 +17,19 @@
         <div class="col-lg-10 col-sm-10 col-lg-offset-1">
             <div class="tarjeta hovercard">
                 <div class="tarjeta-background">
-                    <img class="tarjeta-bkimg" alt="" src="http://localhost:8080/api/storage/files/yo_alpha_01.png">
+                    <img  *ngIf="userLogged.men && !userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
+                     <img  *ngIf="!userLogged.men && !userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/userGirl.svg">
+                      <img  *ngIf="userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
                 </div>
                 <div class="useravatar">
-                    <img alt="" src="../assets/images/boyUser.svg">
+                     <img  *ngIf="userLogged.men && !userLogged.photoSelected" alt="" src="../assets/images/boyUser.svg">
+                     <img  *ngIf="!userLogged.men && !userLogged.photoSelected" alt="" src="../assets/images/userGirl.svg">
+                      <img  *ngIf="userLogged.photoSelected" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
+
                 </div>
                 <div class="tarjeta-info">
-                    <span class="tarjeta-title"><strong> user.name
-						</strong> <em> user.email </em></span>
+                    <span class="tarjeta-title"><strong> {{userLogged.name}}
+						</strong> <em> {{userLogged.email}} </em></span>
                 </div>
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -67,7 +72,7 @@
                                                     FICHA DE USUARIO
                                                     <div style="float: right;">
                                                         <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
-                                                        <button id="editarDatos" type="submit" class="btn btn-primary">Editar</button>
+                                                        <button id="editarDatos" type="submit" class="btn btn-primary">Guardar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,7 +86,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="name">Nombre</label>
                                                             <div class="col-md-9">
-                                                                <input id="name" name="namePre" type="text" placeholder="user.name" class="form-control">
+                                                                <input id="name" name="namePre" type="text" placeholder="{{userLogged.name}}" class="form-control" >
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
@@ -89,7 +94,7 @@
                                                             <label class="col-md-3 control-label" for="email">Primer
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap1" name="surnamePre" type="text" placeholder="user.surname" class="form-control" />
+                                                                <input id="ap1" name="surnamePre" type="text" placeholder="{{userLogged.surname}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
@@ -97,27 +102,27 @@
                                                             <label class="col-md-3 control-label" for="email">Segundo
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap2" name="secondSurname" type="text" placeholder="user.secondSurname" class="form-control" />
+                                                                <input id="ap2" name="secondSurname" type="text" placeholder="{{userLogged.secondSurname}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Ciudad</label>
                                                             <div class="col-md-9">
-                                                                <input id="city" name="cityPre" type="text" placeholder="user.city" class="form-control" />
+                                                                <input id="city" name="cityPre" type="text" placeholder="{{userLogged.city}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- Pais input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Pais</label>
                                                             <div class="col-md-9">
-                                                                <input id="country" name="countryPre" type="text" placeholder="user.country" class="form-control">
+                                                                <input id="country" name="countryPre" type="text" placeholder="{{userLogged.country}}" class="form-control" >
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="fileImage">Foto</label>
                                                             <div class="col-md-9">
-                                                                <input id="fileImage" name="fileImage" type="file" (change)=" uploadFile($event)" placeholder="Subir imagen..." class="form-control">
+                                                                <input id="fileImage" name="fileImage" type="file" (change)=" uploadFile($event)" placeholder="Subir imagen..." class="form-control" >
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -130,21 +135,21 @@
                                                             <label class="col-md-3 control-label" for="name">Correo
 															electronico</label>
                                                             <div class="col-md-9">
-                                                                <input id="email" name="emailPre" type="text" placeholder="user.email" class="form-control" />
+                                                                <input id="email" name="emailPre" type="text" placeholder="{{userLogged.email}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Domicilio</label>
                                                             <div class="col-md-9">
-                                                                <input id="location" name="locationPre" type="text" placeholder="user.location" class="form-control" />
+                                                                <input id="location" name="locationPre" type="text" placeholder="{{userLogged.location}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Telefono</label>
                                                             <div class="col-md-9">
-                                                                <input id="telephone" name="telf" type="text" placeholder="user.telephone" class="form-control" />
+                                                                <input id="telephone" name="telf" type="text" placeholder="{{userLogged.telephone}}" class="form-control"  />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
@@ -152,13 +157,13 @@
                                                             <label class="col-md-3 control-label" for="email">Nueva
 															Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="pass" name="pass" type="password" placeholder="Escribe tu nueva contraseña" class="form-control">
+                                                                <input id="pass" name="pass" type="password" placeholder="Escribe tu nueva contraseña" class="form-control" >
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Repite Nueva Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="passRepeat" name="passRepeat" type="password" placeholder="Repite tu nueva contraseña" class="form-control">
+                                                                <input id="passRepeat" name="passRepeat" type="password" placeholder="Repite tu nueva contraseña" class="form-control" >
                                                                 <label>Contraseñas distintas</label>
                                                             </div>
                                                         </div>
@@ -166,7 +171,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">DNI/NIF</label>
                                                             <div class="col-md-9">
-                                                                <input id="dni" name="dniPre" type="text" placeholder="user.dni" class="form-control">
+                                                                <input id="dni" name="dniPre" type="text" placeholder="{{userLogged.dni}}" class="form-control" >
                                                             </div>
                                                         </div>
                                                     </fieldset>

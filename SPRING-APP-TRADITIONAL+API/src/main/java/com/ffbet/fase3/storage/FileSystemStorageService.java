@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ffbet.fase3.domain.User;
+import com.ffbet.fase3.services.UserService;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +22,8 @@ import java.util.stream.Stream;
 public class FileSystemStorageService implements StorageService {
 
 	private final Path rootLocation;
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
@@ -26,13 +32,20 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void store(MultipartFile file) {
+		User user = userService.handleUserLoggedFromComponent();
+		
+		String fileName = user.getName() + "-" + user.getId() + ".png";
+		
+		if(user.isPhotoSelected()){
+			FileSystemUtils.deleteRecursively(load(fileName).toFile()); //Delete the image if exists yet
+		}
 		try {
 			if (file.isEmpty()) {
-				throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
+				throw new StorageException("Failed to store empty file " + fileName);
 			}
-			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+			Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
 		} catch (IOException e) {
-			throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
+			throw new StorageException("Failed to store file " + fileName, e);
 		}
 	}
 
