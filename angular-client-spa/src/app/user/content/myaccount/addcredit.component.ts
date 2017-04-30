@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../../services/user.service';
 
@@ -12,20 +13,22 @@ import { CreditCard } from '../../../model/creditCard.model';
 })
 
 export class AddcreditComponent implements OnInit {
-    public radioModel: string = 'visa';
+    public radioModel = 'visa';
     selectedCard: boolean;
     creditCard: CreditCard;
 
     title = 'Añadir Fondos';
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private router: Router
     ) { }
 
     ngOnInit() { }
 
     creditPlus(card: CreditCard) {
         this.userService.creditCardPlus(card);
+        this.router.navigate(['/user/myaccount']);
     }
 
 }
