@@ -1,4 +1,5 @@
 import { CreditCard } from '../model/creditCard.model';
+import { BetTicket } from '../model/bet-ticket.model';
 
 export interface User {
   id: number;
@@ -18,4 +19,5 @@ export interface User {
   photoSelected: boolean;
   photoUrl?: string;
   cards?: CreditCard[];
+  betTickets?: BetTicket[];
 }
