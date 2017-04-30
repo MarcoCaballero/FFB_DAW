@@ -3,6 +3,8 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { matchSportUrl, matchEgamesUrl, matchFootballUrl, matchBasketlUrl ,matchLolUrl , matchCsUrl, matchUrl } from '../paths';
+
 import { SportMatch } from '../model/sport-match.model';
 
 import { AuthService } from './auth.service';
@@ -17,7 +19,7 @@ export class MatchService {
     ) { }
 
     getFootballMatches(): Promise<SportMatch[]> {
-        return this.http.get('http://127.0.0.1:8080/api/matches/sports/football')
+        return this.http.get(matchFootballUrl)
             .toPromise()
             .then(
             response => {
@@ -28,7 +30,7 @@ export class MatchService {
     }
 
     getBasketballMatches(): Promise<SportMatch[]> {
-        return this.http.get('http://127.0.0.1:8080/api/matches/sports/basketball')
+        return this.http.get(matchBasketlUrl)
             .toPromise()
             .then(
             response => {
@@ -39,7 +41,7 @@ export class MatchService {
     }
 
     getLolMatches(): Promise<EgamesMatch[]> {
-        return this.http.get('http://127.0.0.1:8080/api/matches/egames/lol')
+        return this.http.get(matchLolUrl)
             .toPromise()
             .then(
             response => {
@@ -50,7 +52,7 @@ export class MatchService {
     }
 
     getCsMatches(): Promise<EgamesMatch[]> {
-        return this.http.get('http://127.0.0.1:8080/api/matches/egames/cs')
+        return this.http.get(matchCsUrl)
             .toPromise()
             .then(
             response => {
@@ -66,7 +68,7 @@ export class MatchService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/matches/sports', JSON.stringify(match), options)
+        return this.http.post(matchSportUrl, JSON.stringify(match), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -78,7 +80,7 @@ export class MatchService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/matches/egames', JSON.stringify(match), options)
+        return this.http.post(matchEgamesUrl, JSON.stringify(match), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -90,7 +92,7 @@ export class MatchService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/matches/sports/' + matchFootBallResult.id,
+        return this.http.put(matchSportUrl + matchFootBallResult.id,
             JSON.stringify(matchFootBallResult), options)
             .toPromise()
             .then(response => response.json())
@@ -104,7 +106,7 @@ export class MatchService {
         });
         const options = new RequestOptions({ headers });
         console.log(JSON.stringify(matchEgamesResult));
-        return this.http.put('http://127.0.0.1:8080/api/matches/egames/' + matchEgamesResult.id, JSON.stringify(matchEgamesResult), options)
+        return this.http.put(matchEgamesUrl + matchEgamesResult.id, JSON.stringify(matchEgamesResult), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -116,7 +118,7 @@ export class MatchService {
         });
         const options = new RequestOptions({ headers });
         console.log(this.authService.getCredentials());
-        return this.http.delete('http://127.0.0.1:8080/api/matches/' + id, options)
+        return this.http.delete(matchUrl + id, options)
             .toPromise()
             .then(undefined)
             .catch(error => console.error(error));
@@ -128,7 +130,7 @@ export class MatchService {
         });
         const options = new RequestOptions({ headers });
         console.log(this.authService.getCredentials());
-        return this.http.delete('http://127.0.0.1:8080/api/matches/' + id, options)
+        return this.http.delete(matchUrl + id, options)
             .toPromise()
             .then(undefined)
             .catch(error => console.error(error));

@@ -2,6 +2,7 @@ import { CreditCard } from '../model/creditCard.model';
 
 export interface User {
   id: number;
+  credit: number;
   email: string;
   roles: string[];
   name: string;
@@ -13,7 +14,8 @@ export interface User {
   country?: string;
   city?: string;
   location?: string;
-  men?: boolean;
+  men: boolean;
+  photoSelected: boolean;
   photoUrl?: string;
   cards?: CreditCard[];
 }

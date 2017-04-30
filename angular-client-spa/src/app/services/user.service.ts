@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 
+import { userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
+
 import { AuthService } from './auth.service';
 
 import { User } from '../model/user.model';
@@ -13,14 +15,14 @@ export class UserService {
     constructor(private http: Http, private authService: AuthService) { }
 
     getUsers(): Promise<User[]> {
-        return this.http.get('http://127.0.0.1:8080/api/user')
+        return this.http.get(userUrl)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
     }
 
     getUser(id: number): Promise<User> {
-        return this.http.get('http://127.0.0.1:8080/api/user' + id)
+        return this.http.get(userUrl + id)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -31,7 +33,7 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/user', JSON.stringify(user), options)
+        return this.http.post(userUrl, JSON.stringify(user), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -43,7 +45,7 @@ export class UserService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/user/', JSON.stringify(user), options)
+        return this.http.put(userUrl, JSON.stringify(user), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -54,7 +56,7 @@ export class UserService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        return this.http.delete('http://127.0.0.1:8080/api/user/' + id, options)
+        return this.http.delete(userUrl + id, options)
             .toPromise()
             .then(undefined)
             .catch(error => console.error(error));
@@ -65,7 +67,7 @@ export class UserService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/storage/', formData, options)
+        return this.http.post(userStorageUrl, formData, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -76,7 +78,7 @@ export class UserService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/user/creditCardPlus/' + card.credit, card, options)
+        return this.http.put(userAddCreditUrl + card.credit, card, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
