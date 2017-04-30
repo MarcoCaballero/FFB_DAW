@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 
-import { userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
+import { userCards, userWithDrawCreditUrl, userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
 
 import { AuthService } from './auth.service';
 
@@ -73,12 +73,34 @@ export class UserService {
             .catch(error => console.error(error));
     }
 
+    getCards(id: number): Promise<CreditCard[]> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.get(userCards + id, options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
     creditCardPlus(card: CreditCard): Promise<CreditCard> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
         return this.http.put(userAddCreditUrl + card.credit, card, options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    creditCardLess(cardNumber: string, amount: number): Promise<CreditCard> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.put(userWithDrawCreditUrl + amount, cardNumber, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
