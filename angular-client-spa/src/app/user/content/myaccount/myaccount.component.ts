@@ -3,6 +3,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
 
 
 import { User } from '../../../model/user.model';
+import { BetTicket } from '../../../model/bet-ticket.model';
 
 import { UserService } from '../../../services/user.service';
 
@@ -21,6 +22,9 @@ export class MyAccountComponent implements OnInit {
     public selectedTab = 0;
     public userLogged: User;
     public readOnly = "readonly";
+    public tickets: BetTicket[];
+    amount = 0;
+    potencialGain = 0;
 
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
@@ -33,7 +37,6 @@ export class MyAccountComponent implements OnInit {
     ngOnInit() {
         this.setUserLogged(JSON.parse(localStorage.getItem('user')));
         this.getUser(this.userLogged.id);
-        console.log(this.userLogged);
     }
 
     public getUser(id: number) {
@@ -76,6 +79,13 @@ export class MyAccountComponent implements OnInit {
             });
     }
 
+    getTickets(user: User) {
+        this.tickets = this.userLogged.betTickets;
+        this.tickets.forEach(element => {
+            this.amount += element.amount;
+            this.potencialGain += element.potentialGain;
+        });
+    }
 
 }
 
