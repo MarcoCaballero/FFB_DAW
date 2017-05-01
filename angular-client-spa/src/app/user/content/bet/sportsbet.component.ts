@@ -20,6 +20,8 @@ export class SportsbetComponent implements OnInit {
     private basketballMatches: SportMatch[];
     private sportTicket: BetTicket;
     private egamesTicket: BetTicket;
+    public potentialGainTemporary = 0.00;
+    public multiplicator = 1;
 
     constructor(private matchService: MatchService, private betService: BetService) { }
 
@@ -51,15 +53,27 @@ export class SportsbetComponent implements OnInit {
 
     addSportMatchToBet(sportMatch: SportMatch, quota: string) {
         this.betService.addSporTeam(sportMatch, quota)
-            .then(ticket => this.sportTicket = ticket);
+            .then(ticket => {
+                this.sportTicket = ticket;
+                this.potentialGainTemporary = ticket.potentialGain;
+            });
+    }
+
+
+
+    onChangeAmount(value: number) {
+        this.potentialGainTemporary = this.sportTicket.potentialGain * value;
+        this.multiplicator = value;
     }
 
     removeSportMatchToBet(index: number) {
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el equipo con id '
-            + index + '?');
+        const confirmationMessage = confirm(`¿Estás seguro de que quieres borrar el partido con id  ${index}  ?`);
         if (confirmationMessage) {
             this.betService.deleteSporTeam(index)
-                .then(ticket => this.sportTicket = ticket);
+                .then(ticket => {
+                    this.sportTicket = ticket;
+                    this.potentialGainTemporary = ticket.potentialGain;
+                });
         }
     }
 
