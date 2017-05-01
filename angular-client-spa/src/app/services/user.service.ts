@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 
-import { userCards, userWithDrawCreditUrl, userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
+import { userTickets, userCards, userWithDrawCreditUrl, userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
 
 import { AuthService } from './auth.service';
 
@@ -101,6 +101,17 @@ export class UserService {
         });
         const options = new RequestOptions({ headers });
         return this.http.put(userWithDrawCreditUrl + amount, cardNumber, options)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    getTickets(user: User) {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials()
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.get(userTickets + user.id, options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));

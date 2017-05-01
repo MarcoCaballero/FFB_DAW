@@ -134,7 +134,7 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getStadium_image() != "unknown") {
-			File file = userService.handleFileDownload(response, team.getLogo_image(), "covers");
+			File file = userService.handleFileDownload(response, team.getStadium_image(), "covers");
 			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {

@@ -6,8 +6,8 @@ export interface BetTicket {
     // betMatchesList: BetEgamesMatch[];
     amount: number;
     potentialGain?: number;
-    isWinned?: boolean;
+    winned?: boolean;
     isLosed?: boolean;
     isUsed?: boolean;
-    isFinished?: boolean;
+    finished?: boolean;
 }
