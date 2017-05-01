@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { UserService } from '../../../services/user.service';
 
@@ -21,14 +22,15 @@ export class AddcreditComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private location: Location
     ) { }
 
     ngOnInit() { }
 
     creditPlus(card: CreditCard) {
-        this.userService.creditCardPlus(card);
-        this.router.navigate(['/user/myaccount']);
+        this.userService.creditCardPlus(card)
+            .then(() => this.router.navigate(['/user/myaccount']));
     }
 
 }

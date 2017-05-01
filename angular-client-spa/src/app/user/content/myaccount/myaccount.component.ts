@@ -4,10 +4,14 @@ import { TabsetComponent } from 'ngx-bootstrap';
 
 import { User } from '../../../model/user.model';
 import { BetTicket } from '../../../model/bet-ticket.model';
+import { Team } from '../../../model/team.model';
+import { SportMatch } from '../../../model/sport-match.model';
 
+import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
-
-
+import { TeamService } from '../../../services/team.service';
+import { MatchService } from '../../../services/match.service';
+import { BetService } from '../../../services/bet.service';
 
 @Component({
     moduleId: module.id,
@@ -21,10 +25,15 @@ export class MyAccountComponent implements OnInit {
     public isCollapsed = false;
     public selectedTab = 0;
     public userLogged: User;
-    public readOnly = "readonly";
-    public tickets: BetTicket[];
+    public readOnly = 'readonly';
+    tickets: BetTicket[];
+    finishedTickets: BetTicket[];
     amount = 0;
-    potencialGain = 0;
+    potentialGain = 0;
+    teams: Team[];
+    selectedTeam: Team;
+    matches: SportMatch[];
+    finishedMatches: SportMatch[];
 
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
@@ -32,17 +41,26 @@ export class MyAccountComponent implements OnInit {
 
 
     // Methods
-    constructor(private userService: UserService) { }
+    constructor(
+        private authService: AuthService,
+        private userService: UserService,
+        private teamService: TeamService,
+        private matchService: MatchService,
+        private betService: BetService
+    ) { }
 
     ngOnInit() {
-        this.setUserLogged(JSON.parse(localStorage.getItem('user')));
+        this.setUserLogged(this.authService.getUser());
         this.getUser(this.userLogged.id);
+        this.getTeams();
+        this.getTickets(this.userLogged);
+        this.getFinishedTickets(this.userLogged);
     }
 
     public getUser(id: number) {
         this.userService
             .getUser(id)
-            .then(response => this.userLogged = response)
+            .then(response => this.userLogged = response);
     }
 
     public setUserLogged(user: User) {
@@ -67,24 +85,75 @@ export class MyAccountComponent implements OnInit {
     }
 
     uploadFile(event) {
-        let file: File = event.target.files[0];
+        const file: File = event.target.files[0];
         const formData = new FormData();
         formData.append('file', file, file.name);
         console.log(file.name);
-        let title = this.userService
+        const title = this.userService
             .uploadFile(formData)
             .then(response => {
                 this.getUser(this.userLogged.id);
-                console.log(this.userLogged)
+                console.log(this.userLogged);
             });
     }
 
     getTickets(user: User) {
-        this.tickets = this.userLogged.betTickets;
-        this.tickets.forEach(element => {
-            this.amount += element.amount;
-            this.potencialGain += element.potentialGain;
-        });
+        this.userService.getTickets(user)
+            .then(
+            tickets => {
+                this.tickets = tickets.filter(ticket => ticket.finished === false);
+                this.tickets.forEach(element => {
+                    this.amount += element.amount;
+                    this.potentialGain += element.potentialGain;
+                });
+            }
+            );
+    }
+
+    getFinishedTickets(user: User) {
+        this.userService.getTickets(user)
+            .then(tickets => {
+                this.finishedTickets = tickets
+                    .filter(finishedTickets => finishedTickets.finished === true);
+            });
+    }
+
+    getTeams() {
+        this.teamService.getSportsTeams().then(teams => this.teams = teams
+            .filter(footballTeams => footballTeams.type === 'Fútbol'));
+    }
+
+    selectTeam(team: Team) {
+        this.selectedTeam = team;
+        this.getMatches(this.selectedTeam);
+        this.getFinishedMatches();
+        this.isCollapsed = false;
+    }
+
+    getMatches(team: Team) {
+        this.matchService.getFootballMatches()
+            .then(match => this.matches = match
+                .filter(footballMatches => footballMatches.id === team.id));
+    }
+
+    getFinishedMatches() {
+        this.finishedMatches = this.matches.filter(finishedMatches => finishedMatches.finished === true);
+    }
+
+    validateTicket(ticket: BetTicket) {
+        this.betService.validateTicket(ticket)
+            .then(() => {
+                this.getFinishedTickets(this.userLogged);
+                this.getUser(this.userLogged.id);
+            });
+    }
+
+    deleteTicket(ticket: BetTicket) {
+        this.betService.deleteTicket(ticket)
+            .then(() => {
+                this.getFinishedTickets(this.userLogged);
+                this.getUser(this.userLogged.id);
+            });
     }
 
 }

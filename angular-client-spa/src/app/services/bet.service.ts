@@ -27,14 +27,28 @@ export class BetService {
     }
 
     addSporTeam(spMatch: SportMatch, quota: string): Promise<BetTicket> {
-        return this.http.patch(betMatchhUrl + spMatch.id + "/sports/" + quota, spMatch)
+        return this.http.patch(betMatchhUrl + spMatch.id + '/sports/' + quota, spMatch)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
     }
 
-     deleteSporTeam(id: number): Promise<BetTicket> {
-        return this.http.delete(betMatchhUrl + id + "/sports")
+    deleteSporTeam(id: number): Promise<BetTicket> {
+        return this.http.delete(betMatchhUrl + id + '/sports')
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    validateTicket(ticket: BetTicket): Promise<BetTicket> {
+        return this.http.get(betUrl + ticket.id)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    deleteTicket(ticket: BetTicket): Promise<BetTicket> {
+        return this.http.delete(betUrl + ticket.id)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));

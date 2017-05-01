@@ -14,6 +14,7 @@ export const userUrl = baseUrl + 'user/';
 export const userCards = baseUrl + 'user/creditCards/';
 export const userAddCreditUrl = baseUrl + 'user/creditCardPlus/';
 export const userWithDrawCreditUrl = baseUrl + 'user/creditCardLess/';
+export const userTickets = baseUrl + 'user/tickets/';
 export const userStorageUrl = baseUrl + 'storage/';
 
 // Admin Module
