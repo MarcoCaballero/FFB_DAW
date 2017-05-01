@@ -99,6 +99,7 @@ public class BetTicketService {
 
 		}
 
+		bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
 		return bt;
 	}
 
