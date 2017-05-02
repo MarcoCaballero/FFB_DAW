@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, HostListener, } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 
 import { User } from '../../model/user.model';
@@ -17,18 +18,23 @@ import { UserService } from '../../services/user.service';
 export class MenuHeaderComponent implements OnInit {
     // Public fields
     public isCollapsed = true; // !Important to keep menu visible
-    public user: User;
+    user: User;
+
+    subscription: Subscription;
 
     @HostListener('window:resize') setCollapsed() {
         this.isCollapsed = true;
     }
 
-    constructor(
-        private loginService: LoginService,
-        private authService: AuthService,
-        private userService: UserService,
-        private router: Router
-    ) { }
+    constructor(private loginService: LoginService, private authService: AuthService, private userService: UserService,
+        private router: Router) {
+        this.subscription = userService.changeAnnounced$.subscribe(
+            user => {
+                userService
+                    .getUser(user.id)
+                    .then(userReboot => this.user = userReboot)
+            });
+    }
 
     ngOnInit() {
         this.authService.reloadAuth(); // Reload auth.service fields from localStorage
