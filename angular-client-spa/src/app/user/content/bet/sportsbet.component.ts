@@ -4,6 +4,8 @@ import { SportMatch } from 'app/model/sport-match.model';
 import { BetTicket } from 'app/model/bet-ticket.model';
 
 import { MatchService } from 'app/services/match.service';
+import { UserService } from 'app/services/user.service';
+import { AuthService } from 'app/services/auth.service';
 import { BetService } from 'app/services/bet.service';
 
 @Component({
@@ -23,7 +25,8 @@ export class SportsbetComponent implements OnInit {
     public potentialGainTemporary = 0.00;
     public multiplicator = 1;
 
-    constructor(private matchService: MatchService, private betService: BetService) { }
+    constructor(private matchService: MatchService, private betService: BetService, private userService: UserService
+        , private authService: AuthService) { }
 
     ngOnInit() {
         this.getBasketballMatchesFinished();
@@ -81,8 +84,18 @@ export class SportsbetComponent implements OnInit {
             this.betService.sendBet(this.multiplicator)
                 .then(ticket => {
                     this.sportTicket = ticket;
+                    this.uploadUser();
                 });
         }
+    }
+
+    uploadUser() {
+        this.userService
+            .getUser(this.authService.getUser().id)
+            .then(user => {
+                this.authService.buildUser(user);
+                this.userService.announceChange(user);
+            });
     }
 
 

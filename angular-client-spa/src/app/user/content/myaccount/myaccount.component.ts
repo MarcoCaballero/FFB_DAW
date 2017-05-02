@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { Subscription } from 'rxjs/Subscription';
 
 
 import { User } from '../../../model/user.model';
@@ -35,23 +36,27 @@ export class MyAccountComponent implements OnInit {
     matches: SportMatch[];
     finishedMatches: SportMatch[];
 
+
+
+    subscription: Subscription;
+
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
     title = 'Mi cuenta';
 
 
     // Methods
-    constructor(
-        private authService: AuthService,
-        private userService: UserService,
-        private teamService: TeamService,
+    constructor(private authService: AuthService, private userService: UserService, private teamService: TeamService,
         private matchService: MatchService,
-        private betService: BetService
-    ) { }
+        private betService: BetService) {
+        this.subscription = userService.changeAnnounced$.subscribe(
+            user => {
+                this.userLogged = user;
+            });
+    }
 
     ngOnInit() {
         this.setUserLogged(this.authService.getUser());
-        console.log(`upload onInit  -${this.userLogged.name}- is it ? ${this.userLogged.isMen}`);
         this.getTeams();
         this.getTickets(this.userLogged);
         this.getFinishedTickets(this.userLogged);
@@ -101,7 +106,6 @@ export class MyAccountComponent implements OnInit {
             .then(response => {
                 this.getUser(this.userLogged.id);
                 this.userService.announceChange(this.userLogged);
-                console.log(`upload changed  -${this.userLogged.name}- is it ? ${this.userLogged.isMen} announced`);
             });
     }
 

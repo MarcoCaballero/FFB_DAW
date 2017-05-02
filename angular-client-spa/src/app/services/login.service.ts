@@ -34,7 +34,6 @@ export class LoginService implements OnDestroy {
 
         return this.http.get(loginUrl, options).map(
             response => {
-                console.log(response)
                 this.authService.buildUser(response.json());  // Create a persistent user by Auth.service
                 return response;
             })

@@ -30,21 +30,13 @@ export class MenuHeaderComponent implements OnInit {
         private router: Router) {
         this.subscription = userService.changeAnnounced$.subscribe(
             user => {
-                userService
-                    .getUser(user.id)
-                    .then(userReboot => {
-                        this.user = userReboot
-                        console.log(`header received that  -${this.user.name}- is it ? ${this.user.isMen}`);
-                    })
+                this.user = user;
             });
     }
 
     ngOnInit() {
         this.authService.reloadAuth(); // Reload auth.service fields from localStorage
-
         this.user = this.authService.getUser();
-
-        console.log(`header onInit  -${this.user.name}- is it ? ${this.user.isMen}`);
 
     }
 
@@ -53,7 +45,6 @@ export class MenuHeaderComponent implements OnInit {
             response => {
                 this.router.navigate(['/login']);
             },
-            error => console.log('Error when trying to log out: ' + error)
         );
     }
 
