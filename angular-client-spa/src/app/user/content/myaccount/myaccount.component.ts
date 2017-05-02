@@ -51,7 +51,7 @@ export class MyAccountComponent implements OnInit {
 
     ngOnInit() {
         this.setUserLogged(this.authService.getUser());
-        this.getUser(this.userLogged.id);
+        console.log(`upload onInit  -${this.userLogged.name}- is it ? ${this.userLogged.isMen}`);
         this.getTeams();
         this.getTickets(this.userLogged);
         this.getFinishedTickets(this.userLogged);
@@ -60,7 +60,11 @@ export class MyAccountComponent implements OnInit {
     public getUser(id: number) {
         this.userService
             .getUser(id)
-            .then(response => this.userLogged = response);
+            .then(response => {
+                this.userLogged = response;
+                this.authService.buildUser(response);
+            });
+
     }
 
     public setUserLogged(user: User) {
@@ -96,9 +100,8 @@ export class MyAccountComponent implements OnInit {
             .uploadFile(this.fileAux)
             .then(response => {
                 this.getUser(this.userLogged.id);
-                this.authService.buildUser(this.userLogged);
                 this.userService.announceChange(this.userLogged);
-                console.log(`changed  -${this.userLogged.name}- announced`);
+                console.log(`upload changed  -${this.userLogged.name}- is it ? ${this.userLogged.isMen} announced`);
             });
     }
 

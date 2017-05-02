@@ -32,13 +32,19 @@ export class MenuHeaderComponent implements OnInit {
             user => {
                 userService
                     .getUser(user.id)
-                    .then(userReboot => this.user = userReboot)
+                    .then(userReboot => {
+                        this.user = userReboot
+                        console.log(`header received that  -${this.user.name}- is it ? ${this.user.isMen}`);
+                    })
             });
     }
 
     ngOnInit() {
         this.authService.reloadAuth(); // Reload auth.service fields from localStorage
+
         this.user = this.authService.getUser();
+
+        console.log(`header onInit  -${this.user.name}- is it ? ${this.user.isMen}`);
 
     }
 

@@ -28,9 +28,9 @@
         <li class="dropdown pull-right" style="margin-top: -3%;" dropdown>
           <a type="button" class="dropdown-toggle" dropdown-open>
 
-            <img *ngIf="user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/boyUser.svg" style="height: 2.4em;">
-            <img *ngIf="!user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/userGirl.svg" style="height: 2.4em;">
-            <img *ngIf="user.photoSelected" class="img-circle ffb" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
+            <img *ngIf="user.isMen && !user.isPhotoSelected" class="img-circle" alt="" src="../assets/images/boyUser.svg" style="height: 2.4em;">
+            <img *ngIf="!user.isMen && !user.isPhotoSelected" class="img-circle" alt="" src="../assets/images/userGirl.svg" style="height: 2.4em;">
+            <img *ngIf="user.isPhotoSelected" class="img-circle ffb" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
               style="height: 2.4em;">
 
             <strong class="text-left small ffb user-email"> {{user.email}} </strong>
@@ -45,9 +45,9 @@
                 <div class="row">
                   <div class="col-lg-4">
                     <p class="text-center">
-                      <img *ngIf="user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/boyUser.svg" style="padding-left: 15%; height: 6em;">
-                      <img *ngIf="!user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/userGirl.svg" style="padding-left: 15%; height: 6em;">
-                      <img *ngIf="user.photoSelected" class="img-circle" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
+                      <img *ngIf="user.isMen && !user.isPhotoSelected" class="img-circle" alt="" src="../assets/images/boyUser.svg" style="padding-left: 15%; height: 6em;">
+                      <img *ngIf="!user.isMen && !user.isPhotoSelected" class="img-circle" alt="" src="../assets/images/userGirl.svg" style="padding-left: 15%; height: 6em;">
+                      <img *ngIf="user.isPhotoSelected" class="img-circle" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
                         style="padding-left: 15%; height: 6em;">
                     </p>
                   </div>
