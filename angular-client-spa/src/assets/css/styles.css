@@ -2048,6 +2048,10 @@ ul.nav.nav-justified.nav-pills {
     font-family: cursive;
 }
 
+img.img-circle.fbb {
+    max-width: 3em;
+}
+
 @media (max-width: 768px) {
     div#sidebar-collapse {
         z-index: -1;

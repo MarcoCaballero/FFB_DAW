@@ -30,7 +30,7 @@
 
             <img *ngIf="user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/boyUser.svg" style="height: 2.4em;">
             <img *ngIf="!user.men && !user.photoSelected" class="img-circle" alt="" src="../assets/images/userGirl.svg" style="height: 2.4em;">
-            <img *ngIf="user.photoSelected" class="img-circle" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
+            <img *ngIf="user.photoSelected" class="img-circle ffb" alt="" src="http://127.0.0.1:8080/api/storage/files/{{user.name}}-{{user.id}}.png"
               style="height: 2.4em;">
 
             <strong class="text-left small ffb user-email"> {{user.email}} </strong>

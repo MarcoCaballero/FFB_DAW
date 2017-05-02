@@ -32,6 +32,14 @@ export class SportsbetComponent implements OnInit {
         this.getSportTicket();
     }
 
+    addSportMatchToBet(sportMatch: SportMatch, quota: string) {
+        this.betService.addSporTeam(sportMatch, quota)
+            .then(ticket => {
+                this.sportTicket = ticket;
+                this.potentialGainTemporary = ticket.potentialGain;
+            });
+    }
+
     getBasketballMatchesFinished() {
         this.matchService.getBasketballMatches()
             .then(sportMatches => this.basketballMatches = sportMatches.filter(matches => matches.finished === false));
@@ -51,16 +59,6 @@ export class SportsbetComponent implements OnInit {
             .then(ticket => this.egamesTicket = ticket);
     }
 
-    addSportMatchToBet(sportMatch: SportMatch, quota: string) {
-        this.betService.addSporTeam(sportMatch, quota)
-            .then(ticket => {
-                this.sportTicket = ticket;
-                this.potentialGainTemporary = ticket.potentialGain;
-            });
-    }
-
-
-
     onChangeAmount(value: number) {
         this.potentialGainTemporary = this.sportTicket.potentialGain * value;
         this.multiplicator = value;
@@ -73,6 +71,16 @@ export class SportsbetComponent implements OnInit {
                 .then(ticket => {
                     this.sportTicket = ticket;
                     this.potentialGainTemporary = ticket.potentialGain;
+                });
+        }
+    }
+
+    sendBet() {
+        const confirmationMessage = confirm(`Se va a proceder a enviar la apuesta, y descontar ${this.multiplicator}€ de su cuenta, ¿ Desea continuar ? `);
+        if (confirmationMessage) {
+            this.betService.sendBet(this.multiplicator)
+                .then(ticket => {
+                    this.sportTicket = ticket;
                 });
         }
     }

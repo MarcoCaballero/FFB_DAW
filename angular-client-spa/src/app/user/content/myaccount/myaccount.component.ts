@@ -25,7 +25,7 @@ export class MyAccountComponent implements OnInit {
     public isCollapsed = false;
     public selectedTab = 0;
     public userLogged: User;
-    public readOnly = 'readonly';
+    private fileAux: FormData;
     tickets: BetTicket[];
     finishedTickets: BetTicket[];
     amount = 0;
@@ -75,7 +75,7 @@ export class MyAccountComponent implements OnInit {
         console.log(event);
     }
 
-    selectTab(tab_id: number) {
+    public selectTab(tab_id: number) {
         this.staticTabs.tabs[tab_id].active = true;
         this.selectedTab = tab_id;
     }
@@ -84,20 +84,25 @@ export class MyAccountComponent implements OnInit {
         this.selectedTab = tab_id;
     }
 
-    uploadFile(event) {
+    public uploadFile(event) {
         const file: File = event.target.files[0];
         const formData = new FormData();
         formData.append('file', file, file.name);
-        console.log(file.name);
-        const title = this.userService
-            .uploadFile(formData)
+        this.fileAux = formData;
+
+    }
+    public uploadUser() {
+        this.userService
+            .uploadFile(this.fileAux)
             .then(response => {
                 this.getUser(this.userLogged.id);
-                console.log(this.userLogged);
+                this.authService.buildUser(this.userLogged);
+                this.userService.announceChange(this.userLogged);
+                console.log(`changed  -${this.userLogged.name}- announced`);
             });
     }
 
-    getTickets(user: User) {
+    public getTickets(user: User) {
         this.userService.getTickets(user)
             .then(
             tickets => {
@@ -110,7 +115,7 @@ export class MyAccountComponent implements OnInit {
             );
     }
 
-    getFinishedTickets(user: User) {
+    public getFinishedTickets(user: User) {
         this.userService.getTickets(user)
             .then(tickets => {
                 this.finishedTickets = tickets
@@ -118,29 +123,29 @@ export class MyAccountComponent implements OnInit {
             });
     }
 
-    getTeams() {
+    public getTeams() {
         this.teamService.getSportsTeams().then(teams => this.teams = teams
             .filter(footballTeams => footballTeams.type === 'Fútbol'));
     }
 
-    selectTeam(team: Team) {
+    public selectTeam(team: Team) {
         this.selectedTeam = team;
         this.getMatches(this.selectedTeam);
         this.getFinishedMatches();
         this.isCollapsed = false;
     }
 
-    getMatches(team: Team) {
+    public getMatches(team: Team) {
         this.matchService.getFootballMatches()
             .then(match => this.matches = match
                 .filter(footballMatches => footballMatches.id === team.id));
     }
 
-    getFinishedMatches() {
+    public getFinishedMatches() {
         this.finishedMatches = this.matches.filter(finishedMatches => finishedMatches.finished === true);
     }
 
-    validateTicket(ticket: BetTicket) {
+    public validateTicket(ticket: BetTicket) {
         this.betService.validateTicket(ticket)
             .then(() => {
                 this.getFinishedTickets(this.userLogged);
@@ -148,7 +153,7 @@ export class MyAccountComponent implements OnInit {
             });
     }
 
-    deleteTicket(ticket: BetTicket) {
+    public deleteTicket(ticket: BetTicket) {
         this.betService.deleteTicket(ticket)
             .then(() => {
                 this.getFinishedTickets(this.userLogged);
