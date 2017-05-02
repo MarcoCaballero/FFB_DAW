@@ -33,8 +33,20 @@ export class BetService {
             .catch(error => console.error(error));
     }
 
-     deleteSporTeam(id: number): Promise<BetTicket> {
+    deleteSporTeam(id: number): Promise<BetTicket> {
         return this.http.delete(betMatchhUrl + id + "/sports")
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    sendBet(amount: number): Promise<BetTicket> {
+        const headers = new Headers({
+            'Authorization': 'Basic ' + this.authService.getCredentials(),
+            'Content-Type': 'application/json'
+        });
+        const options = new RequestOptions({ headers });
+        return this.http.post(betUrl + amount, this.authService.getUser() ,options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
