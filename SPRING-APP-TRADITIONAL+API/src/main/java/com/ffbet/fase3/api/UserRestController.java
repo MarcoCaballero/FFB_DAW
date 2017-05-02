@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.User;
@@ -152,6 +153,12 @@ public class UserRestController {
 	public List<CreditCard> getCreditCards(@PathVariable long id) {
 		User user = userService.findOne(id);
 		return user.getCards();
+	}
+	
+	@GetMapping("/tickets/{id}")
+	public List<BetTicket> getTicketsPerUser(@PathVariable long id){
+		User user = userService.findOne(id);
+		return user.getBet_tickets();
 	}
 
 }

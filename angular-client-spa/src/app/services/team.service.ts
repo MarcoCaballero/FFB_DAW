@@ -19,9 +19,9 @@ export class TeamService {
     // get every teams
     getTeams(): Promise<Team[]> {
         return this.http.get(teamUrl)
-        .toPromise()
-        .then(response => response.json())
-        .catch(error => console.error(error));
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
     }
 
     // get sports teams
