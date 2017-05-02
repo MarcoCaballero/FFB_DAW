@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../../model/user.model';
 import { CreditCard } from '../../../model/creditCard.model';
 
+import { AuthService } from '../../../services/auth.service'
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -21,12 +22,13 @@ export class WithdrawComponent implements OnInit {
     title = 'Retirar Fondos';
 
     constructor(
+        private authService: AuthService,
         private userService: UserService,
         private router: Router
     ) { }
 
     ngOnInit() {
-        this.userLogged = JSON.parse(localStorage.getItem('user'));
+        this.userLogged = this.authService.getUser();
         this.getUser(this.userLogged.id);
         this.getCards(this.userLogged);
     }
@@ -42,8 +44,8 @@ export class WithdrawComponent implements OnInit {
     }
 
     creditLess(cardNumber: string, amount: number) {
-        this.userService.creditCardLess(cardNumber, amount);
-        this.router.navigate(['/user/myaccount']);
+        this.userService.creditCardLess(cardNumber, amount)
+            .then(() => this.router.navigate(['/user/myaccount']));
     }
 
 }
