@@ -42,12 +42,15 @@ public class User {
 	@Column(nullable = false)
 	private String name;
 
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String surname;
 
+	@JsonView(Basico.class)
 	@Column
 	private String secondSurname;
 
+	@JsonView(Basico.class)
 	@Column(nullable = false)
 	private String dni;
 
@@ -55,20 +58,25 @@ public class User {
 	@Column(nullable = false)
 	private String email;
 
+	@JsonView(Basico.class)
 	private String telephone;
 
 	@Column(nullable = false)
 	private String password;
 
+	@JsonView(Basico.class)
 	@Column
 	private String country;
 
+	@JsonView(Basico.class)
 	@Column
 	private String city;
 
+	@JsonView(Basico.class)
 	@Column
 	private String location;
 
+	@JsonView(Basico.class)
 	@Column
 	private String photoUrl;
 
@@ -81,6 +89,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<Promotion> usedPromos = new ArrayList<>();
 
+	
 	@OneToMany(cascade = CascadeType.ALL) // Unidirectional
 	private List<CreditCard> cards = new ArrayList<>();
 
@@ -88,10 +97,15 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
+	@JsonView(Basico.class)
 	@Column
 	private boolean isMen;
+	
+	@JsonView(Basico.class)
 	@Column
 	private boolean isPhotoSelected;
+	
+	@JsonView(Basico.class)
 	@Column
 	private double credit;
 	@Column

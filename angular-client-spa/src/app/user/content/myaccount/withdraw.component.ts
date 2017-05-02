@@ -29,13 +29,18 @@ export class WithdrawComponent implements OnInit {
 
     ngOnInit() {
         this.userLogged = this.authService.getUser();
-        this.getUser(this.userLogged.id);
         this.getCards(this.userLogged);
     }
 
     getUser(id: number) {
-        this.userService.getUser(id)
-            .then(response => this.userLogged = response);
+        this.userService
+            .getUser(id)
+            .then(response => {
+                this.authService.buildUser(response);
+                this.userService.announceChange(this.authService.getUser());
+                this.userLogged = this.authService.getUser();
+            });
+
     }
 
     getCards(user: User) {
@@ -45,7 +50,10 @@ export class WithdrawComponent implements OnInit {
 
     creditLess(cardNumber: string, amount: number) {
         this.userService.creditCardLess(cardNumber, amount)
-            .then(() => this.router.navigate(['/user/myaccount']));
+            .then(() => {
+                this.getUser(this.authService.getUser().id);
+                this.router.navigate(['/user/myaccount'])
+            });
     }
 
 }
