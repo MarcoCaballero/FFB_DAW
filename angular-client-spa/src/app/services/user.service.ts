@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 
 import { userTickets, userCards, userWithDrawCreditUrl, userAddCreditUrl, userStorageUrl, userUrl } from '../paths';
 
@@ -13,6 +14,16 @@ import { CreditCard } from '../model/creditCard.model';
 export class UserService {
 
     constructor(private http: Http, private authService: AuthService) { }
+
+    // Observable string sources
+    private changeAnnouncedSource = new Subject<User>();
+    // Observable string streams
+    changeAnnounced$ = this.changeAnnouncedSource.asObservable();
+
+    // Service message commands
+    announceChange(user: User) {
+        this.changeAnnouncedSource.next(user);
+    }
 
     getUsers(): Promise<User[]> {
         return this.http.get(userUrl)
@@ -62,7 +73,7 @@ export class UserService {
             .catch(error => console.error(error));
     }
 
-    uploadFile(formData): Promise<string> {
+    uploadFile(formData): Promise<any> {
         const headers = new Headers({
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
