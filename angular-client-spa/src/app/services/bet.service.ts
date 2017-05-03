@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { betUrl, betMatchhUrl } from '../paths';
 
 import { SportMatch } from '../model/sport-match.model';
+import { EgamesMatch } from 'app/model/egames-match.model';
 import { BetTicket } from '../model/bet-ticket.model';
 import { BetSportMatch } from '../model/bet-sport-match.model';
 
@@ -25,9 +26,22 @@ export class BetService {
             .then(response => response.json())
             .catch(error => console.error(error));
     }
+    addEgamesTeam(egMatch: EgamesMatch, quota: string): Promise<BetTicket> {
+        return this.http.patch(betMatchhUrl + egMatch.id + '/egames/' + quota, egMatch)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
 
     addSporTeam(spMatch: SportMatch, quota: string): Promise<BetTicket> {
         return this.http.patch(betMatchhUrl + spMatch.id + '/sports/' + quota, spMatch)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
+    deleteEgamesTeam(id: number): Promise<BetTicket> {
+        return this.http.delete(betMatchhUrl + id + '/egames')
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -60,7 +74,7 @@ export class BetService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post(betUrl + amount, this.authService.getUser() ,options)
+        return this.http.post(betUrl + amount, this.authService.getUser(), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));

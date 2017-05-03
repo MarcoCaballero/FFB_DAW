@@ -67,16 +67,16 @@
 												<td class="tab-equipos-partido">{{lolMatch.homeTeam}} - {{lolMatch.visitingTeam}}</td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeVictory}}</a>
+														<a (click)="addEgamesMatchToBet(lolMatch, '1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingVictory}}</a>
+														<a (click)="addEgamesMatchToBet(lolMatch, '2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeFirstBlood}}</a>
+														<a (click)="addEgamesMatchToBet(lolMatch, 'FB1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaHomeFirstBlood}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingFirstBlood}}</a>
+														<a (click)="addEgamesMatchToBet(lolMatch, 'FB2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{lolMatch.quotaVisitingFirstBlood}}</a>
 													</div>
 												</td>
 											</tr>
@@ -109,16 +109,16 @@
 												<td class="tab-equipos-partido">{{csMatch.homeTeam}} - {{csMatch.visitingTeam}}</td>
 												<td class="tab-buttons-apuesta-simple">
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeVictory}}</a>
+														<a (click)="addEgamesMatchToBet(csMatch, '1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingVictory}}</a>
+														<a (click)="addEgamesMatchToBet(csMatch, '2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingVictory}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeFirstBlood}}</a>
+														<a (click)="addEgamesMatchToBet(csMatch, 'FB1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaHomeFirstBlood}}</a>
 													</div>
 													<div class="col-xs-6 col-md-3 center-block">
-														<a href="/user-EsportsBet/addMatch/ id /FB2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingFirstBlood}}</a>
+														<a (click)="addEgamesMatchToBet(csMatch, 'FB2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">{{csMatch.quotaVisitingFirstBlood}}</a>
 													</div>
 												</td>
 											</tr>
@@ -140,28 +140,31 @@
 							</span> APUESTA
 						</div>
 						<div class="panel-body">
-							<ul class="todo-list">
-								<li id="apuesta id " class="todo-list-item">
+							<ul class="todo-list" *ngIf="egamesTicket">
+								<li *ngFor="let betMatch of egamesTicket.betEspMatchesList" id="apuesta id " class="todo-list-item">
 									<div class="checkbox">
-
 										<label for="checkbox">
-											<p style="color: black;">
-												<i>Ganador del partido //
-													 match.homeTeam - match.visitingTeam  </i>
-											</p>
-											<p style="color: black;">
-												24/11 19:00 <strong> #selectedNamequota  </strong>
-												<span  class="glyphicon glyphicon-trash" style="margin-left: 25%;margin-top: 7px; color : red;">
-												</span>
-											</p>
+										<p style="color: black;">
+											<i>Ganador del partido //
+												 {{betMatch.match.homeTeam}} - {{betMatch.match.visitingTeam}}  </i>
+										</p>
+										<p *ngIf="betMatch.selectedNamequota" style="color: black;">
+											24/11 19:00 <strong> {{betMatch.selectedNamequota}}
+												@ {{betMatch.selectedQuota}} </strong>
 
-										</label>
-									</div>
-									<div class="pull-right action-buttons">
+										</p>
+										<p *ngIf="betMatch.selectedFirstBloodNamequota" style="color: black;">
+											24/11 19:00 <strong> {{betMatch.selectedFirstBloodNamequota}}
+												@ {{betMatch.selectedFirstBloodQuota}} </strong>
 
+										</p>
+									</label>
+
+										<a (click)="removeEgamesMatchToBet(betMatch.match.id)" class="glyphicon glyphicon-trash" style="margin-left: 10%;margin-top: 7px; color : red;">
+										</a>
 									</div>
 								</li>
-								<hr>
+
 							</ul>
 						</div>
 						<div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
@@ -173,7 +176,7 @@
 										</div>
 										<div class="col-md-4" style="color: white;"></div>
 										<div class="col-md-4" style="color: black;">
-											<select id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
+											<select (change)="onChangeAmount($event.target.value)" id="amountChangeBis" class="form-control" style="border: 1px solid #2d9df3;">
 											<option value=1 ><b>1€</b></option>
 											<option value=5 ><b>5€</b></option>
 											<option value=10><b>10€</b></option>

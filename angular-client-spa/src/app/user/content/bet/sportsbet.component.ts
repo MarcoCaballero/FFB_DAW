@@ -21,7 +21,6 @@ export class SportsbetComponent implements OnInit {
     private footballMatches: SportMatch[];
     private basketballMatches: SportMatch[];
     private sportTicket: BetTicket;
-    private egamesTicket: BetTicket;
     public potentialGainTemporary = 0.00;
     public multiplicator = 1;
 
@@ -30,7 +29,6 @@ export class SportsbetComponent implements OnInit {
 
     ngOnInit() {
         this.getBasketballMatchesFinished();
-        this.getEgamesTicket();
         this.getFootballMatchesFinished();
         this.getSportTicket();
     }
@@ -56,10 +54,6 @@ export class SportsbetComponent implements OnInit {
     getSportTicket() {
         this.betService.getLocalTicket('sports')
             .then(ticket => this.sportTicket = ticket);
-    }
-    getEgamesTicket() {
-        this.betService.getLocalTicket('egames')
-            .then(ticket => this.egamesTicket = ticket);
     }
 
     onChangeAmount(value: number) {
