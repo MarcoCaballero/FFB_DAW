@@ -1,6 +1,7 @@
 <ffbcomp-user-menu-header></ffbcomp-user-menu-header>
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
 	<div class="row">
 		<ol class="breadcrumb">
 			<li>
@@ -20,90 +21,48 @@
 					 width="50x">
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" (ngSubmit)="newUser()" #formName>
-						<fieldset>
-							<!-- Name input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Nombre</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.name" name="name" id="name" type="text" placeholder="Tu nombre" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checkname)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checkname)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+					<form #newUserForm="ngForm" class="form-horizontal" (ngSubmit)="newUser(newUserForm.value)" novalidate>
+
+						<!-- Name input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Nombre *</label>
+							<div class="col-md-7">
+								<input ngModel name="name" type="text" placeholder="Tu nombre" class="form-control" required>
 							</div>
-							<!-- SurName input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Primer apellido</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.surname" name="surname" id="surname" type="text" placeholder="Tu primer apellido" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checksurname)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checksurname)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- SurName input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Primer apellido *</label>
+							<div class="col-md-7">
+								<input ngModel name="surname" type="text" placeholder="Tu primer apellido" class="form-control" required>
 							</div>
-							<!-- Second SurName input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Segundo
-										apellido</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.secondSurname" name="secondSurname" id="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checksecondSurname)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checksecondSurname)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- Second SurName input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Segundo apellido *</label>
+							<div class="col-md-7">
+								<input ngModel name="secondSurname" type="text" placeholder="Tu segundo apellido" class="form-control" required>
 							</div>
-							<!-- DNI/NIF input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">DNI/NIF</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.dni" name="dni" id="dni" type="text" placeholder="Tu documento de identidad" class="form-control" required>
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checkdni)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checkdni)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- DNI/NIF input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">DNI/NIF *</label>
+							<div class="col-md-7">
+								<input ngModel name="dni" type="text" placeholder="Tu documento de identidad" class="form-control" required>
 							</div>
-							<!-- Email input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="email">Correo
-										electrónico</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.email" name="email" id="email" type="text" placeholder="Tu email" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checkemail)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checkemail)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- Email input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="email">Correo electrónico *</label>
+							<div class="col-md-7">
+								<input ngModel name="email" type="text" placeholder="Tu email" class="form-control" required>
 							</div>
-							<!-- Email Select input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="country">País</label>
-								<div class="col-md-9">
-									<select [(ngModel)]="user.country" name="country">
+						</div>
+						<!-- Email Select input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="country">País</label>
+							<div class="col-md-9">
+								<select ngModel name="country">
    											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value="AFG">Afghanistan</option>
 											<option value="ALA">Åland Islands</option>
@@ -355,101 +314,70 @@
 											<option value="ZMB">Zambia</option>
 											<option value="ZWE">Zimbabwe</option>
 										</select>
-								</div>
 							</div>
-							<!-- City input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Ciudad</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.city" name="city" id="city" type="text" placeholder="Tu ciudad" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checkcity)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checkcity)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- City input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Ciudad</label>
+							<div class="col-md-7">
+								<input ngModel name="city" type="text" placeholder="Tu ciudad" class="form-control">
 							</div>
-							<!-- Location input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Domicilio</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.location" name="location" id="street" type="text" placeholder="Tu domicilio" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checkstreet)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checkstreet)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- Location input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Domicilio</label>
+							<div class="col-md-7">
+								<input ngModel name="location" type="text" placeholder="Tu domicilio" class="form-control">
 							</div>
-							<!-- Telephone input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Teléfono</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.telephone" name="telephone" id="telephone" type="text" placeholder="Tu teléfono de contacto" class="form-control">
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-									<p *ngIf="isEmpty(checktelephone)">
-										<img class="logoReg" src="../assets/images/invalid-form.png">
-									</p>
-									<p *ngIf="!isEmpty(checktelephone)">
-										<img class="logoReg" src="../assets/images/Tick_form.png">
-									</p>
-								</div>
+						</div>
+						<!-- Telephone input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="name">Teléfono</label>
+							<div class="col-md-7">
+								<input ngModel name="telephone" type="text" placeholder="Tu teléfono de contacto" class="form-control">
 							</div>
-							<!-- Sex select input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="country">Sexo</label>
-								<div class="col-md-9">
-									<select [(ngModel)]="user.men" name="men">
+						</div>
+						<!-- Sex select input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="country">Sexo *</label>
+							<div class="col-md-9">
+								<select ngModel name="men" required>
 											<!-- ISO-3166-1: Alpha-3 Codes-->
 											<option value=true>HOMBRE</option>
 											<option value=false>MUJER</option>
 									</select>
-								</div>
-								<div *ngIf="checkFields" class="col-md-1">
-
-								</div>
 							</div>
-							<!-- Password input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="password">Contraseña</label>
-								<div class="col-md-7">
-									<input [(ngModel)]="user.password" name="password" id="password" type="password" placeholder="Introduce tu contraseña" class="form-control" [(ngModel)]="firstPassword">
-								</div>
-
+						</div>
+						<!-- Password input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="password">Contraseña *</label>
+							<div class="col-md-7">
+								<input ngModel name="password" type="password" placeholder="Introduce tu contraseña" class="form-control" required>
 							</div>
-							<!-- Password Repeat input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="password">Repite
-										Contraseña</label>
-								<div class="col-md-7">
-									<input id="passwordRepeat" name="passRepeat" type="password" placeholder="Repite tu contraseña" class="form-control" [(ngModel)]="secondPassword">
-								</div>
 
+						</div>
+						<!-- Password Repeat input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="password">Repite Contraseña *</label>
+							<div class="col-md-7">
+								<input [(ngModel)]="secondPassword" name="secondPassword" type="password" placeholder="Repite tu contraseña" class="form-control"
+								 required>
 							</div>
-							<!-- Form actions -->
-							<div class="form-group">
-								<div class="col-md-12 widget-right">
-									<p style="float: left; font-size: 2ch">
 
-
-										Recuerde que al registrase está aceptando las
-										<a href="ffb/user-policy">políticas internas</a> de &#64; ffbet.com
-										<img src="../assets/images/+18.png" height="16px"> 2017
-
-									</p>
-									<button class="btn btn-default btn-md pull-right">Registrarme</button>
-								</div>
+						</div>
+						<!-- Form actions -->
+						<div class="form-group">
+							<div class="col-md-12 widget-right">
+								<p style="float: left; font-size: 2ch">
+									Recuerde que al registrase está aceptando las
+									<a routerLink="/user/policy-privacy">políticas internas</a> de &#64; ffbet.com
+									<img src="../assets/images/+18.png" height="16px"> 2017
+								</p>
+								<button [disabled]="!newUserForm.form.valid" type="submit" class="btn btn-default btn-md pull-right">Registrarme</button>
 							</div>
-						</fieldset>
+						</div>
+
 					</form>
-
 				</div>
 			</div>
 		</div>
