@@ -158,18 +158,28 @@ export class MyAccountComponent implements OnInit {
     public selectTeam(team: Team) {
         this.selectedTeam = team;
         this.getMatches(this.selectedTeam);
-        this.getFinishedMatches();
+        this.getFinishedMatches(this.selectedTeam);
         this.isCollapsed = false;
     }
 
     public getMatches(team: Team) {
+
         this.matchService.getFootballMatches()
-            .then(match => this.matches = match
-                .filter(footballMatches => footballMatches.id === team.id));
+            .then(matches => {
+                this.matches = matches
+                    .filter(footballMatches => (!footballMatches.finished) && (footballMatches.homeTeam === team.name || footballMatches.visitingTeam === team.name));
+
+            });
+
     }
 
-    public getFinishedMatches() {
-        this.finishedMatches = this.matches.filter(finishedMatches => finishedMatches.finished === true);
+    public getFinishedMatches(team: Team) {
+
+        this.matchService.getFootballMatches()
+            .then(matches => {
+                this.finishedMatches = matches
+                    .filter(footballMatches => (footballMatches.finished) && (footballMatches.homeTeam === team.name || footballMatches.visitingTeam === team.name));
+            });
     }
 
     public validateTicket(ticket: BetTicket) {
