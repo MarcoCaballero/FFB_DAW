@@ -33,6 +33,21 @@ public class BetRestController {
 	BetTicket ticket_erasable_SP = null;
 	BetTicket ticket_erasable_EG = null;
 
+	@GetMapping("/match/{type}")
+	public ResponseEntity<BetTicket> getLocalTicket(@PathVariable String type, HttpServletRequest request) {
+		BetTicket erasableTckt;
+		if (type.equals("sports")) {
+			erasableTckt = ticket_erasable_SP;
+		} else {
+			erasableTckt = ticket_erasable_EG;
+		}
+		if (erasableTckt != null) {
+			return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 	/* BetMatch to ticket erasable zone */
 	@PatchMapping("/match/{id}/{type}/{quota}")
 	public ResponseEntity<BetTicket> addSportMatchToLocalBet(@PathVariable long id, @PathVariable String quota,
@@ -61,7 +76,8 @@ public class BetRestController {
 		}
 
 	}
-	@DeleteMapping("/match/{id}/{type}") 
+
+	@DeleteMapping("/match/{id}/{type}")
 	public ResponseEntity<BetTicket> removeMatchFromLocalBet(@PathVariable long id, @PathVariable String type) {
 
 		Match match;
@@ -74,11 +90,11 @@ public class BetRestController {
 		if (match != null) {
 
 			if (SportsMatch.class.isInstance(match)) {
-				ticket_erasable_SP = btService.removeMatchFromErasableTicket(ticket_erasable_SP, id);
+				ticket_erasable_SP = btService.removeMatchFromErasableTicket(ticket_erasable_SP, match.getId());
 
 				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 			} else {
-				ticket_erasable_EG = btService.removeMatchFromErasableTicket(ticket_erasable_EG, id);
+				ticket_erasable_EG = btService.removeMatchFromErasableTicket(ticket_erasable_EG, match.getId());
 
 				return new ResponseEntity<>(ticket_erasable_EG, HttpStatus.OK);
 			}
@@ -90,9 +106,9 @@ public class BetRestController {
 
 	/* SEND BET ZONE */
 
-	@PostMapping("/{amount}") 
+	@PostMapping("/{amount}")
 	public ResponseEntity<BetTicket> sendSportBet(@PathVariable int amount) {
-		
+
 		String code = "";
 		int promoQuantity = 0;
 
@@ -100,6 +116,7 @@ public class BetRestController {
 			ticket_erasable_SP = btService.initializeAmountRest(amount, ticket_erasable_SP);
 			if (btService.sendBet(ticket_erasable_SP, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
+				ticket_erasable_SP = null;
 				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 			}
 		}
@@ -109,6 +126,7 @@ public class BetRestController {
 
 			if (btService.sendBet(ticket_erasable_EG, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
+				ticket_erasable_EG = null;
 				return new ResponseEntity<>(ticket_erasable_EG, HttpStatus.OK);
 			}
 		}
@@ -116,17 +134,17 @@ public class BetRestController {
 	}
 
 	/* VALIDATION BET ZONE */
-	@GetMapping("/{id}") 
+	@GetMapping("/{id}")
 	public ResponseEntity<BetTicket> validateBet(@PathVariable long id) {
 
 		BetTicket bttocheck = btService.findOne(id);
 
 		if (bttocheck != null) {
 			// salida en json
-			if (bttocheck.isFinished()){
+			if (bttocheck.isFinished()) {
 				btService.validateBet(id);
 			}
-			
+
 			return new ResponseEntity<>(btService.findOne(id), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

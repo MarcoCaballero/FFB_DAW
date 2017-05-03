@@ -8,17 +8,16 @@ export interface EgamesMatch {
   type: string;
   homeTeam: string;
   visitingTeam: string;
-  quotaHomeVictory: string;
-  quotaVisitingVictory: string;
-  isFinished: boolean;
+  quotaHomeVictory: number;
+  quotaVisitingVictory: number;
+  finished: boolean;
   teams: Team[];
-  quotaDraw: number;
   quotaHomeFirstBlood: number;
   quotaVisitingFirstBlood: number;
   winnerTeam: string;
   firstBloodTeam: string;
   winHome: boolean;
   firstBloodHome: boolean;
-  winVisiting: boolean,
-  firstBloodVisiting; boolean
+  winVisiting: boolean;
+  firstBloodVisiting: boolean;
 }

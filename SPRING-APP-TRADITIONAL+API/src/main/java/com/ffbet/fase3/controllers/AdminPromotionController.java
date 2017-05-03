@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -131,14 +132,16 @@ public class AdminPromotionController extends RedirectController {
 	public void handleAvatarsFileLogo(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = handleFileDownload(model, response, fileName, "promos", res);
 
+		File file = userService.handleFileDownload(response, fileName, "promos");
+		
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+			
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+			res.sendError(404, "File" + fileName  + "does not exist");
 		}
 
 	}

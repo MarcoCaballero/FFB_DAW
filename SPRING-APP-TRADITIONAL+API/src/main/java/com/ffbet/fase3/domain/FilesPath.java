@@ -3,10 +3,10 @@ package com.ffbet.fase3.domain;
 public enum FilesPath {
 
 	
-	FILES_AVATARS("src/main/resources/static/files/avatars"),
-	FILES_TEAMS_COVER("src/main/resources/static/files/teams/covers"),
-	FILES_TEAMS_LOGO("src/main/resources/static/files/teams/logos"),
-	FILES_PROMOS("src/main/resources/static/files/promos");
+	FILES_AVATARS("static/files/avatars"),
+	FILES_TEAMS_COVER("static/files/teams/covers"),
+	FILES_TEAMS_LOGO("static/files/teams/logos"),
+	FILES_PROMOS("static/files/promos");
 	
 	private final String text;
 		

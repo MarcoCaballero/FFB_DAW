@@ -2038,5 +2038,27 @@ ul.nav.nav-justified.nav-pills {
     border-radius: 16px!important;
 }
 
+.text-left.ffb.user-name {
+    font-variant: small-caps;
+    font-family: cursive;
+    font-size: x-large;
+}
+.text-left.ffb.user-email {
+    font-variant: small-caps;
+    font-family: cursive;
+}
+
+img.img-circle.fbb {
+    max-width: 3em;
+}
+
+@media (max-width: 768px) {
+    div#sidebar-collapse {
+        z-index: -1;
+    }
+}
+
+
+
 
 

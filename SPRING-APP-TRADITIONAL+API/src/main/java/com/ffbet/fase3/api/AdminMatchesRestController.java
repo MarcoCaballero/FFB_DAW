@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.EgamesMatch;
 import com.ffbet.fase3.domain.Match;
 import com.ffbet.fase3.domain.SportsMatch;
+import com.ffbet.fase3.services.BetTicketService;
 import com.ffbet.fase3.services.MatchService;
 
 
@@ -29,6 +31,9 @@ public class AdminMatchesRestController {
 
 	@Autowired
 	private MatchService service;
+
+	@Autowired
+	private BetTicketService betTicketService;
 	
 	/* GET ALL MATCHES */
 	@GetMapping
@@ -117,12 +122,32 @@ public class AdminMatchesRestController {
 	public ResponseEntity<EgamesMatch> updateEgamesMatchByID(HttpServletRequest request, 
 			 @PathVariable long id, @RequestBody EgamesMatch updateEgamesMatch) {
 			
-		EgamesMatch match =service.findOneEgames(id);
+		EgamesMatch match =service.findOneEgames(updateEgamesMatch.getId());
 			
 		if(match != null){
-			//updateEgamesMatch.setId(id);
-			service.saveEgamesMatch(match);
-			return new ResponseEntity<>(match, HttpStatus.OK);
+			
+			if (updateEgamesMatch.getWinnerTeam().equals(updateEgamesMatch.getHomeTeam())) {
+				updateEgamesMatch.setWinHome(true);
+				updateEgamesMatch.setWinVisiting(false);
+			} else {
+				updateEgamesMatch.setWinHome(false);
+				updateEgamesMatch.setWinVisiting(true);
+			}
+
+			if (updateEgamesMatch.getFirstBloodTeam().equals(updateEgamesMatch.getHomeTeam())) {
+				updateEgamesMatch.setFirstBloodHome(true);
+				updateEgamesMatch.setFirstBloodVisiting(false);
+			} else {
+				updateEgamesMatch.setFirstBloodHome(false);
+				updateEgamesMatch.setFirstBloodVisiting(true);
+			}
+
+			updateEgamesMatch.setFinished(true);
+			callToCheckFinish();
+			
+			
+			service.saveEgamesMatch(updateEgamesMatch);
+			return new ResponseEntity<>(updateEgamesMatch, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -134,12 +159,20 @@ public class AdminMatchesRestController {
 	public ResponseEntity<SportsMatch> updateSportMatchByID(HttpServletRequest request, 
 			 @PathVariable long id, @RequestBody SportsMatch updateSportsMatch) {
 			
-		SportsMatch match =service.findOneSports(id);
+		SportsMatch match = service.findOneSports(id);
 			
 		if(match != null){
-			//updateSportsMatch.setId(id);
+			
+			SportsMatch sportMatch = service.findOneSports(id);
+			sportMatch.setHomePoints(updateSportsMatch.getHomePoints());
+			sportMatch.setVisitingPoints(updateSportsMatch.getVisitingPoints());
+
+			sportMatch.setFinished(true);
+			callToCheckFinish();
+			
+			
 			service.saveSportsMatch(updateSportsMatch);
-			return new ResponseEntity<>(match, HttpStatus.OK);
+			return new ResponseEntity<>(updateSportsMatch, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -166,6 +199,14 @@ public class AdminMatchesRestController {
 		return match;
 	}
 
+	
+	public void callToCheckFinish() {
+
+		for (BetTicket ticket : betTicketService.findAll()) {
+			ticket.checkFinishedTicket();
+		}
+
+	}
 
 	
 

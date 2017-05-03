@@ -71,11 +71,11 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bodyAppend-football">
-                                    <tr class="tab-horario-partido">
-                                        <td class="tab-index-partido"> id </td>
-                                        <td class="tab-date-partido"> date </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 40px;"> homePoints - visitingPoints </td>
+                                    <tr *ngFor="let footballMatch of footballMatches" class="tab-horario-partido">
+                                        <td class="tab-index-partido"> {{footballMatch.id}} </td>
+                                        <td class="tab-date-partido"> {{footballMatch.date}} </td>
+                                        <td class="tab-equipos-partido"> {{footballMatch.homeTeam}} - {{footballMatch.visitingTeam}} </td>
+                                        <td class="tab-resultado-partido" style="padding-left: 40px;"> {{footballMatch.homePoints}} - {{footballMatch.visitingPoints}} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,11 +95,11 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bodyAppend-basket">
-                                    <tr class="tab-horario-partido">
-                                        <td scope="row"> id </td>
-                                        <td scope="row"> date </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 40px;"> homePoints - visitingPoints </td>
+                                    <tr *ngFor="let basketballMatch of basketballMatches" class="tab-horario-partido">
+                                        <td scope="row">{{basketballMatch.id}}</td>
+                                        <td scope="row">{{basketballMatch.date}}</td>
+                                        <td class="tab-equipos-partido"> {{basketballMatch.homeTeam}} - {{basketballMatch.visitingTeam}} </td>
+                                        <td class="tab-resultado-partido" style="padding-left: 40px;"> {{basketballMatch.homePoints}} - {{basketballMatch.visitingPoints}} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -122,12 +122,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bodyAppend-lol">
-                                    <tr class="tab-horario-partido">
-                                        <td scope="row"> id </td>
-                                        <td scope="row"> date </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> #winnerTeam . /winnerTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> #firstBloodTeam . /firstBloodTeam </td>
+                                    <tr *ngFor="let lolMatch of lolMatches" class="tab-horario-partido">
+                                        <td scope="row"> {{lolMatch.id}} </td>
+                                        <td scope="row"> {{lolMatch.date}} </td>
+                                        <td class="tab-equipos-partido"> {{lolMatch.homeTeam}} - {{lolMatch.visitingTeam}} </td>
+                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> {{lolMatch.winnerTeam}} </td>
+                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> {{lolMatch.firstBloodTeam}} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -150,12 +150,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bodyAppend-csgo">
-                                    <tr class="tab-horario-partido">
-                                        <td scope="row"> id </td>
-                                        <td scope="row"> date </td>
-                                        <td class="tab-equipos-partido"> homeTeam - visitingTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> #winnerTeam . /winnerTeam </td>
-                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> #firstBloodTeam . /firstBloodTeam </td>
+                                    <tr *ngFor="let csMatch of csMatches" class="tab-horario-partido">
+                                        <td scope="row"> {{csMatch.id}} </td>
+                                        <td scope="row"> {{csMatch.date}} </td>
+                                        <td class="tab-equipos-partido"> {{csMatch.homeTeam}} - {{csMatch.visitingTeam}} </td>
+                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> {{csMatch.winnerTeam}}</td>
+                                        <td class="tab-resultado-partido" style="padding-left: 80px;"> {{csMatch.firstBloodTeam}}</td>
                                     </tr>
                                 </tbody>
                             </table>

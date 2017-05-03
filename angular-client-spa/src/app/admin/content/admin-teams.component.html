@@ -3,7 +3,7 @@
 
 <div id="content">
 
-    <div *ngFor="let alert of alerts" style="position: fixed; margin-left: 70%">
+    <div *ngFor="let alert of alerts" style="position: fixed; margin-left: 70%; z-index: 10">
         <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
     </div>
 
@@ -19,13 +19,15 @@
 
         <hr>
         <div class="row-fluid">
-
             <div class="span12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>Tabla de equipos deportivos</h5>
-                    </div>
-                    <div class="panel-body">
+                <accordion [closeOthers]="false">
+                    <accordion-group [isOpened]=true>
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de equipos deportivos</h5></a>
+                            </div>
+                        </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
                             data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
                             <thead>
@@ -73,8 +75,9 @@
                                     /></td>
                                 <td><input type="text" name="sportsUpTw" [(ngModel)]="sportTeam.twitter_Uri" class="span12" /></td>
                                 <td><input type="text" name="sportsUpGo" [(ngModel)]="sportTeam.google_Uri" class="span12" /></td>
-                                <td><img src="sportTeam.logoImage" /></td>
-                                <td><img src="sportTeam.logoImage" /></td>
+                                <td><img src="http://localhost:8080/api/teams/logo/{{sportTeam.id}}" /></td>
+                                <td><img src="http://localhost:8080/api/teams/stadium/{{sportTeam.id}}" style="height: 30px"
+                                    /></td>
                                 <td><button type="submit" class="btn btn-mini btn-info" (click)="updateSportsTeam(sportTeam)"
                                         style="margin-bottom: 20%">Editar
 											</button>
@@ -82,18 +85,14 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>Tabla de equipos egames</h5>
-                    </div>
-                    <div class="panel-body">
+                    </accordion-group>
+                    <accordion-group [isOpened]="true">
+                        <accordion-heading>
+                            <div class="widget-title">
+                                <a><span class="icon"><i class="icon-plus"></i></span>
+                                    <h5>Tabla de equipos egames</h5></a>
+                            </div>
+                        </accordion-heading>
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
                             data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-bordered">
                             <thead>
@@ -133,11 +132,11 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                </div>
+                    </accordion-group>
+                </accordion>
             </div>
         </div>
-        <hr>
+
         <div class="row-fluid">
             <div class="span6">
                 <accordion [closeOthers]="false">
@@ -180,7 +179,7 @@
                                             required/>
                                     </div>
                                     <div [hidden]="spCountryRef.valid || spCountryRef.pristine" class="alert alert-danger ffbalert">
-                                        Por favor introduce un nombre
+                                        Por favor introduce un país
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -253,13 +252,13 @@
                                 <div class="control-group">
                                     <label class="control-label">Imagen Escudo :</label>
                                     <div class="controls form-group">
-                                        <input type="file" name="logoImage" />
+                                        <input ngModel name="logoImage" type="file" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Imagen Estadio :</label>
                                     <div class="controls form-group">
-                                        <input type="file" name="stadiumImage" />
+                                        <input ngModel name="stadiumImage" type="file" />
                                     </div>
                                 </div>
                                 <div [hidden]="newSportTeamForm.form.valid" style="max-width: 60%;" class="alert alert-warning">

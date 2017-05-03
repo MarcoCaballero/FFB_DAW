@@ -86,6 +86,12 @@ public class MainLoaders {
 		SportTeam basketTeam1 = new SportTeam("Estadio1", "Presidente1", "BASKONIA", "Baloncesto", "Coach1");
 		SportTeam basketTeam2 = new SportTeam("Estadio2", "Presidente2", "ESTUDIANTES", "Baloncesto", "Coach2");
 		SportTeam basketTeam3 = new SportTeam("Estadio3", "Presidente3", "FUENLABRADA", "Baloncesto", "Coach3");
+		basketTeam1.setLogo_image("unknown");
+		basketTeam1.setStadium_image("unknown");
+		basketTeam2.setLogo_image("unknown");
+		basketTeam2.setStadium_image("unknown");
+		basketTeam3.setLogo_image("unknown");
+		basketTeam3.setStadium_image("unknown");
 
 		sporteamrepository.save(basketTeam1);
 		sporteamrepository.save(basketTeam2);
@@ -97,7 +103,7 @@ public class MainLoaders {
 		EgamesTeam egamesTeam2 = new EgamesTeam("SHIN-HYUK", "SAMSUNG", "ROX", "LOL", "KOREA", "SEÚL");
 		EgamesTeam egamesTeam3 = new EgamesTeam("BOK HAN-GYU", "FAIRY", "CLOUD9", "LOL", "EEUU", "SEÚL");
 		EgamesTeam egamesTeam4 = new EgamesTeam("JOSÉ LUIS", "GRIETA", "ORIGEN", "LOL", "ESPAÑA", "MURCIA");
-		EgamesTeam egamesTeam5 = new EgamesTeam("JOHN PEARL", "FAIRY", "CLOUD9", "LOL", "EEUU", "L.A.");
+		EgamesTeam egamesTeam5 = new EgamesTeam("JOHN PEARL", "FAIRY", "PAJAROS VOLADORES", "LOL", "EEUU", "L.A.");
 		EgamesTeam egamesTeam6 = new EgamesTeam("KKOMA", "AGUILA", "FANATIC", "LOL", "THAY", "SEÚL");
 		EgamesTeam egamesTeam7 = new EgamesTeam("SAMUEL L. JACKSON", "HALCON", "TSM", "LOL", "EEUU", "L.A.");
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ffbet.fase3.controllers;
 
@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,14 +190,15 @@ public class UserAccountController extends RedirectController {
 	public void handleAvatarsFile(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = handleFileDownload(model, response, fileName, "avatars", res);
+		File file = userService.handleFileDownload(response, fileName, "avatars");
 
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+			res.sendError(404, "File" + fileName + "does not exist");
 		}
 
 	}

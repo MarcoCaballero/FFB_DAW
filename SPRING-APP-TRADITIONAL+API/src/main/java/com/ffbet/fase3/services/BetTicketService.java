@@ -20,7 +20,7 @@ public class BetTicketService {
 
 	@Autowired
 	BetTicketRepository betTicketRepo;
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -62,10 +62,9 @@ public class BetTicketService {
 					!isLocalSelected(quota) && !isVisitingSelected(quota), isVisitingSelected(quota));
 			bt.addMatchTeam(betMatch);
 			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
-			return bt;
 		}
 
-		return null;
+		return bt;
 	}
 
 	public BetTicket addEgamesMatchToErasableTicket(BetTicket bt, long id, String quota) {
@@ -78,14 +77,29 @@ public class BetTicketService {
 					isLocalFBSelected(quota), isVisitingFBSelected(quota));
 			bt.addEMatchTeam(bm);
 			bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
-			return bt;
 		}
 
-		return null;
+		return bt;
 	}
 
 	public BetTicket removeMatchFromErasableTicket(BetTicket bt, long id) {
-		bt.getBetMatches_list().remove(bt.getBetMatches_list().get((int) id));
+		System.out.println("Id recibido:" + id);
+		
+		for (int i = 0; i < bt.getBetMatches_list().size(); i++) {
+			if (bt.getBetMatches_list().get(i).getMatch().getId() == id){
+				bt.getBetMatches_list().remove(i);
+				System.out.println("Entrando a borrar en sports, El equipo: " + id + "en la posición" + i);
+			}
+		}
+		for (int i = 0; i < bt.getBetEspMatchesList().size(); i++) {
+			if (bt.getBetEspMatchesList().get(i).getMatch().getId() == id){
+				bt.getBetEspMatchesList().remove(i);
+				System.out.println("Entrando a borrar en egames, El equipo: " + id + "en la posición" + i);
+			}
+
+		}
+
+		bt.setPotentialGain(bt.calculatePotentialGain(bt.getAmount()));
 		return bt;
 	}
 
@@ -94,8 +108,6 @@ public class BetTicketService {
 	 * PAY_ERROR
 	 */
 	public int sendBet(BetTicket bt, User user, String code, double promoquantity) {
-
-		System.out.println("code : " + code);
 
 		if (!code.equals("")) {
 

@@ -74,22 +74,22 @@
 				<ul class="user-menu">
 					<li class="dropdown pull-right" style="margin-top: -3%;"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg
-								class="glyph stroked male-user"> 
+								class="glyph stroked male-user">
 						 {{#user.isPhotoSelected}}
 									<img class="img-circle" " alt=""
-									src="images/avatars/{{user.photoUrl}}" height="25px">
+									src="static/files/avatars/{{user.photoUrl}}" height="25px">
 								{{/user.isPhotoSelected}}
 								{{^user.isPhotoSelected}}
 								{{#user.isMen}}
 									<img class="img-circle" src="user/img/boyUser.svg"
-									height="25px" /> 
+									height="25px" />
 								{{/user.isMen}}
 								{{^user.isMen}}
 									<img class="img-circle" src="user/img/userGirl.svg"
-									height="25px" /> 
+									height="25px" />
 								{{/user.isMen}}
 						{{/user.isPhotoSelected}}
-						 
+
 						 </svg> {{user.email}} <span class="caret"></span></a>
 						<ul class="dropdown-menu" style="border-radius: 10%;">
 							<li>
@@ -98,7 +98,7 @@
 										<div class="col-lg-4">
 											<p class="text-center">
 												{{#user.isPhotoSelected}} <img class="img-circle"
-													src="images/avatars/{{user.photoUrl}}" height="100px" />
+													src="static/files/avatars/{{user.photoUrl}}" height="100px" />
 												{{/user.isPhotoSelected}} {{^user.isPhotoSelected}}
 												{{#user.isMen}} <img class="img-circle"
 													src="user/img/boyUser.svg" height="100px" />
@@ -666,7 +666,7 @@
 		class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 footer">
 		<div class="container-fluid">
 			<!--<p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
-                        
+
                             <!-- CAROUSEL PARTNERS ROW-->
 			<div class="row">
 				<div id="jssor_1">

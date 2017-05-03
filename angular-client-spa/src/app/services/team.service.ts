@@ -3,6 +3,8 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { teamUrl, teamSportUrl, teamEgamesUrl } from '../paths';
+
 import { Team } from '../model/team.model';
 
 import { AuthService } from './auth.service';
@@ -14,18 +16,25 @@ export class TeamService {
         private http: Http,
         private authService: AuthService) { }
 
+    // get every teams
+    getTeams(): Promise<Team[]> {
+        return this.http.get(teamUrl)
+            .toPromise()
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
+
     // get sports teams
     getSportsTeams(): Promise<Team[]> {
-        return this.http.get('http://127.0.0.1:8080/api/teams/sports')
+        return this.http.get(teamSportUrl)
             .toPromise()
-            .then(
-            response => response.json())
+            .then(response => response.json())
             .catch(error => console.error(error));
     }
 
     // get egames teams
     getEgamesTeams(): Promise<Team[]> {
-        return this.http.get('http://127.0.0.1:8080/api/teams/egames')
+        return this.http.get(teamEgamesUrl)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -38,7 +47,7 @@ export class TeamService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/teams/sports', JSON.stringify(team), options)
+        return this.http.post(teamSportUrl, JSON.stringify(team), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -51,7 +60,7 @@ export class TeamService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.post('http://127.0.0.1:8080/api/teams/egames', JSON.stringify(team), options)
+        return this.http.post(teamEgamesUrl, JSON.stringify(team), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -64,7 +73,7 @@ export class TeamService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/teams/sports/' + team.id, JSON.stringify(team), options)
+        return this.http.put(teamSportUrl + team.id, JSON.stringify(team), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -77,7 +86,7 @@ export class TeamService {
             'Content-Type': 'application/json'
         });
         const options = new RequestOptions({ headers });
-        return this.http.put('http://127.0.0.1:8080/api/teams/egames/' + team.id, JSON.stringify(team), options)
+        return this.http.put(teamEgamesUrl + team.id, JSON.stringify(team), options)
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));
@@ -89,7 +98,7 @@ export class TeamService {
             'Authorization': 'Basic ' + this.authService.getCredentials()
         });
         const options = new RequestOptions({ headers });
-        return this.http.delete('http://127.0.0.1:8080/api/teams/' + id, options)
+        return this.http.delete(teamUrl + id, options)
             .toPromise()
             .then(undefined)
             .catch(error => console.error(error));

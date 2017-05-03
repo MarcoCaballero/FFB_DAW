@@ -22,7 +22,7 @@ export class AdminTeamsComponent implements OnInit {
     newEgameTeam: any = {};
 
     constructor(
-        private teamService: TeamService
+        private teamService: TeamService,
     ) { }
 
     ngOnInit() {
@@ -39,12 +39,17 @@ export class AdminTeamsComponent implements OnInit {
     }
 
     newSportsTeam(team: Team) {
-        console.log(team);
+        if (team.logo_image == null) {
+            team.logo_image = 'unknown';
+        }
+        if (team.stadium_image == null) {
+            team.stadium_image = 'unknown';
+        }
         this.teamService
             .newSportsTeam(team)
             .then(() => {
                 this.getSportsTeams();
-                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
+                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido');
             });
 
     }
@@ -55,11 +60,12 @@ export class AdminTeamsComponent implements OnInit {
             .newEgamesTeam(team)
             .then(() => {
                 this.getEgamesTeams();
-                 this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
+                this.addAlert('El equipo :  ' + team.name + ' ha sido correctamente añadido ');
             });
     }
 
     updateSportsTeam(team: Team) {
+        console.log(team);
         this.teamService
             .updateSportsTeam(team)
             .then(() => {

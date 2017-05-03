@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ScoreService } from '../../services/score.service';
+import { MatchService } from '../../services/match.service';
 
 import { ById } from '../../core/sort-functions';
 
 import { SportMatch } from '../../model/sport-match.model';
 import { EgamesMatch } from '../../model/egames-match.model';
-import { Team } from "app/model/team.model";
+import { Team } from '../../model/team.model';
 
 
 @Component({
@@ -18,15 +18,13 @@ import { Team } from "app/model/team.model";
 })
 
 export class AdminScoresComponent implements OnInit {
-    title = 'ADMIN - SCORES';
-
     private matchFootballResults: SportMatch[];
     private matchBasketballResults: SportMatch[];
     private matchLolResults: EgamesMatch[];
     private matchCsResults: EgamesMatch[];
 
     constructor(
-        private scoreService: ScoreService
+        private matchService: MatchService
     ) { }
 
 
@@ -43,83 +41,91 @@ export class AdminScoresComponent implements OnInit {
     }
 
 
-    updateSportMatch(matchSportResult: SportMatch){
-        this.scoreService
-        .updateSportMatchResult(matchSportResult)
-        .then(()=> {
-            this.getFootballSportsMatches();
-            this.getBasketballSportsMatches();
-        });
+    updateSportMatch(matchSportResult: SportMatch) {
+        this.matchService
+            .updateSportMatchResult(matchSportResult)
+            .then(() => {
+                this.getFootballSportsMatches();
+                this.getBasketballSportsMatches();
+            });
     }
 
 
-    updateEgamesMatch(matchEgamesResult: EgamesMatch){
+    updateEgamesMatch(matchEgamesResult: EgamesMatch) {
         console.log(JSON.stringify(matchEgamesResult));
-        this.scoreService
-        .updateEgamesMatchResult(matchEgamesResult)
-        .then(()=>{
-            this.getLolEgamesMatches();
-            this.getCsEgamesMatches();
-        })
+        this.matchService
+            .updateEgamesMatchResult(matchEgamesResult)
+            .then(() => {
+                this.getLolEgamesMatches();
+                this.getCsEgamesMatches();
+            });
     }
 
 
-    removeEgamesMatch(matchEgamesResult: EgamesMatch){
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchEgamesResult.homeTeam + '-' + matchEgamesResult.visitingTeam + '?');
-        if(confirmationMessage){
-                this.scoreService
+    removeEgamesMatch(matchEgamesResult: EgamesMatch) {
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido '
+        + matchEgamesResult.homeTeam + '-' + matchEgamesResult.visitingTeam + '?');
+        if (confirmationMessage) {
+            this.matchService
                 .removeEgamesMatchResult(matchEgamesResult.id)
-                .then(()=>{
+                .then(() => {
                     this.getCsEgamesMatches();
                     this.getLolEgamesMatches();
-                })
+                });
         }
     }
 
 
-    removeSportMatch(matchSportResult: SportMatch){
-        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido ' + matchSportResult.homeTeam + '-' + matchSportResult.visitingTeam + '?');
-        if(confirmationMessage){
-                this.scoreService
+    removeSportMatch(matchSportResult: SportMatch) {
+        const confirmationMessage = confirm('¿Estás seguro de que quieres borrar el partido '
+        + matchSportResult.homeTeam + '-' + matchSportResult.visitingTeam + '?');
+        if (confirmationMessage) {
+            this.matchService
                 .removeSportMatchResult(matchSportResult.id)
-                .then(()=>{
+                .then(() => {
                     this.getFootballSportsMatches();
                     this.getBasketballSportsMatches();
                 });
         }
     }
 
-    isWinnerTeam(match: EgamesMatch, team: string){
-        if(match.winnerTeam === team){
+    isWinnerTeam(match: EgamesMatch, team: string): boolean {
+        if (match.winnerTeam === team) {
             return true;
         }
         return false;
     }
 
-
-
-    isFirstBloodTeam(match: EgamesMatch, team: string){
-        if(match.firstBloodTeam === team){
+    isFirstBloodTeam(match: EgamesMatch, team: string): boolean {
+        if (match.firstBloodTeam === team) {
             return true;
         }
         return false;
     }
 
     getFootballSportsMatches() {
-        this.scoreService.getFootballMatches().then(sportMatches => this.matchFootballResults = sportMatches);
+        this.matchService.getFootballMatches()
+        .then(sportMatches => this.matchFootballResults = sportMatches
+        .filter(matches => matches.finished === false));
     }
 
     getBasketballSportsMatches() {
-        this.scoreService.getBasketballMatches().then(sportMatches => this.matchBasketballResults = sportMatches);
+        this.matchService.getBasketballMatches()
+        .then(sportMatches => this.matchBasketballResults = sportMatches
+        .filter(matches => matches.finished === false));
     }
 
-    getLolEgamesMatches(){
-        this.scoreService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches);
+    getLolEgamesMatches() {
+        this.matchService.getLolMatches().then(egamesMatches => this.matchLolResults = egamesMatches
+        .filter(matches => matches.finished === false));
     }
 
 
-    getCsEgamesMatches(){
-        this.scoreService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches);
+    getCsEgamesMatches() {
+        this.matchService.getCsMatches().then(egamesMatches => this.matchCsResults = egamesMatches.
+        filter(matches => matches.finished === false));
     }
+
+
 
 }

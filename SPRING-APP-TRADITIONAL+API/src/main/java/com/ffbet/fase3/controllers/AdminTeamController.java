@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,8 +34,8 @@ import com.ffbet.fase3.services.UserService;
  * URL's that reference to the {@link Team} Entity. This controller also extends
  * to an Abstract class {@link RedirectController} that provides methods common
  * to several controllers
- * 
- * 
+ *
+ *
  * @see {@link Team}, {@link RedirectController}
  * @author Marco
  * @version 1.0
@@ -44,7 +45,7 @@ public class AdminTeamController extends RedirectController {
 
 	String template = TemplatesPath.ADMIN_TEAM.toString();
 	String redirect = "redirect:/admin-teams/";
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -65,7 +66,7 @@ public class AdminTeamController extends RedirectController {
 	 * Method {@linkplain getTemplate()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser.
-	 * 
+	 *
 	 * @param request
 	 * @param model
 	 * @return
@@ -84,7 +85,7 @@ public class AdminTeamController extends RedirectController {
 
 		model.addAttribute("noBadNewSport", noFailsNewSport);
 		model.addAttribute("noBadNewEgames", noFailsNewEgames);
-		
+
 		model.addAttribute("showsLogoError", photoLogoError);
 		model.addAttribute("showsStadiumError", photoStadiumError);
 
@@ -99,28 +100,27 @@ public class AdminTeamController extends RedirectController {
 	 * Method {@linkplain addTeam()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser with the new team ADDED.
-	 * 
+	 *
 	 * @param request
 	 * @param model
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/newSportsTeam" })
-	public String addSportsTeam(@RequestParam("sportsType") String type,
-			@RequestParam("sportsName") String name, @RequestParam("sportsCountry") String country,
-			@RequestParam("sportsCity") String city, @RequestParam("stadium") String stadium,
-			@RequestParam("slogan") String slogan, @RequestParam("president") String president,
-			@RequestParam("sportsCoach") String coach, @RequestParam("leaguesWeb") String leagues,
-			@RequestParam("cupsWeb") String cups, @RequestParam("championsWeb") String champions,
-			@RequestParam("facebook_Uri") String fb, @RequestParam("twitter_Uri") String tw,
-			@RequestParam("google_Uri") String go, @RequestParam("logoImage") MultipartFile logoImg,
-			@RequestParam("stadiumImage") MultipartFile stadiumImg) {
+	public String addSportsTeam(@RequestParam("sportsType") String type, @RequestParam("sportsName") String name,
+			@RequestParam("sportsCountry") String country, @RequestParam("sportsCity") String city,
+			@RequestParam("stadium") String stadium, @RequestParam("slogan") String slogan,
+			@RequestParam("president") String president, @RequestParam("sportsCoach") String coach,
+			@RequestParam("leaguesWeb") String leagues, @RequestParam("cupsWeb") String cups,
+			@RequestParam("championsWeb") String champions, @RequestParam("facebook_Uri") String fb,
+			@RequestParam("twitter_Uri") String tw, @RequestParam("google_Uri") String go,
+			@RequestParam("logoImage") MultipartFile logoImg, @RequestParam("stadiumImage") MultipartFile stadiumImg) {
 
 		String fileNameLogo;
 		String fileNameStadium;
 
 		try {
 			SportTeam team = new SportTeam();
-			
+
 			team.setType(type);
 			team.setName(name);
 			team.setCountry(country);
@@ -135,9 +135,9 @@ public class AdminTeamController extends RedirectController {
 			team.setFacebook_Uri(fb);
 			team.setTwitter_Uri(tw);
 			team.setGoogle_Uri(go);
-			
+
 			teamService.saveSportTeam(team);
-			
+
 			team = teamService.findByNameSport(name);
 
 			if (!logoImg.isEmpty()) {
@@ -147,7 +147,7 @@ public class AdminTeamController extends RedirectController {
 					photoLogoError = true;
 				} else {
 					photoLogoError = false;
-          
+
 					team.setLogo_image(fileNameLogo);
 				}
 			}
@@ -159,7 +159,7 @@ public class AdminTeamController extends RedirectController {
 					photoStadiumError = true;
 				} else {
 					photoStadiumError = false;
-					
+
 					team.setStadium_image(fileNameStadium);
 				}
 			}
@@ -177,44 +177,44 @@ public class AdminTeamController extends RedirectController {
 		return redirect;
 
 	}
-	
+
 	@RequestMapping("/images/logos/{fileName}")
 	public void handleAvatarsFileLogo(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = handleFileDownload(model, response, fileName, "logos", res);
+		File file = userService.handleFileDownload(response, fileName, "logos");
 
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+			res.sendError(404, "File" + fileName + "does not exist");
 		}
 
 	}
-	
-	@RequestMapping("/images/covers/{fileName}")
+
 	public void handleAvatarsFileStadium(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = handleFileDownload(model, response, fileName, "covers", res);
+		File file = userService.handleFileDownload(response, fileName, "covers");
 
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
-		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
-		}
 
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+
+		} else {
+			res.sendError(404, "File" + fileName + "does not exist");
+		}
 	}
 
 	/**
 	 * Method {@linkplain addTeam()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser with the new team ADDED.
-	 * 
+	 *
 	 * @return
 	 */
 	@PostMapping(value = { "/admin-teams/newEgamesTeam" })
@@ -248,7 +248,7 @@ public class AdminTeamController extends RedirectController {
 	 * Method {@linkplain updateTeamByID()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser with the updated team [selected by id].
-	 * 
+	 *
 	 * @param request
 	 * @param model
 	 * @return
@@ -318,7 +318,7 @@ public class AdminTeamController extends RedirectController {
 	 * Method {@linkplain updateTeamByID()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser with the updated team [selected by id].
-	 * 
+	 *
 	 * @param request
 	 * @param model
 	 * @return
@@ -356,7 +356,7 @@ public class AdminTeamController extends RedirectController {
 	 * Method {@linkplain deleteTeamByID()} uses the abstract class
 	 * {@link RedirectController} to get the correct template from similar URLs,
 	 * and shows it through the browser without hte deleted team [ById].
-	 * 
+	 *
 	 * @param request
 	 * @param model
 	 * @return

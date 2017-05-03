@@ -17,17 +17,22 @@
         <div class="col-lg-10 col-sm-10 col-lg-offset-1">
             <div class="tarjeta hovercard">
                 <div class="tarjeta-background">
-                    <img class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="userLogged.isMen && !userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="!userLogged.isMen && !userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/userGirl.svg">
+                    <img *ngIf="userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
                 </div>
                 <div class="useravatar">
-                    <img alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="userLogged.isMen && !userLogged.isPhotoSelected" alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="!userLogged.isMen && !userLogged.isPhotoSelected" alt="" src="../assets/images/userGirl.svg">
+                    <img *ngIf="userLogged.isPhotoSelected" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
+
                 </div>
                 <div class="tarjeta-info">
-                    <span class="tarjeta-title"><strong> user.name
-						</strong> <em> user.email </em></span>
+                    <span class="tarjeta-title"><strong> {{userLogged.name}}
+						</strong> <em> {{userLogged.email}} </em></span>
                 </div>
             </div>
-            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+            <div class="btn- f btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <button type="button" id="stars" class="btn btn-default" [class.btn-primary]="selectedTab === 0" (click)="selectTab(0)">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -65,15 +70,12 @@
                                             <div style="margin-bottom: 10px;" class="col-md-12">
                                                 <div class="panel-heading">
                                                     FICHA DE USUARIO
-                                                    <div style="float: right;">
-                                                        <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
-                                                        <button id="editarDatos" type="submit" class="btn btn-primary">Editar</button>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <form id="form-updateDataUser" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                            <form #updateUserForm="ngForm" id="form-updateDataUser" class="form-horizontal" (ngSubmit)="uploadUser()" novalidate>
 
                                                 <div class="col-md-6">
                                                     <fieldset>
@@ -81,7 +83,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="name">Nombre</label>
                                                             <div class="col-md-9">
-                                                                <input id="name" name="namePre" type="text" placeholder="user.name" class="form-control">
+                                                                <input [(ngModel)]="userLogged.name" name="name"type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
@@ -89,7 +91,7 @@
                                                             <label class="col-md-3 control-label" for="email">Primer
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap1" name="surnamePre" type="text" placeholder="user.surname" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.surname" name="surname" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
@@ -97,30 +99,27 @@
                                                             <label class="col-md-3 control-label" for="email">Segundo
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap2" name="secondSurname" type="text" placeholder="user.secondSurname" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.secondSurname" name="secondSurname" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Ciudad</label>
                                                             <div class="col-md-9">
-                                                                <input id="city" name="cityPre" type="text" placeholder="user.city" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.city" name="city" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Pais input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Pais</label>
                                                             <div class="col-md-9">
-                                                                <input id="country" name="countryPre" type="text" placeholder="user.country" class="form-control">
+                                                                <input [(ngModel)]="userLogged.country" name="country" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="fileImage">Foto</label>
                                                             <div class="col-md-9">
-                                                                <input id="fileImage" name="fileImage" type="file" placeholder="Subir imagen..." class="form-control">
-                                                                <label>
-                                                            Hay un error con la imagen intantalo más tarde
-                                                         </label>
+                                                                <input id="fileImage" name="fileImage" type="file" (change)="uploadFile($event)" value="Subir imagen..." class="form-control">
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -133,21 +132,21 @@
                                                             <label class="col-md-3 control-label" for="name">Correo
 															electronico</label>
                                                             <div class="col-md-9">
-                                                                <input id="email" name="emailPre" type="text" placeholder="user.email" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.email" name="email" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Domicilio</label>
                                                             <div class="col-md-9">
-                                                                <input id="location" name="locationPre" type="text" placeholder="user.location" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.location" name="location" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Telefono</label>
                                                             <div class="col-md-9">
-                                                                <input id="telephone" name="telf" type="text" placeholder="user.telephone" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.telephone" name="telephone" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
@@ -155,24 +154,34 @@
                                                             <label class="col-md-3 control-label" for="email">Nueva
 															Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="pass" name="pass" type="password" placeholder="Escribe tu nueva contraseña" class="form-control">
+                                                                <input ngModel #passUpdated="ngModel" id="pass" name="passPre" type="password" placeholder="Escribe tu nueva contraseña"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Repite Nueva Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="passRepeat" name="passRepeat" type="password" placeholder="Repite tu nueva contraseña" class="form-control">
-                                                                <label>Contraseñas distintas</label>
+                                                                <input ngModel #passUpdatedBis="ngModel" id="passRepeat" name="passRepeatPre" type="password" placeholder="Repite tu nueva contraseña"
+                                                                    class="form-control">
+                                                                <div [hidden]="passUpdated.value == passUpdatedBis.value" class="alert alert-danger">
+                                                                    Recuerda que ambas contraseñas han de ser iguales
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                         <!-- Pais input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">DNI/NIF</label>
                                                             <div class="col-md-9">
-                                                                <input id="dni" name="dniPre" type="text" placeholder="user.dni" class="form-control">
+                                                                <input [(ngModel)]="userLogged.dni" name="dni" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                     </fieldset>
+                                                </div>
+
+                                                <div style="float: right; margin-right: 10%;">
+                                                    <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
+                                                    <button id="editarDatos" type="submit" class="btn btn-primary">Guardar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -193,29 +202,29 @@
                                                     TU SALDO
                                                     <div style="float: right;">
                                                         <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/moneydep.png" />€
-                                                        user.credit €
+                                                        {{userLogged.credit}} €
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row" style="margin-left: 10%">
                                             <div class="col-xs-12 col-md-9 col-lg-5">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
                                                         <div class="col-sm-3 col-lg-5 widget-left" style="background: #b84f4f;">Saldo apostado</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">
-                                                            <div class="large" style="margin-left: 30px;"> amountInBet €
+                                                            <div class="large" style="margin-left: 30px;"> {{amount}} €
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-md-9 col-lg-5">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
-                                                        <div class="col-sm-3 col-lg-5 widget-left" style="background: #6470aa;">Posibles Ganancia</div>
+                                                        <div class="col-sm-3 col-lg-5 widget-left" style="background: #6470aa;">Posibles Ganancias</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">
-                                                            <div class="large" style="margin-left: 30px;"> winAmountInBet €
+                                                            <div class="large" style="margin-left: 30px;"> {{potentialGain}} €
                                                             </div>
                                                         </div>
                                                     </div>
@@ -224,11 +233,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-md-8 col-lg-5  col-lg-offset-3 col-md-offset-1">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
                                                         <div class="col-sm-3 col-lg-5 widget-left" style="background: #478949;">Total retirable</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">
-                                                            <div class="large" style="margin-left: 30px;"> user.credit €
+                                                            <div class="large" style="margin-left: 30px;"> {{userLogged.credit}} €
                                                             </div>
                                                         </div>
                                                     </div>
@@ -261,64 +270,56 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8 col-lg-12">
+                                        <div class="row sub-row-ffb">
+                                            <div class="col-md-11">
                                                 <div class="panel panel-default">
                                                     <div class="panel-body tabs">
-                                                        <ul class="nav nav-tabs">
-                                                            <li class="active"><a href="#tab1sub" data-toggle="tab">Apuestas en curso</a></li>
-                                                            <li><a href="#tab2sub" data-toggle="tab">Historial</a></li>
-                                                        </ul>
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane fade in active" id="tab1sub">
-                                                                <table id="apuestasEnCurso" class="table table-striped">
+                                                        <tabset>
+                                                            <tab>
+                                                                <ng-template tabHeading>
+                                                                    Apuestas en curso
+                                                                </ng-template>
+                                                                <table class="table">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Apuesta</th>
-                                                                            <th>Promoción Aplicada</th>
-                                                                            <th>Importe Apostado</th>
+                                                                            <th>Importe apostado</th>
                                                                             <th>Posibles ganancias</th>
                                                                         </tr>
                                                                     </thead>
-
-                                                                    <tr>
-                                                                        <td>#100 id </td>
-                                                                        <td> #applied_promo title : promotionCode</td>
-                                                                        <td> amount €</td>
-                                                                        <td> potentialGain €</td>
+                                                                    <tr *ngFor="let ticket of tickets">
+                                                                        <td> {{ticket.id}} </td>
+                                                                        <td> {{ticket.amount}} € </td>
+                                                                        <td> {{ticket.potentialGain}} €</td>
                                                                     </tr>
-
                                                                 </table>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="tab2sub">
-                                                                <table class="table table-striped">
+                                                            </tab>
+                                                            <tab>
+                                                                <ng-template tabHeading>
+                                                                    Historial
+                                                                </ng-template>
+                                                                <table class="table">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Apuesta</th>
-                                                                            <th>Promoción</th>
-                                                                            <th>Importe Apostado</th>
-                                                                            <th>Ganancia obtenida</th>
+                                                                            <th>Importe apostado</th>
+                                                                            <th>Ganancia</th>
                                                                             <th>Acciones</th>
                                                                         </tr>
                                                                     </thead>
-
-                                                                    <tr>
-                                                                        <td>#100 id </td>
-                                                                        <td> #applied_promo title </td>
-                                                                        <td> amount €</td>
-                                                                        <td> #isLosed Perdida € /isLosed ^isLosed potentialGain
-                                                                            €s /isLosed
-                                                                        </td>
+                                                                    <tr *ngFor="let finishedTicket of finishedTickets">
+                                                                        <td> {{finishedTicket.id}} </td>
+                                                                        <td> {{finishedTicket.amount}} € </td>
+                                                                        <td *ngIf="finishedTicket.winned"> {{finishedTicket.potentialGain}} €</td>
+                                                                        <td *ngIf="!finishedTicket.winned"> PERDIDA €</td>
                                                                         <td>
-                                                                            <a href="/user-account/checkBet/  id  " class="btn btn-primary">Canjear</a>                                                                            /isUsed
-                                                                            <a href="/user-account/removeBetMatch/  id  " class="btn btn-danger">Borrar</a>
-
+                                                                            <button (click)="validateTicket(finishedTicket)" value="Canjear"></button>
+                                                                            <button (click)="deleteTicket(finishedTicket)" value="Borrar"></button>
                                                                         </td>
                                                                     </tr>
-
                                                                 </table>
-                                                            </div>
-                                                        </div>
+                                                            </tab>
+                                                        </tabset>
                                                     </div>
                                                 </div>
                                             </div>
@@ -346,81 +347,44 @@
                                                 <div class="panel-heading">LO ÚLTIMO DE TUS EQUIPOS DE FÚTBOL FAVORITOS</div>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-bottom: 5%;">
+                                        <div *ngIf="selectedTeam" class="row" style="margin-bottom: 5%;">
                                             <div class="col-sm-6">
                                                 <h3 class="card-title">
-                                                    <img src="../assets/images/atm_escudo_card.png" height="150px" style="margin-left: 10%; float: left">
+                                                    <img src="http://localhost:8080/api/teams/logo/{{selectedTeam.id}}" height="150px" style="margin-left: 10%; float: left">
                                                 </h3>
                                                 <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed">
                                                     Cambiar Equipo
                                                 </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <h3 class="card-title"> name </h3>
+                                                <h3 class="card-title"> {{selectedTeam.name}} </h3>
                                             </div>
                                         </div>
+
+                                        <div *ngIf="!selectedTeam" class="row" style="margin-bottom: 5%;">
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed" style="margin-left: 5%">
+                                                    Seleccionar Equipo
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="row" style="margin-left: 5%;">
                                             <div class="row" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="!isCollapsed">
-                                                <div class="col-md-4 col-sm-8 col-lg-4">
+                                                <div *ngFor="let team of teams" class="col-md-4 col-sm-8 col-lg-4">
                                                     <div class="card">
-
                                                         <div class="image">
-                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
+                                                            <img src="http://localhost:8080/api/teams/stadium/{{team.id}}" width="100%">
                                                         </div>
                                                         <div class="text">
+                                                            <div class="fab">
+                                                                <span (click)="selectTeam(team)" class="glyphicon glyphicon-ok"></span>
+                                                            </div>
 
-                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
-
-                                                            <h3>Equipo X</h3>
-                                                            <p>Entrenador:</p>
-                                                            <p>Entrenador:</p>
-                                                            <p>Estadio:</p>
-                                                        </div>
-                                                        <div class="social-links text-center">
-                                                            <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
-                                                            <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
-                                                            <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4 col-sm-8 col-lg-4">
-                                                    <div class="card">
-
-                                                        <div class="image">
-                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
-                                                        </div>
-                                                        <div class="text">
-
-                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
-
-                                                            <h3>Equipo X</h3>
-                                                            <p>Entrenador:</p>
-                                                            <p>Entrenador:</p>
-                                                            <p>Estadio:</p>
-                                                        </div>
-                                                        <div class="social-links text-center">
-                                                            <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
-                                                            <a class="google" target="_blank"> <i class="fa fa-google-plus fa-fw"></i> </a>
-                                                            <a class="twitter" target="_blank"> <i class="fa fa-twitter fa-fw"></i> </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4 col-sm-8 col-lg-4">
-                                                    <div class="card">
-
-                                                        <div class="image">
-                                                            <img src="../assets/images/atm_cover_card.png" width="100%">
-                                                        </div>
-                                                        <div class="text">
-
-                                                            <div class="fab"><span class="glyphicon glyphicon-ok"></span></div>
-
-                                                            <h3>Equipo X</h3>
-                                                            <p>Entrenador:</p>
-                                                            <p>Entrenador:</p>
-                                                            <p>Estadio:</p>
+                                                            <h3>{{team.name}}</h3>
+                                                            <p>Presidente: {{team.president}}</p>
+                                                            <p>Entrenador: {{team.coach}}</p>
+                                                            <p>Estadio: {{team.stadium}}</p>
                                                         </div>
                                                         <div class="social-links text-center">
                                                             <a class="facebook" target="_blank"> <i class="fa fa-facebook fa-fw"></i> </a>
@@ -430,10 +394,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
                                         <div class="row sub-row-ffb">
                                             <div class="col-md-11">
                                                 <div class="panel panel-default">
@@ -441,7 +402,7 @@
                                                         <tabset>
                                                             <tab>
                                                                 <ng-template tabHeading>
-                                                                    <span class="glyphicon glyphicon-indent-left"> </span>                                                                    Próximos partidos
+                                                                    <span class="glyphicon glyphicon-indent-left"></span>                                                                    Próximos partidos
                                                                 </ng-template>
                                                                 <table class="table">
                                                                     <thead>
@@ -450,15 +411,15 @@
                                                                             <th>Fecha</th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tr>
-                                                                        <td> homeTeam - visitingTeam </td>
-                                                                        <td> date </td>
+                                                                    <tr *ngFor="let match of matches">
+                                                                        <td> {{match.homeTeam}} - {{match.visitingTeam}} </td>
+                                                                        <td> {{match.date}} </td>
                                                                     </tr>
                                                                 </table>
                                                             </tab>
                                                             <tab>
                                                                 <ng-template tabHeading>
-                                                                    <span class="glyphicon glyphicon-indent-right">  </span>                                                                    Últimos partidos
+                                                                    <span class="glyphicon glyphicon-indent-right"></span>                                                                    Últimos partidos
                                                                 </ng-template>
                                                                 <table class="table">
                                                                     <thead>
@@ -468,10 +429,12 @@
                                                                             <th>Fecha</th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tr>
-                                                                        <td> homeTeam - visitingTeam </td>
-                                                                        <td> homePoints - visitingPoints </td>
-                                                                        <td> date </td>
+                                                                    <tr *ngFor="let finishedMatch of finishedMatches">
+                                                                        <td> {{finishedMatch.homeTeam}} - {{finishedMatch.visitingTeam}}
+                                                                        </td>
+                                                                        <td> {{finishedMatch.homePoints}} - {{finishedMatch.visitingPoints}}
+                                                                        </td>
+                                                                        <td> {{finishedMatch.date}} </td>
                                                                     </tr>
                                                                 </table>
                                                             </tab>

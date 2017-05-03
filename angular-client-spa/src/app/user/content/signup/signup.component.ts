@@ -14,32 +14,22 @@ import { User } from '../../../model/user.model';
 
 export class SignupComponent implements OnInit {
 
+    public alerts: any = [];
     title = 'Registro';
-    checkFields = false;
-    user: any = {};
-    @ViewChild('formName') myForm: HTMLFormElement;
+    secondPassword: string;
 
     constructor(
         private userService: UserService,
         private router: Router
-        ) { }
-
-
-    isEmpty(str: HTMLInputElement) {
-        if (str.value === '') {
-            return true;
-        }
-        return false;
-    }
-
-    sendSingUp() {
-        this.checkFields = true;
-    }
+    ) { }
 
     ngOnInit() { }
 
-    newUser() {
-        this.userService.newUser(this.user);
-        this.router.navigate(['/login']);
+    newUser(user: User) {
+        if (this.secondPassword === user.password) {
+            this.userService.newUser(user);
+            this.router.navigate(['/login']);
+        }
+
     }
 }

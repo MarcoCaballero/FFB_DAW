@@ -1,5 +1,6 @@
 package com.ffbet.fase3.api;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ffbet.fase3.domain.BetTicket;
 import com.ffbet.fase3.domain.CreditCard;
 import com.ffbet.fase3.domain.FilesPath;
 import com.ffbet.fase3.domain.User;
@@ -66,7 +68,6 @@ public class UserRestController {
 	@PutMapping
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		if (user != null) {
-			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
 
 			return new ResponseEntity<>(user, HttpStatus.OK);
@@ -74,10 +75,9 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	
-	@PutMapping("/uploadImage")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+
+	@PutMapping(value = "/uploadImage", consumes = "multipart/form-data")
+	public String handleFileUpload(@RequestPart("file") MultipartFile file) throws IOException {
 		User user = userService.handleUserLoggedFromComponent();
 
 		String filename = userService.handleUploadImagetoDatabase(file, user.getId(),
@@ -90,18 +90,18 @@ public class UserRestController {
 	}
 
 	@GetMapping("/avatar/{id}")
-	public void getAvatarImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getAvatarImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		User user = userService.findOne(id);
 
-		if (user != null) {
-			if (user.getPhoto_url() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				FileCopyUtils.copy(
-						new FileInputStream(userService.handleFileDownload(response, user.getPhoto_url(), "avatars")),
-						response.getOutputStream());
-			}
+		if (user != null && user.getPhoto_url() != null) {
+			response.addHeader("Content-type", "image/jpeg");
+			File file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -146,6 +146,18 @@ public class UserRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("/creditCards/{id}")
+	public List<CreditCard> getCreditCards(@PathVariable long id) {
+		User user = userService.findOne(id);
+		return user.getCards();
+	}
+	
+	@GetMapping("/tickets/{id}")
+	public List<BetTicket> getTicketsPerUser(@PathVariable long id){
+		User user = userService.findOne(id);
+		return user.getBet_tickets();
 	}
 
 }

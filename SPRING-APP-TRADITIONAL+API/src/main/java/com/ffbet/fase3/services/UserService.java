@@ -3,11 +3,13 @@ package com.ffbet.fase3.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,11 +102,13 @@ public class UserService {
 					filesFolder.mkdirs();
 				}
 
-				File uploadedFile = new File(filesFolder.getAbsolutePath(), filename);
-				System.out.println("Absoulte : " + filesFolder.getAbsolutePath());
-				imageMultiPartFile.transferTo(uploadedFile);
+//				File uploadedFile = new File(filesFolder, filename);
+				
+				imageMultiPartFile.transferTo(new File(filesFolder, filename));
+				System.out.println("No-Absoulte : " + filesFolder);
 				return filename;
 			} catch (Exception e) {
+				e.printStackTrace();
 				return "ERROR";
 			}
 
@@ -135,8 +139,9 @@ public class UserService {
 		}
 
 		if (!file_folder_absolute.equals("UnknownFolder")) {
+//			InputStream is = this.getClass().getClassLoader().getResourceAsStream(file_folder_absolute + "/" + fileName);
+//			return is;
 			File file = new File(file_folder_absolute, fileName);
-			System.out.println(file);
 			return file;
 		} else {
 			response.sendError(404, "File" + fileName + "(" + fileFolder + ") does not exist");

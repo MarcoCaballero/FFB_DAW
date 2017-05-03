@@ -1,8 +1,10 @@
 package com.ffbet.fase3.api;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -105,37 +107,43 @@ public class AdminTeamRestController {
 	}
 
 	@GetMapping("/logo/{id}")
-	public void getLogoImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getLogoImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
 
-		if (team != null) {
-			if (team.getLogo_image() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				FileCopyUtils.copy(
-						new FileInputStream(userService.handleFileDownload(response, team.getLogo_image(), "logos")),
-						response.getOutputStream());
-			}
+		if (team != null && team.getLogo_image() != "unknown") {
+			File file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			// CLasspath access
+			InputStream is = this.getClass().getClassLoader()
+					.getResourceAsStream(FilesPath.FILES_TEAMS_LOGO + "/" + "unknown-shield.png");
+			FileCopyUtils.copy(is, response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@GetMapping("/stadium/{id}")
-	public void getStadiumImage(@PathVariable long id, HttpServletResponse response)
+	public ResponseEntity<HttpStatus> getStadiumImage(@PathVariable long id, HttpServletResponse response)
 			throws FileNotFoundException, IOException {
 
 		SportTeam team = teamService.findOneSportTeam(id);
+		response.addHeader("Content-type", "image/jpeg");
 
-		if (team != null) {
-			if (team.getStadium_image() != null) {
-				response.addHeader("Content-type", "image/jpeg");
-				userService.handleFileDownload(response, team.getStadium_image(), "covers");
-				FileCopyUtils.copy(
-						new FileInputStream(
-								userService.handleFileDownload(response, team.getStadium_image(), "covers")),
-						response.getOutputStream());
-			}
+		if (team != null && team.getStadium_image() != "unknown") {
+			File file = userService.handleFileDownload(response, team.getStadium_image(), "covers");
+			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			InputStream is = this.getClass().getClassLoader()
+					.getResourceAsStream(FilesPath.FILES_TEAMS_COVER + "/" + "unknown-stadium.png");
+			FileCopyUtils.copy(is, response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+
 	}
 
 	// actuaizar equipos
