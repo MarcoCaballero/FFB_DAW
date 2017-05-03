@@ -77,7 +77,8 @@ export class SportsbetComponent implements OnInit {
         if (confirmationMessage) {
             this.betService.sendBet(this.multiplicator)
                 .then(ticket => {
-                    this.sportTicket = ticket;
+                    this.potentialGainTemporary = 0.00;
+                    this.getSportTicket();
                     this.uploadUser();
                 });
         }

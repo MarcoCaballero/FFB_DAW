@@ -32,7 +32,7 @@
 						</strong> <em> {{userLogged.email}} </em></span>
                 </div>
             </div>
-            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+            <div class="btn- f btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <button type="button" id="stars" class="btn btn-default" [class.btn-primary]="selectedTab === 0" (click)="selectTab(0)">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -70,15 +70,12 @@
                                             <div style="margin-bottom: 10px;" class="col-md-12">
                                                 <div class="panel-heading">
                                                     FICHA DE USUARIO
-                                                    <div style="float: right;">
-                                                        <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
-                                                        <button id="editarDatos" (click)="uploadUser()" type="submit" class="btn btn-primary">Guardar</button>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <form id="form-updateDataUser" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                            <form #updateUserForm="ngForm" id="form-updateDataUser" class="form-horizontal" (ngSubmit)="uploadUser()" novalidate>
 
                                                 <div class="col-md-6">
                                                     <fieldset>
@@ -86,7 +83,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="name">Nombre</label>
                                                             <div class="col-md-9">
-                                                                <input id="name" name="namePre" type="text" placeholder="{{userLogged.name}}" class="form-control">
+                                                                <input [(ngModel)]="userLogged.name" name="name"type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
@@ -94,7 +91,7 @@
                                                             <label class="col-md-3 control-label" for="email">Primer
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap1" name="surnamePre" type="text" placeholder="{{userLogged.surname}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.surname" name="surname" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
@@ -102,27 +99,27 @@
                                                             <label class="col-md-3 control-label" for="email">Segundo
 															Apellido</label>
                                                             <div class="col-md-9">
-                                                                <input id="ap2" name="secondSurname" type="text" placeholder="{{userLogged.secondSurname}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.secondSurname" name="secondSurname" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Ciudad</label>
                                                             <div class="col-md-9">
-                                                                <input id="city" name="cityPre" type="text" placeholder="{{userLogged.city}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.city" name="city" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Pais input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Pais</label>
                                                             <div class="col-md-9">
-                                                                <input id="country" name="countryPre" type="text" placeholder="{{userLogged.country}}" class="form-control">
+                                                                <input [(ngModel)]="userLogged.country" name="country" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="fileImage">Foto</label>
                                                             <div class="col-md-9">
-                                                                <input id="fileImage" name="fileImage" type="file" (change)=" uploadFile($event)" placeholder="Subir imagen..." class="form-control">
+                                                                <input id="fileImage" name="fileImage" type="file" (change)="uploadFile($event)" value="Subir imagen..." class="form-control">
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -135,21 +132,21 @@
                                                             <label class="col-md-3 control-label" for="name">Correo
 															electronico</label>
                                                             <div class="col-md-9">
-                                                                <input id="email" name="emailPre" type="text" placeholder="{{userLogged.email}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.email" name="email" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 1Apellido input-->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Domicilio</label>
                                                             <div class="col-md-9">
-                                                                <input id="location" name="locationPre" type="text" placeholder="{{userLogged.location}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.location" name="location" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- 2Apellido input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Telefono</label>
                                                             <div class="col-md-9">
-                                                                <input id="telephone" name="telf" type="text" placeholder="{{userLogged.telephone}}" class="form-control" />
+                                                                <input [(ngModel)]="userLogged.telephone" name="telephone" type="text" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <!-- Ciudad input -->
@@ -157,24 +154,34 @@
                                                             <label class="col-md-3 control-label" for="email">Nueva
 															Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="pass" name="pass" type="password" placeholder="Escribe tu nueva contraseña" class="form-control">
+                                                                <input ngModel #passUpdated="ngModel" id="pass" name="passPre" type="password" placeholder="Escribe tu nueva contraseña"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">Repite Nueva Contraseña</label>
                                                             <div class="col-md-9">
-                                                                <input id="passRepeat" name="passRepeat" type="password" placeholder="Repite tu nueva contraseña" class="form-control">
-                                                                <label>Contraseñas distintas</label>
+                                                                <input ngModel #passUpdatedBis="ngModel" id="passRepeat" name="passRepeatPre" type="password" placeholder="Repite tu nueva contraseña"
+                                                                    class="form-control">
+                                                                <div [hidden]="passUpdated.value == passUpdatedBis.value" class="alert alert-danger">
+                                                                    Recuerda que ambas contraseñas han de ser iguales
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                         <!-- Pais input -->
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="email">DNI/NIF</label>
                                                             <div class="col-md-9">
-                                                                <input id="dni" name="dniPre" type="text" placeholder="{{userLogged.dni}}" class="form-control">
+                                                                <input [(ngModel)]="userLogged.dni" name="dni" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                     </fieldset>
+                                                </div>
+
+                                                <div style="float: right; margin-right: 10%;">
+                                                    <img style="opacity: 0.2;" class="glyph stroked pencil" src="../assets/images/iconedit.png" />
+                                                    <button id="editarDatos" type="submit" class="btn btn-primary">Guardar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -202,7 +209,7 @@
                                         </div>
                                         <div class="row" style="margin-left: 10%">
                                             <div class="col-xs-12 col-md-9 col-lg-5">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
                                                         <div class="col-sm-3 col-lg-5 widget-left" style="background: #b84f4f;">Saldo apostado</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">
@@ -213,7 +220,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-md-9 col-lg-5">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
                                                         <div class="col-sm-3 col-lg-5 widget-left" style="background: #6470aa;">Posibles Ganancias</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">
@@ -226,7 +233,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-md-8 col-lg-5  col-lg-offset-3 col-md-offset-1">
-                                                <div class="panel panel-blue panel-widget ">
+                                                <div class="panel panel-blue panel-widget">
                                                     <div class="row no-padding">
                                                         <div class="col-sm-3 col-lg-5 widget-left" style="background: #478949;">Total retirable</div>
                                                         <div class="col-sm-9 col-lg-7 widget-right">

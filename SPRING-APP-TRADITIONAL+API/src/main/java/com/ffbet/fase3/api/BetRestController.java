@@ -116,6 +116,7 @@ public class BetRestController {
 			ticket_erasable_SP = btService.initializeAmountRest(amount, ticket_erasable_SP);
 			if (btService.sendBet(ticket_erasable_SP, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
+				ticket_erasable_SP = null;
 				return new ResponseEntity<>(ticket_erasable_SP, HttpStatus.OK);
 			}
 		}
@@ -125,6 +126,7 @@ public class BetRestController {
 
 			if (btService.sendBet(ticket_erasable_EG, userService.handleUserLoggedFromComponent(), code,
 					promoQuantity) == 0) {
+				ticket_erasable_EG = null;
 				return new ResponseEntity<>(ticket_erasable_EG, HttpStatus.OK);
 			}
 		}

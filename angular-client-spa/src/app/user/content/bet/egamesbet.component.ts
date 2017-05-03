@@ -78,7 +78,8 @@ export class EgamesbetComponent implements OnInit {
         if (confirmationMessage) {
             this.betService.sendBet(this.multiplicator)
                 .then(ticket => {
-                    this.egamesTicket = ticket;
+                    this.potentialGainTemporary = 0.00;
+                    this.getEgamesTicket();
                     this.uploadUser();
                 });
         }
