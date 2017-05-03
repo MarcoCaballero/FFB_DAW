@@ -145,11 +145,11 @@
                                         </td>
                                         <td class="tab-buttons-apuesta-simple">
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /1" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ {{basketballMatch.quotaHomeVictory}}</a>
+                                                <a (click)="addSportMatchToBet(basketballMatch, '1')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ {{basketballMatch.quotaHomeVictory}}</a>
                                             </div>
 
                                             <div class="col-xs-6 col-md-4 center-block">
-                                                <a href="/user-sportsBet/addMatch/ id /2" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ {{basketballMatch.quotaVisitingVictory}}</a>
+                                                <a (click)="addSportMatchToBet(basketballMatch, '2')" type="button" class="btn btn-outline-success" style="border: 1px solid #5cb85c;">@ {{basketballMatch.quotaVisitingVictory}}</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -193,7 +193,7 @@
                     </ul>
                 </div>
                 <div class="panel-footer" style="background: rgba(255, 255, 255, 0.71)">
-                    <form id="betTicket" action="/user-EsportsBet/sendBet" method="post" class="form-horizontal">
+                    <form id="betTicket" method="post" class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
                                 <div class="col-md-4" style="color: black; padding-top: 5px;">

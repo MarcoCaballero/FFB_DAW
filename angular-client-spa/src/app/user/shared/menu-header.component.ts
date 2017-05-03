@@ -30,9 +30,7 @@ export class MenuHeaderComponent implements OnInit {
         private router: Router) {
         this.subscription = userService.changeAnnounced$.subscribe(
             user => {
-                userService
-                    .getUser(user.id)
-                    .then(userReboot => this.user = userReboot)
+                this.user = user;
             });
     }
 
@@ -47,7 +45,6 @@ export class MenuHeaderComponent implements OnInit {
             response => {
                 this.router.navigate(['/login']);
             },
-            error => console.log('Error when trying to log out: ' + error)
         );
     }
 

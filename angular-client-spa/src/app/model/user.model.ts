@@ -15,8 +15,8 @@ export interface User {
   country?: string;
   city?: string;
   location?: string;
-  men: boolean;
-  photoSelected: boolean;
+  isMen: boolean;
+  isPhotoSelected: boolean;
   photoUrl?: string;
   cards?: CreditCard[];
   betTickets?: BetTicket[];

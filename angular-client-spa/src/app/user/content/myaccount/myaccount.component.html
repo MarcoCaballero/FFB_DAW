@@ -17,14 +17,14 @@
         <div class="col-lg-10 col-sm-10 col-lg-offset-1">
             <div class="tarjeta hovercard">
                 <div class="tarjeta-background">
-                    <img *ngIf="userLogged.men && !userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
-                    <img *ngIf="!userLogged.men && !userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/userGirl.svg">
-                    <img *ngIf="userLogged.photoSelected" class="tarjeta-bkimg" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
+                    <img *ngIf="userLogged.isMen && !userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="!userLogged.isMen && !userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="../assets/images/userGirl.svg">
+                    <img *ngIf="userLogged.isPhotoSelected" class="tarjeta-bkimg" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
                 </div>
                 <div class="useravatar">
-                    <img *ngIf="userLogged.men && !userLogged.photoSelected" alt="" src="../assets/images/boyUser.svg">
-                    <img *ngIf="!userLogged.men && !userLogged.photoSelected" alt="" src="../assets/images/userGirl.svg">
-                    <img *ngIf="userLogged.photoSelected" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
+                    <img *ngIf="userLogged.isMen && !userLogged.isPhotoSelected" alt="" src="../assets/images/boyUser.svg">
+                    <img *ngIf="!userLogged.isMen && !userLogged.isPhotoSelected" alt="" src="../assets/images/userGirl.svg">
+                    <img *ngIf="userLogged.isPhotoSelected" alt="" src="http://127.0.0.1:8080/api/storage/files/{{userLogged.name}}-{{userLogged.id}}.png">
 
                 </div>
                 <div class="tarjeta-info">

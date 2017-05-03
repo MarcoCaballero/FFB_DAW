@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { Subscription } from 'rxjs/Subscription';
 
 
 import { User } from '../../../model/user.model';
@@ -35,23 +36,27 @@ export class MyAccountComponent implements OnInit {
     matches: SportMatch[];
     finishedMatches: SportMatch[];
 
+
+
+    subscription: Subscription;
+
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
     title = 'Mi cuenta';
 
 
     // Methods
-    constructor(
-        private authService: AuthService,
-        private userService: UserService,
-        private teamService: TeamService,
+    constructor(private authService: AuthService, private userService: UserService, private teamService: TeamService,
         private matchService: MatchService,
-        private betService: BetService
-    ) { }
+        private betService: BetService) {
+        this.subscription = userService.changeAnnounced$.subscribe(
+            user => {
+                this.userLogged = user;
+            });
+    }
 
     ngOnInit() {
         this.setUserLogged(this.authService.getUser());
-        this.getUser(this.userLogged.id);
         this.getTeams();
         this.getTickets(this.userLogged);
         this.getFinishedTickets(this.userLogged);
@@ -60,7 +65,11 @@ export class MyAccountComponent implements OnInit {
     public getUser(id: number) {
         this.userService
             .getUser(id)
-            .then(response => this.userLogged = response);
+            .then(response => {
+                this.userLogged = response;
+                this.authService.buildUser(response);
+            });
+
     }
 
     public setUserLogged(user: User) {
@@ -96,9 +105,7 @@ export class MyAccountComponent implements OnInit {
             .uploadFile(this.fileAux)
             .then(response => {
                 this.getUser(this.userLogged.id);
-                this.authService.buildUser(this.userLogged);
                 this.userService.announceChange(this.userLogged);
-                console.log(`changed  -${this.userLogged.name}- announced`);
             });
     }
 
