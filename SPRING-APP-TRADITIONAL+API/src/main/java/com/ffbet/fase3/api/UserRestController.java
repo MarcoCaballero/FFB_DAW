@@ -68,7 +68,6 @@ public class UserRestController {
 	@PutMapping
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		if (user != null) {
-			// updatedUser.setId(user.getId());
 			userService.updateUser(user);
 
 			return new ResponseEntity<>(user, HttpStatus.OK);

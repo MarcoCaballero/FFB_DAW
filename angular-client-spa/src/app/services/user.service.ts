@@ -22,7 +22,6 @@ export class UserService {
 
     // Service message commands
     announceChange(user: User) {
-        console.log(` announce change on ${user.credit}`)
         this.changeAnnouncedSource.next(user);
     }
 

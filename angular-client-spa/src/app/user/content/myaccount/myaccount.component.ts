@@ -26,7 +26,7 @@ export class MyAccountComponent implements OnInit {
     public isCollapsed = false;
     public selectedTab = 0;
     public userLogged: User;
-    private fileAux: FormData;
+    private fileAux: FormData = null;
     tickets: BetTicket[];
     finishedTickets: BetTicket[];
     amount = 0;
@@ -41,6 +41,8 @@ export class MyAccountComponent implements OnInit {
     subscription: Subscription;
 
     @ViewChild('staticTabs') staticTabs: TabsetComponent;
+    @ViewChild('passUpdated') passUpdated: HTMLInputElement = null;
+    @ViewChild('passUpdatedBis') passUpdatedBis: HTMLInputElement = null;
 
     title = 'Mi cuenta';
 
@@ -101,12 +103,30 @@ export class MyAccountComponent implements OnInit {
 
     }
     public uploadUser() {
+        console.log(`the file is ${this.fileAux}`);
+        if (this.fileAux !== null) {
+            this.userService
+                .uploadFile(this.fileAux)
+                .then(response => {
+                    console.log(`the user in file ${JSON.stringify(this.userLogged)}`);
+                    this.getUser(this.userLogged.id);
+                    this.userService.announceChange(this.userLogged);
+                    this.fileAux = null;
+                });
+        }
+
+
         this.userService
-            .uploadFile(this.fileAux)
+            .updateUser(this.userLogged)
             .then(response => {
+
+                console.log(`the user in update <PRE> ${JSON.stringify(this.userLogged)}`);
                 this.getUser(this.userLogged.id);
                 this.userService.announceChange(this.userLogged);
+
+                console.log(`the user in update <POSt> ${JSON.stringify(this.userLogged)}`);
             });
+
     }
 
     public getTickets(user: User) {
