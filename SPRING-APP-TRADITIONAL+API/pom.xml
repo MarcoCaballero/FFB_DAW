@@ -6,7 +6,7 @@
 	<groupId>com.demo</groupId>
 	<artifactId>ffb_daw_fase3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>ejb</packaging>
 
 	<name>ffb_daw_fase3</name>
 	<description>Proyecto de DAW, construcción de sitio web con html5, css3, javascript, jQuey, springboot y mustache.</description>
@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<docker.baseDir>src/main/docker</docker.baseDir>
 		<start-class>com.ffbet.fase3.Application</start-class>
 	</properties>
 
@@ -42,12 +43,12 @@
 			<version>2.3</version>
 		</dependency>
 		<!-- DATABASE -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			</dependency> -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<!--<dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -76,13 +77,41 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>ffb/${project.artifactId}</imageName>
+					<dockerDirectory>${docker.baseDir}</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${docker.baseDir}</directory>
+							<include>wrapper.sh</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<configuration>
+					<ejbVersion>3.0</ejbVersion>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
