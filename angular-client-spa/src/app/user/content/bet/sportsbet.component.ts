@@ -18,9 +18,9 @@ import { BetService } from 'app/services/bet.service';
 export class SportsbetComponent implements OnInit {
 
     title = 'Apuestas deportivas';
-    private footballMatches: SportMatch[];
-    private basketballMatches: SportMatch[];
-    private sportTicket: BetTicket;
+    public footballMatches: SportMatch[];
+    public basketballMatches: SportMatch[];
+    public sportTicket: BetTicket;
     public potentialGainTemporary = 0.00;
     public multiplicator = 1;
 
