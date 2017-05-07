@@ -133,12 +133,12 @@ public class AdminPromotionController extends RedirectController {
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
 
-		File file = userService.handleFileDownload(response, fileName, "promos");
+		InputStream file = userService.handleFileDownload(response, fileName, "promos");
 		
-		if (file.exists()) {
+		if (file != null) {
 			res.setContentType("image/jpeg");
 			
-			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			FileCopyUtils.copy(file, response.getOutputStream());
 			
 		} else {
 			res.sendError(404, "File" + fileName  + "does not exist");

@@ -500,7 +500,7 @@
                 //$('#toShow').empty();
                 $('#spinner-football').html("<img src='user/img/spinner1_opt.gif'/>");
                 $.ajax({
-                    url: "http://localhost:8080//user/footbalResults/?page=" + pageF + "&size=" + 10
+                    url: "http://192.168.99.100:8080//user/footbalResults/?page=" + pageF + "&size=" + 10
                 }).done(function (data) {
                     $('#spinner-football').empty();
                     for (var j = 0; j < data.content.length; j++) {
@@ -524,7 +524,7 @@
             $('#more-scores-basket').click(function () {
                 $('#spinner-basket').html("<img src='user/img/spinner1_opt.gif'/>");
                 $.ajax({
-                    url: "http://localhost:8080//user/basketballResults/?page=" + pageB + "&size=" + 10
+                    url: "http://192.168.99.100:8080//user/basketballResults/?page=" + pageB + "&size=" + 10
                 }).done(function (data) {
                     $('#spinner-basket').empty();
                     for (var j = 0; j < data.content.length; j++) {
@@ -548,7 +548,7 @@
             $('#more-scores-lol').click(function () {
                 $('#spinner-lol').html("<img src='user/img/spinner1_opt.gif'/>");
                 $.ajax({
-                    url: "http://localhost:8080//user/lolResults/?page=" + pageL + "&size=" + 10
+                    url: "http://192.168.99.100:8080//user/lolResults/?page=" + pageL + "&size=" + 10
                 }).done(function (data) {
                     $('#spinner-lol').empty();
                     for (var j = 0; j < data.content.length; j++) {
@@ -572,7 +572,7 @@
             $('#more-scores-csgo').click(function () {
                 $('#spinner-csgo').html("<img src='user/img/spinner1_opt.gif'/>");
                 $.ajax({
-                    url: "http://localhost:8080//user/csgoResults/?page=" + pageC + "&size=" + 10
+                    url: "http://192.168.99.100:8080//user/csgoResults/?page=" + pageC + "&size=" + 10
                 }).done(function (data) {
                     $('#spinner-csgo').empty();
                     for (var j = 0; j < data.content.length; j++) {
