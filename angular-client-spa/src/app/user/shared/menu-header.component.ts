@@ -26,7 +26,7 @@ export class MenuHeaderComponent implements OnInit {
         this.isCollapsed = true;
     }
 
-    constructor(private loginService: LoginService, private authService: AuthService, private userService: UserService,
+    constructor(private loginService: LoginService, public authService: AuthService, private userService: UserService,
         private router: Router) {
         this.subscription = userService.changeAnnounced$.subscribe(
             user => {
