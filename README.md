@@ -115,23 +115,30 @@
 
 + `POLICY TERMS`: Includes the policy terms.
 
+##### Website image screenshots:
+[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
 
-## Diagramas de la aplicación:
 
-### Navigation diagram:
+
+## BACKEND-DIAGRAMS
+
+#### Navigation diagram:
 [Go to ... Navigation diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n).
 
-### Class diagrams:
+#### Class diagrams:
 [Go to ... Class diagrams!](https://raw.githubusercontent.com/MarcoCaballero/FFB_DAW/develop/Material%20adicional/Diagramas%20de%20clases).
 
-### Database diagram:
-[Go to ... Database diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
-
-### API diagrams:
+#### API diagrams:
 [Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas%20API).
 
-### Website image screenshots:
-[Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Pantallazos).
+
+## DATABASE-DRIAGRAM
+
+#### Database diagram:
+[Go to ... Database diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20base%20de%20datos).
+
+
+## FRONTEND-DIAGRAMS (ANGULAR)
 
        
 
