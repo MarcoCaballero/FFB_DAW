@@ -118,7 +118,7 @@ public class UserService {
 	}
 
 	/* MUESTRA DE IMÁGENES */
-	public File handleFileDownload(HttpServletResponse response, String fileName, String fileFolder) throws FileNotFoundException, IOException {
+	public InputStream handleFileDownload(HttpServletResponse response, String fileName, String fileFolder) throws FileNotFoundException, IOException {
 		String file_folder_absolute;
 		switch (fileFolder) {
 		case "avatars":
@@ -139,10 +139,8 @@ public class UserService {
 		}
 
 		if (!file_folder_absolute.equals("UnknownFolder")) {
-//			InputStream is = this.getClass().getClassLoader().getResourceAsStream(file_folder_absolute + "/" + fileName);
-//			return is;
-			File file = new File(file_folder_absolute, fileName);
-			return file;
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream(file_folder_absolute + "/" + fileName);
+			return is;
 		} else {
 			response.sendError(404, "File" + fileName + "(" + fileFolder + ") does not exist");
 			return null;

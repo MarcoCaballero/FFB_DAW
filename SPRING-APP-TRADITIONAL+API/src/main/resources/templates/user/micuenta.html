@@ -695,7 +695,7 @@
 									<div class="col-sm-6">
 										{{#SelectedTeam}}
 										<h3 class="card-title">
-											<img src="static/files/logos/{{logo_image}}" height="150px"
+											<img src="http://192.168.99.100:8080/api/teams/logo/{{id}}" height="150px"
 												style="margin-left: 10%; float: left">
 										</h3>
 										<a data-toggle="collapse" href="#collapseEquipos"
@@ -718,11 +718,11 @@
 															<div class="front">
 																<form action="user-account/selectionTeam/{{id}}">
 																	<div class="cover">
-																		{{#stadium_image}}<img src="static/files/covers/{{.}}" />{{/stadium_image}}
+																		{{#stadium_image}}<img src="http://192.168.99.100:8080/api/teams/stadium/{{id}}" />{{/stadium_image}}
 																	</div>
 																	<div class="user">
 																		{{#logo_image}} <img class="img-circle"
-																			src="static/files/logos/{{.}}" />{{/logo_image}}
+																			src="http://192.168.99.100:8080/api/teams/logo/{{id}}" />{{/logo_image}}
 																	</div>
 																	<div class="content">
 																		<div class="main">

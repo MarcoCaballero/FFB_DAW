@@ -190,12 +190,12 @@ public class UserAccountController extends RedirectController {
 	public void handleAvatarsFile(Model model, HttpServletResponse response, @PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = userService.handleFileDownload(response, fileName, "avatars");
+		InputStream file = userService.handleFileDownload(response, fileName, "avatars");
 
-		if (file.exists()) {
+		if (file != null) {
 			res.setContentType("image/jpeg");
 
-			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			FileCopyUtils.copy(file, response.getOutputStream());
 
 		} else {
 			res.sendError(404, "File" + fileName + "does not exist");

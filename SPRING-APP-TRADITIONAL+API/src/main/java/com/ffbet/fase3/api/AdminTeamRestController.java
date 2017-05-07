@@ -114,9 +114,10 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getLogo_image() != "unknown") {
-			File file = userService.handleFileDownload(response, team.getLogo_image(), "logos");
-			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
-			return new ResponseEntity<>(HttpStatus.OK);
+
+			FileCopyUtils.copy(userService.handleFileDownload(response, team.getLogo_image(), "logos"),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			// CLasspath access
 			InputStream is = this.getClass().getClassLoader()
@@ -134,9 +135,9 @@ public class AdminTeamRestController {
 		response.addHeader("Content-type", "image/jpeg");
 
 		if (team != null && team.getStadium_image() != "unknown") {
-			File file = userService.handleFileDownload(response, team.getStadium_image(), "covers");
-			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
-			return new ResponseEntity<>(HttpStatus.OK);
+			FileCopyUtils.copy(userService.handleFileDownload(response, team.getStadium_image(), "covers"),
+					response.getOutputStream());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			InputStream is = this.getClass().getClassLoader()
 					.getResourceAsStream(FilesPath.FILES_TEAMS_COVER + "/" + "unknown-stadium.png");
