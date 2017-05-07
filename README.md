@@ -61,7 +61,7 @@
 
 - [x] Traditional Interface :+1:
 - [x] Traditional backend :+1:
-- [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/develop/API.md)
+- [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/master/SPRING-APP-TRADITIONAL%2BAPI/API.md)
 - [ ] SPA Interface (Angular) :exclamation:   
 
 
@@ -123,10 +123,10 @@
 ## BACKEND-DIAGRAMS
 
 #### Navigation diagram:
-[Go to ... Navigation diagram!](https://github.com/MarcoCaballero/FFB_DAW/tree/develop/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n).
+[Go to ... Navigation diagram!](https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/Diagrama%20de%20navegaci%C3%B3n/Diagrama%20de%20Navegacion.png).
 
 #### Class diagrams:
-[Go to ... Class diagrams!](https://raw.githubusercontent.com/MarcoCaballero/FFB_DAW/develop/Material%20adicional/Diagramas%20de%20clases).
+[Go to ... Class diagrams!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas%20de%20clases).
 
 #### API diagrams:
 [Go to ... Website image screenshots!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas%20API).
@@ -139,6 +139,8 @@
 
 
 ## FRONTEND-DIAGRAMS (ANGULAR)
+[Go to ... Angular diagrams!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas_angular).
+
 
        
 

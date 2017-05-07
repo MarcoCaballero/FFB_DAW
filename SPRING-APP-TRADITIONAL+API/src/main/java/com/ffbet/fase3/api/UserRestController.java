@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -97,8 +98,8 @@ public class UserRestController {
 
 		if (user != null && user.getPhoto_url() != null) {
 			response.addHeader("Content-type", "image/jpeg");
-			File file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
-			FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());
+			InputStream file = userService.handleFileDownload(response, user.getPhoto_url(), "avatars");
+			FileCopyUtils.copy(file, response.getOutputStream());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
