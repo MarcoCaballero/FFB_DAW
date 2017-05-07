@@ -18,10 +18,10 @@ import { Team } from '../../model/team.model';
 })
 
 export class AdminScoresComponent implements OnInit {
-    private matchFootballResults: SportMatch[];
-    private matchBasketballResults: SportMatch[];
-    private matchLolResults: EgamesMatch[];
-    private matchCsResults: EgamesMatch[];
+    public matchFootballResults: SportMatch[];
+    public matchBasketballResults: SportMatch[];
+    public matchLolResults: EgamesMatch[];
+    public matchCsResults: EgamesMatch[];
 
     constructor(
         private matchService: MatchService

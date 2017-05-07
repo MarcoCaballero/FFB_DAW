@@ -1,5 +1,6 @@
+import {environment} from 'environments/environment';
 // Base URL
-export const baseUrl = 'http://127.0.0.1:8080/api/';
+export const baseUrl = environment.apiUrl;
 
 // Login Service URL'S
 export const loginUrl = baseUrl + 'logIn';

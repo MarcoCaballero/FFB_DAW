@@ -12,10 +12,10 @@ import { EgamesMatch } from 'app/model/egames-match.model';
 })
 
 export class HomeComponent implements OnInit {
-    private footballMatches: SportMatch[];
-    private basketballMatches: SportMatch[];
-    private lolMatches: EgamesMatch[];
-    private csMatches: EgamesMatch[];
+    public footballMatches: SportMatch[];
+    public basketballMatches: SportMatch[];
+    public lolMatches: EgamesMatch[];
+    public csMatches: EgamesMatch[];
 
     constructor(
         private matchService: MatchService

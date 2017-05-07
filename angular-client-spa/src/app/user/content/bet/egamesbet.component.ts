@@ -18,9 +18,9 @@ import { BetService } from 'app/services/bet.service';
 export class EgamesbetComponent implements OnInit {
 
     title = 'Apuestas electrónicas';
-    private lolMatches: EgamesMatch[];
-    private csMatches: EgamesMatch[];
-    private egamesTicket: BetTicket;
+    public lolMatches: EgamesMatch[];
+    public csMatches: EgamesMatch[];
+    public egamesTicket: BetTicket;
     public potentialGainTemporary = 0.00;
     public multiplicator = 1;
 
