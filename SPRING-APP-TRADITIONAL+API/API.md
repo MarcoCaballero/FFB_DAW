@@ -1,7 +1,7 @@
 # FFB_DAW
 ### Friends&amp;Fun&amp;Bet ----- DAW WEB PROJECT --- URJC ETSII
 
-![Nuestro Logo](https://github.com/MarcoCaballero/FFB_DAW/blob/master/ffb_daw_fase3/src/main/resources/static/user/img/LogoFFB.png)
+![Nuestro Logo]<img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/SPRING-APP-TRADITIONAL%2BAPI/src/main/resources/static/user/img/LogoFFB.png" width="500">
 
 
 + A continuacion mostramos la informacion correspondiente a la API REST encargada de la gestion de la informacion de FriendsFun&Bet
