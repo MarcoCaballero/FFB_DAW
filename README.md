@@ -1,3 +1,4 @@
+
 <img src="https://github.com/MarcoCaballero/FFB_DAW/blob/master/Material%20adicional/EstadoRepositorio/status.png">
 
 ***
@@ -141,7 +142,11 @@
 ## FRONTEND-DIAGRAMS (ANGULAR)
 [Go to ... Angular diagrams!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/Material%20adicional/Diagramas_angular).
 
+### Explaining Video
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jojVZ4RSK6M
+" target="_blank"> <img src="http://img.youtube.com/vi/jojVZ4RSK6M/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
        
 
 Members:
