@@ -54,8 +54,8 @@ export class BetService {
             .catch(error => console.error(error));
     }
 
-    validateTicket(ticket: BetTicket): Promise<BetTicket> {
-        return this.http.get(betUrl + ticket.id)
+    validateTicket(id: number): Promise<BetTicket> {
+        return this.http.get(betUrl + `${id}/${this.authService.getUser().id}` )
             .toPromise()
             .then(response => response.json())
             .catch(error => console.error(error));

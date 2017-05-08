@@ -148,7 +148,7 @@ public class BetTicketService {
 		User updateduser = userService.handleUserLoggedFromComponent();
 		BetTicket ticketTocheck = findOne(id);
 
-		if (!isBetCheckedYet(ticketTocheck, updateduser, id)) {
+		if (!isBetCheckedYet(ticketTocheck)) {
 			if (ticketTocheck.checkTicket()) {
 				if (ticketTocheck.checkFinishedTicket()) {
 					updateduser.addCreditFromFFB(ticketTocheck.getPotentialGain());
@@ -171,6 +171,35 @@ public class BetTicketService {
 		userService.updateUser(updateduser);
 		return ticketTocheck.isWinned();
 	}
+	
+	public boolean validateBet(long id, long userId) {
+		User user = userService.findOne(userId);
+		BetTicket ticketTocheck = findOne(id);
+
+		if (!isBetCheckedYet(ticketTocheck)) {
+			if (ticketTocheck.checkTicket()) {
+				if (ticketTocheck.checkFinishedTicket()) {
+					user.addCreditFromFFB(ticketTocheck.getPotentialGain());
+					ticketTocheck.setWinned(true);
+					ticketTocheck.setLosed(false);
+					ticketTocheck.setUsed(true);
+					// HA GANADO INGRESO DINERO
+				} else {
+					ticketTocheck.setWinned(false);
+					ticketTocheck.setLosed(false);
+				}
+
+			} else {
+				ticketTocheck.setWinned(false);
+				ticketTocheck.setLosed(true);
+				ticketTocheck.setUsed(true);
+			}
+		}
+
+		userService.updateUser(user);
+		return ticketTocheck.isWinned();
+	}
+
 
 	public void removeBetTicketFromUser(long id) {
 		User updateduser = userService.handleUserLoggedFromComponent();
@@ -181,13 +210,12 @@ public class BetTicketService {
 
 	/* Auxiliar bet methods */
 
-	public boolean isBetCheckedYet(BetTicket btToCheck, User user, long id) {
+	public boolean isBetCheckedYet(BetTicket btToCheck) {
 		// TODO Auto-generated method stub
 
-		for (BetTicket bt : user.getBet_tickets()) {
-			if ((bt.getId() == id) && !bt.isUsed())
+			if (!btToCheck.isUsed())
 				return false;
-		}
+		
 
 		return true;
 	}

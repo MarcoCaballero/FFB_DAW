@@ -182,8 +182,8 @@ export class MyAccountComponent implements OnInit {
             });
     }
 
-    public validateTicket(ticket: BetTicket) {
-        this.betService.validateTicket(ticket)
+    public validateTicket(id: number) {
+        this.betService.validateTicket(id)
             .then(() => {
                 this.getFinishedTickets(this.userLogged);
                 this.getUser(this.userLogged.id);

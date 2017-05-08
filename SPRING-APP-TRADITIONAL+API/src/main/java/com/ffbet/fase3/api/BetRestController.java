@@ -134,15 +134,15 @@ public class BetRestController {
 	}
 
 	/* VALIDATION BET ZONE */
-	@GetMapping("/{id}")
-	public ResponseEntity<BetTicket> validateBet(@PathVariable long id) {
+	@GetMapping("/{id}/{userId}")
+	public ResponseEntity<BetTicket> validateBet(@PathVariable long id, @PathVariable long userId) {
 
 		BetTicket bttocheck = btService.findOne(id);
 
 		if (bttocheck != null) {
 			// salida en json
 			if (bttocheck.isFinished()) {
-				btService.validateBet(id);
+				btService.validateBet(id, userId);
 			}
 
 			return new ResponseEntity<>(btService.findOne(id), HttpStatus.OK);
