@@ -313,8 +313,8 @@
                                                                         <td *ngIf="finishedTicket.winned"> {{finishedTicket.potentialGain}} €</td>
                                                                         <td *ngIf="!finishedTicket.winned"> PERDIDA €</td>
                                                                         <td>
-                                                                            <button (click)="validateTicket(finishedTicket)" value="Canjear"></button>
-                                                                            <button (click)="deleteTicket(finishedTicket)" value="Borrar"></button>
+                                                                            <button (click)="validateTicket(finishedTicket.id)" class="btn btn-default" value="Canjear">Canjear</button>
+                                                                            <button (click)="deleteTicket(finishedTicket.id)" class="btn btn-danger" value="Borrar">Borrar</button>
                                                                         </td>
                                                                     </tr>
                                                                 </table>

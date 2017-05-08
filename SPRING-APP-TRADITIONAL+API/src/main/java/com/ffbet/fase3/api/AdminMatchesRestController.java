@@ -163,16 +163,15 @@ public class AdminMatchesRestController {
 			
 		if(match != null){
 			
-			SportsMatch sportMatch = service.findOneSports(id);
-			sportMatch.setHomePoints(updateSportsMatch.getHomePoints());
-			sportMatch.setVisitingPoints(updateSportsMatch.getVisitingPoints());
+			match.setHomePoints(updateSportsMatch.getHomePoints());
+			match.setVisitingPoints(updateSportsMatch.getVisitingPoints());
 
-			sportMatch.setFinished(true);
+			match.setFinished(true);
 			callToCheckFinish();
 			
 			
-			service.saveSportsMatch(updateSportsMatch);
-			return new ResponseEntity<>(updateSportsMatch, HttpStatus.OK);
+			service.saveSportsMatch(match);
+			return new ResponseEntity<>(match, HttpStatus.OK);
 		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
