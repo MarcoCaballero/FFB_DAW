@@ -63,7 +63,7 @@
 - [x] Traditional Interface :+1:
 - [x] Traditional backend :+1:
 - [x] API REST  :+1: [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/blob/master/SPRING-APP-TRADITIONAL%2BAPI/API.md)
-- [ ] SPA Interface (Angular) :exclamation:   
+- [X] SPA Interface (Angular) :+1:   [API-documentation!](https://github.com/MarcoCaballero/FFB_DAW/tree/master/angular-client-spa)
 
 
 #### FBBET USER PAGES:
